@@ -27,8 +27,30 @@ public class TestController {
         ModelAndView mav = new ModelAndView("/WEB-INF/views/test.jsp");
         mav.addObject("theKey", "abcde");
         
+        //Search for all
         List<Test> tests = service.findAll();
         mav.addObject("testSize", tests.size());
+        mav.addObject("tests", tests);
+        
+        //Now update them
+        List<Test> tests2 = service.findAll();
+        for (Test t : tests2) {
+            t.setDescription(t.getDescription() + "_updated");
+            service.save(t);
+        }
+        mav.addObject("tests2", tests2);
+        
+        //Now delete one
+        //This will thrown an exception if no @Transactional is added to the service: 
+        //java.lang.IllegalArgumentException: Removing a detached instance com.xiangyun.notary.domain.Test#1
+        Test toBeDeleted = tests2.get(0); 
+        service.delete(toBeDeleted);
+        mav.addObject("tests3", service.findAll());
+        
+        //Now insert one
+        Test t = new Test("New inserted");
+        service.save(t);
+        mav.addObject("tests4", service.findAll());
         
         return mav;
     }

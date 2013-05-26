@@ -10,7 +10,7 @@ USE changning;
 CREATE TABLE test
 (
   test_id              INT            PRIMARY KEY   AUTO_INCREMENT,
-  test_description     VARCHAR(50)    NOT NULL
+  test_description     VARCHAR(300)    NOT NULL
 );
 
 INSERT INTO test VALUES
