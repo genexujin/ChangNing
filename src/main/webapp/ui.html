@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<title>网上办证</title>
+
+<style type="text/css">
+.navbar .nav li a {
+/*    border-left: 1px solid rgba(255, 255, 255, 0.75);
+    border-right: 1px solid rgba(0, 0, 0, 0.1); */
+    font-weight: bold;
+    text-align: center;
+}
+
+.navbg {
+    background: url("main_bg.png") repeat-x scroll 0 0 #FFFFFF
+}
+
+.navbg2 {
+    background-color: #49AFCD;
+    background-image: linear-gradient(to bottom, #5BC0DE, #2F96B4);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbg3 {
+    background-color: #006DCC;
+    background-image: linear-gradient(to bottom, #0088CC, #0044CC);
+    background-repeat: repeat-x;
+    /* border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); */
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 6px 6px 6px 6px;
+}
+
+.round {
+    border-radius: 6px 6px 6px 6px;
+}
+
+html, body {
+    height: 100%;
+    background-color: #F6FFFF;
+}
+.nav li a.clean {
+    color: #AAAAAA;
+    text-shadow: none;
+}
+
+.form-horizontal .controls {
+    margin-left: 120px;
+}
+
+.form-horizontal .control-label {
+    width: 100px;
+}
+
+select {
+    width: 140px;
+}
+
+input {
+    width: 100px;
+}
+
+.wholebg {
+    background-color: #F6FFFF
+}
+
+.border {
+    border: 1px solid #CCDBED;
+}
+
+.small-padding-top {
+    padding-top: 10px;
+}
+
+.text-font {
+    font-family:Arial;
+    font-size:13px;
+    font-weight:normal;
+    font-style:normal;
+    text-decoration:none;
+}
+
+.text-b {
+    color:#333333;
+}
+
+.text-r {    
+    color:#FF0000;
+}
+
+.breadcrumb {
+    background-color: #F6FFFF;
+    margin: 0px;
+}
+
+.container {
+    height: 100%
+}
+
+#progressIndicatorWrapper {
+    float: right;
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 6px 0 0;
+}
+
+
+.progressIndicatorLeft {
+    background: url("progress_bar_line.gif") no-repeat scroll 0 20px transparent;
+    float: left;
+    padding: 0 0 10px;
+    position: relative;
+}
+
+.progressIndicatorLeft ul {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.progressIndicatorLeft ul li {
+    float: left;
+    padding: 0 8px 8px;
+}
+
+.progressIndicatorRight {
+    background: url("progress_bar_line.gif") no-repeat scroll 100% 14px transparent;
+    float: left;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 5px;
+}
+
+
+.progressIndicatorLeft ul li.active {
+    background: url("progress_bar_arrow.gif") no-repeat scroll 50% 20px transparent;
+    font-weight: bold;
+}
+
+.progressIndicatorLeft ul li.nonVisited {
+    color: #9C9C9C;
+}
+
+h2 {
+    color: #666666;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 36px;
+    margin: 10px 0 15px;
+}
+
+h1 {
+    color: #666666;
+    font-size: 34px;
+    font-weight: normal;
+    line-height: 36px;
+    margin: 10px 0 15px;
+}
+
+
+hr {
+    border-width: 2px 0;
+    margin: 0px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+	<div class="container wholebg">
+	  <div class="row">
+	    <div class="span6">
+	      <h1>&nbsp;长宁公证之窗</h1>
+	    </div>
+	    
+	    <div class="span6 pull-right small-padding-top">
+	      <div>
+	        <p>
+	          <span class="text-font text-b">尊敬的 </span>
+	          <span class="text-font text-r">wangxudong1</span>
+	          <span class="text-font text-b"> 欢迎登录！ </span>
+	          <span class="text-font"><a href="#">[当事人中心]</a>&nbsp; <a href="#">[登出]</a></span>
+	          <span class="text-font">|&nbsp;<a href="#">联系我们&nbsp;</a>|&nbsp;<a href="#">常见问题</a></span>
+	        </p>
+	      </div>
+	    </div>
+	  </div>
+
+      <div class="masthead">
+        <div class="navbar">
+          <div class="navbar-inner navbg3">
+            <div class="container">
+              <ul class="nav">
+                <li><a class="clean" href="#">首页</a></li>
+                <li class="active"><a class="clean" href="#">网上办证</a></li>
+                <li><a class="clean" href="#">网上预约</a></li>
+                <li><a class="clean" href="#">办证指南</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <ul class="breadcrumb">
+        <b>您的位置：</b>
+        <li><a href="#">首页</a> <span class="divider">/</span></li>
+        <li><a href="#">网上办证</a> <span class="divider">/</span></li>
+        <li class="active">选择申办业务</li>
+      </ul>
+      
+      <hr/>
+      
+      <div class="row">
+        <div class="span6">
+          <h2>网上办证</h2>
+        </div>
+        <div class="span6">
+        <div id="progressIndicatorWrapper">
+          <div class="progressIndicatorLeft">
+            <ul>
+              <li class="visited"><span>选择申办业务</span></li>
+              <li class="active"><span>输入信息</span></li>
+              <li class="nonVisited"><span>上传资料</span></li>
+              <li class="nonVisited"><span>上门取证</span></li>
+              <li class="nonVisited"><span>支付</span></li>
+            </ul>
+            <div class="progressIndicatorRight">&nbsp;</div></div>
+          
+        </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span12 navbg2 round">
+          <div class="row">
+            <div class="span9">
+              <h5>&nbsp;&nbsp;&nbsp;&nbsp;选择申办业务</h5>
+            </div>
+            <div class="span3 pull-right">
+              <h5>预收费用：0元</h5>
+            </div>
+          </div>          
+        </div>
+      </div>
+
+      <div class="border">
+            
+      <br/>
+      <div class="row">
+        <div class="span12">
+          <form class="form-horizontal">
+            <div class="row">
+		      <div class="span4">      
+		        <div class="control-group">
+		    	  <label class="control-label" for="inputEmail">第一翻译语言</label>
+		    	  <div class="controls">
+		    		<SELECT>
+						<OPTION selected value="不翻译">不翻译</OPTION>
+						<OPTION  value="英语">英语</OPTION>
+						<OPTION  value="德语">德语</OPTION>
+						<OPTION  value="法语">法语</OPTION>
+						<OPTION  value="意大利语">意大利语</OPTION>
+						<OPTION  value="西班牙语">西班牙语</OPTION>
+						<OPTION  value="日语">日语</OPTION>
+						<OPTION  value="韩语">韩语</OPTION>
+						<OPTION  value="阿拉伯语">阿拉伯语</OPTION>
+					</SELECT>
+		    	  </div>
+		    	</div>
+		      </div>
+		      <div class="span4">
+		        <div class="control-group">
+		    	  <label class="control-label" for="inputEmail">第二翻译语言</label>
+		    	  <div class="controls">
+		    		<SELECT>
+						<OPTION selected value="不翻译">不翻译</OPTION>
+						<OPTION  value="英语">英语</OPTION>
+						<OPTION  value="德语">德语</OPTION>
+						<OPTION  value="法语">法语</OPTION>
+						<OPTION  value="意大利语">意大利语</OPTION>
+						<OPTION  value="西班牙语">西班牙语</OPTION>
+						<OPTION  value="日语">日语</OPTION>
+						<OPTION  value="韩语">韩语</OPTION>
+						<OPTION  value="阿拉伯语">阿拉伯语</OPTION>
+					</SELECT>
+		    	  </div>
+		    	</div>
+		      </div>
+		      <div class="span4">
+		        <div class="control-group">
+		    	  <label class="control-label" for="inputEmail">第三翻译语言</label>
+		    	  <div class="controls">
+		    		<SELECT>
+						<OPTION selected value="不翻译">不翻译</OPTION>
+						<OPTION  value="英语">英语</OPTION>
+						<OPTION  value="德语">德语</OPTION>
+						<OPTION  value="法语">法语</OPTION>
+						<OPTION  value="意大利语">意大利语</OPTION>
+						<OPTION  value="西班牙语">西班牙语</OPTION>
+						<OPTION  value="日语">日语</OPTION>
+						<OPTION  value="韩语">韩语</OPTION>
+						<OPTION  value="阿拉伯语">阿拉伯语</OPTION>
+					</SELECT>
+		    	  </div>
+		    	</div>
+       		  </div>
+    		</div>
+    		<div class="row">
+    		  <div class="span4">
+    		    <div class="control-group">
+		    	  <label class="control-label" for="inputEmail">前往国家和地区</label>
+		    	  <div class="controls">
+		    		<SELECT>
+						<OPTION selected value="请选择">请选择</OPTION>
+						<OPTION  value="美国">美国</OPTION>
+						<OPTION  value="英国">英国</OPTION>
+						<OPTION  value="法国">法国</OPTION>
+						<OPTION  value="德国">德国</OPTION>
+						<OPTION  value="意大利">意大利</OPTION>
+						<OPTION  value="...">...</OPTION>
+					</SELECT>
+		    	  </div>
+		    	</div>
+    		  </div>
+    		  <div class="span4">
+    		    <div class="control-group">
+		    	  <label class="control-label" for="inputEmail">公证翻译</label>
+		    	  <div class="controls">
+		    		<SELECT>
+						<OPTION selected value="请选择">请选择</OPTION>
+						<OPTION  value="翻译">翻译</OPTION>
+						<OPTION  value="不翻译">不翻译</OPTION>						
+					</SELECT>
+		    	  </div>
+		    	</div>
+    		  </div>
+    		  <div class="span4">
+    		    <div class="control-group">
+		    	  <label class="control-label" for="inputEmail">公证书</label>
+		    	  <div class="controls">
+		    		<input type="text" value="1"></input>&nbsp;本
+		    	  </div>
+		    	</div>
+    		  </div>
+    		</div>
+    		<div class="row">
+    		  <div class="span12">
+    		    <div class="control-group">
+    		      <label class="control-label" for="inputEmail">选择办证用途</label>
+    		      <div class="controls">
+    		        <label class="radio inline">
+				      <input type="radio" value="option1" name="optionsRadios"> 定居&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
+				      <input type="radio" value="option2" name="optionsRadios"> 探亲&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
+				      <input type="radio" value="option3" name="optionsRadios"> 工作&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
+				      <input type="radio" value="option1" name="optionsRadios"> 学习&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
+				      <input type="radio" value="option2" name="optionsRadios"> 结婚&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
+				      <input type="radio" value="option3" name="optionsRadios"> 其他&nbsp;&nbsp;
+				    </label>
+    		      </div>
+    		    </div>
+    		  </div>
+    		</div>
+    		<hr/>
+    		<br>
+    		<div class="row">
+    		  <div class="span2 offset5">
+    		    <button class="btn btn-large btn-block btn-info" type="button">下一步</button>
+    		  </div>    		  
+    		</div>
+    	  </form>
+        </div>
+        
+        <hr/>
+        
+      </div>
+      </div>
+      
+      <br>
+      
+      <div class="row">
+        <div class="span9">
+          <p>
+            <span>&nbsp;&nbsp;<a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">服务条款</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">版权声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">合作单位</a></span>            
+          </p>
+          <p>
+            <span>&nbsp;&nbsp;Copyright &copy; 2013 SHANGHAI CHANGNING NOTARY PUBLIC OFFICE All Right Reserved</span>
+          </p>
+        </div>
+        <div class="span3">
+          <p><a id="moveTop" name="moveTop">沪ICP备05022490号</a></p>
+        </div>
+	    
+      </div>
+      
+    </div>
+	<script src="jquery/jquery-1.10.1.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
