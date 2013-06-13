@@ -19,12 +19,9 @@
 }
 
 .navbg2 {
-    background-color: #49AFCD;
-    background-image: linear-gradient(to bottom, #5BC0DE, #2F96B4);
     background-repeat: repeat-x;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    color: #FFFFFF;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    
 }
 
 .navbg3 {
@@ -37,14 +34,6 @@
     border-radius: 6px 6px 6px 6px;
 }
 
-.round {
-    border-radius: 6px 6px 6px 6px;
-}
-
-html, body {
-    height: 100%;
-    background-color: #F6FFFF;
-}
 .nav li a.clean {
     color: #AAAAAA;
     text-shadow: none;
@@ -66,12 +55,13 @@ input {
     width: 100px;
 }
 
-.wholebg {
-    background-color: #F6FFFF
-}
-
 .border {
     border: 1px solid #CCDBED;
+}
+
+.bar-bg {
+    background-color: #E5E5E5;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125) inset;
 }
 
 .small-padding-top {
@@ -95,7 +85,7 @@ input {
 }
 
 .breadcrumb {
-    background-color: #F6FFFF;
+    background-color: #FFFFFF;
     margin: 0px;
 }
 
@@ -172,13 +162,33 @@ hr {
     margin: 0px;
 }
 
+.flow_steps ul {
+    margin: 0;
+    padding: 0;
+}
+
+.flow_steps ul li { 
+    float:left; 
+    height:23px; 
+    padding:0 64px; 
+    line-height:23px; 
+    text-align:center; 
+    background:url(barbg.png) no-repeat 100% 0 #E4E4E4; 
+    font-weight:bold;
+    list-style:none outside none;
+}  
+.flow_steps ul li.done { background-position:100% -46px; background-color:#FFEDA2;}  
+.flow_steps ul li.current_prev { background-position:100% -23px; background-color:#FFEDA2;}  
+.flow_steps ul li.current { color:#fff; background-color:#990D1B;}  
+.flow_steps ul li.last { background-image:none;}
+
 </style>
 
 </head>
 
 <body>
 
-	<div class="container wholebg">
+	<div class="container">
 	  <div class="row">
 	    <div class="span6">
 	      <h1>&nbsp;长宁公证之窗</h1>
@@ -222,27 +232,30 @@ hr {
       <hr/>
       
       <div class="row">
-        <div class="span6">
+        <div class="span12">
           <h2>网上办证</h2>
         </div>
-        <div class="span6">
-        <div id="progressIndicatorWrapper">
-          <div class="progressIndicatorLeft">
-            <ul>
-              <li class="visited"><span>选择申办业务</span></li>
-              <li class="active"><span>输入信息</span></li>
-              <li class="nonVisited"><span>上传资料</span></li>
-              <li class="nonVisited"><span>上门取证</span></li>
-              <li class="nonVisited"><span>支付</span></li>
-            </ul>
-            <div class="progressIndicatorRight">&nbsp;</div></div>
-          
-        </div>
-        </div>
       </div>
-
+      
       <div class="row">
-        <div class="span12 navbg2 round">
+        <div class="span12">
+	      <div class="flow_steps">  
+		    <ul>  
+		        <li class="done">选择申办业务</li>  
+		        <li class="current_prev">输入信息</li>  
+		        <li class="current">上传资料</li>  
+		        <li>上门取证</li>  
+		        <li class="last">支付</li>  
+		    </ul>  
+		  </div>
+	    </div>
+	  </div>
+	  
+	  <br>  
+	  
+	  <div class="bar-bg">
+      <div class="row">
+        <div class="span12 navbg2">
           <div class="row">
             <div class="span9">
               <h5>&nbsp;&nbsp;&nbsp;&nbsp;选择申办业务</h5>
@@ -252,6 +265,7 @@ hr {
             </div>
           </div>          
         </div>
+      </div>
       </div>
 
       <div class="border">
