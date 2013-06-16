@@ -1,11 +1,15 @@
 package com.xiangyun.notary.common;
 
-public enum Country {
+public enum DestinationCountry {
     NULL,
     UNITED_STATES,
     ENGLAND,
     FRANCH,
     ITALY,
-    GERMANY
+    GERMANY,
+    JAPAN,
+    KOREA,
+    PORTUGAL,
+    SPAIN
     
 }
