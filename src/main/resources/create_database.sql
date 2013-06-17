@@ -20,34 +20,46 @@ INSERT INTO test VALUES
 (4,'test4'),
 (5,'test5');
 
-CREATE  TABLE users (
-  id INT NOT NULL AUTO_INCREMENT ,
-  mobile VARCHAR(45) NOT NULL ,
-  name VARCHAR(45) NOT NULL ,
-  email VARCHAR(45) ,
-  cred_type VARCHAR(10) ,
-  cred_id VARCHAR(45) NOT NULL ,
-  password VARCHAR(200) NOT NULL ,
-  birth_date DATE ,
-  address VARCHAR(500) ,
-  cred_copy BLOB ,
-  PRIMARY KEY (id) ,
-  UNIQUE INDEX mobile_UNIQUE (mobile ASC) ,
-  UNIQUE INDEX cred_id_UNIQUE (cred_id ASC) );
+CREATE  TABLE IF NOT EXISTS `changning`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `mobile` VARCHAR(45) NOT NULL ,
+  `name` VARCHAR(45) NULL ,
+  `email` VARCHAR(45) NULL ,
+  `cred_type` VARCHAR(20) NULL ,
+  `cred_id` VARCHAR(45) NULL ,
+  `cred_copy` BLOB NULL ,
+  `password` VARCHAR(200) NULL ,
+  `birth_date` DATE NULL ,
+  `address` VARCHAR(500) NULL ,
+  PRIMARY KEY (`id`) );
 
-CREATE  TABLE orders (
+
+CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `readable_id` VARCHAR(45) NULL ,
+  `user_id` INT NULL ,
+  `order_date` DATE NULL ,
+  `payment_total` DECIMAL(10,2) NULL ,
+  `payment_status` VARCHAR(20) NULL ,
+  `payment_paid` DECIMAL(10,2) NULL ,
+  `order_status` VARCHAR(20) NULL ,
+  `need_translation` VARCHAR(20) NULL ,
+  `destination` VARCHAR(20) NULL ,
+  `cert_purpose` VARCHAR(20) NULL ,
+  `cert_copy_count` INT NULL ,
+  `visit_for_doc` VARCHAR(20) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `user_fk_idx` (`user_id` ASC) ,
+  CONSTRAINT `user_fk`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `changning`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE  TABLE order_lines (
   id INT NOT NULL AUTO_INCREMENT ,
-  readable_id VARCHAR(45) ,
-  user_id INT ,
-  order_date DATETIME ,
-  payment_total DECIMAL(10,2) ,
-  payment_status VARCHAR(10) ,
-  payment_paid VARCHAR(45) ,
-  order_status VARCHAR(10) ,
-  translate_1 VARCHAR(10) ,
-  translate_2 VARCHAR(10) ,
-  translate_3 VARCHAR(10) ,
-  destination VARCHAR(10) ,
-  cert_num INT ,
-  cert_purpose VARCHAR(10) ,
-  PRIMARY KEY (id) );
+  order_id INT NULL ,
+  form_id INT NULL ,
+  PRIMARY KEY (`id`) );
+
+

@@ -15,11 +15,11 @@
 	<p>The contact number is: ${testSize}</p>
 
     <p>The descriptions for all the tests are: </p>
-    <li>    
-	<c:forEach var="test" items="${tests}">
-        <ul><c:out value="${test.description}"></c:out></ul>
-	</c:forEach>
-	</li>
+    <ul>    
+		<c:forEach var="test" items="${tests}">
+	        <li><c:out value="${test.description}"></c:out></li>
+		</c:forEach>
+	</ul>
 	
 	<br/>
 	<p>After update: </p>
@@ -38,6 +38,8 @@
 	<c:forEach var="test" items="${tests4}">
         <ul><c:out value="${test.description}"></c:out></ul>
 	</c:forEach>
+	
+	<a href="createUser.do">Create User</a>
 
 </body>
 </html>
