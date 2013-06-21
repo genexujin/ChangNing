@@ -50,8 +50,10 @@ public class UserController {
         u.setName("刘峻");
         u.setPassword("abcd1234");
         u.setCredentialId("132412341");
+        //The relation is managed in this method for both ends.
         u.addOrder(o);
 
+        //This will also create the new Order entry, as CascadeType.PERSIST is set on the relationship.
         u = userService.save(u);
 
         ModelAndView mav = new ModelAndView("/WEB-INF/views/user.jsp");

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -198,9 +200,7 @@ div.flowstep ol li.pass {
 </style>
 
 </head>
-
 <body>
-
 	<div class="container">
 	  <div class="row">
 	    <div class="span6">
@@ -254,8 +254,8 @@ div.flowstep ol li.pass {
 	    <div class="span12">
 		  <div class="flowstep">
 			<ol>
-				<li class="ago">选择申办业务</li>
-				<li class="step">输入信息</li>
+				<li class="step">选择申办业务</li>
+				<li class="">输入信息</li>
 		        <li class="">上传资料</li>
 				<li class="">上门取证</li>
 		        <li class="end">支付</li>
@@ -276,7 +276,7 @@ div.flowstep ol li.pass {
             <div class="span3 pull-right">
               <h5>预收费用：0元</h5>
             </div>
-          </div>          
+          </div>
         </div>
       </div>
       </div>
@@ -286,88 +286,35 @@ div.flowstep ol li.pass {
       <br/>
       <div class="row">
         <div class="span12">
-          <form class="form-horizontal">
-            <div class="row">
-		      <div class="span4">      
-		        <div class="control-group">
-		    	  <label class="control-label" for="inputEmail">第一翻译语言</label>
-		    	  <div class="controls">
-		    		<SELECT>
-						<OPTION selected value="不翻译">不翻译</OPTION>
-						<OPTION  value="英语">英语</OPTION>
-						<OPTION  value="德语">德语</OPTION>
-						<OPTION  value="法语">法语</OPTION>
-						<OPTION  value="意大利语">意大利语</OPTION>
-						<OPTION  value="西班牙语">西班牙语</OPTION>
-						<OPTION  value="日语">日语</OPTION>
-						<OPTION  value="韩语">韩语</OPTION>
-						<OPTION  value="阿拉伯语">阿拉伯语</OPTION>
-					</SELECT>
-		    	  </div>
-		    	</div>
-		      </div>
-		      <div class="span4">
-		        <div class="control-group">
-		    	  <label class="control-label" for="inputEmail">第二翻译语言</label>
-		    	  <div class="controls">
-		    		<SELECT>
-						<OPTION selected value="不翻译">不翻译</OPTION>
-						<OPTION  value="英语">英语</OPTION>
-						<OPTION  value="德语">德语</OPTION>
-						<OPTION  value="法语">法语</OPTION>
-						<OPTION  value="意大利语">意大利语</OPTION>
-						<OPTION  value="西班牙语">西班牙语</OPTION>
-						<OPTION  value="日语">日语</OPTION>
-						<OPTION  value="韩语">韩语</OPTION>
-						<OPTION  value="阿拉伯语">阿拉伯语</OPTION>
-					</SELECT>
-		    	  </div>
-		    	</div>
-		      </div>
-		      <div class="span4">
-		        <div class="control-group">
-		    	  <label class="control-label" for="inputEmail">第三翻译语言</label>
-		    	  <div class="controls">
-		    		<SELECT>
-						<OPTION selected value="不翻译">不翻译</OPTION>
-						<OPTION  value="英语">英语</OPTION>
-						<OPTION  value="德语">德语</OPTION>
-						<OPTION  value="法语">法语</OPTION>
-						<OPTION  value="意大利语">意大利语</OPTION>
-						<OPTION  value="西班牙语">西班牙语</OPTION>
-						<OPTION  value="日语">日语</OPTION>
-						<OPTION  value="韩语">韩语</OPTION>
-						<OPTION  value="阿拉伯语">阿拉伯语</OPTION>
-					</SELECT>
-		    	  </div>
-		    	</div>
-       		  </div>
-    		</div>
+          <form class="form-horizontal" action="certStep2.do" method="POST">
     		<div class="row">
     		  <div class="span4">
     		    <div class="control-group">
-		    	  <label class="control-label" for="inputEmail">前往国家和地区</label>
+		    	  <label class="control-label" for="dest">前往国家和地区</label>
 		    	  <div class="controls">
-		    		<SELECT>
-						<OPTION selected value="请选择">请选择</OPTION>
-						<OPTION  value="美国">美国</OPTION>
-						<OPTION  value="英国">英国</OPTION>
-						<OPTION  value="法国">法国</OPTION>
-						<OPTION  value="德国">德国</OPTION>
-						<OPTION  value="意大利">意大利</OPTION>
-						<OPTION  value="...">...</OPTION>
+		    		<SELECT id="dest" name="dest">
+						<OPTION selected value="NULL">请选择</OPTION>
+						<OPTION  value="UNITED_STATES">美国</OPTION>
+						<OPTION  value="ENGLAND">英国</OPTION>
+						<OPTION  value="FRANCH">法国</OPTION>
+						<OPTION  value="GERMANY">德国</OPTION>
+						<OPTION  value="ITALY">意大利</OPTION>						
+						<OPTION  value="SPAIN">西班牙</OPTION>
+						<OPTION  value="PORTUGAL">葡萄牙</OPTION>
+						<OPTION  value="JAPAN">日本</OPTION>
+						<OPTION  value="KOREA">韩国</OPTION>
 					</SELECT>
 		    	  </div>
 		    	</div>
     		  </div>
     		  <div class="span4">
     		    <div class="control-group">
-		    	  <label class="control-label" for="inputEmail">公证翻译</label>
+		    	  <label class="control-label" for="trans">公证翻译</label>
 		    	  <div class="controls">
-		    		<SELECT>
-						<OPTION selected value="请选择">请选择</OPTION>
-						<OPTION  value="翻译">翻译</OPTION>
-						<OPTION  value="不翻译">不翻译</OPTION>						
+		    		<SELECT id="trans" name="trans">
+						<OPTION selected value="false">请选择</OPTION>
+						<OPTION  value="true">翻译</OPTION>
+						<OPTION  value="false">不翻译</OPTION>						
 					</SELECT>
 		    	  </div>
 		    	</div>
@@ -376,7 +323,7 @@ div.flowstep ol li.pass {
     		    <div class="control-group">
 		    	  <label class="control-label" for="inputEmail">公证书</label>
 		    	  <div class="controls">
-		    		<input type="text" value="1"></input>&nbsp;本
+		    		<input id="copies" name="copies" type="text"></input>&nbsp;本
 		    	  </div>
 		    	</div>
     		  </div>
@@ -384,25 +331,25 @@ div.flowstep ol li.pass {
     		<div class="row">
     		  <div class="span12">
     		    <div class="control-group">
-    		      <label class="control-label" for="inputEmail">选择办证用途</label>
+    		      <label class="control-label">选择办证用途</label>
     		      <div class="controls">
     		        <label class="radio inline">
-				      <input type="radio" value="option1" name="optionsRadios"> 定居&nbsp;&nbsp;
+				      <input type="radio" value="RESIDENCE" name="purpose"> 定居&nbsp;&nbsp;
 				    </label>
 				    <label class="radio inline">
-				      <input type="radio" value="option2" name="optionsRadios"> 探亲&nbsp;&nbsp;
+				      <input type="radio" value="VISIT" name="purpose"> 探亲&nbsp;&nbsp;
 				    </label>
 				    <label class="radio inline">
-				      <input type="radio" value="option3" name="optionsRadios"> 工作&nbsp;&nbsp;
+				      <input type="radio" value="WORK" name="purpose"> 工作&nbsp;&nbsp;
 				    </label>
 				    <label class="radio inline">
-				      <input type="radio" value="option1" name="optionsRadios"> 学习&nbsp;&nbsp;
+				      <input type="radio" value="STUDY" name="purpose"> 学习&nbsp;&nbsp;
 				    </label>
 				    <label class="radio inline">
-				      <input type="radio" value="option2" name="optionsRadios"> 结婚&nbsp;&nbsp;
+				      <input type="radio" value="MARRIAGE" name="purpose"> 结婚&nbsp;&nbsp;
 				    </label>
 				    <label class="radio inline">
-				      <input type="radio" value="option3" name="optionsRadios"> 其他&nbsp;&nbsp;
+				      <input type="radio" value="OTHER" name="purpose"> 其他&nbsp;&nbsp;
 				    </label>
     		      </div>
     		    </div>
@@ -410,9 +357,77 @@ div.flowstep ol li.pass {
     		</div>
     		<hr/>
     		<br>
+    		
+    		<div class="row">
+    		  <div class="span12">
+    		    <div class="control-group">
+    		      <label class="control-label">可选公证业务</label>
+    		    </div>
+    		  </div>
+    		</div>
+    		<div class="row">
+    		  <div class="span11 offset1">
+    		    <table class="table">
+    		      <tr>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 出生</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 受过/未受刑事处分</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 亲属关系</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 结婚</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 学历</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 学位</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 曾用名</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 国籍</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 死亡</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 离休/退休/退职</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 出生证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 身份证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 护照复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 驾驶证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 户口簿复印件</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 婚姻状况证明复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 结婚证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 离婚证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 退休证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 房产证复印件</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 存款证明复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 毕业证书复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 学位证书复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 中小学毕业证（带成绩）复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 初中/高中成绩复印件</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 高考成绩复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 大学/大专/职高成绩复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 在读证明复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 资格证/技术等级证书复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 法院判决/调解/裁定书复印件</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 未婚</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 未再婚声明书</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 同意出国声明书</td>
+    		        <td></td>
+    		        <td></td>
+    		      </tr>
+    		      
+    		    </table>
+    		  </div>
+    		</div>
+    		<br/>
+    		<hr/>
+    		<br/>
+    		
     		<div class="row">
     		  <div class="span2 offset5">
-    		    <button class="btn btn-large btn-block btn-info" type="button">下一步</button>
+    		    <button class="btn btn-large btn-block btn-info" type="submit">下一步</button>
     		  </div>    		  
     		</div>
     	  </form>

@@ -40,6 +40,10 @@
 	</c:forEach>
 	
 	<a href="createUser.do">Create User</a>
+	
+	<br/>
+	
+	<a href="certStep1.do">Go to certificate request step one!</a>
 
 </body>
 </html>
