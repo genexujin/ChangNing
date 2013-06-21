@@ -1,68 +1,69 @@
-{
-    "forms": [
+[
         {
-            "formKey": "key1",
-            "formName": "name1",
+            "formKey": "JH",
+            "formName": "结婚",
             "fields": [
                 {
-                    "fieldKey": "fieldKey1",
-                    "fieldName": "fieldName1"
+                    "fieldKey": "JHZ",
+                    "fieldName": "是否有结婚证"
                 },
                 {
-                    "fieldKey": "fieldKey2",
-                    "fieldName": "fieldName2"
+                    "fieldKey": "SHHJ",
+                    "fieldName": "是否在沪户籍"
                 },
                 {
-                    "fieldKey": "fieldKey3",
-                    "fieldName": "fieldName3"
+                    "fieldKey": "SHJH",
+                    "fieldName": "是否在沪结婚登记"
                 }
             ],
             "docs": [
                 {
-                    "docKey": "docKey1",
-                    "docName": "docName1"
+                    "docKey": "JHZ",
+                    "docName": "结婚证"
                 },
                 {
-                    "docKey": "docKey2",
-                    "docName": "docName2"
+                    "docKey": "BR2CZP",
+                    "docName": "本人2寸照片",
+                    "uploadAlone": true
                 },
                 {
-                    "docKey": "docKey3",
-                    "docName": "docName3"
+                    "docKey": "PO2CZP",
+                    "docName": "配偶2寸照片",
+                    "uploadAlone": true
+                },
+                {
+                    "docKey": "POSFZ",
+                    "docName": "配偶身份证"
                 }
             ]
         }, 
         {
-            "formKey": "key2",
-            "formName": "name2",
+            "formKey": "XL",
+            "formName": "学历",
             "fields": [
                 {
-                    "fieldKey": "fieldKey1",
-                    "fieldName": "fieldName1"
+                    "fieldKey": "BYZ",
+                    "fieldName": "是否有毕业证"
                 },
                 {
-                    "fieldKey": "fieldKey5",
-                    "fieldName": "fieldName6"
+                    "fieldKey": "SHHJ",
+                    "fieldName": "是否在沪户籍"
                 },
                 {
-                    "fieldKey": "fieldKey3",
-                    "fieldName": "fieldName3"
+                    "fieldKey": "SHBY",
+                    "fieldName": "是否在沪毕业"
                 }
             ],
             "docs": [
                 {
-                    "docKey": "docKey1",
-                    "docName": "docName1"
+                    "docKey": "BYZ",
+                    "docName": "毕业证"
                 },
                 {
-                    "docKey": "docKey5",
-                    "docName": "docName5"
-                },
-                {
-                    "docKey": "docKey6",
-                    "docName": "docName6"
+                    "docKey": "BR2CZP",
+                    "docName": "本人2寸照片",
+                    "uploadAlone": true
                 }
             ]
         }
-    ]
-}
+]

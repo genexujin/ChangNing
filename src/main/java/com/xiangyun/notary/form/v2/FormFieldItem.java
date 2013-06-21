@@ -1,8 +1,8 @@
 package com.xiangyun.notary.form.v2;
 
-public class FormFieldItem<T> {
+public class FormFieldItem {
 	private String fieldKey;
-	private T fieldValue;
+	private String fieldName;
 	
 	public String getFieldKey() {
 		return fieldKey;
@@ -10,11 +10,11 @@ public class FormFieldItem<T> {
 	public void setFieldKey(String fieldKey) {
 		this.fieldKey = fieldKey;
 	}
-	public T getFieldValue() {
-		return fieldValue;
+	public String getFieldName() {
+		return fieldName;
 	}
-	public void setFieldValue(T fieldValue) {
-		this.fieldValue = fieldValue;
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
 	}
 
 }
