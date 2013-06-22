@@ -1,4 +1,4 @@
-package com.xiangyun.notary.form.v2;
+package com.xiangyun.notary.form;
 
 public class FormFieldItemDef {
 	private String fieldKey;

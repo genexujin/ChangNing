@@ -1,4 +1,4 @@
-package com.xiangyun.notary.form.v2;
+package com.xiangyun.notary.form;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class FormDef {
 	public static void main(String[] args) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		
-		List<FormDef> forms = mapper.readValue(mapper.getClass().getClassLoader().getResourceAsStream("form_definition.json"), new TypeReference<List<FormDef>>() {});
+		List<FormDef> forms = mapper.readValue(Thread.currentThread().getContextClassLoader().getResourceAsStream("form_definition.json"), new TypeReference<List<FormDef>>() {});
 		for (FormDef form : forms) {
 			System.out.println("Form Key: " + form.getFormKey());
 			System.out.println("Form Name: " + form.getFormName());
