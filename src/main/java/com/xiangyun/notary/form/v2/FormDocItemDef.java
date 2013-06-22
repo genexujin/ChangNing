@@ -1,6 +1,6 @@
 package com.xiangyun.notary.form.v2;
 
-public class FormDocItem {
+public class FormDocItemDef {
 	private String docKey;
 	private String docName;
 	private boolean uploadAlone;

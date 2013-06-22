@@ -1,6 +1,6 @@
 package com.xiangyun.notary.form.v2;
 
-public class FormFieldItem {
+public class FormFieldItemDef {
 	private String fieldKey;
 	private String fieldName;
 	
