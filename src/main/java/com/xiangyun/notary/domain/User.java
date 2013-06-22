@@ -54,7 +54,7 @@ public class User {
     private byte[] credentialCopy;
 
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user")
-    private Set<Order> orders = new HashSet<Order>();;
+    private Set<Order> orders = new HashSet<Order>();
 
     public Long getId() {
         return id;

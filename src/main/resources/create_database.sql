@@ -56,10 +56,27 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE  TABLE order_lines (
-  id INT NOT NULL AUTO_INCREMENT ,
-  order_id INT NULL ,
-  form_id INT NULL ,
-  PRIMARY KEY (`id`) );
+CREATE  TABLE IF NOT EXISTS `changning`.`forms` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `form_key` VARCHAR(50) NULL ,
+  `order_id` INT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `order_fk_idx` (`order_id` ASC) ,
+  CONSTRAINT `order_fk`
+    FOREIGN KEY (`order_id` )
+    REFERENCES `changning`.`orders` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
-
+CREATE  TABLE IF NOT EXISTS `changning`.`form_items` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `form_id` INT NULL ,
+  `item_value` VARCHAR(500) NULL ,
+  `item_key` VARCHAR(50) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `form_fk_idx` (`form_id` ASC) ,
+  CONSTRAINT `form_fk`
+    FOREIGN KEY (`form_id` )
+    REFERENCES `changning`.`forms` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

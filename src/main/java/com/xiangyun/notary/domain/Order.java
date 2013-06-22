@@ -3,7 +3,10 @@ package com.xiangyun.notary.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.xiangyun.notary.common.CertificatePurpose;
@@ -37,6 +41,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
+    
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
+    private Set<Form> forms = new HashSet<Form>();
 
     @Column(name = "order_date")
     private Date orderDate;
@@ -173,6 +180,19 @@ public class Order {
 
     public void setVisitForDoc(boolean visitForDoc) {
         this.visitForDoc = visitForDoc;
+    }
+
+    public Set<Form> getForms() {
+        return forms;
+    }
+
+    public void setForms(Set<Form> forms) {
+        this.forms = forms;
+    }
+    
+    public void addForm(Form form) {
+        form.setOrder(this);
+        forms.add(form);
     }
     
 }
