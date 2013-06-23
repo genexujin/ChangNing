@@ -49,7 +49,7 @@ select {
     width: 140px;
 }
 
-input {
+.thin {
     width: 100px;
 }
 
@@ -321,9 +321,9 @@ div.flowstep ol li.pass {
     		  </div>
     		  <div class="span4">
     		    <div class="control-group">
-		    	  <label class="control-label" for="inputEmail">公证书</label>
+		    	  <label class="control-label" for="copies">公证书</label>
 		    	  <div class="controls">
-		    		<input id="copies" name="copies" type="text"></input>&nbsp;本
+		    		<input class="thin" id="copies" name="copies" type="text" value="1"></input>&nbsp;本
 		    	  </div>
 		    	</div>
     		  </div>
@@ -331,10 +331,10 @@ div.flowstep ol li.pass {
     		<div class="row">
     		  <div class="span12">
     		    <div class="control-group">
-    		      <label class="control-label">选择办证用途</label>
+    		      <label class="control-label" for="purpose">选择办证用途</label>
     		      <div class="controls">
     		        <label class="radio inline">
-				      <input type="radio" value="RESIDENCE" name="purpose"> 定居&nbsp;&nbsp;
+				      <input type="radio" value="RESIDENCE" name="purpose" checked> 定居&nbsp;&nbsp;
 				    </label>
 				    <label class="radio inline">
 				      <input type="radio" value="VISIT" name="purpose"> 探亲&nbsp;&nbsp;
@@ -369,51 +369,51 @@ div.flowstep ol li.pass {
     		  <div class="span11 offset1">
     		    <table class="table">
     		      <tr>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 出生</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 受过/未受刑事处分</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 亲属关系</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 结婚</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 学历</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 出生</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 受过/未受刑事处分</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 亲属关系</td>
+    		        <td><input type="checkbox" value="JH" name="notory_key"> 结婚</td>
+    		        <td><input type="checkbox" value="XL" name="notory_key"> 学历</td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 学位</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 曾用名</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 国籍</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 死亡</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 离休/退休/退职</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 学位</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 曾用名</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 国籍</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 死亡</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 离休/退休/退职</td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 出生证复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 身份证复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 护照复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 驾驶证复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 户口簿复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 出生证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 身份证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 护照复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 驾驶证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 户口簿复印件</td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 婚姻状况证明复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 结婚证复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 离婚证复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 退休证复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 房产证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 婚姻状况证明复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 结婚证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 离婚证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 退休证复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 房产证复印件</td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 存款证明复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 毕业证书复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 学位证书复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 中小学毕业证（带成绩）复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 初中/高中成绩复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 存款证明复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 毕业证书复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 学位证书复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 中小学毕业证（带成绩）复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 初中/高中成绩复印件</td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 高考成绩复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 大学/大专/职高成绩复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 在读证明复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 资格证/技术等级证书复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 法院判决/调解/裁定书复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 高考成绩复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 大学/大专/职高成绩复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 在读证明复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 资格证/技术等级证书复印件</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 法院判决/调解/裁定书复印件</td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 未婚</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 未再婚声明书</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="types"> 同意出国声明书</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 未婚</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 未再婚声明书</td>
+    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 同意出国声明书</td>
     		        <td></td>
     		        <td></td>
     		      </tr>

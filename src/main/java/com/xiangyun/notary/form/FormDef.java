@@ -1,6 +1,7 @@
 package com.xiangyun.notary.form;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,8 +47,8 @@ public class FormDef {
 	public static void main(String[] args) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		
-		List<FormDef> forms = mapper.readValue(Thread.currentThread().getContextClassLoader().getResourceAsStream("form_definition.json"), new TypeReference<List<FormDef>>() {});
-		for (FormDef form : forms) {
+		Map<String, FormDef> forms = mapper.readValue(Thread.currentThread().getContextClassLoader().getResourceAsStream("form_definition.json"), new TypeReference<Map<String, FormDef>>() {});
+		for (FormDef form : forms.values()) {
 			System.out.println("Form Key: " + form.getFormKey());
 			System.out.println("Form Name: " + form.getFormName());
 			System.out.println("Form Fields: ");

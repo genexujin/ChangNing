@@ -2,7 +2,7 @@ package com.xiangyun.notary;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -33,11 +33,11 @@ public class InitContextListener implements ServletContextListener {
         // Initialize the FormDef and put it into ServletContext
         try {
             InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("form_definition.json");
-            List<FormDef> formDefs = mapper.readValue(is, new TypeReference<List<FormDef>>() {});
+            Map<String, FormDef> formDefs = mapper.readValue(is, new TypeReference<Map<String, FormDef>>() {});
             
             sce.getServletContext().setAttribute(Constants.FORM_DEFS, formDefs);
             
-            for (FormDef form : formDefs) {
+            for (FormDef form : formDefs.values()) {
                 log.info("Form Key: " + form.getFormKey());
                 log.info("Form Name: " + form.getFormName());
                 log.info("Form Fields: ");

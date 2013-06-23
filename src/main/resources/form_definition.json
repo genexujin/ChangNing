@@ -1,69 +1,70 @@
-[
-        {
-            "formKey": "JH",
-            "formName": "结婚",
-            "fields": [
-                {
-                    "fieldKey": "JHZ",
-                    "fieldName": "是否有结婚证"
-                },
-                {
-                    "fieldKey": "SHHJ",
-                    "fieldName": "是否在沪户籍"
-                },
-                {
-                    "fieldKey": "SHJH",
-                    "fieldName": "是否在沪结婚登记"
-                }
-            ],
-            "docs": [
-                {
-                    "docKey": "JHZ",
-                    "docName": "结婚证"
-                },
-                {
-                    "docKey": "BR2CZP",
-                    "docName": "本人2寸照片",
-                    "uploadAlone": true
-                },
-                {
-                    "docKey": "PO2CZP",
-                    "docName": "配偶2寸照片",
-                    "uploadAlone": true
-                },
-                {
-                    "docKey": "POSFZ",
-                    "docName": "配偶身份证"
-                }
-            ]
-        }, 
-        {
-            "formKey": "XL",
-            "formName": "学历",
-            "fields": [
-                {
-                    "fieldKey": "BYZ",
-                    "fieldName": "是否有毕业证"
-                },
-                {
-                    "fieldKey": "SHHJ",
-                    "fieldName": "是否在沪户籍"
-                },
-                {
-                    "fieldKey": "SHBY",
-                    "fieldName": "是否在沪毕业"
-                }
-            ],
-            "docs": [
-                {
-                    "docKey": "BYZ",
-                    "docName": "毕业证"
-                },
-                {
-                    "docKey": "BR2CZP",
-                    "docName": "本人2寸照片",
-                    "uploadAlone": true
-                }
-            ]
-        }
-]
+{
+    "JH": {
+        "formKey": "JH",
+        "formName": "结婚",
+        "fields": [
+            {
+                "fieldKey": "JHZ",
+                "fieldName": "是否有结婚证"
+            },
+            {
+                "fieldKey": "SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "SHJH",
+                "fieldName": "是否在沪结婚登记"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "JHZ",
+                "docName": "结婚证"
+            },
+            {
+                "docKey": "BR2CZP",
+                "docName": "本人2寸照片",
+                "uploadAlone": true
+            },
+            {
+                "docKey": "PO2CZP",
+                "docName": "配偶2寸照片",
+                "uploadAlone": true
+            },
+            {
+                "docKey": "POSFZ",
+                "docName": "配偶身份证"
+            }
+        ]
+    }, 
+        
+    "XL": {
+        "formKey": "XL",
+        "formName": "学历",
+        "fields": [
+            {
+                "fieldKey": "BYZ",
+                "fieldName": "是否有毕业证"
+            },
+            {
+                "fieldKey": "SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "SHBY",
+                "fieldName": "是否在沪毕业"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "BYZ",
+                "docName": "毕业证"
+            },
+            {
+                "docKey": "BR2CZP",
+                "docName": "本人2寸照片",
+                "uploadAlone": true
+            }
+        ]
+    }
+}
