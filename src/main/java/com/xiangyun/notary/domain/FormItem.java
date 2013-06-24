@@ -25,7 +25,10 @@ public class FormItem {
     @Column(name = "item_key")
     private String itemKey;
     
-    @Column(name = "item_value")
+    @Column(name = "item_name")
+    private String itemName;
+    
+	@Column(name = "item_value")
     private String itemValue;
     
     @ManyToOne
@@ -47,6 +50,14 @@ public class FormItem {
     public void setItemKey(String itemKey) {
         this.itemKey = itemKey;
     }
+    
+    public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 
     public String getItemValue() {
         return itemValue;

@@ -2,6 +2,7 @@ package com.xiangyun.notary.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.DestinationCountry;
+import com.xiangyun.notary.common.OrderPaymentStatus;
+import com.xiangyun.notary.common.OrderStatus;
+import com.xiangyun.notary.domain.Form;
+import com.xiangyun.notary.domain.FormItem;
+import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.form.FormDef;
+import com.xiangyun.notary.form.FormFieldItemDef;
 import com.xiangyun.notary.service.OrderService;
 
 @Controller
@@ -59,6 +66,17 @@ public class OrderController {
     	
     	request.getSession().setAttribute(Constants.SESSION_SELECTED_FORMS, selectedForms);
     	
+    	Order order = new Order();
+    	order.setCertificateCopyCount(copies);
+    	order.setCertificatePurpose(purpose);
+    	order.setDestination(destination);
+    	order.setNeedTranslation(needTranslation);
+    	order.setOrderDate(new Date());
+    	order.setOrderStatus(OrderStatus.SUBMITTED);
+    	order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
+    	
+    	request.getSession().setAttribute(Constants.CURRENT_ORDER, order);
+    	
     	ModelAndView mav = new ModelAndView("/WEB-INF/views/certStep2.jsp");
     	
     	return mav;
@@ -67,6 +85,29 @@ public class OrderController {
     @RequestMapping(value = "/certStep3.do")
     public ModelAndView goToStep3(HttpServletRequest request) {
         List<FormDef> selectedForms = (List<FormDef>)request.getSession().getAttribute(Constants.SESSION_SELECTED_FORMS);
+        
+        Order order = (Order)request.getSession().getAttribute(Constants.CURRENT_ORDER);
+        
+        for (FormDef formDef : selectedForms) {
+        	Form form = new Form();
+        	form.setFormKey(formDef.getFormKey());
+        	form.setFormName(formDef.getFormName());
+        	
+        	for ( FormFieldItemDef itemDef : formDef.getFields()) {
+        		FormItem item = new FormItem();
+        		item.setItemKey(itemDef.getFieldKey());
+        		item.setItemName(itemDef.getFieldName());
+        		item.setItemValue(request.getParameter(itemDef.getFieldKey()));
+        		form.addFormItem(item);
+        	}
+        	
+        	order.addForm(form);
+        }
+        
+        orderService.save(order);
+        
+        request.getSession().removeAttribute(Constants.CURRENT_ORDER);
+        request.getSession().removeAttribute(Constants.SESSION_SELECTED_FORMS);
         
         ModelAndView mav = new ModelAndView("/WEB-INF/views/certStep3.jsp");
         

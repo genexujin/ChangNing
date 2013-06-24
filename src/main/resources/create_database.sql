@@ -33,7 +33,6 @@ CREATE  TABLE IF NOT EXISTS `changning`.`users` (
   `address` VARCHAR(500) NULL ,
   PRIMARY KEY (`id`) );
 
-
 CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `readable_id` VARCHAR(45) NULL ,
@@ -59,6 +58,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
 CREATE  TABLE IF NOT EXISTS `changning`.`forms` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `form_key` VARCHAR(50) NULL ,
+  `form_name` VARCHAR(50) NULL ,
   `order_id` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `order_fk_idx` (`order_id` ASC) ,
@@ -71,12 +71,27 @@ CREATE  TABLE IF NOT EXISTS `changning`.`forms` (
 CREATE  TABLE IF NOT EXISTS `changning`.`form_items` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `form_id` INT NULL ,
-  `item_value` VARCHAR(500) NULL ,
   `item_key` VARCHAR(50) NULL ,
+  `item_name` VARCHAR(50) NULL ,
+  `item_value` VARCHAR(500) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `form_fk_idx` (`form_id` ASC) ,
   CONSTRAINT `form_fk`
     FOREIGN KEY (`form_id` )
     REFERENCES `changning`.`forms` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE  TABLE IF NOT EXISTS `changning`.`doc_items` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `order_id` INT NULL ,
+  `doc_key` VARCHAR(50) NULL ,
+  `doc_name` VARCHAR(50) NULL ,
+  `doc_path` VARCHAR(500) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `doc_order_fk_idx` (`order_id` ASC) ,
+  CONSTRAINT `doc_order_fk`
+    FOREIGN KEY (`order_id` )
+    REFERENCES `changning`.`orders` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);

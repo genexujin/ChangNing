@@ -30,8 +30,11 @@ public class Form {
     
     @Column(name = "form_key")
     private String formKey;
+    
+    @Column(name = "form_name")
+    private String formName;
 
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name="order_id")
     private Order order;
     
@@ -53,6 +56,14 @@ public class Form {
     public void setFormKey(String formKey) {
         this.formKey = formKey;
     }
+    
+    public String getFormName() {
+		return formName;
+	}
+
+	public void setFormName(String formName) {
+		this.formName = formName;
+	}
 
     public Order getOrder() {
         return order;

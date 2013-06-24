@@ -7,7 +7,7 @@ import com.xiangyun.notary.domain.Order;
 public interface OrderService {
     public List<Order> findAll();
 
-    public Order save(Order user);
+    public Order save(Order order);
 
-    public void delete(Order user);
+    public void delete(Order order);
 }
