@@ -58,7 +58,7 @@ public class OrderController {
     	Map<String, FormDef> formDefs = (Map<String, FormDef>)request.getSession().getServletContext().getAttribute(Constants.FORM_DEFS);
     	for (String key : formKeys) {
     	    FormDef formDef = formDefs.get(key);
-    	    if (formDef != null) {
+    	    if (formDef != null) {   
     	        log.info("Form selected: " + formDef.getFormName());
     	        selectedForms.add(formDef);
     	    }
