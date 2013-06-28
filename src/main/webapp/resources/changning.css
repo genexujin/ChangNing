@@ -1,0 +1,140 @@
+.navbar .nav li a {
+/*    border-left: 1px solid rgba(255, 255, 255, 0.75);
+    border-right: 1px solid rgba(0, 0, 0, 0.1); */
+    font-weight: bold;
+    text-align: center;
+}
+
+.navbg2 {
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    
+}
+
+.navbg3 {
+    background-color: #006DCC;
+    background-image: linear-gradient(to bottom, #0088CC, #0044CC);
+    background-repeat: repeat-x;
+    /* border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); */
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 6px 6px 6px 6px;
+}
+
+.nav li a.clean {
+    color: #AAAAAA;
+    text-shadow: none;
+}
+
+.form-horizontal .controls {
+    margin-left: 140px;
+}
+
+.form-horizontal .control-label {
+    width: 120px;
+}
+
+select {
+    width: 140px;
+}
+
+.thin {
+    width: 100px;
+}
+
+.border {
+    border: 1px solid #CCDBED;
+}
+
+.bar-bg {
+    background-color: #E5E5E5;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125) inset;
+}
+
+.small-padding-top {
+    padding-top: 10px;
+}
+
+.text-font {
+    font-family:Arial;
+    font-size:13px;
+    font-weight:normal;
+    font-style:normal;
+    text-decoration:none;
+}
+
+.text-b {
+    color:#333333;
+}
+
+.text-r {    
+    color:#FF0000;
+}
+
+.breadcrumb {
+    background-color: #FFFFFF;
+    margin: 0px;
+}
+
+.container {
+    height: 100%
+}
+
+h2 {
+    color: #666666;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 36px;
+    margin: 10px 0 15px;
+}
+
+h1 {
+    color: #666666;
+    font-size: 34px;
+    font-weight: normal;
+    line-height: 36px;
+    margin: 10px 0 15px;
+}
+
+
+hr {
+    border-width: 2px 0;
+    margin: 0px;
+}
+
+
+div.flowstep ol {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style:none outside none;
+}
+
+
+div.flowstep ol li.ago {
+    background: url("bg_flow_step.png") no-repeat scroll 100% -32px #CEE2FF;
+}
+
+div.flowstep ol li {
+    background: url("bg_flow_step.png") no-repeat scroll 100% -64px #E6E6E6;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    width: 188px;
+}
+
+div.flowstep ol li.step {
+    background: url("bg_flow_step.png") no-repeat scroll 100% -64px #3164AF;
+    color: #FFFFFF;
+}
+
+div.flowstep ol li.end {
+    background: none repeat scroll 0 0 #E6E6E6;
+}
+
+div.flowstep ol li.pass {
+    background: url("bg_flow_step.png") no-repeat scroll 100% 0 #CEE2FF;
+}
