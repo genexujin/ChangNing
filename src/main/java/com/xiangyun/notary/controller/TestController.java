@@ -24,7 +24,7 @@ public class TestController {
         log.debug("Now it is in {}", "/test.do");
         log.info("Now it is in {}", "/test.do");
         log.warn("Now it is in {}", "/test.do");
-        ModelAndView mav = new ModelAndView("/WEB-INF/views/test.jsp");
+        ModelAndView mav = new ModelAndView("test");
         mav.addObject("theKey", "abcde");
         
         //Search for all

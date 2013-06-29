@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
@@ -27,6 +28,7 @@ import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.form.FormDef;
 import com.xiangyun.notary.form.FormFieldItemDef;
 import com.xiangyun.notary.service.OrderService;
+import com.xiangyun.notary.view.MultipleViewFactory;
 
 @Controller
 public class OrderController {
@@ -35,15 +37,18 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     
+    @Autowired 
+    private MultipleViewFactory multipleViewFactory;
+    
     @RequestMapping(value = "/certStep1.do")
     public ModelAndView goToStep1() {
-    	ModelAndView mav = new ModelAndView("/WEB-INF/views/certStep1.jsp");
+    	ModelAndView mav = new ModelAndView("certStep1");
     	return mav;
     }
     
     @RequestMapping(value = "/certStep2.do")
     //Automatic type conversion
-    public ModelAndView goToStep2(@RequestParam("dest")DestinationCountry destination, 
+    public View goToStep2(@RequestParam("dest")DestinationCountry destination, 
     		                      @RequestParam("trans")boolean needTranslation,
     		                      @RequestParam("copies")int copies,
     		                      @RequestParam("purpose")CertificatePurpose purpose, 
@@ -53,33 +58,45 @@ public class OrderController {
     	log.info("Need translation? " + needTranslation);
     	log.info("Copies: " + copies);
     	log.info("Purpose: " + purpose);
+
+        List<ModelAndView> mavList = new ArrayList<ModelAndView>();
+        
+        //Add the top part of the page 
+    	ModelAndView top = new ModelAndView("certStep2Top");
+    	mavList.add(top);
     	
+    	//Add the middle part according selection
     	List<FormDef> selectedForms = new ArrayList<FormDef>();
     	Map<String, FormDef> formDefs = (Map<String, FormDef>)request.getSession().getServletContext().getAttribute(Constants.FORM_DEFS);
     	for (String key : formKeys) {
-    	    FormDef formDef = formDefs.get(key);
-    	    if (formDef != null) {   
-    	        log.info("Form selected: " + formDef.getFormName());
-    	        selectedForms.add(formDef);
-    	    }
-    	}
+            FormDef formDef = formDefs.get(key);
+            if (formDef != null) {   
+                log.info("Form selected: " + formDef.getFormName());
+                selectedForms.add(formDef);
+                
+                ModelAndView formMav = new ModelAndView("forms/" + formDef.getFormKey());
+                mavList.add(formMav);
+            }
+        }
     	
     	request.getSession().setAttribute(Constants.SESSION_SELECTED_FORMS, selectedForms);
-    	
-    	Order order = new Order();
-    	order.setCertificateCopyCount(copies);
-    	order.setCertificatePurpose(purpose);
-    	order.setDestination(destination);
-    	order.setNeedTranslation(needTranslation);
-    	order.setOrderDate(new Date());
-    	order.setOrderStatus(OrderStatus.SUBMITTED);
-    	order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
-    	
-    	request.getSession().setAttribute(Constants.CURRENT_ORDER, order);
-    	
-    	ModelAndView mav = new ModelAndView("/WEB-INF/views/certStep2.jsp");
-    	
-    	return mav;
+
+        //Create the order to save information for next step
+        Order order = new Order();
+        order.setCertificateCopyCount(copies);
+        order.setCertificatePurpose(purpose);
+        order.setDestination(destination);
+        order.setNeedTranslation(needTranslation);
+        order.setOrderDate(new Date());
+        order.setOrderStatus(OrderStatus.SUBMITTED);
+        order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
+        
+        request.getSession().setAttribute(Constants.CURRENT_ORDER, order);
+    	    
+    	//Add the bottom part of the page
+        ModelAndView bottom = new ModelAndView("certStep2Bottom");
+        mavList.add(bottom);
+        return multipleViewFactory.getView(mavList);
     }
     
     @RequestMapping(value = "/certStep3.do")
@@ -109,7 +126,7 @@ public class OrderController {
         request.getSession().removeAttribute(Constants.CURRENT_ORDER);
         request.getSession().removeAttribute(Constants.SESSION_SELECTED_FORMS);
         
-        ModelAndView mav = new ModelAndView("/WEB-INF/views/certStep3.jsp");
+        ModelAndView mav = new ModelAndView("certStep3");
         
         return mav;
     }

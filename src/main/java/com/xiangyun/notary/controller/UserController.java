@@ -56,7 +56,7 @@ public class UserController {
         //This will also create the new Order entry, as CascadeType.PERSIST is set on the relationship.
         u = userService.save(u);
 
-        ModelAndView mav = new ModelAndView("/WEB-INF/views/user.jsp");
+        ModelAndView mav = new ModelAndView("user");
         mav.addObject("user", u);
 
         return mav;

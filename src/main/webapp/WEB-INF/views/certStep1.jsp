@@ -1,50 +1,8 @@
-<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="resources/changning.css" rel="stylesheet">
-<title>网上办证</title>
 
-</head>
-<body>
-	<div class="container">
-	  <div class="row">
-	    <div class="span6">
-	      <h1>&nbsp;长宁公证之窗</h1>
-	    </div>
-	    
-	    <div class="span6 pull-right small-padding-top">
-	      <div>
-	        <p>
-	          <span class="text-font text-b">尊敬的 </span>
-	          <span class="text-font text-r">wangxudong1</span>
-	          <span class="text-font text-b"> 欢迎登录！ </span>
-	          <span class="text-font"><a href="#">[当事人中心]</a>&nbsp; <a href="#">[登出]</a></span>
-	          <span class="text-font">|&nbsp;<a href="#">联系我们&nbsp;</a>|&nbsp;<a href="#">常见问题</a></span>
-	        </p>
-	      </div>
-	    </div>
-	  </div>
+<%@ include file="header.jspf"%>
 
-      <div class="masthead">
-        <div class="navbar">
-          <div class="navbar-inner navbg3">
-            <div class="container">
-              <ul class="nav">
-                <li><a class="clean" href="#">首页</a></li>
-                <li class="active"><a class="clean" href="#">网上办证</a></li>
-                <li><a class="clean" href="#">网上预约</a></li>
-                <li><a class="clean" href="#">办证指南</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      
       <ul class="breadcrumb">
         <b>您的位置：</b>
         <li><a href="#">首页</a> <span class="divider">/</span></li>
@@ -76,6 +34,8 @@
 
       <br>
 	  
+      <form class="form-horizontal" action="certStep2.do" method="POST">
+	  
 	  <div class="bar-bg">
       <div class="row">
         <div class="span12 navbg2">
@@ -96,7 +56,6 @@
       <br/>
       <div class="row">
         <div class="span12">
-          <form class="form-horizontal" action="certStep2.do" method="POST">
     		<div class="row">
     		  <div class="span4">
     		    <div class="control-group">
@@ -231,48 +190,20 @@
     		    </table>
     		  </div>
     		</div>
-    		<br/>
-    		<hr/>
-    		<br/>
+        </div>
+        
+      </div>
+      </div>
+      
+      <br>
+      <br>
     		
-    		<div class="row">
-    		  <div class="span2 offset5">
-    		    <button class="btn btn-large btn-block btn-info" type="submit">下一步</button>
-    		  </div>    		  
-    		</div>
-    	  </form>
-        </div>
-        
-        <hr/>
-        
-      </div>
-      </div>
+   	  <div class="row">
+   		  <div class="span2 offset5">
+   		    <button class="btn btn-large btn-block btn-info" type="submit">下一步</button>
+   		  </div>    		  
+   	  </div>
       
-      <br>
-      <br>
-      <br>
-      <br>
-      <hr/>
-      <br>
+      </form>
       
-      
-      <div class="row">
-        <div class="span9">
-          <p>
-            <span>&nbsp;&nbsp;<a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">服务条款</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">版权声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">合作单位</a></span>            
-          </p>
-          <p>
-            <span>&nbsp;&nbsp;Copyright &copy; 2013 SHANGHAI CHANGNING NOTARY PUBLIC OFFICE All Right Reserved</span>
-          </p>
-        </div>
-        <div class="span3">
-          <p><a id="moveTop" name="moveTop">沪ICP备00000000号</a></p>
-        </div>
-	    
-      </div>
-      
-    </div>
-	<script src="jquery/jquery-1.10.1.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+<%@ include file="footer.jspf"%>

@@ -4,15 +4,15 @@
         "formName": "结婚",
         "fields": [
             {
-                "fieldKey": "JHZ",
+                "fieldKey": "JH_JHZ",
                 "fieldName": "是否有结婚证"
             },
             {
-                "fieldKey": "SHHJ",
+                "fieldKey": "JH_SHHJ",
                 "fieldName": "是否在沪户籍"
             },
             {
-                "fieldKey": "SHJH",
+                "fieldKey": "JH_SHJH",
                 "fieldName": "是否在沪结婚登记"
             }
         ],
@@ -43,15 +43,15 @@
         "formName": "学历",
         "fields": [
             {
-                "fieldKey": "BYZ",
+                "fieldKey": "XL_BYZ",
                 "fieldName": "是否有毕业证"
             },
             {
-                "fieldKey": "SHHJ",
+                "fieldKey": "XL_SHHJ",
                 "fieldName": "是否在沪户籍"
             },
             {
-                "fieldKey": "SHBY",
+                "fieldKey": "XL_SHBY",
                 "fieldName": "是否在沪毕业"
             }
         ],
