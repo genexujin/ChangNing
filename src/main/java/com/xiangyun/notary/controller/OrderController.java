@@ -67,6 +67,8 @@ public class OrderController {
     	
     	//Add the middle part according selection
     	List<FormDef> selectedForms = new ArrayList<FormDef>();
+    	//Is it possible the session expires and we should not create a new session here?
+    	//The request.getSession() may create a new one, which may not be right.
     	Map<String, FormDef> formDefs = (Map<String, FormDef>)request.getSession().getServletContext().getAttribute(Constants.FORM_DEFS);
     	for (String key : formKeys) {
             FormDef formDef = formDefs.get(key);
@@ -79,7 +81,7 @@ public class OrderController {
             }
         }
     	
-    	request.getSession().setAttribute(Constants.SESSION_SELECTED_FORMS, selectedForms);
+    	request.getSession().setAttribute(Constants.SESSION_SELECTED_FORMS, selectedForms);    	
 
         //Create the order to save information for next step
         Order order = new Order();
@@ -99,11 +101,18 @@ public class OrderController {
         return multipleViewFactory.getView(mavList);
     }
     
-    @RequestMapping(value = "/certStep3.do")
+    @RequestMapping(value = "/certStep3")
     public ModelAndView goToStep3(HttpServletRequest request) {
         List<FormDef> selectedForms = (List<FormDef>)request.getSession().getAttribute(Constants.SESSION_SELECTED_FORMS);
         
         Order order = (Order)request.getSession().getAttribute(Constants.CURRENT_ORDER);
+        
+        //May access /certStep3 directly, or the session may have expired.
+        if (selectedForms == null) {
+            //TODO: No, redirect to step1 is not good. In session expired situation, the user may create an order again.
+            //For easy development, directly return step3 for now.
+            return new ModelAndView("certStep3");
+        }
         
         for (FormDef formDef : selectedForms) {
         	Form form = new Form();
