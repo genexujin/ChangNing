@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.xiangyun.notary.common.CredentialType;
+import com.xiangyun.notary.common.Gender;
 
 @Entity
 @Table(name = "users")
@@ -32,8 +33,11 @@ public class User {
     private String mobile;
 
     private String name;
+    
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
-    private String email;
+	private String email;
 
     @Column(name = "cred_type")
     @Enumerated(EnumType.STRING)
@@ -79,6 +83,14 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 
     public String getEmail() {
         return email;

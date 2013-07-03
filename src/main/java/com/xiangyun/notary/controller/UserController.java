@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.CredentialType;
 import com.xiangyun.notary.common.DestinationCountry;
+import com.xiangyun.notary.common.Gender;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Order;
@@ -50,6 +51,7 @@ public class UserController {
         u.setName("刘峻");
         u.setPassword("abcd1234");
         u.setCredentialId("132412341");
+        u.setGender(Gender.MALE);
         //The relation is managed in this method for both ends.
         u.addOrder(o);
 

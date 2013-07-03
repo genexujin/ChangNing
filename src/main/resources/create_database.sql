@@ -24,6 +24,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `mobile` VARCHAR(45) NOT NULL ,
   `name` VARCHAR(45) NULL ,
+  `gender` VARCHAR(20) NULL ,
   `email` VARCHAR(45) NULL ,
   `cred_type` VARCHAR(20) NULL ,
   `cred_id` VARCHAR(45) NULL ,
