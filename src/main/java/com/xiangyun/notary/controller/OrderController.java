@@ -3,10 +3,12 @@ package com.xiangyun.notary.controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,7 @@ import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.form.FormDef;
+import com.xiangyun.notary.form.FormDocItemDef;
 import com.xiangyun.notary.form.FormFieldItemDef;
 import com.xiangyun.notary.service.OrderService;
 import com.xiangyun.notary.view.MultipleViewFactory;
@@ -103,16 +106,26 @@ public class OrderController {
     
     @RequestMapping(value = "/certStep3")
     public ModelAndView goToStep3(HttpServletRequest request) {
-        List<FormDef> selectedForms = (List<FormDef>)request.getSession().getAttribute(Constants.SESSION_SELECTED_FORMS);
+    	HttpSession session = request.getSession(false);
+    	if (session == null) {
+    		//TODO: redirect to login page
+    		//But now for easy development, create a new session
+    		session = request.getSession();
+    	}
+    	
+        List<FormDef> selectedForms = (List<FormDef>)session.getAttribute(Constants.SESSION_SELECTED_FORMS);
         
-        Order order = (Order)request.getSession().getAttribute(Constants.CURRENT_ORDER);
+        Order order = (Order)session.getAttribute(Constants.CURRENT_ORDER);
         
-        //May access /certStep3 directly, or the session may have expired.
+        //May access /certStep3 directly
         if (selectedForms == null) {
-            //TODO: No, redirect to step1 is not good. In session expired situation, the user may create an order again.
+            //TODO: should redirect to step1.
             //For easy development, directly return step3 for now.
             return new ModelAndView("certStep3");
         }
+        
+        Map<String, FormDocItemDef> allInOneUploadDocs = new HashMap<String, FormDocItemDef>();
+        Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
         
         for (FormDef formDef : selectedForms) {
         	Form form = new Form();
@@ -128,14 +141,32 @@ public class OrderController {
         	}
         	
         	order.addForm(form);
+        	
+        	//Collect the doc items for upload
+        	for ( FormDocItemDef docDef : formDef.getDocs()) {
+        		if (docDef.isUploadAlone()) {
+        			if (!aloneUploadDocs.containsKey(docDef.getDocKey())) {
+        				aloneUploadDocs.put(docDef.getDocKey(), docDef);
+        			}
+        			
+        		} else {
+        			if (!allInOneUploadDocs.containsKey(docDef.getDocKey())) {
+        				allInOneUploadDocs.put(docDef.getDocKey(), docDef);
+        			}
+        		}
+        	}
         }
         
         orderService.save(order);
         
-        request.getSession().removeAttribute(Constants.CURRENT_ORDER);
-        request.getSession().removeAttribute(Constants.SESSION_SELECTED_FORMS);
+        //May move to further steps.
+//        request.getSession().removeAttribute(Constants.CURRENT_ORDER);
+//        request.getSession().removeAttribute(Constants.SESSION_SELECTED_FORMS);
         
         ModelAndView mav = new ModelAndView("certStep3");
+        
+        mav.addObject("allInOneUpload", allInOneUploadDocs.values());
+        mav.addObject("aloneUpload", aloneUploadDocs.values());
         
         return mav;
     }

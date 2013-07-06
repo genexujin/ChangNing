@@ -3,6 +3,41 @@
 
 <%@ include file="header.jspf"%>
 
+      <script src="uploadify/jquery.uploadify.js"></script>
+      
+      <script>
+		$(function() {
+		    $('#file_upload').uploadify({
+		        'swf'             : 'uploadify/uploadify.swf',
+		        'uploader'        : '<c:url value="/upload.do"/>',
+		        // Put your options here
+		        'auto'            : false,
+		        'buttonClass'     : 'btn btn-success',
+		        'buttonText'      : '选择文件',
+		        'fileTypeDesc'    : 'Image Files',
+		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif',
+		        "removeCompleted" : false
+		        
+		    });
+		    
+		    $("#upload_button").click(function() {
+		    	$('#file_upload').uploadify( 'upload', '*' );
+		    });
+		    
+		    $('#file_upload2').uploadify({
+		        'swf'             : 'uploadify/uploadify.swf',
+		        'uploader'        : '<c:url value="/upload.do"/>',
+		        // Put your options here
+		        'buttonClass'     : 'btn btn-success',
+		        'buttonText'      : '上传文件',
+		        'fileTypeDesc'    : 'Image Files',
+		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif',
+		        "removeCompleted" : false
+		    });
+		});
+
+	  </script>
+      
       <ul class="breadcrumb">
         <b>您的位置：</b>
         <li><a href="#">首页</a> <span class="divider">/</span></li>
@@ -34,7 +69,7 @@
 	  
 	  <br>
 	  
-	  <form class="form-horizontal" action="certStep3.do" method="POST">
+	  <!-- <form class="form-horizontal" action="certStep3.do" method="POST"> -->
 	  
 		  <div class="bar-bg">
 		      <div class="row">
@@ -45,9 +80,16 @@
 	      </div>
 	      
 	      <div class="border">
+	        <p>需要上传的文件：</p>	        
+	        <ul>
+	          <c:forEach items="${allInOneUpload}" var="doc" >
+	            <li>${doc.docName}</li>
+	          </c:forEach>
+	        </ul>
 	        
-	        <input type="file" placeholder="Select File" id="order" name="order" multiple/>
-	        <button id="upload">上传</button>
+	        <div id="file_upload" ></div>
+	        <button id="upload_button">上传</button>
+
 		    
 	      </div>
 
@@ -59,6 +101,6 @@
 	   		  </div>
 	      </div>
       
-      </form>
+      <!-- </form> -->
       
 <%@ include file="footer.jspf"%>

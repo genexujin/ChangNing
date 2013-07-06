@@ -1,6 +1,8 @@
 package com.xiangyun.notary.form;
 
-public class FormFieldItemDef {
+import java.io.Serializable;
+
+public class FormFieldItemDef implements Serializable {
 	private String fieldKey;
 	private String fieldName;
 	

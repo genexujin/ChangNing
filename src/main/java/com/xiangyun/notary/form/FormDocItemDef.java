@@ -1,6 +1,8 @@
 package com.xiangyun.notary.form;
 
-public class FormDocItemDef {
+import java.io.Serializable;
+
+public class FormDocItemDef implements Serializable {
 	private String docKey;
 	private String docName;
 	private boolean uploadAlone;

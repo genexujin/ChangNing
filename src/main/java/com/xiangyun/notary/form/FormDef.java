@@ -1,12 +1,13 @@
 package com.xiangyun.notary.form;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class FormDef {
+public class FormDef implements Serializable {
 	private String formKey;
 	private String formName;
 	private List<FormFieldItemDef> fields;
