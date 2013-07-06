@@ -71,3 +71,9 @@
 	        </div>
 	    </div>
 	  </div>
+	  
+	  <script>
+	    function test() {
+	    	var a = "abcd";
+	    }
+	  </script>

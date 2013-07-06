@@ -167,6 +167,7 @@ public class OrderController {
         
         mav.addObject("allInOneUpload", allInOneUploadDocs.values());
         mav.addObject("aloneUpload", aloneUploadDocs.values());
+        mav.addObject("uid", order.getId());
         
         return mav;
     }

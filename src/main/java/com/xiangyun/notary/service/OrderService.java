@@ -10,4 +10,6 @@ public interface OrderService {
     public Order save(Order order);
 
     public void delete(Order order);
+    
+    public Order findById(Long id);
 }
