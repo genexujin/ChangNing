@@ -4,6 +4,7 @@
 <%@ include file="header.jspf"%>
 
       <script src="uploadify/jquery.uploadify.js"></script>
+      <script src="Jcrop-0.9.12/js/jquery.Jcrop.min.js"></script>
       
       <ul class="breadcrumb">
         <b>您的位置：</b>
@@ -58,7 +59,7 @@
 		        </ul>
 		        <div class="row">
 		          <div class="span4">
-		            <div id="file_upload" ></div>
+		            <div id="all_upload" ></div>
 		          </div>
 <!-- 		          <div class="span4">
 		            <button id="upload_button" class="btn btn-success">上传</button>
@@ -87,6 +88,9 @@
 	              <h5>${doc.docName} </h5>
 	            </div>
 	            <div class="span7">
+	              <c:if test="${doc.needCrop}">
+	                <img id="${doc.docKey}_img"/>
+	              </c:if>
 	              <div id="${doc.docKey}" class="file_upload" ></div>
 	            </div>
 	          </div>
@@ -96,17 +100,21 @@
         		        'swf'             : 'uploadify/uploadify.swf',
         		        'uploader'        : '<c:url value="/upload.do"/>',
         		        // Put your options here
-        		        'buttonClass'     : 'btn btn-success btn-small',
+        		        'buttonClass'     : 'btn btn-success',
         		        'buttonText'      : '上传文件',
         		        'height'          : 25,
         		        'width'           : 80,
         		        'fileTypeDesc'    : 'Image Files',
         		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif',
-        		        "removeCompleted" : false,
+        		        'removeCompleted' : false,
         		        'formData'        : {
         		        	'uid' : '${uid}',
         		        	'docKey' : '${doc.docKey}',
         		        	'docName' : '${doc.docName}'
+        		        },
+        		        'onSelect'        : function(file) {
+        		        	//alert('The file ' + file.name + ' was added to the queue.');
+        		        	$('#${doc.docKey}_img').src = file;
         		        }
         		    });
                 });
@@ -126,11 +134,11 @@
       <!-- </form> -->
       <script>
 		$(function() {
-		    $('#file_upload').uploadify({
+		    $('#all_upload').uploadify({
 		        'swf'             : 'uploadify/uploadify.swf',
 		        'uploader'        : '<c:url value="/upload.do"/>',
 		        // Put your options here
-		        'buttonClass'     : 'btn btn-success btn-small',
+		        'buttonClass'     : 'btn btn-success',
 		        'buttonText'      : '上传文件',
 		        'height'          : 25,
 		        'width'           : 80,

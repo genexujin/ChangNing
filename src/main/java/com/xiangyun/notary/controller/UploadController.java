@@ -114,7 +114,7 @@ public class UploadController {
         
         File dir = new File(saveDir);
         if (!dir.exists()) {
-            dir.mkdir();
+            dir.mkdirs();
         }
         return saveDir;
     }
