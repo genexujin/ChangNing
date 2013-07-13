@@ -90,11 +90,49 @@
 	            <div class="span7">
 	              <c:if test="${doc.needCrop}">
 	                <img id="${doc.docKey}_img"/>
+	                <input id="${doc.docKey}_x" style="display:none"/>
+	                <input id="${doc.docKey}_y" style="display:none"/>
+	                <input id="${doc.docKey}_x2" style="display:none"/>
+	                <input id="${doc.docKey}_y2" style="display:none"/>
+	                <input id="${doc.docKey}_w" style="display:none"/>
+	                <input id="${doc.docKey}_h" style="display:none"/>
+	                <input id="${doc.docKey}_fileName" style="display:none"/>
+	                <div id="${doc.docKey}_crop" class="btn btn-success" style="display:none">剪裁</div>
 	              </c:if>
 	              <div id="${doc.docKey}" class="file_upload" ></div>
 	            </div>
 	          </div>
 	          <script>
+	            function ${doc.docKey}_storeCoords(c) {
+	            	$('#${doc.docKey}_x').val(c.x);
+	            	$('#${doc.docKey}_y').val(c.y);
+	            	$('#${doc.docKey}_x2').val(c.x2);
+	            	$('#${doc.docKey}_y2').val(c.y2);
+	            	$('#${doc.docKey}_w').val(c.w);
+	            	$('#${doc.docKey}_h').val(c.h);
+	            }
+	            
+	            function ${doc.docKey}_crop() {
+	            	$.ajax({
+	                    url: "cropImage.do",
+	                    type: "POST", 
+	                    data :{
+	                        x : $('#${doc.docKey}_x').val(),
+	                        y : $('#${doc.docKey}_y').val(),
+	                        x2 : $('#${doc.docKey}_x2').val(),
+	                        y2 : $('#${doc.docKey}_y2').val(), 
+	                        w : $('#${doc.docKey}_w').val(),
+	                        h : $('#${doc.docKey}_h').val(),
+	                        imageName : $('#${doc.docKey}_fileName').val(),
+	                        uid : '${uid}',
+	                        dockey : '${doc.docKey}'
+	                    },
+	                    success: function (data) { 
+	                        alert('crop success!');
+	                    }
+	            	});
+	            }
+	          
                 $(function() {
                 	$('#${doc.docKey}').uploadify({
         		        'swf'             : 'uploadify/uploadify.swf',
@@ -110,11 +148,22 @@
         		        'formData'        : {
         		        	'uid' : '${uid}',
         		        	'docKey' : '${doc.docKey}',
-        		        	'docName' : '${doc.docName}'
+        		        	'docName' : '${doc.docName}',
+        		        	'needCrop' : '${doc.needCrop}'
         		        },
         		        'onSelect'        : function(file) {
-        		        	//alert('The file ' + file.name + ' was added to the queue.');
-        		        	$('#${doc.docKey}_img').src = file;
+        		        	$('#${doc.docKey}_fileName').val(file.name);
+        		        },
+        		        'onUploadSuccess' : function(file, data, response) {
+        		        	$('#${doc.docKey}_img').prop('src', data);
+        	            	$('#${doc.docKey}_crop').css("display", "inline-block");
+        	            	$('#${doc.docKey}_crop').click(${doc.docKey}_crop);
+        		        	$('#${doc.docKey}_img').Jcrop({
+        		        		setSelect : [0, 0, 120, 180],
+        		        		allowSelect : false,
+        		        		allowResize : false,
+        		        		onSelect : ${doc.docKey}_storeCoords
+        		        	});
         		        }
         		    });
                 });
