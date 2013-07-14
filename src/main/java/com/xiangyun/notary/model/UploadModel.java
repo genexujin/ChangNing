@@ -8,7 +8,8 @@ public class UploadModel {
     private Long uid;
     private Collection<FormDocItemDef> allInOneUpload;
     private Collection<FormDocItemDef> aloneUpload;
-    
+    private Collection<FormDocItemDef> needCrop;
+
     public Long getUid() {
         return uid;
     }
@@ -33,12 +34,24 @@ public class UploadModel {
         this.aloneUpload = aloneUpload;
     }
     
+    public Collection<FormDocItemDef> getNeedCrop() {
+        return needCrop;
+    }
+
+    public void setNeedCrop(Collection<FormDocItemDef> needCrop) {
+        this.needCrop = needCrop;
+    }
+    
     public boolean isAllInOneUploadEmpty() {
         return allInOneUpload.isEmpty();
     }
     
     public boolean isAloneUploadEmpty() {
         return aloneUpload.isEmpty();
+    }
+    
+    public boolean isNeedCropEmpty() {
+        return needCrop.isEmpty();
     }
 
 }

@@ -67,6 +67,11 @@
                 "docName": "本人2寸照片",
                 "uploadAlone": true,
                 "needCrop": true
+            },
+            {
+                "docKey": "TESTKEY",
+                "docName": "测试文件上传",
+                "uploadAlone": true
             }
         ]
     }

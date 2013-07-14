@@ -30,6 +30,7 @@ import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.form.FormDef;
 import com.xiangyun.notary.form.FormDocItemDef;
 import com.xiangyun.notary.form.FormFieldItemDef;
+import com.xiangyun.notary.model.UploadModel;
 import com.xiangyun.notary.service.OrderService;
 import com.xiangyun.notary.view.MultipleViewFactory;
 
@@ -57,10 +58,10 @@ public class OrderController {
     		                      @RequestParam("purpose")CertificatePurpose purpose, 
     		                      HttpServletRequest request,
     		                      @RequestParam("notory_key")Collection<String> formKeys) {
-    	log.info("Destination: " + destination);
-    	log.info("Need translation? " + needTranslation);
-    	log.info("Copies: " + copies);
-    	log.info("Purpose: " + purpose);
+    	log.debug("Destination: {}", destination);
+    	log.debug("Need translation? {}", needTranslation);
+    	log.debug("Copies: {}", copies);
+    	log.debug("Purpose: {}", purpose);
 
         List<ModelAndView> mavList = new ArrayList<ModelAndView>();
         
@@ -70,7 +71,7 @@ public class OrderController {
     	
     	//Add the middle part according selection
     	List<FormDef> selectedForms = new ArrayList<FormDef>();
-    	//Is it possible the session expires and we should not create a new session here?
+    	//TODO: Is it possible the session expires and we should not create a new session here?
     	//The request.getSession() may create a new one, which may not be right.
     	Map<String, FormDef> formDefs = (Map<String, FormDef>)request.getSession().getServletContext().getAttribute(Constants.FORM_DEFS);
     	for (String key : formKeys) {
@@ -126,6 +127,7 @@ public class OrderController {
         
         Map<String, FormDocItemDef> allInOneUploadDocs = new HashMap<String, FormDocItemDef>();
         Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
+        Map<String, FormDocItemDef> needCropDocs = new HashMap<String, FormDocItemDef>();
         
         for (FormDef formDef : selectedForms) {
         	Form form = new Form();
@@ -144,15 +146,15 @@ public class OrderController {
         	
         	//Collect the doc items for upload
         	for ( FormDocItemDef docDef : formDef.getDocs()) {
-        		if (docDef.isUploadAlone()) {
-        			if (!aloneUploadDocs.containsKey(docDef.getDocKey())) {
-        				aloneUploadDocs.put(docDef.getDocKey(), docDef);
-        			}
+        	    if (docDef.isNeedCrop()) {
+        	        putIfAbsent(needCropDocs, docDef);
+        	        
+        	    } else if (docDef.isUploadAlone()) {
+        	        putIfAbsent(aloneUploadDocs, docDef);
         			
         		} else {
-        			if (!allInOneUploadDocs.containsKey(docDef.getDocKey())) {
-        				allInOneUploadDocs.put(docDef.getDocKey(), docDef);
-        			}
+        		    putIfAbsent(allInOneUploadDocs, docDef);
+        		    
         		}
         	}
         }
@@ -165,10 +167,21 @@ public class OrderController {
         
         ModelAndView mav = new ModelAndView("certStep3");
         
-        mav.addObject("allInOneUpload", allInOneUploadDocs.values());
-        mav.addObject("aloneUpload", aloneUploadDocs.values());
-        mav.addObject("uid", order.getId());
+        UploadModel m = new UploadModel();
+        m.setUid(order.getId());
+        m.setAllInOneUpload(allInOneUploadDocs.values());
+        m.setAloneUpload(aloneUploadDocs.values());
+        m.setNeedCrop(needCropDocs.values());
+        
+        mav.addObject("um", m);
         
         return mav;
+    }
+
+    private void putIfAbsent(Map<String, FormDocItemDef> docDefs, FormDocItemDef docDef) {
+        if (!docDefs.containsKey(docDef.getDocKey())) {
+            docDefs.put(docDef.getDocKey(), docDef);
+        }
+        
     }
 }
