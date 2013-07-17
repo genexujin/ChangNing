@@ -49,7 +49,7 @@
 	        <div class="span12">
 	          
 	            <div class="row">
-	              <div class="span6">
+	              <div class="span5 offset1">
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="username">申请人姓名</label>
 			    	  <div class="controls">
@@ -70,7 +70,7 @@
 	    		  </div>
 	    		</div>
 	    		<div class="row">
-	    		  <div class="span6">
+	    		  <div class="span5 offset1">
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="mobile">手机号</label>
 			    	  <div class="controls">
@@ -88,7 +88,7 @@
 	    		  </div>
 	            </div>
 	            <div class="row">
-	              <div class="span6">
+	              <div class="span5 offset1">
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="address">地址</label>
 			    	  <div class="controls">

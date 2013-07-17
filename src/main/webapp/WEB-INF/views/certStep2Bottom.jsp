@@ -5,7 +5,7 @@
       <br/>
 	  <div class="row">
    		  <div class="span2 offset5">
-   		    <button class="btn btn-large btn-block btn-info" type="submit">下一步</button>
+   		    <button id="goToStep3" class="btn btn-large btn-block btn-info" type="submit">下一步</button>
    		  </div>    		  
       </div>
       

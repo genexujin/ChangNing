@@ -15,7 +15,7 @@
 	</appender>
 
     <logger name="org.springframework" level="INFO" />
-	<logger name="com.apress" level="DEBUG" />
+	<logger name="com.xiangyun.notary" level="DEBUG" />
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />

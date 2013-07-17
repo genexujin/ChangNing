@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -28,7 +29,8 @@ import com.xiangyun.notary.common.OrderStatus;
 @Entity
 @Table(name = "orders")
 @NamedQueries({
-    @NamedQuery(name="Order.findAll", query="select o from Order o")
+    @NamedQuery(name="Order.findAll", query="select o from Order o"),
+    @NamedQuery(name="Order.findById", query="select o from Order o where o.id = :oid")
 })
 public class Order {
     @Id
@@ -44,6 +46,9 @@ public class Order {
     
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
     private Set<Form> forms = new HashSet<Form>();
+    
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order", fetch = FetchType.EAGER)
+    private Set<DocItem> docs = new HashSet<DocItem>();
 
     @Column(name = "order_date")
     private Date orderDate;
@@ -195,4 +200,16 @@ public class Order {
         forms.add(form);
     }
     
+    public Set<DocItem> getDocs() {
+        return docs;
+    }
+
+    public void setDocs(Set<DocItem> docs) {
+        this.docs = docs;
+    }
+    
+    public void addDoc(DocItem doc) {
+        doc.setOrder(this);
+        docs.add(doc);
+    }
 }

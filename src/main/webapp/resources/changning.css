@@ -51,8 +51,16 @@ select {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125) inset;
 }
 
-.small-padding-top {
+.tiny-pt {
+    padding-top: 5px;
+}
+
+.small-pt {
     padding-top: 10px;
+}
+
+.large-pt {
+    padding-top: 25px;
 }
 
 .text-font {

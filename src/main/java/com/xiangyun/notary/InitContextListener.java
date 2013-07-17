@@ -2,6 +2,7 @@ package com.xiangyun.notary;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContextEvent;
@@ -37,21 +38,31 @@ public class InitContextListener implements ServletContextListener {
             
             sce.getServletContext().setAttribute(Constants.FORM_DEFS, formDefs);
             
+            //Also initialize a map for FormDocItemDef
+            Map<String, FormDocItemDef> docItemDefs = new HashMap<String, FormDocItemDef>();
+            
             for (FormDef form : formDefs.values()) {
-                log.info("Form Key: " + form.getFormKey());
-                log.info("Form Name: " + form.getFormName());
-                log.info("Form Fields: ");
+                log.debug("Form Key: {}", form.getFormKey());
+                log.debug("Form Name: {}", form.getFormName());
+                log.debug("Form Fields: ");
                 for (FormFieldItemDef field : form.getFields()) {
-                    log.info("    Field Key: " + field.getFieldKey());
-                    log.info("    Field Name: " + field.getFieldName());
+                    log.debug("    Field Key: {}", field.getFieldKey());
+                    log.debug("    Field Name: {}", field.getFieldName());
                 }
-                log.info("Form Docs: ");
+                log.debug("Form Docs: ");
                 for (FormDocItemDef doc : form.getDocs()) {
-                    log.info("    Doc Key: " + doc.getDocKey());
-                    log.info("    Doc Name: " + doc.getDocName());
-                    log.info("    Upload Alone? " + doc.isUploadAlone());
+                    log.debug("    Doc Key: {}", doc.getDocKey());
+                    log.debug("    Doc Name: {}", doc.getDocName());
+                    log.debug("    Upload Alone? {}", doc.isUploadAlone());
+                    log.debug("    Need Crop? {}", doc.isNeedCrop());
+                    
+                    if (!docItemDefs.containsKey(doc.getDocKey())) {
+                        docItemDefs.put(doc.getDocKey(), doc);
+                    }
                 }
             }
+            
+            sce.getServletContext().setAttribute(Constants.DOC_ITEM_MAP, docItemDefs);
             
         } catch (JsonParseException e) {
             log.error("Json document error.", e);

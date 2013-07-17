@@ -89,9 +89,11 @@ CREATE  TABLE IF NOT EXISTS `changning`.`doc_items` (
   `doc_key` VARCHAR(50) NULL ,
   `doc_name` VARCHAR(50) NULL ,
   `doc_path` VARCHAR(500) NULL ,
+  `doc_size` INT NULL ,
+  `content_type` VARCHAR(50) NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `doc_order_fk_idx` (`order_id` ASC) ,
-  CONSTRAINT `doc_order_fk`
+  INDEX `order_doc_fk_idx` (`order_id` ASC) ,
+  CONSTRAINT `order_doc_fk`
     FOREIGN KEY (`order_id` )
     REFERENCES `changning`.`orders` (`id` )
     ON DELETE NO ACTION

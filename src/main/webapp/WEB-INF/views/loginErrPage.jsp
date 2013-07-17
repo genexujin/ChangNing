@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
+<meta http-equiv="refresh" content="3;URL=/ChangNing/enterLogin.do">
 <ul class="breadcrumb">
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>

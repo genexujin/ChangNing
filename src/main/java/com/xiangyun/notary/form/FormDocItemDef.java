@@ -1,11 +1,14 @@
 package com.xiangyun.notary.form;
 
-public class FormDocItemDef {
+import java.io.Serializable;
+
+public class FormDocItemDef implements Serializable {
 	private String docKey;
 	private String docName;
 	private boolean uploadAlone;
+	private boolean needCrop;
 	
-	public String getDocKey() {
+    public String getDocKey() {
 		return docKey;
 	}
 	public void setDocKey(String docKey) {
@@ -23,5 +26,11 @@ public class FormDocItemDef {
 	public void setUploadAlone(boolean uploadAlone) {
 		this.uploadAlone = uploadAlone;
 	}
+    public boolean isNeedCrop() {
+        return needCrop;
+    }
+    public void setNeedCrop(boolean needCrop) {
+        this.needCrop = needCrop;
+    }
 
 }

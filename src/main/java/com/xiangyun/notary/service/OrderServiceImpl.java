@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional(readOnly=true)
     public List<Order> findAll() {
-        log.info("Now is in findAll()");
+        log.debug("Now is in findAll()");
         List<Order> orders = em.createNamedQuery("Order.findAll", Order.class).getResultList();
         return orders;
     }
@@ -32,14 +32,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order save(Order order) {
         if (order.getId() == null) {
-            log.info("Inserting new order...");
+            log.debug("Inserting new order...");
             em.persist(order);
         } else {
-            log.info("Updating an order...");
+            log.debug("Updating an order...");
             em.merge(order);
         }
         
-        log.info("Order saved with id: " + order.getId());
+        log.debug("Order saved with id: " + order.getId());
         return order;
     }
 
@@ -47,8 +47,21 @@ public class OrderServiceImpl implements OrderService {
     public void delete(Order order) {
         Order mergedOrder = em.merge(order);
         em.remove(mergedOrder);
-        log.info("Order with id: " + order.getId() + " deleted successfully");
+        log.debug("Order with id: " + order.getId() + " deleted successfully");
         
+    }
+
+    //This should not set readOnly=true, because in UploadController, the order is findById and then it will be added to some docs.
+    //However, the docs is lazy loaded. So when add new docs and save the order, there will be Hibernate exception:
+    //org.hibernate.LazyInitializationException : failed to lazily initialize a collection, no session or session was closed
+    @Override
+    @Transactional(readOnly=true)
+    public Order findById(Long id) {
+        List<Order> orders = em.createNamedQuery("Order.findById", Order.class).setParameter("oid", id).getResultList();
+        if (orders != null && !orders.isEmpty()) {
+            return orders.get(0);
+        }
+        return null;
     }
 
 }

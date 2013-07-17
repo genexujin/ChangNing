@@ -24,12 +24,14 @@
             {
                 "docKey": "BR2CZP",
                 "docName": "本人2寸照片",
-                "uploadAlone": true
+                "uploadAlone": true,
+                "needCrop": true
             },
             {
                 "docKey": "PO2CZP",
                 "docName": "配偶2寸照片",
-                "uploadAlone": true
+                "uploadAlone": true,
+                "needCrop": true
             },
             {
                 "docKey": "POSFZ",
@@ -63,6 +65,12 @@
             {
                 "docKey": "BR2CZP",
                 "docName": "本人2寸照片",
+                "uploadAlone": true,
+                "needCrop": true
+            },
+            {
+                "docKey": "TESTKEY",
+                "docName": "测试文件上传",
                 "uploadAlone": true
             }
         ]

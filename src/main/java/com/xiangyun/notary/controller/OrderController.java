@@ -3,10 +3,12 @@ package com.xiangyun.notary.controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +28,9 @@ import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.form.FormDef;
+import com.xiangyun.notary.form.FormDocItemDef;
 import com.xiangyun.notary.form.FormFieldItemDef;
+import com.xiangyun.notary.model.UploadModel;
 import com.xiangyun.notary.service.OrderService;
 import com.xiangyun.notary.view.MultipleViewFactory;
 
@@ -54,10 +58,10 @@ public class OrderController {
     		                      @RequestParam("purpose")CertificatePurpose purpose, 
     		                      HttpServletRequest request,
     		                      @RequestParam("notory_key")Collection<String> formKeys) {
-    	log.info("Destination: " + destination);
-    	log.info("Need translation? " + needTranslation);
-    	log.info("Copies: " + copies);
-    	log.info("Purpose: " + purpose);
+    	log.debug("Destination: {}", destination);
+    	log.debug("Need translation? {}", needTranslation);
+    	log.debug("Copies: {}", copies);
+    	log.debug("Purpose: {}", purpose);
 
         List<ModelAndView> mavList = new ArrayList<ModelAndView>();
         
@@ -67,7 +71,7 @@ public class OrderController {
     	
     	//Add the middle part according selection
     	List<FormDef> selectedForms = new ArrayList<FormDef>();
-    	//Is it possible the session expires and we should not create a new session here?
+    	//TODO: Is it possible the session expires and we should not create a new session here?
     	//The request.getSession() may create a new one, which may not be right.
     	Map<String, FormDef> formDefs = (Map<String, FormDef>)request.getSession().getServletContext().getAttribute(Constants.FORM_DEFS);
     	for (String key : formKeys) {
@@ -103,16 +107,27 @@ public class OrderController {
     
     @RequestMapping(value = "/certStep3")
     public ModelAndView goToStep3(HttpServletRequest request) {
-        List<FormDef> selectedForms = (List<FormDef>)request.getSession().getAttribute(Constants.SESSION_SELECTED_FORMS);
+    	HttpSession session = request.getSession(false);
+    	if (session == null) {
+    		//TODO: redirect to login page
+    		//But now for easy development, create a new session
+    		session = request.getSession();
+    	}
+    	
+        List<FormDef> selectedForms = (List<FormDef>)session.getAttribute(Constants.SESSION_SELECTED_FORMS);
         
-        Order order = (Order)request.getSession().getAttribute(Constants.CURRENT_ORDER);
+        Order order = (Order)session.getAttribute(Constants.CURRENT_ORDER);
         
-        //May access /certStep3 directly, or the session may have expired.
+        //May access /certStep3 directly
         if (selectedForms == null) {
-            //TODO: No, redirect to step1 is not good. In session expired situation, the user may create an order again.
+            //TODO: should redirect to step1.
             //For easy development, directly return step3 for now.
             return new ModelAndView("certStep3");
         }
+        
+        Map<String, FormDocItemDef> allInOneUploadDocs = new HashMap<String, FormDocItemDef>();
+        Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
+        Map<String, FormDocItemDef> needCropDocs = new HashMap<String, FormDocItemDef>();
         
         for (FormDef formDef : selectedForms) {
         	Form form = new Form();
@@ -128,15 +143,45 @@ public class OrderController {
         	}
         	
         	order.addForm(form);
+        	
+        	//Collect the doc items for upload
+        	for ( FormDocItemDef docDef : formDef.getDocs()) {
+        	    if (docDef.isNeedCrop()) {
+        	        putIfAbsent(needCropDocs, docDef);
+        	        
+        	    } else if (docDef.isUploadAlone()) {
+        	        putIfAbsent(aloneUploadDocs, docDef);
+        			
+        		} else {
+        		    putIfAbsent(allInOneUploadDocs, docDef);
+        		    
+        		}
+        	}
         }
         
         orderService.save(order);
         
-        request.getSession().removeAttribute(Constants.CURRENT_ORDER);
-        request.getSession().removeAttribute(Constants.SESSION_SELECTED_FORMS);
+        //May move to further steps.
+//        request.getSession().removeAttribute(Constants.CURRENT_ORDER);
+//        request.getSession().removeAttribute(Constants.SESSION_SELECTED_FORMS);
         
         ModelAndView mav = new ModelAndView("certStep3");
         
+        UploadModel m = new UploadModel();
+        m.setUid(order.getId());
+        m.setAllInOneUpload(allInOneUploadDocs.values());
+        m.setAloneUpload(aloneUploadDocs.values());
+        m.setNeedCrop(needCropDocs.values());
+        
+        mav.addObject("um", m);
+        
         return mav;
+    }
+
+    private void putIfAbsent(Map<String, FormDocItemDef> docDefs, FormDocItemDef docDef) {
+        if (!docDefs.containsKey(docDef.getDocKey())) {
+            docDefs.put(docDef.getDocKey(), docDef);
+        }
+        
     }
 }

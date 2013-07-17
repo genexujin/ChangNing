@@ -48,6 +48,9 @@
 
 	<context:component-scan base-package="com.xiangyun.notary" />
 	
+	<!-- <context:property-placeholder location="file:///${user.home}/abusdbg.properties"/> -->
+	<context:property-placeholder location="classpath:config.properties"/>
+	
 	<import resource="webmvc-config.xml" />
 
 </beans>
