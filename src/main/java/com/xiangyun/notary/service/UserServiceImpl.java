@@ -51,4 +51,17 @@ public class UserServiceImpl implements UserService {
         
     }
 
+	@Override
+	public User findByMobile(String mobile) {
+		
+    	log.info("Now is find by the mobile number...");
+    	String hql = "from User where mobile = " + mobile;
+    	List<User> users =  em.createQuery(hql).getResultList();
+    	if(users.size() == 0){
+    		return null;
+    	}else{
+    		return users.get(0);
+    	}
+	}
+
 }
