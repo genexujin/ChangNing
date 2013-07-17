@@ -185,14 +185,13 @@ public class UserController {
 		int checksmscode = this.creatCode();
 		HttpSession session = request.getSession(true);
 		session.setAttribute("SMSCODE", checksmscode);
-		Client theclient = SingletonSMSClient.getClient("0SDK-EBB-0130-NEVNN",
-				"222769");
-
-		theclient.sendSMS(new String[] { mobile }, "感谢您使用长宁公证处手机认证功能，您的验证码为： "
-				+ checksmscode, 1);
+		System.out.println(mobile);
+		SMSManager.sendSMS(new String[] { mobile }, "感谢您使用长宁公证处手机认证功能，您的验证码为： "
+				+ checksmscode, 1);		
+		
 		try {
 			System.out.println("Available SMS: "
-					+ Math.floor(theclient.getBalance() / 0.09));
+					+ Math.floor(SMSManager.checkBalance()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -45,10 +45,10 @@ public class SingletonSMSClient {
 //        int i = theclient.registEx(password);
 //        System.out.println("注册结果:" + i);
 
-        theclient.sendSMS(new String[] { "13524173173" },
-                          "测试短信,发送时间： " + new Date() + ",请查看是否收到及时 【祥韵公司】", 1);
+//        theclient.sendSMS(new String[] { "18621910893" },
+//                          "测试短信,发送时间： " + new Date() + ",请查看是否收到及时 【祥韵公司】", 1);
         try {
-			System.out.println("Available SMS: " +  Math.floor(theclient.getBalance() / 0.09));
+			System.out.println("Available SMS: " +  Math.floor(theclient.getBalance() / 0.10));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
