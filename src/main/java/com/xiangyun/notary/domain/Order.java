@@ -2,6 +2,7 @@ package com.xiangyun.notary.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,7 +33,7 @@ import com.xiangyun.notary.common.OrderStatus;
     @NamedQuery(name="Order.findAll", query="select o from Order o"),
     @NamedQuery(name="Order.findById", query="select o from Order o where o.id = :oid")
 })
-public class Order {
+public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;

@@ -2,6 +2,7 @@ package com.xiangyun.notary.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name="Form.findAll", query="select o from Form o")
 })
-public class Form {
+public class Form implements Serializable {
     
     @Id
     @GeneratedValue(strategy = IDENTITY)

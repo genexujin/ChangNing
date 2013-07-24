@@ -2,6 +2,7 @@ package com.xiangyun.notary.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ import com.xiangyun.notary.common.Gender;
 @Entity
 @Table(name = "users")
 @NamedQueries({ @NamedQuery(name = "User.findAll", query = "select u from User u") })
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
