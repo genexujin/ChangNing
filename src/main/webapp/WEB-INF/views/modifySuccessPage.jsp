@@ -3,7 +3,7 @@
 
 <%@ include file="header.jspf"%>
 
-<meta http-equiv="refresh" content="3;URL=/ChangNing/certStep1.do">
+<meta http-equiv="refresh" content="3;URL=/ChangNing/enterModify.do">
 <ul class="breadcrumb">
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
@@ -17,4 +17,4 @@
 		<h2>个人信息维护</h2>
 	</div>
 </div>
-登陆成功，正为您跳转到公证业务页面
+修改成功

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
+<link href="<c:url value="/resources/user-alert.css" />" rel="stylesheet">
 
 
 <script type="text/javascript">
@@ -50,14 +51,13 @@
 		$("#login_user_mobile").blur(
 				function checkmobile() {
 					if ($("#login_user_mobile").val().length == 0) {
-						$("#login_mobile_alert").show().html("手机号码不能为空！");
+						$("#login_mobile_alert").removeClass().addClass("alert alert-error").show().html("手机号码不能为空！");
 					} else if (!$("#login_user_mobile").val().match(
 							/^1(3|4|5|8)[0-9]{9}$/)) {
-						$("#login_mobile_alert").show()
-								.html("手机号码格式不正确！请重新输入！");
+						$("#login_mobile_alert").removeClass().addClass("alert alert-error").show().html("手机号码格式不正确！请重新输入！");
 						$("#login_user_mobile").focus();
 					} else {
-						$("#login_mobile_alert").hide();
+						$("#login_mobile_alert").removeClass().addClass("alert alert-success").show().html("<h7 style='font-family:幼圆'>√</h7>");
 					}
 				});
 
@@ -67,10 +67,10 @@
 							&& $("#login_user_pwd").val().match(/([0-9])/)
 							&& ($("#login_user_pwd").val().length >= 8)
 							&& ($("#login_user_pwd").val().length <= 16)) {
-						$("#login_pwd_alert").hide();
+						$("#login_pwd_alert").removeClass().addClass("alert alert-success").show().html("<h7 style='font-family:幼圆'>√</h7>");
 					} else {
-						$("#login_pwd_alert").show().html(
-								"请输入8-16位的密码，并且必须包含数字和字母！");
+						$("#login_pwd_alert").removeClass().addClass("alert alert-error").show().html(
+								"请输入8-16位的密码，必须包含数字和字母！");
 					}
 				});
 		$("#veryCode").keyup(function() {
@@ -79,19 +79,21 @@
 
 		$("#veryCode").blur(function() {
 			if ($("#veryCode").val().length == 0) {
-				$("#info").show().html("请输入图片中的结果！");
+				$("#info").removeClass().addClass("alert alert-error").show().html("请输入图片中的结果！");
+			}else{
+				$("#info").removeClass().addClass("alert alert-success").show().html("<h7 style='font-family:幼圆'>√</h7>");
 			}
 		});
 	});
 
 	function checkLoginForm() {
 		if ($("#login_user_mobile").val().length == 0) {
-			$("#login_mobile_alert").show().html("手机号码不能为空！");
+			$("#login_mobile_alert").removeClass().addClass("alert alert-error").show().html("手机号码不能为空！");
 			$("#login_user_mobile").focus();
 			return false;
 		}
 		if (!$("#login_user_mobile").val().match(/^1(3|4|5|8)[0-9]{9}$/)) {
-			$("#login_mobile_alert").show().html("手机号码格式不正确！请重新输入！");
+			$("#login_mobile_alert").removeClass().addClass("alert alert-error").show().html("手机号码格式不正确！请重新输入！");
 			$("#login_user_mobile").focus();
 			return false;
 		}
@@ -100,17 +102,17 @@
 				"#login_user_pwd").val().match(/([0-9])/)
 				&& ($("#login_user_pwd").val().length >= 8) && ($(
 				"#login_user_pwd").val().length <= 16)))) {
-			$("#login_pwd_alert").show().html("请输入8-16位的密码，并且必须包含数字和字母！");
+			$("#login_pwd_alert").removeClass().addClass("alert alert-error").show().html("请输入8-16位的密码，必须包含数字和字母！");
 			$("#login_user_pwd").focus();
 			return false;
 		}
 		if ($("#veryCode").val() == 0) {
-			$("#info").show().html("请输入图片中的结果！");
+			$("#info").removeClass().addClass("alert alert-error").show().html("请输入图片中的结果！");
 			$("#veryCode").focus();
 			return false;
 		}
 		if (data1 == 1) {
-			$("#info").show().html("验证码错误！");
+			$("#info").removeClass().addClass("alert alert-error").show().html("验证码错误！");
 			$("#veryCode").focus();
 			return false;
 		} else {
@@ -137,7 +139,7 @@
 		<div class="border">
 			<div class="row">
 				<div class="span12">
-					<table>
+					<table width="98%">
 						<tr>
 							<th width="15%"></th>
 							<th width="15%"></th>
@@ -149,13 +151,13 @@
 						<tr>
 							<td><p class="text-right">手机号：</p></td>
 							<td colspan="3"><input type="text" class="input-xlarge" id="login_user_mobile" placeholder="mobile" name="mobile"></td>
-							<td><div id="login_mobile_alert" class="alert" style="display: none"></div></td>
+							<td><div id="login_mobile_alert" class="alert" style="display: none">请输入手机号码！</div></td>
 						</tr>
 
 						<tr>
 							<td><p class="text-right">密码：</p></td>
 							<td colspan="3"><input type="password" id="login_user_pwd" class="input-xlarge" placeholder="Password" name="password"></td>
-							<td><div class="alert" id="login_pwd_alert" style="display: none"></div></td>
+							<td><div class="alert" id="login_pwd_alert" style="display: none">请输入8-16位的密码，必须包含数字和字母！</div></td>
 						</tr>
 						<tr>
 							<td><p class="text-right">请输入答案：</p></td>
@@ -163,7 +165,7 @@
 							<td><input type="text" class="input-small" id="veryCode" placeholder="checkcode"></td>
 							<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
 							<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
-							<td><div class="alert" id="info" style="display: none"></div></td>
+							<td><div class="alert" id="info"  style="display: none">请输入图片中的结果！</div></td>
 						</tr>
 						<tr>
 							<td></td>
