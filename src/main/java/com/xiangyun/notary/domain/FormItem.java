@@ -2,6 +2,8 @@ package com.xiangyun.notary.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name="FormItem.findAll", query="select o from FormItem o")
 })
-public class FormItem {
+public class FormItem implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;

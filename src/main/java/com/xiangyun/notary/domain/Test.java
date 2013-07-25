@@ -2,6 +2,8 @@ package com.xiangyun.notary.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import javax.persistence.Table;
     @NamedQuery(name="Test.findAll",
                 query="select c from Test c")
 })
-public class Test {
+public class Test implements Serializable {
     private Long id;
     private String description;
     

@@ -1,6 +1,7 @@
 package com.xiangyun.notary.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -140,23 +141,10 @@ public class UserController {
 	public ModelAndView register(User user, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		ModelAndView mav = new ModelAndView();
-		String msg = null;
-		HttpSession session = request.getSession();
-		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
-		if (!request.getParameter("reg_user_smscode").equals(smscodeString)) {
-			msg = "短信验证码错误！";
-			mav.addObject("msg", msg);
-			mav.setViewName("regErrPage");
-		}else if (checkRegisterMobile(user)) {
-			msg = "用户已经存在，请检查手机号码或者直接登陆！";
-			mav.addObject("msg", msg);
-			mav.setViewName("regErrPage");
-		} else {
 			user.setPassword(Encrypt.e(user.getPassword()));
 			userService.save(user);
 			mav.addObject("user", user);
 			mav.setViewName("regSuccessPage");
-		}
 		return mav;
 	}
 
@@ -164,18 +152,20 @@ public class UserController {
 	 * 检查手机号码是否存在
 	 * 
 	 * @author binbin
-	 * @param user
-	 * @return
+	 * @param request
+	 * @param response
+	 * @param mobile
 	 */
-	public boolean checkRegisterMobile(User user) {
-		Boolean booleanReg = true;
-		User u = userService.findByMobile(user.getMobile());
-		if (u != null) {
-			return booleanReg;
-		} else {
-			booleanReg = false;
-			return booleanReg;
-		}
+	@RequestMapping(value = "checkRegisterMobile.do")
+	public void checkRegisterMobile(String mobile,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		User u = userService.findByMobile(mobile);
+		PrintWriter out = response.getWriter(); 
+		if (u==null){
+			out.println(0);
+		}else{
+			out.println(1);
+		};
+		
 	}
 
 	/**
@@ -206,11 +196,61 @@ public class UserController {
 	public int creatCode() {
 		Random random = new Random();
 		int smsCode = random.nextInt(999999);
-		if (smsCode > 100000)
-			;
+		if (smsCode > 100000);
 		return smsCode;
 	}
+	
+	/**
+	 * 注册页面检查短信验证码
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "checkSMSCode.do")
+	public void checkSMSCode(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
+		PrintWriter out = response.getWriter();
+		if (!request.getParameter("reg_user_smscode").equals(smscodeString)) {
+			out.println(0);
+		}else{
+			out.println(1);
+		}
 
+		
+	}
+	/**
+	 * 修改页面检查短信验证码
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "checkSMSCode1.do")
+	public void checkSMSCode1(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
+		PrintWriter out = response.getWriter();
+		if (!request.getParameter("modify_user_smscode").equals(smscodeString)) {
+			out.println(0);
+		}else{
+			out.println(1);
+		}
+	}
+	/**
+	 * 找回页面检查短信验证码
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "checkSMSCode2.do")
+	public void checkSMSCode2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
+		PrintWriter out = response.getWriter();
+		if (!request.getParameter("forget_user_smscode").equals(smscodeString)) {
+			out.println(0);
+		}else{
+			out.println(1);
+		}
+	}
+	
 	/**
 	 * 用户登录
 	 * 
@@ -256,16 +296,37 @@ public class UserController {
 		u.setAddress(user.getAddress());
 		u.setEmail(user.getEmail());
 		u.setName(user.getName());
-		u.setPassword(Encrypt.e(user.getPassword()));
 		u.setCredentialType(user.getCredentialType());
 		u.setCredentialId(user.getCredentialId());
 		userService.save(u);
-		request.getSession().setAttribute(Constants.LOGIN_USER, u);
+		
+		HttpSession session = request.getSession(true);
+		session.setAttribute(Constants.LOGIN_USER, u);
 		mav.addObject("user", u);
 		mav.setViewName("modifySuccessPage");
 		return mav;
 	}
 
+	
+	/**
+	 * 修改用户密码
+	 * 
+	 * @author binbin
+	 * @param request
+	 * @param user
+	 */
+	@RequestMapping(value = "/modifyPwd.do")
+	public ModelAndView modifyPwd(HttpServletRequest request, User user) {
+		ModelAndView mav = new ModelAndView();
+		User u = userService.findByMobile(user.getMobile());
+		u.setPassword(Encrypt.e(user.getPassword()));
+		userService.save(u);
+		HttpSession session = request.getSession(true);
+		session.setAttribute("LOGIN_USER", u);
+		mav.addObject("user", u);
+		mav.setViewName("modifySuccessPage");
+		return mav;
+	}
 	/**
 	 * 进入忘记密码页面
 	 * 
@@ -293,19 +354,10 @@ public class UserController {
 	public ModelAndView forget(User user, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		User u = userService.findByMobile(user.getMobile());
-		String msg = null;
-		HttpSession session = request.getSession();
-		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
-		if (!request.getParameter("forget_user_smscode").equals(smscodeString)) {
-			msg = "短信验证码错误！";
-			mav.addObject("msg", msg);
-			mav.setViewName("forgetErrPage");
-		} else {
 			u.setPassword(Encrypt.e(user.getPassword()));
 			userService.save(u);
 			mav.addObject("user", u);
 			mav.setViewName("login");
-		}
 		return mav;
 	}
 }
