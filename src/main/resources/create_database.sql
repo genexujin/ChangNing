@@ -48,6 +48,11 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `cert_purpose` VARCHAR(20) NULL ,
   `cert_copy_count` INT NULL ,
   `visit_for_doc` VARCHAR(20) NULL ,
+  `requestor_name` VARCHAR(45) NULL ,
+  `requestor_gender` VARCHAR(20) NULL ,
+  `requestor_mobile` VARCHAR(45) NULL ,
+  `reqeustor_email` VARCHAR(45) NULL ,
+  `requestor_address` VARCHAR(500) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `user_fk_idx` (`user_id` ASC) ,
   CONSTRAINT `user_fk`

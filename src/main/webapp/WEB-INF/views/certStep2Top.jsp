@@ -53,7 +53,7 @@
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="username">申请人姓名</label>
 			    	  <div class="controls">
-			    		<input id="username" name="username" type="text"></input>
+			    		<input id="username" name="username" type="text" value="${currUser.name}"></input>
 			    	  </div>
 			    	</div>
 	    		  </div>
@@ -62,8 +62,16 @@
 			    	  <label class="control-label" for="gender">性别</label>
 			    	  <div class="controls">
 			    		<SELECT id="gender" name="gender">
-							<OPTION selected value="MALE">男</OPTION>
-							<OPTION  value="FEMALE">女</OPTION>
+			    		  <c:choose>
+			    		    <c:when test="${currUser.gender == 'MALE'}">
+								<OPTION selected value="MALE">男</OPTION>
+								<OPTION value="FEMALE">女</OPTION>
+			    		    </c:when>
+			    		    <c:otherwise>
+								<OPTION value="MALE">男</OPTION>
+								<OPTION selected value="FEMALE">女</OPTION>
+			    		    </c:otherwise>
+					      </c:choose>
 						</SELECT>
 			    	  </div>
 			    	</div>
@@ -74,7 +82,7 @@
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="mobile">手机号</label>
 			    	  <div class="controls">
-			    		<input id="mobile" name="mobile" type="text"></input>
+			    		<input id="mobile" name="mobile" type="text" value="${currUser.mobile}"></input>
 			    	  </div>
 			    	</div>
 	    		  </div>
@@ -82,7 +90,7 @@
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="email">邮箱</label>
 			    	  <div class="controls">
-			    		<input id="email" name="email" type="text"></input>
+			    		<input id="email" name="email" type="text" value="${currUser.email}"></input>
 			    	  </div>
 			    	</div>
 	    		  </div>
@@ -92,7 +100,7 @@
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="address">地址</label>
 			    	  <div class="controls">
-			    		<input id="address" name="address" type="text"></input>
+			    		<input id="address" name="address" type="text" value="${currUser.address}"></input>
 			    	  </div>
 			    	</div>
 	    		  </div>

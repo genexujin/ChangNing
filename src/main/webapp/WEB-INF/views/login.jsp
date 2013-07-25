@@ -41,7 +41,7 @@
 	}
 
 	function toreg() {
-		window.location.href = "/ChangNing//enterRegister.do";
+		window.location.href = "/ChangNing/enterRegister.do";
 	}
 	function toforget() {
 		window.location.href = "/ChangNing/enterForget.do";
@@ -122,13 +122,13 @@
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
 	<li><a href="#">网上办证</a> <span class="divider">/</span></li>
-	<li class="active">用户登陆</li>
+	<li class="active">用户登录</li>
 </ul>
 <hr />
 
 <div class="row">
 	<div class="span12">
-		<h2>用户登陆</h2>
+		<h2>用户登录</h2>
 	</div>
 </div>
 
@@ -176,7 +176,7 @@
 						<tr>
 							<td></td>
 							<td colspan="2">
-								<button id="user_login_btn" type="submit" class="btn">用户登陆</button>
+								<button id="user_login_btn" type="submit" class="btn">用户登录</button>
 								<button id="user_toreg_btn" type="button" class="btn" onclick="toreg()">用户注册</button>
 							</td>
 							<td colspan="2"></td>

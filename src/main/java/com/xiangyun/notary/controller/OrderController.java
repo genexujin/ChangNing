@@ -22,11 +22,13 @@ import org.springframework.web.servlet.View;
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.DestinationCountry;
+import com.xiangyun.notary.common.Gender;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.form.FormDef;
 import com.xiangyun.notary.form.FormDocItemDef;
 import com.xiangyun.notary.form.FormFieldItemDef;
@@ -67,6 +69,8 @@ public class OrderController {
         
         //Add the top part of the page 
     	ModelAndView top = new ModelAndView("certStep2Top");
+    	User u = (User)request.getSession().getAttribute(Constants.LOGIN_USER);
+    	top.addObject("currUser", u);
     	mavList.add(top);
     	
     	//Add the middle part according selection
@@ -96,6 +100,7 @@ public class OrderController {
         order.setOrderDate(new Date());
         order.setOrderStatus(OrderStatus.SUBMITTED);
         order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
+        order.setUser(u);
         
         request.getSession().setAttribute(Constants.CURRENT_ORDER, order);
     	    
@@ -106,7 +111,12 @@ public class OrderController {
     }
     
     @RequestMapping(value = "/certStep3")
-    public ModelAndView goToStep3(HttpServletRequest request) {
+    public ModelAndView goToStep3(HttpServletRequest request,
+    		@RequestParam("username")String requestorName,
+    		@RequestParam("gender")Gender requestorGender,
+    		@RequestParam("mobile")String requestorMobile,
+    		@RequestParam("email")String requestorEmail,
+    		@RequestParam("address")String requestorAddress) {
     	HttpSession session = request.getSession(false);
     	if (session == null) {
     		//TODO: redirect to login page
@@ -117,6 +127,11 @@ public class OrderController {
         List<FormDef> selectedForms = (List<FormDef>)session.getAttribute(Constants.SESSION_SELECTED_FORMS);
         
         Order order = (Order)session.getAttribute(Constants.CURRENT_ORDER);
+        order.setRequestorName(requestorName);
+        order.setRequestorGender(requestorGender);
+        order.setRequestorMobile(requestorMobile);
+        order.setRequestorEmail(requestorEmail);
+        order.setRequestorAddress(requestorAddress);
         
         //May access /certStep3 directly
         if (selectedForms == null) {

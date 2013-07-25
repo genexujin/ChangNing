@@ -23,6 +23,7 @@ import javax.persistence.Table;
 
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.DestinationCountry;
+import com.xiangyun.notary.common.Gender;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 
@@ -82,6 +83,22 @@ public class Order {
     
     @Column(name = "visit_for_doc")
     private boolean visitForDoc;
+    
+    @Column(name = "requestor_name")
+    private String requestorName;
+
+	@Column(name = "requestor_gender")
+    @Enumerated(EnumType.STRING)
+    private Gender requestorGender;
+    
+    @Column(name = "requestor_mobile")
+    private String requestorMobile;
+    
+    @Column(name = "reqeustor_email")
+    private String requestorEmail;
+    
+    @Column(name = "requestor_address")
+    private String requestorAddress;
 
     public Long getId() {
         return id;
@@ -212,4 +229,44 @@ public class Order {
         doc.setOrder(this);
         docs.add(doc);
     }
+    
+    public String getRequestorName() {
+		return requestorName;
+	}
+
+	public void setRequestorName(String requestorName) {
+		this.requestorName = requestorName;
+	}
+
+	public Gender getRequestorGender() {
+		return requestorGender;
+	}
+
+	public void setRequestorGender(Gender requestorGender) {
+		this.requestorGender = requestorGender;
+	}
+
+	public String getRequestorMobile() {
+		return requestorMobile;
+	}
+
+	public void setRequestorMobile(String requestorMobile) {
+		this.requestorMobile = requestorMobile;
+	}
+
+	public String getRequestorEmail() {
+		return requestorEmail;
+	}
+
+	public void setRequestorEmail(String requestorEmail) {
+		this.requestorEmail = requestorEmail;
+	}
+
+	public String getRequestorAddress() {
+		return requestorAddress;
+	}
+
+	public void setRequestorAddress(String requestorAddress) {
+		this.requestorAddress = requestorAddress;
+	}
 }

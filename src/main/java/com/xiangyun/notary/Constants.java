@@ -10,5 +10,7 @@ public class Constants {
     public static final String CURRENT_ORDER = "curr_order";
     
     public static final String ALL_IN_ONE_KEY = "allInOne";
+    
+    public static final String LOGIN_USER = "LOGIN_USER";
 
 }

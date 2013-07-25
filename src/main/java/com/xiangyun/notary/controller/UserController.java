@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.emay.sdk.client.api.Client;
 
+import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.CredentialType;
 import com.xiangyun.notary.common.DestinationCountry;
@@ -233,7 +234,7 @@ public class UserController {
 			mav.setViewName("loginErrPage");
 		} else {
 			HttpSession session = request.getSession(true);
-			session.setAttribute("LOGIN_USER", u);
+			session.setAttribute(Constants.LOGIN_USER, u);
 			mav.addObject("user", u);
 			mav.setViewName("loginSuccessPage");
 		}
@@ -259,6 +260,7 @@ public class UserController {
 		u.setCredentialType(user.getCredentialType());
 		u.setCredentialId(user.getCredentialId());
 		userService.save(u);
+		request.getSession().setAttribute(Constants.LOGIN_USER, u);
 		mav.addObject("user", u);
 		mav.setViewName("modifySuccessPage");
 		return mav;
