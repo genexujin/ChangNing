@@ -329,47 +329,47 @@
 						<th width="15%"></th>
 						<th width="35%"></th>
 					</tr>
-					<tr>
+					<tr height="60px">
 						<td><p class="text-right">您的姓名：</p></td>
-						<td colspan="3"><input type="text" class="input-xlarge" id="reg_user_name" placeholder="name" name="name"></td>
+						<td colspan="3"><input type="text" class="input-xlarge" id="reg_user_name" placeholder="您的姓名" name="name"></td>
 						<td height="1px"><div id="reg_name_alert" class="alert" style="display: none">请输入姓名！</div></td>
 					</tr>
-					<tr>
+					<tr height="60px">
 						<td><p class="text-right">手机号：</p></td>
-						<td colspan="3"><input type="text" class="input-xlarge" id="reg_user_mobile" placeholder="mobile" name="mobile"></td>
+						<td colspan="3"><input type="text" class="input-xlarge" id="reg_user_mobile" placeholder="您的手机号码" name="mobile"></td>
 						<td height="1px"><div id="reg_mobile_alert" class="alert" style="display: none">请输入手机号码！</div></td>
 					</tr>
-					<tr>
+					<tr height="60px">
 						<td><p class="text-right">手机验证码：</p></td>
-						<td><input type="text" class="input-small" id="reg_user_smscode" name="reg_user_smscode" placeholder="smscode"></td>
+						<td><input type="text" class="input-small" id="reg_user_smscode" name="reg_user_smscode" placeholder="短信验证码"></td>
 						<td colspan="2">
 							<button type="button" class="btn btn-info" id="reg_user_smsbtn" onclick="senddata()">获取短信验证码</button>
 						</td>
 						<td height="1px"><div id="reg_smscode_alert" class="alert" style="display: none">请点击按钮查收短消息验证码</div></td>
 					</tr>
-					<tr>
+					<tr height="60px">
 						<td><p class="text-right">密码：</p></td>
-						<td colspan="3"><input type="password" id="reg_user_pwd" class="input-xlarge" placeholder="Password" name="password"></td>
+						<td colspan="3"><input type="password" id="reg_user_pwd" class="input-xlarge" placeholder="密码" name="password"></td>
 						<td height="1px"><div id="reg_pwd_alert" class="alert" style="display: none">请输入密码！</div></td>
 					</tr>
-					<tr>
+					<tr height="60px">
 						<td><p class="text-right">重复密码：</p></td>
-						<td colspan="3"><input type="password" id="reg_user_pwd1" class="input-xlarge" placeholder="Password"></td>
+						<td colspan="3"><input type="password" id="reg_user_pwd1" class="input-xlarge" placeholder="重复密码"></td>
 						<td><div class="alert" id="reg_pwd1_alert" style="display: none">请重复输入密码！</div></td>
 					</tr>
-					<tr>
+					<tr height="60px">
 						<td><p class="text-right">请输入答案：</p></td>
-						<td><input type="text" class="input-small" id="veryCode" placeholder="checkcode"></td>
+						<td><input type="text" class="input-small" id="veryCode" placeholder="验证码答案"></td>
 						<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
 						<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
 						<td><div class="alert" id="info" style="display: none">请输入图片中的结果！</div></td>
 					</tr>
-					<tr>
+					<tr height="60px">
 						<td></td>
 						<td colspan="3"><input type="checkbox" value="checked" id="reg_user_checkbox" checked="checked"> 我接受<a href="#">长宁公证处注册协议</a></td>
 						<td><div class="alert" id="reg_checkbox_alert" style="display: none">请仔细阅读本协议！</div></td>
 					</tr>
-					<tr>
+					<tr height="60px">
 						<td></td>
 						<td colspan="2">
 							<button href="#" id="user_reg_btn" type="submit" class="btn btn-large btn-block ">用户注册</button>
@@ -383,3 +383,4 @@
 
 </form>
 
+<%@ include file="footer.jspf"%>
