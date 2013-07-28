@@ -5,8 +5,9 @@ import java.io.Serializable;
 public class FormFieldItemDef implements Serializable {
 	private String fieldKey;
 	private String fieldName;
+	private boolean composite;
 	
-	public String getFieldKey() {
+    public String getFieldKey() {
 		return fieldKey;
 	}
 	public void setFieldKey(String fieldKey) {
@@ -18,5 +19,11 @@ public class FormFieldItemDef implements Serializable {
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
 	}
+    public boolean isComposite() {
+        return composite;
+    }
+    public void setComposite(boolean composite) {
+        this.composite = composite;
+    }
 
 }

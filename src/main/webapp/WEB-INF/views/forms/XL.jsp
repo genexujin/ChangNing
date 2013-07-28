@@ -38,7 +38,7 @@
 	          <div class="row">
 	            <div class="span5 offset1">
 	                <div class="control-group">
-			    	  <label class="control-label" for="SHHJ">是否在沪户籍</label>
+			    	  <label class="control-label" for="XL_SHHJ">是否在沪户籍</label>
 			    	  <div class="controls">
 				    	<label class="radio inline">
 					      <input type="radio" value="true" name="XL_SHHJ" checked> 是&nbsp;&nbsp;
@@ -55,7 +55,7 @@
 	          <div class="row">
 	            <div class="span5 offset1">
 	                <div class="control-group">
-			    	  <label class="control-label" for="SHBY">是否在沪毕业</label>
+			    	  <label class="control-label" for="XL_SHBY">是否在沪毕业</label>
 			    	  <div class="controls">
 				    	<label class="radio inline">
 					      <input type="radio" value="true" name="XL_SHBY" checked> 是&nbsp;&nbsp;
@@ -73,7 +73,7 @@
 	  </div>
 	  
 	  <script>
-	    var validXL = true;
+	    validXL = true;
 	    function validateXL() {
 	    	$("input[name='XL_BYZ']").change(validateXL1);
 	    	

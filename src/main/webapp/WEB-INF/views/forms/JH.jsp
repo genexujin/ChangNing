@@ -17,7 +17,7 @@
 	          <div class="row">
 	            <div class="span5 offset1">
 	    		    <div class="control-group">
-			    	  <label class="control-label" for="JHZ">是否有结婚证</label>
+			    	  <label class="control-label" for="JH_JHZ">是否有结婚证</label>
 			    	  <div class="controls">
 				    	<label class="radio inline">
 					      <input type="radio" value="true" name="JH_JHZ" checked> 有&nbsp;&nbsp;
@@ -38,7 +38,7 @@
 	          <div class="row">
 	            <div class="span5 offset1">
 	                <div class="control-group">
-			    	  <label class="control-label" for="SHHJ">是否在沪户籍</label>
+			    	  <label class="control-label" for="JH_SHHJ">是否在沪户籍</label>
 			    	  <div class="controls">
 				    	<label class="radio inline">
 					      <input type="radio" value="true" name="JH_SHHJ" checked> 是&nbsp;&nbsp;
@@ -55,7 +55,7 @@
 	          <div class="row">
 	            <div class="span5 offset1">
 	                <div class="control-group">
-			    	  <label class="control-label" for="SHJH">是否在沪结婚登记</label>
+			    	  <label class="control-label" for="JH_SHJH">是否在沪结婚登记</label>
 			    	  <div class="controls">
 				    	<label class="radio inline">
 					      <input type="radio" value="true" name="JH_SHJH" checked> 是&nbsp;&nbsp;
@@ -73,7 +73,7 @@
 	  </div>
 	  
 	  <script>
-	    var validJH = true;
+	    validJH = true;
 	    
 	    function validateJH() {
 	    	$("input[name='JH_JHZ']").change(validateJH1);
@@ -91,7 +91,7 @@
 		    	 tryToEnableGoToStep3Button();
 		     } else {
 		    	 $("#JH_JHZ_M").css("color", "red");
-		    	 validXL = false;
+		    	 validJH = false;
 		    	 disableGoToStep3Button();
 		     }
 		}

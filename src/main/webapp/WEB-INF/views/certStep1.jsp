@@ -139,8 +139,8 @@
     		    <table class="table">
     		      <tr>
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 出生</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 受过/未受刑事处分</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 亲属关系</td>
+    		        <td><input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分</td>
+    		        <td><input type="checkbox" value="QSGX" name="notory_key"> 亲属关系</td>
     		        <td><input type="checkbox" value="JH" name="notory_key"> 结婚</td>
     		        <td><input type="checkbox" value="XL" name="notory_key"> 学历</td>
     		      </tr>

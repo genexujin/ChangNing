@@ -137,16 +137,16 @@ public class UserController {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "register.do")
-	public ModelAndView register(User user, HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
-		ModelAndView mav = new ModelAndView();
-			user.setPassword(Encrypt.e(user.getPassword()));
-			userService.save(user);
-			mav.addObject("user", user);
-			mav.setViewName("regSuccessPage");
-		return mav;
-	}
+    @RequestMapping(value = "register.do")
+    public ModelAndView register(User user, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        ModelAndView mav = new ModelAndView();
+        user.setPassword(Encrypt.e(user.getPassword()));
+        userService.save(user);
+        mav.addObject("user", user);
+        mav.setViewName("regSuccessPage");
+        return mav;
+    }
 
 	/**
 	 * 检查手机号码是否存在

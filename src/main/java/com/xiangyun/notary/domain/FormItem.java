@@ -4,6 +4,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +38,9 @@ public class FormItem implements Serializable {
     @ManyToOne
     @JoinColumn(name="form_id")
     private Form form;
+    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="formItem")
+    private RelativeInfo relativeInfo;
 
     public Long getId() {
         return id;
@@ -75,6 +80,15 @@ public class FormItem implements Serializable {
 
     public void setForm(Form form) {
         this.form = form;
+    }
+    
+    public RelativeInfo getRelativeInfo() {
+        return relativeInfo;
+    }
+
+    public void setRelativeInfo(RelativeInfo relativeInfo) {
+        relativeInfo.setFormItem(this);
+        this.relativeInfo = relativeInfo;
     }
 
 }

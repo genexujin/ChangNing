@@ -103,3 +103,16 @@ CREATE  TABLE IF NOT EXISTS `changning`.`doc_items` (
     REFERENCES `changning`.`orders` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+CREATE  TABLE IF NOT EXISTS `changning`.`relative_infos` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `relative_type` VARCHAR(20) NULL ,
+  `relative_name` VARCHAR(50) NULL ,
+  `form_item_id` INT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `form_items_fk_idx` (`form_item_id` ASC) ,
+  CONSTRAINT `form_items_fk`
+    FOREIGN KEY (`form_item_id` )
+    REFERENCES `changning`.`form_items` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

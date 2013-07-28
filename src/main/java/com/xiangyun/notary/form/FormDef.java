@@ -1,6 +1,7 @@
 package com.xiangyun.notary.form;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class FormDef implements Serializable {
 	private String formKey;
 	private String formName;
-	private List<FormFieldItemDef> fields;
-	private List<FormDocItemDef> docs;
+	private boolean containsItem = true;
+	private boolean containsVarItem = true;
+    private List<FormFieldItemDef> fields = new ArrayList<FormFieldItemDef>();
+	private List<FormDocItemDef> docs = new ArrayList<FormDocItemDef>();
 	
 	public String getFormKey() {
 		return formKey;
@@ -28,6 +31,22 @@ public class FormDef implements Serializable {
 	public void setFormName(String formName) {
 		this.formName = formName;
 	}
+
+    public boolean isContainsItem() {
+        return containsItem;
+    }
+
+    public void setContainsItem(boolean containsItem) {
+        this.containsItem = containsItem;
+    }
+
+    public boolean isContainsVarItem() {
+        return containsVarItem;
+    }
+
+    public void setContainsVarItem(boolean containsVarItem) {
+        this.containsVarItem = containsVarItem;
+    }
 
 	public List<FormFieldItemDef> getFields() {
 		return fields;

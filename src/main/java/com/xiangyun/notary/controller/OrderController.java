@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,9 +27,11 @@ import com.xiangyun.notary.common.DestinationCountry;
 import com.xiangyun.notary.common.Gender;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
+import com.xiangyun.notary.common.RelativeType;
 import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.RelativeInfo;
 import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.form.FormDef;
 import com.xiangyun.notary.form.FormDocItemDef;
@@ -84,8 +88,10 @@ public class OrderController {
                 log.info("Form selected: " + formDef.getFormName());
                 selectedForms.add(formDef);
                 
-                ModelAndView formMav = new ModelAndView("forms/" + formDef.getFormKey());
-                mavList.add(formMav);
+                if (formDef.isContainsItem()) {
+                    ModelAndView formMav = new ModelAndView("forms/" + formDef.getFormKey());
+                    mavList.add(formMav);
+                }
             }
         }
     	
@@ -117,6 +123,7 @@ public class OrderController {
     		@RequestParam("mobile")String requestorMobile,
     		@RequestParam("email")String requestorEmail,
     		@RequestParam("address")String requestorAddress) {
+        
     	HttpSession session = request.getSession(false);
     	if (session == null) {
     		//TODO: redirect to login page
@@ -150,11 +157,26 @@ public class OrderController {
         	form.setFormName(formDef.getFormName());
         	
         	for ( FormFieldItemDef itemDef : formDef.getFields()) {
-        		FormItem item = new FormItem();
-        		item.setItemKey(itemDef.getFieldKey());
-        		item.setItemName(itemDef.getFieldName());
-        		item.setItemValue(request.getParameter(itemDef.getFieldKey()));
-        		form.addFormItem(item);
+        	    //Only deal with the non-variable field. 
+        	    //QSGX's variable is processed separately
+    	        FormItem item = new FormItem();
+                item.setItemKey(itemDef.getFieldKey());
+                item.setItemName(itemDef.getFieldName());
+                if (itemDef.isComposite()) {
+                    RelativeInfo info = createRelativeInfo(itemDef.getFieldKey(), request);
+                    if (info == null) {
+                        break;
+                    }
+                    item.setRelativeInfo(info);
+                } else {
+                    item.setItemValue(request.getParameter(itemDef.getFieldKey()));
+                }
+                form.addFormItem(item);
+        	}
+        	
+        	//Special logic for QSGX
+        	if (formDef.isContainsVarItem()) {
+        	    //...
         	}
         	
         	order.addForm(form);
@@ -197,6 +219,27 @@ public class OrderController {
         if (!docDefs.containsKey(docDef.getDocKey())) {
             docDefs.put(docDef.getDocKey(), docDef);
         }
+        
+    }
+
+    private RelativeInfo createRelativeInfo(String fieldKey, HttpServletRequest request) {
+        String typeStr = request.getParameter(fieldKey);        
+        if (StringUtils.isEmpty(typeStr)) {
+            //Empty means no value is submitted. That will happen when this field is not display on web page.
+            //So return null to allow skip the rest.
+            return null;
+        } else if ("NULL".equals(typeStr)) {
+            throw new IllegalArgumentException("The QSGX form must select a relativeType other than NULL");
+        }
+        RelativeType type = RelativeType.valueOf(typeStr);
+        String name = request.getParameter(fieldKey + Constants.QSGX_NAME_SUFFIX);
+        
+        log.debug("relativeType is: " + type + " relativeName is: " + name);
+        
+        RelativeInfo result = new RelativeInfo();
+        result.setRelativeType(type);
+        result.setRelativeName(name);
+        return result;
         
     }
 }

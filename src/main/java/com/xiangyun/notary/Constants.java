@@ -12,5 +12,7 @@ public class Constants {
     public static final String ALL_IN_ONE_KEY = "allInOne";
     
     public static final String LOGIN_USER = "LOGIN_USER";
+    
+    public static final String QSGX_NAME_SUFFIX = "_NAME";
 
 }

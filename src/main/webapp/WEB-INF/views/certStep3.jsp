@@ -42,7 +42,7 @@
 		  <div class="bar-bg">
 		      <div class="row">
 		        <div class="span12 navbg2">
-		          <h5>&nbsp;&nbsp;&nbsp;&nbsp;合并上传材料区</h5>
+		          <h5>&nbsp;&nbsp;&nbsp;&nbsp;基本材料</h5>
 		        </div>
 		      </div>
 	      </div>
@@ -78,7 +78,7 @@
 				        'uploader'        : '<c:url value="/upload.do"/>',
 				        // Put your options here
 				        'buttonClass'     : 'btn btn-success',
-				        'buttonText'      : '上传文件',
+				        'buttonText'      : '选择文件',
 				        'height'          : 25,
 				        'width'           : 80,
 				        'fileTypeDesc'    : 'Image Files',
@@ -103,7 +103,7 @@
 		      <div class="bar-bg">
 			      <div class="row">
 			        <div class="span12 navbg2">
-			          <h5>&nbsp;&nbsp;&nbsp;&nbsp;单独上传材料区</h5>
+			          <h5>&nbsp;&nbsp;&nbsp;&nbsp;特殊材料</h5>
 			        </div>
 			      </div>
 		      </div>
@@ -126,7 +126,7 @@
 	        		        'uploader'        : '<c:url value="/upload.do"/>',
 	        		        // Put your options here
 	        		        'buttonClass'     : 'btn btn-success',
-	        		        'buttonText'      : '上传文件',
+	        		        'buttonText'      : '选择文件',
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
@@ -212,12 +212,13 @@
 	        		        'uploader'        : '<c:url value="/upload.do"/>',
 	        		        // Put your options here
 	        		        'buttonClass'     : 'btn btn-success',
-	        		        'buttonText'      : '上传文件',
+	        		        'buttonText'      : '选择文件',
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
 	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif',
 	        		        'removeCompleted' : false,
+	        		        'multi'           : false,
 	        		        'formData'        : {
 	        		        	'uid' : '${um.uid}',
 	        		        	'docKey' : '${doc.docKey}',

@@ -74,5 +74,75 @@
                 "uploadAlone": true
             }
         ]
+    },
+    
+    "SGWSXSCF": {
+        "formKey": "SGWSXSCF",
+        "formName": "受过/未受刑事处分",
+        "containsItem": false
+    },
+    
+    "QSGX": {
+        "formKey": "QSGX",
+        "formName": "亲属关系",
+        "containsVarItem": true,
+        "fields": [
+            {
+                "fieldKey": "QSGX_SHHJ",
+                "fieldName": "申请人户籍在上海"
+            },
+            {
+                "fieldKey": "QSGX_RELATION_1",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_2",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_3",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_4",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_5",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_6",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_7",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_8",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_9",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_10",
+                "fieldName": "和申请人关系/关系人姓名",
+                "composite": true
+            }
+        ],
+        "docs": [
+        ]
     }
 }
