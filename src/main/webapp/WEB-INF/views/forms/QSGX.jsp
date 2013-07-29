@@ -67,8 +67,8 @@
 	              <button id="QSGX_ADD" class="btn btn-small">+</button>
 	              <button id="QSGX_REMOVE" class="btn btn-small">-</button>
 	            </div>
-	            <div class="span2 offset1">
-	            </div>
+	            <div id="QSGX_RELATION_M" class="span6 tiny-pt">提示：添加的亲属必须选择关系类型，并且关系人姓名不能为空
+			    </div>
 	          </div>
 	          
 	          <br/>
@@ -79,14 +79,16 @@
       </div>
       
       <script>
-	    var validQSGX = false;
-	    var qsgxNum = 1;
+	    validQSGX = false;
 	    function validateQSGX() {
+	    	//The form is invalid at the beginning, so disable the button here
+	    	validateQSGX_Relations();
+	    	
 	    	$("input[name='QSGX_SHHJ']").change(validateQSGX_SHHJ);
 	    	
-	    	$(".QSGX_OPTION").change(validateQSGX_OPTION);
+	    	$(".QSGX_OPTION").change(validateQSGX_Relations);
 	    	
-	    	$(".QSGX_INPUT").change(validateQSGX_INPUT);
+	    	$(".QSGX_INPUT").change(validateQSGX_Relations);
 	    }
 	    
 	    function validateQSGX_SHHJ() {
@@ -102,20 +104,22 @@
 		    }
 	    }
 	    
-	    function validateQSGX_OPTION() {
-	    	
-	    }
-	    
-	    function validateQSGX_INPUT() {
-	    	
+	    function validateQSGX_Relations() {
+	    	if (validRelations()) {
+	    		$("#QSGX_RELATION_M").css("color", "");
+	    		updateValidQSGX();
+	    		tryToEnableGoToStep3Button();
+	    	} else {
+	    		$("#QSGX_RELATION_M").css("color", "red");
+	    		validQSGX = false;
+		    	disableGoToStep3Button();
+	    	}
 	    }
 	    
 	    function updateValidQSGX() {
-		    var xl_byz = $("input[name='XL_BYZ']:checked").val();
-	    	var xl_shhj = $("input[name='XL_SHHJ']:checked").val();
-		    var xl_shby = $("input[name='XL_SHBY']:checked").val();
+	    	var qsgx_shhj = $("input[name='QSGX_SHHJ']:checked").val();
 		    
-		    if (xl_byz == 'true' && (xl_shhj == 'true' || xl_shby == 'true'))
+		    if (qsgx_shhj == 'true' && validRelations())
 		    	validQSGX = true;
 	    }
 	    
@@ -130,6 +134,12 @@
 	    		}
 	    		$("#QSGX_COUNT").val(++currCount);
 	    		insertNewRelation(currCount);
+	    		//After add a new relation, need to validate the form again 
+	    		validateQSGX_SHHJ();
+	    		validateQSGX_Relations();
+	    		//Also need to bind the "change" event to the added inputs
+	    		$(".QSGX_OPTION").change(validateQSGX_Relations);		    	
+		    	$(".QSGX_INPUT").change(validateQSGX_Relations);
 	    	});
 	    	
 	    	$("#QSGX_REMOVE").click( function(event) {
@@ -145,6 +155,9 @@
 	    		var anchor = $("#QSGX_ANCHOR");
 	    		var toDelete = anchor.prev();
 	    		toDelete.remove();
+	    		//After remove a relation, need to validate the form again 
+	    		validateQSGX_SHHJ();
+	    		validateQSGX_Relations();
 	    	});
 	    }
 	    
@@ -162,6 +175,26 @@
     		input.attr("id", newId + "_NAME");
     		input.attr("name", newId + "_NAME");
     		toClone.after(cloned);
+	    }
+	    
+	    function validRelations() {
+	    	var localValid = true;
+			$.each($(".QSGX_OPTION"), function(index, object){
+				if (object.value == 'NULL') {
+					//Cannot return here. Because in this inner function, cannot return the outer function
+					//return false;
+					localValid = false;
+				}
+			});
+			
+			$.each($(".QSGX_INPUT"), function(index, object){
+				if (object.value == '') {
+					//return false;
+					localValid = false;
+				}
+			});
+			
+			return localValid;
 	    }
 	    
 	    $(validateQSGX);

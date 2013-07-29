@@ -157,12 +157,11 @@ public class OrderController {
         	form.setFormName(formDef.getFormName());
         	
         	for ( FormFieldItemDef itemDef : formDef.getFields()) {
-        	    //Only deal with the non-variable field. 
-        	    //QSGX's variable is processed separately
     	        FormItem item = new FormItem();
                 item.setItemKey(itemDef.getFieldKey());
                 item.setItemName(itemDef.getFieldName());
                 if (itemDef.isComposite()) {
+                	//QSGX item
                     RelativeInfo info = createRelativeInfo(itemDef.getFieldKey(), request);
                     if (info == null) {
                         break;
@@ -172,11 +171,6 @@ public class OrderController {
                     item.setItemValue(request.getParameter(itemDef.getFieldKey()));
                 }
                 form.addFormItem(item);
-        	}
-        	
-        	//Special logic for QSGX
-        	if (formDef.isContainsVarItem()) {
-        	    //...
         	}
         	
         	order.addForm(form);
@@ -192,6 +186,23 @@ public class OrderController {
         		} else {
         		    putIfAbsent(allInOneUploadDocs, docDef);
         		    
+        		}
+        	}
+        	
+        	//Add docItems for QSGX
+        	if (formDef.getFormKey().equals(Constants.QSGX_FORM_KEY)) {
+        		for (FormItem item : form.getFormItems()) {
+        			if (item.getRelativeInfo() != null) {
+        				FormDocItemDef idDocDef = new FormDocItemDef();
+        				idDocDef.setDocKey(item.getItemKey() + Constants.QSGX_DOC_ID_SUFFIX);
+        				idDocDef.setDocName(Constants.QSGX_DOC_ID_TEMPLATE.replace("%", item.getRelativeInfo().getRelativeName()));
+        				putIfAbsent(allInOneUploadDocs, idDocDef);
+        				
+        				FormDocItemDef hkDocDef = new FormDocItemDef();
+        				hkDocDef.setDocKey(item.getItemKey() + Constants.QSGX_DOC_HK_SUFFIX);
+        				hkDocDef.setDocName(Constants.QSGX_DOC_HK_TEMPLATE.replace("%", item.getRelativeInfo().getRelativeName()));
+        				putIfAbsent(allInOneUploadDocs, hkDocDef);
+        			}
         		}
         	}
         }
