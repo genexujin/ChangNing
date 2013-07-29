@@ -249,13 +249,13 @@
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
 	<li><a href="#">网上办证</a> <span class="divider">/</span></li>
-	<li class="active">找回密码</li>
+	<li class="active">设置新密码</li>
 </ul>
 <hr />
 
 <div class="row">
 	<div class="span12">
-		<h2>找回密码</h2>
+		<h2>设置新密码</h2>
 	</div>
 </div>
 <div>
@@ -272,43 +272,45 @@
 							<th width="35%"></th>
 						</tr>
 
-						<tr>
+						<tr height="60px">
 							<td><p class="text-right">您注册时的手机号：</p></td>
-							<td colspan="3"><input type="text" class="input-xlarge" id="forget_user_mobile" placeholder="mobile" name="mobile"></td>
+							<td colspan="3"><input type="text" class="input-xlarge" id="forget_user_mobile" placeholder="手机号码" name="mobile"></td>
 							<td><div id="forget_mobile_alert" class="alert" style="display: none">请输入手机号码！</div></td>
 						</tr>
-						<tr>
+						<tr height="60px">
 							<td><p class="text-right">手机验证码：</p></td>
-							<td><input type="text" class="input-small" id="forget_user_smscode" name="forget_user_smscode" placeholder="smscode"></td>
+							<td><input type="text" class="input-small" id="forget_user_smscode" name="forget_user_smscode" placeholder="短信验证码"></td>
 							<td colspan="2">
 								<button type="button" class="btn btn-info" id=forget_user_smsbtn onclick="senddata()">获取短信验证码</button>
 							</td>
 							<td><div id="forget_smscode_alert" class="alert" style="display: none">请点击按钮查收短消息验证码</div></td>
 						</tr>
-						<tr>
-							<td><p class="text-right">密码：</p></td>
-							<td colspan="3"><input type="password" id="forget_user_pwd" class="input-xlarge" placeholder="Password" name="password"></td>
+						<tr height="60px">
+							<td><p class="text-right">新密码：</p></td>
+							<td colspan="3"><input type="password" id="forget_user_pwd" class="input-xlarge" placeholder="新密码" name="password"></td>
 							<td><div class="alert" id="forget_pwd_alert" style="display: none">请输入密码！</div></td>
 						</tr>
-						<tr>
+						<tr height="60px">
 							<td><p class="text-right">重复密码：</p></td>
-							<td colspan="3"><input type="password" id="forget_user_pwd1" class="input-xlarge" placeholder="Password"></td>
+							<td colspan="3"><input type="password" id="forget_user_pwd1" class="input-xlarge" placeholder="重复新密码"></td>
 							<td><div class="alert" id="forget_pwd1_alert" style="display: none">请重复输入密码！</div></td>
 						</tr>
-						<tr>
+						<tr height="60px">
 							<td><p class="text-right">请输入答案：</p></td>
 
-							<td><input type="text" class="input-small" id="veryCode" placeholder="checkcode"></td>
+							<td><input type="text" class="input-small" id="veryCode" placeholder="验证码答案"></td>
 							<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
 							<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
 							<td><div class="alert" id="info" style="display: none">请输入图片中的结果！</div></td>
 						</tr>
-						<tr>
+						<tr height="60px">
 							<td></td>
 							<td colspan="2">
 								<button href="#" id="user_forget_btn" type="submit" class="btn btn-large btn-block ">提交信息</button>
 							</td>
 							<td colspan="2"></td>
+						</tr>
+						<tr>
 						</tr>
 					</table>
 				</div>
@@ -316,3 +318,4 @@
 		</div>
 	</form>
 </div>
+<%@ include file="footer.jspf"%>

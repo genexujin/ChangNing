@@ -143,8 +143,10 @@ public class UserController {
         ModelAndView mav = new ModelAndView();
         user.setPassword(Encrypt.e(user.getPassword()));
         userService.save(user);
+		HttpSession session = request.getSession(true);
+		session.setAttribute(Constants.LOGIN_USER, user);
         mav.addObject("user", user);
-        mav.setViewName("regSuccessPage");
+        mav.setViewName("modify");
         return mav;
     }
 
@@ -177,7 +179,7 @@ public class UserController {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("SMSCODE", checksmscode);
 		System.out.println(mobile);
-		SMSManager.sendSMS(new String[] { mobile }, "感谢您使用长宁公证处手机认证功能，您的验证码为： "
+		SMSManager.sendSMS(new String[] { mobile }, "感谢您使用上海长宁公证处网上公证平台，您的验证码为："
 				+ checksmscode, 1);		
 		
 		try {
@@ -265,18 +267,18 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		String msg = null;
 		if (u == null) {
-			msg = "用户不存在！";
+			msg = "输入的手机号码和密码不匹配，请重试！";
 			mav.addObject("msg", msg);
-			mav.setViewName("loginErrPage");
+			mav.setViewName("login");
 		} else if (!u.getPassword().equals(Encrypt.e(user.getPassword()))) {
-			msg = "请输入正确密码！";
+			msg = "输入的手机号码和密码不匹配，请重试！";
 			mav.addObject("msg", msg);
-			mav.setViewName("loginErrPage");
+			mav.setViewName("login");
 		} else {
 			HttpSession session = request.getSession(true);
 			session.setAttribute(Constants.LOGIN_USER, u);
 			mav.addObject("user", u);
-			mav.setViewName("loginSuccessPage");
+			mav.setViewName("modify");
 		}
 		return mav;
 	}
@@ -291,6 +293,7 @@ public class UserController {
 	@RequestMapping(value = "/modify.do")
 	public ModelAndView modify(HttpServletRequest request, User user) {
 		ModelAndView mav = new ModelAndView();
+		String msg = null;
 		User u = userService.findByMobile(user.getMobile());
 		u.setGender(user.getGender());
 		u.setAddress(user.getAddress());
@@ -302,8 +305,10 @@ public class UserController {
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute(Constants.LOGIN_USER, u);
+		msg = "保存成功！";
+		mav.addObject("msg", msg);
 		mav.addObject("user", u);
-		mav.setViewName("modifySuccessPage");
+		mav.setViewName("modify");
 		return mav;
 	}
 
@@ -318,13 +323,16 @@ public class UserController {
 	@RequestMapping(value = "/modifyPwd.do")
 	public ModelAndView modifyPwd(HttpServletRequest request, User user) {
 		ModelAndView mav = new ModelAndView();
+		String msg = null;
 		User u = userService.findByMobile(user.getMobile());
 		u.setPassword(Encrypt.e(user.getPassword()));
 		userService.save(u);
 		HttpSession session = request.getSession(true);
 		session.setAttribute("LOGIN_USER", u);
+		msg = "保存成功！";
+		mav.addObject("msg1", msg);
 		mav.addObject("user", u);
-		mav.setViewName("modifySuccessPage");
+		mav.setViewName("modify");
 		return mav;
 	}
 	/**
@@ -356,8 +364,10 @@ public class UserController {
 		User u = userService.findByMobile(user.getMobile());
 			u.setPassword(Encrypt.e(user.getPassword()));
 			userService.save(u);
+			HttpSession session = request.getSession(true);
+			session.setAttribute(Constants.LOGIN_USER, u);
 			mav.addObject("user", u);
-			mav.setViewName("login");
+			mav.setViewName("modify");
 		return mav;
 	}
 }

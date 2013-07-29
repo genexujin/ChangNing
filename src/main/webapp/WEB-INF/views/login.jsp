@@ -140,7 +140,7 @@
 			<div class="row">
 				<div class="span12">
 					<table width="98%">
-						<tr>
+						<tr height="40px">
 							<th width="15%"></th>
 							<th width="15%"></th>
 							<th width="10%"></th>
@@ -148,44 +148,54 @@
 							<th width="35%"></th>
 						</tr>
 
-						<tr>
+						<tr height="60px">
 							<td><p class="text-right">手机号：</p></td>
-							<td colspan="3"><input type="text" class="input-xlarge" id="login_user_mobile" placeholder="mobile" name="mobile"></td>
+							<td colspan="3"><input type="text" class="input-xlarge" id="login_user_mobile" placeholder="手机号码" name="mobile"></td>
 							<td><div id="login_mobile_alert" class="alert" style="display: none">请输入手机号码！</div></td>
 						</tr>
 
-						<tr>
+						<tr height="60px">
 							<td><p class="text-right">密码：</p></td>
-							<td colspan="3"><input type="password" id="login_user_pwd" class="input-xlarge" placeholder="Password" name="password"></td>
+							<td colspan="3"><input type="password" id="login_user_pwd" class="input-xlarge" placeholder="密码" name="password"></td>
 							<td><div class="alert" id="login_pwd_alert" style="display: none">请输入8-16位的密码，必须包含数字和字母！</div></td>
 						</tr>
-						<tr>
+						<tr height="60px">
 							<td><p class="text-right">请输入答案：</p></td>
 
-							<td><input type="text" class="input-small" id="veryCode" placeholder="checkcode"></td>
+							<td><input type="text" class="input-small" id="veryCode" placeholder="验证码答案"></td>
 							<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
 							<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
-							<td><div class="alert" id="info"  style="display: none">请输入图片中的结果！</div></td>
+							<td><div class="alert" id="info" style="display: none">请输入图片中的结果！</div></td>
 						</tr>
 						<tr>
-							<td></td>
-							<td colspan="3"><button href="#" id="user_toforget_btn" type="submit" class="btn btn-link" onclick="toforget()">忘记密码</button></td>
+						<td></td><td colspan="4"><font color="red">${msg}</font></td>
+						</tr>
 
+						<tr height="60px">
+							<td></td>
+							<td colspan="2">
+								<button id="user_login_btn" type="submit" class="btn">用户登录</button>
+							</td>
+							<td colspan="2"></td>
+						</tr>
+						<tr height="60px">
+							<td></td>
+							<td><button href="#" id="user_toforget_btn" type="submit" class="btn btn-link" onclick="toforget()">忘记密码？</button></td>
+							<td colspan="2">
+								<button id="user_toreg_btn" type="button" class="btn btn-link" onclick="toreg()">还没有账号？现在就创建一个！</button>
+							</td>
 							<td><div class="alert" id="login_checkbox_alert" style="display: none"></div></td>
 
 
 						</tr>
-						<tr>
-							<td></td>
-							<td colspan="2">
-								<button id="user_login_btn" type="submit" class="btn">用户登录</button>
-								<button id="user_toreg_btn" type="button" class="btn" onclick="toreg()">用户注册</button>
-							</td>
-							<td colspan="2"></td>
+
+						<tr height="40px">
 						</tr>
+
 					</table>
 				</div>
 			</div>
 		</div>
 	</form>
 </div>
+<%@ include file="footer.jspf"%>
