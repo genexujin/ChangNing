@@ -1,0 +1,102 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+	  <!-- 曾用名公证 -->
+	  <div class="bar-bg">
+	      <div class="row">
+	        <div class="span12 navbg2">
+	          <h5>&nbsp;&nbsp;&nbsp;&nbsp;曾用名公证信息</h5>
+	        </div>
+	      </div>
+      </div>
+
+	  <div class="border">
+        <br/>
+        <div class="row">
+	        <div class="span12">
+	          <div class="row">
+	            <div class="span5 offset1">
+	    		    <div class="control-group">
+			    	  <label class="control-label" for="CYM_SHHJ">是否在沪户籍</label>
+			    	  <div class="controls">
+				    	<label class="radio inline">
+					      <input type="radio" value="true" name="CYM_SHHJ" checked> 是&nbsp;&nbsp;
+					    </label>
+					    <label class="radio inline">
+					      <input type="radio" value="false" name="CYM_SHHJ"> 否&nbsp;&nbsp;
+					    </label>
+			    	  </div>
+			    	</div>
+			    </div>
+			    <div id="CYM_SHHJ_M" class="span6 tiny-pt">提示：若非在沪户籍则不可办理该公证
+			    </div>
+	          </div>
+	          
+	          <hr/>	          
+	          <br/>
+	          
+	          <div class="row">
+	            <div class="span5 offset1">
+	                <div class="control-group">
+			    	  <label class="control-label" for="CYM_CYM">曾用名</label>
+			    	  <div class="controls">
+				    	<input id="CYM_CYM" name="CYM_CYM" type="text"></input>
+			    	  </div>
+			    	</div>
+	            </div>
+	            <div id="CYM_CYM_M" class="span6 tiny-pt">提示：此项不能为空
+	            </div>
+	          </div>
+	          
+	        </div>
+	      </div>
+	    </div>
+	    
+	    <script>
+	      validCYM = false;
+	      
+	      function prepareCYM() {
+		      //The form is invalid at the beginning, so disable the button here
+		      validateCYM_CYM();
+		    	
+		      $("input[name='CYM_CYM']").change(validateCYM_CYM);
+		    	
+		      $("input[name='CYM_SHHJ']").change(validateCYM_SHHJ);
+		  }
+	      
+	      function validateCYM_SHHJ() {
+		      var cym_shhj = $("input[name='CYM_SHHJ']:checked").val();
+			  if (cym_shhj == 'true') {
+			      $("#CYM_SHHJ_M").css("color", "");
+			      updateValidCYM();
+			      tryToEnableGoToStep3Button();
+			  } else {
+			      $("#CYM_SHHJ_M").css("color", "red");
+			      validCYM = false;
+			      disableGoToStep3Button();
+			  }
+		  }
+	      
+	      function validateCYM_CYM() {
+	    	  var cym_cym = $("#CYM_CYM").val();
+	    	  if (cym_cym != '') {
+		    	  $("#CYM_CYM_M").css("color", "");
+		    	  updateValidCYM();
+		    	  tryToEnableGoToStep3Button();
+		      } else {
+		    	  $("#CYM_CYM_M").css("color", "red");
+		    	  validCYM = false;
+			      disableGoToStep3Button();
+		      }
+	      }
+	      
+	      function updateValidCYM() {
+	    	  var cym_shhj = $("input[name='CYM_SHHJ']:checked").val();
+	    	  var cym_cym = $("#CYM_CYM").val();
+			    
+			  if (cym_shhj == 'true' && cym_cym != '')
+				  validCYM = true;
+		  }
+	      
+	      $(prepareCYM);
+	    </script>

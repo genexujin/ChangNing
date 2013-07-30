@@ -148,5 +148,26 @@
                 "docName": "与申报公证有关的亲属证明"
             }
         ]
+    }, 
+        
+    "CYM": {
+        "formKey": "CYM",
+        "formName": "曾用名",
+        "fields": [
+            {
+                "fieldKey": "CYM_CYM",
+                "fieldName": "曾用名"
+            },
+            {
+                "fieldKey": "CYM_SHHJ",
+                "fieldName": "是否在沪户籍"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "CYMYJ",
+                "docName": "曾用名依据"
+            }
+        ]
     }
 }

@@ -2,7 +2,7 @@ package com.xiangyun.sms;
 
 public class SMSManager {
 
-    private static boolean enabled = true;
+    private static boolean enabled = false;
     private static String SURFFIX = " 【长宁公证】";
 
     //发送SMS

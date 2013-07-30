@@ -146,7 +146,7 @@
     		      </tr>
     		      <tr>
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 学位</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 曾用名</td>
+    		        <td><input type="checkbox" value="CYM" name="notory_key"> 曾用名</td>
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 国籍</td>
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 死亡</td>
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 离休/退休/退职</td>
