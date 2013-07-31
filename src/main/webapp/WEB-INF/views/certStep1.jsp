@@ -25,7 +25,7 @@
 				<li class="step">选择申办业务</li>
 				<li class="">输入信息</li>
 		        <li class="">上传资料</li>
-				<li class="">上门取证</li>
+				<li class="">上门送证</li>
 		        <li class="end">支付</li>
 			</ol>
 		  </div>
@@ -138,7 +138,7 @@
     		  <div class="span11 offset1">
     		    <table class="table">
     		      <tr>
-    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 出生</td>
+    		        <td><input type="checkbox" value="CS" name="notory_key"> 出生</td>
     		        <td><input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分</td>
     		        <td><input type="checkbox" value="QSGX" name="notory_key"> 亲属关系</td>
     		        <td><input type="checkbox" value="JH" name="notory_key"> 结婚</td>

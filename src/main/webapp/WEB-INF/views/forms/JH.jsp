@@ -73,9 +73,7 @@
 	  </div>
 	  
 	  <script>
-	    validJH = true;
-	    
-	    function validateJH() {
+	    function prepareJH() {
 	    	$("input[name='JH_JHZ']").change(validateJH1);
 	    	
 	    	$("input[name='JH_SHHJ']").change(validateJH2);
@@ -119,5 +117,5 @@
 		    	validJH = true;
 	    }
 	    
-	    $(validateJH);
+	    $(prepareJH);
 	  </script>

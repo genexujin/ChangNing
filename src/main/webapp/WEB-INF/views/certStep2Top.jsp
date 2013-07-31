@@ -25,7 +25,7 @@
 				<li class="ago">选择申办业务</li>
 				<li class="step">输入信息</li>
 		        <li class="">上传资料</li>
-				<li class="">上门取证</li>
+				<li class="">上门送证</li>
 		        <li class="end">支付</li>
 			</ol>
 		  </div>
