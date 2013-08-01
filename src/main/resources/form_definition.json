@@ -198,8 +198,41 @@
         ],
         "docs": [
             {
-                "docKey": "CYMYJ",
-                "docName": "曾用名依据"
+                "docKey": "CSZM",
+                "docName": "出生证明"
+            },
+            {
+                "docKey": "FMHYZM",
+                "docName": "父母结婚证/离婚证+协议书/离婚判决书/离婚调解书"
+            },
+            {
+                "docKey": "FQSFZ",
+                "docName": "父亲身份证正反面"
+            },
+            {
+                "docKey": "MQSFZ",
+                "docName": "母亲身份证正反面"
+            },
+            {
+                "docKey": "BRHKB",
+                "docName": "本人户口本",
+                "uploadAlone": true
+            },
+            {
+                "docKey": "FQHKB",
+                "docName": "父亲户口本",
+                "uploadAlone": true
+            },
+            {
+                "docKey": "MQHKB",
+                "docName": "母亲户口本",
+                "uploadAlone": true
+            },
+            {
+                "docKey": "BR2CZP",
+                "docName": "本人2寸照片",
+                "uploadAlone": true,
+                "needCrop": true
             }
         ]
     }
