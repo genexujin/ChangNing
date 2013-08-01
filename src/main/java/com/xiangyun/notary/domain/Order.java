@@ -82,8 +82,8 @@ public class Order implements Serializable {
     @Enumerated(EnumType.STRING)
     private DestinationCountry destination;
     
-    @Column(name = "visit_for_doc")
-    private boolean visitForDoc;
+    @Column(name = "send_doc")
+    private boolean sendDoc;
     
     @Column(name = "requestor_name")
     private String requestorName;
@@ -197,12 +197,12 @@ public class Order implements Serializable {
         this.destination = destination;
     }
 
-    public boolean isVisitForDoc() {
-        return visitForDoc;
+    public boolean isSendDoc() {
+        return sendDoc;
     }
 
-    public void setVisitForDoc(boolean visitForDoc) {
-        this.visitForDoc = visitForDoc;
+    public void setSendDoc(boolean sendDoc) {
+        this.sendDoc = sendDoc;
     }
 
     public Set<Form> getForms() {

@@ -3,23 +3,18 @@ package com.xiangyun.notary.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import cn.emay.sdk.client.api.Client;
 
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
@@ -33,7 +28,6 @@ import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.service.UserService;
 import com.xiangyun.sms.SMSManager;
-import com.xiangyun.sms.SingletonSMSClient;
 
 @Controller
 public class UserController {
@@ -56,7 +50,7 @@ public class UserController {
 		o.setPaymentPaid(0);
 		o.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
 		o.setPaymentTotal(240);
-		o.setVisitForDoc(false);
+		o.setSendDoc(false);
 
 		User u = new User();
 		u.setAddress("adresssssfff");
