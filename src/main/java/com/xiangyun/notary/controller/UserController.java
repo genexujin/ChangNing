@@ -59,7 +59,7 @@ public class UserController {
 		o.setVisitForDoc(false);
 
 		User u = new User();
-		u.setAddress("adresssss");
+		u.setAddress("adresssssfff");
 		u.setBirthDate(new Date());
 		u.setCredentialType(CredentialType.ID_CARD);
 		u.setEmail("pairliu@gmail.com");
