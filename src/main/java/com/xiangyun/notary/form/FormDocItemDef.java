@@ -7,6 +7,8 @@ public class FormDocItemDef implements Serializable {
 	private String docName;
 	private boolean uploadAlone;
 	private boolean needCrop;
+	private boolean dependent;
+	private String dependOn;
 	
     public String getDocKey() {
 		return docKey;
@@ -31,6 +33,18 @@ public class FormDocItemDef implements Serializable {
     }
     public void setNeedCrop(boolean needCrop) {
         this.needCrop = needCrop;
+    }
+    public boolean isDependent() {
+        return dependent;
+    }
+    public void setDependent(boolean dependent) {
+        this.dependent = dependent;
+    }
+    public String getDependOn() {
+        return dependOn;
+    }
+    public void setDependOn(String dependOn) {
+        this.dependOn = dependOn;
     }
 
 }

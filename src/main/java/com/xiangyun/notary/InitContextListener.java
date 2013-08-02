@@ -55,6 +55,8 @@ public class InitContextListener implements ServletContextListener {
                     log.debug("    Doc Name: {}", doc.getDocName());
                     log.debug("    Upload Alone? {}", doc.isUploadAlone());
                     log.debug("    Need Crop? {}", doc.isNeedCrop());
+                    log.debug("    Is Dependent? {}", doc.isDependent());
+                    log.debug("    Depend on: {}", doc.getDependOn());
                     
                     if (!docItemDefs.containsKey(doc.getDocKey())) {
                         docItemDefs.put(doc.getDocKey(), doc);

@@ -156,6 +156,7 @@ public class OrderController {
         	form.setFormKey(formDef.getFormKey());
         	form.setFormName(formDef.getFormName());
         	
+        	Map<String, String> formKeyValueMap = new HashMap<String, String>();
         	for ( FormFieldItemDef itemDef : formDef.getFields()) {
     	        FormItem item = new FormItem();
                 item.setItemKey(itemDef.getFieldKey());
@@ -169,6 +170,9 @@ public class OrderController {
                     item.setRelativeInfo(info);
                 } else {
                     item.setItemValue(request.getParameter(itemDef.getFieldKey()));
+                    //Put it to a map for doc dependency. Currently no doc depends on a composite value.
+                    //So just put it in the "else"
+                    formKeyValueMap.put(itemDef.getFieldKey(), request.getParameter(itemDef.getFieldKey()));
                 }
                 form.addFormItem(item);
         	}
@@ -177,13 +181,19 @@ public class OrderController {
         	
         	//Collect the doc items for upload
         	for ( FormDocItemDef docDef : formDef.getDocs()) {
-        	    if (docDef.isNeedCrop()) {
+        	    boolean shouldPut = true;
+        	    if (docDef.isDependent() && formKeyValueMap.get(docDef.getDependOn()) != null 
+        	            && formKeyValueMap.get(docDef.getDependOn()).equals("false")) {
+                    shouldPut = false;
+                }
+        	    
+        	    if (shouldPut && docDef.isNeedCrop()) {
         	        putIfAbsent(needCropDocs, docDef);
         	        
-        	    } else if (docDef.isUploadAlone()) {
+        	    } else if (shouldPut && docDef.isUploadAlone()) {
         	        putIfAbsent(aloneUploadDocs, docDef);
         			
-        		} else {
+        		} else if (shouldPut){
         		    putIfAbsent(allInOneUploadDocs, docDef);
         		    
         		}

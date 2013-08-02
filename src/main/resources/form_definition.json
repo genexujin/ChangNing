@@ -207,11 +207,15 @@
             },
             {
                 "docKey": "FQSFZ",
-                "docName": "父亲身份证正反面"
+                "docName": "父亲身份证正反面",
+                "dependent": true,
+                "dependOn": "CS_SFJZ"
             },
             {
                 "docKey": "MQSFZ",
-                "docName": "母亲身份证正反面"
+                "docName": "母亲身份证正反面",
+                "dependent": true,
+                "dependOn": "CS_SMJZ"
             },
             {
                 "docKey": "BRHKB",
@@ -221,12 +225,16 @@
             {
                 "docKey": "FQHKB",
                 "docName": "父亲户口本",
-                "uploadAlone": true
+                "uploadAlone": true,
+                "dependent": true,
+                "dependOn": "CS_SFJZ"
             },
             {
                 "docKey": "MQHKB",
                 "docName": "母亲户口本",
-                "uploadAlone": true
+                "uploadAlone": true,
+                "dependent": true,
+                "dependOn": "CS_SMJZ"
             },
             {
                 "docKey": "BR2CZP",
