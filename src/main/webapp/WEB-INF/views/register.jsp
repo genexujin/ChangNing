@@ -41,28 +41,22 @@
 		data1 = data;
 	}
 
-	var tid;
-	var bClicked = false;
 	function sbm() {
-		if (bClicked) {
-			return false;
-		}
-		bClicked = true;
-		$("#reg_user_smsbtn").attr("disabled", true).removeClass().addClass(
-				"btn");
 
-		tid = setTimeout("doit()", 300000);
-		//document.forms[0].submit();
-	}
+		var count = 300;
+		var countdown = setInterval(CountDown, 1000);
 
-	function doit() {
-		if (tid != null) {
-			clearTimeout(tid);
-			tid = null;
+		function CountDown() {
+			$("#reg_user_smsbtn").attr("disabled", true).removeClass()
+					.addClass("btn").html(count + "秒后可以使用");
+			if (count == 0) {
+				$("#reg_user_smsbtn").removeClass().addClass("btn btn-info")
+						.attr("disabled", false).html("获取短信验证码");
+				clearInterval(countdown);
+			}
+			count--;
 		}
-		$("#reg_user_smsbtn").removeClass().addClass("btn btn-info").attr(
-				"disabled", false);
-		bClicked = false;
+
 	}
 
 	function senddata() {
@@ -297,7 +291,7 @@
 							"阅读公证处协议并同意后才可注册！");
 			return false;
 		} else {
-			return  checkmobilein() && checkmobile() && checksmscode();
+			return checkmobilein() && checkmobile() && checksmscode();
 		}
 	}
 </script>

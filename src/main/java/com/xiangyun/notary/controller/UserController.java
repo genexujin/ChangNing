@@ -288,8 +288,7 @@ public class UserController {
 	@RequestMapping(value = "/modify.do")
 	public ModelAndView modify(HttpServletRequest request, User user) {
 		ModelAndView mav = new ModelAndView();
-		String msg = null;
-		User u = userService.findByMobile(user.getMobile());
+		User u = userService.findByMobile(((User)request.getSession(true).getAttribute(Constants.LOGIN_USER)).getMobile());
 		u.setGender(user.getGender());
 		u.setAddress(user.getAddress());
 		u.setEmail(user.getEmail());
@@ -300,10 +299,6 @@ public class UserController {
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute(Constants.LOGIN_USER, u);
-		msg = "保存成功！";
-		mav.addObject("msg", msg);
-		mav.addObject("user", u);
-		mav.setViewName("modify");
 		return mav;
 	}
 
@@ -314,21 +309,17 @@ public class UserController {
 	 * @author binbin
 	 * @param request
 	 * @param user
+	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/modifyPwd.do")
-	public ModelAndView modifyPwd(HttpServletRequest request, User user) {
-		ModelAndView mav = new ModelAndView();
-		String msg = null;
-		User u = userService.findByMobile(user.getMobile());
-		u.setPassword(Encrypt.e(user.getPassword()));
+	public void modifyPwd(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		User u = userService.findByMobile(((User)request.getSession(true).getAttribute(Constants.LOGIN_USER)).getMobile());
+		u.setPassword(Encrypt.e(request.getParameter("password")));
 		userService.save(u);
 		HttpSession session = request.getSession(true);
-		session.setAttribute("LOGIN_USER", u);
-		msg = "保存成功！";
-		mav.addObject("msg1", msg);
-		mav.addObject("user", u);
-		mav.setViewName("modify");
-		return mav;
+		session.setAttribute(Constants.LOGIN_USER, u);
+		PrintWriter out = response.getWriter();
+		out.println("修改成功！");
 	}
 	/**
 	 * 进入忘记密码页面
