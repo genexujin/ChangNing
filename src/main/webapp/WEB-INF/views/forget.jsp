@@ -40,29 +40,25 @@
 		data1 = data;
 	}
 
-	var tid;
-	var bClicked = false;
 	function sbm() {
-		if (bClicked) {
-			return false;
-		}
-		bClicked = true;
-		$("#forget_user_smsbtn").attr("disabled", true).removeClass().addClass(
-				"btn");
+		
+		var count = 300;
+		var countdown = setInterval(CountDown, 1000);
 
-		tid = setTimeout("doit()", 300000);
-		//document.forms[0].submit();
-	}
-
-	function doit() {
-		if (tid != null) {
-			clearTimeout(tid);
-			tid = null;
+		function CountDown() {
+			$("#forget_user_smsbtn").attr("disabled", true)
+					.removeClass().addClass("btn").html(
+							count + "秒后可以使用");
+			if (count == 0) {
+				$("#forget_user_smsbtn").
+				removeClass().addClass("btn btn-info").attr(
+						"disabled", false).html("获取短信验证码");
+				clearInterval(countdown);
+			}
+			count--;
 		}
-		$("#forget_user_smsbtn").removeClass().addClass("btn btn-info").attr(
-				"disabled", false);
-		bClicked = false;
-	}
+
+}
 
 	function senddata() {
 		if (checkmobilein()) {
