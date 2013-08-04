@@ -1,5 +1,7 @@
 package com.xiangyun.notary.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -7,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,6 +35,8 @@ import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.domain.RelativeInfo;
 import com.xiangyun.notary.domain.User;
+import com.xiangyun.notary.form.FeeDef;
+import com.xiangyun.notary.form.FeeFormDef;
 import com.xiangyun.notary.form.FormDef;
 import com.xiangyun.notary.form.FormDocItemDef;
 import com.xiangyun.notary.form.FormFieldItemDef;
@@ -43,6 +47,11 @@ import com.xiangyun.notary.view.MultipleViewFactory;
 @Controller
 public class OrderController {
     private static Logger log = LoggerFactory.getLogger(OrderController.class);
+    
+    private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+    
+    @Autowired
+    private ServletContext ctx;
 
     @Autowired
     private OrderService orderService;
@@ -81,7 +90,7 @@ public class OrderController {
     	List<FormDef> selectedForms = new ArrayList<FormDef>();
     	//TODO: Is it possible the session expires and we should not create a new session here?
     	//The request.getSession() may create a new one, which may not be right.
-    	Map<String, FormDef> formDefs = (Map<String, FormDef>)request.getSession().getServletContext().getAttribute(Constants.FORM_DEFS);
+    	Map<String, FormDef> formDefs = (Map<String, FormDef>)ctx.getAttribute(Constants.FORM_DEFS);
     	for (String key : formKeys) {
             FormDef formDef = formDefs.get(key);
             if (formDef != null) {   
@@ -233,6 +242,55 @@ public class OrderController {
         
         mav.addObject("um", m);
         
+        return mav;
+    }
+    
+    @RequestMapping(value = "/certStep4.do")
+    public ModelAndView goToStep4() {
+        ModelAndView mav = new ModelAndView("certStep4");
+        return mav;
+    }
+    
+    @RequestMapping(value = "/certStep5.do")
+    public ModelAndView goToStep5(@RequestParam("sendDoc") boolean sendDoc,
+                                  HttpServletRequest request) {
+        
+        log.debug("Should send doc? {}", sendDoc);
+        
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            //TODO: redirect to login page
+            //But now for easy development, create a new session
+            session = request.getSession();
+        }
+        
+        Order order = (Order)session.getAttribute(Constants.CURRENT_ORDER);
+        order.setSendDoc(sendDoc);
+        if (sendDoc) {
+            order.setSendAddress(request.getParameter("sendAddress"));
+            try {
+                order.setSendDate(format.parse(request.getParameter("sendDate")));
+            } catch (ParseException e) {
+                log.error("Error occurs during paring the sendDate.", e);
+            }
+        }
+        
+        orderService.save(order);
+        
+        FeeDef feeDef = (FeeDef)ctx.getAttribute(Constants.FEE_DEF);
+        //Then calculate the total fee
+        double totalFee = 0.0;
+        
+        DestinationCountry dest = order.getDestination();
+        boolean needTranslation = order.isNeedTranslation();
+        int copies = order.getCertificateCopyCount();
+        
+        for (Form form : order.getForms()) {
+            FeeFormDef feeFormDef = feeDef.getFeeFormDefs().get(form.getFormKey());
+            
+        }
+        
+        ModelAndView mav = new ModelAndView("certStep4");
         return mav;
     }
 

@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="JH_JHZ_M" class="span6 tiny-pt">提示：若无结婚证则不可办理公证
+			    <div id="JH_JHZ_M" class="span4 tiny-pt">提示：若无结婚证则不可办理公证
 			    </div>
 	          </div>
 	          
@@ -49,7 +49,7 @@
 			    	  </div>
 			    	</div>
 	            </div>
-	            <div id="JH_2_M" class="span6 large-pt">提示：若此两项全否则不可办理公证
+	            <div id="JH_2_M" class="span4 tiny-pt">提示：若此两项全否则不可办理公证
 	            </div>
 	          </div>
 	          <div class="row">
@@ -84,11 +84,11 @@
 		function validateJH1(){
 		     var jh_jhz = $("input[name='JH_JHZ']:checked").val();
 		     if (jh_jhz == 'true') {
-		    	 $("#JH_JHZ_M").css("color", "");
+		    	 $("#JH_JHZ_M").removeClass("alert alert-error");
 		    	 updateValidJH();
 		    	 tryToEnableGoToStep3Button();
 		     } else {
-		    	 $("#JH_JHZ_M").css("color", "red");
+		    	 $("#JH_JHZ_M").addClass("alert alert-error");
 		    	 validJH = false;
 		    	 disableGoToStep3Button();
 		     }
@@ -98,11 +98,11 @@
 		     var jh_shhj = $("input[name='JH_SHHJ']:checked").val();
 		     var jh_shjh = $("input[name='JH_SHJH']:checked").val();
 		     if (jh_shhj == 'true' || jh_shjh == 'true') {
-		    	 $("#JH_2_M").css("color", "");
+		    	 $("#JH_2_M").removeClass("alert alert-error");
 		    	 updateValidJH();
 		    	 tryToEnableGoToStep3Button();
 		     } else {
-		    	 $("#JH_2_M").css("color", "red");
+		    	 $("#JH_2_M").addClass("alert alert-error");
 		    	 validJH = false;
 		    	 disableGoToStep3Button();
 		     }

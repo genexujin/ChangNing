@@ -146,3 +146,7 @@ div.flowstep ol li.end {
 div.flowstep ol li.pass {
     background: url("bg_flow_step.png") no-repeat scroll 100% 0 #CEE2FF;
 }
+
+.alert {
+    margin-bottom:0px;
+}

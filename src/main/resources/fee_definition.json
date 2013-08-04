@@ -1,0 +1,14 @@
+{
+    "investigateFee": 50,
+    "copyFee": 10,
+    "feeFormDefs": {
+        "JH": {
+            "notaryFee": 80,
+            "wordFeeGroup1": 60,
+            "wordFeeGroup2": 100,
+            "wordFeeGroup3": 120,
+            "wordFeeGroup4": 200,
+            "wordFeeGroup5": 400
+        }
+    }
+}

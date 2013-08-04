@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="QSGX_SHHJ_M" class="span6 tiny-pt">提示：若户籍不在上海则不可办理公证
+			    <div id="QSGX_SHHJ_M" class="span4 tiny-pt">提示：若户籍不在上海则不可办理公证
 			    </div>
 	          </div>
 	          
@@ -63,12 +63,13 @@
 	          <div id="QSGX_ANCHOR"></div>
 	          
 	          <div class="row">
-	            <div class="span2 offset1">
+	            <div class="span2 offset1" style="padding-top: 9px;">
 	              <button id="QSGX_ADD" class="btn btn-small">+</button>
 	              <button id="QSGX_REMOVE" class="btn btn-small">-</button>
 	            </div>
 	            <div id="QSGX_RELATION_M" class="span6 tiny-pt">提示：添加的亲属必须选择关系类型，并且关系人姓名不能为空
 			    </div>
+			    <br/>
 	          </div>
 	          
 	          <br/>
@@ -79,9 +80,9 @@
       </div>
       
       <script>
-	    validQSGX = false;
-	    function validateQSGX() {
-	    	//The form is invalid at the beginning, so disable the button here
+	    function prepareQSGX() {
+	    	//The form is invalid at the beginning, so set validQSGX false and disable the button here	    	
+	    	validQSGX = false;
 	    	validateQSGX_Relations();
 	    	
 	    	$("input[name='QSGX_SHHJ']").change(validateQSGX_SHHJ);
@@ -94,11 +95,11 @@
 	    function validateQSGX_SHHJ() {
 	    	var qsgx_shhj = $("input[name='QSGX_SHHJ']:checked").val();
 		    if (qsgx_shhj == 'true') {
-		        $("#QSGX_SHHJ_M").css("color", "");
+		        $("#QSGX_SHHJ_M").removeClass("alert alert-error");
 		        updateValidQSGX();
 		    	tryToEnableGoToStep3Button();
 		    } else {
-		    	$("#QSGX_SHHJ_M").css("color", "red");
+		    	$("#QSGX_SHHJ_M").addClass("alert alert-error");
 		    	validQSGX = false;
 		    	disableGoToStep3Button();
 		    }
@@ -106,11 +107,11 @@
 	    
 	    function validateQSGX_Relations() {
 	    	if (validRelations()) {
-	    		$("#QSGX_RELATION_M").css("color", "");
+	    		$("#QSGX_RELATION_M").removeClass("alert alert-error");
 	    		updateValidQSGX();
 	    		tryToEnableGoToStep3Button();
 	    	} else {
-	    		$("#QSGX_RELATION_M").css("color", "red");
+	    		$("#QSGX_RELATION_M").addClass("alert alert-error");
 	    		validQSGX = false;
 		    	disableGoToStep3Button();
 	    	}
@@ -197,6 +198,6 @@
 			return localValid;
 	    }
 	    
-	    $(validateQSGX);
+	    $(prepareQSGX);
 	    $(bindAddRemoveRelation);
 	  </script>

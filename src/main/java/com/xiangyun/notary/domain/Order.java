@@ -85,6 +85,12 @@ public class Order implements Serializable {
     @Column(name = "send_doc")
     private boolean sendDoc;
     
+    @Column(name = "send_address")
+    private String sendAddress;
+
+    @Column(name = "send_date")
+    private Date sendDate;
+    
     @Column(name = "requestor_name")
     private String requestorName;
 
@@ -203,6 +209,22 @@ public class Order implements Serializable {
 
     public void setSendDoc(boolean sendDoc) {
         this.sendDoc = sendDoc;
+    }
+    
+    public String getSendAddress() {
+        return sendAddress;
+    }
+
+    public void setSendAddress(String sendAddress) {
+        this.sendAddress = sendAddress;
+    }
+
+    public Date getSendDate() {
+        return sendDate;
+    }
+
+    public void setSendDate(Date sendDate) {
+        this.sendDate = sendDate;
     }
 
     public Set<Form> getForms() {

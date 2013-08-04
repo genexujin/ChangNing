@@ -48,6 +48,8 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `cert_purpose` VARCHAR(20) NULL ,
   `cert_copy_count` INT NULL ,
   `send_doc` VARCHAR(20) NULL ,
+  `send_address` VARCHAR(500) NULL ,
+  `send_date` DATE NULL ,
   `requestor_name` VARCHAR(45) NULL ,
   `requestor_gender` VARCHAR(20) NULL ,
   `requestor_mobile` VARCHAR(45) NULL ,

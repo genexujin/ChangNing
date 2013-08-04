@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="XL_BYZ_M" class="span6 tiny-pt">提示：若无毕业证则不可办理公证
+			    <div id="XL_BYZ_M" class="span4 tiny-pt">提示：若无毕业证则不可办理公证
 			    </div>
 	          </div>
 	          
@@ -49,7 +49,7 @@
 			    	  </div>
 			    	</div>
 	            </div>
-	            <div id="XL_2_M" class="span6 large-pt">提示：若此两项全否则不可办理公证
+	            <div id="XL_2_M" class="span4 tiny-pt">提示：若此两项全否则不可办理公证
 	            </div>
 	          </div>
 	          <div class="row">
@@ -73,8 +73,7 @@
 	  </div>
 	  
 	  <script>
-	    validXL = true;
-	    function validateXL() {
+	    function prepareXL() {
 	    	$("input[name='XL_BYZ']").change(validateXL1);
 	    	
 	    	$("input[name='XL_SHHJ']").change(validateXL2);
@@ -85,11 +84,11 @@
 		function validateXL1(){
 		     var xl_byz = $("input[name='XL_BYZ']:checked").val();
 		     if (xl_byz == 'true') {
-		    	 $("#XL_BYZ_M").css("color", "");
+		    	 $("#XL_BYZ_M").removeClass("alert alert-error");
 		    	 updateValidXL();
 		    	 tryToEnableGoToStep3Button();
 		     } else {
-		    	 $("#XL_BYZ_M").css("color", "red");
+		    	 $("#XL_BYZ_M").addClass("alert alert-error");
 		    	 validXL = false;
 		    	 disableGoToStep3Button();
 		     }
@@ -99,11 +98,11 @@
 		     var xl_shhj = $("input[name='XL_SHHJ']:checked").val();
 		     var xl_shby = $("input[name='XL_SHBY']:checked").val();
 		     if (xl_shhj == 'true' || xl_shby == 'true') {
-		    	 $("#XL_2_M").css("color", "");
+		    	 $("#XL_2_M").removeClass("alert alert-error");
 		    	 updateValidXL();
 		    	 tryToEnableGoToStep3Button();
 		     } else {
-		    	 $("#XL_2_M").css("color", "red");
+		    	 $("#XL_2_M").addClass("alert alert-error");
 		    	 validXL = false;
 		    	 disableGoToStep3Button();
 		     }
@@ -118,5 +117,5 @@
 		    	validXL = true;
 	    }
 	    
-	    $(validateXL);
+	    $(prepareXL);
 	  </script>

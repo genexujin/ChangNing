@@ -3,6 +3,8 @@ package com.xiangyun.notary;
 public class Constants {
     public static final String FORM_DEFS = "form_defs";
     
+    public static final String FEE_DEF = "fee_def";
+    
     public static final String DOC_ITEM_MAP = "doc_item_map";
     
     public static final String SESSION_SELECTED_FORMS = "selected_forms";

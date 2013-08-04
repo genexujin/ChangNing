@@ -250,10 +250,20 @@
 	      <br/>
 		  <div class="row">
 	   		  <div class="span2 offset5">
-	   		    <button class="btn btn-large btn-block btn-info" type="submit">下一步</button>
+	   		    <button id="goToStep4" class="btn btn-large btn-block btn-info" type="submit">下一步</button>
 	   		  </div>
 	      </div>
       
       <!-- </form> -->
+      
+      <script>
+        function prepareCertStep3() {
+        	$("#goToStep4").click(function() {
+        		window.location = '<c:url value="/certStep4.do" />';
+        	});
+        }
+        
+        $(prepareCertStep3);
+      </script>
       
 <%@ include file="footer.jspf"%>

@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="CYM_SHHJ_M" class="span6 tiny-pt">提示：若非在沪户籍则不可办理该公证
+			    <div id="CYM_SHHJ_M" class="span4 tiny-pt">提示：若非在沪户籍则不可办理该公证
 			    </div>
 	          </div>
 	          
@@ -44,7 +44,7 @@
 			    	  </div>
 			    	</div>
 	            </div>
-	            <div id="CYM_CYM_M" class="span6 tiny-pt">提示：此项不能为空
+	            <div id="CYM_CYM_M" class="span4 tiny-pt">提示：此项不能为空
 	            </div>
 	          </div>
 	          
@@ -53,10 +53,9 @@
 	    </div>
 	    
 	    <script>
-	      validCYM = false;
-	      
 	      function prepareCYM() {
-		      //The form is invalid at the beginning, so disable the button here
+		      //The form is invalid at the beginning, so set validCYM false and disable the button here
+	          validCYM = false;
 		      validateCYM_CYM();
 		    	
 		      $("input[name='CYM_CYM']").change(validateCYM_CYM);
@@ -67,11 +66,11 @@
 	      function validateCYM_SHHJ() {
 		      var cym_shhj = $("input[name='CYM_SHHJ']:checked").val();
 			  if (cym_shhj == 'true') {
-			      $("#CYM_SHHJ_M").css("color", "");
+			      $("#CYM_SHHJ_M").removeClass("alert alert-error");
 			      updateValidCYM();
 			      tryToEnableGoToStep3Button();
 			  } else {
-			      $("#CYM_SHHJ_M").css("color", "red");
+			      $("#CYM_SHHJ_M").addClass("alert alert-error");
 			      validCYM = false;
 			      disableGoToStep3Button();
 			  }
@@ -80,11 +79,11 @@
 	      function validateCYM_CYM() {
 	    	  var cym_cym = $("#CYM_CYM").val();
 	    	  if (cym_cym != '') {
-		    	  $("#CYM_CYM_M").css("color", "");
+		    	  $("#CYM_CYM_M").removeClass("alert alert-error");
 		    	  updateValidCYM();
 		    	  tryToEnableGoToStep3Button();
 		      } else {
-		    	  $("#CYM_CYM_M").css("color", "red");
+		    	  $("#CYM_CYM_M").addClass("alert alert-error");
 		    	  validCYM = false;
 			      disableGoToStep3Button();
 		      }

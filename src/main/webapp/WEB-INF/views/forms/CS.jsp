@@ -29,7 +29,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="CS_CSZ_M" class="span6 tiny-pt">提示：若无则不可办理该公证
+			    <div id="CS_CSZ_M" class="span4 tiny-pt">提示：若无则不可办理该公证
 			    </div>
 	          </div>
 	          
@@ -50,7 +50,7 @@
 			    	  </div>
 			    	</div>
 	            </div>
-	            <div id="CS_2_M" class="span6 large-pt">提示：若此两项全否则不可办理公证
+	            <div id="CS_2_M" class="span4 tiny-pt">提示：若此两项全否则不可办理公证
 	            </div>
 	          </div>
 	          <div class="row">
@@ -120,11 +120,11 @@
 	    function validateCS_CSZ() {
 	    	var cs_csz = $("input[name='CS_CSZ']:checked").val();
 		    if (cs_csz == 'true') {
-		        $("#CS_CSZ_M").css("color", "");
+		        $("#CS_CSZ_M").removeClass("alert alert-error");
 		        updateValidCS();
 		        tryToEnableGoToStep3Button();
 		    } else {
-		        $("#CS_CSZ_M").css("color", "red");
+		        $("#CS_CSZ_M").addClass("alert alert-error");
 		        validCS = false;
 		        disableGoToStep3Button();
 		    }
@@ -134,11 +134,11 @@
 		    var cs_shhj = $("input[name='CS_SHHJ']:checked").val();
 		    var cs_shcs = $("input[name='CS_SHCS']:checked").val();
 		    if (cs_shhj == 'true' || cs_shcs == 'true') {
-		   	    $("#CS_2_M").css("color", "");
+		   	    $("#CS_2_M").removeClass("alert alert-error");
 		   	    updateValidCS();
 		   	    tryToEnableGoToStep3Button();
 		    } else {
-		   	    $("#CS_2_M").css("color", "red");
+		   	    $("#CS_2_M").addClass("alert alert-error");
 		   	    validCS = false;
 		   	    disableGoToStep3Button();
 		    }

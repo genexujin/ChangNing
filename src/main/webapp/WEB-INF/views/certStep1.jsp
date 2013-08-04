@@ -43,9 +43,6 @@
             <div class="span9">
               <h5>&nbsp;&nbsp;&nbsp;&nbsp;选择申办业务</h5>
             </div>
-            <div class="span3 pull-right">
-              <h5>预收费用：0元</h5>
-            </div>
           </div>
         </div>
       </div>
@@ -63,15 +60,109 @@
 		    	  <div class="controls">
 		    		<SELECT id="dest" name="dest">
 						<OPTION selected value="NULL">请选择</OPTION>
-						<OPTION  value="UNITED_STATES">美国</OPTION>
-						<OPTION  value="ENGLAND">英国</OPTION>
-						<OPTION  value="FRANCH">法国</OPTION>
-						<OPTION  value="GERMANY">德国</OPTION>
-						<OPTION  value="ITALY">意大利</OPTION>						
-						<OPTION  value="SPAIN">西班牙</OPTION>
-						<OPTION  value="PORTUGAL">葡萄牙</OPTION>
-						<OPTION  value="JAPAN">日本</OPTION>
-						<OPTION  value="KOREA">韩国</OPTION>
+						<OPTION  value="United_States">美国</OPTION>
+						<OPTION  value="France">法国</OPTION>
+						<OPTION  value="England">英国</OPTION>
+						<OPTION  value="Austria">奥地利</OPTION>
+						<OPTION  value="Germany">德国</OPTION>
+						<OPTION  value="Australia">澳大利亚</OPTION>
+						<OPTION  value="Libya">利比亚</OPTION>
+						<OPTION  value="UAE">阿联酋</OPTION>
+						<OPTION  value="Brazil">巴西</OPTION>
+						<OPTION  value="Canada">加拿大</OPTION>
+						<OPTION  value="South_Africa">南非</OPTION>
+						<OPTION  value="Japan">日本</OPTION>
+						<OPTION  value="Thailand">泰国</OPTION>
+						<OPTION  value="Myanmar">缅甸</OPTION>
+						<OPTION  value="Iran">伊朗</OPTION>
+						<OPTION  value="India">印度</OPTION>
+						<OPTION  value="Jordan">约旦</OPTION>
+						<OPTION  value="Indonesia">印尼</OPTION>
+						<OPTION  value="Korea">韩国</OPTION>
+						<OPTION  value="Bengal">孟加拉</OPTION>
+						<OPTION  value="Singapore">新加坡</OPTION>
+						<OPTION  value="Nepal">尼泊尔</OPTION>
+						<OPTION  value="Saudi_Arabia">沙特</OPTION>
+						<OPTION  value="Kuwait">科威特</OPTION>
+						<OPTION  value="Iraq">伊拉克</OPTION>
+						<OPTION  value="Yemen">也门</OPTION>
+						<OPTION  value="Turkey">土耳其</OPTION>
+						<OPTION  value="Syria">叙利亚</OPTION>
+						<OPTION  value="Qatar">卡塔尔</OPTION>
+						<OPTION  value="Philippines">菲律宾</OPTION>
+						<OPTION  value="Malaysia">马来西亚</OPTION>
+						<OPTION  value="Pakistan">巴基斯坦</OPTION>
+						<OPTION  value="Sri_Lanka">斯里兰卡</OPTION>
+						<OPTION  value="Maldives">马尔代夫</OPTION>
+						<OPTION  value="Cyprus">塞浦路斯</OPTION>
+						<OPTION  value="Vietnam">越南</OPTION>
+						<OPTION  value="Sweden">瑞典</OPTION>
+						<OPTION  value="Russia">俄罗斯</OPTION>
+						<OPTION  value="Netherlands">荷兰</OPTION>
+						<OPTION  value="Switzerland">瑞士</OPTION>
+						<OPTION  value="Greece">希腊</OPTION>
+						<OPTION  value="Finland">芬兰</OPTION>
+						<OPTION  value="Norway">挪威</OPTION>
+						<OPTION  value="Denmark">丹麦</OPTION>
+						<OPTION  value="Spain">西班牙</OPTION>
+						<OPTION  value="Portugal">葡萄牙</OPTION>
+						<OPTION  value="Belgium">比利时</OPTION>
+						<OPTION  value="Italy">意大利</OPTION>
+						<OPTION  value="Luxembourg">卢森堡</OPTION>
+						<OPTION  value="Hungary">匈牙利</OPTION>
+						<OPTION  value="Romania">罗马尼亚</OPTION>
+						<OPTION  value="Serbia">塞尔维亚</OPTION>
+						<OPTION  value="Montenegro">黑山</OPTION>
+						<OPTION  value="San_Marino">圣马力诺</OPTION>
+						<OPTION  value="Czech">捷克</OPTION>
+						<OPTION  value="Slovakia">斯洛伐克</OPTION>
+						<OPTION  value="Ireland">爱尔兰</OPTION>
+						<OPTION  value="Poland">波兰</OPTION>
+						<OPTION  value="Iceland">冰岛</OPTION>
+						<OPTION  value="Ukraine">乌克兰</OPTION>
+						<OPTION  value="Belarus">白俄罗斯</OPTION>
+						<OPTION  value="Saipan">塞班岛</OPTION>
+						<OPTION  value="Solomon">所罗门</OPTION>
+						<OPTION  value="New_Zealand">新西兰</OPTION>
+						<OPTION  value="Chile">智利</OPTION>
+						<OPTION  value="Trinidad">特立尼达和多巴哥</OPTION>
+						<OPTION  value="Uruguay">乌拉圭</OPTION>
+						<OPTION  value="Mexico">墨西哥</OPTION>
+						<OPTION  value="Panama">巴拿马</OPTION>
+						<OPTION  value="Argentina">阿根廷</OPTION>
+						<OPTION  value="Paraguay">巴拉圭</OPTION>
+						<OPTION  value="Peru">秘鲁</OPTION>
+						<OPTION  value="Jamaica">牙买加</OPTION>
+						<OPTION  value="Dominica">多米尼加</OPTION>
+						<OPTION  value="Colombia">哥伦比亚</OPTION>
+						<OPTION  value="Venezuela">委内瑞拉</OPTION>
+						<OPTION  value="Ecuador">厄瓜多尔</OPTION>
+						<OPTION  value="Bolivia">玻利维亚</OPTION>
+						<OPTION  value="Costa_Rica">哥斯达黎加</OPTION>
+						<OPTION  value="SWST">圣维圣特</OPTION>
+						<OPTION  value="Belize">伯利兹</OPTION>
+						<OPTION  value="Egypt">埃及</OPTION>
+						<OPTION  value="Togo">多哥</OPTION>
+						<OPTION  value="Sudan">苏丹</OPTION>
+						<OPTION  value="Palau">贝劳</OPTION>
+						<OPTION  value="Mali">马里</OPTION>
+						<OPTION  value="Ghana">加纳</OPTION>
+						<OPTION  value="Surinam">苏里南</OPTION>
+						<OPTION  value="Burundi">布隆迪</OPTION>
+						<OPTION  value="Morocco">摩洛哥</OPTION>
+						<OPTION  value="Somalia">索马里</OPTION>
+						<OPTION  value="Uganda">乌干达</OPTION>
+						<OPTION  value="Kenya">肯尼亚</OPTION>
+						<OPTION  value="Tunisia">突尼斯</OPTION>
+						<OPTION  value="Rwanda">卢旺达</OPTION>
+						<OPTION  value="Zaire">扎伊尔</OPTION>
+						<OPTION  value="Bo_Mier">伯米尔</OPTION>
+						<OPTION  value="Lesotho">莱索托</OPTION>
+						<OPTION  value="Guinea">几内亚</OPTION>
+						<OPTION  value="Angola">安哥拉</OPTION>
+						<OPTION  value="Nigeria">尼日利亚</OPTION>
+						<OPTION  value="Nicaragua">尼加拉瓜</OPTION>
+						<OPTION  value="Kazakhstan">哈萨克斯坦</OPTION>
 					</SELECT>
 		    	  </div>
 		    	</div>

@@ -43,7 +43,7 @@ public class UserController {
 		Order o = new Order();
 		o.setCertificateCopyCount(2);
 		o.setCertificatePurpose(CertificatePurpose.RESIDENCE);
-		o.setDestination(DestinationCountry.GERMANY);
+		o.setDestination(DestinationCountry.Germany);
 		o.setNeedTranslation(true);
 		o.setOrderDate(new Date());
 		o.setOrderStatus(OrderStatus.SUBMITTED);
@@ -170,6 +170,7 @@ public class UserController {
 	@RequestMapping(value = "checkMessageProv.do")
 	public void checkMessageProv(String mobile, HttpServletRequest request) {
 		int checksmscode = this.creatCode();
+		log.debug("SMS check code is: {}", checksmscode);
 		HttpSession session = request.getSession(true);
 		session.setAttribute("SMSCODE", checksmscode);
 		System.out.println(mobile);
