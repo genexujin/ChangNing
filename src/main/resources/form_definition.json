@@ -243,5 +243,22 @@
                 "needCrop": true
             }
         ]
+    },
+    
+    "HKBFYJ": {
+        "formKey": "HKBFYJ",
+        "formName": "户口本复印件",
+        "fields": [
+            {
+                "fieldKey": "HKBFYJ_SHHJ",
+                "fieldName": "是否在沪户籍"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "HKBSYY",
+                "docName": "户口本所有有字页"
+            }
+        ]
     }
 }

@@ -247,7 +247,7 @@
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 身份证复印件</td>
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 护照复印件</td>
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 驾驶证复印件</td>
-    		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 户口簿复印件</td>
+    		        <td><input type="checkbox" value="HKBFYJ" name="notory_key"> 户口簿复印件</td>
     		      </tr>
     		      <tr>
     		        <td><input type="checkbox" value="RESIDENCE" name="notory_key"> 婚姻状况证明复印件</td>
