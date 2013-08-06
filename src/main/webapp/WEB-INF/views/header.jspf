@@ -18,12 +18,12 @@
 	
   </head>
   <body>
-  <script src="http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064" language="javascript" type="text/javascript"></script>
+ 
   
 	<div class="container">
 	  <div class="row">
 	    <div class="span6">
-	      <h1><img src="<c:url value="/resources/logo.jpg"/>" alt="Logo">长宁公证之窗</h1>
+	      <h1><img src="<c:url value="/resources/logo.jpg"/>" alt="Logo">上海市长宁公证处</h1>
 	    </div>
 	    
 	    <div class="span6 pull-right small-pt">
