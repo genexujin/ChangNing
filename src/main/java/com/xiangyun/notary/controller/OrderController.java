@@ -27,6 +27,7 @@ import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.DestinationCountry;
 import com.xiangyun.notary.common.Gender;
+import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.common.RelativeType;
@@ -68,13 +69,14 @@ public class OrderController {
     @RequestMapping(value = "/certStep2.do")
     //Automatic type conversion
     public View goToStep2(@RequestParam("dest")DestinationCountry destination, 
-    		                      @RequestParam("trans")boolean needTranslation,
+    		                      @RequestParam("trans")Language transLanguage,
+    		                      @RequestParam("verify")boolean needVerify,
     		                      @RequestParam("copies")int copies,
     		                      @RequestParam("purpose")CertificatePurpose purpose, 
     		                      HttpServletRequest request,
     		                      @RequestParam("notory_key")Collection<String> formKeys) {
     	log.debug("Destination: {}", destination);
-    	log.debug("Need translation? {}", needTranslation);
+    	log.debug("Translation language: {}", transLanguage);
     	log.debug("Copies: {}", copies);
     	log.debug("Purpose: {}", purpose);
 
@@ -111,7 +113,8 @@ public class OrderController {
         order.setCertificateCopyCount(copies);
         order.setCertificatePurpose(purpose);
         order.setDestination(destination);
-        order.setNeedTranslation(needTranslation);
+        order.setTranslationLanguage(transLanguage);
+        order.setNeedVerify(needVerify);
         order.setOrderDate(new Date());
         order.setOrderStatus(OrderStatus.SUBMITTED);
         order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
@@ -282,7 +285,6 @@ public class OrderController {
         double totalFee = 0.0;
         
         DestinationCountry dest = order.getDestination();
-        boolean needTranslation = order.isNeedTranslation();
         int copies = order.getCertificateCopyCount();
         
         for (Form form : order.getForms()) {

@@ -14,3 +14,11 @@ function tryToEnableGoToStep3Button() {
 function disableGoToStep3Button() {
 	$("#goToStep3").attr("disabled", "disabled");
 }
+
+function setVerify(event) {
+	if (event.target.value == 'France') {
+		$("input[name='verify']").get(0).checked = true;
+	} else {
+		$("input[name='verify']").get(1).checked = true;
+	}
+}

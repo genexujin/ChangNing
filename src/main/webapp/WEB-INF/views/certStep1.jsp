@@ -172,9 +172,9 @@
 		    	  <label class="control-label" for="trans">公证翻译</label>
 		    	  <div class="controls">
 		    		<SELECT id="trans" name="trans">
-						<OPTION selected value="false">请选择</OPTION>
-						<OPTION  value="true">翻译</OPTION>
-						<OPTION  value="false">不翻译</OPTION>						
+						<OPTION selected value="ENGLISH">英语</OPTION>
+						<OPTION  value="FRENCH">法语</OPTION>
+						<OPTION  value="NULL">不翻译</OPTION>						
 					</SELECT>
 		    	  </div>
 		    	</div>
@@ -186,6 +186,21 @@
 		    		<input class="thin" id="copies" name="copies" type="text" value="1"></input>&nbsp;本
 		    	  </div>
 		    	</div>
+    		  </div>
+    		</div>
+    		<div class="row">
+    		  <div class="span12">
+    		    <div class="control-group">
+    		      <label class="control-label" for="verify">是否认证</label>
+    		      <div class="controls">
+    		        <label class="radio inline">
+				      <input type="radio" value="true" name="verify" checked> 是&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
+				      <input type="radio" value="false" name="verify"> 否&nbsp;&nbsp;
+				    </label>
+				  </div>
+    		    </div>
     		  </div>
     		</div>
     		<div class="row">
@@ -217,7 +232,23 @@
     		</div>
     		<hr/>
     		<br>
-    		
+    		<div id="sel_region" class="row ">
+    		  <div class="span2">
+    		    <label class="control-label" for="verify">已选公证业务</label>
+    		  </div>
+    		  <div class="span9">
+    		    <table class="table">
+    		      <tr>
+    		        <td><input type="checkbox" value="CS" name="notory_key"> 出生</td>
+    		      </tr>
+    		    </table>
+    		  </div>
+    		  <div>
+    		  </div>
+    		</div>
+    		<br>
+    		<hr/>
+    		<br>
     		<div class="row">
     		  <div class="span12">
     		    <div class="control-group">
@@ -296,5 +327,14 @@
    	  </div>
       
       </form>
+      
+      <script>
+        function prepareStep1() {
+        	$("#dest").change(setVerify);
+        	$("input[name='notory_key']").change(setVerify);
+        }
+        
+        $(prepareStep1);
+      </script>
       
 <%@ include file="footer.jspf"%>

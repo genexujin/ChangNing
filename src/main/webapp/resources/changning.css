@@ -150,3 +150,11 @@ div.flowstep ol li.pass {
 .alert {
     margin-bottom:0px;
 }
+
+.form-horizontal input {
+	vertical-align:top;
+}
+
+.table td {
+	border-top: 0px;
+}

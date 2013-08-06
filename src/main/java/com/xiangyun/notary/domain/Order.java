@@ -25,6 +25,7 @@ import javax.persistence.Table;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.DestinationCountry;
 import com.xiangyun.notary.common.Gender;
+import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 
@@ -76,8 +77,12 @@ public class Order implements Serializable {
     @Column(name = "cert_copy_count")
     private int certificateCopyCount;
     
-    @Column(name = "need_translation")
-    private boolean needTranslation;
+    @Column(name = "trans_lang")
+    @Enumerated(EnumType.STRING)
+    private Language translationLanguage;
+    
+	@Column(name = "need_verify")
+    private boolean needVerify;
 
     @Enumerated(EnumType.STRING)
     private DestinationCountry destination;
@@ -187,13 +192,21 @@ public class Order implements Serializable {
         this.certificateCopyCount = certificateCopyCount;
     }
 
-    public boolean isNeedTranslation() {
-        return needTranslation;
-    }
+    public Language getTranslationLanguage() {
+		return translationLanguage;
+	}
 
-    public void setNeedTranslation(boolean needTranslation) {
-        this.needTranslation = needTranslation;
-    }
+	public void setTranslationLanguage(Language translationLanguage) {
+		this.translationLanguage = translationLanguage;
+	}
+
+	public boolean isNeedVerify() {
+		return needVerify;
+	}
+
+	public void setNeedVerify(boolean needVerify) {
+		this.needVerify = needVerify;
+	}
 
     public DestinationCountry getDestination() {
         return destination;

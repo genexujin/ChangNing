@@ -22,6 +22,7 @@ import com.xiangyun.notary.common.CredentialType;
 import com.xiangyun.notary.common.DestinationCountry;
 import com.xiangyun.notary.common.Encrypt;
 import com.xiangyun.notary.common.Gender;
+import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Order;
@@ -44,7 +45,7 @@ public class UserController {
 		o.setCertificateCopyCount(2);
 		o.setCertificatePurpose(CertificatePurpose.RESIDENCE);
 		o.setDestination(DestinationCountry.Germany);
-		o.setNeedTranslation(true);
+		o.setTranslationLanguage(Language.ENGLISH);
 		o.setOrderDate(new Date());
 		o.setOrderStatus(OrderStatus.SUBMITTED);
 		o.setPaymentPaid(0);
