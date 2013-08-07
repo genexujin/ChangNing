@@ -104,5 +104,18 @@ public enum DestinationCountry {
     Angola,
     Nigeria,
     Nicaragua,
-    Kazakhstan
+    Kazakhstan,
+    Estonia,
+    Bulgaria,
+    Uzbekistan,
+    Israel,
+    Cuba,
+    Ethiopia,
+    PNG,
+    Cambodia,
+    Monaco,
+    Slovenia,
+    Vanuatu,
+    Mongolia
+    
 }

@@ -45,7 +45,7 @@ public class UserController {
 		o.setCertificateCopyCount(2);
 		o.setCertificatePurpose(CertificatePurpose.RESIDENCE);
 		o.setDestination(DestinationCountry.Germany);
-		o.setTranslationLanguage(Language.ENGLISH);
+		o.setTranslationLanguage(Language.English);
 		o.setOrderDate(new Date());
 		o.setOrderStatus(OrderStatus.SUBMITTED);
 		o.setPaymentPaid(0);
