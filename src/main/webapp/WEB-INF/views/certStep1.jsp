@@ -56,7 +56,7 @@
     		<div class="row">
     		  <div class="span4">
     		    <div class="control-group">
-		    	  <label class="control-label" for="dest">前往国家和地区</label>
+		    	  <label class="control-label" for="dest">前往国家或地区</label>
 		    	  <div class="controls">
 		    		<SELECT id="dest" name="dest">
 						<OPTION selected value="NULL">请选择</OPTION>
@@ -243,16 +243,13 @@
     		</div>
     		<hr/>
     		<br>
-    		<div id="sel_region" class="row ">
+    		<div id="sel_region" class="row hide">
     		  <div class="span2">
     		    <label class="control-label" for="verify">已选公证业务</label>
     		  </div>
-    		  <div class="span9">
-    		    <table class="table">
-    		      <tr>
-    		        <td><input type="checkbox" value="CS" name="notory_key"> 出生</td>
-    		      </tr>
-    		    </table>
+    		  <div class="span9 tiny-pt">
+    		      
+    		    <div id="anchor" class="hide"></div>
     		  </div>
     		  <div>
     		  </div>
@@ -342,10 +339,77 @@
       <script>
         function prepareStep1() {
         	$("#dest").change(setLangAndVerify);
-        	$("input[name='notory_key']").change(setVerify);
+        	$("input[name='notory_key']").change(onNotaryKeyChange);
         }
         
         $(prepareStep1);
+        
+        function onNotaryKeyChange(event) {
+        	//First check if country has been selected.
+        	if ($("#dest").val() == 'NULL') {
+        		event.target.checked = false;
+        		alert("请先选择前往国家或地区");
+        	} else {
+            	//Show sel_region if it is hidden
+            	if ($("#sel_region").hasClass("hide") ) {
+            		$("#sel_region").removeClass("hide");
+            	}
+            	
+            	var kValue = event.target.value;
+            	var kText = event.target.nextSibling.nodeValue;
+            	var kChecked = event.target.checked;
+            	
+            	if (kChecked) {
+            		//Add an item
+            		$("#anchor").before(createSelItem(kValue, kText));
+            	} else {
+            		//Remove an item
+            		$("#" + kValue + "_div").remove();
+            	}
+            	
+            	//Hide sel_region if no one is selected
+            	if ($("#sel_region").find(".sel_item").length == 0) {
+            		$("#sel_region").addClass("hide");
+            	}
+        	}
+
+        }
+        
+        function createSelItem(value, text) {
+        	var rowDiv = $('<div class="row tiny-pb sel_item" id="' + value + '_div"></div>');
+        	var spanDiv = $('<div class="span8"></div>');
+        	rowDiv.append(spanDiv);
+        	
+        	var nInput = $('<input type="checkbox" value="' + value + '" name="n_key" checked>');
+        	nInput.change(onSelItemChange);
+        	
+        	var ywInput;
+        	if (isCountryOfYWXF()) {
+        		ywInput = $('<input type="checkbox" value="' + value + '_YW" name="n_key_yw" checked>');
+        	} else {
+        		ywInput = $('<input type="checkbox" value="' + value + '_YW" name="n_key_yw">');
+        	}
+        	
+        	spanDiv.append(nInput).append(text + '&nbsp;&nbsp;+&nbsp;&nbsp;').append(ywInput).append(' 译文相符');
+        	
+        	return rowDiv;
+        }
+        
+        function onSelItemChange(event) {
+        	alert(event.target.value);
+        }
+        
+        function isCountryOfYWXF() {
+        	if ($("#dest").val() == 'United_States' 
+        		|| $("#dest").val() == 'Korea'
+        		|| $("#dest").val() == 'Austria'
+        		|| $("#dest").val() == 'Russia') {
+        		return true;
+        	}
+        	return false;
+        }
       </script>
+    		      
+    		    
       
 <%@ include file="footer.jspf"%>

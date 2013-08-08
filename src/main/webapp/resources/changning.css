@@ -94,6 +94,10 @@ select {
 	padding-top: 25px;
 }
 
+.tiny-pb {
+	padding-bottom: 5px;
+}
+
 .text-font {
 	font-size: 13px;
 	font-weight: normal;
