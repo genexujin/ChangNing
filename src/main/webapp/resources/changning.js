@@ -1,3 +1,4 @@
+/************* certStep2 *************/
 var validXL = true;
 var validJH = true;
 var validQSGX = true;
@@ -15,12 +16,35 @@ function disableGoToStep3Button() {
 	$("#goToStep3").attr("disabled", "disabled");
 }
 
+/************* certStep1 *************/
+function enableGoToStep2Button() {
+	$("#goToStep2").removeAttr("disabled");
+}
+
+function disableGoToStep2Button() {
+	$("#goToStep2").attr("disabled", "disabled");
+}
+
 function setLangAndVerify(event) {
 	//setLanguage
 	setLanguage(event.target.value);
 	
 	//setVerify
 	setVerify(event);
+	
+	//Update 译文相符 in sel_region
+	if (isCountryOfYWXF()) {
+		$(".yw").prop("checked", true);
+	} else {
+		$(".yw").prop("checked", false);
+	}
+	
+	//One edge case: if select "请选择", disable the "下一步" button
+	if (event.target.value == 'NULL') {
+		disableGoToStep2Button();
+	} else if ($("#sel_region").find(".sel_item").length > 0) {
+		enableGoToStep2Button();
+	}
 }
 
 function setLanguage(country) {
@@ -111,4 +135,83 @@ function createOptionByClone(proto, lang, langText) {
 	cloned.text(langText);
 	cloned.attr("selected", false);
 	return cloned;
+}
+
+function isCountryOfYWXF() {
+	if ($("#dest").val() == 'United_States' 
+		|| $("#dest").val() == 'Korea'
+		|| $("#dest").val() == 'Austria'
+		|| $("#dest").val() == 'Russia') {
+		return true;
+	}
+	return false;
+}
+
+function onNotaryKeyChange(event) {
+	//First check if country has been selected.
+	if ($("#dest").val() == 'NULL') {
+		event.target.checked = false;
+		alert("请先选择前往国家或地区");
+	} else {
+    	//Show sel_region if it is hidden
+    	if ($("#sel_region").hasClass("hide") ) {
+    		$("#sel_region").removeClass("hide");
+    		enableGoToStep2Button();
+    	}
+    	
+    	var kValue = event.target.value;
+    	var kText = event.target.nextSibling.nodeValue;
+    	var kChecked = event.target.checked;
+    	
+    	if (kChecked) {
+    		//Add an item
+    		$("#anchor").before(createSelItem(kValue, kText));
+    	} else {
+    		//Remove an item
+    		$("#" + kValue + "_div").remove();
+    	}
+    	
+    	//Hide sel_region if no one is selected
+    	if ($("#sel_region").find(".sel_item").length == 0) {
+    		$("#sel_region").addClass("hide");
+    		disableGoToStep2Button();
+    	}
+	}
+
+}
+
+function createSelItem(value, text) {
+	var rowDiv = $('<div class="row tiny-pb sel_item" id="' + value + '_div"></div>');
+	var spanDiv = $('<div class="span8"></div>');
+	rowDiv.append(spanDiv);
+	
+	var nInput = $('<input type="checkbox" value="' + value + '" name="n_key" checked>');
+	nInput.change(onSelItemChange);
+	
+	var ywInput;
+	if (isCountryOfYWXF()) {
+		ywInput = $('<input type="checkbox" value="' + value + '_YW" name="n_key_yw" class="yw" checked>');
+	} else {
+		ywInput = $('<input type="checkbox" value="' + value + '_YW" name="n_key_yw" class="yw">');
+	}
+	
+	spanDiv.append(nInput).append(text + '&nbsp;&nbsp;+&nbsp;&nbsp;').append(ywInput).append(' 译文相符');
+	
+	return rowDiv;
+}
+
+function onSelItemChange(event) {
+	//Un-check the item in li_region
+	var selValue = event.target.value;
+	var li = $("#li_region").find("input[value='" + selValue + "']");
+	li.get(0).checked = false;
+	
+	//Remove the item from sel_region
+	$(event.target).parent().parent().remove();
+	
+	//Hide sel_region if no one is selected
+	if ($("#sel_region").find(".sel_item").length == 0) {
+		$("#sel_region").addClass("hide");
+		disableGoToStep2Button();
+	}
 }

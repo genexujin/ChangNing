@@ -74,7 +74,8 @@ public class OrderController {
     		                      @RequestParam("copies")int copies,
     		                      @RequestParam("purpose")CertificatePurpose purpose, 
     		                      HttpServletRequest request,
-    		                      @RequestParam("notory_key")Collection<String> formKeys) {
+    		                      @RequestParam("n_key")Collection<String> formKeys,
+    		                      @RequestParam("n_key_yw")Collection<String> ywKeys) {
     	log.debug("Destination: {}", destination);
     	log.debug("Translation language: {}", transLanguage);
     	log.debug("Copies: {}", copies);
