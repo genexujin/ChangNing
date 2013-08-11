@@ -27,6 +27,8 @@ import com.xiangyun.notary.common.Gender;
 @Table(name = "users")
 @NamedQueries({ @NamedQuery(name = "User.findAll", query = "select u from User u") })
 public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;

@@ -144,7 +144,7 @@
 		      </div>
 	      </c:if>
 	      
-	      <!-- 需要剪裁区 -->
+	      <!-- 需要裁剪区 -->
 	      <c:if test="${not um.needCropEmpty}">
 	        <c:forEach items="${um.needCrop}" var="doc" >
 	          <div class="bar-bg">
@@ -170,19 +170,19 @@
 		                <input id="${doc.docKey}_w" style="display:none"/>
 		                <input id="${doc.docKey}_h" style="display:none"/>
 		                <input id="${doc.docKey}_fileName" style="display:none"/>
-		                <div id="${doc.docKey}_crop" class="btn btn-success" style="display:none">剪裁</div>
+		                <div id="${doc.docKey}_crop" class="btn btn-success" style="display:none">裁剪</div>
 		              </c:if>
 		              <div id="${doc.docKey}" class="file_upload" ></div>
 		            </div>
 		          </div>
 		          <script>
 		            function ${doc.docKey}_storeCoords(c) {
-		            	$('#${doc.docKey}_x').val(c.x);
-		            	$('#${doc.docKey}_y').val(c.y);
-		            	$('#${doc.docKey}_x2').val(c.x2);
-		            	$('#${doc.docKey}_y2').val(c.y2);
-		            	$('#${doc.docKey}_w').val(c.w);
-		            	$('#${doc.docKey}_h').val(c.h);
+		            	$('#${doc.docKey}_x').val(Math.round(c.x));
+		            	$('#${doc.docKey}_y').val(Math.round(c.y));
+		            	$('#${doc.docKey}_x2').val(Math.round(c.x2));
+		            	$('#${doc.docKey}_y2').val(Math.round(c.y2));
+		            	$('#${doc.docKey}_w').val(Math.round(c.w));
+		            	$('#${doc.docKey}_h').val(Math.round(c.h));
 		            }
 		            
 		            function ${doc.docKey}_crop() {
@@ -190,7 +190,7 @@
 		                    url: "cropImage.do",
 		                    type: "POST",
 		                    success: function (data) { 
-		                        alert('crop success!');
+		                        alert('裁剪成功!');
 		                    },
 		                    data :{
 		                        x : $('#${doc.docKey}_x').val(),
@@ -232,9 +232,10 @@
 	        	            	$('#${doc.docKey}_crop').css("display", "inline-block");
 	        	            	$('#${doc.docKey}_crop').click(${doc.docKey}_crop);
 	        		        	$('#${doc.docKey}_img').Jcrop({
+	        		        		aspectRatio : 0.66,
 	        		        		setSelect : [0, 0, 120, 180],
 	        		        		allowSelect : false,
-	        		        		allowResize : false,
+	        		        		allowResize : true,
 	        		        		onSelect : ${doc.docKey}_storeCoords
 	        		        	});
 	        		        }

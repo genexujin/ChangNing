@@ -6,8 +6,7 @@
 <br>
 <hr />
 <br>
-<script src="http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064"
-	language="javascript" type="text/javascript"></script>
+
 <div class="row">
 	<div class="span9">
 		<p>
@@ -29,5 +28,20 @@
 </div>
 
 </div>
+<div id = "olhd_anchor"></div>
+<script src="http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064" language="javascript" type="text/javascript"></script>
+<script>
+    //setTimeout(loadOnlineHelpdesk, 2000);
+    //function loadOnlineHelpdesk() {
+    //	var ss = "</script" + ">";
+    //   var olhdscript = $('<script src="http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064" language="javascript" type="text/javascript">' + ss);
+    //    $("#olhd_anchor").after(olhdscript);
+
+    	//$.getScript("http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064");
+    	//var olhdscript = $("#olhd");
+    	//olhdscript.attr("src", "http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064");
+    	//alert(olhdscript);
+    //}
+</script>
 </body>
 </html>

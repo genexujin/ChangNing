@@ -31,6 +31,7 @@ import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.common.RelativeType;
+import com.xiangyun.notary.domain.FeeItem;
 import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Order;
@@ -107,7 +108,9 @@ public class OrderController {
             }
         }
     	
-    	request.getSession().setAttribute(Constants.SESSION_SELECTED_FORMS, selectedForms);    	
+    	request.getSession().setAttribute(Constants.SESSION_SELECTED_FORMS, selectedForms);
+    	
+    	request.getSession().setAttribute(Constants.SESSION_SELECTED_YWXF, ywKeys);
 
         //Create the order to save information for next step
         Order order = new Order();
@@ -169,6 +172,7 @@ public class OrderController {
         	form.setFormKey(formDef.getFormKey());
         	form.setFormName(formDef.getFormName());
         	
+        	//Create FormItems for a form
         	Map<String, String> formKeyValueMap = new HashMap<String, String>();
         	for ( FormFieldItemDef itemDef : formDef.getFields()) {
     	        FormItem item = new FormItem();
@@ -188,6 +192,15 @@ public class OrderController {
                     formKeyValueMap.put(itemDef.getFieldKey(), request.getParameter(itemDef.getFieldKey()));
                 }
                 form.addFormItem(item);
+        	}
+        	
+        	//Create FeeItems for a form
+        	FeeDef feeDef = (FeeDef)ctx.getAttribute(Constants.FEE_DEF);
+        	form.addFeeItem(createGeneralFeeItem(order, formDef, feeDef));
+        	
+        	Collection<String> ywKeys = (Collection<String>)session.getAttribute(Constants.SESSION_SELECTED_YWXF);
+        	if (ywKeys.contains(formDef.getFormKey() + Constants.YWXF_KEY_SUFFIX)) {
+        	    form.addFeeItem(createYWXFFeeItem(order, formDef, feeDef));
         	}
         	
         	order.addForm(form);
@@ -248,7 +261,7 @@ public class OrderController {
         
         return mav;
     }
-    
+
     @RequestMapping(value = "/certStep4.do")
     public ModelAndView goToStep4() {
         ModelAndView mav = new ModelAndView("certStep4");
@@ -279,21 +292,12 @@ public class OrderController {
             }
         }
         
+        order.calculateTotalFee();
+        
         orderService.save(order);
         
-        FeeDef feeDef = (FeeDef)ctx.getAttribute(Constants.FEE_DEF);
-        //Then calculate the total fee
-        double totalFee = 0.0;
-        
-        DestinationCountry dest = order.getDestination();
-        int copies = order.getCertificateCopyCount();
-        
-        for (Form form : order.getForms()) {
-            FeeFormDef feeFormDef = feeDef.getFeeFormDefs().get(form.getFormKey());
-            
-        }
-        
-        ModelAndView mav = new ModelAndView("certStep4");
+        ModelAndView mav = new ModelAndView("certStep5");
+        mav.addObject("order", order);
         return mav;
     }
 
@@ -323,5 +327,88 @@ public class OrderController {
         result.setRelativeName(name);
         return result;
         
+    }
+    
+    private FeeItem createGeneralFeeItem(Order order, FormDef formDef, FeeDef feeDef) {
+        FeeFormDef feeFormDef = feeDef.getFeeFormDefs().get(formDef.getFormKey());
+        FeeItem fee = new FeeItem();
+        fee.setFeeKey(formDef.getFormKey());
+        fee.setFeeName(formDef.getFormName());
+        fee.setCopyFee(order.getCertificateCopyCount() * feeDef.getCopyFee());
+        fee.setInvestigationFee(feeFormDef.getInvestigateFee());
+        fee.setWordTranslationFee(getWordTranslationFee(feeFormDef, order.getTranslationLanguage()));
+        fee.setFileTranslationFee(getFileTranslationFee(feeFormDef, order.getTranslationLanguage()));
+        fee.setNotaryFee(feeFormDef.getNotaryFee());
+        return fee;
+    }
+    
+    private FeeItem createYWXFFeeItem(Order order, FormDef formDef, FeeDef feeDef) {
+        FeeFormDef feeFormDef = feeDef.getFeeFormDefs().get(Constants.YWXF_DEF_KEY);
+        FeeItem fee = new FeeItem();
+        fee.setFeeKey(formDef.getFormKey() + Constants.YWXF_KEY_SUFFIX);
+        fee.setFeeName(formDef.getFormName() + Constants.YWXF_NAME_SUFFIX);
+        fee.setCopyFee(order.getCertificateCopyCount() * feeDef.getCopyFee());
+        fee.setInvestigationFee(feeFormDef.getInvestigateFee());
+        fee.setWordTranslationFee(getWordTranslationFee(feeFormDef, order.getTranslationLanguage()));
+        fee.setFileTranslationFee(getFileTranslationFee(feeFormDef, order.getTranslationLanguage()));
+        fee.setNotaryFee(feeFormDef.getNotaryFee());
+        return fee;
+    }
+    
+    private double getWordTranslationFee(FeeFormDef def, Language lang) {
+        switch (lang) {
+            case English:
+            case Japanese:
+            case German:
+            case French:
+            case Russian:
+                return def.getWordFeeGroup1();
+            case Spanish:
+            case Portuguese:
+            case Italian:
+                return def.getWordFeeGroup2();
+            case Korean:
+                return def.getWordFeeGroup3();
+            case Dutch:
+            case Ukrainian:
+            case Czech:
+            case Hungarian:
+            case Vietnamese:
+            case Thai:
+                return def.getWordFeeGroup4();
+            case Greek:
+                return def.getWordFeeGroup5();
+            default:
+                return 0;
+        }
+    }
+    
+    private double getFileTranslationFee(FeeFormDef def, Language lang) {
+        switch (lang) {
+            case English:
+            case Japanese:
+            case German:
+            case French:
+            case Russian:
+                return def.getFileFeeGroup1();
+            case Spanish:
+            case Portuguese:
+            case Italian:
+                return def.getFileFeeGroup2();
+            case Korean:
+                return def.getFileFeeGroup3();
+            case Dutch:
+            case Arabic:
+            case Ukrainian:
+            case Czech:
+            case Hungarian:
+            case Vietnamese:
+            case Thai:
+                return def.getFileFeeGroup4();
+            case Greek:
+                return def.getFileFeeGroup5();
+            default:
+                return 0;
+        }
     }
 }

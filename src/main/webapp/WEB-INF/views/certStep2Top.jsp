@@ -57,7 +57,11 @@
 			    	  </div>
 			    	</div>
 	    		  </div>
-		          <div class="span6">
+	    		  <div id="username_m" class="span4 hide alert alert-error">姓名不能为空
+			      </div>
+	    		</div>
+	    		<div class="row">
+		          <div class="span5 offset1">
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="gender">性别</label>
 			    	  <div class="controls">
@@ -86,7 +90,11 @@
 			    	  </div>
 			    	</div>
 	    		  </div>
-	    		  <div class="span6">
+	    		  <div id="mobile_m" class="span4 tiny-pt hide alert alert-error">
+			      </div>
+	    		</div>
+	    		<div class="row">
+	    		  <div class="span5 offset1">
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="email">邮箱</label>
 			    	  <div class="controls">
@@ -94,6 +102,8 @@
 			    	  </div>
 			    	</div>
 	    		  </div>
+	    		  <div id="email_m" class="span4 hide alert alert-error">
+			      </div>
 	            </div>
 	            <div class="row">
 	              <div class="span5 offset1">
@@ -104,8 +114,111 @@
 			    	  </div>
 			    	</div>
 	    		  </div>
+	    		  <div id="address_m" class="span4 tiny-pt hide alert alert-error">地址不能为空
+			      </div>
 	            </div>
 	          
 	    	</div>
 	    </div>      
       </div>
+      <script>
+          function prepareBasic() {
+        	  validateUsername();
+        	  validateMobile();
+        	  validateEmail();
+        	  validateAddress();
+        	  
+        	  $("#username").change(validateUsername);
+        	  $("#mobile").change(validateMobile);
+        	  $("#email").change(validateEmail);
+        	  $("#address").change(validateAddress);
+          }
+          $(prepareBasic);
+          
+          function validateUsername() {
+        	  var username = $("#username").val();
+        	  if (username == '') {
+        		  $("#username_m").removeClass("hide");
+        		  validBasic = false;
+        		  disableGoToStep3Button();
+        	  } else {
+        		  $("#username_m").addClass("hide");
+        		  updateValidBasic();
+        		  tryToEnableGoToStep3Button();
+        	  }
+          }
+          
+          function validateMobile() {
+        	  var mobile = $("#mobile").val();
+        	  if (mobile == '') {
+        		  $("#mobile_m").removeClass("hide").text("手机号码不能为空");
+        		  validBasic = false;
+        		  disableGoToStep3Button();
+        	  } else if (!mobile.match(/^1(3|4|5|8)[0-9]{9}$/)) {
+        		  $("#mobile_m").removeClass("hide").text("手机号码格式不正确！请重新输入！");
+        		  validBasic = false;
+        		  disableGoToStep3Button();
+        	  } else {
+        		  $("#mobile_m").addClass("hide").text("");
+        		  updateValidBasic();
+        		  tryToEnableGoToStep3Button();
+        	  }
+          }
+          
+          function validateEmail() {
+        	  var email = $("#email").val();
+        	  if (email == '') {
+        		  $("#email_m").removeClass("hide").text("邮箱不能为空");
+        		  validBasic = false;
+        		  disableGoToStep3Button();
+        	  } else if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
+        		  $("#email_m").removeClass("hide").text("邮箱格式不正确！请重新输入！");
+        		  validBasic = false;
+        		  disableGoToStep3Button();
+        	  } else {
+        		  $("#email_m").addClass("hide").text("");
+        		  updateValidBasic();
+        		  tryToEnableGoToStep3Button();
+        	  }
+          }validateAddress
+          
+          function validateAddress() {
+        	  var address = $("#address").val();
+        	  if (address == '') {
+        		  $("#address_m").removeClass("hide");
+        		  validBasic = false;
+        		  disableGoToStep3Button();
+        	  } else {
+        		  $("#address_m").addClass("hide");
+        		  updateValidBasic();
+        		  tryToEnableGoToStep3Button();
+        	  }
+          }
+          
+          function updateValidBasic() {
+        	  var username = $("#username").val();
+        	  var mobile = $("#mobile").val();
+        	  var email = $("#email").val();
+        	  var address = $("#address").val();
+        	  
+        	  if (username != '' && validMobile(mobile) && validEmail(email) && address != '')
+        		  validBasic = true;
+          }
+          
+          function validEmail(email) {
+        	if (email.length != 0 && 
+        		(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/).test(email)) {
+        		return true;
+        	} else {
+        		return false;
+        	}
+          }
+          
+          function validMobile(mobile) {
+			if (mobile.length != 0 && mobile.match(/^1(3|4|5|8)[0-9]{9}$/)) {
+				return true;
+			} else {
+				return false;
+			}
+          }
+      </script>

@@ -250,6 +250,8 @@
     		  <div class="span9 tiny-pt">
     		      
     		    <div id="anchor" class="hide"></div>
+    		    <!-- Put a dummy input here, so that even no YWXF is selected here, Spring Controller can still have this parameter -->
+    		    <input type="hidden" value="dummy" name="n_key_yw">
     		  </div>
     		  <div>
     		  </div>

@@ -22,6 +22,8 @@ import javax.persistence.Table;
     @NamedQuery(name="FormItem.findAll", query="select o from FormItem o")
 })
 public class FormItem implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;

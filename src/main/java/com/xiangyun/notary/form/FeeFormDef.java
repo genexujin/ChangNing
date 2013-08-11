@@ -1,6 +1,10 @@
 package com.xiangyun.notary.form;
 
-public class FeeFormDef {
+import java.io.Serializable;
+
+public class FeeFormDef implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private double notaryFee;
     private double wordFeeGroup1;
     private double fileFeeGroup1;
@@ -12,6 +16,7 @@ public class FeeFormDef {
     private double fileFeeGroup4;
     private double wordFeeGroup5;
     private double fileFeeGroup5;
+    private double investigateFee;
     
     public double getNotaryFee() {
         return notaryFee;
@@ -79,5 +84,10 @@ public class FeeFormDef {
     public void setFileFeeGroup5(double fileFeeGroup5) {
         this.fileFeeGroup5 = fileFeeGroup5;
     }
-
+    public double getInvestigateFee() {
+        return investigateFee;
+    }
+    public void setInvestigateFee(double investigateFee) {
+        this.investigateFee = investigateFee;
+    }
 }
