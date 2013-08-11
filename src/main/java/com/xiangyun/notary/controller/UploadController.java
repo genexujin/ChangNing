@@ -3,15 +3,14 @@ package com.xiangyun.notary.controller;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
+import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,8 +126,24 @@ public class UploadController {
 	@RequestMapping(value="/cropImage", method=RequestMethod.POST)
 	public @ResponseBody String cropImage(int x, int y, int x2, int y2, int w, int h, Long uid, String imageName, String dockey) throws IOException {
 		BufferedImage bi = ImageIO.read(new File(getCropDir(uid.toString()) + imageName));
+		log.debug("Now is cropping the image... ");
+		log.debug("Original file width is: " + bi.getWidth() + "px");
 		
-		BufferedImage result = bi.getSubimage(x, y, w, h);
+		//On page the original image may be resized, because we use a Bootstrap span7 to contain it, which has a width of 540px.
+		//So if the image size is larger than 540px, it will be resized on client side.
+		//Here we need to consider it to get the correct sub image.
+		if (bi.getWidth() > 540) {
+		    double ratio = bi.getWidth() / 540.0;
+		    log.debug("The ratio is: " + ratio);
+		    x *= ratio;
+		    y *= ratio;
+		    w *= ratio;
+		    h *= ratio;
+		}
+		
+		BufferedImage sub = bi.getSubimage(x, y, w, h);
+		
+		BufferedImage result = Scalr.resize(sub, 120, 180);
 		
 		String docPath = getSaveDir(uid.toString(), dockey) + imageName;
 		ImageIO.write(result, "jpg", new File(docPath));

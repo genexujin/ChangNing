@@ -77,7 +77,6 @@ public class InitContextListener implements ServletContextListener {
             sce.getServletContext().setAttribute(Constants.DOC_ITEM_MAP, docItemDefs);
             
             log.debug("**********Fee Def info**********");
-            log.debug("Investigation Fee: {}", feeDef.getInvestigateFee());
             log.debug("Copy Fee: {}", feeDef.getCopyFee());
             for (String formKey : feeDef.getFeeFormDefs().keySet()) {
                 log.debug("Form Key: {}", formKey);
@@ -93,6 +92,7 @@ public class InitContextListener implements ServletContextListener {
                 log.debug("    File Fee Group 4: {}", feeFormDef.getFileFeeGroup4());
                 log.debug("    Word Fee Group 5: {}", feeFormDef.getWordFeeGroup5());
                 log.debug("    File Fee Group 5: {}", feeFormDef.getFileFeeGroup5());
+                log.debug("    Investigation Fee: {}", feeFormDef.getInvestigateFee());
             }
             
         } catch (JsonParseException e) {

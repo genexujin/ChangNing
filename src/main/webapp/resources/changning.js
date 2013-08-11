@@ -1,4 +1,5 @@
 /************* certStep2 *************/
+var validBasic = true;
 var validXL = true;
 var validJH = true;
 var validQSGX = true;
@@ -7,7 +8,7 @@ var validCS = true;
 var validHKBFYJ = true;
 
 function tryToEnableGoToStep3Button() {
-	if (validXL && validJH && validQSGX && validCYM && validCS && validHKBFYJ) {
+	if (validBasic && validXL && validJH && validQSGX && validCYM && validCS && validHKBFYJ) {
 		$("#goToStep3").removeAttr("disabled");
 	}
 }
@@ -15,6 +16,8 @@ function tryToEnableGoToStep3Button() {
 function disableGoToStep3Button() {
 	$("#goToStep3").attr("disabled", "disabled");
 }
+
+
 
 /************* certStep1 *************/
 function enableGoToStep2Button() {
@@ -32,10 +35,12 @@ function setLangAndVerify(event) {
 	//setVerify
 	setVerify(event);
 	
-	//Update 译文相符 in sel_region
+	//Update copies and 译文相符
 	if (isCountryOfYWXF()) {
+		$("#copies").val(2);
 		$(".yw").prop("checked", true);
 	} else {
+		$("#copies").val(1);
 		$(".yw").prop("checked", false);
 	}
 	
@@ -215,3 +220,5 @@ function onSelItemChange(event) {
 		disableGoToStep2Button();
 	}
 }
+
+/************* certStep3 *************/

@@ -1,19 +1,15 @@
 package com.xiangyun.notary.form;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FeeDef {
-    private double investigateFee;
+public class FeeDef implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private double copyFee;
     private Map<String, FeeFormDef> feeFormDefs= new HashMap<String, FeeFormDef>();
     
-    public double getInvestigateFee() {
-        return investigateFee;
-    }
-    public void setInvestigateFee(double investigateFee) {
-        this.investigateFee = investigateFee;
-    }
     public double getCopyFee() {
         return copyFee;
     }

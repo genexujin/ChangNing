@@ -9,6 +9,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FormDef implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
 	private String formKey;
 	private String formName;
 	private boolean containsItem = true;

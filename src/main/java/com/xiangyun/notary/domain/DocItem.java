@@ -20,6 +20,8 @@ import javax.persistence.Table;
     @NamedQuery(name="DocItem.findAll", query="select o from DocItem o")
 })
 public class DocItem implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;

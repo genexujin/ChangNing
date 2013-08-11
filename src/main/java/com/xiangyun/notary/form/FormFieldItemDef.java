@@ -3,6 +3,8 @@ package com.xiangyun.notary.form;
 import java.io.Serializable;
 
 public class FormFieldItemDef implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
 	private String fieldKey;
 	private String fieldName;
 	private boolean composite;

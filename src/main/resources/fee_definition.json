@@ -1,14 +1,81 @@
 {
-    "investigateFee": 50,
     "copyFee": 10,
     "feeFormDefs": {
+        "CS": {
+            "notaryFee": 80,
+            "wordFeeGroup1": 60,
+            "wordFeeGroup2": 100,
+            "wordFeeGroup3": 120,
+            "wordFeeGroup4": 200,
+            "wordFeeGroup5": 400,
+            "investigateFee": 50
+        },
         "JH": {
             "notaryFee": 80,
             "wordFeeGroup1": 60,
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400
+            "wordFeeGroup5": 400,
+            "investigateFee": 50
+        },
+        "XL": {
+            "notaryFee": 80,
+            "wordFeeGroup1": 60,
+            "wordFeeGroup2": 100,
+            "wordFeeGroup3": 120,
+            "wordFeeGroup4": 200,
+            "wordFeeGroup5": 400,
+            "investigateFee": 50
+        },
+        "CYM": {
+            "notaryFee": 80,
+            "wordFeeGroup1": 60,
+            "wordFeeGroup2": 100,
+            "wordFeeGroup3": 120,
+            "wordFeeGroup4": 200,
+            "wordFeeGroup5": 400,
+            "investigateFee": 50
+        },
+        "SGWSXSCF": {
+            "notaryFee": 80,
+            "wordFeeGroup1": 60,
+            "wordFeeGroup2": 100,
+            "wordFeeGroup3": 120,
+            "wordFeeGroup4": 200,
+            "wordFeeGroup5": 400,
+            "investigateFee": 50
+        },
+        "QSGX": {
+            "notaryFee": 80,
+            "wordFeeGroup1": 60,
+            "wordFeeGroup2": 100,
+            "wordFeeGroup3": 120,
+            "wordFeeGroup4": 200,
+            "wordFeeGroup5": 400,
+            "investigateFee": 50
+        },
+        "HKBFYJ": {
+            "notaryFee": 80,
+            "wordFeeGroup1": 60,
+            "wordFeeGroup2": 100,
+            "wordFeeGroup3": 120,
+            "wordFeeGroup4": 200,
+            "wordFeeGroup5": 400,
+            "investigateFee": 50
+        },
+        "YWXF": {
+            "notaryFee": 100,
+            "wordFeeGroup1": 60,
+            "fileFeeGroup1": -1,
+            "wordFeeGroup2": 100,
+            "fileFeeGroup2": -1,
+            "wordFeeGroup3": 120,
+            "fileFeeGroup3": -1,
+            "wordFeeGroup4": 200,
+            "fileFeeGroup4": -1,
+            "wordFeeGroup5": 400,
+            "fileFeeGroup5": -1
         }
     }
 }

@@ -3,6 +3,8 @@ package com.xiangyun.notary.form;
 import java.io.Serializable;
 
 public class FormDocItemDef implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
 	private String docKey;
 	private String docName;
 	private boolean uploadAlone;

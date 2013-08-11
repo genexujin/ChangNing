@@ -22,6 +22,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.DestinationCountry;
 import com.xiangyun.notary.common.Gender;
@@ -36,6 +37,8 @@ import com.xiangyun.notary.common.OrderStatus;
     @NamedQuery(name="Order.findById", query="select o from Order o where o.id = :oid")
 })
 public class Order implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
@@ -304,5 +307,17 @@ public class Order implements Serializable {
 
 	public void setRequestorAddress(String requestorAddress) {
 		this.requestorAddress = requestorAddress;
+	}
+	
+	public double calculateTotalFee() {
+	    double result = 0.0;
+	    for (Form form : forms) {
+	        result += form.calculateFormFee();
+	    }
+	    if (sendDoc) {
+	        result += Constants.SEND_DOC_FEE;
+	    }
+	    paymentTotal = result;
+	    return result;
 	}
 }

@@ -119,3 +119,21 @@ CREATE  TABLE IF NOT EXISTS `changning`.`relative_infos` (
     REFERENCES `changning`.`form_items` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+CREATE  TABLE IF NOT EXISTS `changning`.`fee_items` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `fee_key` VARCHAR(45) NULL ,
+  `fee_name` VARCHAR(45) NULL ,
+  `notary_fee` DECIMAL(10,2) NULL ,
+  `copy_fee` DECIMAL(10,2) NULL ,
+  `word_trans_fee` DECIMAL(10,2) NULL ,
+  `file_trans_fee` DECIMAL(10,2) NULL ,
+  `investigate_fee` DECIMAL(10,2) NULL ,
+  `form_id` INT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fee_form_fk_idx` (`form_id` ASC) ,
+  CONSTRAINT `fee_form_fk`
+    FOREIGN KEY (`form_id` )
+    REFERENCES `changning`.`forms` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

@@ -2,6 +2,8 @@ package com.xiangyun.notary.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,7 +23,8 @@ import com.xiangyun.notary.common.RelativeType;
 @NamedQueries({
     @NamedQuery(name="RelativeInfo.findAll", query="select o from RelativeInfo o")
 })
-public class RelativeInfo {
+public class RelativeInfo implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = IDENTITY)

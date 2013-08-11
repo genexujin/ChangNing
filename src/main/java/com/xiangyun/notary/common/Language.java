@@ -17,5 +17,6 @@ public enum Language {
     Greek,
     Hungarian,
     Czech,
-    Ukrainian
+    Ukrainian,
+    Arabic
 }

@@ -24,6 +24,7 @@ import javax.persistence.Table;
     @NamedQuery(name="Form.findAll", query="select o from Form o")
 })
 public class Form implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -41,6 +42,9 @@ public class Form implements Serializable {
     
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "form")
     private Set<FormItem> formItems = new HashSet<FormItem>();
+    
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "form")
+    private Set<FeeItem> feeItems = new HashSet<FeeItem>();
 
     public Long getId() {
         return id;
@@ -85,6 +89,27 @@ public class Form implements Serializable {
     public void addFormItem(FormItem formItem) {
         formItem.setForm(this);
         formItems.add(formItem);
+    }
+    
+    public Set<FeeItem> getFeeItems() {
+        return feeItems;
+    }
+
+    public void setFeeItems(Set<FeeItem> feeItems) {
+        this.feeItems = feeItems;
+    }
+    
+    public void addFeeItem(FeeItem feeItem) {
+        feeItem.setForm(this);
+        feeItems.add(feeItem);
+    }
+    
+    public double calculateFormFee() {
+        double result = 0.0;
+        for (FeeItem item : feeItems) {
+            result += item.calculateFee();
+        }
+        return result;
     }
 
 }
