@@ -27,5 +27,9 @@ public class Constants {
     public static final String YWXF_DEF_KEY = "YWXF";
     
     public static final double SEND_DOC_FEE = 100;
+    
+    public static final String ROLE_ADMIN = "admin";
+    public static final String ROLE_STAFF = "staff";
+    public static final String ROLE_NORMAL_USER = "user";
 
 }

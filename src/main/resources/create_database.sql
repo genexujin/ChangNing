@@ -137,3 +137,30 @@ CREATE  TABLE IF NOT EXISTS `changning`.`fee_items` (
     REFERENCES `changning`.`forms` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+CREATE  TABLE IF NOT EXISTS `changning`.`roles` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `role_name` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id`) );
+
+CREATE  TABLE IF NOT EXISTS `changning`.`user_roles` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `user_id` INT NULL ,
+  `role_id` INT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `user_role_user_fk_idx` (`user_id` ASC) ,
+  INDEX `user_role_role_fk_idx` (`role_id` ASC) ,
+  CONSTRAINT `user_role_user_fk`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `changning`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `user_role_role_fk`
+    FOREIGN KEY (`role_id` )
+    REFERENCES `changning`.`roles` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+insert into roles (role_name) values ('admin');
+insert into roles (role_name) values ('staff');
+insert into roles (role_name) values ('user');
