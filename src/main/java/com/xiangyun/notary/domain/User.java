@@ -14,12 +14,16 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CredentialType;
 import com.xiangyun.notary.common.Gender;
 
@@ -62,8 +66,14 @@ public class User implements Serializable {
 
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user")
     private Set<Order> orders = new HashSet<Order>();
+    
+    @ManyToMany(cascade = CascadeType.REFRESH)
+    @JoinTable(name = "user_roles", 
+               inverseJoinColumns = @JoinColumn(name = "role_id"), 
+               joinColumns = @JoinColumn(name = "user_id"))
+    private Set<Role> roles = new HashSet<Role>();
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -163,4 +173,40 @@ public class User implements Serializable {
         order.setUser(this);
         orders.add(order);
     }
+
+    public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+	
+	public void addRole(Role role) {
+		roles.add(role);
+	}
+	
+	public boolean isAdmin() {
+		for (Role role : roles) {
+			if (role.getRoleName().equals(Constants.ROLE_ADMIN))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean isStaff() {
+		for (Role role : roles) {
+			if (role.getRoleName().equals(Constants.ROLE_STAFF))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean isNormalUser() {
+		for (Role role : roles) {
+			if (role.getRoleName().equals(Constants.ROLE_NORMAL_USER))
+				return true;
+		}
+		return false;
+	}
 }
