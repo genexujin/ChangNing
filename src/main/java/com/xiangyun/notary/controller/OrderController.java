@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +46,7 @@ import com.xiangyun.notary.form.FormDocItemDef;
 import com.xiangyun.notary.form.FormFieldItemDef;
 import com.xiangyun.notary.model.UploadModel;
 import com.xiangyun.notary.service.OrderService;
+import com.xiangyun.notary.service.UserService;
 import com.xiangyun.notary.view.MultipleViewFactory;
 
 @Controller
@@ -57,6 +60,9 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+    
+    @Autowired
+    private UserService userService;
     
     @Autowired 
     private MultipleViewFactory multipleViewFactory;
@@ -299,6 +305,31 @@ public class OrderController {
         ModelAndView mav = new ModelAndView("certStep5");
         mav.addObject("order", order);
         return mav;
+    }
+    
+    @RequestMapping(value = "/orderQuery.do")
+    public ModelAndView orderQuery(HttpServletRequest request) {
+    	User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+    	
+    	//After getting from the HttpSession, need to refresh it.
+    	//Otherwise org.hibernate.LazyInitializationException will throw,
+    	//because the Hibernate session has closed.
+//    	user = userService.save(user);
+    	
+    	Set<Order> orders = new HashSet<Order>();
+    	
+    	if (user.isAdmin() || user.isStaff()) {
+    		//Retrieve all orders
+    		orders.addAll(orderService.findAll());
+    	} else {
+    		//Cannot use user.getOrders() here. org.hibernate.LazyInitializationException will throw,
+        	//because the Hibernate session has closed.
+    		orders.addAll(orderService.findOrdersByUserId(user.getId()));
+    	}
+    	
+    	ModelAndView mav = new ModelAndView("backend/orderQuery");
+    	mav.addObject("orders", orders);
+    	return mav;
     }
 
     private void putIfAbsent(Map<String, FormDocItemDef> docDefs, FormDocItemDef docDef) {

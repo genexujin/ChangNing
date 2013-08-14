@@ -34,7 +34,8 @@ import com.xiangyun.notary.common.OrderStatus;
 @Table(name = "orders")
 @NamedQueries({
     @NamedQuery(name="Order.findAll", query="select o from Order o"),
-    @NamedQuery(name="Order.findById", query="select o from Order o where o.id = :oid")
+    @NamedQuery(name="Order.findById", query="select o from Order o where o.id = :oid"),
+    @NamedQuery(name="Order.findOrdersByUserId", query="select o from Order o where o.user.id = :uid")
 })
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -43,7 +44,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
     
-    @Column(name = "readable_id")
+    @Column(name = "readable_id", insertable=false)
     private String readableId;
     
     @ManyToOne

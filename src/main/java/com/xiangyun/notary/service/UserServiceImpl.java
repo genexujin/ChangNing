@@ -63,5 +63,12 @@ public class UserServiceImpl implements UserService {
     		return users.get(0);
     	}
 	}
+	
+	@Override
+    @Transactional(readOnly=true)
+    public void refresh(User user) {
+        log.info("Now is in refresh()");
+        em.refresh(user);
+    }
 
 }

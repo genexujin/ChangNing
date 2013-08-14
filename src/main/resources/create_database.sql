@@ -164,3 +164,11 @@ CREATE  TABLE IF NOT EXISTS `changning`.`user_roles` (
 insert into roles (role_name) values ('admin');
 insert into roles (role_name) values ('staff');
 insert into roles (role_name) values ('user');
+
+INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address)
+VALUES ('13524173173', '刘峻', 'MALE', 'pairliu@gmail.com', 'ID_CARD', '440306199983273137', 'e19d5cd5af0378da05f63f891c7467af', 'adfadfasdfasdf');
+INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address)
+VALUES ('18621910893', 'aaa', 'MALE', 'test@test.com', 'ID_CARD', '440306199983274248', 'e19d5cd5af0378da05f63f891c7467af', 'zzzzzzzzzzzz');
+
+insert into user_roles (user_id, role_id) values (1, 3);
+insert into user_roles (user_id, role_id) values (2, 2);

@@ -6,6 +6,8 @@ import com.xiangyun.notary.domain.Order;
 
 public interface OrderService {
     public List<Order> findAll();
+    
+    public List<Order> findOrdersByUserId(Long userId);
 
     public Order save(Order order);
 
