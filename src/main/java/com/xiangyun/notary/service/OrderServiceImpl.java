@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +29,25 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orders = em.createNamedQuery("Order.findAll", Order.class).getResultList();
         return orders;
     }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<Order> findOrdersByUserId(Long userId) {
+        log.debug("Now is in findOrdersByUserId()");
+        TypedQuery<Order> query = em.createNamedQuery("Order.findOrdersByUserId", Order.class);
+        query.setParameter("uid", userId);
+        List<Order> orders = query.getResultList();
+        return orders;
+    }
 
     @Override
     public Order save(Order order) {
         if (order.getId() == null) {
             log.debug("Inserting new order...");
             em.persist(order);
+            //Need to format readableId and set
+            order.setReadableId(generateReadableId(order.getId()));
+            em.merge(order);
         } else {
             log.debug("Updating an order...");
             em.merge(order);
@@ -43,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
-    @Override
+	@Override
     public void delete(Order order) {
         Order mergedOrder = em.merge(order);
         em.remove(mergedOrder);
@@ -63,5 +77,9 @@ public class OrderServiceImpl implements OrderService {
         }
         return null;
     }
+
+    private String generateReadableId(Long id) {
+		return "A" + String.format("%1$08d", id);
+	}
 
 }

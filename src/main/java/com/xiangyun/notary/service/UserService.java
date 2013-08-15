@@ -13,6 +13,8 @@ public interface UserService {
     public void delete(User user);
     
     public User findByMobile(String mobile);
+    
+    public void refresh(User user);
 
 
 }

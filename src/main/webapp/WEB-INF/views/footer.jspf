@@ -28,9 +28,9 @@
 </div>
 
 </div>
-<div id = "olhd_anchor"></div>
+<!-- <div id = "olhd_anchor"></div> -->
 <script src="http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064" language="javascript" type="text/javascript"></script>
-<script>
+<!-- <script>
     //setTimeout(loadOnlineHelpdesk, 2000);
     //function loadOnlineHelpdesk() {
     //	var ss = "</script" + ">";
@@ -42,6 +42,6 @@
     	//olhdscript.attr("src", "http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064");
     	//alert(olhdscript);
     //}
-</script>
+</script> -->
 </body>
 </html>

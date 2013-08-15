@@ -82,7 +82,11 @@
 	                    <td>${fee.feeName}公证</td>
 	                    <td><fmt:formatNumber value="${fee.notaryFee}" type="currency" pattern="￥#.00"/></td>
 	                    <td><fmt:formatNumber value="${fee.copyFee}" type="currency" pattern="￥#.00"/></td>
-	                    <td><fmt:formatNumber value="${fee.wordTranslationFee}" type="currency" pattern="￥#.00"/></td>
+	                    <td>
+	                      <c:if test="${fee.wordTranslationFee > 0}">
+	                        <fmt:formatNumber value="${fee.wordTranslationFee}" type="currency" pattern="￥#.00"/>
+	                      </c:if>
+	                    </td>
 	                    <c:choose>
 	                      <c:when test="${fee.fileTranslationFee < 0}">
 	                        <td>见文件报价</td>
