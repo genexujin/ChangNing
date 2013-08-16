@@ -1,14 +1,39 @@
 /************* certStep2 *************/
-var validBasic = true;
 var validXL = true;
 var validJH = true;
 var validQSGX = true;
 var validCYM = true;
 var validCS = true;
-var validHKBFYJ = true;
+var validXW = true;
+var validSW = true;
+var validTX = true;
+var validCSZFYJ = true;
+var validSFZFYJ = true;
+var validJHZFYJ = true;
+var validLHZFYJ = true;
+var validTXZFYJ = true;
+var validFCZFYJ = true;
+var validCKZMFYJ = true;
+var validBYZSFYJ = true;
+var validXWZSFYJ = true;
+var validZXXBYZFYJ = true;
+var validGKCJFYJ = true;
+var validZDZMFYJ = true;
+var validZGZFYJ = true;
+var validFYPJTJCDSFYJ=true;
+var validWH=true;
+var validWZHSMS=true;
+var validHKBFYJ=true;
+var validJSZFYJ = true;
+var validGJ = true;
+var validHYZKZMFYJ=true;
+var validTYCGSMS = true;
+var validCZGZCJFYJ = true;
+var validDXDZZGCJFYJ = true;
+var validHZFYJ = true;
 
 function tryToEnableGoToStep3Button() {
-	if (validBasic && validXL && validJH && validQSGX && validCYM && validCS && validHKBFYJ) {
+	if (validXL && validJH && validQSGX && validCYM && validCS && validXW && validSW && validTX && validCSZFYJ && validSFZFYJ && validJHZFYJ && validLHZFYJ && validTXZFYJ && validFCZFYJ && validCKZMFYJ && validBYZSFYJ && validXWZSFYJ && validZXXBYZFYJ && validGKCJFYJ && validZDZMFYJ && validZGZFYJ && validFYPJTJCDSFYJ && validWH && validWZHSMS && validHKBFYJ && validJSZFYJ && validGJ && validHYZKZMFYJ && validTYCGSMS && validCZGZCJFYJ && validDXDZZGCJFYJ && validHZFYJ)  {
 		$("#goToStep3").removeAttr("disabled");
 	}
 }

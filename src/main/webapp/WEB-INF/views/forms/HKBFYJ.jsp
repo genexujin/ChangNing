@@ -9,15 +9,15 @@
 	        </div>
 	      </div>
       </div>
-
-      <div class="border">
+      
+	  <div class="border">
         <br/>
         <div class="row">
-          <div class="span12">
+	        <div class="span12">
 	          <div class="row">
 	            <div class="span5 offset1">
 	    		    <div class="control-group">
-			    	  <label class="control-label" for="HKBFYJ_SHHJ">是否在沪户籍</label>
+			    	  <label class="control-label" for="HKBFYJ_SHHJ">户籍是否在上海</label>
 			    	  <div class="controls">
 				    	<label class="radio inline">
 					      <input type="radio" value="true" name="HKBFYJ_SHHJ" checked> 是&nbsp;&nbsp;
@@ -28,31 +28,44 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="HKBFYJ_SHHJ_M" class="span4 tiny-pt">提示：若否则不可办理公证
+			    <div id="HKBFYJ_SHHJ_M" class="span4 tiny-pt">提示：若非上海户籍则不可办理公证
 			    </div>
 	          </div>
-	      </div>
-        </div>
+
+	          
+	          <br/>
+	          
+	        </div>
+	    </div>        
+        
       </div>
       
       <script>
-        function prepareHKBFYJ() {
-	    	$("input[name='HKBFYJ_SHHJ']").change(validateHKBFYJ);
+	    function prepareHKBFYJ() {
+	    	validHKBFYJ = false;
+	    	
+	    	$("input[name='HKBFYJ_SHHJ']").change(validateHKBFYJ_SHHJ);
+	    	
 	    }
-        
-        function validateHKBFYJ() {
-        	 var hkbfyj_shhj = $("input[name='HKBFYJ_SHHJ']:checked").val();
-		     if (hkbfyj_shhj == 'true') {
-		    	 $("#HKBFYJ_SHHJ_M").removeClass("alert alert-error");
-		    	 validJH = true;
-		    	 tryToEnableGoToStep3Button();
-		     } else {
-		    	 $("#HKBFYJ_SHHJ_M").addClass("alert alert-error");
-		    	 validJH = false;
-		    	 disableGoToStep3Button();
-		     }
-        }
-        
-        $(prepareHKBFYJ);
-      
-      </script>
+	    
+	    function validateHKBFYJ_SHHJ() {
+	    	var hkbfyj_shhj = $("input[name='HKBFYJ_SHHJ']:checked").val();
+		    if (hkbfyj_shhj == 'true') {
+		        $("#HKBFYJ_SHHJ_M").removeClass("alert alert-error");
+		        updateValidHKBFYJ();
+		    	tryToEnableGoToStep3Button();
+		    } else {
+		    	$("#HKBFYJ_SHHJ_M").addClass("alert alert-error");
+		    	validHKBFYJ = false;
+		    	disableGoToStep3Button();
+		    }
+	    }
+	    function updateValidHKBFYJ(){
+		    var hkbfyj_shhj = $("input[name='HKBFYJ_SHHJ']:checked").val();
+		    if(hkbfyj_shhj=='true')
+		    	validHKBFYJ=true;
+
+	    }
+	    
+	    $(prepareHKBFYJ);
+	  </script>

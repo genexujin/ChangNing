@@ -244,20 +244,707 @@
             }
         ]
     },
-    
-    "HKBFYJ": {
+        "XW": {
+        "formKey": "XW",
+        "formName": "学位",
+        "fields": [
+            {
+                "fieldKey": "XW_BYZXWZ",
+                "fieldName": "是否有毕业证学位证"
+            },
+            {
+                "fieldKey": "XW_SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "XW_SHBY",
+                "fieldName": "是否在沪毕业"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "BYZ",
+                "docName": "毕业证"
+            },
+            {
+                "docKey": "XWZ",
+                "docName": "学位证",
+                "uploadAlone": true,
+                "needCrop": true
+            },
+            {
+                "docKey": "TESTKEY",
+                "docName": "测试文件上传",
+                "uploadAlone": true
+            }
+        ]
+    },
+     "SW": {
+        "formKey": "SW",
+        "formName": "死亡",
+        "containsVarItem": true,
+        "fields": [
+            {
+                "fieldKey": "SW_SH",
+                "fieldName": "死亡在上海"
+            },
+            {
+                "fieldKey": "SW_RELATION_1",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "SW_RELATION_2",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "SW_RELATION_3",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "QSGX_RELATION_4",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "SW_RELATION_5",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "SW_RELATION_6",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "SW_RELATION_7",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "SW_RELATION_8",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "SW_RELATION_9",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            },
+            {
+                "fieldKey": "SW_RELATION_10",
+                "fieldName": "和死亡人关系/关系人姓名",
+                "composite": true
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "SWRZXHJHKB",
+                "docName": "死亡人注销户籍或户口本"
+            },
+            {
+                "docKey": "SQRGXZM",
+                "docName": "申请人关系证明"
+            },
+            {
+                "docKey": "JMSWYXZMSFYJ",
+                "docName": "居民死亡医学证明书复印件"
+            }
+        ]
+    },
+        "TX": {
+        "formKey": "TX",
+        "formName": "退休",
+        "fields": [
+            {
+                "fieldKey": "TX_TXZ",
+                "fieldName": "是否有退休证"
+            },
+            {
+                "fieldKey": "TX_SHHJ",
+                "fieldName": "现户籍是上海"
+            },
+            {
+                "fieldKey": "TX_SHDW",
+                "fieldName": "退休单位在上海"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "TXZ",
+                "docName": "退休证"
+            },
+            {
+                "docKey": "BR2CZP",
+                "docName": "本人2寸照片",
+                "uploadAlone": true,
+                "needCrop": true
+            }
+        ]
+    },
+    "CSZFYJ": {
+        "formKey": "CSZFYJ",
+        "formName": "出生证复印件",
+        "fields": [
+            {
+                "fieldKey": "CSZFYJ_CSZM",
+                "fieldName": "是否有出生证明"
+            },
+            {
+                "fieldKey": "CSZFYJ_SHHJ",
+                "fieldName": "是否上海户籍"
+            },
+            {
+                "fieldKey": "CSZFYJ_SHCS",
+                "fieldName": "出生地是否上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "CSZM",
+                "docName": "出生证明"
+            },
+            {
+                "docKey": "FMHYZM",
+                "docName": "父母结婚证/离婚证+协议书/离婚判决书/离婚调解书"
+            },
+            {
+                "docKey": "FQSFZ",
+                "docName": "父亲身份证正反面",
+                "dependent": true,
+                "dependOn": "CS_SFJZ"
+            },
+            {
+                "docKey": "MQSFZ",
+                "docName": "母亲身份证正反面",
+                "dependent": true,
+                "dependOn": "CS_SMJZ"
+            },
+            {
+                "docKey": "BRHKB",
+                "docName": "本人户口本",
+                "uploadAlone": true
+            },
+            {
+                "docKey": "FQHKB",
+                "docName": "父亲户口本",
+                "uploadAlone": true,
+                "dependent": true,
+                "dependOn": "CS_SFJZ"
+            },
+            {
+                "docKey": "MQHKB",
+                "docName": "母亲户口本",
+                "uploadAlone": true,
+                "dependent": true,
+                "dependOn": "CS_SMJZ"
+            }
+        ]
+    },
+        "SFZFYJ": {
+        "formKey": "SFZFYJ",
+        "formName": "身份证复印件",
+        "fields": [
+            {
+                "fieldKey": "SFZFYJ_GZYT",
+                "fieldName": "公证用途"
+            },
+            {
+                "fieldKey": "SFZFYJ_SHHJ",
+                "fieldName": "是否在沪户籍"
+            }
+        ]
+    },
+    "JHZFYJ": {
+        "formKey": "JHZFYJ",
+        "formName": "结婚证复印件",
+        "fields": [
+            {
+                "fieldKey": "JHZFYJ_SHHJ",
+                "fieldName": "户籍是否在上海"
+            },
+            {
+                "fieldKey": "JHZFYJ_SHJH",
+                "fieldName": "结婚地是否在上海"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "JHZ",
+                "docName": "结婚证"
+            }
+        ]
+    },
+        "LHZFYJ": {
+        "formKey": "LHZFYJ",
+        "formName": "离婚证复印件",
+        "fields": [
+            {
+                "fieldKey": "LHZFYJ_SHHJ",
+                "fieldName": "户籍是否在上海"
+            },
+            {
+                "fieldKey": "LHZFYJ_SHLH",
+                "fieldName": "离婚地是否在上海"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "LHZ",
+                "docName": "离婚证"
+            }
+        ]
+    },
+    "TXZFYJ": {
+        "formKey": "TXZFYJ",
+        "formName": "退休证复印件",
+        "fields": [
+            {
+                "fieldKey": "TXZFYJ_SHHJ",
+                "fieldName": "户籍是否在上海"
+            },
+            {
+                "fieldKey": "TXZFYJ_SHTX",
+                "fieldName": "退休单位在上海"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "TXZM",
+                "docName": "退休证明"
+            }
+        ]
+    },
+    "FCZFYJ": {
+        "formKey": "FCZFYJ",
+        "formName": "房产证复印件",
+        "fields": [
+            {
+                "fieldKey": "FCZFYJ_SHFC",
+                "fieldName": "房产是否在上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "FCZ",
+                "docName": "房产证"
+            }
+        ]
+    },
+    "CKZMFYJ": {
+        "formKey": "CKZMFYJ",
+        "formName": "存款证明复印件",
+        "fields": [
+            {
+                "fieldKey": "CKZMFYJ_YHINSH",
+                "fieldName": "存款证明颁发银行在上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "CKZM",
+                "docName": "存款证明"
+            }
+        ]
+    },
+    "BYZSFYJ": {
+        "formKey": "BYZSFYJ",
+        "formName": "毕业证书复印件",
+        "fields": [
+            {
+                "fieldKey": "BYZSFYJ_BYZ",
+                "fieldName": "是否有毕业证"
+            },
+            {
+                "fieldKey": "BYZSFYJ_SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "BYZSFYJ_SHBY",
+                "fieldName": "是否在沪毕业"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "BYZ",
+                "docName": "毕业证"
+            },
+            {
+                "docKey": "TESTKEY",
+                "docName": "测试文件上传",
+                "uploadAlone": true
+            }
+        ]
+    },
+    "XWZSFYJ": {
+        "formKey": "XWZSFYJ",
+        "formName": "学位证书复印件",
+        "fields": [
+            {
+                "fieldKey": "XWZSFYJ_BYZXWZ",
+                "fieldName": "是否有毕业证学位证"
+            },
+            {
+                "fieldKey": "XWZSFYJ_SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "XWZSFYJ_SHBY",
+                "fieldName": "是否在沪毕业"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "BYZ",
+                "docName": "毕业证"
+            },
+            {
+                "docKey": "XWZ",
+                "docName": "学位证",
+                "uploadAlone": true,
+                "needCrop": true
+            },
+            {
+                "docKey": "TESTKEY",
+                "docName": "测试文件上传",
+                "uploadAlone": true
+            }
+        ]
+    },
+        "ZXXBYZFYJ": {
+        "formKey": "ZXXBYZFYJ",
+        "formName": "中小学毕业证书复印件",
+        "fields": [
+            {
+                "fieldKey": "ZXXBYZFYJ_BYZ",
+                "fieldName": "是否有毕业证"
+            },
+            {
+                "fieldKey": "ZXXBYZFYJ_SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "ZXXBYZFYJ_SHBY",
+                "fieldName": "是否在沪毕业"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "ZXXBYZ",
+                "docName": "毕业证"
+            },
+            {
+                "docKey": "TESTKEY",
+                "docName": "测试文件上传",
+                "uploadAlone": true
+            }
+        ]
+    },
+        "GKCJFYJ": {
+        "formKey": "GKCJFYJ",
+        "formName": "高考成绩复印件",
+        "fields": [
+            {
+                "fieldKey": "GKCJFYJ_SHHJ",
+                "fieldName": "户籍是否在上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "GKCJD",
+                "docName": "高考成绩单"
+            }
+        ]
+    },
+        "ZDZMFYJ": {
+        "formKey": "ZDZMFYJ",
+        "formName": "在读证明复印件",
+        "fields": [
+            {
+                "fieldKey": "ZDZMFYJ_SHHJ",
+                "fieldName": "户籍是否在上海"
+            },
+            {
+                "fieldKey": "ZDZMFYJ_SHXX",
+                "fieldName": "学校是否在上海"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "ZDZM",
+                "docName": "在读证明"
+            },
+             {
+                "docKey": "XSZ",
+                "docName": "学生证"
+            }
+        ]
+    },
+        "ZGZFYJ": {
+        "formKey": "ZGZFYJ",
+        "formName": "资格证技术等级证复印件",
+        "fields": [
+            {
+                "fieldKey": "ZGZFYJ_SHJG",
+                "fieldName": "颁证机构是否在上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "ZGZH",
+                "docName": "资格证书"
+            }
+        ]
+    },
+     "FYPJTJCDSFYJ": {
+        "formKey": "FYPJTJCDSFYJ",
+        "formName": "法院判决调解裁定书复印件",
+        "fields": [
+            {
+                "fieldKey": "FYPJTJCDSFYJ_SHFY",
+                "fieldName": "由上海法院判决"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "PJS",
+                "docName": "判决书"
+            }
+        ]
+    },
+         "WH": {
+        "formKey": "WH",
+        "formName": "未婚",
+        "fields": [
+            {
+                "fieldKey": "WH_SHHJ",
+                "fieldName": "户籍是否在上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "WHZM",
+                "docName": "民政局未婚证明"
+            }
+        ]
+    },
+     "WZHSMS": {
+        "formKey": "WZHSMS",
+        "formName": "未再婚声明书",
+        "fields": [
+            {
+                "fieldKey": "WZHSMS_SHHJ",
+                "fieldName": "户籍是否在上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "WZHZM",
+                "docName": "民政局未再婚证明"
+            },
+             {
+                "docKey": "LHZLHPJS",
+                "docName": "离婚证离婚判决书"
+            }
+        ]
+    },
+     "HKBFYJ": {
         "formKey": "HKBFYJ",
         "formName": "户口本复印件",
         "fields": [
             {
                 "fieldKey": "HKBFYJ_SHHJ",
-                "fieldName": "是否在沪户籍"
+                "fieldName": "户籍是否在上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "HKBSYYZY",
+                "docName": "户口本所有有字页"
+            }
+        ]
+    },
+     "JSZFYJ": {
+        "formKey": "JSZFYJ",
+        "formName": "驾驶证复印件",
+        "fields": [
+            {
+                "fieldKey": "JSZFYJ_SHHJ",
+                "fieldName": "户籍是否在上海"
+            },
+            {
+                "fieldKey": "JSZFYJ_SHBF",
+                "fieldName": "驾驶证颁发地是否在上海"
             }
         ],
         "docs": [
             {
-                "docKey": "HKBSYY",
-                "docName": "户口本所有有字页"
+                "docKey": "JSZZFB",
+                "docName": "驾驶证正副本"
+            },
+             {
+                "docKey": "HKB",
+                "docName": "户口本"
+            },
+            {
+                "docKey": "SFZJ",
+                "docName": "身份证件"
+            }
+        ]
+    },
+    "GJ": {
+        "formKey": "GJ",
+        "formName": "国籍",
+        "fields": [
+            {
+                "fieldKey": "GJ_SHHJ",
+                "fieldName": "现户籍是上海"
+            },
+            {
+                "fieldKey": "GJ_SHZX",
+                "fieldName": "注销户籍是上海"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "ZGHZ",
+                "docName": "中国护照",
+                 "uploadAlone": true,
+                "dependent": true,
+                "dependOn": "GJ_SHZX"
+            },
+             {
+                "docKey": "ZXHKB",
+                "docName": "注销户口本",
+                 "uploadAlone": true,
+                "dependent": true,
+                "dependOn": "GJ_SHZX"
+            }
+        ]
+    },
+      "HYZKZMFYJ": {
+        "formKey": "HYZKZMFYJ",
+        "formName": "婚姻状况证明复印件",
+        "fields": [
+            {
+                "fieldKey": "HYZKZMFYJ_SHHJ",
+                "fieldName": "户籍是否在上海"
+            }
+        ],
+        "docs": [
+             {
+                "docKey": "MZJHYZKZM",
+                "docName": "民政局婚姻状况证明"
+            }
+        ]
+    },
+        "TYCGSMS": {
+        "formKey": "TYCGSMS",
+        "formName": "同意出国声明书",
+        "fields": [
+            {
+                "fieldKey": "TYCGSMS_SHHJ",
+                "fieldName": "户籍是否在上海"
+            },
+            {
+                "fieldKey": "TYCGSMS_XHCSZ",
+                "fieldName": "有小孩出生证明"
+            },
+            {
+                "fieldKey": "TYCGSMS_XHDSZNZ",
+                "fieldName": "有小孩独生子女证"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "CSZDSZNZ",
+                "docName": "小孩独生子女证/出生证"
+            },
+            {
+                "docKey": "FMJHZ",
+                "docName": "父母结婚证"
+            },
+              {
+                "docKey": "SMS",
+                "docName": "签字后的声明书"
+            }
+        ]
+    },
+         "CZGZCJFYJ": {
+        "formKey": "CZGZCJFYJ",
+        "formName": "初中高中成绩复印件",
+        "fields": [
+        {
+        		"fieldKey": "CZGZCJFYJ_XN",
+        		"fieldName": "学年"
+        	},
+            {
+                "fieldKey": "CZGZCJFYJ_SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "CZGZCJFYJ_SHXX",
+                "fieldName": "学校是否在沪"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "CJD",
+                "docName": "成绩单"
+            },
+             {
+                "docKey": "XSZHBYZS",
+                "docName": "学生证或毕业证书"
+            }
+        ]
+    },
+     "DXDZZGCJFYJ": {
+        "formKey": "DXDZZGCJFYJ",
+        "formName": "大学大专职高成绩复印件",
+        "fields": [
+        	{
+        		"fieldKey": "DXDZZGCJFYJ_XN",
+        		"fieldName": "学年"
+        	},
+            {
+                "fieldKey": "DXDZZGCJFYJ_SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "DXDZZGCJFYJ_SHXX",
+                "fieldName": "学校是否在沪"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "CJD",
+                "docName": "成绩单"
+            },
+             {
+                "docKey": "XSZHBYZS",
+                "docName": "学生证或毕业证书"
+            }
+        ]
+    },
+      "HZFYJ": {
+        "formKey": "HZFYJ",
+        "formName": "护照复印件",
+        "fields": [
+            {
+                "fieldKey": "HZFYJ_SHHJ",
+                "fieldName": "是否在沪户籍"
+            },
+            {
+                "fieldKey": "HZFYJ_SHQF",
+                "fieldName": "护照签发地在上海"
+            }
+        ],
+        "docs": [
+            {
+                "docKey": "HZFYJ",
+                "docName": "护照复印件"
             }
         ]
     }
