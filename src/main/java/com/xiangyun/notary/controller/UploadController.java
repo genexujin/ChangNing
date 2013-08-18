@@ -109,7 +109,7 @@ public class UploadController {
 	}
 	
 	@RequestMapping(value="/getImage/{uid}/{imageName}", produces={MediaType.IMAGE_GIF_VALUE,MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE })
-	public @ResponseBody byte[] getImage(@PathVariable String uid, @PathVariable String imageName, HttpServletResponse response) throws IOException {
+	public @ResponseBody byte[] getImageForCrop(@PathVariable String uid, @PathVariable String imageName, HttpServletResponse response) throws IOException {
 		log.info("To getImage for: " + imageName);
 		
 		File imageFile = new File(getCropDir(uid) + imageName);
@@ -149,11 +149,40 @@ public class UploadController {
 		ImageIO.write(result, "jpg", new File(docPath));
 		
 		Order order = orderService.findById(uid);
-		order.addDoc(createDocItem(dockey, getDocNameFromKey(dockey), null, "", docPath));
+		//Need to add or update!
+		boolean isUpdate = false;
+		for (DocItem item : order.getDocs()) {
+		    if (dockey.equals(item.getDocKey())) {
+		        //The DocItem is already there, so need to update it.
+		        //Looks like only docPath can change
+		        item.setDocPath(docPath);
+		        isUpdate = true;
+		        break;
+		    }
+		}
+		if (!isUpdate) 
+		    order.addDoc(createDocItem(dockey, getDocNameFromKey(dockey), null, "", docPath));
+		
         orderService.save(order);
 		
-		return "success";
+        //return the docPath
+		return "getCroppedImage/" + uid + "/" + dockey + "/" + imageName + ".do";
 	}
+	
+	@RequestMapping(value="/getCroppedImage/{uid}/{dockey}/{imageName}", produces={MediaType.IMAGE_GIF_VALUE,MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE })
+    public @ResponseBody byte[] getCroppedImage(@PathVariable String uid, @PathVariable String dockey, @PathVariable String imageName, HttpServletResponse response) throws IOException {
+        log.info("To getCroppedImage for order: " + uid + ", dockey: " + dockey + ", imageName: " + imageName);
+        
+        File imageFile = new File(getSaveDir(uid.toString(), dockey) + imageName);
+        byte[] bytes = org.springframework.util.FileCopyUtils.copyToByteArray(imageFile);
+
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + imageFile.getName() + "\"");
+        response.setContentLength(bytes.length);
+        response.setContentType("image/jpeg");
+
+        return bytes;
+
+    }
 
     private String getSaveDir(String orderId, String docKey) {
         StringBuilder sb = new StringBuilder();
@@ -209,6 +238,19 @@ public class UploadController {
         docItem.setDocSize(fileSize);
         docItem.setContentType(fileContentType);
         return docItem;
+    }
+    
+    private void updateDocItem(DocItem item, String docKey, String docName, Long fileSize, String fileContentType, String docPath) {
+        if (!Constants.ALL_IN_ONE_KEY.equals(docKey)) {
+            item.setDocKey(docKey);
+            item.setDocName(docName);
+        } else {
+            item.setDocKey(null);
+            item.setDocName(null);
+        }
+        item.setDocPath(docPath);                
+        item.setDocSize(fileSize);
+        item.setContentType(fileContentType);
     }
     
     private String getDocNameFromKey(String docKey) {

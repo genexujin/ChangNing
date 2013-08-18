@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 
 <%@ include file="../header.jspf"%>
@@ -51,6 +52,17 @@
 	              </tr>
 	            </thead>
 	            <tbody>
+	              <c:forEach items="${orders}" var="order" >
+	                <tr>
+	                  <td>${order.readableId}</td>
+	                  <td></td>
+	                  <td><fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd"/></td>
+	                  <td>${order.requestorName}</td>
+	                  <td><fmt:formatNumber value="${order.paymentTotal}" type="currency" pattern="￥#0.00"/></td>
+	                  <td><fmt:formatNumber value="${order.paymentPaid}" type="currency" pattern="￥#0.00"/></td>
+	                  <td>${order.orderStatus}</td>
+	                </tr>
+	              </c:forEach>
 	            </tbody>
 	          </table>
     		</div>

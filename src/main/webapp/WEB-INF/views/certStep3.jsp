@@ -38,16 +38,16 @@
 	  <br>
 	  
 	  <!-- <form class="form-horizontal" action="certStep3.do" method="POST"> -->
-	  
-		  <div class="bar-bg">
-		      <div class="row">
-		        <div class="span12 navbg2">
-		          <h5>&nbsp;&nbsp;&nbsp;&nbsp;基本材料</h5>
-		        </div>
-		      </div>
-	      </div>
 	      
 	      <c:if test="${not um.allInOneUploadEmpty}">
+	      	  <div class="bar-bg">
+		        <div class="row">
+		          <div class="span12 navbg2">
+		            <h5>&nbsp;&nbsp;&nbsp;&nbsp;基本材料</h5>
+		          </div>
+		        </div>
+	          </div>
+	      
 		      <div class="border">
 		        <br>
 		        <div class="row">
@@ -174,6 +174,8 @@
 		              </c:if>
 		              <div id="${doc.docKey}" class="file_upload" ></div>
 		            </div>
+		            <div class="span2" id="${doc.docKey}_result">
+		            </div>
 		          </div>
 		          <script>
 		            function ${doc.docKey}_storeCoords(c) {
@@ -189,8 +191,11 @@
 		            	$.ajax({
 		                    url: "cropImage.do",
 		                    type: "POST",
-		                    success: function (data) { 
-		                        alert('裁剪成功!');
+		                    success: function (data) {
+		                    	var imgObj = $('<img src="' + data + '" />');
+		                        var target = $('#${doc.docKey}_result');
+		                        target.children().remove();
+		                        target.append(imgObj);
 		                    },
 		                    data :{
 		                        x : $('#${doc.docKey}_x').val(),

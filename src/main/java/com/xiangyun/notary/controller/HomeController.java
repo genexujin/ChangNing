@@ -10,6 +10,7 @@ public class HomeController {
 	 @RequestMapping(value = "/home.do")
 	    public ModelAndView goToHome() {
 	    	ModelAndView mav = new ModelAndView("home");
+	    	mav.addObject("title", "网上办证");
 	    	return mav;
 	    }
 

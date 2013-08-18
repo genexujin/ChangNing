@@ -70,6 +70,7 @@ public class OrderController {
     @RequestMapping(value = "/certStep1.do")
     public ModelAndView goToStep1() {
     	ModelAndView mav = new ModelAndView("certStep1");
+    	mav.addObject("title", "选择申办业务");
     	return mav;
     }
     
@@ -94,6 +95,7 @@ public class OrderController {
     	ModelAndView top = new ModelAndView("certStep2Top");
     	User u = (User)request.getSession().getAttribute(Constants.LOGIN_USER);
     	top.addObject("currUser", u);
+    	top.addObject("title", "输入信息");
     	mavList.add(top);
     	
     	//Add the middle part according selection
@@ -256,6 +258,7 @@ public class OrderController {
 //        request.getSession().removeAttribute(Constants.SESSION_SELECTED_FORMS);
         
         ModelAndView mav = new ModelAndView("certStep3");
+        mav.addObject("title", "上传资料");
         
         UploadModel m = new UploadModel();
         m.setUid(order.getId());
@@ -271,6 +274,7 @@ public class OrderController {
     @RequestMapping(value = "/certStep4.do")
     public ModelAndView goToStep4() {
         ModelAndView mav = new ModelAndView("certStep4");
+        mav.addObject("title", "上门送证");
         return mav;
     }
     
@@ -303,6 +307,7 @@ public class OrderController {
         orderService.save(order);
         
         ModelAndView mav = new ModelAndView("certStep5");
+        mav.addObject("title", "支付");
         mav.addObject("order", order);
         return mav;
     }
@@ -316,18 +321,19 @@ public class OrderController {
     	//because the Hibernate session has closed.
 //    	user = userService.save(user);
     	
-    	Set<Order> orders = new HashSet<Order>();
+    	List<Order> orders = null;
     	
     	if (user.isAdmin() || user.isStaff()) {
-    		//Retrieve all orders
-    		orders.addAll(orderService.findAll());
+    		//For the first time, just list an empty table. 
+    		orders = new ArrayList<Order>();
     	} else {
     		//Cannot use user.getOrders() here. org.hibernate.LazyInitializationException will throw,
         	//because the Hibernate session has closed.
-    		orders.addAll(orderService.findOrdersByUserId(user.getId()));
+    		orders = orderService.findOrdersByUserId(user.getId());
     	}
     	
     	ModelAndView mav = new ModelAndView("backend/orderQuery");
+    	mav.addObject("title", "订单查询");
     	mav.addObject("orders", orders);
     	return mav;
     }

@@ -67,11 +67,6 @@
                 "docName": "本人2寸照片",
                 "uploadAlone": true,
                 "needCrop": true
-            },
-            {
-                "docKey": "TESTKEY",
-                "docName": "测试文件上传",
-                "uploadAlone": true
             }
         ]
     },
@@ -244,7 +239,7 @@
             }
         ]
     },
-        "XW": {
+    "XW": {
         "formKey": "XW",
         "formName": "学位",
         "fields": [
@@ -279,7 +274,7 @@
             }
         ]
     },
-     "SW": {
+    "SW": {
         "formKey": "SW",
         "formName": "死亡",
         "containsVarItem": true,
@@ -354,7 +349,7 @@
             }
         ]
     },
-        "TX": {
+    "TX": {
         "formKey": "TX",
         "formName": "退休",
         "fields": [
@@ -443,7 +438,7 @@
             }
         ]
     },
-        "SFZFYJ": {
+    "SFZFYJ": {
         "formKey": "SFZFYJ",
         "formName": "身份证复印件",
         "fields": [
@@ -477,7 +472,7 @@
             }
         ]
     },
-        "LHZFYJ": {
+    "LHZFYJ": {
         "formKey": "LHZFYJ",
         "formName": "离婚证复印件",
         "fields": [
@@ -613,7 +608,7 @@
             }
         ]
     },
-        "ZXXBYZFYJ": {
+    "ZXXBYZFYJ": {
         "formKey": "ZXXBYZFYJ",
         "formName": "中小学毕业证书复印件",
         "fields": [
@@ -642,7 +637,7 @@
             }
         ]
     },
-        "GKCJFYJ": {
+    "GKCJFYJ": {
         "formKey": "GKCJFYJ",
         "formName": "高考成绩复印件",
         "fields": [
@@ -658,7 +653,7 @@
             }
         ]
     },
-        "ZDZMFYJ": {
+    "ZDZMFYJ": {
         "formKey": "ZDZMFYJ",
         "formName": "在读证明复印件",
         "fields": [
@@ -682,7 +677,7 @@
             }
         ]
     },
-        "ZGZFYJ": {
+    "ZGZFYJ": {
         "formKey": "ZGZFYJ",
         "formName": "资格证技术等级证复印件",
         "fields": [
@@ -698,7 +693,7 @@
             }
         ]
     },
-     "FYPJTJCDSFYJ": {
+    "FYPJTJCDSFYJ": {
         "formKey": "FYPJTJCDSFYJ",
         "formName": "法院判决调解裁定书复印件",
         "fields": [
@@ -714,7 +709,7 @@
             }
         ]
     },
-         "WH": {
+    "WH": {
         "formKey": "WH",
         "formName": "未婚",
         "fields": [
@@ -730,7 +725,8 @@
             }
         ]
     },
-     "WZHSMS": {
+    
+    "WZHSMS": {
         "formKey": "WZHSMS",
         "formName": "未再婚声明书",
         "fields": [
@@ -750,7 +746,7 @@
             }
         ]
     },
-     "HKBFYJ": {
+    "HKBFYJ": {
         "formKey": "HKBFYJ",
         "formName": "户口本复印件",
         "fields": [
@@ -766,7 +762,7 @@
             }
         ]
     },
-     "JSZFYJ": {
+    "JSZFYJ": {
         "formKey": "JSZFYJ",
         "formName": "驾驶证复印件",
         "fields": [
@@ -824,7 +820,7 @@
             }
         ]
     },
-      "HYZKZMFYJ": {
+    "HYZKZMFYJ": {
         "formKey": "HYZKZMFYJ",
         "formName": "婚姻状况证明复印件",
         "fields": [
@@ -840,7 +836,7 @@
             }
         ]
     },
-        "TYCGSMS": {
+    "TYCGSMS": {
         "formKey": "TYCGSMS",
         "formName": "同意出国声明书",
         "fields": [
@@ -872,7 +868,7 @@
             }
         ]
     },
-         "CZGZCJFYJ": {
+    "CZGZCJFYJ": {
         "formKey": "CZGZCJFYJ",
         "formName": "初中高中成绩复印件",
         "fields": [
@@ -900,7 +896,7 @@
             }
         ]
     },
-     "DXDZZGCJFYJ": {
+    "DXDZZGCJFYJ": {
         "formKey": "DXDZZGCJFYJ",
         "formName": "大学大专职高成绩复印件",
         "fields": [
@@ -928,7 +924,7 @@
             }
         ]
     },
-      "HZFYJ": {
+    "HZFYJ": {
         "formKey": "HZFYJ",
         "formName": "护照复印件",
         "fields": [

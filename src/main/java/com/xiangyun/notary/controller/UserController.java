@@ -103,6 +103,7 @@ public class UserController {
 	public ModelAndView enterLogin() {
 		User user = new User();
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("title", "用户登录");
 		mav.addObject("user", null);
 		mav.setViewName("login");
 		return mav;
@@ -265,15 +266,18 @@ public class UserController {
 		if (u == null) {
 			msg = "输入的手机号码和密码不匹配，请重试！";
 			mav.addObject("msg", msg);
+			mav.addObject("title", "用户登录");
 			mav.setViewName("login");
 		} else if (!u.getPassword().equals(Encrypt.e(user.getPassword()))) {
 			msg = "输入的手机号码和密码不匹配，请重试！";
 			mav.addObject("msg", msg);
+			mav.addObject("title", "用户登录");
 			mav.setViewName("login");
 		} else {
 			HttpSession session = request.getSession(true);
 			session.setAttribute(Constants.LOGIN_USER, u);
 			mav.addObject("user", u);
+			mav.addObject("title", "个人信息");
 			mav.setViewName("modify");
 		}
 		return mav;
