@@ -321,19 +321,36 @@ public class OrderController {
     	//because the Hibernate session has closed.
 //    	user = userService.save(user);
     	
-    	List<Order> orders = null;
+    	int pageNum;
+    	String pageNumStr = request.getParameter("pn");
+    	if (StringUtils.isEmpty(pageNumStr)) {
+    	    pageNum = 1;
+    	} else {
+    	    try {
+                pageNum = Integer.parseInt(pageNumStr);
+            } catch (NumberFormatException e) {
+                pageNum = 1;
+            }
+    	}
     	
+    	List<Order> orders = null;
+    	Long pageCount;
     	if (user.isAdmin() || user.isStaff()) {
-    		//For the first time, just list an empty table. 
-    		orders = new ArrayList<Order>();
+    		Long orderCount = orderService.getOrderCount();
+    		pageCount = orderCount / Constants.QUERY_PAGE_SIZE + 1;
+    		orders = orderService.findOrdersByPage(pageNum);
     	} else {
     		//Cannot use user.getOrders() here. org.hibernate.LazyInitializationException will throw,
         	//because the Hibernate session has closed.
-    		orders = orderService.findOrdersByUserId(user.getId());
+    		Long orderCount = orderService.getOrderCountByUserId(user.getId());
+    		pageCount = orderCount / Constants.QUERY_PAGE_SIZE + 1;
+    		orders = orderService.findOrdersByUserIdAndPage(user.getId(), pageNum);
     	}
     	
     	ModelAndView mav = new ModelAndView("backend/orderQuery");
     	mav.addObject("title", "订单查询");
+    	mav.addObject("pageCount", pageCount);
+    	mav.addObject("currPage", pageNum);
     	mav.addObject("orders", orders);
     	return mav;
     }

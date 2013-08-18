@@ -14,7 +14,7 @@ import com.xiangyun.notary.domain.User;
 
 @Service("jpaUserService")
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends AbstractService implements UserService {
     
     private static Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     

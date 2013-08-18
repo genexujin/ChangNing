@@ -31,5 +31,8 @@ public class Constants {
     public static final String ROLE_ADMIN = "admin";
     public static final String ROLE_STAFF = "staff";
     public static final String ROLE_NORMAL_USER = "user";
+    
+    public static final String COUNT_QUERY_STRING = "select count(%s) from %s x";
+    public static final int QUERY_PAGE_SIZE = 10;
 
 }

@@ -11,11 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.domain.Order;
 
 @Service("jpaOrderService")
 @Transactional
-public class OrderServiceImpl implements OrderService {
+public class OrderServiceImpl extends AbstractService implements OrderService {
     
     private static Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
     
@@ -38,6 +39,42 @@ public class OrderServiceImpl implements OrderService {
         query.setParameter("uid", userId);
         List<Order> orders = query.getResultList();
         return orders;
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<Order> findOrdersByPage(int pageNum) {
+        log.debug("Now is in findOrdersByPage()");
+        TypedQuery<Order> query = em.createNamedQuery("Order.findAll", Order.class);
+        query.setFirstResult((pageNum - 1) * Constants.QUERY_PAGE_SIZE);
+        query.setMaxResults(Constants.QUERY_PAGE_SIZE);
+        List<Order> orders = query.getResultList();
+        return orders;
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<Order> findOrdersByUserIdAndPage(Long userId, int pageNum) {
+        log.debug("Now is in findOrdersByUserIdAndPage()");
+        TypedQuery<Order> query = em.createNamedQuery("Order.findOrdersByUserId", Order.class);
+        query.setParameter("uid", userId);
+        query.setFirstResult((pageNum - 1) * Constants.QUERY_PAGE_SIZE);
+        query.setMaxResults(Constants.QUERY_PAGE_SIZE);
+        List<Order> orders = query.getResultList();
+        return orders;
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public Long getOrderCount() {
+        return getCount("Order");
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public Long getOrderCountByUserId(Long userId) {
+        TypedQuery<Long> query = em.createNamedQuery("Order.getCountByUserId", Long.class);
+        return query.setParameter("uid", userId).getSingleResult();
     }
 
     @Override

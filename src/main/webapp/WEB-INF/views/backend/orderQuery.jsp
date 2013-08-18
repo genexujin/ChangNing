@@ -67,6 +67,37 @@
 	          </table>
     		</div>
     		
+    		<div class="pagination pagination-right">
+			  <ul>
+			    <c:choose>
+			      <c:when test="${pageCount <= 5 || currPage <= 5}">
+			        <li class="disabled"><a href="#">«</a></li>
+			      </c:when>
+			      <c:otherwise>
+			        <li><a href="<c:url value="/orderQuery.do?pn=${currPage - 5}"/>">«</a></li>
+			      </c:otherwise>
+			    </c:choose>
+			    <c:forEach begin="1" end="${pageCount}" varStatus="loop">
+			      <c:choose>
+			        <c:when test="${(loop.index) == currPage}">
+			          <li class="active"><a href="#">${loop.index}</a></li>
+			        </c:when>
+			        <c:otherwise>
+			          <li><a href="<c:url value="/orderQuery.do?pn=${loop.index}"/>">${loop.index}</a></li>
+			        </c:otherwise>
+			      </c:choose>
+			    </c:forEach>
+			    <c:choose>
+			      <c:when test="${pageCount <= 5 || currPage <= 5}">
+			        <li class="disabled"><a href="#">»</a></li>
+			      </c:when>
+			      <c:otherwise>
+			        <li><a href="<c:url value="/orderQuery.do?pn=${currPage + 5}"/>">»</a></li>
+			      </c:otherwise>
+			    </c:choose>
+			  </ul>
+			</div>
+    		
           </form>
         </div>
       </div>
