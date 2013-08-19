@@ -192,3 +192,7 @@ div.flowstep ol li.pass {
 .table td {
 	border-top: 0px;
 }
+
+div.well {
+	padding: 0px;
+}

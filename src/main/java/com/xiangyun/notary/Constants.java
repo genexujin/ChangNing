@@ -33,6 +33,6 @@ public class Constants {
     public static final String ROLE_NORMAL_USER = "user";
     
     public static final String COUNT_QUERY_STRING = "select count(%s) from %s x";
-    public static final int QUERY_PAGE_SIZE = 10;
+    public static final int QUERY_PAGE_SIZE = 2;
 
 }

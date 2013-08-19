@@ -343,7 +343,7 @@ public class OrderController {
     		//Cannot use user.getOrders() here. org.hibernate.LazyInitializationException will throw,
         	//because the Hibernate session has closed.
     		Long orderCount = orderService.getOrderCountByUserId(user.getId());
-    		pageCount = orderCount / Constants.QUERY_PAGE_SIZE + 1;
+    		pageCount = (orderCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
     		orders = orderService.findOrdersByUserIdAndPage(user.getId(), pageNum);
     	}
     	
@@ -351,6 +351,12 @@ public class OrderController {
     	mav.addObject("title", "订单查询");
     	mav.addObject("pageCount", pageCount);
     	mav.addObject("currPage", pageNum);
+    	//Need to compute in Java. The we can leverage the feature that integer/integer is still a integer
+    	//In JSTL, integer/integer can be float/double, which is not good for this computation.
+    	mav.addObject("loopBegin", ((pageNum - 1) / 5) * 5 + 1);
+    	mav.addObject("loopEnd", (((pageNum - 1) / 5) * 5 + 5 < pageCount) ? ((pageNum - 1) / 5) * 5 + 5 : pageCount);
+    	mav.addObject("left", (((pageNum - 1) / 5) * 5 - 4));
+    	mav.addObject("right", (((pageNum - 1) / 5) * 5 + 6));
     	mav.addObject("orders", orders);
     	return mav;
     }
