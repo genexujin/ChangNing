@@ -73,6 +73,9 @@ public class User implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "role_id"), 
                joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> roles = new HashSet<Role>();
+    
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user")
+    private Set<Reservation> reservations = new HashSet<Reservation>();
 
 	public Long getId() {
         return id;
@@ -187,6 +190,18 @@ public class User implements Serializable {
 		roles.add(role);
 	}
 	
+	public Set<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+	
+	public void addReservation(Reservation reservation) {
+		reservations.add(reservation);
+	}
+
 	public boolean isAdmin() {
 		for (Role role : roles) {
 			if (role.getRoleName().equals(Constants.ROLE_ADMIN))

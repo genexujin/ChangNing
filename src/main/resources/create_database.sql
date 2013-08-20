@@ -161,6 +161,49 @@ CREATE  TABLE IF NOT EXISTS `changning`.`user_roles` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+CREATE  TABLE IF NOT EXISTS `changning`.`workdays` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `date` DATE NULL ,
+  `year` INT NULL ,
+  `month` INT NULL ,
+  `type` VARCHAR(20) NULL ,
+  `description` VARCHAR(500) NULL ,
+  PRIMARY KEY (`id`) );
+
+CREATE  TABLE IF NOT EXISTS `changning`.`time_segments` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `start_time` VARCHAR(45) NULL ,
+  `duration` INT NULL ,
+  PRIMARY KEY (`id`) );
+
+CREATE  TABLE IF NOT EXISTS `changning`.`Reservations` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `user_id` INT NULL ,
+  `requestor_name` VARCHAR(45) NULL ,
+  `requestor_mobile` VARCHAR(45) NULL ,
+  `reserve_key` VARCHAR(50) NULL ,
+  `workday_id` INT NULL ,
+  `time_segment_id` INT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `Reservations_Users_Fk_idx` (`user_id` ASC) ,
+  INDEX `reservations_time_segments_fk_idx` (`time_segment_id` ASC) ,
+  INDEX `reservations_workdays_fk_idx` (`workday_id` ASC) ,
+  CONSTRAINT `reservations_users_fk`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `changning`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `reservations_time_segments_fk`
+    FOREIGN KEY (`time_segment_id` )
+    REFERENCES `changning`.`time_segments` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `reservations_workdays_fk`
+    FOREIGN KEY (`workday_id` )
+    REFERENCES `changning`.`workdays` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
 insert into roles (role_name) values ('admin');
 insert into roles (role_name) values ('staff');
 insert into roles (role_name) values ('user');
@@ -172,3 +215,20 @@ VALUES ('18621910893', 'aaa', 'MALE', 'test@test.com', 'ID_CARD', '4403061999832
 
 insert into user_roles (user_id, role_id) values (1, 3);
 insert into user_roles (user_id, role_id) values (2, 2);
+
+insert into time_segments (start_time, duration) values ('08:30', 30);
+insert into time_segments (start_time, duration) values ('09:00', 30);
+insert into time_segments (start_time, duration) values ('09:30', 30);
+insert into time_segments (start_time, duration) values ('10:00', 30);
+insert into time_segments (start_time, duration) values ('10:30', 30);
+insert into time_segments (start_time, duration) values ('11:00', 30);
+insert into time_segments (start_time, duration) values ('11:30', 30);
+insert into time_segments (start_time, duration) values ('13:00', 30);
+insert into time_segments (start_time, duration) values ('13:30', 30);
+insert into time_segments (start_time, duration) values ('14:00', 30);
+insert into time_segments (start_time, duration) values ('14:30', 30);
+insert into time_segments (start_time, duration) values ('15:00', 30);
+insert into time_segments (start_time, duration) values ('15:30', 30);
+insert into time_segments (start_time, duration) values ('16:00', 30);
+insert into time_segments (start_time, duration) values ('16:30', 30);
+insert into time_segments (start_time, duration) values ('17:00', 30);
