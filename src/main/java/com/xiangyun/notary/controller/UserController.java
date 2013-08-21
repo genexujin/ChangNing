@@ -361,4 +361,45 @@ public class UserController {
 			mav.setViewName("modify");
 		return mav;
 	}
+	
+	/**
+	 * 
+	 * @param response
+	 */
+	@RequestMapping(value = "/whichUser.do")
+	public void whichUser(HttpServletRequest request,HttpServletResponse response)  {
+		try {
+			HttpSession session = request.getSession(true);
+			User u = (User)session.getAttribute(Constants.LOGIN_USER);
+			if(u!=null){
+				String userName = u.getName();
+				String mobile = u.getMobile();
+				String email = u.getEmail();
+				StringBuffer buffer = new StringBuffer();
+				buffer.append("{\"UserName\":\"");
+				buffer.append(userName);
+				buffer.append("\",");
+				buffer.append("\"UserPhone\":\"\",");
+				buffer.append("\"UserMobile\":\"");
+				buffer.append(mobile);
+				buffer.append("\",");
+				buffer.append("\"UserFax\":\"\",");
+				buffer.append("\"UserQQ\":\"\",");
+				buffer.append("\"UserMSN\":\"\",");
+				buffer.append("\"UserEmail\":\"");
+				buffer.append(email);
+				buffer.append("\",");
+				buffer.append("\"UserCompany\":\"\",");
+				buffer.append("\"UserAddress\":\"\"");
+				buffer.append("}");
+				
+				response.getWriter().print(buffer.toString());
+			}
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
