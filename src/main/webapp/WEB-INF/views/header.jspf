@@ -1,55 +1,115 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="<c:url value="/uploadify/uploadify.css" />" rel="stylesheet">
-    <link href="<c:url value="/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
-    <link href="<c:url value="/datepicker/css/datepicker.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/changning.css" />" rel="stylesheet">
-    <link href="<c:url value="Jcrop-0.9.12/css/jquery.Jcrop.css" />" type="text/css" rel="stylesheet" />
-    
-	<script src="<c:url value="/jquery/jquery-1.10.1.js"/>"></script>
-	<script src="<c:url value="/bootstrap/js/bootstrap.min.js"/>"></script>
-	<script src="<c:url value="/resources/changning.js"/>"></script>
-	<title>${title}</title>
-	
-  </head>
-  <body>
- 
-  
-	<div class="container">
-	  <div class="row">
-	    <div class="span6">
-	      <h1><img src="<c:url value="/resources/logo.jpg"/>" alt="Logo">上海市长宁公证处网上办证平台</h1>
-	    </div>
-	    
-	    <div class="span6 pull-right small-pt">
-	      <div>
-	        <p style="margin-top:10px;">
-	          <span class="text-font text-b">尊敬的 </span>
-	          <span class="text-font text-r">wangxudong1</span>
-	          <span class="text-font text-b"> 欢迎登录！ </span>
-	          <span class="text-font"><a href="#">[当事人中心]</a>&nbsp; <a href="#">[登出]</a></span>
-	          <span class="text-font">|&nbsp;<a href="#">联系我们&nbsp;</a>|&nbsp;<a href="#">常见问题</a></span>
-	        </p>
-	      </div>
-	    </div>
-	  </div>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="<c:url value="/uploadify/uploadify.css" />" rel="stylesheet">
+<link href="<c:url value="/bootstrap/css/bootstrap.min.css" />"
+	rel="stylesheet">
+<link href="<c:url value="/datepicker/css/datepicker.css" />"
+	rel="stylesheet">
+<link href="<c:url value="/resources/changning.css" />" rel="stylesheet">
+<link href="<c:url value="Jcrop-0.9.12/css/jquery.Jcrop.css" />"
+	type="text/css" rel="stylesheet" />
 
-      <div class="masthead">
-        <div class="navbar">
-          <div class="navbar-inner navbg3">
-            <div class="container">
-              <ul class="nav">
-                <li><a class="clean" href="#">首页</a></li>
-                <li class="active"><a class="clean" href="#">网上办证</a></li>
-                <li><a class="clean" href="#">网上预约</a></li>
-                <li><a class="clean" href="#">办证指南</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+<script src="<c:url value="/jquery/jquery-1.10.1.js"/>"></script>
+<script src="<c:url value="/bootstrap/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/changning.js"/>"></script>
+<title>${title}</title>
+
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="span6">
+				<h1>
+					<img src="<c:url value="/resources/logo.jpg"/>" alt="Logo">上海市长宁公证处网上办证平台
+				</h1>
+			</div>
+
+			<div class="span6 pull-right small-pt">
+				<div>
+					<p style="margin-top: 10px;">
+						<span class="text-font text-b">尊敬的 </span> <span
+							class="text-font text-r">wangxudong1</span> <span
+							class="text-font text-b"> 欢迎登录！ </span> <span class="text-font"><a
+							href="#">[当事人中心]</a>&nbsp; <a href="#">[登出]</a></span> <span
+							class="text-font">|&nbsp;<a href="#">联系我们&nbsp;</a>|&nbsp;<a
+							href="#">常见问题</a></span>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="masthead">
+			<div class="navbar">
+				<div class="navbar-inner navbg3">
+					<div class="container">
+						<ul class="nav">
+							<%
+								String reqURL = request.getRequestURL().toString();
+								
+								if (reqURL.indexOf("home.jsp") > 0) {
+							%>
+			<!-- 首页            -->				
+							<li class="active"><a class="clean" href="#">首页</a></li>
+							<%
+								} else {
+							%>
+							<li><a class="clean" href="home.do">首页</a></li>
+							<%
+								}
+							%>
+			<!-- 主流程        -->	
+							<%
+								if (reqURL.indexOf("certStep") > 0) {
+							%>
+							<li class="active"><a class="clean" href="#">网上办证</a></li>
+							<%
+								} else {
+							%>
+							<li><a class="clean" href="certStep1.do">网上办证</a></li>
+							<%
+								}
+							%>
+							
+							
+			<!-- 预约流程      -->				
+							<%
+								if (reqURL.indexOf("reservation")> 0) {
+							%>
+							<li class="active"><a class="clean" href="#">网上预约</a></li>
+							<%
+								} else {
+							%>
+							<li><a class="clean" href="#">网上预约</a></li>
+							<%
+								}
+							%>
+							
+			<!-- 个人中心      -->					
+							
+							<%
+								if (reqURL.indexOf("register")> 0) {
+							%>
+							<li class="active"><a class="clean" href="#">个人中心</a></li>
+							<%
+								} else {
+							%>
+							<li><a class="clean" href="orderQuery.do">个人中心</a></li>
+							<%
+								}
+							%>
+							
+							
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>

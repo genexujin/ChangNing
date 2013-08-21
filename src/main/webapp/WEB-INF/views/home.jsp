@@ -96,7 +96,7 @@
 					<h1>长宁公证之窗</h1>
 					<p class="lead">了解公证的窗口 网上办事的平台 沟通信息的桥梁</p>
 					<a class="btn btn-large btn-primary"
-						href="#">现在就去注册!</a>
+						href="enterRegister.do">现在就去注册!</a>
 				</div>
 			</div>
 		</div>
