@@ -81,7 +81,7 @@
 							
 			<!-- 预约流程      -->				
 							<%
-								if (reqURL.indexOf("reservation")> 0) {
+								if (reqURL.indexOf("reserv_")> 0) {
 							%>
 							<li class="active"><a class="clean" href="#">网上预约</a></li>
 							<%
@@ -95,7 +95,7 @@
 			<!-- 个人中心      -->					
 							
 							<%
-								if (reqURL.indexOf("register")> 0) {
+								if (reqURL.indexOf("userCenter_")> 0) {
 							%>
 							<li class="active"><a class="clean" href="#">个人中心</a></li>
 							<%
