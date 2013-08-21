@@ -166,6 +166,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`workdays` (
   `date` DATE NULL ,
   `year` INT NULL ,
   `month` INT NULL ,
+  `day` INT NULL ,
   `type` VARCHAR(20) NULL ,
   `description` VARCHAR(500) NULL ,
   PRIMARY KEY (`id`) );

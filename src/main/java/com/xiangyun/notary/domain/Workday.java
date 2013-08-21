@@ -29,6 +29,8 @@ public class Workday implements Serializable {
     
     private int month;
     
+    private int day;
+    
     @Enumerated(EnumType.STRING)
     private WorkdayType type;
     
@@ -64,6 +66,14 @@ public class Workday implements Serializable {
 
 	public void setMonth(int month) {
 		this.month = month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 	public WorkdayType getType() {

@@ -21,16 +21,21 @@ public class WorkdayPopulator {
         	Calendar date = Calendar.getInstance();
         	//Create workday for a year
         	for (int i = 0; i < 365; i++) {
+        		Workday day = new Workday();
+            	day.setDate(date.getTime());
+            	day.setYear(date.get(Calendar.YEAR));
+            	day.setMonth(date.get(Calendar.MONTH) + 1);
+            	day.setDay(date.get(Calendar.DAY_OF_MONTH));
+            	
         		if ( date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY 
         			&& date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
-        			Workday day = new Workday();
-                	day.setDate(date.getTime());
-                	day.setYear(date.get(Calendar.YEAR));
-                	day.setMonth(date.get(Calendar.MONTH) + 1);
-                	day.setType(WorkdayType.WORKDAY);
-                	em.persist(day);
+        			
+                	day.setType(WorkdayType.WORKDAY);                	
+        		} else {
+        			day.setType(WorkdayType.NON_WORKDAY);
         		}
         		
+        		em.persist(day);
         		date.add(Calendar.DATE, 1);
         	}
         	
