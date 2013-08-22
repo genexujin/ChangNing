@@ -79,13 +79,7 @@ function setLangAndVerify(event) {
 
 function setLanguage(country) {
 	var langs = $("#trans").find("option");
-	//阿根廷 may remove English, so here to add it back
-	var first = langs.get(0);
-	if (first.value != 'English') {
-		//Clone one and put it as the first one
-		$(first).before(createOptionByClone($(first), "English", "英语"));
-	}
-	
+		
 	//Get langs again
 	langs = $("#trans").find("option");
 	
@@ -97,7 +91,7 @@ function setLanguage(country) {
 	}
 	
 	//Now insert language according country
-	first = langs.get(0);
+	var first = langs.get(0);
 	if (country == 'France') {
 		$(first).after(createOptionByClone($(first), "French", "法语"));
 	} else if (country == 'Austria') {
@@ -142,8 +136,6 @@ function setLanguage(country) {
 		$(first).after(createOptionByClone($(first), "Russian", "俄语"));
 	} else if (country == 'Argentina') {
 		$(first).after(createOptionByClone($(first), "Spanish", "西班牙语"));
-		//阿根廷 needs to remove the first one
-		$(first).remove();
 	} else if (country == 'Venezuela') {
 		$(first).after(createOptionByClone($(first), "Spanish", "西班牙语"));
 	}

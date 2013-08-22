@@ -37,7 +37,7 @@
 	  
 	  <br>
 	  
-	  <!-- <form class="form-horizontal" action="certStep3.do" method="POST"> -->
+	  <form class="form-horizontal" action="certStep4.do" method="POST">
 	      
 	      <c:if test="${not um.allInOneUploadEmpty}">
 	      	  <div class="bar-bg">
@@ -251,6 +251,24 @@
 		      </div>
 		    </c:forEach>
 	      </c:if>
+	      
+	      <div class="bar-bg">
+		      <div class="row">
+		        <div class="span12 navbg2">
+		          <h5>&nbsp;&nbsp;&nbsp;&nbsp;备注</h5>
+		        </div>
+		      </div>
+	      </div>
+	      
+		  <div class="border">
+		    <br/>
+		    <div class="row">
+		      <div class="span8 offset1">
+		        <textarea rows="5" cols="150" name="upload_note" style="width: 700px;">如有特殊上传情况，可在此说明</textarea>
+		      </div>
+		    </div>
+		    <br/>
+		  </div>
 
 	      <br>
 	      <br/>

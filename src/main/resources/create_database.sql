@@ -56,6 +56,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `requestor_mobile` VARCHAR(45) NULL ,
   `reqeustor_email` VARCHAR(45) NULL ,
   `requestor_address` VARCHAR(500) NULL ,
+  `upload_note` VARCHAR(1000) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `user_fk_idx` (`user_id` ASC) ,
   CONSTRAINT `user_fk`
@@ -63,6 +64,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
     REFERENCES `changning`.`users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
 
 CREATE  TABLE IF NOT EXISTS `changning`.`forms` (
   `id` INT NOT NULL AUTO_INCREMENT ,

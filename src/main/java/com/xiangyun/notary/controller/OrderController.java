@@ -272,7 +272,14 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/certStep4.do")
-    public ModelAndView goToStep4() {
+    public ModelAndView goToStep4(@RequestParam("upload_note") String uploadNote,
+            					  HttpServletRequest request) {
+    	
+    	Order order = (Order)request.getSession(false).getAttribute(Constants.CURRENT_ORDER);
+    	order.setUploadNote(uploadNote);
+    	
+    	orderService.save(order);
+    	
         ModelAndView mav = new ModelAndView("certStep4");
         mav.addObject("title", "上门送证");
         return mav;

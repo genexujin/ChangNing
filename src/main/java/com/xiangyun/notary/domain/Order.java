@@ -116,6 +116,9 @@ public class Order implements Serializable {
     
     @Column(name = "requestor_address")
     private String requestorAddress;
+    
+    @Column(name = "upload_note")
+    private String uploadNote;
 
     public Long getId() {
         return id;
@@ -311,6 +314,14 @@ public class Order implements Serializable {
 		this.requestorAddress = requestorAddress;
 	}
 	
+	public String getUploadNote() {
+		return uploadNote;
+	}
+
+	public void setUploadNote(String uploadNote) {
+		this.uploadNote = uploadNote;
+	}
+
 	public double calculateTotalFee() {
 	    double result = 0.0;
 	    for (Form form : forms) {
