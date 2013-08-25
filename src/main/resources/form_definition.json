@@ -1,4 +1,19 @@
 {
+    "TY": {
+        "formKey": "TY",
+        "formName": "上传",
+        "fields": [],
+        "docs": [
+            {
+                "docKey": "SFZ",
+                "docName": "身份证正反面"
+            },
+            {
+                "docKey": "HKB",
+                "docName": "户口本地址、户主、本人及相关人员页"
+            }
+        ]
+    },
     "JH": {
         "formKey": "JH",
         "formName": "结婚",
@@ -266,11 +281,6 @@
                 "docName": "学位证",
                 "uploadAlone": true,
                 "needCrop": true
-            },
-            {
-                "docKey": "TESTKEY",
-                "docName": "测试文件上传",
-                "uploadAlone": true
             }
         ]
     },
@@ -565,11 +575,6 @@
             {
                 "docKey": "BYZ",
                 "docName": "毕业证"
-            },
-            {
-                "docKey": "TESTKEY",
-                "docName": "测试文件上传",
-                "uploadAlone": true
             }
         ]
     },
@@ -600,11 +605,6 @@
                 "docName": "学位证",
                 "uploadAlone": true,
                 "needCrop": true
-            },
-            {
-                "docKey": "TESTKEY",
-                "docName": "测试文件上传",
-                "uploadAlone": true
             }
         ]
     },
@@ -629,11 +629,6 @@
             {
                 "docKey": "ZXXBYZ",
                 "docName": "毕业证"
-            },
-            {
-                "docKey": "TESTKEY",
-                "docName": "测试文件上传",
-                "uploadAlone": true
             }
         ]
     },

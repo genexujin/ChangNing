@@ -37,6 +37,14 @@
 	  
 	  <br>
 	  
+	  <div class="row">
+	    <div class="span10 offset1">
+	      <h5><font color="red">请上传所需材料。如果材料暂时无法备齐可以先进入下一步，完成支付后可以补充材料。</font></h5>
+	    </div>
+	  </div>
+	  
+	  <br>
+	  
 	  <form class="form-horizontal" action="certStep4.do" method="POST">
 	      
 	      <c:if test="${not um.allInOneUploadEmpty}">
@@ -54,8 +62,10 @@
 		          <div class="span11 offset1">
 			        <p><h5>需要上传的材料：</h5>
 			        <ul>
-			          <c:forEach items="${um.allInOneUpload}" var="doc" >
-			            <li>${doc.docName}</li>
+			          <c:forEach items="${um.allInOneValues}" var="docs" >
+			            <c:forEach items="${docs}" var="doc" >
+			              <li>${doc.docName}</li>
+			            </c:forEach>
 			          </c:forEach>
 			        </ul>
 			        <div class="row">
@@ -178,6 +188,9 @@
 		            </div>
 		          </div>
 		          <script>
+		            var ${doc.docKey}_jcrop_api;
+		           
+		            
 		            function ${doc.docKey}_storeCoords(c) {
 		            	$('#${doc.docKey}_x').val(Math.round(c.x));
 		            	$('#${doc.docKey}_y').val(Math.round(c.y));
@@ -233,16 +246,46 @@
 	        		        	$('#${doc.docKey}_fileName').val(file.name);
 	        		        },
 	        		        'onUploadSuccess' : function(file, data, response) {
-	        		        	$('#${doc.docKey}_img').prop('src', data);
+	        		        	if (${doc.docKey}_jcrop_api != undefined) {
+	        		        		${doc.docKey}_jcrop_api.destroy();
+	        		        		${doc.docKey}_jcrop_api = undefined;
+	        		        	}
+	        		        	var oldImg = $('#${doc.docKey}_img');
+	        		        	var parent = oldImg.parent();
+	        		        	oldImg.remove();
+	        		        	var newImg = $('<img id="${doc.docKey}_img"/>')
+	        		        	parent.prepend(newImg);
+	        		        	newImg.prop('src', data);
+	        		        	
+	        		        	//$('#${doc.docKey}_img').prop('src', data);
 	        	            	$('#${doc.docKey}_crop').css("display", "inline-block");
 	        	            	$('#${doc.docKey}_crop').click(${doc.docKey}_crop);
-	        		        	$('#${doc.docKey}_img').Jcrop({
-	        		        		aspectRatio : 0.66,
-	        		        		setSelect : [0, 0, 120, 180],
-	        		        		allowSelect : false,
-	        		        		allowResize : true,
-	        		        		onSelect : ${doc.docKey}_storeCoords
-	        		        	});
+	        	            	
+	        	            	//if (${doc.docKey}_jcrop_api == undefined) {
+	        	            	//	$('#${doc.docKey}_img').Jcrop({
+		        		        //		aspectRatio : 0.66,
+		        		        //		setSelect : [0, 0, 120, 180],
+		        		        //		allowSelect : false,
+		        		        //		allowResize : true,
+		        		        //		onSelect : ${doc.docKey}_storeCoords
+		        		        //	}, function() {
+		        		        //		${doc.docKey}_jcrop_api = this;
+		        		        //	});
+	        	            	//} else {
+	        	            	//	${doc.docKey}_jcrop_api.setImage(data);
+	        	            	//}
+	        	            	
+	        	            	if (${doc.docKey}_jcrop_api == undefined) {
+	        	            		$('#${doc.docKey}_img').Jcrop({
+		        		        		aspectRatio : 0.66,
+		        		        		setSelect : [0, 0, 120, 180],
+		        		        		allowSelect : false,
+		        		        		allowResize : true,
+		        		        		onSelect : ${doc.docKey}_storeCoords
+		        		        	}, function() {
+				        		        		${doc.docKey}_jcrop_api = this;
+		        		        	});
+	        	            	} 
 	        		        }
 	        		    });
 	                });

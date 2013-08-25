@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
+
+	<script src="datepicker/js/bootstrap-datepicker.js"></script>
       
       <ul class="breadcrumb">
         <b>您的位置：</b>
@@ -63,8 +65,8 @@
 	    		<div class="row">
 		          <div class="span5 offset1">
 	    		    <div class="control-group">
-			    	  <label class="control-label" for="gender">性别</label>
-			    	  <div class="controls">
+			    	  <label class="control-label" for="gender">申请人名字拼音</label>
+			    	  <%-- <div class="controls">
 			    		<SELECT id="gender" name="gender">
 			    		  <c:choose>
 			    		    <c:when test="${currUser.gender == 'MALE'}">
@@ -77,10 +79,28 @@
 			    		    </c:otherwise>
 					      </c:choose>
 						</SELECT>
+			    	  </div> --%>
+			    	  <div class="controls">
+			    		<input id="username" name="pinyin" type="text"></input>
 			    	  </div>
 			    	</div>
 	    		  </div>
 	    		</div>
+	    		<div class="row">
+	              <div class="span5 offset1">
+	    		    <div class="control-group">
+			    	  <label class="control-label" for="address">出生日期</label>
+			    	  <div class="controls">
+			    		<div data-date-format="mm/dd/yyyy" data-date="now" id="birthDate" class="input-append date">
+				          <input type="text" readonly size="16" class="span2" name="birthDate">
+				          <span class="add-on"><i class="icon-calendar"></i></span>
+			            </div>
+			    	  </div>
+			    	</div>
+	    		  </div>
+	    		  <!-- <div id="address_m" class="span4 tiny-pt hide alert alert-error">地址不能为空
+			      </div> -->
+	            </div>
 	    		<div class="row">
 	    		  <div class="span5 offset1">
 	    		    <div class="control-group">
@@ -105,19 +125,6 @@
 	    		  <div id="email_m" class="span4 hide alert alert-error">
 			      </div>
 	            </div>
-	            <div class="row">
-	              <div class="span5 offset1">
-	    		    <div class="control-group">
-			    	  <label class="control-label" for="address">地址</label>
-			    	  <div class="controls">
-			    		<input id="address" name="address" type="text" value="${currUser.address}"></input>
-			    	  </div>
-			    	</div>
-	    		  </div>
-	    		  <div id="address_m" class="span4 tiny-pt hide alert alert-error">地址不能为空
-			      </div>
-	            </div>
-	          
 	    	</div>
 	    </div>      
       </div>
@@ -126,12 +133,14 @@
         	  validateUsername();
         	  validateMobile();
         	  validateEmail();
-        	  validateAddress();
+        	  //validateAddress();
         	  
         	  $("#username").change(validateUsername);
         	  $("#mobile").change(validateMobile);
         	  $("#email").change(validateEmail);
-        	  $("#address").change(validateAddress);
+        	  //$("#address").change(validateAddress);
+
+  		      $('#birthDate').datepicker();
           }
           $(prepareBasic);
           
@@ -167,11 +176,12 @@
           
           function validateEmail() {
         	  var email = $("#email").val();
-        	  if (email == '') {
-        		  $("#email_m").removeClass("hide").text("邮箱不能为空");
-        		  validBasic = false;
-        		  disableGoToStep3Button();
-        	  } else if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
+        	  //if (email == '') {
+        		//  $("#email_m").removeClass("hide").text("邮箱不能为空");
+        		//  validBasic = false;
+        		//  disableGoToStep3Button();
+        	  //} else if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
+        	  if (email != '' && !email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
         		  $("#email_m").removeClass("hide").text("邮箱格式不正确！请重新输入！");
         		  validBasic = false;
         		  disableGoToStep3Button();
@@ -180,7 +190,7 @@
         		  updateValidBasic();
         		  tryToEnableGoToStep3Button();
         	  }
-          }validateAddress
+          }
           
           function validateAddress() {
         	  var address = $("#address").val();

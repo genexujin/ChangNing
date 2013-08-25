@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +26,6 @@ import org.springframework.web.servlet.View;
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.DestinationCountry;
-import com.xiangyun.notary.common.Gender;
 import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
@@ -143,10 +140,7 @@ public class OrderController {
     @RequestMapping(value = "/certStep3")
     public ModelAndView goToStep3(HttpServletRequest request,
     		@RequestParam("username")String requestorName,
-    		@RequestParam("gender")Gender requestorGender,
-    		@RequestParam("mobile")String requestorMobile,
-    		@RequestParam("email")String requestorEmail,
-    		@RequestParam("address")String requestorAddress) {
+    		@RequestParam("mobile")String requestorMobile) {
         
     	HttpSession session = request.getSession(false);
     	if (session == null) {
@@ -159,10 +153,18 @@ public class OrderController {
         
         Order order = (Order)session.getAttribute(Constants.CURRENT_ORDER);
         order.setRequestorName(requestorName);
-        order.setRequestorGender(requestorGender);
-        order.setRequestorMobile(requestorMobile);
-        order.setRequestorEmail(requestorEmail);
-        order.setRequestorAddress(requestorAddress);
+        order.setRequestorMobile(requestorMobile);        
+        if (!StringUtils.isEmpty(request.getParameter("pinyin"))) 
+            order.setRequestorNamePinyin(request.getParameter("pinyin"));
+        if (!StringUtils.isEmpty(request.getParameter("email"))) 
+            order.setRequestorEmail(request.getParameter("email"));
+        String birthDate = request.getParameter("birthDate");
+        try {
+            if (!StringUtils.isEmpty(birthDate)) 
+                order.setRequestorBirthDate(format.parse(birthDate));
+        } catch (ParseException e) {
+            log.error("Fail to parse the request parameter birthDate.", e);
+        }
         
         //May access /certStep3 directly
         if (selectedForms == null) {
@@ -171,9 +173,16 @@ public class OrderController {
             return new ModelAndView("certStep3");
         }
         
-        Map<String, FormDocItemDef> allInOneUploadDocs = new HashMap<String, FormDocItemDef>();
+        Map<String, List<FormDocItemDef>> allInOneUploadDocs = new HashMap<String, List<FormDocItemDef>>();
         Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
         Map<String, FormDocItemDef> needCropDocs = new HashMap<String, FormDocItemDef>();
+        
+        //First put the 通用  docs in the map.
+        Map<String, FormDef> formDefs = (Map<String, FormDef>)ctx.getAttribute(Constants.FORM_DEFS);
+        FormDef ty = formDefs.get("TY");
+        for (FormDocItemDef docDef : ty.getDocs()) {
+            putIfAbsent(allInOneUploadDocs, ty, docDef);
+        }
         
         for (FormDef formDef : selectedForms) {
         	Form form = new Form();
@@ -228,7 +237,7 @@ public class OrderController {
         	        putIfAbsent(aloneUploadDocs, docDef);
         			
         		} else if (shouldPut){
-        		    putIfAbsent(allInOneUploadDocs, docDef);
+        		    putIfAbsent(allInOneUploadDocs, formDef, docDef);
         		    
         		}
         	}
@@ -240,12 +249,12 @@ public class OrderController {
         				FormDocItemDef idDocDef = new FormDocItemDef();
         				idDocDef.setDocKey(item.getItemKey() + Constants.QSGX_DOC_ID_SUFFIX);
         				idDocDef.setDocName(Constants.QSGX_DOC_ID_TEMPLATE.replace("%", item.getRelativeInfo().getRelativeName()));
-        				putIfAbsent(allInOneUploadDocs, idDocDef);
+        				putIfAbsent(allInOneUploadDocs, formDef, idDocDef);
         				
         				FormDocItemDef hkDocDef = new FormDocItemDef();
         				hkDocDef.setDocKey(item.getItemKey() + Constants.QSGX_DOC_HK_SUFFIX);
         				hkDocDef.setDocName(Constants.QSGX_DOC_HK_TEMPLATE.replace("%", item.getRelativeInfo().getRelativeName()));
-        				putIfAbsent(allInOneUploadDocs, hkDocDef);
+        				putIfAbsent(allInOneUploadDocs, formDef, hkDocDef);
         			}
         		}
         	}
@@ -262,7 +271,7 @@ public class OrderController {
         
         UploadModel m = new UploadModel();
         m.setUid(order.getId());
-        m.setAllInOneUpload(allInOneUploadDocs.values());
+        m.setAllInOneUpload(allInOneUploadDocs);
         m.setAloneUpload(aloneUploadDocs.values());
         m.setNeedCrop(needCropDocs.values());
         
@@ -371,6 +380,32 @@ public class OrderController {
     private void putIfAbsent(Map<String, FormDocItemDef> docDefs, FormDocItemDef docDef) {
         if (!docDefs.containsKey(docDef.getDocKey())) {
             docDefs.put(docDef.getDocKey(), docDef);
+        }
+        
+    }
+    
+    private void putIfAbsent(Map<String, List<FormDocItemDef>> docDefs, FormDef formDef, FormDocItemDef docDef) {
+        List<FormDocItemDef> formDocs = null;
+        if (!docDefs.containsKey(formDef.getFormKey())) {
+            formDocs = new ArrayList<FormDocItemDef>();
+            docDefs.put(formDef.getFormKey(), formDocs);
+        } else 
+            formDocs = docDefs.get(formDef.getFormKey());
+        
+        boolean contained = false;
+        for (List<FormDocItemDef> docList : docDefs.values()) {
+            for (FormDocItemDef doc : docList) {
+                if (doc.getDocKey().equals(docDef.getDocKey())) {
+                    contained = true;
+                    break;
+                }
+            }
+            
+            if (contained) break;
+        }
+        
+        if (!contained) {
+            formDocs.add(docDef);
         }
         
     }

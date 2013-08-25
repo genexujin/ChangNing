@@ -103,6 +103,9 @@ public class Order implements Serializable {
     
     @Column(name = "requestor_name")
     private String requestorName;
+    
+    @Column(name = "requestor_name_pinyin")
+    private String requestorNamePinyin;
 
 	@Column(name = "requestor_gender")
     @Enumerated(EnumType.STRING)
@@ -116,6 +119,9 @@ public class Order implements Serializable {
     
     @Column(name = "requestor_address")
     private String requestorAddress;
+    
+    @Column(name = "requestor_birth_date")
+    private Date requestorBirthDate;
     
     @Column(name = "upload_note")
     private String uploadNote;
@@ -282,7 +288,23 @@ public class Order implements Serializable {
 		this.requestorName = requestorName;
 	}
 
-	public Gender getRequestorGender() {
+	public String getRequestorNamePinyin() {
+        return requestorNamePinyin;
+    }
+
+    public void setRequestorNamePinyin(String requestorNamePinyin) {
+        this.requestorNamePinyin = requestorNamePinyin;
+    }
+
+    public Date getRequestorBirthDate() {
+        return requestorBirthDate;
+    }
+
+    public void setRequestorBirthDate(Date requestorBirthDate) {
+        this.requestorBirthDate = requestorBirthDate;
+    }
+
+    public Gender getRequestorGender() {
 		return requestorGender;
 	}
 

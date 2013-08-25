@@ -3,8 +3,10 @@ package com.xiangyun.notary.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,7 +46,7 @@ public class Form implements Serializable {
     private Set<FormItem> formItems = new HashSet<FormItem>();
     
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "form")
-    private Set<FeeItem> feeItems = new HashSet<FeeItem>();
+    private Set<FeeItem> feeItems = new TreeSet<FeeItem>(new FeeItemNameComparator());
 
     public Long getId() {
         return id;
@@ -110,6 +112,15 @@ public class Form implements Serializable {
             result += item.calculateFee();
         }
         return result;
+    }
+    
+    private static class FeeItemNameComparator implements Comparator<FeeItem> {
+
+        @Override
+        public int compare(FeeItem item1, FeeItem item2) {
+            return item1.getFeeName().compareTo(item2.getFeeName());
+        }
+        
     }
 
 }

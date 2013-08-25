@@ -120,8 +120,8 @@
 	                </tr>
 	              </c:if>
 	              <tr>
-	                <td>应收费用总计</td>
-	                <td><fmt:formatNumber value="${order.paymentTotal}" type="currency" pattern="￥#.00"/></td>
+	                <td><font><b>应收费用总计</b></font></td>
+	                <td><b><fmt:formatNumber value="${order.paymentTotal}" type="currency" pattern="￥#.00"/></b></td>
 	                <td></td>
 	                <td></td>
 	                <td></td>

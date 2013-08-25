@@ -1,12 +1,14 @@
 package com.xiangyun.notary.model;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import com.xiangyun.notary.form.FormDocItemDef;
 
 public class UploadModel {
     private Long uid;
-    private Collection<FormDocItemDef> allInOneUpload;
+    private Map<String, List<FormDocItemDef>> allInOneUpload;
     private Collection<FormDocItemDef> aloneUpload;
     private Collection<FormDocItemDef> needCrop;
 
@@ -18,11 +20,11 @@ public class UploadModel {
         this.uid = uid;
     }
     
-    public Collection<FormDocItemDef> getAllInOneUpload() {
+    public Map<String, List<FormDocItemDef>> getAllInOneUpload() {
         return allInOneUpload;
     }
     
-    public void setAllInOneUpload(Collection<FormDocItemDef> allInOneUpload) {
+    public void setAllInOneUpload(Map<String, List<FormDocItemDef>> allInOneUpload) {
         this.allInOneUpload = allInOneUpload;
     }
     
@@ -52,6 +54,10 @@ public class UploadModel {
     
     public boolean isNeedCropEmpty() {
         return needCrop.isEmpty();
+    }
+    
+    public Collection<List<FormDocItemDef>> getAllInOneValues() {
+        return allInOneUpload.values();
     }
 
 }

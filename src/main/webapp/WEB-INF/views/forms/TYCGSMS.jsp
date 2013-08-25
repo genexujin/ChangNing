@@ -65,7 +65,7 @@
 					<div class="control-group">
 						<label class="control-label" >请下载声明书</label>
 						<div class="controls">
-							<button href="#" class="btn" type="button">下载</button>
+							<a href="resources/docs/chuguo.zip" class="btn">下载</a>
 						</div>
 					</div>
 				</div>

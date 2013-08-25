@@ -7,8 +7,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "JH": {
             "notaryFee": 80,
@@ -16,8 +15,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "XL": {
             "notaryFee": 80,
@@ -25,8 +23,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "CYM": {
             "notaryFee": 80,
@@ -34,8 +31,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "SGWSXSCF": {
             "notaryFee": 80,
@@ -43,8 +39,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "QSGX": {
             "notaryFee": 80,
@@ -52,8 +47,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "YWXF": {
             "notaryFee": 100,
@@ -74,8 +68,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "XW": {
             "notaryFee": 80,
@@ -83,8 +76,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "GJ": {
             "notaryFee": 80,
@@ -92,8 +84,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "SW": {
             "notaryFee": 80,
@@ -110,8 +101,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "CSZFYJ": {
             "notaryFee": 100,
@@ -124,8 +114,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": 200,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "SFZFYJ": {
             "notaryFee": 100,
@@ -138,8 +127,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "HZFYJ": {
             "notaryFee": 100,
@@ -147,8 +135,7 @@
             "wordFeeGroup2": 100,
             "wordFeeGroup3": 120,
             "wordFeeGroup4": 200,
-            "wordFeeGroup5": 400,
-            "investigateFee": 50
+            "wordFeeGroup5": 400
         },
         "JSZFYJ": {
             "notaryFee": 100,
@@ -161,8 +148,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": 250,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "HKBFYJ": {
             "notaryFee": 100,
@@ -175,8 +161,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "JHZFYJ": {
             "notaryFee": 100,
@@ -189,8 +174,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": 200,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "LHZFYJ": {
             "notaryFee": 100,
@@ -203,8 +187,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": 200,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "LHXYSFYJ": {
             "notaryFee": 100,
@@ -217,8 +200,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "TXZFYJ": {
             "notaryFee": 100,
@@ -231,8 +213,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "FCZFYJ": {
             "notaryFee": 100,
@@ -245,8 +226,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "CKZMFYJ": {
             "notaryFee": 100,
@@ -259,8 +239,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "HYZKZMFYJ": {
             "notaryFee": 100,
@@ -273,8 +252,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "BYZSFYJ": {
             "notaryFee": 100,
@@ -287,8 +265,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": 200,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "XWZSFYJ": {
             "notaryFee": 100,
@@ -301,8 +278,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": 200,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "ZXXBYZFYJ": {
             "notaryFee": 100,
@@ -315,8 +291,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "CZGZCJFYJ": {
             "notaryFee": 100,
@@ -329,8 +304,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "GKCJFYJ": {
             "notaryFee": 100,
@@ -343,8 +317,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "DXDZZGCJFYJ": {
             "notaryFee": 100,
@@ -357,8 +330,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "ZDZMFYJ": {
             "notaryFee": 100,
@@ -371,8 +343,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "ZGZFYJ": {
             "notaryFee": 100,
@@ -385,8 +356,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "FYPJTJCDSFYJ": {
             "notaryFee": 100,
@@ -399,8 +369,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "WZHSMS": {
             "notaryFee": 200,
@@ -413,8 +382,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         },
         "TYCGSMS": {
             "notaryFee": 200,
@@ -427,8 +395,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": -1,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": -1,
-            "investigateFee": 50
+            "fileFeeGroup5": -1
         }
     }
 }

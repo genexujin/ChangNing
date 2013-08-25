@@ -42,6 +42,9 @@ public class User implements Serializable {
 
     private String name;
     
+    @Column(name = "name_pinyin")
+    private String namePinyin;
+    
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
@@ -101,6 +104,14 @@ public class User implements Serializable {
         this.name = name;
     }
     
+    public String getNamePinyin() {
+        return namePinyin;
+    }
+
+    public void setNamePinyin(String namePinyin) {
+        this.namePinyin = namePinyin;
+    }
+
     public Gender getGender() {
 		return gender;
 	}
