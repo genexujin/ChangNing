@@ -39,7 +39,7 @@
 	  
 	  <div class="row">
 	    <div class="span10 offset1">
-	      <h5><font color="red">请上传所需材料。如果材料暂时无法备齐可以先进入下一步，完成支付后可以补充材料。</font></h5>
+	      <h5><font color="red">请上传所需材料。提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入【个人中心】查找提交的订单并补充材料。 本系统支持 .jpg, .jpeg, .png, .gif, .pdf类型文件，且大小不能超过5M.</font></h5>
 	    </div>
 	  </div>
 	  
