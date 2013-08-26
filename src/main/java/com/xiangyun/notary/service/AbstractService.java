@@ -15,7 +15,7 @@ public abstract class AbstractService {
     }
     
     protected String getCountQueryString(String entityName) {
-        return String.format(Constants.COUNT_QUERY_STRING, entityName);
+        return String.format(Constants.COUNT_QUERY_STRING, entityName, entityName);
     }
 
 }
