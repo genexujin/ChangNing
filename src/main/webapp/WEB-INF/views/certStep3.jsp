@@ -180,7 +180,7 @@
 		                <input id="${doc.docKey}_w" style="display:none"/>
 		                <input id="${doc.docKey}_h" style="display:none"/>
 		                <input id="${doc.docKey}_fileName" style="display:none"/>
-		                <div id="${doc.docKey}_crop" class="btn btn-success" style="display:none">裁剪</div>
+		                <div id="${doc.docKey}_crop" class="btn btn-success btn-mini" style="display:none">裁剪</div>
 		              </c:if>
 		              <div id="${doc.docKey}" class="file_upload" ></div>
 		            </div>
