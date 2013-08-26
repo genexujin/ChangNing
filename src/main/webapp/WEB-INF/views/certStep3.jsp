@@ -87,7 +87,7 @@
 				        'swf'             : 'uploadify/uploadify.swf',
 				        'uploader'        : '<c:url value="/upload.do"/>',
 				        // Put your options here
-				        'buttonClass'     : 'btn btn-success',
+				        'buttonClass'     : 'btn btn-success btn-mini',
 				        'buttonText'      : '选择文件',
 				        'height'          : 25,
 				        'width'           : 80,
@@ -135,7 +135,7 @@
 	        		        'swf'             : 'uploadify/uploadify.swf',
 	        		        'uploader'        : '<c:url value="/upload.do"/>',
 	        		        // Put your options here
-	        		        'buttonClass'     : 'btn btn-success',
+	        		        'buttonClass'     : 'btn btn-success btn-mini',
 	        		        'buttonText'      : '选择文件',
 	        		        'height'          : 25,
 	        		        'width'           : 80,
@@ -229,7 +229,7 @@
 	        		        'swf'             : 'uploadify/uploadify.swf',
 	        		        'uploader'        : '<c:url value="/upload.do"/>',
 	        		        // Put your options here
-	        		        'buttonClass'     : 'btn btn-success',
+	        		        'buttonClass'     : 'btn btn-success btn-mini',
 	        		        'buttonText'      : '选择文件',
 	        		        'height'          : 25,
 	        		        'width'           : 80,

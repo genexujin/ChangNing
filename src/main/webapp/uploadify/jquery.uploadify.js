@@ -279,7 +279,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 						uploadSize         : 0, // The size in bytes of the upload queue
 						queueBytesUploaded : 0, // The size in bytes that have been uploaded for the current upload queue
 						uploadQueue        : [], // The files currently to be uploaded
-						errorMsg           : 'Some files were not added to the queue:'
+						errorMsg           : '该文件不符合要求，未加入上传队列:'
 					};
 
 					// Save references to all the objects
@@ -569,7 +569,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			var settings = this.settings;
 
 			// Reset some queue info
-			this.queueData.errorMsg       = 'Some files were not added to the queue:';
+			this.queueData.errorMsg       = '该文件不符合要求，未加入上传队列:';
 			this.queueData.filesReplaced  = 0;
 			this.queueData.filesCancelled = 0;
 
