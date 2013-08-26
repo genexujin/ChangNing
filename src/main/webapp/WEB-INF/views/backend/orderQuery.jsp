@@ -15,8 +15,9 @@
         <div class="span2 well">
             <ul class="nav nav-list">
               <li><h5>我的菜单</h5>
-              <li class="active"><a href="#">订单查询</a></li>
-              <li><a href="#">附加费用</a></li>
+              <li class="active"><a href="#">办证订单查询</a></li>
+              <li><a href="#">预约订单查询</a></li>
+
             </ul>
         </div>
         
