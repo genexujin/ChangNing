@@ -36,7 +36,8 @@ import com.xiangyun.notary.common.OrderStatus;
     @NamedQuery(name="Order.findAll", query="select o from Order o"),
     @NamedQuery(name="Order.findById", query="select o from Order o where o.id = :oid"),
     @NamedQuery(name="Order.findOrdersByUserId", query="select o from Order o where o.user.id = :uid"),
-    @NamedQuery(name="Order.getCountByUserId", query="select count(o) from Order o where o.user.id = :uid")
+    @NamedQuery(name="Order.getCountByUserId", query="select count(o) from Order o where o.user.id = :uid"),
+    @NamedQuery(name="Order.getCount", query="select count(o) from Order o")
 })
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -67,7 +67,8 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     @Override
     @Transactional(readOnly=true)
     public Long getOrderCount() {
-        return getCount("Order");
+    	TypedQuery<Long> query = em.createNamedQuery("Order.getCount", Long.class);
+    	return query.getSingleResult();
     }
     
     @Override

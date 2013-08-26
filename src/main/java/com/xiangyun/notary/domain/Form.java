@@ -114,7 +114,8 @@ public class Form implements Serializable {
         return result;
     }
     
-    private static class FeeItemNameComparator implements Comparator<FeeItem> {
+    private static class FeeItemNameComparator implements Comparator<FeeItem>, Serializable {
+    	private static final long serialVersionUID = 1L;
 
         @Override
         public int compare(FeeItem item1, FeeItem item2) {
