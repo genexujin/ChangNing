@@ -92,7 +92,7 @@
 				        'height'          : 25,
 				        'width'           : 80,
 				        'fileTypeDesc'    : 'Image Files',
-				        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif',
+				        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif; *.pdf',
 				        "removeCompleted" : false,
 				        'formData'        : {
 				        	'uid' : '${um.uid}',
@@ -140,7 +140,7 @@
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
-	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif',
+	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif; *.pdf',
 	        		        'removeCompleted' : false,
 	        		        'formData'        : {
 	        		        	'uid' : '${um.uid}',
