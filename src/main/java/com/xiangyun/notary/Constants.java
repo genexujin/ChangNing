@@ -34,5 +34,8 @@ public class Constants {
     
     public static final String COUNT_QUERY_STRING = "select count(%s) from %s x";
     public static final int QUERY_PAGE_SIZE = 2;
+    
+    public static final String ALIPAY_SELLER_EMAIL = "cngzc@6408.com.cn";
+    
 
 }

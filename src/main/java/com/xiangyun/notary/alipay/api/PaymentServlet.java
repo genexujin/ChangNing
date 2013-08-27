@@ -1,10 +1,18 @@
 package com.xiangyun.notary.alipay.api;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.alipay.config.AlipayConfig;
+import com.alipay.util.AlipaySubmit;
+import com.xiangyun.notary.Constants;
 
 /**
  * Servlet implementation class PaymentServlet
@@ -39,17 +47,15 @@ public class PaymentServlet extends HttpServlet {
 		String payment_type = "1";
 		// 必填，不能修改
 		// 服务器异步通知页面路径
-		String notify_url = "http://localhost:8080/create_direct_pay_by_user-JAVA-UTF-8/notify_url.jsp";
+		String notify_url = "http://localhost:8080/ChangNing/notify_url.jsp";
 		// 需http://格式的完整路径，不能加?id=123这类自定义参数
 
 		// 页面跳转同步通知页面路径
-		String return_url = "http://localhost:8080/create_direct_pay_by_user-JAVA-UTF-8/return_url.jsp";
+		String return_url = "http://hjyoa.hpe.cn:4848/ChangNing/home.do";
 		// 需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 		// 卖家支付宝帐户
-		String seller_email = new String(request
-				.getParameter("WIDseller_email").getBytes("ISO-8859-1"),
-				"UTF-8");
+		String seller_email = Constants.ALIPAY_SELLER_EMAIL;
 		// 必填
 
 		// 商户订单号
@@ -105,8 +111,17 @@ public class PaymentServlet extends HttpServlet {
 		sParaTemp.put("exter_invoke_ip", exter_invoke_ip);
 
 		// 建立请求
-		String sHtmlText = AlipaySubmit.buildRequest(sParaTemp, "get", "确认");
-		out.println(sHtmlText);
+		String sHtmlText = AlipaySubmit.buildRequest(sParaTemp, "get", "confirm");
+		
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<html>");
+        out.println("<head><title>AliPay</title></head>");
+        out.println("<body>");
+        out.println(sHtmlText);
+        out.println("</body></html>");
+        out.close();
+		
 	}
 
 }
