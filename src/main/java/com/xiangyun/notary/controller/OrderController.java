@@ -328,6 +328,19 @@ public class OrderController {
         return mav;
     }
     
+    @RequestMapping(value = "/payment.do")
+    public String goToPayment(HttpServletRequest request) {
+    	Order order = (Order)request.getSession(false).getAttribute(Constants.CURRENT_ORDER);
+    	StringBuilder sb = new StringBuilder("redirect:/pay?WIDout_trade_no=");
+    	sb.append(order.getReadableId());
+    	sb.append("&WIDsubject=TestString");
+    	sb.append("&WIDtotal_fee=0.01");
+    	sb.append("&WIDbody=aaaa");
+    	sb.append("&WIDshow_url=bbbb");
+    	
+    	return sb.toString();
+    }
+    
     @RequestMapping(value = "/orderQuery.do")
     public ModelAndView orderQuery(HttpServletRequest request) {
     	User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);

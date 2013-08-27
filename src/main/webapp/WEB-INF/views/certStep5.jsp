@@ -34,7 +34,7 @@
 	  </div>
 	  
 	  <br>
-	  <form class="form-horizontal" action="certStep5.do" method="POST">
+	  <form class="form-horizontal" action="payment.do" method="POST">
 	  
 		<div class="bar-bg">
 	      <div class="row">
