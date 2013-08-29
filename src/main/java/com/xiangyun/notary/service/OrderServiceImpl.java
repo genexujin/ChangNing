@@ -1,10 +1,18 @@
 package com.xiangyun.notary.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xiangyun.notary.Constants;
+import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.User;
 
 @Service("jpaOrderService")
 @Transactional
@@ -62,6 +72,49 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         query.setMaxResults(Constants.QUERY_PAGE_SIZE);
         List<Order> orders = query.getResultList();
         return orders;
+    }
+    
+    public List<Order> findOrders(String readableId, OrderStatus status, Long userId, int pageNum) {
+    	log.debug("Now is in findOrders(). Parameters are:");
+    	log.debug("    readableId: {}, status: {}, userId: {}, pageNum: {}", new Object[] {readableId, status, userId, pageNum});
+    	
+    	CriteriaBuilder cb = em.getCriteriaBuilder();
+    	CriteriaQuery<Order> cq = cb.createQuery(Order.class);
+    	Root<Order> o = cq.from(Order.class);
+    	cq.select(o);
+    	
+    	List<Predicate> criteria = new ArrayList<Predicate>();
+    	if (readableId != null) {
+    		ParameterExpression<String> p = cb.parameter(String.class, "rId");
+    		criteria.add(cb.equal(o.get("readableId"), p));
+    	}
+    	
+    	if (status != null) {
+    		ParameterExpression<OrderStatus> p = cb.parameter(OrderStatus.class, "status");
+    		criteria.add(cb.equal(o.get("orderStatus"), p));
+    	}
+    	
+    	if (userId != null) {
+    		Join<Order, User> u = o.join("user", JoinType.INNER);
+    		ParameterExpression<Long> p = cb.parameter(Long.class, "uId");
+    		criteria.add(cb.equal(u.get("id"), p));
+    	}
+    	
+		if (criteria.size() == 1) {
+			cq.where(criteria.get(0));
+		} else {
+			cq.where(cb.and(criteria.toArray(new Predicate[0])));
+		}
+		
+		TypedQuery<Order> q = em.createQuery(cq);
+		if (readableId != null) q.setParameter("rId", readableId);
+		if (status != null) q.setParameter("status", status);
+		if (userId != null) q.setParameter("uId", userId);
+		
+		q.setFirstResult((pageNum - 1) * Constants.QUERY_PAGE_SIZE);
+        q.setMaxResults(Constants.QUERY_PAGE_SIZE);
+        
+    	return q.getResultList();
     }
     
     @Override

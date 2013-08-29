@@ -2,6 +2,7 @@ package com.xiangyun.notary.service;
 
 import java.util.List;
 
+import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Order;
 
 public interface OrderService {
@@ -10,6 +11,8 @@ public interface OrderService {
     public List<Order> findOrdersByUserId(Long userId);
     
     public List<Order> findOrdersByUserIdAndPage(Long userId, int pageNum);
+    
+    List<Order> findOrders(String readableId, OrderStatus status, Long userId, int pageNum);
 
     public Order save(Order order);
 
