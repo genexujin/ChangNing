@@ -35,12 +35,16 @@
 			<div class="span6 pull-right small-pt">
 				<div>
 					<p style="margin-top: 10px;">
-						<span class="text-font text-b">尊敬的 </span> <span
-							class="text-font text-r"></span> <span
-							class="text-font text-b"> 欢迎登录！ </span> <span class="text-font"><a
-							href="enterLogin.do">[登录]</a>&nbsp; <a href="#">[登出]</a></span> <span
-							class="text-font">|&nbsp;<a href="#">联系我们&nbsp;</a>|&nbsp;<a
-							href="#">常见问题</a></span>
+						<span class="text-font text-b">尊敬的 </span>
+						<span class="text-font text-r"></span> 
+						<span class="text-font text-b"> 欢迎登录！ </span>
+						<span class="text-font">
+						  <a href="enterLogin.do">[登录]</a>&nbsp;
+						  <a href="logout.do">[登出]</a>
+						</span>
+						<span class="text-font">|&nbsp;
+						  <a href="#">联系我们&nbsp;</a>|&nbsp;<a href="#">常见问题</a>
+						</span>
 					</p>
 				</div>
 			</div>

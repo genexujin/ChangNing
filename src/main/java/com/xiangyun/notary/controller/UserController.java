@@ -282,6 +282,16 @@ public class UserController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value = "/logout.do")
+	public ModelAndView logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) 
+			session.invalidate();
+		
+		ModelAndView mav = new ModelAndView("login");
+		return mav;
+	}
 
 	/**
 	 * 修改用户资料
