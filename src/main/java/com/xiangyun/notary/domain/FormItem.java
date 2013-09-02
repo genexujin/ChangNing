@@ -92,5 +92,11 @@ public class FormItem implements Serializable {
         relativeInfo.setFormItem(this);
         this.relativeInfo = relativeInfo;
     }
-
+    
+    public String getText() {
+        if ("true".equalsIgnoreCase(itemValue)) return "是";
+        else if ("false".equalsIgnoreCase(itemValue)) return "否";
+        
+        return itemValue;
+    }
 }

@@ -32,11 +32,11 @@
 				</h1>
 			</div>
 
-			<div class="span6 pull-right small-pt">
+			<div class="span5 pull-right small-pt">
 				<div>
 					<p style="margin-top: 10px;">
 						<span class="text-font text-b">尊敬的 </span>
-						<span class="text-font text-r"></span> 
+						<span class="text-font text-r">${sessionScope['LOGIN_USER'].name}</span> 
 						<span class="text-font text-b"> 欢迎登录！ </span>
 						<span class="text-font">
 						  <a href="enterLogin.do">[登录]</a>&nbsp;

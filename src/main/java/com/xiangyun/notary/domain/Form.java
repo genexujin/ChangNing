@@ -83,6 +83,10 @@ public class Form implements Serializable {
     public Set<FormItem> getFormItems() {
         return formItems;
     }
+    
+    public int getFormItemsSize() {
+        return formItems.size();
+    }
 
     public void setFormItems(Set<FormItem> formItems) {
         this.formItems = formItems;
@@ -112,6 +116,10 @@ public class Form implements Serializable {
             result += item.calculateFee();
         }
         return result;
+    }
+    
+    public boolean isQsgx() {
+        return formKey.equals("QSGX");
     }
     
     private static class FeeItemNameComparator implements Comparator<FeeItem>, Serializable {

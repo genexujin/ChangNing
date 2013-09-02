@@ -29,6 +29,14 @@
     <filter-name>authenticationFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  <filter>
+	<filter-name>OpenEmFilter</filter-name>
+	<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>OpenEmFilter</filter-name>
+	<url-pattern>*.do</url-pattern>
+  </filter-mapping>
   <listener>
     <listener-class>com.xiangyun.notary.InitContextListener</listener-class>
   </listener>
@@ -67,10 +75,10 @@
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
-  <mime-mapping>
+<!--   <mime-mapping>
     <extension>zip</extension>
     <mime-type>application/zip</mime-type>
-  </mime-mapping>
+  </mime-mapping> -->
   <servlet>
     <description></description>
     <display-name>PaymentServlet</display-name>

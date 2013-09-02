@@ -6,23 +6,27 @@ import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Order;
 
 public interface OrderService {
-    public List<Order> findAll();
+    List<Order> findAll();
     
-    public List<Order> findOrdersByUserId(Long userId);
+    List<Order> findOrdersByUserId(Long userId);
     
-    public List<Order> findOrdersByUserIdAndPage(Long userId, int pageNum);
+    List<Order> findOrdersByUserIdAndPage(Long userId, int pageNum);
     
     List<Order> findOrders(String readableId, OrderStatus status, Long userId, int pageNum);
+    
+    Order findOrderById(Long orderId, Long userId);
 
-    public Order save(Order order);
+    Order save(Order order);
 
-    public void delete(Order order);
+    void delete(Order order);
     
-    public Order findById(Long id);
+    Order findById(Long id);
     
-    public List<Order> findOrdersByPage(int pageNum);
+    List<Order> findOrdersByPage(int pageNum);
     
-    public Long getOrderCount();
+    Long getOrderCount();
     
-    public Long getOrderCountByUserId(Long userId);
+    Long getOrderCount(String readableId, OrderStatus status, Long userId);
+    
+    Long getOrderCountByUserId(Long userId);
 }

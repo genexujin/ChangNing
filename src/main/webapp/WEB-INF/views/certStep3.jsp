@@ -245,10 +245,12 @@
 	        		        	'docKey' : '${doc.docKey}',
 	        		        	'needCrop' : '${doc.needCrop}'
 	        		        },
-	        		        'onSelect'        : function(file) {
-	        		        	$('#${doc.docKey}_fileName').val(file.name);
-	        		        },
 	        		        'onUploadSuccess' : function(file, data, response) {
+	        		        	if (data.lastIndexOf("/") != -1) {
+	        		        		var fileName = data.substring(data.lastIndexOf("/") + 1).replace(".do", "");
+	        		        		$('#${doc.docKey}_fileName').val(fileName);
+	        		        	}
+	        		        	
 	        		        	if (${doc.docKey}_jcrop_api != undefined) {
 	        		        		${doc.docKey}_jcrop_api.destroy();
 	        		        		${doc.docKey}_jcrop_api = undefined;

@@ -74,6 +74,8 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         return orders;
     }
     
+    @Override
+    @Transactional(readOnly=true)
     public List<Order> findOrders(String readableId, OrderStatus status, Long userId, int pageNum) {
     	log.debug("Now is in findOrders(). Parameters are:");
     	log.debug("    readableId: {}, status: {}, userId: {}, pageNum: {}", new Object[] {readableId, status, userId, pageNum});
@@ -119,9 +121,72 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     
     @Override
     @Transactional(readOnly=true)
+    public Order findOrderById(Long orderId, Long userId) {
+        
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Order> cq = cb.createQuery(Order.class);
+        Root<Order> o = cq.from(Order.class);
+        cq.select(o);
+        
+        Predicate oP = cb.equal(o.get("id"), orderId);        
+        if (userId != null) {
+            Predicate uP = cb.equal(o.get("user").get("id"), userId);
+            cq.where(cb.and(oP, uP));
+        } else 
+            cq.where(oP);
+        
+        TypedQuery<Order> q = em.createQuery(cq);
+        List<Order> result = q.getResultList();
+        return (result == null || result.size() == 0) ? null : result.get(0);
+       
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
     public Long getOrderCount() {
     	TypedQuery<Long> query = em.createNamedQuery("Order.getCount", Long.class);
     	return query.getSingleResult();
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public Long getOrderCount(String readableId, OrderStatus status, Long userId) {
+        log.debug("Now is in getOrderCount(readableId, status, userId). Parameters are:");
+        log.debug("    readableId: {}, status: {}, userId: {}", new Object[] {readableId, status, userId});
+        
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<Order> o = cq.from(Order.class);
+        cq.select(cb.count(o));
+        
+        List<Predicate> criteria = new ArrayList<Predicate>();
+        if (readableId != null) {
+            ParameterExpression<String> p = cb.parameter(String.class, "rId");
+            criteria.add(cb.equal(o.get("readableId"), p));
+        }
+        
+        if (status != null) {
+            ParameterExpression<OrderStatus> p = cb.parameter(OrderStatus.class, "status");
+            criteria.add(cb.equal(o.get("orderStatus"), p));
+        }
+        
+        if (userId != null) {
+            ParameterExpression<Long> p = cb.parameter(Long.class, "uId");
+            criteria.add(cb.equal(o.get("user").get("id"), p));
+        }
+        
+        if (criteria.size() == 1) {
+            cq.where(criteria.get(0));
+        } else {
+            cq.where(cb.and(criteria.toArray(new Predicate[0])));
+        }
+        
+        TypedQuery<Long> q = em.createQuery(cq);
+        if (readableId != null) q.setParameter("rId", readableId);
+        if (status != null) q.setParameter("status", status);
+        if (userId != null) q.setParameter("uId", userId);
+        
+        return q.getSingleResult();
     }
     
     @Override

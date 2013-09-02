@@ -75,9 +75,9 @@ public class UploadController {
 	                MultipartFile mpf = request.getFile(fileNames.next());
 	                log.info("File uploaded: " + mpf.getOriginalFilename());
 	                	                
-	                saveUploadedFile(cropDir, mpf);
+	                String fileName = saveUploadedFileForCrop(cropDir, mpf, docKey);
 	                
-	                return "getImage/" + uid + "/" + mpf.getOriginalFilename() + ".do";
+	                return "getImage/" + uid + "/" + fileName + ".do";
 	                
 	            }
 	        } else { //No need to crop, so upload it and save the order
@@ -225,6 +225,26 @@ public class UploadController {
         }
         
         return docPath;
+    }
+    
+    private String saveUploadedFileForCrop(String destDir, MultipartFile mpf, String docKey) {
+        String fileName = mpf.getOriginalFilename();
+        String suffix = "";
+        if (fileName.lastIndexOf('.') != -1) {
+            suffix = fileName.substring(fileName.lastIndexOf('.'));
+        }
+        
+        String docPath = destDir + docKey + suffix;
+        
+        try {
+            mpf.transferTo(new File(docPath));
+        } catch (IllegalStateException e) {
+            log.error("Error throw during transfer uploaded file.", e);
+        } catch (IOException e) {
+            log.error("Error throw during transfer uploaded file.", e);
+        }
+        
+        return docKey + suffix;
     }
     
     private DocItem createDocItem(String docKey, String docName, Long fileSize, String fileContentType, String docPath) {

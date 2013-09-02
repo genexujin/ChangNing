@@ -268,7 +268,7 @@
     		</div>
     		<div id="li_region" class="row">
     		  <div class="span11 offset1">
-    		    <table class="table">
+    		    <table class="table td-no-border">
     		      <tr>
     		        <td><input type="checkbox" value="CS" name="notory_key"> 出生</td>
     		        <td><input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分</td>

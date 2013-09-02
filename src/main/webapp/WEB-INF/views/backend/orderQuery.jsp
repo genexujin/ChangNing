@@ -26,13 +26,20 @@
             <div class="row">
     		  <div class="span5">
     		    <div class="control-group">
-		    	  <label class="control-label" for="query_str">申办号</label>
+		    	  <label class="control-label" for="rId">申办号</label>
 		    	  <div class="controls">
-		    	    <input name="query_str" type="text"></input>
+		    	    <input name="rId" type="text"></input>
 		    	  </div>
 		    	</div>
     		  </div>
     		  <div class="span2">
+    		    <SELECT id="status" name="status">
+    		    	<OPTION selected value="NULL">全部</OPTION>
+					<OPTION value="SUBMITTED">已创建</OPTION>
+					<OPTION value="PAID">已付款</OPTION>
+					<OPTION value="FINISHED">已完成</OPTION>
+					<OPTION value="CANCELLED">已取消</OPTION>
+			    </SELECT>
     		  </div>
     		  <div class="span1">
     		    <button class="btn btn-block" type="submit">查询</button>
@@ -55,7 +62,7 @@
 	            <tbody>
 	              <c:forEach items="${orders}" var="order" >
 	                <tr>
-	                  <td>${order.readableId}</td>
+	                  <td><a href="<c:url value="/orderDetail.do?oId=${order.id}"/>">${order.readableId}</a></td>
 	                  <td></td>
 	                  <td><fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd"/></td>
 	                  <td>${order.requestorName}</td>

@@ -74,13 +74,15 @@ public class OrderController {
     @RequestMapping(value = "/certStep2.do")
     //Automatic type conversion
     public View goToStep2(@RequestParam("dest")DestinationCountry destination, 
-    		                      @RequestParam("trans")Language transLanguage,
-    		                      @RequestParam("verify")boolean needVerify,
-    		                      @RequestParam("copies")int copies,
-    		                      @RequestParam("purpose")CertificatePurpose purpose, 
-    		                      HttpServletRequest request,
-    		                      @RequestParam("n_key")Collection<String> formKeys,
-    		                      @RequestParam("n_key_yw")Collection<String> ywKeys) {
+	                      @RequestParam("trans")Language transLanguage,
+	                      @RequestParam("verify")boolean needVerify,
+	                      @RequestParam("copies")int copies,
+	                      @RequestParam("purpose")CertificatePurpose purpose, 
+	                      HttpServletRequest request,
+	                      @RequestParam("n_key")Collection<String> formKeys,
+	                      @RequestParam("n_key_yw")Collection<String> ywKeys) {
+        //TODO: If logged in, and then access step2 directly, then it will goes wrong.
+        
     	log.debug("Destination: {}", destination);
     	log.debug("Translation language: {}", transLanguage);
     	log.debug("Copies: {}", copies);
@@ -97,8 +99,7 @@ public class OrderController {
     	
     	//Add the middle part according selection
     	List<FormDef> selectedForms = new ArrayList<FormDef>();
-    	//TODO: Is it possible the session expires and we should not create a new session here?
-    	//The request.getSession() may create a new one, which may not be right.
+    	
     	Map<String, FormDef> formDefs = (Map<String, FormDef>)ctx.getAttribute(Constants.FORM_DEFS);
     	for (String key : formKeys) {
             FormDef formDef = formDefs.get(key);
@@ -143,15 +144,14 @@ public class OrderController {
     		@RequestParam("mobile")String requestorMobile) {
         
     	HttpSession session = request.getSession(false);
-    	if (session == null) {
-    		//TODO: redirect to login page
-    		//But now for easy development, create a new session
-    		session = request.getSession();
-    	}
-    	
         List<FormDef> selectedForms = (List<FormDef>)session.getAttribute(Constants.SESSION_SELECTED_FORMS);
-        
         Order order = (Order)session.getAttribute(Constants.CURRENT_ORDER);
+        if (selectedForms == null || order == null) {
+            ModelAndView mav = new ModelAndView("certStep1");
+            mav.addObject("title", "选择申办业务");
+            return mav;
+        }
+        
         order.setRequestorName(requestorName);
         order.setRequestorMobile(requestorMobile);        
         if (!StringUtils.isEmpty(request.getParameter("pinyin"))) 
@@ -164,13 +164,6 @@ public class OrderController {
                 order.setRequestorBirthDate(format.parse(birthDate));
         } catch (ParseException e) {
             log.error("Fail to parse the request parameter birthDate.", e);
-        }
-        
-        //May access /certStep3 directly
-        if (selectedForms == null) {
-            //TODO: should redirect to step1.
-            //For easy development, directly return step3 for now.
-            return new ModelAndView("certStep3");
         }
         
         Map<String, List<FormDocItemDef>> allInOneUploadDocs = new HashMap<String, List<FormDocItemDef>>();
@@ -285,6 +278,12 @@ public class OrderController {
             					  HttpServletRequest request) {
     	
     	Order order = (Order)request.getSession(false).getAttribute(Constants.CURRENT_ORDER);
+        if (order == null) {
+            ModelAndView mav = new ModelAndView("certStep1");
+            mav.addObject("title", "选择申办业务");
+            return mav;
+        }
+    	
     	order.setUploadNote(uploadNote);
     	
     	orderService.save(order);
@@ -301,13 +300,13 @@ public class OrderController {
         log.debug("Should send doc? {}", sendDoc);
         
         HttpSession session = request.getSession(false);
-        if (session == null) {
-            //TODO: redirect to login page
-            //But now for easy development, create a new session
-            session = request.getSession();
+        Order order = (Order)session.getAttribute(Constants.CURRENT_ORDER);
+        if (order == null) {
+            ModelAndView mav = new ModelAndView("certStep1");
+            mav.addObject("title", "选择申办业务");
+            return mav;
         }
         
-        Order order = (Order)session.getAttribute(Constants.CURRENT_ORDER);
         order.setSendDoc(sendDoc);
         if (sendDoc) {
             order.setSendAddress(request.getParameter("sendAddress"));
@@ -345,10 +344,9 @@ public class OrderController {
     public ModelAndView orderQuery(HttpServletRequest request) {
     	User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
     	
-    	//After getting from the HttpSession, need to refresh it.
+    	//Cannot use user.getOrders() directly.
     	//Otherwise org.hibernate.LazyInitializationException will throw,
     	//because the Hibernate session has closed.
-//    	user = userService.save(user);
     	
     	int pageNum;
     	String pageNumStr = request.getParameter("pn");
@@ -362,19 +360,21 @@ public class OrderController {
             }
     	}
     	
-    	List<Order> orders = null;
-    	Long pageCount;
-    	if (user.isAdmin() || user.isStaff()) {
-    		Long orderCount = orderService.getOrderCount();
-    		pageCount = orderCount / Constants.QUERY_PAGE_SIZE + 1;
-    		orders = orderService.findOrdersByPage(pageNum);
-    	} else {
-    		//Cannot use user.getOrders() here. org.hibernate.LazyInitializationException will throw,
-        	//because the Hibernate session has closed.
-    		Long orderCount = orderService.getOrderCountByUserId(user.getId());
-    		pageCount = (orderCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
-    		orders = orderService.findOrdersByUserIdAndPage(user.getId(), pageNum);
+    	String readableId = request.getParameter("rId");
+    	if (StringUtils.isEmpty(readableId)) readableId = null;
+    	
+    	OrderStatus status = null;
+    	String statusStr = request.getParameter("status");
+    	if (!StringUtils.isEmpty(statusStr)) status = OrderStatus.valueOf(statusStr);
+    	
+    	Long userId = null;
+    	if (!user.isAdmin() && !user.isStaff()) {
+    	    userId = user.getId();
     	}
+    	
+        Long orderCount = orderService.getOrderCount(readableId, status, userId);
+        Long pageCount = (orderCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
+        List<Order> orders = orderService.findOrders(readableId, status, userId, pageNum);
     	
     	ModelAndView mav = new ModelAndView("backend/orderQuery");
     	mav.addObject("title", "订单查询");
@@ -388,6 +388,39 @@ public class OrderController {
     	mav.addObject("right", (((pageNum - 1) / 5) * 5 + 6));
     	mav.addObject("orders", orders);
     	return mav;
+    }
+    
+    @RequestMapping(value = "/orderDetail.do")
+    public ModelAndView orderDetail(HttpServletRequest request) {
+        String oId = request.getParameter("oId");
+        if (StringUtils.isEmpty(oId)) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long orderId = null;
+        try {
+            orderId = Long.valueOf(oId);
+        } catch (NumberFormatException e) {
+            log.warn("oId is not a valid number", e);
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        ModelAndView mav = new ModelAndView("backend/orderDetail");
+        mav.addObject("title", "订单详情");
+        mav.addObject("order", order);
+        
+        return mav;
     }
 
     private void putIfAbsent(Map<String, FormDocItemDef> docDefs, FormDocItemDef docDef) {
