@@ -6,11 +6,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.xiangyun.notary.common.ReservationStatus;
 
 @Entity
 @Table(name = "reservations")
@@ -21,6 +25,9 @@ public class Reservation implements Serializable {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 	
+    @Column(name = "readable_id", insertable=false)
+    private String readableId;
+	
 	@Column(name = "requestor_name")
     private String requestorName;
 	
@@ -29,6 +36,10 @@ public class Reservation implements Serializable {
 	
 	@Column(name = "reserve_key")
     private String reservationKey;
+	
+    @Enumerated(EnumType.STRING)
+    @Column(name = "reserve_status")
+    private ReservationStatus reservationStatus;
 	
 	@ManyToOne
     @JoinColumn(name="user_id")
@@ -97,5 +108,21 @@ public class Reservation implements Serializable {
 	public void setWorkday(Workday workday) {
 		this.workday = workday;
 	}
+
+    public String getReadableId() {
+        return readableId;
+    }
+
+    public void setReadableId(String readableId) {
+        this.readableId = readableId;
+    }
+
+    public ReservationStatus getReservationStatus() {
+        return reservationStatus;
+    }
+
+    public void setReservationStatus(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
+    }
 
 }

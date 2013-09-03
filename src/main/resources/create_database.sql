@@ -184,10 +184,12 @@ CREATE  TABLE IF NOT EXISTS `changning`.`time_segments` (
 
 CREATE  TABLE IF NOT EXISTS `changning`.`Reservations` (
   `id` INT NOT NULL AUTO_INCREMENT ,
+  `readable_id` VARCHAR(45) NULL ,
   `user_id` INT NULL ,
   `requestor_name` VARCHAR(45) NULL ,
   `requestor_mobile` VARCHAR(45) NULL ,
   `reserve_key` VARCHAR(50) NULL ,
+  `reserve_status` VARCHAR(20) NULL ,
   `workday_id` INT NULL ,
   `time_segment_id` INT NULL ,
   PRIMARY KEY (`id`) ,

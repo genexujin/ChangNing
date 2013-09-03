@@ -17,5 +17,9 @@ public abstract class AbstractService {
     protected String getCountQueryString(String entityName) {
         return String.format(Constants.COUNT_QUERY_STRING, entityName, entityName);
     }
+    
+    protected String generateReadableId(Long id, String prefix) {
+        return prefix + String.format("%1$08d", id);
+    }
 
 }

@@ -202,7 +202,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
             log.debug("Inserting new order...");
             em.persist(order);
             //Need to format readableId and set
-            order.setReadableId(generateReadableId(order.getId()));
+            order.setReadableId(generateReadableId(order.getId(), "A"));
             em.merge(order);
         } else {
             log.debug("Updating an order...");
@@ -221,9 +221,6 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         
     }
 
-    //This should not set readOnly=true, because in UploadController, the order is findById and then it will be added to some docs.
-    //However, the docs is lazy loaded. So when add new docs and save the order, there will be Hibernate exception:
-    //org.hibernate.LazyInitializationException : failed to lazily initialize a collection, no session or session was closed
     @Override
     @Transactional(readOnly=true)
     public Order findById(Long id) {
@@ -233,9 +230,5 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         }
         return null;
     }
-
-    private String generateReadableId(Long id) {
-		return "A" + String.format("%1$08d", id);
-	}
 
 }
