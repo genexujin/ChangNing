@@ -81,11 +81,15 @@ var options = {
 						pageNO: page
 				},
 				success : function(data) {
-					$("#infotable").html('<tr class="info" id="info"><td class="span2">日期</td><td class="span5">说明</td><td class="span3">工作日/非工作日</td></tr>');
+					$("#infotable").html('<tr class="info" id="info"><td class="span2">申办号</td><td class="span3">时间</td><td class="span1">申办人</td><td class="span2">公证项</td><td class="span2">处理状态</td><td class="span2">操作</td></tr>');
 						var json = $.parseJSON(data);
 						$.each(json,function(index, content) {
-							$("#infotable").append('<tr><td>'+ timeStamp2String(content.date)+ '</td><td>'+ descriptionformat(content.description)+ '</td><td>'+ typeformat(content.type)+ '</td></tr>');
-						});
+						$("#infotable").append('<tr><td>'+content.readableId+'</td><td>'+timeStamp2String(content.reservDate)+'&nbsp;'+content.reservTime+'</td><td>'+content.requestorName+'</td><td>'+content.reservKey+'</td><td id="nowstatus">'+reservstatusformat(content.reservStatus)+'</td><td class="span1"><button class="btn" type="button" id="finish">完成预约</button></td></tr>');
+						$("#finish").click(function(){
+							$.ajax({url:"/ChangNing/finishReserv.do?readableId="+content.readableId});
+								});
+						});		
+						
 				}
 		});
 		}
