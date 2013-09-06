@@ -52,11 +52,12 @@ public class UserServiceImpl extends AbstractService implements UserService {
         
     }
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public User findByMobile(String mobile) {
 		
     	log.info("Now is find by the mobile number...");
-    	String hql = "from User where mobile = ：mobile";
+    	String hql = "from User where mobile =:mobile";
     	Query query = em.createQuery(hql);
     	query.setParameter("mobile", mobile);
     	List<User> users =  query.getResultList();
