@@ -60,10 +60,10 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="workerQuery.do")
-	public void workerQuery(HttpServletResponse response,String readableId,String reservationStatus,int pageNO) throws IOException{
+	public void workerQuery(HttpServletResponse response,String readableId,ReservationStatus reservStatus,int pageNO) throws IOException{
 		String json = null;
 		ObjectMapper objectMapper = new ObjectMapper();
-		List<Reservation> findList = reservationService.findByRIdOrRStatus(readableId,reservationStatus,pageNO);
+		List<Reservation> findList = reservationService.findByRIdOrRStatus(readableId,reservStatus,pageNO);
 		List<Map<String, Object>> reservationList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map;
 		for (Reservation data : findList) {

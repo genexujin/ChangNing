@@ -2,6 +2,7 @@ package com.xiangyun.notary.service;
 
 import java.util.List;
 
+import com.xiangyun.notary.common.ReservationStatus;
 import com.xiangyun.notary.domain.Reservation;
 
 public interface ReservationService {
@@ -12,6 +13,6 @@ public interface ReservationService {
     
     public Reservation  findByReadableId(String readableId);
     
-    public List<Reservation> findByRIdOrRStatus(String readableId,String reservationStatus,int pageNo);
+    public List<Reservation> findByRIdOrRStatus(String readableId,ReservationStatus reservationStatus,int pageNo);
 
 }
