@@ -67,6 +67,7 @@ public class PaymentServlet extends HttpServlet {
 		// 订单名称
 		String subject = new String(request.getParameter("WIDsubject")
 				.getBytes("ISO-8859-1"), "UTF-8");
+		System.err.println(subject);
 		// 必填
 
 		// 付款金额
