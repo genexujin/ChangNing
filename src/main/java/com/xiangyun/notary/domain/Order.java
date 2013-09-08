@@ -42,6 +42,7 @@ import com.xiangyun.notary.common.OrderStatus;
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
     
+      
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
@@ -61,6 +62,9 @@ public class Order implements Serializable {
     
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order", fetch = FetchType.EAGER)
     private Set<DocItem> docs = new HashSet<DocItem>();
+    
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
+    private Set<Payment> payments = new HashSet<Payment>();
 
     @Column(name = "order_date")
     private Date orderDate;
@@ -282,11 +286,24 @@ public class Order implements Serializable {
         forms.add(form);
     }
     
+    public void addPayment(Payment payment) {
+        payment.setOrder(this);
+        payments.add(payment);
+    }
+    
     public Set<DocItem> getDocs() {
         return docs;
     }
 
-    public void setDocs(Set<DocItem> docs) {
+    public Set<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
+	}
+
+	public void setDocs(Set<DocItem> docs) {
         this.docs = docs;
     }
     
@@ -378,7 +395,7 @@ public class Order implements Serializable {
 	    paymentTotal = result;
 	    return result;
 	}
-	
+
 	public Set<DocItem> getAllInOneDocs() {
 	    Set<DocItem> allInOneDocs = new HashSet<DocItem>();
 	    
@@ -399,5 +416,18 @@ public class Order implements Serializable {
 	    }
 	    
 	    return aloneDocs;
+	}
+	
+	// 根据选择的办证事项，拼出付款抬头
+	public String getPaymentTitle(){
+		
+		StringBuffer result = new StringBuffer("公证费：");
+		
+		for (Form form: forms){
+			result.append(form.getFormName());
+			result.append(";");
+		}
+	
+		return result.toString();
 	}
 }

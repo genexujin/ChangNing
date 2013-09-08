@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,12 +52,15 @@ public class UserServiceImpl extends AbstractService implements UserService {
         
     }
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public User findByMobile(String mobile) {
 		
     	log.info("Now is find by the mobile number...");
-    	String hql = "from User where mobile = " + mobile;
-    	List<User> users =  em.createQuery(hql).getResultList();
+    	String hql = "from User where mobile =:mobile";
+    	Query query = em.createQuery(hql);
+    	query.setParameter("mobile", mobile);
+    	List<User> users =  query.getResultList();
     	if(users.size() == 0){
     		return null;
     	}else{

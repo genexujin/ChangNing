@@ -47,11 +47,11 @@ public class PaymentServlet extends HttpServlet {
 		String payment_type = "1";
 		// 必填，不能修改
 		// 服务器异步通知页面路径
-		String notify_url = "http://localhost:8080/ChangNing/notify_url.jsp";
+		String notify_url = "http://hjyoa.hpe.cn:4848/ChangNing/notify";
 		// 需http://格式的完整路径，不能加?id=123这类自定义参数
 
 		// 页面跳转同步通知页面路径
-		String return_url = "http://hjyoa.hpe.cn:4848/ChangNing/home.do";
+		String return_url = "http://hjyoa.hpe.cn:4848/ChangNing/return";
 		// 需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 		// 卖家支付宝帐户
@@ -67,6 +67,7 @@ public class PaymentServlet extends HttpServlet {
 		// 订单名称
 		String subject = new String(request.getParameter("WIDsubject")
 				.getBytes("ISO-8859-1"), "UTF-8");
+		System.err.println(subject);
 		// 必填
 
 		// 付款金额

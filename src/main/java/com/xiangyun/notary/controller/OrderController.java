@@ -1,5 +1,6 @@
 package com.xiangyun.notary.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ import com.xiangyun.notary.domain.FeeItem;
 import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.domain.RelativeInfo;
 import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.form.FeeDef;
@@ -331,13 +333,46 @@ public class OrderController {
     
     @RequestMapping(value = "/payment.do")
     public String goToPayment(HttpServletRequest request) {
+    	
     	Order order = (Order)request.getSession(false).getAttribute(Constants.CURRENT_ORDER);
-    	StringBuilder sb = new StringBuilder("redirect:/pay?WIDout_trade_no=");
-    	sb.append(order.getReadableId());
-    	sb.append("&WIDsubject=TestString");
+        int seq = order.getPayments().size() +1;
+        String tradeNo = order.getReadableId()+"-"+seq;
+        String title = order.getPaymentTitle();
+       
+    	 	
+    	//先创建Payment
+    	Payment payment = new Payment();
+    	
+    	payment.setPaymentDate(new Date());
+    	payment.setPaymentTotal(0.01);//暂时写死
+    	payment.setTitle(title);
+    	
+    	payment.setStatus(OrderPaymentStatus.NOT_PAID);
+    	payment.setOrderTxnNo(tradeNo);
+    	order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
+    	order.addPayment(payment);
+    	orderService.save(order);
+    	
+    	System.err.println(title);
+    	System.err.println(tradeNo);
+    	
+    	String str = null;
+		try {
+			str = java.net.URLEncoder.encode(title,"UTF-8");
+			tradeNo = java.net.URLEncoder.encode(tradeNo,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	StringBuilder sb = new StringBuilder("redirect:/openPayment.do?WIDout_trade_no=");
+    	sb.append(tradeNo);
+    	sb.append("&WIDsubject="+str);
     	sb.append("&WIDtotal_fee=0.01");
     	sb.append("&WIDbody=aaaa");
     	sb.append("&WIDshow_url=bbbb");
+    	
     	
     	return sb.toString();
     }

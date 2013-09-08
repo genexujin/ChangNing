@@ -36,7 +36,10 @@ public class AuthenticationFilter implements Filter {
 		String servletPath = req.getServletPath();
 		if (servletPath.indexOf("/home") >= 0 
 				|| servletPath.indexOf("/enterLogin") >= 0 
-				|| servletPath.indexOf("/login") >= 0) {
+				|| servletPath.indexOf("/login") >= 0				
+				|| servletPath.indexOf("/onPaymentReturn.do")>=0
+				|| servletPath.indexOf("/onPaymentNotify.do")>=0				
+				|| servletPath.indexOf("/onRefundNotify.do")>=0) {
 			chain.doFilter(request, response);
 			return;
 		}

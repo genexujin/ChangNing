@@ -56,7 +56,34 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
     REFERENCES `changning`.`users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+CREATE  TABLE IF NOT EXISTS `changning`.`payment` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `order_id` int NULL ,
+  `payment_date` DATE NULL ,
+  `payment_total` DECIMAL(10,2) NULL ,
+  `refund_date` DATE NULL ,
+  `refund_total` DECIMAL(10,2) NULL ,
+  `status` VARCHAR(20) NULL ,  
+  `title` VARCHAR(400) NULL ,
+  `refund_reason` VARCHAR(400) NULL ,
+  `order_txn_no` VARCHAR(50) NULL ,
+  `alipay_txn_no` VARCHAR(50) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `order_fk_idx` (`order_id` ASC) ,
+  CONSTRAINT `order_pay_fk`
+    FOREIGN KEY (`order_id` )
+    REFERENCES `changning`.`orders` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
+    
+CREATE  TABLE IF NOT EXISTS `changning`.`sequence` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `category` VARCHAR(50) NULL ,
+  `segment1` VARCHAR(50) NULL ,
+  `segment2` INT NULL, 
+  PRIMARY KEY (`id`));
 
 CREATE  TABLE IF NOT EXISTS `changning`.`forms` (
   `id` INT NOT NULL AUTO_INCREMENT ,
