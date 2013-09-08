@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,9 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.xiangyun.notary.common.OrderPaymentStatus;
+
 @Entity
 @Table(name = "payment")
-@NamedQueries({ @NamedQuery(name = "Payment.findAll", query = "select o from Payment o") })
+@NamedQueries({
+		@NamedQuery(name = "Payment.findAll", query = "select o from Payment o"),
+		@NamedQuery(name = "Payment.findByOutTradeNo", query = "select o from Payment o where o.orderTxnNo = :outTradeNo") })
 public class Payment implements Serializable {
 
 	/**
@@ -44,10 +50,23 @@ public class Payment implements Serializable {
 
 	@Column(name = "refund_total")
 	private double refundTotal;
-	
+
 	@Column(name = "status")
-	private String status;
-	
+	@Enumerated(EnumType.STRING)
+	private OrderPaymentStatus status;
+
+	@Column(name = "title")
+	private String title;
+
+	@Column(name = "refund_reason")
+	private String refundReason;
+
+	@Column(name = "order_txn_no")
+	private String orderTxnNo;
+
+	@Column(name = "alipay_txn_no")
+	private String alipayTxnNo;
+
 	public Long getId() {
 		return id;
 	}
@@ -96,11 +115,11 @@ public class Payment implements Serializable {
 		this.refundTotal = refundTotal;
 	}
 
-	public String getStatus() {
+	public OrderPaymentStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(OrderPaymentStatus status) {
 		this.status = status;
 	}
 
@@ -136,15 +155,4 @@ public class Payment implements Serializable {
 		this.alipayTxnNo = alipayTxnNo;
 	}
 
-	@Column(name = "title")
-	private String title;
-	
-	@Column(name = "refund_reason")
-	private String refundReason;
-	
-	@Column(name = "order_txn_no")
-	private String orderTxnNo;
-	
-	@Column(name = "alipay_txn_no")
-	private String alipayTxnNo;
 }

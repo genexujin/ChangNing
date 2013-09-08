@@ -345,7 +345,7 @@ public class OrderController {
     	payment.setPaymentTotal(0.01);//暂时写死
     	payment.setTitle(title);
     	
-    	payment.setStatus("等待付款");
+    	payment.setStatus(OrderPaymentStatus.NOT_PAID);
     	payment.setOrderTxnNo(tradeNo);
     	order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
     	order.addPayment(payment);
@@ -364,7 +364,7 @@ public class OrderController {
 		}
     	
     	
-    	StringBuilder sb = new StringBuilder("redirect:/pay?WIDout_trade_no=");
+    	StringBuilder sb = new StringBuilder("redirect:/openPayment.do?WIDout_trade_no=");
     	sb.append(tradeNo);
     	sb.append("&WIDsubject="+str);
     	sb.append("&WIDtotal_fee=0.01");

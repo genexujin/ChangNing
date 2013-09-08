@@ -168,7 +168,7 @@ ul,ol{
 				<li class="last">3、确认完成</li>
             </ol>
         </div>
-        <form name=alipayment action=refund method=post target="_blank">
+        <form name=alipayment action=openRefund.do method=post target="_blank">
             <div id="body" style="clear:left">
                 <dl class="content">
 					<dt>卖家支付宝帐户：</dt>
@@ -198,7 +198,7 @@ ul,ol{
 					<dt>退款详细数据：</dt>
 					<dd>
 						<span class="null-star">*</span>
-						<input size="30" name="WIDdetail_data" value="2013090743262113^0.01^测试"/>
+						<input size="30" name="WIDdetail_data" value="2013090743262113^0.01^测试退款原因"/>
 						<span>必填，单笔数据集格式为：第一笔交易退款数据集#第二笔交易退款数据集#第三笔交易退款数据集…#第N笔交易退款数据集；
 						;;;;交易退款数据集的格式为：原付款支付宝交易号^退款总金额^退款理由；</span>
 					</dd>

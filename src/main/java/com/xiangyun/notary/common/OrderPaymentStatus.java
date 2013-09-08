@@ -4,5 +4,7 @@ public enum OrderPaymentStatus {
     NULL,
     NOT_PAID,
     PARTIAL_PAID,
-    FULL_PAID
+    FULL_PAID,
+    PENDING_REFUND,
+    REFUNDED
 }

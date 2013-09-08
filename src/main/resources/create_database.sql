@@ -88,6 +88,13 @@ CREATE  TABLE IF NOT EXISTS `changning`.`payment` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+    
+CREATE  TABLE IF NOT EXISTS `changning`.`sequence` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `category` VARCHAR(50) NULL ,
+  `segment1` VARCHAR(50) NULL ,
+  `segment2` INT NULL, 
+  PRIMARY KEY (`id`));
 
 CREATE  TABLE IF NOT EXISTS `changning`.`forms` (
   `id` INT NOT NULL AUTO_INCREMENT ,
