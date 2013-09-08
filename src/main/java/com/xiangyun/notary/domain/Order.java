@@ -49,6 +49,9 @@ public class Order implements Serializable {
     @Column(name = "readable_id", insertable=false)
     private String readableId;
     
+    @Column(name = "backend_notary_id", insertable=false)
+    private String backendNotaryId;
+    
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
@@ -126,6 +129,9 @@ public class Order implements Serializable {
     
     @Column(name = "upload_note")
     private String uploadNote;
+    
+    @Column(name = "cancel_note")
+    private String cancelNote;
 
     public Long getId() {
         return id;
@@ -141,6 +147,14 @@ public class Order implements Serializable {
 
     public void setReadableId(String readableId) {
         this.readableId = readableId;
+    }
+
+    public String getBackendNotaryId() {
+        return backendNotaryId;
+    }
+
+    public void setBackendNotaryId(String backendNotaryId) {
+        this.backendNotaryId = backendNotaryId;
     }
 
     public User getUser() {
@@ -345,7 +359,15 @@ public class Order implements Serializable {
 		this.uploadNote = uploadNote;
 	}
 
-	public double calculateTotalFee() {
+	public String getCancelNote() {
+        return cancelNote;
+    }
+
+    public void setCancelNote(String cancelNote) {
+        this.cancelNote = cancelNote;
+    }
+
+    public double calculateTotalFee() {
 	    double result = 0.0;
 	    for (Form form : forms) {
 	        result += form.calculateFormFee();
@@ -355,5 +377,27 @@ public class Order implements Serializable {
 	    }
 	    paymentTotal = result;
 	    return result;
+	}
+	
+	public Set<DocItem> getAllInOneDocs() {
+	    Set<DocItem> allInOneDocs = new HashSet<DocItem>();
+	    
+	    for (DocItem doc : docs) {
+	        if (doc.getDocKey() == null) 
+	            allInOneDocs.add(doc);
+	    }
+	    
+	    return allInOneDocs;
+	}
+	
+	public Set<DocItem> getAloneDocs() {
+	    Set<DocItem> aloneDocs = new HashSet<DocItem>();
+	    
+	    for (DocItem doc : docs) {
+	        if (doc.getDocKey() != null) 
+	            aloneDocs.add(doc);
+	    }
+	    
+	    return aloneDocs;
 	}
 }

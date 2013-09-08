@@ -2,14 +2,20 @@ package com.xiangyun.notary.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -183,12 +189,69 @@ public class UploadController {
         return bytes;
 
     }
+	
+	@RequestMapping(value = "/getFile/{uid}/{fileName}", method = RequestMethod.GET)
+	public void getFile(@PathVariable("uid") String orderId, @PathVariable("fileName") String fileName, HttpServletResponse response) {
+	    
+	    try {
+	        String docKey = fileName.lastIndexOf(".") >= 0 ? fileName.substring(0, fileName.lastIndexOf(".")) : fileName;
+            String saveDir = getSaveDir(orderId, docKey);
+            
+            if (Constants.ALL_IN_ONE_KEY.equals(docKey)) {
+                String zipFileName = orderId + ".zip";
+                String zipFullPath = saveDir + File.separator + zipFileName;
+                FileOutputStream fos = new FileOutputStream(zipFullPath);
+                ZipOutputStream zos = new ZipOutputStream(fos);
+                
+                File dir = new File(saveDir);
+                File[] files = dir.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        if (file.isFile() && !file.getName().endsWith(".zip")) {
+                            ZipEntry ze= new ZipEntry(file.getName());
+                            zos.putNextEntry(ze);
+                            
+                            FileInputStream in = new FileInputStream(saveDir + File.separator + file.getName());
+                            IOUtils.copy(in, zos);
+                 
+                            in.close();
+                        }
+                    }
+                    zos.closeEntry();
+                    zos.close();
+                    
+                    response.setContentType("application/zip");
+                    response.setHeader("Content-Disposition", "attachment; filename=\"" + zipFileName + "\"");
+                    // get your file as InputStream
+                    FileInputStream is = new FileInputStream(zipFullPath);;
+                    // copy it to response's OutputStream
+                    IOUtils.copy(is, response.getOutputStream());
+                    response.flushBuffer();
+                } else {
+                    //TODO: No file uploaded. So need to find a way to let client know there is no files.
+                }
+            } else {
+                //Upload alone or need crop doc
+                response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+                // get your file as InputStream
+                FileInputStream is = new FileInputStream(saveDir + File.separator + fileName);;
+                // copy it to response's OutputStream
+                IOUtils.copy(is, response.getOutputStream());
+                response.flushBuffer();
+            }
+
+        } catch (FileNotFoundException e) {
+            log.error("Error occurs during zipping files for order. Order id: " + orderId, e);
+        } catch (IOException e) {
+            log.error("Error occurs during zipping files or downloading. Order id: " + orderId, e);
+        }
+	}
 
     private String getSaveDir(String orderId, String docKey) {
         StringBuilder sb = new StringBuilder();
-        sb.append(docSaveDir).append(orderId).append("/");
+        sb.append(docSaveDir).append(orderId).append(File.separator);
         if (!Constants.ALL_IN_ONE_KEY.equals(docKey)) {
-            sb.append(docKey).append("/");
+            sb.append(docKey).append(File.separator);
         }
         
         String saveDir = sb.toString();
@@ -202,7 +265,7 @@ public class UploadController {
     
     private String getCropDir(String orderId) {
         StringBuilder sb = new StringBuilder();
-        sb.append(docSaveDir).append(orderId).append("/").append("forCrop").append("/");
+        sb.append(docSaveDir).append(orderId).append(File.separator).append("forCrop").append(File.separator);
         
         String saveDir = sb.toString();
         

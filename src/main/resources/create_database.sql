@@ -7,19 +7,6 @@ GRANT ALL PRIVILEGES ON changning.* TO cn@localhost IDENTIFIED BY "easy";
 -- select the database
 USE changning;
 
-CREATE TABLE test
-(
-  test_id              INT            PRIMARY KEY   AUTO_INCREMENT,
-  test_description     VARCHAR(300)    NOT NULL
-);
-
-INSERT INTO test VALUES
-(1,'test1'),
-(2,'test2'),
-(3,'test3'),
-(4,'test4'),
-(5,'test5');
-
 CREATE  TABLE IF NOT EXISTS `changning`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `mobile` VARCHAR(45) NOT NULL ,
@@ -38,6 +25,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`users` (
 CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `readable_id` VARCHAR(45) NULL ,
+  `backend_notary_id` VARCHAR(45) NULL ,
   `user_id` INT NULL ,
   `order_date` DATE NULL ,
   `payment_total` DECIMAL(10,2) NULL ,
@@ -60,6 +48,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `reqeustor_email` VARCHAR(45) NULL ,
   `requestor_address` VARCHAR(500) NULL ,
   `upload_note` VARCHAR(1000) NULL ,
+  `cancel_note` VARCHAR(1000) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `user_fk_idx` (`user_id` ASC) ,
   CONSTRAINT `user_fk`

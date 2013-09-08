@@ -36,8 +36,9 @@
     		    <SELECT id="status" name="status">
     		    	<OPTION selected value="NULL">全部</OPTION>
 					<OPTION value="SUBMITTED">已创建</OPTION>
-					<OPTION value="PAID">已付款</OPTION>
+					<OPTION value="ACCEPTED">已受理</OPTION>
 					<OPTION value="FINISHED">已完成</OPTION>
+					<OPTION value="CANCEL_REQUESTED">已申请撤销</OPTION>
 					<OPTION value="CANCELLED">已取消</OPTION>
 			    </SELECT>
     		  </div>
@@ -63,12 +64,12 @@
 	              <c:forEach items="${orders}" var="order" >
 	                <tr>
 	                  <td><a href="<c:url value="/orderDetail.do?oId=${order.id}"/>">${order.readableId}</a></td>
-	                  <td></td>
+	                  <td>${order.backendNotaryId}</td>
 	                  <td><fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd"/></td>
 	                  <td>${order.requestorName}</td>
 	                  <td><fmt:formatNumber value="${order.paymentTotal}" type="currency" pattern="￥#0.00"/></td>
 	                  <td><fmt:formatNumber value="${order.paymentPaid}" type="currency" pattern="￥#0.00"/></td>
-	                  <td>${order.orderStatus}</td>
+	                  <td>${order.orderStatus.text}</td>
 	                </tr>
 	              </c:forEach>
 	            </tbody>

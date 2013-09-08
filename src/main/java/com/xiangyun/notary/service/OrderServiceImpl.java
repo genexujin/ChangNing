@@ -91,7 +91,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     		criteria.add(cb.equal(o.get("readableId"), p));
     	}
     	
-    	if (status != null) {
+    	if (status != null && status != OrderStatus.NULL) {
     		ParameterExpression<OrderStatus> p = cb.parameter(OrderStatus.class, "status");
     		criteria.add(cb.equal(o.get("orderStatus"), p));
     	}
@@ -110,7 +110,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
 		
 		TypedQuery<Order> q = em.createQuery(cq);
 		if (readableId != null) q.setParameter("rId", readableId);
-		if (status != null) q.setParameter("status", status);
+		if (status != null && status != OrderStatus.NULL) q.setParameter("status", status);
 		if (userId != null) q.setParameter("uId", userId);
 		
 		q.setFirstResult((pageNum - 1) * Constants.QUERY_PAGE_SIZE);
@@ -165,7 +165,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
             criteria.add(cb.equal(o.get("readableId"), p));
         }
         
-        if (status != null) {
+        if (status != null && status != OrderStatus.NULL) {
             ParameterExpression<OrderStatus> p = cb.parameter(OrderStatus.class, "status");
             criteria.add(cb.equal(o.get("orderStatus"), p));
         }
@@ -183,7 +183,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         
         TypedQuery<Long> q = em.createQuery(cq);
         if (readableId != null) q.setParameter("rId", readableId);
-        if (status != null) q.setParameter("status", status);
+        if (status != null && status != OrderStatus.NULL) q.setParameter("status", status);
         if (userId != null) q.setParameter("uId", userId);
         
         return q.getSingleResult();

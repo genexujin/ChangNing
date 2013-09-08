@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -253,6 +254,7 @@ public class OrderController {
         	}
         }
         
+        order.calculateTotalFee();
         orderService.save(order);
         
         //May move to further steps.
@@ -416,8 +418,184 @@ public class OrderController {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
+        Map<String, FormDef> formDefs = (Map<String, FormDef>)ctx.getAttribute(Constants.FORM_DEFS);
+        Map<String, List<FormDocItemDef>> allInOneUploadDocs = new HashMap<String, List<FormDocItemDef>>();
+        //First put the 通用  docs in the map.
+        FormDef ty = formDefs.get("TY");
+        for (FormDocItemDef docDef : ty.getDocs()) {
+            putIfAbsent(allInOneUploadDocs, ty, docDef);
+        }
+        
+        Set<Form> forms = order.getForms();
+        for (Form form : forms) {
+            //Put form key/value pairs in a map for doc dependency.
+            Map<String, String> formKeyValueMap = new HashMap<String, String>();
+            for (FormItem formItem : form.getFormItems()) {
+                formKeyValueMap.put(formItem.getItemKey(), formItem.getItemValue());
+            }
+            
+            FormDef formDef = formDefs.get(form.getFormKey());
+            //Collect the doc items for display
+            for ( FormDocItemDef docDef : formDef.getDocs()) {
+                boolean shouldPut = true;
+                if (docDef.isDependent() && formKeyValueMap.get(docDef.getDependOn()) != null 
+                        && formKeyValueMap.get(docDef.getDependOn()).equals("false")) {
+                    shouldPut = false;
+                }
+                
+                if (shouldPut && !docDef.isNeedCrop() && !docDef.isUploadAlone()){
+                    putIfAbsent(allInOneUploadDocs, formDef, docDef);
+                }
+            }
+        }
+        
         ModelAndView mav = new ModelAndView("backend/orderDetail");
         mav.addObject("title", "订单详情");
+        mav.addObject("order", order);
+        mav.addObject("allInOneDocs", allInOneUploadDocs.values());
+        
+        return mav;
+    }
+    
+    @RequestMapping(value = "/orderAccept.do")
+    public ModelAndView orderAccept(HttpServletRequest request) {
+        String oId = request.getParameter("oId");
+        if (StringUtils.isEmpty(oId)) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long orderId = null;
+        try {
+            orderId = Long.valueOf(oId);
+        } catch (NumberFormatException e) {
+            log.warn("oId is not a valid number", e);
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        ModelAndView mav = new ModelAndView("backend/orderAccept");
+        mav.addObject("title", "订单受理");
+        mav.addObject("order", order);
+        
+        return mav;
+        
+    }
+    
+    @RequestMapping(value = "/doAccept.do")
+    public ModelAndView doAccept(HttpServletRequest request, 
+            @RequestParam("oId") Long oId, 
+            @RequestParam("notaryId") String notaryId) {
+        if (StringUtils.isEmpty(oId)) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long orderId = null;
+        try {
+            orderId = Long.valueOf(oId);
+        } catch (NumberFormatException e) {
+            log.warn("oId is not a valid number", e);
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        order.setBackendNotaryId(notaryId);
+        order.setOrderStatus(OrderStatus.ACCEPTED);
+        orderService.save(order);
+        
+        ModelAndView mav = new ModelAndView("backend/orderAccept");
+        mav.addObject("title", "订单受理");
+        mav.addObject("order", order);
+        
+        return mav;
+    }
+    
+    @RequestMapping(value = "/orderCancel.do")
+    public ModelAndView orderCancel(HttpServletRequest request) {
+        String oId = request.getParameter("oId");
+        if (StringUtils.isEmpty(oId)) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long orderId = null;
+        try {
+            orderId = Long.valueOf(oId);
+        } catch (NumberFormatException e) {
+            log.warn("oId is not a valid number", e);
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        ModelAndView mav = new ModelAndView("backend/orderCancel");
+        mav.addObject("title", "订单撤销");
+        mav.addObject("order", order);
+        
+        return mav;
+        
+    }
+    
+    @RequestMapping(value = "/doCancel.do")
+    public ModelAndView doCancel(HttpServletRequest request, 
+            @RequestParam("oId") Long oId, 
+            @RequestParam("cancel_note") String cancelNote) {
+        if (StringUtils.isEmpty(oId)) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long orderId = null;
+        try {
+            orderId = Long.valueOf(oId);
+        } catch (NumberFormatException e) {
+            log.warn("oId is not a valid number", e);
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        order.setCancelNote(cancelNote);
+        order.setOrderStatus(OrderStatus.CANCEL_REQUESTED);
+        orderService.save(order);
+        
+        ModelAndView mav = new ModelAndView("backend/orderAccept");
+        mav.addObject("title", "订单受理");
         mav.addObject("order", order);
         
         return mav;

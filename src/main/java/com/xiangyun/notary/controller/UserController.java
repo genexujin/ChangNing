@@ -38,44 +38,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/createUser.do")
-	public ModelAndView createUser() {
-
-		Order o = new Order();
-		o.setCertificateCopyCount(2);
-		o.setCertificatePurpose(CertificatePurpose.RESIDENCE);
-		o.setDestination(DestinationCountry.Germany);
-		o.setTranslationLanguage(Language.English);
-		o.setOrderDate(new Date());
-		o.setOrderStatus(OrderStatus.SUBMITTED);
-		o.setPaymentPaid(0);
-		o.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
-		o.setPaymentTotal(240);
-		o.setSendDoc(false);
-
-		User u = new User();
-		u.setAddress("adresssssfff");
-		u.setBirthDate(new Date());
-		u.setCredentialType(CredentialType.ID_CARD);
-		u.setEmail("pairliu@gmail.com");
-		u.setMobile("1351111111");
-		u.setName("刘峻");
-		u.setPassword("abcd1234");
-		u.setCredentialId("132412341");
-		u.setGender(Gender.MALE);
-		// The relation is managed in this method for both ends.
-		u.addOrder(o);
-
-		// This will also create the new Order entry, as CascadeType.PERSIST is
-		// set on the relationship.
-		u = userService.save(u);
-
-		ModelAndView mav = new ModelAndView("user");
-		mav.addObject("user", u);
-
-		return mav;
-	}
-
 	/**
 	 * 进入注册页面
 	 * 

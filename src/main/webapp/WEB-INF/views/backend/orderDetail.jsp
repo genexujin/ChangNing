@@ -11,29 +11,34 @@
       </ul>
       <br/>
       
-      <div class="row">
-		<div class="span3">
-		  <button class="btn" type="submit">确认受理</button>
-		</div>
-		<div class="span3">
-		  <button class="btn" type="submit">要求补充材料</button>
-		</div>
-		<div class="span3">
-		  <button class="btn" type="submit">要求客户附加费用</button>
-		</div>
-		<div class="span3">
-		  <button class="btn" type="submit">返回</button>
-		</div>
-      </div>
-
-      <div class="row">
-		<div class="span3">
-		  <button class="btn" type="submit">申请撤销</button>
-		</div>
-		<div class="span3">
-		  <button class="btn" type="submit">返回</button>
-		</div>
-      </div>
+      <c:choose>
+        <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
+          <div class="row">
+			<div class="span3">
+			  <a class="btn" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
+			</div>
+			<div class="span3">
+			  <button class="btn" type="submit">要求补充材料</button>
+			</div>
+			<div class="span3">
+			  <button class="btn" type="submit">要求客户附加费用</button>
+			</div>
+			<div class="span3">
+			  <a href="orderQuery.do" class="btn">返回</a>
+			</div>
+	      </div>
+        </c:when>
+        <c:otherwise>
+          <div class="row">
+			<div class="span3">
+			  <button class="btn" type="submit">申请撤销</button>
+			</div>
+			<div class="span3">
+			  <a href="orderQuery.do" class="btn">返回</a>
+			</div>
+      	  </div>
+        </c:otherwise>
+      </c:choose>
       
       <br/>
       
@@ -177,20 +182,22 @@
       <div class="border">
         <br/>
         <div class="row">
-          <div class="span10 offset1">
+          <div class="span5 offset1">
+            <b>基本材料：</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
+			<ul>
+	          <c:forEach items="${allInOneDocs}" var="docs" >
+	            <c:forEach items="${docs}" var="doc" >
+	              <li>${doc.docName}</li>
+	            </c:forEach>
+	          </c:forEach>
+	        </ul>
+          </div>
+          <div class="span5 offset1">
             <table class="table td-no-border">
-              <c:forEach items="${order.docs}" var="doc" varStatus="counter">
+              <c:forEach items="${order.aloneDocs}" var="doc" varStatus="counter">
                 <tr>
-                  <c:choose>
-                    <c:when test="${doc.docName == null}">
-                      <td style="width:120px"></td>
-                      <td style="width:100px"><a href="resources/docs/chuguo.zip" class="btn">文件${counter.index + 1}</a></td>
-                    </c:when>
-                    <c:otherwise>
-                      <td style="width:120px">${doc.docName}</td>
-                      <td style="width:100px"><a href="resources/docs/chuguo.zip" class="btn">下载</a></td>
-                    </c:otherwise>
-                  </c:choose>
+                  <td style="width:120px"><b>${doc.docName}</b></td>
+                  <td style="width:100px"><a href="getFile/${order.id}/${doc.docFileName}.do" class="btn">下载</a></td>
                 </tr>
               </c:forEach>
             </table>
@@ -212,7 +219,7 @@
       <div class="border">
         <br/>
         <div class="row">
-          <div class="span10 offset1">
+          <div class="span5 offset1">
             <table class="table td-no-border">
               <tr>
                 <td style="width:120px"><b>是否需要上门送证</b></td>

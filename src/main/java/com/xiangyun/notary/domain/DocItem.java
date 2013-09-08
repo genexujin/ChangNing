@@ -2,6 +2,7 @@ package com.xiangyun.notary.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.File;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -99,6 +100,13 @@ public class DocItem implements Serializable {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+    
+    public String getDocFileName() {
+        if (docPath == null) return null;
+        
+        int separator = docPath.lastIndexOf(File.separator);
+        return separator >= 0 ? docPath.substring(separator + 1) : docPath;
     }
 
 }
