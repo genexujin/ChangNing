@@ -205,7 +205,7 @@ ul,ol{
                     <dt></dt>
                     <dd>
                         <span class="new-btn-login-sp">
-                            <button class="new-btn-login" type="submit" style="text-align:center;">确 认</button>
+                            <button type="submit" style="text-align:center;">确 认</button>
                         </span>
                     </dd>
                 </dl>
