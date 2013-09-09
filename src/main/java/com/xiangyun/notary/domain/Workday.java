@@ -35,6 +35,15 @@ public class Workday implements Serializable {
     private WorkdayType type;
     
     private String description;
+    private String batch;
+
+	public String getBatch() {
+		return batch;
+	}
+
+	public void setBatch(String batch) {
+		this.batch = batch;
+	}
 
 	public Long getId() {
 		return id;

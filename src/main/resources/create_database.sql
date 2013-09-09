@@ -190,6 +190,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`workdays` (
   `day` INT NULL ,
   `type` VARCHAR(20) NULL ,
   `description` VARCHAR(500) NULL ,
+  `batch` VARCHAR(20) NULL ,
   PRIMARY KEY (`id`) );
 
 CREATE  TABLE IF NOT EXISTS `changning`.`time_segments` (
