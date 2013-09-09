@@ -196,7 +196,7 @@ public class AlipayController {
 		}
 
 		mav.addObject("orderNo", out_trade_no);
-		mav.addObject("total_fee", total_fee);
+		mav.addObject("totalFee", total_fee);
 		mav.addObject("title", "支付结果");
 
 		return mav;
@@ -205,7 +205,7 @@ public class AlipayController {
 	@RequestMapping(value = "/testReturn.do")
 	public ModelAndView testReturn(HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("success", "false");
+		mav.addObject("success", false);
 		mav.addObject("totalFee", "0.01");
 		mav.addObject("orderNo", "B000120301");
 		mav.setViewName("paymentReturn");
