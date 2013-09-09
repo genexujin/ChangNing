@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alipay.config.AlipayConfig;
 import com.alipay.util.AlipayNotify;
@@ -142,9 +143,9 @@ public class AlipayController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/onPaymentReturn.do")
-	public void onPaymentReturn(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
+	public ModelAndView onPaymentReturn(HttpServletRequest request)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("paymentReturn");
 		// 获取支付宝GET过来反馈信息
 		Map<String, String> params = new HashMap<String, String>();
 		Map requestParams = request.getParameterMap();
@@ -174,34 +175,41 @@ public class AlipayController {
 		String trade_status = new String(request.getParameter("trade_status")
 				.getBytes("ISO-8859-1"), "UTF-8");
 
+		// 交易金额
+		String total_fee = new String(request.getParameter("total_fee")
+				.getBytes("ISO-8859-1"), "UTF-8");
+
 		// 获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
 		// 计算得出通知验证结果
 		boolean verify_result = AlipayNotify.verify(params);
 
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-
-		out.println("<p> 商户订单号： " + out_trade_no + "<p/>");
-		out.println("<p> 支付宝交易号： " + trade_no + "<p/>");
-		out.println("<p> 交易状态： " + trade_status + "<p/>");
-
 		if (verify_result) {// 验证成功
-			// ////////////////////////////////////////////////////////////////////////////////////////
-			// 请在这里加上商户的业务逻辑程序代码
-
-			// ——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
 			if (trade_status.equals("TRADE_FINISHED")
 					|| trade_status.equals("TRADE_SUCCESS")) {
 				updatePaymentStatus(out_trade_no, trade_no);
+				mav.addObject("success", true);
+			} else {
+				mav.addObject("success", false);
 			}
-
-			// 该页面可做页面美工编辑
-			out.println("验证成功<br />");
-
 		} else {
-			// 该页面可做页面美工编辑
-			out.println("验证失败");
+			mav.addObject("success", false);
 		}
+
+		mav.addObject("orderNo", out_trade_no);
+		mav.addObject("total_fee", total_fee);
+		mav.addObject("title", "支付结果");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/testReturn.do")
+	public ModelAndView testReturn(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("success", "false");
+		mav.addObject("totalFee", "0.01");
+		mav.addObject("orderNo", "B000120301");
+		mav.setViewName("paymentReturn");
+		return mav;
 	}
 
 	private void updatePaymentStatus(String out_trade_no, String trade_no) {
