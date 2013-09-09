@@ -183,16 +183,24 @@
         <br/>
         <div class="row">
           <div class="span5 offset1">
-            <b>基本材料：</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
+<%--             <b>基本材料：</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
 			<ul>
 	          <c:forEach items="${allInOneDocs}" var="docs" >
 	            <c:forEach items="${docs}" var="doc" >
 	              <li>${doc.docName}</li>
 	            </c:forEach>
 	          </c:forEach>
+	        </ul> --%>
+	        <b>所需上传材料：</b>
+	        <ul>
+	          <c:forEach items="${allDocs}" var="docs" >
+	            <c:forEach items="${docs}" var="doc" >
+	              <li>${doc.docName}</li>
+	            </c:forEach>
+	          </c:forEach>
 	        </ul>
           </div>
-          <div class="span5 offset1">
+<%--           <div class="span5 offset1">
             <table class="table td-no-border">
               <c:forEach items="${order.aloneDocs}" var="doc" varStatus="counter">
                 <tr>
@@ -201,8 +209,15 @@
                 </tr>
               </c:forEach>
             </table>
+          </div> --%>
+        </div>
+        <div class="row">
+          <div class="span5 offset1">
+            <a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
+            <a href="#" class="btn">补充材料</a>
           </div>
         </div>
+        <br/>
       </div>
       
       <div class="bar-bg">
@@ -219,7 +234,7 @@
       <div class="border">
         <br/>
         <div class="row">
-          <div class="span5 offset1">
+          <div class="span8 offset1">
             <table class="table td-no-border">
               <tr>
                 <td style="width:120px"><b>是否需要上门送证</b></td>

@@ -454,11 +454,11 @@ public class OrderController {
         }
         
         Map<String, FormDef> formDefs = (Map<String, FormDef>)ctx.getAttribute(Constants.FORM_DEFS);
-        Map<String, List<FormDocItemDef>> allInOneUploadDocs = new HashMap<String, List<FormDocItemDef>>();
+        Map<String, List<FormDocItemDef>> allDocs = new HashMap<String, List<FormDocItemDef>>();
         //First put the 通用  docs in the map.
         FormDef ty = formDefs.get("TY");
         for (FormDocItemDef docDef : ty.getDocs()) {
-            putIfAbsent(allInOneUploadDocs, ty, docDef);
+            putIfAbsent(allDocs, ty, docDef);
         }
         
         Set<Form> forms = order.getForms();
@@ -478,8 +478,10 @@ public class OrderController {
                     shouldPut = false;
                 }
                 
-                if (shouldPut && !docDef.isNeedCrop() && !docDef.isUploadAlone()){
-                    putIfAbsent(allInOneUploadDocs, formDef, docDef);
+//                if (shouldPut && !docDef.isNeedCrop() && !docDef.isUploadAlone()){
+                //Put all the files in. Download all together
+                if (shouldPut){
+                    putIfAbsent(allDocs, formDef, docDef);
                 }
             }
         }
@@ -487,7 +489,7 @@ public class OrderController {
         ModelAndView mav = new ModelAndView("backend/orderDetail");
         mav.addObject("title", "订单详情");
         mav.addObject("order", order);
-        mav.addObject("allInOneDocs", allInOneUploadDocs.values());
+        mav.addObject("allDocs", allDocs.values());
         
         return mav;
     }

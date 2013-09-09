@@ -199,25 +199,28 @@ public class UploadController {
             
             if (Constants.ALL_IN_ONE_KEY.equals(docKey)) {
                 String zipFileName = orderId + ".zip";
-                String zipFullPath = saveDir + File.separator + zipFileName;
+                String zipFullPath = saveDir + zipFileName;
                 FileOutputStream fos = new FileOutputStream(zipFullPath);
                 ZipOutputStream zos = new ZipOutputStream(fos);
                 
                 File dir = new File(saveDir);
-                File[] files = dir.listFiles();
-                if (files != null) {
-                    for (File file : files) {
-                        if (file.isFile() && !file.getName().endsWith(".zip")) {
-                            ZipEntry ze= new ZipEntry(file.getName());
-                            zos.putNextEntry(ze);
-                            
-                            FileInputStream in = new FileInputStream(saveDir + File.separator + file.getName());
-                            IOUtils.copy(in, zos);
-                 
-                            in.close();
-                        }
-                    }
-                    zos.closeEntry();
+                addDir(dir, zos);
+//                File[] files = dir.listFiles();
+//                if (files != null) {
+//                    for (File file : files) {
+////                        if (file.isFile() && !file.getName().endsWith(".zip")) {
+//                        //Download all files altogether
+//                        if (file.isFile() && !file.getName().endsWith(".zip")) {
+//                            ZipEntry ze= new ZipEntry(file.getName());
+//                            zos.putNextEntry(ze);
+//                            
+//                            FileInputStream in = new FileInputStream(saveDir + File.separator + file.getName());
+//                            IOUtils.copy(in, zos);
+//                 
+//                            in.close();
+//                        }
+//                    }
+//                    zos.closeEntry();
                     zos.close();
                     
                     response.setContentType("application/zip");
@@ -227,9 +230,9 @@ public class UploadController {
                     // copy it to response's OutputStream
                     IOUtils.copy(is, response.getOutputStream());
                     response.flushBuffer();
-                } else {
-                    //TODO: No file uploaded. So need to find a way to let client know there is no files.
-                }
+//                } else {
+//                    //TODO: No file uploaded. So need to find a way to let client know there is no files.
+//                }
             } else {
                 //Upload alone or need crop doc
                 response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
@@ -246,6 +249,25 @@ public class UploadController {
             log.error("Error occurs during zipping files or downloading. Order id: " + orderId, e);
         }
 	}
+	
+    private void addDir(File dirObj, ZipOutputStream out) throws IOException {
+        File[] files = dirObj.listFiles();
+
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isDirectory() && !files[i].getName().equals(Constants.FOR_CROP_DIR)) {
+                addDir(files[i], out);
+                continue;
+            } 
+            
+            if (files[i].isFile() && !files[i].getName().endsWith(".zip")) {
+                FileInputStream in = new FileInputStream(files[i].getAbsolutePath());
+                out.putNextEntry(new ZipEntry(files[i].getName()));
+                IOUtils.copy(in, out);
+                out.closeEntry();
+                in.close();
+            }
+        }
+    }
 
     private String getSaveDir(String orderId, String docKey) {
         StringBuilder sb = new StringBuilder();

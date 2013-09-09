@@ -34,7 +34,7 @@
     		  </div>
     		  <div class="span2">
     		    <SELECT id="status" name="status">
-    		    	<OPTION selected value="NULL">全部</OPTION>
+    		    	<OPTION value="NULL">全部</OPTION>
 					<OPTION value="SUBMITTED">已创建</OPTION>
 					<OPTION value="ACCEPTED">已受理</OPTION>
 					<OPTION value="FINISHED">已完成</OPTION>
