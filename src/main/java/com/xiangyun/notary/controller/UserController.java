@@ -236,11 +236,12 @@ public class UserController {
 			mav.addObject("title", "用户登录");
 			mav.setViewName("login");
 		} else {
-			HttpSession session = request.getSession(true);
+			HttpSession session = request.getSession();
 			session.setAttribute(Constants.LOGIN_USER, u);
-			mav.addObject("user", u);
-			mav.addObject("title", "个人信息");
-			mav.setViewName("modify");
+			String targetURL = (String)session.getAttribute("openURL");
+//			mav.addObject("user", u);
+//			mav.addObject("title", "个人信息");
+			mav.setViewName("redirect:"+targetURL);
 		}
 		return mav;
 	}

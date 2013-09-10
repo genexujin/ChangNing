@@ -16,7 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AuthenticationFilter implements Filter {
-	private static final Logger log = LoggerFactory.getLogger(AuthenticationFilter.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(AuthenticationFilter.class);
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -26,32 +27,38 @@ public class AuthenticationFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpServletResponse resp = (HttpServletResponse)response;
+
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
 
 		log.debug("Context Path : {}", req.getContextPath());
 		log.debug("Servlet Path : {}", req.getServletPath());
-		
+
 		String servletPath = req.getServletPath();
-		if (servletPath.indexOf("/home") >= 0 
-				|| servletPath.indexOf("/enterLogin") >= 0 
-				|| servletPath.indexOf("/login") >= 0				
-				|| servletPath.indexOf("/onPaymentReturn.do")>=0
-				|| servletPath.indexOf("/onPaymentNotify.do")>=0				
-				|| servletPath.indexOf("/onRefundNotify.do")>=0
-				|| servletPath.indexOf("/whichUser.do")>=0) {
+		if (servletPath.indexOf("/home") >= 0
+				|| servletPath.indexOf("/enterLogin") >= 0
+				|| servletPath.indexOf("/login") >= 0
+				|| servletPath.indexOf("/onPaymentReturn.do") >= 0
+				|| servletPath.indexOf("/onPaymentNotify.do") >= 0
+				|| servletPath.indexOf("/onRefundNotify.do") >= 0
+				|| servletPath.indexOf("/whichUser.do") >= 0) {
 			chain.doFilter(request, response);
 			return;
 		}
-		
+
 		HttpSession session = req.getSession(false);
-		if (session == null || session.getAttribute(Constants.LOGIN_USER) == null) {
+		if (session == null
+				|| session.getAttribute(Constants.LOGIN_USER) == null) {
 			log.debug("Not logging yet. Redirecting to login page...");
+			String url = ((HttpServletRequest) request).getRequestURL()
+					.toString();
+			String queryString = ((HttpServletRequest) request)
+					.getQueryString();
+			session.setAttribute("openURL", url + "?" + queryString);
 			resp.sendRedirect(req.getContextPath() + "/enterLogin.do");
 			return;
 		}
-		
+
 		chain.doFilter(request, response);
 	}
 
