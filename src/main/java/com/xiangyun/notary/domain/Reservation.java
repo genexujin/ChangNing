@@ -3,6 +3,7 @@ package com.xiangyun.notary.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,38 +21,36 @@ import com.xiangyun.notary.common.ReservationStatus;
 @Table(name = "reservations")
 public class Reservation implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-    @GeneratedValue(strategy = IDENTITY)
-    private Long id;
-	
-    @Column(name = "readable_id", insertable=false)
-    private String readableId;
-	
+	@GeneratedValue(strategy = IDENTITY)
+	private Long id;
+
+	@Column(name = "readable_id", insertable = false)
+	private String readableId;
+
 	@Column(name = "requestor_name")
-    private String requestorName;
-	
+	private String requestorName;
+
 	@Column(name = "requestor_mobile")
-    private String requestorMobile;
-	
+	private String requestorMobile;
+
 	@Column(name = "reserve_key")
-    private String reservationKey;
-	
-    @Enumerated(EnumType.STRING)
-    @Column(name = "reserve_status")
-    private ReservationStatus reservationStatus;
-	
+	private String reservationKey;
+
+	@Column(name = "reserve_date")
+	private Date reservationDate;
+
+	@Column(name = "reserve_time_segment")
+	private String reservationTimeSegment;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "reserve_status")
+	private ReservationStatus reservationStatus;
+
 	@ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
-	
-	@ManyToOne
-    @JoinColumn(name="time_segment_id")
-    private TimeSegment timeSegment;
-	
-	@ManyToOne
-    @JoinColumn(name="workday_id")
-    private Workday workday;
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public Long getId() {
 		return id;
@@ -93,36 +92,36 @@ public class Reservation implements Serializable {
 		this.user = user;
 	}
 
-	public TimeSegment getTimeSegment() {
-		return timeSegment;
+	public Date getReservationDate() {
+		return reservationDate;
 	}
 
-	public void setTimeSegment(TimeSegment timeSegment) {
-		this.timeSegment = timeSegment;
+	public void setReservationDate(Date reservationDate) {
+		this.reservationDate = reservationDate;
 	}
 
-	public Workday getWorkday() {
-		return workday;
+	public String getReservationTimeSegment() {
+		return reservationTimeSegment;
 	}
 
-	public void setWorkday(Workday workday) {
-		this.workday = workday;
+	public void setReservationTimeSegment(String reservationTimeSegment) {
+		this.reservationTimeSegment = reservationTimeSegment;
 	}
 
-    public String getReadableId() {
-        return readableId;
-    }
+	public String getReadableId() {
+		return readableId;
+	}
 
-    public void setReadableId(String readableId) {
-        this.readableId = readableId;
-    }
+	public void setReadableId(String readableId) {
+		this.readableId = readableId;
+	}
 
-    public ReservationStatus getReservationStatus() {
-        return reservationStatus;
-    }
+	public ReservationStatus getReservationStatus() {
+		return reservationStatus;
+	}
 
-    public void setReservationStatus(ReservationStatus reservationStatus) {
-        this.reservationStatus = reservationStatus;
-    }
+	public void setReservationStatus(ReservationStatus reservationStatus) {
+		this.reservationStatus = reservationStatus;
+	}
 
 }

@@ -42,8 +42,8 @@ public class ReservationController {
 		Reservation reservation = reservationService.findByReadableId(readableId);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("readableId", readableId);
-		map.put("reservDate", reservation.getWorkday().getDate());
-		map.put("reservTime", reservation.getTimeSegment().getStartTime());
+		map.put("reservDate", reservation.getReservationDate());
+		map.put("reservTime", reservation.getReservationTimeSegment());
 		map.put("requestorName", reservation.getRequestorName());
 		map.put("reservKey", reservation.getReservationKey());
 		map.put("reservStatus", reservation.getReservationStatus());
@@ -69,8 +69,8 @@ public class ReservationController {
 		for (Reservation data : findList) {
 			map = new HashMap<String, Object>();
 			map.put("readableId", data.getReadableId());
-			map.put("reservDate", data.getWorkday().getDate());
-			map.put("reservTime", data.getTimeSegment().getStartTime());
+			map.put("reservDate", data.getReservationDate());
+			map.put("reservTime", data.getReservationTimeSegment());
 			map.put("requestorName", data.getRequestorName());
 			map.put("reservKey", data.getReservationKey());
 			map.put("reservStatus", data.getReservationStatus());
