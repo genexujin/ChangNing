@@ -4,12 +4,16 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.xiangyun.notary.common.WorkdayType;
@@ -30,6 +34,9 @@ public class Workday implements Serializable {
     private int month;
     
     private int day;
+    
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "workDay")
+    private Set<TimeSegment> timeSegments = new HashSet<TimeSegment>();
     
     @Enumerated(EnumType.STRING)
     private WorkdayType type;
@@ -100,5 +107,15 @@ public class Workday implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Set<TimeSegment> getTimeSegments() {
+		return timeSegments;
+	}
+
+	public void setTimeSegments(Set<TimeSegment> timeSegments) {
+		this.timeSegments = timeSegments;
+	}
+	
+	
 
 }
