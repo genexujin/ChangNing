@@ -77,6 +77,12 @@
 	          <table class="table td-no-border">
 	            <tbody>
 	              <tr>
+	                <td style="width:120px"><b>申办号</b></td>
+	                <td style="width:100px">${order.readableId}</td>
+	                <td style="width:120px"><b>公证号</b></td>
+	                <td style="width:100px">${order.backendNotaryId}</td>
+	              </tr>
+	              <tr>
 	                <td style="width:120px"><b>订单日期</b></td>
 	                <td style="width:100px"><fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd"/></td>
 	                <td style="width:120px"><b>订单状态</b></td>
@@ -214,7 +220,7 @@
         <div class="row">
           <div class="span5 offset1">
             <a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
-            <a href="#" class="btn">补充材料</a>
+            <a href="addDocs.do?oId=${order.id}" class="btn">补充材料</a>
           </div>
         </div>
         <br/>

@@ -47,13 +47,12 @@ public class AuthenticationFilter implements Filter {
 		}
 
 		HttpSession session = req.getSession(false);
-		if (session == null
-				|| session.getAttribute(Constants.LOGIN_USER) == null) {
+		if (session == null	|| session.getAttribute(Constants.LOGIN_USER) == null) {
 			log.debug("Not logging yet. Redirecting to login page...");
-			String url = ((HttpServletRequest) request).getRequestURL()
-					.toString();
-			String queryString = ((HttpServletRequest) request)
-					.getQueryString();
+			String url = ((HttpServletRequest) request).getRequestURL().toString();
+			String queryString = ((HttpServletRequest) request).getQueryString();
+			//session can be null, so get it again so that a new one can be created when it is null
+			session = req.getSession();
 			session.setAttribute("openURL", url + "?" + queryString);
 			resp.sendRedirect(req.getContextPath() + "/enterLogin.do");
 			return;

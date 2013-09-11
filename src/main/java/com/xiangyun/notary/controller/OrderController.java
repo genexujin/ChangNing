@@ -520,6 +520,11 @@ public class OrderController {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
+        //
+        if (order.getOrderStatus().ordinal() >= OrderStatus.ACCEPTED.ordinal()) {
+        	return new ModelAndView("redirect:orderDetail.do?oId=" + oId);
+        }
+        
         ModelAndView mav = new ModelAndView("backend/orderAccept");
         mav.addObject("title", "订单受理");
         mav.addObject("order", order);
@@ -637,6 +642,109 @@ public class OrderController {
         
         return mav;
     }
+    
+    @RequestMapping(value = "/addDocs.do")
+    public ModelAndView addDocs(HttpServletRequest request) {
+    	String oId = request.getParameter("oId");
+        if (StringUtils.isEmpty(oId)) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long orderId = null;
+        try {
+            orderId = Long.valueOf(oId);
+        } catch (NumberFormatException e) {
+            log.warn("oId is not a valid number", e);
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+    	//Collect docs for the order
+        Map<String, List<FormDocItemDef>> allInOneUploadDocs = new HashMap<String, List<FormDocItemDef>>();
+        Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
+        Map<String, FormDocItemDef> needCropDocs = new HashMap<String, FormDocItemDef>();
+        
+        Map<String, FormDef> formDefs = (Map<String, FormDef>)ctx.getAttribute(Constants.FORM_DEFS);
+        
+        //First put the 通用  docs in the map.
+        FormDef ty = formDefs.get("TY");
+        for (FormDocItemDef docDef : ty.getDocs()) {
+            putIfAbsent(allInOneUploadDocs, ty, docDef);
+        }
+        
+    	Set<Form> forms = order.getForms();    	
+    	for (Form form : forms) {
+            FormDef formDef = formDefs.get(form.getFormKey());
+            for ( FormDocItemDef docDef : formDef.getDocs()) {
+            	boolean shouldPut = true;
+            	//Check if we should add the doc if the doc is dependent.
+            	if (docDef.isDependent()) {
+            		shouldPut = checkDependentDocItem(form, docDef);
+            	}
+            	
+            	if (shouldPut && docDef.isNeedCrop()) {
+        	        putIfAbsent(needCropDocs, docDef);
+        	        
+        	    } else if (shouldPut && docDef.isUploadAlone()) {
+        	        putIfAbsent(aloneUploadDocs, docDef);
+        			
+        		} else if (shouldPut){
+        		    putIfAbsent(allInOneUploadDocs, formDef, docDef);
+        		    
+        		}
+            }
+            
+          //Add docItems for QSGX
+        	if (formDef.getFormKey().equals(Constants.QSGX_FORM_KEY)) {
+        		for (FormItem item : form.getFormItems()) {
+        			if (item.getRelativeInfo() != null) {
+        				FormDocItemDef idDocDef = new FormDocItemDef();
+        				idDocDef.setDocKey(item.getItemKey() + Constants.QSGX_DOC_ID_SUFFIX);
+        				idDocDef.setDocName(Constants.QSGX_DOC_ID_TEMPLATE.replace("%", item.getRelativeInfo().getRelativeName()));
+        				putIfAbsent(allInOneUploadDocs, formDef, idDocDef);
+        				
+        				FormDocItemDef hkDocDef = new FormDocItemDef();
+        				hkDocDef.setDocKey(item.getItemKey() + Constants.QSGX_DOC_HK_SUFFIX);
+        				hkDocDef.setDocName(Constants.QSGX_DOC_HK_TEMPLATE.replace("%", item.getRelativeInfo().getRelativeName()));
+        				putIfAbsent(allInOneUploadDocs, formDef, hkDocDef);
+        			}
+        		}
+        	}
+        }
+    	
+    	ModelAndView mav = new ModelAndView("backend/addDocs");
+        mav.addObject("title", "补充资料");
+        
+        UploadModel m = new UploadModel();
+        m.setUid(order.getId());
+        m.setOrderReadableId(order.getReadableId());
+        m.setAllInOneUpload(allInOneUploadDocs);
+        m.setAloneUpload(aloneUploadDocs.values());
+        m.setNeedCrop(needCropDocs.values());
+        
+        mav.addObject("um", m);
+    	
+    	return mav;
+    }
+
+	private boolean checkDependentDocItem(Form form, FormDocItemDef docDef) {
+		String dependOnFormItem = docDef.getDependOn();
+		for (FormItem item : form.getFormItems()) {
+			if (item.getItemKey().equals(dependOnFormItem) && item.getItemValue().equals("false"))
+				return false;
+		}
+		return true;
+	}
 
     private void putIfAbsent(Map<String, FormDocItemDef> docDefs, FormDocItemDef docDef) {
         if (!docDefs.containsKey(docDef.getDocKey())) {
