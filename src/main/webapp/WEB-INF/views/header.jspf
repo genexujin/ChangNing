@@ -95,7 +95,7 @@
 							<%
 								} else {
 							%>
-							<li><a class="clean" href="enterReservQuery.do">网上预约</a></li>
+							<li><a class="clean" href="enterReserv.do">网上预约</a></li>
 							<%
 								}
 							%>

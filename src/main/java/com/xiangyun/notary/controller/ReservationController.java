@@ -17,8 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.ReservationStatus;
 import com.xiangyun.notary.domain.Reservation;
+import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.domain.Workday;
 import com.xiangyun.notary.service.ReservationService;
 
@@ -98,5 +100,14 @@ public class ReservationController {
 		Reservation reservation = reservationService.findByReadableId(readableId);
 		reservation.setReservationStatus(ReservationStatus.FINISHED);
 		reservationService.save(reservation);
+	}
+	
+	@RequestMapping(value="enterReserv.do")
+	public ModelAndView enterReserv(HttpServletRequest request){
+		ModelAndView mav = new ModelAndView("enterReserv");
+		User u = (User)request.getSession().getAttribute(Constants.LOGIN_USER);
+		mav.addObject("currUser", u);
+    	mav.addObject("title", "预约申请");
+    	return mav;
 	}
 }
