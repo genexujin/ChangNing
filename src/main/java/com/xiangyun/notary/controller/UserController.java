@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -239,9 +240,14 @@ public class UserController {
 			HttpSession session = request.getSession();
 			session.setAttribute(Constants.LOGIN_USER, u);
 			String targetURL = (String)session.getAttribute("openURL");
-//			mav.addObject("user", u);
-//			mav.addObject("title", "个人信息");
-			mav.setViewName("redirect:"+targetURL);
+			if (StringUtils.isEmpty(targetURL)) {
+				mav.addObject("user", u);
+				mav.addObject("title", "个人信息");
+				mav.setViewName("modify");
+			} else {
+				mav.setViewName("redirect:"+targetURL);
+			}
+			
 		}
 		return mav;
 	}

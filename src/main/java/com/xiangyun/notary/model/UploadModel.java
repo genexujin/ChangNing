@@ -1,13 +1,17 @@
 package com.xiangyun.notary.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import com.xiangyun.notary.form.FormDocItemDef;
 
-public class UploadModel {
+public class UploadModel implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
     private Long uid;
+    private String orderReadableId;
     private Map<String, List<FormDocItemDef>> allInOneUpload;
     private Collection<FormDocItemDef> aloneUpload;
     private Collection<FormDocItemDef> needCrop;
@@ -20,7 +24,15 @@ public class UploadModel {
         this.uid = uid;
     }
     
-    public Map<String, List<FormDocItemDef>> getAllInOneUpload() {
+    public String getOrderReadableId() {
+		return orderReadableId;
+	}
+
+	public void setOrderReadableId(String orderReadableId) {
+		this.orderReadableId = orderReadableId;
+	}
+
+	public Map<String, List<FormDocItemDef>> getAllInOneUpload() {
         return allInOneUpload;
     }
     

@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.zip.ZipEntry;
@@ -204,32 +205,17 @@ public class UploadController {
                 ZipOutputStream zos = new ZipOutputStream(fos);
                 
                 File dir = new File(saveDir);
-                addDir(dir, zos);
-//                File[] files = dir.listFiles();
-//                if (files != null) {
-//                    for (File file : files) {
-////                        if (file.isFile() && !file.getName().endsWith(".zip")) {
-//                        //Download all files altogether
-//                        if (file.isFile() && !file.getName().endsWith(".zip")) {
-//                            ZipEntry ze= new ZipEntry(file.getName());
-//                            zos.putNextEntry(ze);
-//                            
-//                            FileInputStream in = new FileInputStream(saveDir + File.separator + file.getName());
-//                            IOUtils.copy(in, zos);
-//                 
-//                            in.close();
-//                        }
-//                    }
-//                    zos.closeEntry();
-                    zos.close();
-                    
-                    response.setContentType("application/zip");
-                    response.setHeader("Content-Disposition", "attachment; filename=\"" + zipFileName + "\"");
-                    // get your file as InputStream
-                    FileInputStream is = new FileInputStream(zipFullPath);;
-                    // copy it to response's OutputStream
-                    IOUtils.copy(is, response.getOutputStream());
-                    response.flushBuffer();
+                Map<String, String> files = new HashMap<String, String>();
+                addDir(dir, zos, files);
+                zos.close();
+                
+                response.setContentType("application/zip");
+                response.setHeader("Content-Disposition", "attachment; filename=\"" + zipFileName + "\"");
+                // get your file as InputStream
+                FileInputStream is = new FileInputStream(zipFullPath);;
+                // copy it to response's OutputStream
+                IOUtils.copy(is, response.getOutputStream());
+                response.flushBuffer();
 //                } else {
 //                    //TODO: No file uploaded. So need to find a way to let client know there is no files.
 //                }
@@ -250,21 +236,26 @@ public class UploadController {
         }
 	}
 	
-    private void addDir(File dirObj, ZipOutputStream out) throws IOException {
+    private void addDir(File dirObj, ZipOutputStream out, Map<String, String> processedFiles) throws IOException {
         File[] files = dirObj.listFiles();
 
         for (int i = 0; i < files.length; i++) {
             if (files[i].isDirectory() && !files[i].getName().equals(Constants.FOR_CROP_DIR)) {
-                addDir(files[i], out);
+                addDir(files[i], out, processedFiles);
                 continue;
             } 
             
             if (files[i].isFile() && !files[i].getName().endsWith(".zip")) {
-                FileInputStream in = new FileInputStream(files[i].getAbsolutePath());
-                out.putNextEntry(new ZipEntry(files[i].getName()));
-                IOUtils.copy(in, out);
-                out.closeEntry();
-                in.close();
+            	if (processedFiles.containsKey(files[i].getName()) == false) {
+            		FileInputStream in = new FileInputStream(files[i].getAbsolutePath());
+                    out.putNextEntry(new ZipEntry(files[i].getName()));
+                    IOUtils.copy(in, out);
+                    out.closeEntry();
+                    in.close();
+                    
+                    processedFiles.put(files[i].getName(), files[i].getName());
+            	}
+                
             }
         }
     }
