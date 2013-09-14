@@ -117,84 +117,92 @@
 					</p>
 				</div>
 				<div class="row">
-					<div class="span8 offset2">
+					<div class="span9 offset2">
 						<div class="control-group">
-							<table border="1">
+							<table class="table table-bordered">
+
 								<tr>
-									<td class="wdheader">2013-09-11 星期三</td>
-									<td class="wdheader">2013-09-11 星期三</td>
-									<td class="wdheader">2013-09-11 星期三</td>
-									<td class="wdheader">2013-09-11 星期三</td>
-									<td class="wdheader">2013-09-11 星期三</td>
-									<td class="wdheader">2013-09-11 星期三</td>
-									<td class="wdheader">2013-09-11 星期三</td>
+									<c:forEach items="${dayList}" var="workday">
+										<td class="wdheader">${workday}</td>
+									</c:forEach>
+
 								</tr>
 								<tr>
-									<td class="workday">第1天</td>
-									<td class="workday">第1天</td>
-									<td class="workday">第1天</td>
-									<td class="workday">第1天</td>
-									<td class="workday">第1天</td>
-									<td class="workday">第1天</td>
-									<td class="workday">第1天</td>
+									<c:set var="seq" value="1" />
+									<c:forEach items="${dayTypeList}" var="dayType">
+
+
+										<td class="${dayType.style}"><c:choose>
+												<c:when test="${dayType.style=='workday'}">
+													<a href="javascript:checkSegment(${seq})">
+														${dayType.linkText}</a>
+												</c:when>
+												<c:otherwise>
+													<a href="javascript: void(0)"> ${dayType.linkText}</a>
+												</c:otherwise>
+											</c:choose></td>
+
+										<c:set var="seq" value="${seq+1}" />
+									</c:forEach>
+
 								</tr>
 							</table>
 						</div>
 					</div>
 				</div>
 
-				<div class="row">
+				<div id="seg_title" class="row">
 					<div class="span7 offset2">
-					<strong>请选择预约时间：</strong>
+						<strong>请选择预约时间：</strong>
 					</div>
 				</div>
 
 
-				<div class="row">
-					<div class="span7 offset4">
+				<div id="seg_container" class="row">
+					<div class="span7 offset3">
 						<div class="control-group">
-							<table border="1">
+							<table class="table table-bordered table-hover">
 								<tr>
-									<td class="segmenthd">2013-09-11 星期三</td>
+									<td id="segheader" class="segmenthd">2013-09-11 星期三</td>
 								</tr>
 								<tr>
-									<td class="segment">08:30 ~ 9:00</td>
+									<td id="slot1" class="segment">08:30 ~ 9:00</td>
 								</tr>
 								<tr>
-									<td class="segment">09:00 ~ 9:30</td>
+									<td id="slot2" class="segment">09:00 ~ 9:30</td>
 								</tr>
 								<tr>
-									<td class="segment">09:30 ~ 10:00</td>
+									<td id="slot3" class="segment">09:30 ~ 10:00</td>
 								</tr>
 								<tr>
-									<td class="segment">10:00 ~ 10:30</td>
+									<td id="slot4" class="segment">10:00 ~ 10:30</td>
 								</tr>
 								<tr>
-									<td class="segment">10:30 ~ 11:00</td>
+									<td id="slot5" class="segment">10:30 ~ 11:00</td>
 								</tr>
 								<tr>
-									<td class="segment">11:00 ~ 11:30</td>
+									<td id="slot6" class="segment">11:00 ~ 11:30</td>
 								</tr>
 								<tr>
 									<td class="segmenthd">午休</td>
 								</tr>
 								<tr>
-									<td class="segment">13:30 ~ 14:00</td>
+									<td id="slot7" class="segment">13:30 ~ 14:00</td>
 								</tr>
 								<tr>
-									<td class="segment">14:00 ~ 14:30</td>
+									<td id="slot8" class="segment">14:00 ~ 14:30</td>
 								</tr>
 								<tr>
-									<td class="segment">14:30 ~ 15:00</td>
+									<td id="slot9" class="segment">14:30 ~ 15:00</td>
 								</tr>
 								<tr>
-									<td class="segment">15:00 ~ 15:30</td>
+									<td id="slot10" class="segment">15:00 ~ 15:30</td>
 								</tr>
 								<tr>
-									<td class="segment">15:30 ~ 16:00</td>
+									<td id="slot11" class="segment">15:30 ~ 16:00</td>
 								</tr>
 								<tr>
-									<td class="segment">16:00 ~ 16:30</td>
+									<td id="slot12" class="segment">16:00 ~ 16:30</td>
 								</tr>
 							</table>
 						</div>
@@ -229,8 +237,9 @@
 		$("#rsvKey").change(validateRsrvKey);
 
 	}
+	$("#seg_title").hide();
+	$("#seg_container").hide();
 	$(prepareBasic);
-
 	function validateRsrvKey() {
 		var rsvKey = $("#rsvKey").val();
 
@@ -278,6 +287,29 @@
 		} else {
 			return false;
 		}
+	}
+	
+	function checkSegment(seq) {
+		alert(seq);
+		var flag = false;
+		$.ajax({
+			type : "post",
+			url : "/ChangNing/checkSegment.do?seq="+seq,
+			data : {
+				mobile : $("#reg_user_mobile").val()
+			},
+			async : false,
+			success : function(data) {
+				if (data == 1) {
+					$("#reg_mobile_alert").removeClass().addClass(
+							"alert alert-error").html("手机号已经被注册，请更换或登陆！");
+					$("#reg_user_mobile").focus();
+				} else {
+					flag = true;
+				}
+			}
+		});
+		return flag;
 	}
 </script>
 

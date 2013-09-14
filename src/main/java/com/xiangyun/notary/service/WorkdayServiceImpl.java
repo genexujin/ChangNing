@@ -1,5 +1,6 @@
 package com.xiangyun.notary.service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -92,6 +93,27 @@ public class WorkdayServiceImpl extends AbstractService implements WorkdayServic
 				em.merge(workday);
 			}
 			return null;
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<Workday> retrieveDayList() {		
+			
+	    	log.info("Now is retrieveDayList...");
+	    	String hql = "from Workday where date > :date and date <:endDate";
+	    	Date now =  new Date();
+	    	//7天之内的日期
+	    	Calendar endDate = Calendar.getInstance();
+	    	endDate.setTime(now);
+	    	endDate.add(Calendar.DAY_OF_MONTH, 7);	    	
+	    
+	    	
+	    	Query query = em.createQuery(hql);
+	    	query.setParameter("date",now);
+	    	query.setParameter("endDate",endDate.getTime());
+	    	List<Workday> workdays =  query.getResultList();
+	    	return workdays;	    	
+	    
 		}
 		
 		
