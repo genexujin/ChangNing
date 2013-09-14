@@ -42,6 +42,8 @@ public class AlipayController {
 
 	@Autowired
 	private PaymentService paymentService;
+	
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 	/**
 	 * 支付函数
@@ -310,7 +312,6 @@ public class AlipayController {
 		String seller_email = Constants.ALIPAY_SELLER_EMAIL;
 		// 必填
 		Date now = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 		// 退款当天日期
 		String refund_date = sdf.format(now);

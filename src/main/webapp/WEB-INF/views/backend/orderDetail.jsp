@@ -14,16 +14,19 @@
       <c:choose>
         <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
           <div class="row">
-			<div class="span3">
+			<div class="span2">
 			  <a class="btn" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
 			</div>
-			<div class="span3">
+			<div class="span2">
 			  <button class="btn" type="submit">要求补充材料</button>
 			</div>
-			<div class="span3">
+			<div class="span2">
 			  <button class="btn" type="submit">要求客户附加费用</button>
 			</div>
-			<div class="span3">
+			<div class="span2">
+			  <a href="orderRefund.do?oId=${order.id}" class="btn">退款</a>
+			</div>
+			<div class="span2">
 			  <a href="orderQuery.do" class="btn">返回</a>
 			</div>
 	      </div>

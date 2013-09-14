@@ -1,6 +1,7 @@
 package com.xiangyun.notary.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -338,8 +339,7 @@ public class OrderController {
         int seq = order.getPayments().size() +1;
         String tradeNo = order.getReadableId()+"-"+seq;
         String title = order.getPaymentTitle();
-       
-    	 	
+        
     	//先创建Payment
     	Payment payment = new Payment();
     	
@@ -370,11 +370,26 @@ public class OrderController {
     	sb.append(tradeNo);
     	sb.append("&WIDsubject="+str);
     	sb.append("&WIDtotal_fee=0.01");
-    	sb.append("&WIDbody=aaaa");
+    	try {
+            sb.append("&WIDbody=").append(URLEncoder.encode("公证收费", "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            log.error("UTF-8 is not supported.", e);
+        }
+    	//WIDshow_url can be the order detail page for the order
     	sb.append("&WIDshow_url=bbbb");
     	
-    	
     	return sb.toString();
+    }
+
+    @RequestMapping(value = "/orderRefund.do")
+    public String orderRefund(HttpServletRequest request) {
+        
+        StringBuilder sb = new StringBuilder("redirect:/openRefund.do");
+        sb.append("?WIDbatch_num=1"); //1笔
+        sb.append("&WIDdetail_data=aaa");
+        
+        return sb.toString();
+
     }
     
     @RequestMapping(value = "/orderQuery.do")
