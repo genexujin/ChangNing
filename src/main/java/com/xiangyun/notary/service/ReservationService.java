@@ -13,6 +13,7 @@ public interface ReservationService {
     
     public Reservation  findByReadableId(String readableId);
     
-    public List<Reservation> findByRIdOrRStatus(String readableId,ReservationStatus reservationStatus,int pageNo);
+    public Long getReservationCount(String readableId, ReservationStatus status, Long userId) ;
 
+    public List<Reservation> findReservations(String readableId, ReservationStatus status, Long userId, int pageNum);
 }
