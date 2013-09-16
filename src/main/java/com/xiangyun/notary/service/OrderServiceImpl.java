@@ -21,7 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.OrderStatus;
+import com.xiangyun.notary.domain.Interaction;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.domain.User;
 
 @Service("jpaOrderService")
@@ -195,6 +197,27 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         TypedQuery<Long> query = em.createNamedQuery("Order.getCountByUserId", Long.class);
         return query.setParameter("uid", userId).getSingleResult();
     }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<Interaction> findIncompletedInteractionsForOrder(Long orderId, Long userId) {
+        TypedQuery<Interaction> query = em.createNamedQuery("Interaction.findByOrderId", Interaction.class);
+        query.setParameter("oid", orderId);
+        query.setParameter("uid", userId);
+        return query.getResultList();
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public Payment findPaymentByOrderIdAndPaymentId(Long orderId, Long userId, Long paymentId) {
+        TypedQuery<Payment> query = em.createNamedQuery("Payment.findByOrderIdAndPaymentId", Payment.class);
+        query.setParameter("oid", orderId);
+        query.setParameter("uid", userId);
+        query.setParameter("pid", paymentId);
+        
+        List<Payment> result = query.getResultList();
+        return (result == null || result.size() == 0) ? null : result.get(0);
+    }
 
     @Override
     public Order save(Order order) {
@@ -202,7 +225,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
             log.debug("Inserting new order...");
             em.persist(order);
             //Need to format readableId and set
-            order.setReadableId(generateReadableId(order.getId(), "BC"));
+            order.setReadableId(generateReadableId(order.getId(), "BZ"));
             em.merge(order);
         } else {
             log.debug("Updating an order...");
@@ -229,6 +252,20 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
             return orders.get(0);
         }
         return null;
+    }
+    
+    @Override
+    public Payment save(Payment payment) {
+        if (payment.getId() == null) {
+            log.debug("Inserting new payment...");
+            em.persist(payment);
+        } else {
+            log.debug("Updating an payment...");
+            em.merge(payment);
+        }
+        
+        log.debug("Payment saved with id: " + payment.getId());
+        return payment;
     }
 
 }

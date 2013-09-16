@@ -3,7 +3,9 @@ package com.xiangyun.notary.service;
 import java.util.List;
 
 import com.xiangyun.notary.common.OrderStatus;
+import com.xiangyun.notary.domain.Interaction;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.Payment;
 
 public interface OrderService {
     List<Order> findAll();
@@ -29,4 +31,10 @@ public interface OrderService {
     Long getOrderCount(String readableId, OrderStatus status, Long userId);
     
     Long getOrderCountByUserId(Long userId);
+    
+    List<Interaction> findIncompletedInteractionsForOrder(Long orderId, Long userId);
+    
+    Payment findPaymentByOrderIdAndPaymentId(Long orderId, Long userId, Long paymentId);
+    
+    Payment save(Payment payment);
 }
