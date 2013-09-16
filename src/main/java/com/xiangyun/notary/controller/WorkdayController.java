@@ -93,54 +93,55 @@ public class WorkdayController {
 
 	}
 
-//	@RequestMapping(value = "/setOneYear.do")
-//	public void setOneYear() {
-//		Calendar date = Calendar.getInstance();
-//		// Create workday for a year
-//		for (int i = 0; i < 365; i++) {
-//			Workday day = new Workday();
-//				day.setDate(date.getTime());
-//				day.setYear(date.get(Calendar.YEAR));
-//				day.setMonth(date.get(Calendar.MONTH) + 1);
-//				day.setDay(date.get(Calendar.DAY_OF_MONTH));
-//			
-//			if (date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY
-//					&& date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
-//
-//				day.setType(WorkdayType.WORKDAY);
-//			} else {
-//				day.setType(WorkdayType.NON_WORKDAY);
-//			}
-//
-//			workdayService.saveByDate(day);
-//			date.add(Calendar.DATE, 1);
-//		}
-
-	//}
-	@SuppressWarnings("null")
-	@RequestMapping(value="/setYear/{year}.do")
-	public void setYear(@PathVariable ("year") int year){
-		List<Workday> workdays=workdayService.findYear(year);
-		if(workdays.size()==0){
+	@RequestMapping(value = "/setOneYear.do")
+	public void setOneYear() {
 		Calendar date = Calendar.getInstance();
-		date.set(Calendar.DAY_OF_MONTH, 1);
-	      date.set(Calendar.MONDAY, 0);
-	      date.set(Calendar.YEAR,year);
-	      for (int i = 0; i < 365; i++) {
-	   		Workday day = new Workday();
-	       	day.setDate(date.getTime());
-	       	day.setYear(date.get(Calendar.YEAR));
-	       	day.setMonth(date.get(Calendar.MONTH)+1);
-	       	day.setDay(date.get(Calendar.DAY_OF_MONTH));
-	   		if ( date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY 
-	   			&& date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
-	           	day.setType(WorkdayType.WORKDAY);                	
-	   		} else {
-	   			day.setType(WorkdayType.NON_WORKDAY);
-	   		}
-	   		workdayService.save(day);
-	   		date.add(Calendar.DATE, 1);
-	      }
+		// Create workday for a year
+		for (int i = 0; i < 365; i++) {
+			Workday day = new Workday();
+			day.setDate(date.getTime());
+			day.setYear(date.get(Calendar.YEAR));
+			day.setMonth(date.get(Calendar.MONTH) + 1);
+			day.setDay(date.get(Calendar.DAY_OF_MONTH));
+
+			if (date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY
+					&& date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
+
+				day.setType(WorkdayType.WORKDAY);
+			} else {
+				day.setType(WorkdayType.NON_WORKDAY);
+			}
+
+			workdayService.saveByDate(day);
+			date.add(Calendar.DATE, 1);
+		}
+
 	}
+
+	@SuppressWarnings("null")
+	@RequestMapping(value = "/setYear/{year}.do")
+	public void setYear(@PathVariable("year") int year) {
+		List<Workday> workdays = workdayService.findYear(year);
+		if (workdays.size() == 0) {
+			Calendar date = Calendar.getInstance();
+			date.set(Calendar.DAY_OF_MONTH, 1);
+			date.set(Calendar.MONDAY, 0);
+			date.set(Calendar.YEAR, year);
+			for (int i = 0; i < 365; i++) {
+				Workday day = new Workday();
+				day.setDate(date.getTime());
+				day.setYear(date.get(Calendar.YEAR));
+				day.setMonth(date.get(Calendar.MONTH) + 1);
+				day.setDay(date.get(Calendar.DAY_OF_MONTH));
+				if (date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY
+						&& date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
+					day.setType(WorkdayType.WORKDAY);
+				} else {
+					day.setType(WorkdayType.NON_WORKDAY);
+				}
+				workdayService.save(day);
+				date.add(Calendar.DATE, 1);
+			}
+		}
 	}
 }

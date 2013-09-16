@@ -18,10 +18,10 @@
 			  <a class="btn" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
 			</div>
 			<div class="span2">
-			  <button class="btn" type="submit">要求补充材料</button>
+			  <a href="requestExtraDocs.do?oId=${order.id}" class="btn">要求补充材料</a>
 			</div>
 			<div class="span2">
-			  <button class="btn" type="submit">要求客户附加费用</button>
+			  <a href="requestExtraPayment.do?oId=${order.id}" class="btn">要求客户附加费用</a>
 			</div>
 			<div class="span2">
 			  <a href="orderRefund.do?oId=${order.id}" class="btn">退款</a>
@@ -34,7 +34,7 @@
         <c:otherwise>
           <div class="row">
 			<div class="span3">
-			  <button class="btn" type="submit">申请撤销</button>
+			  <a href="orderCancel.do?oId=${order.id}" class="btn">申请撤销</a>
 			</div>
 			<div class="span3">
 			  <a href="orderQuery.do" class="btn">返回</a>
@@ -58,7 +58,27 @@
       </div>
       <div class="border">
         <br/>
-        <br/>
+        <c:if test="${not empty interactions}">
+          <div class="row">
+            <div class="span10 offset1">
+              <ul>
+              <c:forEach items="${interactions}" var="interaction">
+                <li>
+                ${interaction.interactionContent}&nbsp;&nbsp;
+                <c:choose>
+                  <c:when test="${interaction.interactionType == 'ADD_DOCS'}">
+                    <a href="addDocs.do?oId=${order.id}" class="btn">补充材料</a>
+                  </c:when>
+                  <c:when test="${interaction.interactionType == 'ADD_PAYMENT'}">
+                    <a href="extraPayment.do?oId=${order.id}&pId=${interaction.extraData}" class="btn">支付</a>
+                  </c:when>
+                </c:choose>
+                </li>
+              </c:forEach>
+              </ul>
+            </div>
+          </div>
+        </c:if>
         <br/>
       </div>
       
@@ -220,6 +240,18 @@
             </table>
           </div> --%>
         </div>
+        <c:if test="${not empty order.extraDocs}">
+          <div class="row">
+            <div class="span5 offset1">
+              <b>额外要求补充的材料：</b>
+              <ul>
+	          <c:forEach items="${order.extraDocs}" var="docs" >
+	              <li>${docs.extraDocNames}</li>
+	          </c:forEach>
+	        </ul>
+            </div>
+          </div>
+        </c:if>
         <div class="row">
           <div class="span5 offset1">
             <a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>

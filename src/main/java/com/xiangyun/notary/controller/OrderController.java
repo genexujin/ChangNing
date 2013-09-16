@@ -30,13 +30,16 @@ import org.springframework.web.servlet.View;
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CertificatePurpose;
 import com.xiangyun.notary.common.DestinationCountry;
+import com.xiangyun.notary.common.InteractionType;
 import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.common.RelativeType;
+import com.xiangyun.notary.domain.DocExtraItem;
 import com.xiangyun.notary.domain.FeeItem;
 import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.FormItem;
+import com.xiangyun.notary.domain.Interaction;
 import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.domain.RelativeInfo;
@@ -353,7 +356,7 @@ public class OrderController {
     public String goToPayment(HttpServletRequest request) {
     	
     	Order order = (Order)request.getSession(false).getAttribute(Constants.CURRENT_ORDER);
-        int seq = order.getPayments().size() +1;
+        int seq = order.getPayments().size() + 1;
         String tradeNo = order.getReadableId()+"-"+seq;
         String title = order.getPaymentTitle();
         
@@ -363,6 +366,7 @@ public class OrderController {
     	payment.setPaymentDate(new Date());
     	payment.setPaymentTotal(0.01);//暂时写死
     	payment.setTitle(title);
+    	payment.setPaymentReason("公证费用");
     	
     	payment.setStatus(OrderPaymentStatus.NOT_PAID);
     	payment.setOrderTxnNo(tradeNo);
@@ -396,17 +400,6 @@ public class OrderController {
     	sb.append("&WIDshow_url=bbbb");
     	
     	return sb.toString();
-    }
-
-    @RequestMapping(value = "/orderRefund.do")
-    public String orderRefund(HttpServletRequest request) {
-        
-        StringBuilder sb = new StringBuilder("redirect:/openRefund.do");
-        sb.append("?WIDbatch_num=1"); //1笔
-        sb.append("&WIDdetail_data=aaa");
-        
-        return sb.toString();
-
     }
     
     @RequestMapping(value = "/orderQuery.do")
@@ -461,24 +454,12 @@ public class OrderController {
     
     @RequestMapping(value = "/orderDetail.do")
     public ModelAndView orderDetail(HttpServletRequest request) {
-        String oId = request.getParameter("oId");
-        if (StringUtils.isEmpty(oId)) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
-        Long orderId = null;
-        try {
-            orderId = Long.valueOf(oId);
-        } catch (NumberFormatException e) {
-            log.warn("oId is not a valid number", e);
-            return new ModelAndView("redirect:orderQuery.do");
-        }
-        
-        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
-        Long userId = null;
-        if (!user.isAdmin() && !user.isStaff()) {
-            userId = user.getId();
-        }
+        Long userId = getUserIdFromSession(request.getSession(false));
         
         Order order = orderService.findOrderById(orderId, userId);
         if (order == null) {
@@ -518,43 +499,34 @@ public class OrderController {
             }
         }
         
+        List<Interaction> interactions = orderService.findIncompletedInteractionsForOrder(orderId, userId);
+        
         ModelAndView mav = new ModelAndView("backend/orderDetail");
         mav.addObject("title", "订单详情");
         mav.addObject("order", order);
         mav.addObject("allDocs", allDocs.values());
+        mav.addObject("interactions", interactions);
         
         return mav;
     }
     
     @RequestMapping(value = "/orderAccept.do")
     public ModelAndView orderAccept(HttpServletRequest request) {
-        String oId = request.getParameter("oId");
-        if (StringUtils.isEmpty(oId)) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
-        Long orderId = null;
-        try {
-            orderId = Long.valueOf(oId);
-        } catch (NumberFormatException e) {
-            log.warn("oId is not a valid number", e);
-            return new ModelAndView("redirect:orderQuery.do");
-        }
-        
-        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
-        Long userId = null;
-        if (!user.isAdmin() && !user.isStaff()) {
-            userId = user.getId();
-        }
+        Long userId = getUserIdFromSession(request.getSession(false));
         
         Order order = orderService.findOrderById(orderId, userId);
         if (order == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
-        //
+        //如果已经是后面的状态了，则不允许接受了
         if (order.getOrderStatus().ordinal() >= OrderStatus.ACCEPTED.ordinal()) {
-        	return new ModelAndView("redirect:orderDetail.do?oId=" + oId);
+        	return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
         }
         
         ModelAndView mav = new ModelAndView("backend/orderAccept");
@@ -566,32 +538,20 @@ public class OrderController {
     }
     
     @RequestMapping(value = "/doAccept.do")
-    public ModelAndView doAccept(HttpServletRequest request, 
-            @RequestParam("oId") Long oId, 
-            @RequestParam("notaryId") String notaryId) {
-        if (StringUtils.isEmpty(oId)) {
+    public ModelAndView doAccept(HttpServletRequest request) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
-        Long orderId = null;
-        try {
-            orderId = Long.valueOf(oId);
-        } catch (NumberFormatException e) {
-            log.warn("oId is not a valid number", e);
-            return new ModelAndView("redirect:orderQuery.do");
-        }
-        
-        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
-        Long userId = null;
-        if (!user.isAdmin() && !user.isStaff()) {
-            userId = user.getId();
-        }
+        Long userId = getUserIdFromSession(request.getSession(false));
         
         Order order = orderService.findOrderById(orderId, userId);
         if (order == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
+        String notaryId = request.getParameter("notaryId");
         order.setBackendNotaryId(notaryId);
         order.setOrderStatus(OrderStatus.ACCEPTED);
         orderService.save(order);
@@ -605,24 +565,12 @@ public class OrderController {
     
     @RequestMapping(value = "/orderCancel.do")
     public ModelAndView orderCancel(HttpServletRequest request) {
-        String oId = request.getParameter("oId");
-        if (StringUtils.isEmpty(oId)) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
-        Long orderId = null;
-        try {
-            orderId = Long.valueOf(oId);
-        } catch (NumberFormatException e) {
-            log.warn("oId is not a valid number", e);
-            return new ModelAndView("redirect:orderQuery.do");
-        }
-        
-        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
-        Long userId = null;
-        if (!user.isAdmin() && !user.isStaff()) {
-            userId = user.getId();
-        }
+        Long userId = getUserIdFromSession(request.getSession(false));
         
         Order order = orderService.findOrderById(orderId, userId);
         if (order == null) {
@@ -638,37 +586,25 @@ public class OrderController {
     }
     
     @RequestMapping(value = "/doCancel.do")
-    public ModelAndView doCancel(HttpServletRequest request, 
-            @RequestParam("oId") Long oId, 
-            @RequestParam("cancel_note") String cancelNote) {
-        if (StringUtils.isEmpty(oId)) {
+    public ModelAndView doCancel(HttpServletRequest request) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
-        Long orderId = null;
-        try {
-            orderId = Long.valueOf(oId);
-        } catch (NumberFormatException e) {
-            log.warn("oId is not a valid number", e);
-            return new ModelAndView("redirect:orderQuery.do");
-        }
-        
-        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
-        Long userId = null;
-        if (!user.isAdmin() && !user.isStaff()) {
-            userId = user.getId();
-        }
+        Long userId = getUserIdFromSession(request.getSession(false));
         
         Order order = orderService.findOrderById(orderId, userId);
         if (order == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
+        String cancelNote = request.getParameter("cancel_note");
         order.setCancelNote(cancelNote);
         order.setOrderStatus(OrderStatus.CANCEL_REQUESTED);
         orderService.save(order);
         
-        ModelAndView mav = new ModelAndView("backend/orderAccept");
+        ModelAndView mav = new ModelAndView("backend/orderCancel");
         mav.addObject("title", "订单受理");
         mav.addObject("order", order);
         
@@ -677,24 +613,12 @@ public class OrderController {
     
     @RequestMapping(value = "/addDocs.do")
     public ModelAndView addDocs(HttpServletRequest request) {
-    	String oId = request.getParameter("oId");
-        if (StringUtils.isEmpty(oId)) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
-        Long orderId = null;
-        try {
-            orderId = Long.valueOf(oId);
-        } catch (NumberFormatException e) {
-            log.warn("oId is not a valid number", e);
-            return new ModelAndView("redirect:orderQuery.do");
-        }
-        
-        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
-        Long userId = null;
-        if (!user.isAdmin() && !user.isStaff()) {
-            userId = user.getId();
-        }
+        Long userId = getUserIdFromSession(request.getSession(false));
         
         Order order = orderService.findOrderById(orderId, userId);
         if (order == null) {
@@ -765,8 +689,265 @@ public class OrderController {
         m.setNeedCrop(needCropDocs.values());
         
         mav.addObject("um", m);
+        mav.addObject("order", order);
     	
     	return mav;
+    }
+    
+    @RequestMapping(value = "/requestExtraDocs.do")
+    public ModelAndView requestExtraDocs(HttpServletRequest request) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long userId = getUserIdFromSession(request.getSession(false));
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        ModelAndView mav = new ModelAndView("backend/requestExtraDocs");
+        mav.addObject("title", "要求客户补充材料");
+        mav.addObject("order", order);
+        
+        return mav;
+        
+    }
+    
+    @RequestMapping(value = "/doRequestExtraDocs.do")
+    public ModelAndView doRequestExtraDocs(HttpServletRequest request) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        String extraDocs = request.getParameter("extra_docs");
+        if (StringUtils.isEmpty(extraDocs) == false) {
+            DocExtraItem extraItem = new DocExtraItem();
+            extraItem.setExtraDocNames(extraDocs);
+            order.addExtraDoc(extraItem);
+            
+            Interaction i = new Interaction();
+            i.setInteractionDate(new Date());
+            i.setInteractionType(InteractionType.ADD_DOCS);
+            i.setUser(user);
+            i.setInteractionContent("额外要求补充材料：" + extraDocs);
+            order.addInteraction(i);
+            
+        }
+        
+        orderService.save(order);
+        
+        ModelAndView mav = new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
+        
+        return mav;
+    }
+    
+    @RequestMapping(value = "/requestExtraPayment.do")
+    public ModelAndView requestExtraPayment(HttpServletRequest request) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long userId = getUserIdFromSession(request.getSession(false));
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        ModelAndView mav = new ModelAndView("backend/requestExtraPayment");
+        mav.addObject("title", "要求客户附加费用");
+        mav.addObject("order", order);
+        
+        return mav;
+        
+    }
+    
+    @RequestMapping(value = "/doRequestExtraPayment.do")
+    public ModelAndView doRequestExtraPayment(HttpServletRequest request, 
+            @RequestParam("extra_pay") double extraPayment, 
+            @RequestParam("extra_pay_note") String extraPaymentNote) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Payment pay = new Payment();
+        pay.setPaymentTotal(extraPayment);
+        pay.setStatus(OrderPaymentStatus.NOT_PAID);
+        pay.setPaymentReason(extraPaymentNote);
+        pay.setTitle("附加费用");
+        int seq = order.getPayments().size() + 1;
+        String tradeNo = order.getReadableId()+"-"+seq;
+        pay.setOrderTxnNo(tradeNo);
+        
+        order.addPayment(pay);
+        //Save the order so that the payment can have an id
+        orderService.save(pay);
+        
+        Interaction i = new Interaction();
+        i.setInteractionDate(new Date());
+        i.setInteractionType(InteractionType.ADD_PAYMENT);
+        i.setUser(user);
+        i.setInteractionContent("要求附加费用。费用：" + extraPayment + "，原因：" + extraPaymentNote);
+        i.setExtraData(pay.getId().toString());
+        order.addInteraction(i);
+            
+        orderService.save(order);
+        
+        ModelAndView mav = new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
+        
+        return mav;
+    }
+    
+    @RequestMapping(value = "/extraPayment.do")
+    public ModelAndView extraPayment(HttpServletRequest request, @RequestParam("pId") Long paymentId) {
+        
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long userId = getUserIdFromSession(request.getSession(false));
+        
+        Payment payment = orderService.findPaymentByOrderIdAndPaymentId(orderId, userId, paymentId);
+        if (payment == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        String tradeNo = payment.getOrderTxnNo();
+        String title = payment.getTitle();
+        payment.setPaymentDate(new Date());
+        
+        orderService.save(payment);
+        
+        String str = null;
+        try {
+            str = java.net.URLEncoder.encode(title,"UTF-8");
+            tradeNo = java.net.URLEncoder.encode(tradeNo,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        StringBuilder sb = new StringBuilder("redirect:/openPayment.do?WIDout_trade_no=");
+        sb.append(tradeNo);
+        sb.append("&WIDsubject="+str);
+        sb.append("&WIDtotal_fee=0.01");
+        try {
+            sb.append("&WIDbody=").append(URLEncoder.encode("公证收费", "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            log.error("UTF-8 is not supported.", e);
+        }
+        //WIDshow_url can be the order detail page for the order
+        sb.append("&WIDshow_url=bbbb");
+        
+        return new ModelAndView(sb.toString());
+    }
+    
+    @RequestMapping(value = "/orderRefund.do")
+    public ModelAndView orderRefund(HttpServletRequest request) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long userId = getUserIdFromSession(request.getSession(false));
+        
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        ModelAndView mav = new ModelAndView("backend/orderRefund");
+        mav.addObject("title", "退款");
+        mav.addObject("order", order);
+        
+        return mav;
+    }
+    
+    @RequestMapping(value = "/doRefund.do")
+    public ModelAndView doRefund(HttpServletRequest request) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        Long userId = getUserIdFromSession(request.getSession(false));
+        
+        String[] paymentIds = request.getParameterValues("payment_id");
+        List<Long> pIds = convertPaymentIds(paymentIds);
+        log.debug("Selected payment ids: " + pIds);
+        List<Payment> payments = orderService.findPaymentsByOrderIdAndPaymentIds(orderId, userId, pIds);
+        if (payments == null || payments.isEmpty()) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        StringBuilder sb = new StringBuilder("redirect:/openRefund.do");
+        sb.append("?WIDbatch_num=").append(payments.size());
+        sb.append("&WIDdetail_data=").append(false);
+        
+        return new ModelAndView(sb.toString());
+    }
+    
+    private List<Long> convertPaymentIds(String[] paymentIds) {
+        List<Long> pIds = new ArrayList<Long>();
+        for (String paymentId : paymentIds) {
+            pIds.add(Long.parseLong(paymentId));
+        }
+        return pIds;
+    }
+
+    private Long validateOrderIdParameter(HttpServletRequest request) {
+        String oId = request.getParameter("oId");
+        if (StringUtils.isEmpty(oId)) {
+            return null;
+        }
+        
+        Long orderId = null;
+        try {
+            orderId = Long.valueOf(oId);
+        } catch (NumberFormatException e) {
+            log.warn("oId is not a valid number", e);
+            return null;
+        }
+        
+        return orderId;
+    }
+    
+    private Long getUserIdFromSession(HttpSession session) {
+        User user = (User) session.getAttribute(Constants.LOGIN_USER);
+        Long userId = null;
+        if (!user.isAdmin() && !user.isStaff()) {
+            userId = user.getId();
+        }
+        return userId;
     }
 
 	private boolean checkDependentDocItem(Form form, FormDocItemDef docDef) {

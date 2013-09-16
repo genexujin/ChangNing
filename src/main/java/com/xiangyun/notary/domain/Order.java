@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -41,7 +40,6 @@ import com.xiangyun.notary.common.OrderStatus;
 })
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
-    
       
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -60,11 +58,17 @@ public class Order implements Serializable {
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
     private Set<Form> forms = new HashSet<Form>();
     
-    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order", fetch = FetchType.EAGER)
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
     private Set<DocItem> docs = new HashSet<DocItem>();
     
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
+    private Set<DocExtraItem> extraDocs = new HashSet<DocExtraItem>();
+    
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
     private Set<Payment> payments = new HashSet<Payment>();
+    
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
+    private Set<Interaction> interactions = new HashSet<Interaction>();
 
     @Column(name = "order_date")
     private Date orderDate;
@@ -312,6 +316,32 @@ public class Order implements Serializable {
         docs.add(doc);
     }
     
+    public Set<DocExtraItem> getExtraDocs() {
+        return extraDocs;
+    }
+
+    public void setExtraDocs(Set<DocExtraItem> extraDocs) {
+        this.extraDocs = extraDocs;
+    }
+    
+    public void addExtraDoc(DocExtraItem extraDoc) {
+        extraDoc.setOrder(this);
+        extraDocs.add(extraDoc);
+    }
+
+    public Set<Interaction> getInteractions() {
+        return interactions;
+    }
+
+    public void setInteractions(Set<Interaction> interactions) {
+        this.interactions = interactions;
+    }
+    
+    public void addInteraction(Interaction interaction) {
+        interaction.setOrder(this);
+        interactions.add(interaction);
+    }
+
     public String getRequestorName() {
 		return requestorName;
 	}

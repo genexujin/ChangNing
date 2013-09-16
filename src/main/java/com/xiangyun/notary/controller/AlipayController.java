@@ -305,6 +305,8 @@ public class AlipayController {
 	@RequestMapping(value = "/openRefund.do")
 	public void openRefund(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+	    //TODO: 先改一下Payment状态
+	    
 		// 服务器异步通知页面路径
 		String notify_url = "http://hjyoa.hpe.cn:4848/ChangNing/onRefundNotify.do";
 

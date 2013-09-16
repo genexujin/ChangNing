@@ -10,7 +10,7 @@
       <ul class="breadcrumb">
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li><a href="#">网上办证</a> <span class="divider">/</span></li>
-        <li class="active">补充资料</li>
+        <li class="active">补充材料</li>
       </ul>
       
       <hr/>
@@ -46,6 +46,14 @@
 			            </c:forEach>
 			          </c:forEach>
 			        </ul>
+			        <c:if test="${not empty order.extraDocs}">
+			          <p><h5>额外要求补充的材料：</h5>
+		              <ul>
+			            <c:forEach items="${order.extraDocs}" var="docs" >
+			              <li>${docs.extraDocNames}</li>
+			            </c:forEach>
+				      </ul>
+			        </c:if>
 			        <div class="row">
 			          <div class="span4">
 			            <div id="all_upload" ></div>

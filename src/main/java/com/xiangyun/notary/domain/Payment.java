@@ -24,7 +24,12 @@ import com.xiangyun.notary.common.OrderPaymentStatus;
 @NamedQueries({
 		@NamedQuery(name = "Payment.findAll", query = "select o from Payment o"),
 		@NamedQuery(name = "Payment.findByOutTradeNo", query = "select o from Payment o where o.orderTxnNo = :outTradeNo") ,
-		@NamedQuery(name = "Payment.findByAliTradeNo", query = "select o from Payment o where o.alipayTxnNo = :aliTradeNo")})
+		@NamedQuery(name = "Payment.findByAliTradeNo", query = "select o from Payment o where o.alipayTxnNo = :aliTradeNo"),
+		@NamedQuery(name = "Payment.findByOrderIdAndPaymentId", 
+		            query = "select o from Payment o where o.id = :pid and o.order.id = :oid and o.order.user.id = :uid"),
+		@NamedQuery(name = "Payment.findPaymentsByOrderIdAndPaymentIds", 
+                    query = "select o from Payment o where o.id in :pids and o.order.id = :oid and o.order.user.id = :uid")
+})
 public class Payment implements Serializable {
 
 	/**
@@ -45,6 +50,9 @@ public class Payment implements Serializable {
 
 	@Column(name = "payment_total")
 	private double paymentTotal;
+
+    @Column(name = "payment_reason")
+    private String paymentReason;
 
 	@Column(name = "refund_date")
 	private Date refundDate;
@@ -100,7 +108,15 @@ public class Payment implements Serializable {
 		this.paymentTotal = paymentTotal;
 	}
 
-	public Date getRefundDate() {
+	public String getPaymentReason() {
+        return paymentReason;
+    }
+
+    public void setPaymentReason(String paymentReason) {
+        this.paymentReason = paymentReason;
+    }
+
+    public Date getRefundDate() {
 		return refundDate;
 	}
 
