@@ -72,11 +72,15 @@
 	
 	function validateCZGZCJFYJ_XN() {
 		var czgzcjfyj_xn = $("#CZGZCJFYJ_XN").val();
-		if (czgzcjfyj_xn != '') {
+		
+		if (czgzcjfyj_xn != ''){
+			//alert('有值');
 			$("#CZGZCJFYJ_XN_M").removeClass("alert alert-error");
-			updateCZGZCJFYJ();
+			//updateCZGZCJFYJ();
+			updateValidCZGZCJFYJ();//?调用这里
 			tryToEnableGoToStep3Button();
 		} else {
+			//alert('无值');
 			$("#CZGZCJFYJ_XN_M").addClass("alert alert-error");
 			validCZGZCJFYJ = false;
 			disableGoToStep3Button();
@@ -99,7 +103,6 @@
 
 	function updateValidCZGZCJFYJ() {
 		var czgzcjfyj_xn = $("#CZGZCJFYJ_XN").val();
-
 		var czgzcjfyj_shhj = $("input[name='CZGZCJFYJ_SHHJ']:checked").val();
 		var czgzcjfyj_shxx = $("input[name='CZGZCJFYJ_SHXX']:checked").val();
 

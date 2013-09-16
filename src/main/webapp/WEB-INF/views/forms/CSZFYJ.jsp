@@ -67,7 +67,41 @@
 			    	</div>
 	            </div>
 	          </div>
+	          <!-- 12 -->
+	               <hr/>
+	          <br/>
 	          
+	          <div class="row">
+	            <div class="span5 offset1">
+	                <div class="control-group">
+			    	  <label class="control-label" for="CSZFYJ_SFJZ">生父是否健在</label>
+			    	  <div class="controls">
+				    	<label class="radio inline">
+					      <input type="radio" value="true" name="CSZFYJ_SFJZ" checked> 是&nbsp;&nbsp;
+					    </label>
+					    <label class="radio inline">
+					      <input type="radio" value="false" name="CSZFYJ_SFJZ"> 否&nbsp;&nbsp;
+					    </label>
+			    	  </div>
+			    	</div>
+	            </div>
+	          </div>
+	          <div class="row">
+	            <div class="span5 offset1">
+	                <div class="control-group">
+			    	  <label class="control-label" for="CSZFYJ_SMJZ">生母是否健在</label>
+			    	  <div class="controls">
+				    	<label class="radio inline">
+					      <input type="radio" value="true" name="CSZFYJ_SMJZ" checked> 是&nbsp;&nbsp;
+					    </label>
+					    <label class="radio inline">
+					      <input type="radio" value="false" name="CSZFYJ_SMJZ"> 否&nbsp;&nbsp;
+					    </label>
+			    	  </div>
+			    	</div>
+	            </div>
+	          </div>
+	          <!-- 23 -->
 	        </div>
 	    </div>
 	  </div>

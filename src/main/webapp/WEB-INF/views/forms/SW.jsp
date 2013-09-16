@@ -62,12 +62,13 @@
 	          
 	          <div id="SW_ANCHOR"></div>
 	          
-	          <div class="row">
-	            <div class="span2 offset1" style="padding-top: 9px;">
+	          <div class="row" style="margin-left: 25%">
+	          <!--   <div class="span2 offset1" style="padding-top: 9px;">
 	              <button id="SW_ADD" class="btn btn-small">+</button>
 	              <button id="SW_REMOVE" class="btn btn-small">-</button>
 	            </div>
-	            <div id="SW_RELATION_M" class="span6 tiny-pt">提示：添加的亲属必须选择关系类型，并且关系人姓名不能为空
+	             -->
+	            <div id="SW_RELATION_M" class="span6 tiny-pt" >提示：添加的亲属必须选择关系类型，并且关系人姓名不能为空
 			    </div>
 			    <br/>
 	          </div>
@@ -130,11 +131,11 @@
 
 	    		var currCount = $("#SW_COUNT").val();
 	    		if ($("#SW_COUNT").val() == 10) {
-	    			alert("最多一次只能公证10个与死亡者关系！");
+	    			alert("最多一次只能公证1个与死亡者关系！");
 	    			return;
 	    		}
 	    		$("#SW_COUNT").val(++currCount);
-	    		insertNewRelation(currCount);
+	    		insertNewRelation1(currCount);
 	    		//After add a new relation, need to validate the form again 
 	    		validateSW_SH();
 	    		validateSW_Relations();
@@ -162,7 +163,7 @@
 	    	});
 	    }
 	    
-	    function insertNewRelation(currCount) {
+	    function insertNewRelation1(currCount) {
     		var anchor = $("#SW_ANCHOR");
     		var toClone = anchor.prev();
     		var cloned = toClone.clone();

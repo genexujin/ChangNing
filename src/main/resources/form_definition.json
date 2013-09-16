@@ -82,6 +82,14 @@
                 "docName": "本人2寸照片",
                 "uploadAlone": true,
                 "needCrop": true
+            },
+             {
+                "docKey": "SFZ",
+                "docName": "身份证正反面"
+            },
+            {
+                "docKey": "HKB",
+                "docName": "户口本地址、户主、本人"
             }
         ]
     },
@@ -155,7 +163,7 @@
         "docs": [
             {
                 "docKey": "QSZM",
-                "docName": "与申报公证有关的亲属证明"
+                "docName": "与申办公证有关的亲属证明"
             }
         ]
     }, 
@@ -281,6 +289,14 @@
                 "docName": "学位证",
                 "uploadAlone": true,
                 "needCrop": true
+            },
+            {
+                "docKey": "SFZ",
+                "docName": "身份证正反面"
+            },
+            {
+                "docKey": "HKB",
+                "docName": "户口本地址、户主、本人"
             }
         ]
     },
@@ -404,6 +420,14 @@
             {
                 "fieldKey": "CSZFYJ_SHCS",
                 "fieldName": "出生地是否上海"
+            },
+             {
+                "fieldKey": "CSZFYJ_SFJZ",
+                "fieldName": "生父是否健在"
+            },
+            {
+                "fieldKey": "CSZFYJ_SMJZ",
+                "fieldName": "生母是否健在"
             }
         ],
         "docs": [
@@ -419,14 +443,26 @@
                 "docKey": "FQSFZ",
                 "docName": "父亲身份证正反面",
                 "dependent": true,
-                "dependOn": "CS_SFJZ"
+                "dependOn": "CSZFYJ_SFJZ"
             },
             {
                 "docKey": "MQSFZ",
                 "docName": "母亲身份证正反面",
                 "dependent": true,
-                "dependOn": "CS_SMJZ"
+                "dependOn": "CSZFYJ_SMJZ"
             },
+         	{
+         		"docKey": "FQSFZ",
+         		"docName": "父亲死亡注销户籍证明",
+         		"dependent": false,
+                "dependOn": "CSZFYJ_SFJZ"
+         	},
+         	{
+         		"docKey": "MQSFZ",
+         		"docName": "母亲死亡注销户籍证明",
+         		"dependent": false,
+                "dependOn": "CSZFYJ_SMJZ"
+         	},
             {
                 "docKey": "BRHKB",
                 "docName": "本人户口本",
@@ -479,7 +515,12 @@
             {
                 "docKey": "JHZ",
                 "docName": "结婚证"
+            } ,
+            {
+                "docKey": "POZ",
+                "docName": "配偶身份证正反面"
             }
+            
         ]
     },
     "LHZFYJ": {
@@ -518,7 +559,7 @@
         "docs": [
             {
                 "docKey": "TXZM",
-                "docName": "退休证明"
+                "docName": "退休证"
             }
         ]
     },
@@ -812,6 +853,14 @@
                  "uploadAlone": true,
                 "dependent": true,
                 "dependOn": "GJ_SHZX"
+            },
+             {
+                "docKey": "SFZ",
+                "docName": "身份证正反面"
+            },
+            {
+                "docKey": "HKB",
+                "docName": "户口本地址、户主、本人"
             }
         ]
     },
@@ -828,6 +877,11 @@
              {
                 "docKey": "MZJHYZKZM",
                 "docName": "民政局婚姻状况证明"
+           
+            },
+            {
+                 "docKey": "POZ",
+                "docName": "配偶身份证正反面"
             }
         ]
     },
@@ -859,7 +913,7 @@
             },
               {
                 "docKey": "SMS",
-                "docName": "签字后的声明书"
+                "docName": "签字后的WORD格式声明书"
             }
         ]
     },

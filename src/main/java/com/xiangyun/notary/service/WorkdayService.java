@@ -18,5 +18,5 @@ public interface WorkdayService {
 	    
 	    public List<Workday> findByYear(int year,int month,int pageNO);
 
-		List<Workday> retrieveDayList();
+	    public List<Workday> findYear(int year);
 }
