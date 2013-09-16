@@ -35,7 +35,7 @@
 	          <div class="row">
 	            <div class="span5 offset1">
 	                <div class="control-group">
-			    	  <label class="control-label" for="HZFYJ_SHQF">学校是否在沪</label>
+			    	  <label class="control-label" for="HZFYJ_SHQF">护照签发地在上海</label>
 			    	  <div class="controls">
 				    	<label class="radio inline">
 					      <input type="radio" value="true" name="HZFYJ_SHQF" checked> 是&nbsp;&nbsp;

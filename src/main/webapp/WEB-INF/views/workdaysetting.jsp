@@ -5,6 +5,7 @@
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 <script src="<c:url value="/js/bootstrap-paginator.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/addYear.js"/>"></script>
 
 <ul class="breadcrumb">
 	<b>您的位置：</b>
@@ -37,6 +38,15 @@
 				<div class="row">
 					<div class="span4 offset2">
 						<div class="control-group">
+						<div class="controls">
+						年份：&nbsp;<select id="Year">
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+						<option value="2014">2014</option>
+								</select>
+								
+						&nbsp;&nbsp;&nbsp;<input class="btn" type="button" onclick="add()" value="增加"/>
+						</div>
 							<div class="controls">
 								日期：&nbsp;<input id="datepicker" class="" type="text" id="date" name="date" />
 							</div>

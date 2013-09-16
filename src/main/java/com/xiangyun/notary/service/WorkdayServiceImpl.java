@@ -94,7 +94,6 @@ public class WorkdayServiceImpl extends AbstractService implements WorkdayServic
 			}
 			return null;
 		}
-		
 		@SuppressWarnings("unchecked")
 		@Override
 		public List<Workday> retrieveDayList() {		
@@ -116,5 +115,16 @@ public class WorkdayServiceImpl extends AbstractService implements WorkdayServic
 	    
 		}
 		
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<Workday> findYear(int year) {
+			List<Workday> workdays=null;
+			String hql="from Workday w  where w.year=?1";
+			Query query=em.createQuery(hql);
+			query.setParameter(1, year);
+			workdays=query.getResultList();
+			return workdays;
+		}
 		
 }

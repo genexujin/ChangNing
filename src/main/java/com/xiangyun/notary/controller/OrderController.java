@@ -16,6 +16,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.cfg.HbmBinder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -179,17 +180,19 @@ public class OrderController {
         
         //First put the 通用  docs in the map.
         Map<String, FormDef> formDefs = (Map<String, FormDef>)ctx.getAttribute(Constants.FORM_DEFS);
-        FormDef ty = formDefs.get("TY");
-        for (FormDocItemDef docDef : ty.getDocs()) {
-            putIfAbsent(allInOneUploadDocs, ty, docDef);
-        }
-        
+        FormDef ty = null;
+     
         for (FormDef formDef : selectedForms) {
+        	
         	Form form = new Form();
         	form.setFormKey(formDef.getFormKey());
         	form.setFormName(formDef.getFormName());
+        	if(!(formDef.getFormName().equals("户口本复印件"))){
+        		ty=formDefs.get("TY");
+        	}
         	
         	//Create FormItems for a form
+        	//it is this 
         	Map<String, String> formKeyValueMap = new HashMap<String, String>();
         	for ( FormFieldItemDef itemDef : formDef.getFields()) {
     	        FormItem item = new FormItem();
@@ -203,7 +206,7 @@ public class OrderController {
                     }
                     item.setRelativeInfo(info);
                 } else {
-                    item.setItemValue(request.getParameter(itemDef.getFieldKey()));
+                    item.setItemValue(request.getParameter(itemDef.getFieldKey()));//获取对应值
                     //Put it to a map for doc dependency. Currently no doc depends on a composite value.
                     //So just put it in the "else"
                     formKeyValueMap.put(itemDef.getFieldKey(), request.getParameter(itemDef.getFieldKey()));
@@ -225,15 +228,18 @@ public class OrderController {
         	//Collect the doc items for upload
         	for ( FormDocItemDef docDef : formDef.getDocs()) {
         	    boolean shouldPut = true;
+        	  
         	    if (docDef.isDependent() && formKeyValueMap.get(docDef.getDependOn()) != null 
-        	            && formKeyValueMap.get(docDef.getDependOn()).equals("false")) {
+        	            && formKeyValueMap.get(docDef.getDependOn()).equals("false")) {//是false的话.
                     shouldPut = false;
                 }
         	    
-        	    if (shouldPut && docDef.isNeedCrop()) {
-        	        putIfAbsent(needCropDocs, docDef);
+
+        	    
+        	    if (shouldPut && docDef.isNeedCrop()) {//需要的东西
+        	        putIfAbsent(needCropDocs, docDef);	
         	        
-        	    } else if (shouldPut && docDef.isUploadAlone()) {
+        	    } else if (shouldPut && docDef.isUploadAlone()) {//上传
         	        putIfAbsent(aloneUploadDocs, docDef);
         			
         		} else if (shouldPut){
@@ -259,7 +265,18 @@ public class OrderController {
         		}
         	}
         }
-        
+        if(ty!=null){
+        for (FormDocItemDef docDef : ty.getDocs()) {
+//        	
+//			String strKey=docDef.getDocKey();
+//        	if(HKBdoc&&strKey.equals("HKB")){
+//        		docDef.setDocName(docDef.getDocName().substring(0, docDef.getDocName().lastIndexOf('及')));
+//        	}else{
+//        		docDef.setDocName(docDef.getDocName());
+//        	}
+            putIfAbsent(allInOneUploadDocs, ty, docDef);
+        }
+        }
         order.calculateTotalFee();
         orderService.save(order);
         
