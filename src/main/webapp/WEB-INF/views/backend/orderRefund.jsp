@@ -50,6 +50,7 @@
 		  
 		  <div class="row">
 		    <div class="span10 offset1">
+		      <input name="oId" type="hidden" value="${order.id}"></input>
 	    	  <table class="table table-striped table-bordered table-hover">
 	            <thead>
 	              <tr>
@@ -58,16 +59,18 @@
 	                <th>收费说明</th>
 	                <th>费用</th>
 	                <th>支付日期</th>
+	                <th><input type="checkbox" id="all_payment">全选</th>
 	              </tr>
 	            </thead>
 	            <tbody>
 	              <c:forEach items="${order.payments}" var="payment" varStatus="counter">
 	                <tr>
-	                  <td>${counter.index}</td>
+	                  <td>${counter.index + 1}</td>
 	                  <td>${payment.title}</td>
 	                  <td>${payment.paymentReason}</td>
 	                  <td><fmt:formatNumber value="${payment.paymentTotal}" type="currency" pattern="￥#.00"/></td>
 	                  <td><fmt:formatDate value="${payment.paymentDate}" pattern="yyyy-MM-dd"/></td>
+	                  <td><input type="checkbox" value="${payment.id}" name="payment_id"></td>
 	                </tr>
 	              </c:forEach>
 	            </tbody>
@@ -89,5 +92,23 @@
         </div>
       
 	  </form>
+	  
+	  <script>
+        function prepareRefund() {
+        	$("#all_payment").change(togglePaymentSelection);
+        }
+        
+        function togglePaymentSelection() {
+        	var selectAll = $("#all_payment").prop("checked");
+        	if (selectAll) {
+        		$("input[name='payment_id']").prop("checked", true);
+        	} else {
+        		$("input[name='payment_id']").prop("checked", false);
+        	}
+        }
+        
+        $(prepareRefund);
+        
+      </script>
 	  
 <%@ include file="../footer.jspf"%>

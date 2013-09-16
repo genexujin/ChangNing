@@ -218,6 +218,17 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         List<Payment> result = query.getResultList();
         return (result == null || result.size() == 0) ? null : result.get(0);
     }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<Payment> findPaymentsByOrderIdAndPaymentIds(Long orderId, Long userId, List<Long> paymentIds) {
+        TypedQuery<Payment> query = em.createNamedQuery("Payment.findPaymentsByOrderIdAndPaymentIds", Payment.class);
+        query.setParameter("oid", orderId);
+        query.setParameter("uid", userId);
+        query.setParameter("pids", paymentIds);
+        
+        return query.getResultList();
+    }
 
     @Override
     public Order save(Order order) {
@@ -225,7 +236,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
             log.debug("Inserting new order...");
             em.persist(order);
             //Need to format readableId and set
-            order.setReadableId(generateReadableId(order.getId(), "BZ"));
+            order.setReadableId(generateReadableId(order.getId(), "BY"));
             em.merge(order);
         } else {
             log.debug("Updating an order...");

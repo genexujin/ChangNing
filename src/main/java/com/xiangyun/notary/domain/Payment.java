@@ -26,7 +26,9 @@ import com.xiangyun.notary.common.OrderPaymentStatus;
 		@NamedQuery(name = "Payment.findByOutTradeNo", query = "select o from Payment o where o.orderTxnNo = :outTradeNo") ,
 		@NamedQuery(name = "Payment.findByAliTradeNo", query = "select o from Payment o where o.alipayTxnNo = :aliTradeNo"),
 		@NamedQuery(name = "Payment.findByOrderIdAndPaymentId", 
-		            query = "select o from Payment o where o.id = :pid and o.order.id = :oid and o.order.user.id = :uid")
+		            query = "select o from Payment o where o.id = :pid and o.order.id = :oid and o.order.user.id = :uid"),
+		@NamedQuery(name = "Payment.findPaymentsByOrderIdAndPaymentIds", 
+                    query = "select o from Payment o where o.id in :pids and o.order.id = :oid and o.order.user.id = :uid")
 })
 public class Payment implements Serializable {
 
