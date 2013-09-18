@@ -71,6 +71,25 @@ public class WorkdayServiceImpl extends AbstractService implements WorkdayServic
 	    		return workdays.get(0);
 	    	}
 		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public Workday findByDay(int year,int month,int day) {
+			
+	    	log.info("Now is find by the day...");
+	    	log.debug("year: " + year + " month: " + month + " day: " + day);
+	    	String hql = "from Workday where year = :year and month=:month and day =:day";
+	    	Query query = em.createQuery(hql);
+	    	query.setParameter("year", year);
+	    	query.setParameter("month", month);
+	    	query.setParameter("day", day);
+	    	List<Workday> workdays =  query.getResultList();
+	    	if(workdays.size() == 0){
+	    		return null;
+	    	}else{
+	    		return workdays.get(0);
+	    	}
+		}
 
 		@SuppressWarnings("unchecked")
 		@Override

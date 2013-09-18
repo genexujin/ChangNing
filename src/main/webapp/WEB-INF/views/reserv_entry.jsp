@@ -113,7 +113,7 @@
 				<div class="row">
 
 					<p style="padding-left: 70px; padding-bottom: 10px;">
-						<strong>请选择预约日期，注：只能选择第二天起7个自然日内的日期。</strong>
+						<strong>请选择预约日期，注：只能从第二天起的7个自然日内的工作日中选择。</strong>
 					</p>
 				</div>
 				<div class="row">
@@ -290,13 +290,13 @@
 	}
 	
 	function checkSegment(seq) {
-		alert(seq);
+		//alert(seq);
 		var flag = false;
 		$.ajax({
 			type : "post",
-			url : "/ChangNing/checkSegment.do?seq="+seq,
+			url : "/ChangNing/checkSegment.do",
 			data : {
-				mobile : $("#reg_user_mobile").val()
+				sequence : seq
 			},
 			async : false,
 			success : function(data) {

@@ -27,6 +27,7 @@ public class WorkdayPopulator {
             	day.setMonth(date.get(Calendar.MONTH) + 1);
             	day.setDay(date.get(Calendar.DAY_OF_MONTH));
             	
+            	
         		if ( date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY 
         			&& date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
         			
