@@ -234,6 +234,9 @@ public class ReservationController {
 		int year = endDate.get(Calendar.YEAR);
 		Workday wkd = workdayService.findByDay(year, month, day);
 		log.debug("get the workday !" + wkd.getDate());
+		
+		Set<TimeSegment> segments = wkd.getTimeSegments();
+		
 
 	}
 }
