@@ -10,7 +10,7 @@
             },
             {
                 "docKey": "HKB",
-                "docName": "户口本地址、户主、本人及相关人员页"
+                "docName": "户口本地址、户主、及本人页"
             }
         ]
     },
@@ -163,7 +163,7 @@
         "docs": [
             {
                 "docKey": "QSZM",
-                "docName": "与申办公证有关的亲属证明"
+                "docName": "与申办公证有关的亲属证明(如:结婚证、出生证、一起的户籍证明或户口本)"
             }
         ]
     }, 
@@ -218,6 +218,10 @@
             {
                 "docKey": "CSZM",
                 "docName": "出生证明"
+            },
+            {
+            	"docKey": "SFZ",
+            	"docName": "本人身份证正反面（未成年可缺省）"
             },
             {
                 "docKey": "FMHYZM",
@@ -440,6 +444,10 @@
                 "docName": "父母结婚证/离婚证+协议书/离婚判决书/离婚调解书"
             },
             {
+            	"docKey": "SFZ",
+            	"docName": "本人身份证正反面（未成年可缺省）"
+            },
+            {
                 "docKey": "FQSFZ",
                 "docName": "父亲身份证正反面",
                 "dependent": true,
@@ -575,7 +583,7 @@
         "docs": [
              {
                 "docKey": "FCZ",
-                "docName": "房产证"
+                "docName": "房产证每一页"
             }
         ]
     },
@@ -813,8 +821,12 @@
         ],
         "docs": [
             {
-                "docKey": "JSZZFB",
-                "docName": "驾驶证正副本"
+                "docKey": "JSZZB",
+                "docName": "驾驶证正本"
+            },
+             {
+                "docKey": "JSZFB",
+                "docName": "驾驶证副本"
             },
              {
                 "docKey": "HKB",
@@ -853,15 +865,8 @@
                  "uploadAlone": true,
                 "dependent": true,
                 "dependOn": "GJ_SHZX"
-            },
-             {
-                "docKey": "SFZ",
-                "docName": "身份证正反面"
-            },
-            {
-                "docKey": "HKB",
-                "docName": "户口本地址、户主、本人"
             }
+             
         ]
     },
     "HYZKZMFYJ": {
@@ -911,9 +916,13 @@
                 "docKey": "FMJHZ",
                 "docName": "父母结婚证"
             },
-              {
+             {
                 "docKey": "SMS",
-                "docName": "签字后的WORD格式声明书"
+                "docName": "签字后的电子版声明书"
+            },
+             {
+                "fieldKey": "SFZ",
+                "fieldName": "相关人员身份证正反面"
             }
         ]
     },

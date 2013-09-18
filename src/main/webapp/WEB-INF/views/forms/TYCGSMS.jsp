@@ -69,7 +69,7 @@
 						</div>
 					</div>
 				</div>
-				<div  class="span4 tiny-pt">提示：下载后根据实际情况填写好，以WORD格式在下一步“上传资料”中上传</div>
+				<div  class="span4 tiny-pt">提示：下载后根据实际情况填写好，以电子版格式在下一步“上传资料”中上传</div>
 			</div>
 		</div>
 	</div>

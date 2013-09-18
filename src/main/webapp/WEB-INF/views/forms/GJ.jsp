@@ -24,7 +24,7 @@
 					      <input type="radio" value="true" name="GJ_SHHJ" checked> 是&nbsp;&nbsp;
 					    </label>
 					    <label class="radio inline">
-					      <input type="radio" value="false" name="GJ_SHHJ"> 否&nbsp;&nbsp;
+					      <input type="radio" value="false" name="GJ_SHHJ" > 否&nbsp;&nbsp;
 					    </label>
 			    	  </div>
 			    	</div>
@@ -39,7 +39,7 @@
 					      <input type="radio" value="true" name="GJ_SHZX" checked> 是&nbsp;&nbsp;
 					    </label>
 					    <label class="radio inline">
-					      <input type="radio" value="false" name="GJ_SHZX"> 否&nbsp;&nbsp;
+					      <input type="radio" value="false" name="GJ_SHZX" > 否&nbsp;&nbsp;
 					    </label>
 			    	  </div>
 			    	</div>
