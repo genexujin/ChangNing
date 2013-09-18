@@ -37,7 +37,11 @@ public class ReservationController {
 	
 	@Autowired
 	private TimeSegmentsService timeSegmentsService;
-	
+	/**
+	 * 预约查询列表
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/reserv_Query.do")
     public ModelAndView reservQuery(HttpServletRequest request) {
     	User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
@@ -82,7 +86,12 @@ public class ReservationController {
     }
 	
 	
-	
+	/**
+	 * 取消预约
+	 * @param readableId
+	 * @param response
+	 * @throws IOException
+	 */
 	@RequestMapping(value="cancleReserv.do")
 	public void cancleReserv(String readableId,HttpServletResponse response) throws IOException{
 		Reservation reservation = reservationService.findByReadableId(readableId);
@@ -101,6 +110,12 @@ public class ReservationController {
 		out.print(true);
 	}
 	
+	/**
+	 * 完成预约
+	 * @param readableId
+	 * @param response
+	 * @throws IOException
+	 */
 	@RequestMapping(value="finishReserv.do")
 	public void finishReserv(String readableId,HttpServletResponse response) throws IOException{
 		Reservation reservation = reservationService.findByReadableId(readableId);
@@ -109,12 +124,13 @@ public class ReservationController {
 		PrintWriter out = response.getWriter();
 		out.print(true);
 	}
-	
+	/**
+	 * 取消后发送短信通知给客户
+	 * @param reservation
+	 */
 	@RequestMapping(value = "sendCancleMSG.do")
 	public void sendCancleMSG(Reservation reservation) {
-		SMSManager.sendSMS(new String[] { reservation.getRequestorMobile() }, "尊敬的"+reservation.getRequestorName()+"，您在长宁公证处的网上预约已经取消，预约号为"+reservation.getReservationKey()+"谢谢使用长宁网上公证业务！"
-				 , 1);		
-		
+		SMSManager.sendSMS(new String[] { reservation.getRequestorMobile() }, "尊敬的"+reservation.getRequestorName()+"，您在长宁公证处的网上预约已经取消，预约号为"+reservation.getReservationKey()+"，谢谢使用长宁网上公证业务！" , 1);		
 		try {
 			System.out.println("Available SMS: "
 					+ Math.floor(SMSManager.checkBalance()));
