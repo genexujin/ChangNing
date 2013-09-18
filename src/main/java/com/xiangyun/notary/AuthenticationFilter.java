@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 public class AuthenticationFilter implements Filter {
 	private static final Logger log = LoggerFactory
@@ -51,9 +52,10 @@ public class AuthenticationFilter implements Filter {
 			log.debug("Not logging yet. Redirecting to login page...");
 			String url = ((HttpServletRequest) request).getRequestURL().toString();
 			String queryString = ((HttpServletRequest) request).getQueryString();
+			queryString = StringUtils.isEmpty(queryString) ? "" : "?" + queryString;
 			//session can be null, so get it again so that a new one can be created when it is null
 			session = req.getSession();
-			session.setAttribute("openURL", url + "?" + queryString);
+			session.setAttribute("openURL", url + queryString);
 			resp.sendRedirect(req.getContextPath() + "/enterLogin.do");
 			return;
 		}

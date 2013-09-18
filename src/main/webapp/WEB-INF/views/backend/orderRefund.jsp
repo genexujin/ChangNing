@@ -7,20 +7,20 @@
         <b>您的位置：</b>
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li><a href="#">网上办证</a> <span class="divider">/</span></li>
-        <li class="active">订单撤销</li>
+        <li class="active">退款</li>
       </ul>
       
       <hr/>
 	  
 	  <br>
-	  <form class="form-horizontal" action="doCancel.do" method="POST">
+	  <form class="form-horizontal" action="doRefund.do" method="POST">
 	  
 		<div class="bar-bg">
 	      <div class="row">
 	        <div class="span12 navbg2">
 	          <div class="row">
 	            <div class="span9">
-	              <h5>&nbsp;&nbsp;&nbsp;&nbsp;订单撤销</h5>
+	              <h5>&nbsp;&nbsp;&nbsp;&nbsp;退款</h5>
 	            </div>
 	          </div>
 	        </div>
@@ -50,13 +50,31 @@
 		  
 		  <div class="row">
 		    <div class="span10 offset1">
-	    	  <div class="control-group">
-	    	    <label class="control-label" for="backendNotaryId">请输入撤销原因：</label>
-	    	    <div class="controls">
-	    	      <input name="oId" type="hidden" value="${order.id}"></input>
-			      <textarea rows="5" cols="150" name="cancel_note">${order.cancelNote}</textarea>
-		    	</div>
-	    	  </div>
+		      <input name="oId" type="hidden" value="${order.id}"></input>
+	    	  <table class="table table-striped table-bordered table-hover">
+	            <thead>
+	              <tr>
+	                <th>序号</th>
+	                <th>收费项目</th>
+	                <th>收费说明</th>
+	                <th>费用</th>
+	                <th>支付日期</th>
+	                <th><input type="checkbox" id="all_payment">全选</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <c:forEach items="${order.payments}" var="payment" varStatus="counter">
+	                <tr>
+	                  <td>${counter.index + 1}</td>
+	                  <td>${payment.title}</td>
+	                  <td>${payment.paymentReason}</td>
+	                  <td><fmt:formatNumber value="${payment.paymentTotal}" type="currency" pattern="￥#.00"/></td>
+	                  <td><fmt:formatDate value="${payment.paymentDate}" pattern="yyyy-MM-dd"/></td>
+	                  <td><input type="checkbox" value="${payment.id}" name="payment_id"></td>
+	                </tr>
+	              </c:forEach>
+	            </tbody>
+	          </table>
 	    	</div>
 		  </div>
 		  
@@ -74,5 +92,23 @@
         </div>
       
 	  </form>
+	  
+	  <script>
+        function prepareRefund() {
+        	$("#all_payment").change(togglePaymentSelection);
+        }
+        
+        function togglePaymentSelection() {
+        	var selectAll = $("#all_payment").prop("checked");
+        	if (selectAll) {
+        		$("input[name='payment_id']").prop("checked", true);
+        	} else {
+        		$("input[name='payment_id']").prop("checked", false);
+        	}
+        }
+        
+        $(prepareRefund);
+        
+      </script>
 	  
 <%@ include file="../footer.jspf"%>

@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="JH_JHZ_M" class="span4 tiny-pt">提示：若无结婚证则不可办理公证
+			    <div id="JH_JHZ_M" class="span4 tiny-pt">提示：无结婚证暂不开放网上申办公证
 			    </div>
 	          </div>
 	          

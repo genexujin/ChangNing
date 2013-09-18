@@ -114,7 +114,8 @@
 		      <div class="bar-bg">
 			      <div class="row">
 			        <div class="span12 navbg2">
-			          <h5>&nbsp;&nbsp;&nbsp;&nbsp;特殊材料</h5>
+			          <h5>&nbsp;&nbsp;&nbsp;&nbsp;特殊材料&nbsp;&nbsp;&nbsp;'如本人和父母不在同一本户口本，请分别上传'
+			          </h5>
 			        </div>
 			      </div>
 		      </div>
@@ -142,7 +143,7 @@
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
-	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif; *.pdf',
+	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif; *.pdf;',
 	        		        'removeCompleted' : false,
 	        		        'formData'        : {
 	        		        	'uid' : '${um.uid}',
@@ -326,7 +327,7 @@
 	   		  </div>
 	      </div>
       
-      </form>
+      <!-- </form> -->
       
       <script>
         function prepareCertStep3() {

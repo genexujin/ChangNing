@@ -30,12 +30,12 @@
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
   <filter>
-    <filter-name>OpenEmFilter</filter-name>
-    <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+	<filter-name>OpenEmFilter</filter-name>
+	<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
   </filter>
   <filter-mapping>
-    <filter-name>OpenEmFilter</filter-name>
-    <url-pattern>*.do</url-pattern>
+	<filter-name>OpenEmFilter</filter-name>
+	<url-pattern>*.do</url-pattern>
   </filter-mapping>
   <listener>
     <listener-class>com.xiangyun.notary.InitContextListener</listener-class>
@@ -75,6 +75,10 @@
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
+<!--   <mime-mapping>
+    <extension>zip</extension>
+    <mime-type>application/zip</mime-type>
+  </mime-mapping> -->
   <servlet>
     <description></description>
     <display-name>PaymentServlet</display-name>
@@ -84,45 +88,5 @@
   <servlet-mapping>
     <servlet-name>PaymentServlet</servlet-name>
     <url-pattern>/pay</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ReturnServlet</display-name>
-    <servlet-name>ReturnServlet</servlet-name>
-    <servlet-class>com.xiangyun.notary.alipay.api.ReturnServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ReturnServlet</servlet-name>
-    <url-pattern>/return</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>NotifyServlet</display-name>
-    <servlet-name>NotifyServlet</servlet-name>
-    <servlet-class>com.xiangyun.notary.alipay.api.NotifyServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>NotifyServlet</servlet-name>
-    <url-pattern>/notify</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>RefundServlet</display-name>
-    <servlet-name>RefundServlet</servlet-name>
-    <servlet-class>com.xiangyun.notary.alipay.api.RefundServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RefundServlet</servlet-name>
-    <url-pattern>/refund</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>RefundNotifyServlet</display-name>
-    <servlet-name>RefundNotifyServlet</servlet-name>
-    <servlet-class>com.xiangyun.notary.alipay.api.RefundNotifyServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RefundNotifyServlet</servlet-name>
-    <url-pattern>/refundNotify</url-pattern>
   </servlet-mapping>
 </web-app>

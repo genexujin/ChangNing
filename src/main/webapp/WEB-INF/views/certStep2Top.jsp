@@ -51,7 +51,7 @@
 	        <div class="span12">
 	          
 	            <div class="row">
-	              <div class="span6">
+	              <div class="span5 offset1">
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="username">申请人姓名</label>
 			    	  <div class="controls">
@@ -62,6 +62,7 @@
 	    		  <div id="username_m" class="span4 hide alert alert-error">姓名不能为空
 			      </div>
 	    		</div>
+	    		
 	    		<div class="row">
 		          <div class="span5 offset1">
 	    		    <div class="control-group">

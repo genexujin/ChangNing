@@ -62,6 +62,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`payment` (
   `order_id` int NULL ,
   `payment_date` DATE NULL ,
   `payment_total` DECIMAL(10,2) NULL ,
+  `payment_reason` VARCHAR(400) NULL ,
   `refund_date` DATE NULL ,
   `refund_total` DECIMAL(10,2) NULL ,
   `status` VARCHAR(20) NULL ,  
@@ -226,6 +227,41 @@ CREATE  TABLE IF NOT EXISTS `changning`.`Reservations` (
     ON UPDATE NO ACTION
  );
 
+CREATE  TABLE IF NOT EXISTS `changning`.`doc_extra_items` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `order_id` INT NULL ,
+  `extra_doc_names` VARCHAR(1000) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `doc_extra_order_fk_idx` (`order_id` ASC) ,
+  CONSTRAINT `doc_extra_order_fk`
+    FOREIGN KEY (`order_id` )
+    REFERENCES `changning`.`orders` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE  TABLE IF NOT EXISTS `changning`.`interactions` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `order_id` INT NULL ,
+  `user_id` INT NULL ,
+  `interaction_date` DATE NULL ,
+  `interaction_content` VARCHAR(1000) NULL ,
+  `interaction_type` VARCHAR(20) NULL ,
+  `completed` VARCHAR(20) NULL ,
+  `extra_data` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `interactions_order_fk_idx` (`order_id` ASC) ,
+  INDEX `interactions_user_fk_idx` (`user_id` ASC) ,
+  CONSTRAINT `interactions_order_fk`
+    FOREIGN KEY (`order_id` )
+    REFERENCES `changning`.`orders` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `interactions_user_fk`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `changning`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
 insert into roles (role_name) values ('admin');
 insert into roles (role_name) values ('staff');
 insert into roles (role_name) values ('user');
@@ -238,19 +274,3 @@ VALUES ('18621910893', 'aaa', 'MALE', 'test@test.com', 'ID_CARD', '4403061999832
 insert into user_roles (user_id, role_id) values (1, 3);
 insert into user_roles (user_id, role_id) values (2, 2);
 
--- insert into time_segments (start_time, duration) values ('08:30', 30);
--- insert into time_segments (start_time, duration) values ('09:00', 30);
--- insert into time_segments (start_time, duration) values ('09:30', 30);
--- insert into time_segments (start_time, duration) values ('10:00', 30);
--- insert into time_segments (start_time, duration) values ('10:30', 30);
--- insert into time_segments (start_time, duration) values ('11:00', 30);
--- insert into time_segments (start_time, duration) values ('11:30', 30);
--- insert into time_segments (start_time, duration) values ('13:00', 30);
--- insert into time_segments (start_time, duration) values ('13:30', 30);
--- insert into time_segments (start_time, duration) values ('14:00', 30);
--- insert into time_segments (start_time, duration) values ('14:30', 30);
--- insert into time_segments (start_time, duration) values ('15:00', 30);
--- insert into time_segments (start_time, duration) values ('15:30', 30);
--- insert into time_segments (start_time, duration) values ('16:00', 30);
--- insert into time_segments (start_time, duration) values ('16:30', 30);
--- insert into time_segments (start_time, duration) values ('17:00', 30);
