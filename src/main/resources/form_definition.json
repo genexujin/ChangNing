@@ -84,13 +84,9 @@
                 "needCrop": true
             },
              {
-                "docKey": "SFZ",
-                "docName": "身份证正反面"
-            },
-            {
-                "docKey": "HKB",
-                "docName": "户口本地址、户主、本人"
-            }
+             	"docKey": "XLZS",
+             	"docName": "学历证书"
+             }
         ]
     },
     
@@ -367,11 +363,11 @@
         "docs": [
             {
                 "docKey": "SWRZXHJHKB",
-                "docName": "死亡人注销户籍或户口本"
+                "docName": "死亡注销户籍证明或者注销户籍记录的户口簿"
             },
             {
                 "docKey": "SQRGXZM",
-                "docName": "申请人关系证明"
+                "docName": "申办人关系证明(如:结婚证、出生证、一起的户籍证明或户口本)"
             },
             {
                 "docKey": "JMSWYXZMSFYJ",
@@ -786,7 +782,7 @@
             },
              {
                 "docKey": "LHZLHPJS",
-                "docName": "离婚证离婚判决书"
+                "docName": "离婚判决书（及生效文书）或离婚调解书或者离婚证"
             }
         ]
     },
@@ -824,9 +820,9 @@
                 "docKey": "JSZZB",
                 "docName": "驾驶证正本"
             },
-             {
-                "docKey": "JSZFB",
-                "docName": "驾驶证副本"
+            {
+            	"docKey": "JSZFB",
+            	"docName": "驾驶证副本"
             },
              {
                 "docKey": "HKB",
@@ -858,11 +854,12 @@
                  "uploadAlone": true,
                 "dependent": true,
                 "dependOn": "GJ_SHZX"
+                
             },
              {
                 "docKey": "ZXHKB",
                 "docName": "注销户口本",
-                 "uploadAlone": true,
+                "uploadAlone": true,
                 "dependent": true,
                 "dependOn": "GJ_SHZX"
             }
@@ -918,12 +915,13 @@
             },
              {
                 "docKey": "SMS",
-                "docName": "签字后的电子版声明书"
+                "docName": "电子版声明书"
             },
-             {
-                "fieldKey": "SFZ",
-                "fieldName": "相关人员身份证正反面"
+            {
+            	"docKey": "XGRYSFZFM",
+            	"docName": "相关人员身份证正反面"
             }
+            
         ]
     },
     "CZGZCJFYJ": {
