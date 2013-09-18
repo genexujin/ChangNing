@@ -206,7 +206,7 @@ public class OrderController {
                     }
                     item.setRelativeInfo(info);
                 } else {
-                    item.setItemValue(request.getParameter(itemDef.getFieldKey()));//获取对应�?
+                    item.setItemValue(request.getParameter(itemDef.getFieldKey()));//获取对应�?
                     //Put it to a map for doc dependency. Currently no doc depends on a composite value.
                     //So just put it in the "else"
                     formKeyValueMap.put(itemDef.getFieldKey(), request.getParameter(itemDef.getFieldKey()));
@@ -233,7 +233,7 @@ public class OrderController {
         	            && formKeyValueMap.get(docDef.getDependOn()).equals("false")) {//是false的话.
                     shouldPut = false;
                 }
-        	    if (shouldPut && docDef.isNeedCrop()) {//�?��的东�?
+        	    if (shouldPut && docDef.isNeedCrop()) {//�?��的东�?
         	        
         	    } else if (shouldPut && docDef.isUploadAlone()) {//上传
         	        putIfAbsent(aloneUploadDocs, docDef);
@@ -266,7 +266,7 @@ public class OrderController {
 //        	
 //			String strKey=docDef.getDocKey();
 //        	if(HKBdoc&&strKey.equals("HKB")){
-//        		docDef.setDocName(docDef.getDocName().substring(0, docDef.getDocName().lastIndexOf('�?)));
+//        		docDef.setDocName(docDef.getDocName().substring(0, docDef.getDocName().lastIndexOf('�?)));
 //        	}else{
 //        		docDef.setDocName(docDef.getDocName());
 //        	}
@@ -520,7 +520,7 @@ public class OrderController {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
-        //如果已经是后面的状�?了，则不允许接受�?
+        //如果已经是后面的状�?了，则不允许接受�?
         if (order.getOrderStatus().ordinal() >= OrderStatus.ACCEPTED.ordinal()) {
         	return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
         }
@@ -740,7 +740,7 @@ public class OrderController {
             i.setInteractionDate(new Date());
             i.setInteractionType(InteractionType.ADD_DOCS);
             i.setUser(user);
-            i.setInteractionContent("额外要求补充材料�? + extraDocs);
+            i.setInteractionContent("额外要求补充材料" + extraDocs);
             order.addInteraction(i);
             
         }
@@ -882,7 +882,7 @@ public class OrderController {
         }
         
         ModelAndView mav = new ModelAndView("backend/orderRefund");
-        mav.addObject("title", "�?��");
+        mav.addObject("title", "�?��");
         mav.addObject("order", order);
         
         return mav;
