@@ -51,7 +51,7 @@ public class UserController {
 		User user = new User();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("user", null);
-		mav.setViewName("register");
+		mav.setViewName("userCenter_register");
 		return mav;
 	}
 
@@ -68,7 +68,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("title", "用户登录");
 		mav.addObject("user", null);
-		mav.setViewName("login");
+		mav.setViewName("userCenter_login");
 		return mav;
 	}
 	
@@ -84,7 +84,7 @@ public class UserController {
 		User user = (User) request.getSession(true).getAttribute("LOGIN_USER");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("user", user);
-		mav.setViewName("modify");
+		mav.setViewName("userCenter_modify");
 		return mav;
 	}
 
@@ -105,7 +105,7 @@ public class UserController {
 		HttpSession session = request.getSession(true);
 		session.setAttribute(Constants.LOGIN_USER, user);
         mav.addObject("user", user);
-        mav.setViewName("modify");
+        mav.setViewName("userCenter_modify");
         return mav;
     }
 
@@ -230,12 +230,12 @@ public class UserController {
 			msg = "输入的手机号码和密码不匹配，请重试！";
 			mav.addObject("msg", msg);
 			mav.addObject("title", "用户登录");
-			mav.setViewName("login");
+			mav.setViewName("userCenter_login");
 		} else if (!u.getPassword().equals(Encrypt.e(user.getPassword()))) {
 			msg = "输入的手机号码和密码不匹配，请重试！";
 			mav.addObject("msg", msg);
 			mav.addObject("title", "用户登录");
-			mav.setViewName("login");
+			mav.setViewName("userCenter_login");
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute(Constants.LOGIN_USER, u);
@@ -243,7 +243,7 @@ public class UserController {
 			if (StringUtils.isEmpty(targetURL)) {
 				mav.addObject("user", u);
 				mav.addObject("title", "个人信息");
-				mav.setViewName("modify");
+				mav.setViewName("userCenter_modify");
 			} else {
 				mav.setViewName("redirect:"+targetURL);
 			}
@@ -258,7 +258,7 @@ public class UserController {
 		if (session != null) 
 			session.invalidate();
 		
-		ModelAndView mav = new ModelAndView("login");
+		ModelAndView mav = new ModelAndView("userCenter_login");
 		return mav;
 	}
 
@@ -317,7 +317,7 @@ public class UserController {
 		User user = new User();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("user", null);
-		mav.setViewName("forget");
+		mav.setViewName("userCenter_forget");
 		return mav;
 	}
 
@@ -337,7 +337,7 @@ public class UserController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute(Constants.LOGIN_USER, u);
 			mav.addObject("user", u);
-			mav.setViewName("modify");
+			mav.setViewName("userCenter_modify");
 		return mav;
 	}
 	
