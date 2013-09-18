@@ -1,6 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 	  <!-- 国籍公证 -->
 	  <div class="bar-bg">
 	      <div class="row">
@@ -36,10 +35,10 @@
 			    	  <label class="control-label" for="GJ_SHZX">注销户籍是上海</label>
 			    	  <div class="controls">
 				    	<label class="radio inline">
-					      <input type="radio" value="true" name="GJ_SHZX" checked> 是&nbsp;&nbsp;
+					      <input type="radio" value="true" name="GJ_SHZX" > 是&nbsp;&nbsp;
 					    </label>
 					    <label class="radio inline">
-					      <input type="radio" value="false" name="GJ_SHZX" > 否&nbsp;&nbsp;
+					      <input type="radio" value="false" name="GJ_SHZX" checked="checked"> 否&nbsp;&nbsp;
 					    </label>
 			    	  </div>
 			    	</div>

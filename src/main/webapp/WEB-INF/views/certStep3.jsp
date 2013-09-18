@@ -55,7 +55,7 @@
 		          </div>
 		        </div>
 	          </div>
-	      
+
 		      <div class="border">
 		        <br>
 		        <div class="row">
@@ -114,18 +114,19 @@
 		      <div class="bar-bg">
 			      <div class="row">
 			        <div class="span12 navbg2">
-			          <h5>&nbsp;&nbsp;&nbsp;&nbsp;特殊材料&nbsp;&nbsp;&nbsp;'如本人和父母不在同一本户口本，请分别上传'
+			          <h5>&nbsp;&nbsp;&nbsp;&nbsp;特殊材料&nbsp;&nbsp;&nbsp;
 			          </h5>
 			        </div>
 			      </div>
 		      </div>
 		      
 		      <div class="border">
+		      <span style="margin-left:10px;margin-top:5px">${Special_note}</span>
 	        	<br>
 	        	<c:forEach items="${um.aloneUpload}" var="doc" >
 	        	  <div class="row">
 		        	<div class="span offset1">
-		              <h5>${doc.docName} </h5>
+		              <h5 style="width: 90px">${doc.docName} </h5>
 		            </div>
 		            <div class="span7">
 		              <div id="${doc.docKey}" class="file_upload" ></div>
