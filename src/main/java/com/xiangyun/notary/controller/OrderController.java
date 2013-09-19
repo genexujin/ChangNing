@@ -389,7 +389,7 @@ public class OrderController {
     	StringBuilder sb = new StringBuilder("redirect:/openPayment.do?WIDout_trade_no=");
     	sb.append(tradeNo);
     	sb.append("&WIDsubject="+str);
-    	sb.append("&WIDtotal_fee=0.01");
+    	sb.append("&WIDtotal_fee=" + payment.getPaymentTotal());
     	try {
             sb.append("&WIDbody=").append(URLEncoder.encode("公证收费", "UTF-8"));
         } catch (UnsupportedEncodingException e) {
@@ -798,7 +798,8 @@ public class OrderController {
         }
         
         Payment pay = new Payment();
-        pay.setPaymentTotal(extraPayment);
+//        pay.setPaymentTotal(extraPayment);
+        pay.setPaymentTotal(0.01); //暂时写死
         pay.setStatus(OrderPaymentStatus.NOT_PAID);
         pay.setPaymentReason(extraPaymentNote);
         pay.setTitle("附加费用");
@@ -906,9 +907,31 @@ public class OrderController {
             return new ModelAndView("redirect:orderQuery.do");
         }
         
+        StringBuilder refundDetailData = new StringBuilder();
+        for (Payment payment : payments) {
+            payment.setRefundDate(new Date());
+            payment.setRefundReason("退款原因");
+            refundDetailData.append(payment.getAlipayTxnNo()).append("^")
+                            .append(payment.getPaymentTotal()).append("^").append("退款原因");
+            //Always append a "#" and remove it after the loop
+            refundDetailData.append("#");
+            orderService.save(payment);
+        }
+        if (refundDetailData.charAt(refundDetailData.length() - 1) == '#') {
+            refundDetailData.deleteCharAt(refundDetailData.length() - 1);
+        }
+
+        log.debug("The refund detail data is: " + refundDetailData.toString());
+        
         StringBuilder sb = new StringBuilder("redirect:/openRefund.do");
         sb.append("?WIDbatch_num=").append(payments.size());
-        sb.append("&WIDdetail_data=").append(false);
+        try {
+            sb.append("&WIDdetail_data=").append(URLEncoder.encode(refundDetailData.toString(), "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            log.error("UTF-8 is not supported.", e);
+        }
+        
+        log.debug("The refund url is: " + sb.toString());
         
         return new ModelAndView(sb.toString());
     }
