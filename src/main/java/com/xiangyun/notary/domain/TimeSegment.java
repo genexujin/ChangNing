@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "time_segments")
 public class TimeSegment implements Serializable {
@@ -28,6 +30,7 @@ public class TimeSegment implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "workday_id")
+	@JsonIgnore
 	private Workday workDay;
 	
 	@Column(name = "resv_count")

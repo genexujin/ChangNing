@@ -217,7 +217,8 @@ CREATE  TABLE IF NOT EXISTS `changning`.`Reservations` (
   `reserve_key` VARCHAR(50) NULL ,
   `reserve_status` VARCHAR(20) NULL ,
   `reserve_date` DATE NULL ,
-  `reserve_time_segment` VARCHAR(50) NULL, 
+  `reserve_time_segment` VARCHAR(50) NULL,
+  `creation_date` DATE NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `Reservations_Users_Fk_idx` (`user_id` ASC) ,
   CONSTRAINT `reservations_users_fk`

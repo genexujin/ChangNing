@@ -86,7 +86,7 @@
 					<div class="span5 offset1">
 						<div class="control-group">
 							<label class="control-label" for="username">申请人姓名</label>
-							<div class="controls">
+							<div class="offset1" style="padding-left: 40px;">
 								<input id="username" name="username" type="text"
 									value="${currUser.name}"></input>
 							</div>
@@ -100,7 +100,7 @@
 					<div class="span5 offset1">
 						<div class="control-group">
 							<label class="control-label" for="mobile">手机号</label>
-							<div class="controls">
+							<div class="offset1" style="padding-left: 40px;">
 								<input id="mobile" name="mobile" type="text"
 									value="${currUser.mobile}"></input>
 							</div>
@@ -130,18 +130,18 @@
 								<tr>
 									<c:set var="seq" value="1" />
 									<c:forEach items="${dayTypeList}" var="dayType">
-
-
-										<td class="${dayType.style}"><c:choose>
+										<td id="workday${seq}" class="${dayType.style}"
+											<c:choose>
 												<c:when test="${dayType.style=='workday'}">
-													<a href="javascript:checkSegment(${seq})">
-														${dayType.linkText}</a>
+												onclick="javascript:checkSegment(${seq},'workday${seq}')"
+													
 												</c:when>
 												<c:otherwise>
-													<a href="javascript: void(0)"> ${dayType.linkText}</a>
+													
 												</c:otherwise>
-											</c:choose></td>
-
+											</c:choose>
+											>
+											${dayType.linkText}</td>
 										<c:set var="seq" value="${seq+1}" />
 									</c:forEach>
 
@@ -221,13 +221,24 @@
 	<div class="row">
 		<div class="span2 offset5">
 			<button id="makeRsrv" class="btn btn-large btn-block btn-info"
-				type="submit">提交预约申请</button>
+				type="button" onclick="submitOrder();">提交预约申请</button>
 		</div>
 	</div>
 
 </form>
 
 <script>
+	var selectedWorkday;
+	var selectedSegment;
+	var limit = $
+	{
+		limit
+	};
+
+	
+
+	var theSegments;
+
 	function prepareBasic() {
 		validateUsername();
 		validateMobile();
@@ -240,6 +251,14 @@
 	$("#seg_title").hide();
 	$("#seg_container").hide();
 	$(prepareBasic);
+
+	function validateTimeSelection() {
+		if (selectedWorkday == null || selectedSegment == null)
+			return false;
+		else
+			return true;
+	}
+
 	function validateRsrvKey() {
 		var rsvKey = $("#rsvKey").val();
 
@@ -251,6 +270,7 @@
 			$("#rsvKey_m").addClass("hide");
 			$("#makeRsrv").removeAttr("disabled");
 		}
+
 	}
 
 	function validateUsername() {
@@ -288,10 +308,18 @@
 			return false;
 		}
 	}
-	
-	function checkSegment(seq) {
-		//alert(seq);
-		var flag = false;
+
+	var lastTD;
+	var lastSlot;
+
+	function checkSegment(seq, lasttd) {
+		
+		//选择的日期变色
+		$("#" + lastTD).removeAttr('style');
+		lastTD = lasttd;
+		$("#" + lastTD).css('background-color', '#FFFF70');
+		selectedWorkday = seq;
+
 		$.ajax({
 			type : "post",
 			url : "/ChangNing/checkSegment.do",
@@ -300,16 +328,241 @@
 			},
 			async : false,
 			success : function(data) {
-				if (data == 1) {
-					$("#reg_mobile_alert").removeClass().addClass(
-							"alert alert-error").html("手机号已经被注册，请更换或登陆！");
-					$("#reg_user_mobile").focus();
-				} else {
-					flag = true;
-				}
+				refreshSegments(data);
 			}
 		});
-		return flag;
+	}
+
+	function refreshSegments(data) {
+		if (data != null) {
+			//alert(data);
+			var theWorkDay = jQuery.parseJSON(data);
+			var d = new Date();
+			d.setTime(theWorkDay.date);
+			$("#segheader").html(d.toLocaleDateString());
+			theSegments = theWorkDay.timeSegments;
+			//alert(segs);
+			initializeSegemnts();
+
+			$("#seg_container").show();
+
+		}
+	}
+
+	function initializeSegemnts() {
+		//initialize all segments to be available for booking...
+		$("#slot1").removeAttr('style');
+		$("#slot2").removeAttr('style');
+		$("#slot3").removeAttr('style');
+		$("#slot4").removeAttr('style');
+		$("#slot5").removeAttr('style');
+		$("#slot6").removeAttr('style');
+		$("#slot7").removeAttr('style');
+		$("#slot8").removeAttr('style');
+		$("#slot9").removeAttr('style');
+		$("#slot10").removeAttr('style');
+		$("#slot11").removeAttr('style');
+		$("#slot12").removeAttr('style');
+
+		if (ifSegAvailable('08:30 ~ 9:00')) {
+			$("#slot1").html('08:30 ~ 9:00    有空闲');
+			$("#slot1").click(function() {
+				bookSegment('08:30 ~ 9:00', '#slot1');
+			});
+
+		} else {
+			$("#slot1").html('08:30 ~ 9:00   坐席满');
+			$("#slot1").attr("class", "segmentfull");
+
+		}
+
+		if (ifSegAvailable('09:00 ~ 9:30')) {
+			$("#slot2").html('09:00 ~ 9:30 有空闲');
+			$("#slot2").click(function() {
+				bookSegment('09:00 ~ 9:30', '#slot2');
+			});
+		} else {
+			$("#slot2").html('09:00 ~ 9:30  坐席满');
+			$("#slot2").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('09:30 ~ 10:00')) {
+			$("#slot3").html('09:30 ~ 10:00    有空闲');
+
+			$("#slot3").click(function() {
+				bookSegment('09:30 ~ 10:00', '#slot3');
+			});
+		} else {
+			$("#slot3").html('09:30 ~ 10:00    坐席满');
+			$("#slot3").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('10:00 ~ 10:30')) {
+			$("#slot4").html('10:00 ~ 10:30    有空闲');
+
+			$("#slot4").click(function() {
+				bookSegment('10:00 ~ 10:30', '#slot4');
+			});
+		} else {
+			$("#slot4").html('10:00 ~ 10:30    坐席满');
+			$("#slot4").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('10:30 ~ 11:00')) {
+			$("#slot5").html('10:30 ~ 11:00    有空闲');
+
+			$("#slot5").click(function() {
+				bookSegment('10:30 ~ 11:00', '#slot5');
+			});
+		} else {
+			$("#slot5").html('10:30 ~ 11:00    坐席满');
+			$("#slot5").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('11:00 ~ 11:30')) {
+			$("#slot6").html('11:00 ~ 11:30    有空闲');
+
+			$("#slot6").click(function() {
+				bookSegment('11:00 ~ 11:30', '#slot6');
+			});
+		} else {
+			$("#slot6").html('11:00 ~ 11:30    坐席满');
+			$("#slot6").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('13:30 ~ 14:00')) {
+			$("#slot7").html('13:30 ~ 14:00    有空闲');
+
+			$("#slot7").click(function() {
+				bookSegment('13:30 ~ 14:00', '#slot7');
+			});
+		} else {
+			$("#slot7").html('13:30 ~ 14:00    坐席满');
+			$("#slot7").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('14:00 ~ 14:30')) {
+			$("#slot8").html('14:00 ~ 14:30    有空闲');
+
+			$("#slot8").click(function() {
+				bookSegment('14:00 ~ 14:30', '#slot8');
+			});
+		} else {
+			$("#slot8").html('14:00 ~ 14:30    坐席满');
+			$("#slot8").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('14:30 ~ 15:00')) {
+			$("#slot9").html('14:30 ~ 15:00    有空闲');
+
+			$("#slot9").click(function() {
+				bookSegment('14:30 ~ 15:00', '#slot9')
+			});
+		} else {
+			$("#slot9").html('14:30 ~ 15:00    坐席满');
+			$("#slot9").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('15:00 ~ 15:30')) {
+			$("#slot10").html('15:00 ~ 15:30    有空闲');
+
+			$("#slot10").click(function() {
+				bookSegment('15:00 ~ 15:30', '#slot10');
+			});
+		} else {
+			$("#slot10").html('15:00 ~ 15:30    坐席满');
+			$("#slot10").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('15:30 ~ 16:00')) {
+			$("#slot11").html('15:30 ~ 16:00    有空闲');
+
+			$("#slot11").click(function() {
+				bookSegment('15:30 ~ 16:00', '#slot11');
+			});
+		} else {
+			$("#slot11").html('15:30 ~ 16:00    坐席满');
+			$("#slot11").attr("class", "segmentfull");
+		}
+
+		if (ifSegAvailable('16:00 ~ 16:30')) {
+			$("#slot12").html('16:00 ~ 16:30    有空闲');
+
+			$("#slot12").click(function() {
+				bookSegment('16:00 ~ 16:30', '#slot12');
+			});
+		} else {
+			$("#slot12").html('16:00 ~ 16:30    坐席满');
+			$("#slot12").attr("class", "segmentfull");
+		}
+
+	}
+
+	function ifSegAvailable(key) {
+		//alert('checking key: '  + key + ' in segments: '+ theSegments.length);
+		//for ( var key in theSegments[0]) {
+		//	alert('key: ' + key + '\n' + 'value: ' + theSegments[0][key]);
+		//}
+
+		for (i = 0; i < theSegments.length; i++) {
+			var seg = theSegments[i];
+			//if(seg.startTime == key)
+			//	alert('start Time: ' + seg.startTime + ' limit: ' + seg.resvCount);
+			if (seg.startTime == key && seg.resvCount >= limit) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
+	function bookSegment(key, slot) {
+		//alert(key);
+		//alert(lastSlot);
+		if (lastSlot)
+			lastSlot.removeAttr('style');
+		lastSlot = $(slot);
+		selectedSegment = key;
+		lastSlot.css('background-color', '#FFFF70');
+	}
+
+	function submitOrder() {
+		if (selectedWorkday == null || selectedSegment == null) {
+			alert("请选择预约日期和时间！");
+		} else {
+
+			var userName = $("#username").val();
+			var mobile = $("#mobile").val();
+			var rsvKey = $("#rsvKey").val();
+
+			$.ajax({
+				type : "post",
+				url : "/ChangNing/makeReserv.do",
+				data : {
+					title : rsvKey,
+					name : userName,
+					mobile : mobile,
+					sequence : selectedWorkday,
+					startTime : selectedSegment
+				},
+				async : false,
+				success : function(data) {
+					//alert(data);
+					var result = jQuery.parseJSON(data);
+					if (result.success == '0') {
+						alert('您预订的日期和时间已无空闲坐席，请重新选择！');
+						checkSegment(result.sequence, "workday"
+								+ result.sequence);
+					} else if (result.success == '1') {
+						alert('预订成功，系统将重定向到预约查询页面！');
+					} else if (result.success == '2') {
+						alert('对不起，您在一天之内只能做一次成功的预订，并且在一周之内只能做3次成功的预订！');
+					}
+
+				}
+			});
+		}
 	}
 </script>
 

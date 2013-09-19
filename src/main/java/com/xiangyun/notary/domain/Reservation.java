@@ -37,9 +37,12 @@ public class Reservation implements Serializable {
 
 	@Column(name = "reserve_key")
 	private String reservationKey;
-
+	
 	@Column(name = "reserve_date")
 	private Date reservationDate;
+	
+	@Column(name = "creation_date")
+	private Date creationDate;
 
 	@Column(name = "reserve_time_segment")
 	private String reservationTimeSegment;
@@ -122,6 +125,14 @@ public class Reservation implements Serializable {
 
 	public void setReservationStatus(ReservationStatus reservationStatus) {
 		this.reservationStatus = reservationStatus;
+	}
+	
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 }

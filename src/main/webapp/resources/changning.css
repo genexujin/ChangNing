@@ -208,6 +208,17 @@ td.workday {
 	background-color: #80CC80;
 	text-align: center;
 	vertical-align:middle;
+	cursor: pointer;
+}
+
+td.selected_workday {
+	height: 50px;
+	width: 80px;
+	padding: 5px;
+	background-color: #FFFF70;
+	text-align: center;
+	vertical-align:middle;
+	cursor: pointer;
 }
 
 td.workday a {
@@ -249,15 +260,23 @@ td.wdheader {
 	color: #000000;
 }
 
-td.segment {
-	height: 10px;
-	width: 200px;
+td.segmentfull {
+	height: 10px;	
 	text-align: center;
+	background-color: #FF8484;
+	vertical-align:middle;
+}
+
+td.segment {
+	height: 10px;	
+	text-align: center;	
+	text-align: center;
+	vertical-align:middle;	
+	cursor: pointer;
 }
 
 td.segmenthd {
-	height: 10px;
-	width: 200px;
+	height: 10px;	
 	text-align: center;
 	background-color: #E5E5E5;
 }
