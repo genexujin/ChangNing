@@ -1,6 +1,8 @@
 package com.xiangyun.notary.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,37 +29,40 @@ import com.xiangyun.notary.domain.User;
 
 @Service("jpaReserveService")
 @Transactional
-public class ReservationServiceImpl extends AbstractService implements ReservationService {
-    
-    private static Logger log = LoggerFactory.getLogger(ReservationServiceImpl.class);
-    
-    @PersistenceContext
-    private EntityManager em;
-    
-    @Override
-    public Reservation save(Reservation resv) {
-        if (resv.getId() == null) {
-            log.debug("Inserting new reservation...");
-            em.persist(resv);
-            //Need to format readableId and set
-            resv.setReadableId(generateReadableId(resv.getId(), "Y"));
-            em.merge(resv);
-        } else {
-            log.debug("Updating an reservation...");
-            em.merge(resv);
-        }
-        
-        log.debug("Reservation saved with id: " + resv.getId());
-        return resv;
-    }
+public class ReservationServiceImpl extends AbstractService implements
+		ReservationService {
 
-    @Override
-    public void delete(Reservation resv) {
-        Reservation mergedReservation = em.merge(resv);
-        em.remove(mergedReservation);
-        log.debug("Reservation with id: " + resv.getId() + " deleted successfully");
-        
-    }
+	private static Logger log = LoggerFactory
+			.getLogger(ReservationServiceImpl.class);
+
+	@PersistenceContext
+	private EntityManager em;
+
+	@Override
+	public Reservation save(Reservation resv) {
+		if (resv.getId() == null) {
+			log.debug("Inserting new reservation...");
+			em.persist(resv);
+			// Need to format readableId and set
+			resv.setReadableId(generateReadableId(resv.getId(), "Y"));
+			em.merge(resv);
+		} else {
+			log.debug("Updating an reservation...");
+			em.merge(resv);
+		}
+
+		log.debug("Reservation saved with id: " + resv.getId());
+		return resv;
+	}
+
+	@Override
+	public void delete(Reservation resv) {
+		Reservation mergedReservation = em.merge(resv);
+		em.remove(mergedReservation);
+		log.debug("Reservation with id: " + resv.getId()
+				+ " deleted successfully");
+
+	}
 
 	@Override
 	public Reservation findByReadableId(String readableId) {
@@ -68,90 +73,143 @@ public class ReservationServiceImpl extends AbstractService implements Reservati
 		return reservation;
 	}
 
-	
+	/**
+	 * 一天只能成功预约一次，一周只能成功预约三次
+	 * 
+	 * @param readableId
+	 * @return
+	 */
 	@Override
-    @Transactional(readOnly=true)
-    public List<Reservation> findReservations(String readableId, ReservationStatus status, Long userId, int pageNum) {
-    	log.debug("Now is in findReservations(). Parameters are:");
-    	log.debug("    readableId: {}, status: {}, userId: {}, pageNum: {}", new Object[] {readableId, status, userId, pageNum});
-    	
-    	CriteriaBuilder cb = em.getCriteriaBuilder();
-    	CriteriaQuery<Reservation> cq = cb.createQuery(Reservation.class);
-    	Root<Reservation> o = cq.from(Reservation.class);
-    	cq.select(o);
-    	
-    	List<Predicate> criteria = new ArrayList<Predicate>();
-    	if (readableId != null) {
-    		ParameterExpression<String> p = cb.parameter(String.class, "readable_id");
-    		criteria.add(cb.equal(o.get("readableId"), p));
-    	}
-    	
-    	if (status != null) {
-    		ParameterExpression<ReservationStatus> p = cb.parameter(ReservationStatus.class, "status");
-    		criteria.add(cb.equal(o.get("reservationStatus"), p));
-    	}
-    	
-    	if (userId != null) {
-    		Join<Reservation, User> u = o.join("user", JoinType.INNER);
-    		ParameterExpression<Long> p = cb.parameter(Long.class, "uId");
-    		criteria.add(cb.equal(u.get("id"), p));
-    	}
-    	
+	public boolean checkCompliance(User user) {
+		boolean result = true;
+
+		String hql = "from Reservation where user =:user and date_format(creationDate, '%Y%m%d') = date_format(current_date(),'%Y%m%d')";
+		Query query = em.createQuery(hql);
+		query.setParameter("user", user);
+		List reservation = query.getResultList();
+		log.debug("reservation made on today: " + reservation.size() );
+		if (reservation != null && reservation.size() > 0)
+			result = false;
+
+		Calendar now = Calendar.getInstance();
+		now.setTime(new Date());
+		log.debug("today is : " + now.getTime());
+
+		Calendar aWeekAgo = Calendar.getInstance();
+		aWeekAgo.setTime(new Date());
+		aWeekAgo.add(Calendar.DAY_OF_YEAR, -7);
+		log.debug("a week ago is: " + aWeekAgo.getTime());
+
+		hql = "from Reservation where user =:user and creationDate <=:today and creationDate>=:aWeekAgo";
+		query = em.createQuery(hql);
+		query.setParameter("user", user);
+		query.setParameter("today", now.getTime());
+		query.setParameter("aWeekAgo", aWeekAgo.getTime());
+		reservation = query.getResultList();
+		log.debug("reservation made within a week: " + reservation.size() );
+		if (reservation != null && reservation.size() >= 3)
+			result =false;
+
+		return result;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Reservation> findReservations(String readableId,
+			ReservationStatus status, Long userId, int pageNum) {
+		log.debug("Now is in findReservations(). Parameters are:");
+		log.debug("    readableId: {}, status: {}, userId: {}, pageNum: {}",
+				new Object[] { readableId, status, userId, pageNum });
+
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Reservation> cq = cb.createQuery(Reservation.class);
+		Root<Reservation> o = cq.from(Reservation.class);
+		cq.select(o);
+
+		List<Predicate> criteria = new ArrayList<Predicate>();
+		if (readableId != null) {
+			ParameterExpression<String> p = cb.parameter(String.class,
+					"readable_id");
+			criteria.add(cb.equal(o.get("readableId"), p));
+		}
+
+		if (status != null) {
+			ParameterExpression<ReservationStatus> p = cb.parameter(
+					ReservationStatus.class, "status");
+			criteria.add(cb.equal(o.get("reservationStatus"), p));
+		}
+
+		if (userId != null) {
+			Join<Reservation, User> u = o.join("user", JoinType.INNER);
+			ParameterExpression<Long> p = cb.parameter(Long.class, "uId");
+			criteria.add(cb.equal(u.get("id"), p));
+		}
+
 		if (criteria.size() == 1) {
 			cq.where(criteria.get(0));
 		} else {
 			cq.where(cb.and(criteria.toArray(new Predicate[0])));
 		}
-		
-		TypedQuery<Reservation> q = em.createQuery(cq);
-		if (readableId != null) q.setParameter("readable_id", readableId);
-		if (status != null) q.setParameter("status", status);
-		if (userId != null) q.setParameter("uId", userId);
-		
-		q.setFirstResult((pageNum - 1) * Constants.QUERY_PAGE_SIZE);
-        q.setMaxResults(Constants.QUERY_PAGE_SIZE);
-        
-    	return q.getResultList();
-    }
 
-	 @Override
-	    @Transactional(readOnly=true)
-	    public Long getReservationCount(String readableId, ReservationStatus status, Long userId) {
-	        log.debug("Now is in getReservationCount(readableId, status, userId). Parameters are:");
-	        log.debug("    readableId: {}, status: {}, userId: {}", new Object[] {readableId, status, userId});
-	        
-	        CriteriaBuilder cb = em.getCriteriaBuilder();
-	        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-	        Root<Reservation> o = cq.from(Reservation.class);
-	        cq.select(cb.count(o));
-	        
-	        List<Predicate> criteria = new ArrayList<Predicate>();
-	        if (readableId != null) {
-	            ParameterExpression<String> p = cb.parameter(String.class, "readable_id");
-	            criteria.add(cb.equal(o.get("readableId"), p));
-	        }
-	        
-	        if (status != null) {
-	            ParameterExpression<ReservationStatus> p = cb.parameter(ReservationStatus.class, "status");
-	            criteria.add(cb.equal(o.get("reservationStatus"), p));
-	        }
-	        
-	        if (userId != null) {
-	            ParameterExpression<Long> p = cb.parameter(Long.class, "uId");
-	            criteria.add(cb.equal(o.get("user").get("id"), p));
-	        }
-	        
-	        if (criteria.size() == 1) {
-	            cq.where(criteria.get(0));
-	        } else {
-	            cq.where(cb.and(criteria.toArray(new Predicate[0])));
-	        }
-	        
-	        TypedQuery<Long> q = em.createQuery(cq);
-	        if (readableId != null) q.setParameter("readable_id", readableId);
-	        if (status != null) q.setParameter("status", status);
-	        if (userId != null) q.setParameter("uId", userId);
-	        
-	        return q.getSingleResult();
-	    }
+		TypedQuery<Reservation> q = em.createQuery(cq);
+		if (readableId != null)
+			q.setParameter("readable_id", readableId);
+		if (status != null)
+			q.setParameter("status", status);
+		if (userId != null)
+			q.setParameter("uId", userId);
+
+		q.setFirstResult((pageNum - 1) * Constants.QUERY_PAGE_SIZE);
+		q.setMaxResults(Constants.QUERY_PAGE_SIZE);
+
+		return q.getResultList();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Long getReservationCount(String readableId,
+			ReservationStatus status, Long userId) {
+		log.debug("Now is in getReservationCount(readableId, status, userId). Parameters are:");
+		log.debug("    readableId: {}, status: {}, userId: {}", new Object[] {
+				readableId, status, userId });
+
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<Reservation> o = cq.from(Reservation.class);
+		cq.select(cb.count(o));
+
+		List<Predicate> criteria = new ArrayList<Predicate>();
+		if (readableId != null) {
+			ParameterExpression<String> p = cb.parameter(String.class,
+					"readable_id");
+			criteria.add(cb.equal(o.get("readableId"), p));
+		}
+
+		if (status != null) {
+			ParameterExpression<ReservationStatus> p = cb.parameter(
+					ReservationStatus.class, "status");
+			criteria.add(cb.equal(o.get("reservationStatus"), p));
+		}
+
+		if (userId != null) {
+			ParameterExpression<Long> p = cb.parameter(Long.class, "uId");
+			criteria.add(cb.equal(o.get("user").get("id"), p));
+		}
+
+		if (criteria.size() == 1) {
+			cq.where(criteria.get(0));
+		} else {
+			cq.where(cb.and(criteria.toArray(new Predicate[0])));
+		}
+
+		TypedQuery<Long> q = em.createQuery(cq);
+		if (readableId != null)
+			q.setParameter("readable_id", readableId);
+		if (status != null)
+			q.setParameter("status", status);
+		if (userId != null)
+			q.setParameter("uId", userId);
+
+		return q.getSingleResult();
+	}
 }
