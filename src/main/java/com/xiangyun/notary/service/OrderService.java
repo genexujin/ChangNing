@@ -36,7 +36,7 @@ public interface OrderService {
     
     Payment findPaymentByOrderIdAndPaymentId(Long orderId, Long userId, Long paymentId);
     
-    List<Payment> findPaymentsByOrderIdAndPaymentIds(Long orderId, Long userId, List<Long> paymentIds);
+    List<Payment> findPaymentsByOrderIdAndPaymentIds(Long orderId, List<Long> paymentIds);
     
     Payment save(Payment payment);
 }

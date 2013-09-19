@@ -221,10 +221,9 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     
     @Override
     @Transactional(readOnly=true)
-    public List<Payment> findPaymentsByOrderIdAndPaymentIds(Long orderId, Long userId, List<Long> paymentIds) {
+    public List<Payment> findPaymentsByOrderIdAndPaymentIds(Long orderId, List<Long> paymentIds) {
         TypedQuery<Payment> query = em.createNamedQuery("Payment.findPaymentsByOrderIdAndPaymentIds", Payment.class);
         query.setParameter("oid", orderId);
-        query.setParameter("uid", userId);
         query.setParameter("pids", paymentIds);
         
         return query.getResultList();

@@ -80,7 +80,7 @@
 		  
 		  <div class="row">
 		    <div class="span2 offset2">
-		      <button class="btn" type="submit">确认</button>
+		      <button id="refund_submit" class="btn" type="submit">确认</button>
 		    </div>
 		    <div class="span2">
 		      <a href="orderDetail.do?oId=${order.id}" class="btn">返回</a>
@@ -96,6 +96,8 @@
 	  <script>
         function prepareRefund() {
         	$("#all_payment").change(togglePaymentSelection);
+        	
+        	$("#refund_submit").click(verifyPaymentIds);
         }
         
         function togglePaymentSelection() {
@@ -104,6 +106,21 @@
         		$("input[name='payment_id']").prop("checked", true);
         	} else {
         		$("input[name='payment_id']").prop("checked", false);
+        	}
+        }
+        
+        function verifyPaymentIds() {
+        	var selected = false;
+        	$.each($("input[name='payment_id']"), function (index, object) {
+        		if ($(object).prop("checked") == true) {
+        			selected = true;
+        		}
+        	});
+        	
+        	if (selected == false) {
+        		//No payment selected, so return false to event.preventDefault() and event.stopPropogation()
+        		alert("请至少选择一项进行退款");
+        		return false;
         	}
         }
         
