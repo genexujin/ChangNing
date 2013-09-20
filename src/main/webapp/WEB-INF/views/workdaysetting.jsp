@@ -5,7 +5,6 @@
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 <script src="<c:url value="/js/bootstrap-paginator.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/addYear.js"/>"></script>
 
 <ul class="breadcrumb">
 	<b>您的位置：</b>
@@ -39,10 +38,10 @@
 					<div class="span4 offset2">
 						<div class="control-group">
 						<div class="controls">
-						年份：&nbsp;<select id="Year">
-						<option value="2012">2012</option>
-						<option value="2013">2013</option>
-						<option value="2014">2014</option>
+						年份：&nbsp;<select id="Year" name="Year">
+										<option value="2012">2012</option>
+										<option value="2013">2013</option>
+										<option value="2014">2014</option>
 								</select>
 								
 						&nbsp;&nbsp;&nbsp;<input class="btn" type="button" onclick="add()" value="增加"/>
@@ -246,5 +245,22 @@
 								"alert alert-success").show().html("保存成功！");
 					});
 		});
+		
+		function add(){
+			var addyear=$("#Year").val();
+			$.ajax({
+				   type: "POST",
+				   url: "/ChangNing/setYear/"+addyear+".do",
+				   success: function(msg){
+					   if(msg==0){
+					    	 $("#workday_select_alert").removeClass().addClass("alert alert-error").html("您已经设置过本年度工作日程！");
+					     }
+					     else if(msg==1){
+					    	 $("#workday_select_alert").removeClass().addClass("alert alert-success").html("设置成功");
+					     }
+				   }
+				});
+			//document.location.href="http://localhost:8080/ChangNing/setYear/"+addyear+".do";
+		}
 </script>
 <%@ include file="footer.jspf"%>

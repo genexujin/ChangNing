@@ -120,8 +120,9 @@ public class WorkdayController {
 
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/setYear/{year}.do")
-	public void setYear(@PathVariable("year") int year) {
+	public void setYear(@PathVariable("year") int year,HttpServletResponse response) throws IOException {
 		List<Workday> workdays = workdayService.findYear(year);
+		int msg =0;
 		if (workdays.size() == 0) {
 			Calendar date = Calendar.getInstance();
 			date.set(Calendar.DAY_OF_MONTH, 1);
@@ -142,6 +143,9 @@ public class WorkdayController {
 				workdayService.save(day);
 				date.add(Calendar.DATE, 1);
 			}
+			msg=1;
 		}
+		PrintWriter out = response.getWriter();
+		out.print(msg);
 	}
 }

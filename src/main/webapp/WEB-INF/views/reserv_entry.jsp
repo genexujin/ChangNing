@@ -556,6 +556,7 @@
 								+ result.sequence);
 					} else if (result.success == '1') {
 						alert('预订成功，系统将重定向到预约查询页面！');
+						window.location.href="/ChangNing/reserv_Query.do";
 					} else if (result.success == '2') {
 						alert('对不起，您在一天之内只能做一次成功的预订，并且在一周之内只能做3次成功的预订！');
 					}
