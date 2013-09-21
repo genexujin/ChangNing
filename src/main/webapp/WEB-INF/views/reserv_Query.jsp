@@ -65,16 +65,18 @@
 	                  <td>${reservation.requestorName}</td>
 	                  <td>${reservation.reservationKey}</td>
 	                  <td>${reservation.reservationStatus.getText()}</td>
+	                  <td>
 	                  <c:choose>
        					 <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
-			                  <td>
+			                  
 				                  <c:if test="${reservation.reservationStatus eq 'SUBMITTED'}"><a onclick="cancle('${reservation.readableId}')" role="button" class="btn btn-primary" data-toggle="modal">取消预约</a><a onclick="finish('${reservation.readableId}')" role="button" class="btn btn-primary" data-toggle="modal">完成预约</a></c:if>
-			                  </td>
+			                  
 	                  </c:when>
 	                  <c:otherwise>
 	                  			  <c:if test="${reservation.reservationStatus eq 'SUBMITTED'}"><a onclick="cancle('${reservation.readableId}')" role="button" class="btn btn-primary" data-toggle="modal">取消预约</a></c:if>
 	                  </c:otherwise>
 	                  </c:choose>
+	                  </td>
 	                </tr>
 	              </c:forEach>
 	            </tbody>
