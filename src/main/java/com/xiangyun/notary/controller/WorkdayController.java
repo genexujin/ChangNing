@@ -56,10 +56,12 @@ public class WorkdayController {
 			workday.setYear(calendar.get(Calendar.YEAR));
 			workday.setMonth(calendar.get(Calendar.MONTH) + 1);
 			workday.setDay(calendar.get(Calendar.DAY_OF_MONTH));
+			workday.setBatch("N");
 			workdayService.save(workday);
 		} else {
 			w.setType(workday.getType());
 			w.setDescription(workday.getDescription());
+			w.setBatch("N");
 			workdayService.save(w);
 		}
 		mav.setViewName("workdaysetting");
@@ -140,6 +142,7 @@ public class WorkdayController {
 				} else {
 					day.setType(WorkdayType.NON_WORKDAY);
 				}
+				day.setBatch("Y");
 				workdayService.save(day);
 				date.add(Calendar.DATE, 1);
 			}

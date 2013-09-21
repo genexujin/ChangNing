@@ -31,20 +31,20 @@
 <div class="border">
 	<br />
 	<div class="row">
-		<form action="/ChangNing/saveWorkday.do" method="post" id="workdaysettingform">
-			<div class="span12">
-				
-				<div class="row">
+	<form action="/ChangNing/saveWorkday.do" method="post" id="workdaysettingform">
+	 <c:choose>
+        <c:when test="${sessionScope['LOGIN_USER'].admin}">
+        				<div class="row">
 					<div class="span4 offset2">
 						<div class="control-group">
 						<div class="controls">
 						年份：&nbsp;<select id="Year" name="Year">
-										<option value="2012">2012</option>
 										<option value="2013">2013</option>
 										<option value="2014">2014</option>
+										<option value="2015">2015</option>
 								</select>
 								
-						&nbsp;&nbsp;&nbsp;<input class="btn" type="button" onclick="add()" value="增加"/>
+						&nbsp;&nbsp;&nbsp;<button class="btn btn-small btn-primary" type="button" onclick="add()">增加</button>
 						</div>
 							<div class="controls">
 								日期：&nbsp;<input id="datepicker" class="" type="text" id="date" name="date" />
@@ -56,6 +56,18 @@
 						</div>
 					</div>
 				</div>
+				</c:when>
+				<c:otherwise>
+					<div class="row">
+					</div>
+				</c:otherwise>
+				</c:choose>
+        
+        
+		
+			<div class="span12">
+				
+
 				<div class="row">
 					<div class="span3 offset2">
 						<label class="radio"> <input type="radio" name="type" id="type" value="WORKDAY" checked> 工作日
