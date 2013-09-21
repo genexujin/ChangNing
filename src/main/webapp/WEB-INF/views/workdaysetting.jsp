@@ -32,30 +32,25 @@
 	<br />
 	<div class="row">
 	<form action="/ChangNing/saveWorkday.do" method="post" id="workdaysettingform">
-	 <c:choose>
-        <c:when test="${sessionScope['LOGIN_USER'].admin}">
-        				<div class="row">
-					<div class="span4 offset2">
-						<div class="control-group">
-						<div class="controls">
-						年份：&nbsp;<select id="Year" name="Year">
-										<option value="2013">2013</option>
-										<option value="2014">2014</option>
-										<option value="2015">2015</option>
-								</select>
+				 <c:choose>
+        			<c:when test="${sessionScope['LOGIN_USER'].admin}">
+			        		<div class="row">
+								<div class="span4 offset2">
+									<div class="control-group">
+									<div class="controls">
+									年份：&nbsp;<select id="Year" name="Year">
+													<option value="2013">2013</option>
+													<option value="2014">2014</option>
+													<option value="2015">2015</option>
+											</select>
+											
+									&nbsp;&nbsp;&nbsp;<button class="btn btn-small btn-primary" type="button" onclick="add()">增加</button>
+									</div>
+									
+									</div>
+								</div>
 								
-						&nbsp;&nbsp;&nbsp;<button class="btn btn-small btn-primary" type="button" onclick="add()">增加</button>
-						</div>
-							<div class="controls">
-								日期：&nbsp;<input id="datepicker" class="" type="text" id="date" name="date" />
 							</div>
-						</div>
-					</div>
-					<div class="span4 offset1">
-						<div id="workday_select_alert" class="alert alert-info" >请点击选择日期
-						</div>
-					</div>
-				</div>
 				</c:when>
 				<c:otherwise>
 					<div class="row">
@@ -64,8 +59,21 @@
 				</c:choose>
         
         
+
+        
+        
 		
 			<div class="span12">
+				<div class="row">
+        			<div class="controls span4 offset2">
+								日期：&nbsp;<input id="datepicker" class="" type="text" id="date" name="date" />
+							</div>
+        			<div class="span4">
+						<div id="workday_select_alert" class="alert alert-info" >请点击选择日期
+						</div>
+					</div>
+				</div>
+				
 				
 
 				<div class="row">
