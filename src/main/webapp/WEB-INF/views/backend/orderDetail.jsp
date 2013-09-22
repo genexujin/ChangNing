@@ -254,7 +254,9 @@
         </c:if>
         <div class="row">
           <div class="span5 offset1">
-            <a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
+            <c:if test="${not empty order.docs}">
+              <a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
+            </c:if>
             <a href="addDocs.do?oId=${order.id}" class="btn">补充材料</a>
           </div>
         </div>
