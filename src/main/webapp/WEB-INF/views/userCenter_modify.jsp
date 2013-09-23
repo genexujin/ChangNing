@@ -198,14 +198,18 @@
 	<div class="span2 well">
 		<ul class="nav nav-list">
 			<li><h5>我的菜单</h5>
-			<li><a href="orderQuery.do">办证订单查询</a></li>
-			<li ><a href="reserv_Query.do">预约订单查询</a></li>
+			<li><a href="orderQuery.do">办证订单管理</a></li>
+			<li><a href="reserv_Query.do">预约订单管理</a></li>
 			<li class="active"><a href="enterModify.do">个人信息修改</a></li>
-
+			<c:choose>
+				<c:when test="${sessionScope['LOGIN_USER'].admin}">
+					<li><a href="enterWorkdaySetting.do">工作日设定</a></li>
+				</c:when>
+			</c:choose>
 		</ul>
 	</div>
 
-	<div class="span9" style="margin-left: 40px;">
+	<div class="span9" style="width: 760px; margin-left: 20px;">
 		<div class="span12">
 			<h2>个人信息</h2>
 		</div>

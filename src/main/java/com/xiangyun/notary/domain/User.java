@@ -216,7 +216,7 @@ public class User implements Serializable {
 	public boolean isAdmin() {
 		for (Role role : roles) {
 			if (role.getRoleName().equals(Constants.ROLE_ADMIN))
-				return true;
+				return true;			
 		}
 		return false;
 	}
