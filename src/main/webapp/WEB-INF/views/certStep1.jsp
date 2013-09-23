@@ -194,7 +194,7 @@
     		    <div class="control-group">
 		    	  <label class="control-label" for="copies">公证书</label>
 		    	  <div class="controls">
-		    		<input class="thin" id="copies" name="copies" type="text" value="1"></input>&nbsp;本
+		    		<input class="thin" id="copies" name="copies" type="text" value="1">&nbsp;本
 		    	  </div>
 		    	</div>
     		  </div>
@@ -280,24 +280,29 @@
     		        <td><input type="checkbox" value="XW" name="notory_key"> 学位</td>
     		      </tr>
     		      <tr>
+    		        <td><input type="checkbox" value="CSZFYJ" name="notory_key"> 出生证复印件</td>
+    		        <td><input type="checkbox" value="HZFYJ" name="notory_key"> 护照复印件</td>
+    		        <td><input type="checkbox" value="TYCGSMS" name="notory_key"> 同意出国声明书</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="JSZFYJ" name="notory_key"> 驾驶证复印件</td>
+    		        <td><input type="checkbox" value="HKBFYJ" name="notory_key"> 户口簿复印件</td>
+    		        <td><input type="checkbox" value="HYZKZMFYJ" name="notory_key"> 婚姻状况证明复印件</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="JHZFYJ" name="notory_key"> 结婚证复印件</td>
+    		        <td><input type="checkbox" value="LHZFYJ" name="notory_key"> 离婚证复印件</td>
+    		        <td><input type="checkbox" value="BYZSFYJ" name="notory_key"> 毕业证书复印件</td>
+    		      </tr>
+    		      <tr>
+    		        <td><input type="checkbox" value="DXDZZGCJFYJ" name="notory_key"> 大学/大专/职高成绩复印件</td>
+    		        <td><input type="checkbox" value="XWZSFYJ" name="notory_key"> 学位证书复印件</td>
+    		        <td><input type="checkbox" value="CZGZCJFYJ" name="notory_key"> 初中/高中成绩复印件</td>    		        
+    		      </tr>
+    		      <tr>
     		        <td><input type="checkbox" value="CYM" name="notory_key"> 曾用名</td>
     		        <td><input type="checkbox" value="GJ" name="notory_key"> 国籍</td>
     		        <td><input type="checkbox" value="SW" name="notory_key"> 死亡</td>
-    		      </tr>
-    		      <tr>
-    		        <td><input type="checkbox" value="TX" name="notory_key"> 离休/退休/退职</td>
-    		        <td><input type="checkbox" value="CSZFYJ" name="notory_key"> 出生证复印件</td>
-    		        <td><input type="checkbox" value="SFZFYJ" name="notory_key"> 身份证复印件</td>
-    		      </tr>
-    		      <tr>
-    		        <td><input type="checkbox" value="HZFYJ" name="notory_key"> 护照复印件</td>
-    		        <td><input type="checkbox" value="JSZFYJ" name="notory_key"> 驾驶证复印件</td>
-    		        <td><input type="checkbox" value="HKBFYJ" name="notory_key"> 户口簿复印件</td>
-    		      </tr>
-    		      <tr>
-    		        <td><input type="checkbox" value="HYZKZMFYJ" name="notory_key"> 婚姻状况证明复印件</td>
-    		        <td><input type="checkbox" value="JHZFYJ" name="notory_key"> 结婚证复印件</td>
-    		        <td><input type="checkbox" value="LHZFYJ" name="notory_key"> 离婚证复印件</td>
     		      </tr>
     		      <tr>
     		        <td><input type="checkbox" value="TXZFYJ" name="notory_key"> 退休证复印件</td>
@@ -305,14 +310,9 @@
     		        <td><input type="checkbox" value="CKZMFYJ" name="notory_key"> 存款证明复印件</td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="BYZSFYJ" name="notory_key"> 毕业证书复印件</td>
-    		        <td><input type="checkbox" value="XWZSFYJ" name="notory_key"> 学位证书复印件</td>
-    		        <td><input type="checkbox" value="ZXXBYZFYJ" name="notory_key"> 中小学毕业证（带成绩）复印件</td>
-    		      </tr>
-    		      <tr>
-    		        <td><input type="checkbox" value="CZGZCJFYJ" name="notory_key"> 初中/高中成绩复印件</td>
     		        <td><input type="checkbox" value="GKCJFYJ" name="notory_key"> 高考成绩复印件</td>
-    		        <td><input type="checkbox" value="DXDZZGCJFYJ" name="notory_key"> 大学/大专/职高成绩复印件</td>
+    		        <td><input type="checkbox" value="WH" name="notory_key"> 未婚</td>
+    		        <td><input type="checkbox" value="WZHSMS" name="notory_key"> 未再婚声明书</td>
     		      </tr>
     		      <tr>
     		        <td><input type="checkbox" value="ZDZMFYJ" name="notory_key"> 在读证明复印件</td>
@@ -320,11 +320,10 @@
     		        <td><input type="checkbox" value="FYPJTJCDSFYJ" name="notory_key"> 法院判决/调解/裁定书复印件</td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="WH" name="notory_key"> 未婚</td>
-    		        <td><input type="checkbox" value="WZHSMS" name="notory_key"> 未再婚声明书</td>
-    		        <td><input type="checkbox" value="TYCGSMS" name="notory_key"> 同意出国声明书</td>
+    		        <td><input type="checkbox" value="TX" name="notory_key"> 离休/退休/退职</td>
+    		        <td><input type="checkbox" value="ZXXBYZFYJ" name="notory_key"> 中小学毕业证（带成绩）复印件</td>
+    		        <td><input type="checkbox" value="SFZFYJ" name="notory_key"> 身份证复印件</td>
     		      </tr>
-    		      
     		    </table>
     		  </div>
     		</div>
