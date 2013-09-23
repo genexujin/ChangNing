@@ -60,13 +60,22 @@ function setLangAndVerify(event) {
 	//setVerify
 	setVerify(event);
 	
+	
 	//Update copies and 译文相符
 	if (isCountryOfYWXF()) {
 		$("#copies").val(2);
-		$(".yw").prop("checked", true);
+		
+		$.each($(".yw_parent"), function(index, object) {
+			var ywDiv = $(object).find(".yw_div");
+			if (ywDiv.length == 0) {
+				var value = $(object).find("input[name='n_key']").val();
+				var ywInput = $('<div class="yw_div">&nbsp;&nbsp;+&nbsp;&nbsp;<input type="checkbox" value="' + value + '_YW" name="n_key_yw" class="yw" checked>&nbsp;译文相符</div>');
+				$(object).append(ywInput);
+			}
+		});
 	} else {
 		$("#copies").val(1);
-		$(".yw").prop("checked", false);
+		$(".yw_div").remove();
 	}
 	
 	//One edge case: if select "请选择", disable the "下一步" button
@@ -204,20 +213,18 @@ function onNotaryKeyChange(event) {
 
 function createSelItem(value, text) {
 	var rowDiv = $('<div class="row tiny-pb sel_item" id="' + value + '_div"></div>');
-	var spanDiv = $('<div class="span8"></div>');
+	var spanDiv = $('<div class="span8 yw_parent"></div>');
 	rowDiv.append(spanDiv);
 	
 	var nInput = $('<input type="checkbox" value="' + value + '" name="n_key" checked>');
 	nInput.change(onSelItemChange);
 	
-	var ywInput;
-	if (isCountryOfYWXF()) {
-		ywInput = $('<input type="checkbox" value="' + value + '_YW" name="n_key_yw" class="yw" checked>');
-	} else {
-		ywInput = $('<input type="checkbox" value="' + value + '_YW" name="n_key_yw" class="yw">');
-	}
+	spanDiv.append(nInput).append(text);
 	
-	spanDiv.append(nInput).append(text + '&nbsp;&nbsp;+&nbsp;&nbsp;').append(ywInput).append(' 译文相符');
+	if (isCountryOfYWXF()) {
+		var ywInput = $('<div class="yw_div">&nbsp;&nbsp;+&nbsp;&nbsp;<input type="checkbox" value="' + value + '_YW" name="n_key_yw" class="yw" checked>&nbsp;译文相符</div>');
+		spanDiv.append(ywInput);
+	}
 	
 	return rowDiv;
 }

@@ -141,7 +141,7 @@
 		  <hr/>
 		  <br/>
 		  <div class="row">
-		    <div class="span10 offset1">您可以通过以下方式进行在线支付。</div>
+		    <div class="span10 offset1">请通过以下方式付款：</div>
 		  </div>
 		  <div class="row">
 		    <div class="span9 offset2">

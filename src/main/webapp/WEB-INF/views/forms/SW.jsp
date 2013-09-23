@@ -107,7 +107,7 @@
 	    }
 	    
 	    function validateSW_Relations() {
-	    	if (validRelations()) {
+	    	if (validRelations1()) {
 	    		$("#SW_RELATION_M").removeClass("alert alert-error");
 	    		updateValidSW();
 	    		tryToEnableGoToStep3Button();
@@ -121,7 +121,7 @@
 	    function updateValidSW() {
 	    	var SW_sh = $("input[name='SW_SH']:checked").val();
 		    
-		    if (SW_sh == 'true' && validRelations())
+		    if (SW_sh == 'true' && validRelations1())
 		    	validSW = true;
 	    }
 	    
@@ -179,7 +179,7 @@
     		toClone.after(cloned);
 	    }
 	    
-	    function validRelations() {
+	    function validRelations1() {
 	    	var localValid = true;
 			$.each($(".SW_OPTION"), function(index, object){
 				if (object.value == 'NULL') {

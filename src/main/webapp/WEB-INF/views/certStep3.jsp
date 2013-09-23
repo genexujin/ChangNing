@@ -39,7 +39,7 @@
 	  
 	  <div class="row">
 	    <div class="span10 offset1">
-	      <h5><font color="red">请上传所需材料。提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入【个人中心】查找提交的订单并补充材料。 本系统支持 .jpg, .jpeg, .png, .gif, .pdf类型文件，且大小不能超过5M.</font></h5>
+	      <h5><font color="red">请上传所需材料。提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入【个人中心】查找提交的订单并补充材料。 本系统支持 .jpg, .jpeg类型文件，且单个文件大小不能超过5M.</font></h5>
 	    </div>
 	  </div>
 	  
@@ -93,7 +93,7 @@
 				        'height'          : 25,
 				        'width'           : 80,
 				        'fileTypeDesc'    : 'Image Files',
-				        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif; *.pdf',
+				        'fileTypeExts'    : '*.jpg; *.jpeg',
 				        "removeCompleted" : false,
 				        'formData'        : {
 				        	'uid' : '${um.uid}',
@@ -144,7 +144,7 @@
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
-	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif; *.pdf;',
+	        		        'fileTypeExts'    : '*.jpg; *.jpeg',
 	        		        'removeCompleted' : false,
 	        		        'formData'        : {
 	        		        	'uid' : '${um.uid}',
@@ -176,6 +176,7 @@
 		            </div>
 		            <div class="span7">
 		              <c:if test="${doc.needCrop}">
+		                
 		                <img id="${doc.docKey}_img"/>
 		                <input id="${doc.docKey}_x" style="display:none"/>
 		                <input id="${doc.docKey}_y" style="display:none"/>
@@ -184,12 +185,21 @@
 		                <input id="${doc.docKey}_w" style="display:none"/>
 		                <input id="${doc.docKey}_h" style="display:none"/>
 		                <input id="${doc.docKey}_fileName" style="display:none"/>
-		                <div id="${doc.docKey}_crop" class="btn btn-success btn-mini" style="padding: 0 6px;display:none">裁剪</div>
 		              </c:if>
 		              <div id="${doc.docKey}" class="file_upload" ></div>
 		            </div>
-		            <div class="span2" id="${doc.docKey}_result">
+		            <div class="span2">
+		              <div class="row">
+		                <div class="span2">
+		                  <div id="${doc.docKey}_crop" class="btn btn-success" style="font:bold 12px Arial, Helvetica, sans-serif;display:none">裁剪</div>
+		                </div>
+		              </div>
+		              <br/>
+		              <div class="row">
+		                <div class="span2" id="${doc.docKey}_result"></div>
+		              </div>
 		            </div>
+		            
 		          </div>
 		          <script>
 		            var ${doc.docKey}_jcrop_api;
@@ -239,7 +249,7 @@
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
-	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif',
+	        		        'fileTypeExts'    : '*.jpg; *.jpeg',
 	        		        'removeCompleted' : false,
 	        		        'multi'           : false,
 	        		        'formData'        : {
