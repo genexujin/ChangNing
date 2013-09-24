@@ -181,7 +181,15 @@ public class OrderController {
         Map<String, FormDef> formDefs = (Map<String, FormDef>)ctx.getAttribute(Constants.FORM_DEFS);
         FormDef ty = null;
      
+        boolean needSpecialNote = false;
         for (FormDef formDef : selectedForms) {
+        	//A special requirement about add a note for 出生公证
+        	if (formDef.getFormKey().equals("CS")) {
+        		if ("true".equals(request.getParameter("CS_SFJZ")) || 
+        			"true".equals(request.getParameter("CS_SMJZ")))
+        			
+        			needSpecialNote = true;
+        	}
         	
         	Form form = new Form();
         	form.setFormKey(formDef.getFormKey());
@@ -233,8 +241,6 @@ public class OrderController {
                     shouldPut = false;
                 }
         	    
-
-        	    
         	    if (shouldPut && docDef.isNeedCrop()) {//需要的东西
         	        putIfAbsent(needCropDocs, docDef);	
         	        
@@ -278,11 +284,7 @@ public class OrderController {
         }
         order.calculateTotalFee();
         orderService.save(order);
-        
-        //May move to further steps.
-//        request.getSession().removeAttribute(Constants.CURRENT_ORDER);
-//        request.getSession().removeAttribute(Constants.SESSION_SELECTED_FORMS);
-        
+                
         ModelAndView mav = new ModelAndView("certStep3");
         mav.addObject("title", "上传资料");
         
@@ -293,6 +295,9 @@ public class OrderController {
         m.setNeedCrop(needCropDocs.values());
         
         mav.addObject("um", m);
+        
+        if (needSpecialNote) 
+        	mav.addObject("Special_note", "如本人和父母不在同一本户口本，请分别上传");
         
         return mav;
     }

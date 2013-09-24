@@ -268,11 +268,11 @@
     		</div>
     		<div id="li_region" class="row">
     		  <div class="span11 offset1">
-    		    <table class="table td-no-border">
+    		    <table class="table td-no-border" style="width:auto">
     		      <tr>
-    		        <td><input type="checkbox" value="CS" name="notory_key"> 出生</td>
-    		        <td><input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分</td>
-    		        <td><input type="checkbox" value="QSGX" name="notory_key"> 亲属关系</td>
+    		        <td style="width:230px"><input type="checkbox" value="CS" name="notory_key"> 出生</td>
+    		        <td style="width:230px"><input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分</td>
+    		        <td style="width:230px"><input type="checkbox" value="QSGX" name="notory_key"> 亲属关系</td>
     		      </tr>
     		      <tr>
     		        <td><input type="checkbox" value="JH" name="notory_key"> 结婚</td>
@@ -299,10 +299,16 @@
     		        <td><input type="checkbox" value="XWZSFYJ" name="notory_key"> 学位证书复印件</td>
     		        <td><input type="checkbox" value="CZGZCJFYJ" name="notory_key"> 初中/高中成绩复印件</td>    		        
     		      </tr>
+    		    </table>
+    		    
+    		    <div id="expand"><i class="icon-plus"></i><font>更多</font></div>
+    		    <div id="collpase" class="hide"><i class="icon-minus"></i><font>收起</font></div>
+    		    <div id="more_notary" class="hide">
+    		    <table class="table td-no-border" style="width:auto">
     		      <tr>
-    		        <td><input type="checkbox" value="CYM" name="notory_key"> 曾用名</td>
-    		        <td><input type="checkbox" value="GJ" name="notory_key"> 国籍</td>
-    		        <td><input type="checkbox" value="SW" name="notory_key"> 死亡</td>
+    		        <td style="width:230px"><input type="checkbox" value="CYM" name="notory_key"> 曾用名</td>
+    		        <td style="width:230px"><input type="checkbox" value="GJ" name="notory_key"> 国籍</td>
+    		        <td style="width:230px"><input type="checkbox" value="SW" name="notory_key"> 死亡</td>
     		      </tr>
     		      <tr>
     		        <td><input type="checkbox" value="TXZFYJ" name="notory_key"> 退休证复印件</td>
@@ -325,6 +331,8 @@
     		        <td><input type="checkbox" value="SFZFYJ" name="notory_key"> 身份证复印件</td>
     		      </tr>
     		    </table>
+    		    </div>
+    		    <br/>
     		  </div>
     		</div>
         </div>
@@ -345,10 +353,24 @@
       
       <script>
         function prepareStep1() {
+        	$("#expand").click(expandMoreRegion);
+        	$("#collpase").click(collpaseMoreRegion);
         	$("#dest").change(setLangAndVerify);
         	$("input[name='notory_key']").change(onNotaryKeyChange);
         	//When entering the page, the button should be disabled
         	disableGoToStep2Button();
+        }
+        
+        function expandMoreRegion() {
+        	$("#expand").hide();
+        	$("#collpase").show();
+        	$("#more_notary").show("slow");
+        }
+        
+        function collpaseMoreRegion() {
+        	$("#expand").show();
+        	$("#collpase").hide();
+        	$("#more_notary").hide("slow");
         }
         
         $(prepareStep1);

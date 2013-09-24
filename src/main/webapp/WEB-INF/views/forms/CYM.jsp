@@ -69,8 +69,11 @@
 		      //The form is invalid at the beginning, so set validCYM false and disable the button here
 	          validCYM = false;
 		      validateCYM_CYM();
+		      validateCYM_CYMPY();
 		    	
 		      $("input[name='CYM_CYM']").change(validateCYM_CYM);
+		      
+		      $("input[name='CYM_CYMPY']").change(validateCYM_CYMPY);
 		    	
 		      $("input[name='CYM_SHHJ']").change(validateCYM_SHHJ);
 		  }
@@ -101,20 +104,6 @@
 		      }
 	      }
 	      
-	      function updateValidCYM() {
-	    	  var cym_shhj = $("input[name='CYM_SHHJ']:checked").val();
-	    	  var cym_cym = $("#CYM_CYM").val();
-	    	  var cym_cympy = $("#CYM_CYMPY").val();
-			  if (cym_shhj == 'true' && cym_cym != ''&&cym_cympy!='')
-				  validCYM = true;
-		  }
-	      $(prepareCYM);
-	      ////////////////////////////////////////////////////////////////
-	      $(prepareCYMPY);
-	      var validCYMPY=false;
-	      function prepareCYMPY(){
-	    	  $("input[name='CYM_CYMPY']").change(validateCYM_CYMPY);
-	      }
 	      function validateCYM_CYMPY() {
 	    	  var cym_cympy = $("#CYM_CYMPY").val();
 	    	  if (cym_cympy != '') {
@@ -123,11 +112,18 @@
 		    	  tryToEnableGoToStep3Button();
 		      } else {
 		    	  $("#CYM_CYMPY_M").addClass("alert alert-error");
-		    	  validCYMPY = false;
+		    	  validCYM = false;
 			      disableGoToStep3Button();
 		      }
 	      }
 	      
-	      
+	      function updateValidCYM() {
+	    	  var cym_shhj = $("input[name='CYM_SHHJ']:checked").val();
+	    	  var cym_cym = $("#CYM_CYM").val();
+	    	  var cym_cympy = $("#CYM_CYMPY").val();
+			  if (cym_shhj == 'true' && cym_cym != ''&&cym_cympy!='')
+				  validCYM = true;
+		  }
+	      $(prepareCYM);
 	      
 	    </script>
