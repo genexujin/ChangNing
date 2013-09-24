@@ -53,6 +53,13 @@ function disableGoToStep2Button() {
 	$("#goToStep2").attr("disabled", "disabled");
 }
 
+function confirmDeselect(event) {
+	if (event.target.checked == false) {
+		var deselect = confirm("该国通常需要译文公证，是否确认取消？");
+		if (deselect == false) return false;
+	}
+}
+
 function setLangAndVerify(event) {
 	//setLanguage
 	setLanguage(event.target.value);
@@ -73,6 +80,8 @@ function setLangAndVerify(event) {
 				$(object).append(ywInput);
 			}
 		});
+		
+		$(".yw").click(confirmDeselect);
 	} else {
 		$("#copies").val(1);
 		$(".yw_div").remove();
@@ -224,6 +233,7 @@ function createSelItem(value, text) {
 	if (isCountryOfYWXF()) {
 		var ywInput = $('<div class="yw_div">&nbsp;&nbsp;+&nbsp;&nbsp;<input type="checkbox" value="' + value + '_YW" name="n_key_yw" class="yw" checked>&nbsp;译文相符</div>');
 		spanDiv.append(ywInput);
+		ywInput.find(".yw").click(confirmDeselect);
 	}
 	
 	return rowDiv;
