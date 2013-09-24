@@ -127,7 +127,8 @@ public class ReservationController {
 		Set<TimeSegment> timeSegments = workday.getTimeSegments();
 		for (TimeSegment timeSegment : timeSegments) {
 			if (timeSegment.getStartTime().equals(
-					reservation.getReservationTimeSegment())) {
+					reservation.getReservationTimeSegment())
+					&& timeSegment.getResvCount() > 0) {
 				timeSegment.setResvCount(timeSegment.getResvCount() - 1);
 				timeSegmentsService.save(timeSegment);
 			}
@@ -344,7 +345,7 @@ public class ReservationController {
 						.sendSMS(
 								new String[] { mobile },
 								"尊敬的" + name + " 先生/女士"
-										+ "，您在长宁公证处的网上预约已经成功，预约号为"
+										+ "，您在长宁公证处的网上预约已经成功，预约号为："
 										+ rsv.getReservationKey()
 										+ "，谢谢使用长宁网上公证业务！", 1);
 
