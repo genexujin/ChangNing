@@ -121,8 +121,15 @@
 		      </div>
 		      
 		      <div class="border">
-		      <span style="margin-left:10px;margin-top:5px">${Special_note}</span>
-	        	<br>
+		        <c:if test="${not empty Special_note}">
+		        <br/>
+		        <div class="row">
+		          <div class="span offset1">
+		            ${Special_note}
+		          </div>
+		        </div>
+		        </c:if>
+	        	<br/>
 	        	<c:forEach items="${um.aloneUpload}" var="doc" >
 	        	  <div class="row">
 		        	<div class="span offset1">
