@@ -102,10 +102,13 @@ public class VerifyCodeServlet extends HttpServlet {
      
         int randInt1 = codeSequence[random.nextInt(9)];
         int randInt2 = codeSequence[random.nextInt(9)];
-        if(randInt1<=randInt2){
+        if(randInt1<randInt2){
         	int temp = randInt2;
         	randInt2 = randInt1;
         	randInt1 = temp;
+        }
+        if(randInt1==randInt2){
+        	randInt1=randInt1+1;
         }
         String randomCode = new String();
         int numOperate = 0;
