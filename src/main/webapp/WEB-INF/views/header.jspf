@@ -77,7 +77,7 @@
 							<%
 								if (reqURL.indexOf("certStep") > 0) {
 							%>
-							<li class="active"><a class="clean" href="#">网上办证</a></li>
+							<li class="active"><a class="clean" href="certStep1.do">网上办证</a></li>
 							<%
 								} else {
 							%>
@@ -91,7 +91,7 @@
 							<%
 								if (reqURL.indexOf("reserv_") > 0) {
 							%>
-							<li class="active"><a class="clean" href="#">网上预约</a></li>
+							<li class="active"><a class="clean" href="enterReserv.do">网上预约</a></li>
 							<%
 								} else {
 							%>
@@ -105,7 +105,7 @@
 							<%
 								if (reqURL.indexOf("userCenter_") > 0) {
 							%>
-							<li class="active"><a class="clean" href="#">个人中心</a></li>
+							<li class="active"><a class="clean" href="orderQuery.do">个人中心</a></li>
 							<%
 								} else {
 							%>

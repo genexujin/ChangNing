@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
+	
 
       <ul class="breadcrumb">
         <b>您的位置：</b>
@@ -270,7 +271,11 @@
     		  <div class="span11 offset1">
     		    <table class="table td-no-border" style="width:auto">
     		      <tr>
-    		        <td style="width:230px"><input type="checkbox" value="CS" name="notory_key"> 出生</td>
+    		        <td style="width:230px">
+    		     
+    		        <input type="checkbox" value="CS" name="notory_key"> 出生  
+    		        <div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/chusheng.png','出生公证书样板')">[？]</div>    		        
+    		        </td>
     		        <td style="width:230px"><input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分</td>
     		        <td style="width:230px"><input type="checkbox" value="QSGX" name="notory_key"> 亲属关系</td>
     		      </tr>
@@ -301,8 +306,8 @@
     		      </tr>
     		    </table>
     		    
-    		    <div id="expand"><i class="icon-plus"></i><font>更多</font></div>
-    		    <div id="collpase" class="hide"><i class="icon-minus"></i><font>收起</font></div>
+    		    <div id="expand" style="cursor: pointer;"><i class="icon-plus"></i><font>更多</font></div>
+    		    <div id="collpase" class="hide" style="cursor: pointer;"><i class="icon-minus"></i><font>收起</font></div>
     		    <div id="more_notary" class="hide">
     		    <table class="table td-no-border" style="width:auto">
     		      <tr>
@@ -348,10 +353,33 @@
    		    <button id="goToStep2"  class="btn btn-large btn-block btn-info" type="submit">下一步</button>
    		  </div>    		  
    	  </div>
+   	  
+   	  
       
       </form>
       
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:780px;">
+	<div class="modal-header">		
+		<h2 id="myModalLabel">图片标题</h2>
+	</div>
+	<div class="modal-body">
+		<img id="sampleImage" src="#"></img>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	</div>
+</div>
       <script>
+      
+      function showImage(imgURL, title) {
+
+    	  $("#myModalLabel").text(title);
+    	  $("#sampleImage").attr("src", imgURL);    	  
+    	  $("#myModal1").modal("show");  		
+      }     
+            
+      
         function prepareStep1() {
         	$("#expand").click(expandMoreRegion);
         	$("#collpase").click(collpaseMoreRegion);

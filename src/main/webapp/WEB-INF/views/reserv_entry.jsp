@@ -503,8 +503,8 @@
 
 		for (i = 0; i < theSegments.length; i++) {
 			var seg = theSegments[i];
-			if(seg.startTime == key)
-				alert('start Time: ' + seg.startTime + ' size: ' + seg.resvCount  + ' limit:' + theLimit);
+			//if(seg.startTime == key)
+			//	alert('start Time: ' + seg.startTime + ' size: ' + seg.resvCount  + ' limit:' + theLimit);
 			if (seg.startTime == key && seg.resvCount >= theLimit) {
 				return false;
 			}
