@@ -91,6 +91,22 @@
                 <div class="control-group">
 		    	  <label class="control-label" for="sendDate">送证时间</label>
 		    	  <div class="controls">
+		    	    <label class="radio inline">
+				      <input type="radio" value="true" name="workday" checked> 工作日&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
+				      <input type="radio" value="false" name="workday"> 非工作日&nbsp;&nbsp;
+				    </label>
+		    	  </div>
+		    	</div>
+		    </div>
+		  </div>
+          
+          <div class="row toggle hide">
+            <div class="span5 offset1">
+                <div class="control-group">
+		    	  <label class="control-label" for="sendDate">送证时间</label>
+		    	  <div class="controls">
 			    	<div data-date-format="mm/dd/yyyy" data-date="now" id="sendDate" class="input-append date">
 				      <input type="text" readonly size="16" class="span2" name="sendDate">
 				      <span class="add-on"><i class="icon-calendar"></i></span>
