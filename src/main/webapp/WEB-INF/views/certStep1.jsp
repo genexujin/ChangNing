@@ -271,38 +271,72 @@
     		  <div class="span11 offset1">
     		    <table class="table td-no-border" style="width:auto">
     		      <tr>
-    		        <td style="width:230px">
+    		        <td style="width:250px">
     		     
     		        <input type="checkbox" value="CS" name="notory_key"> 出生  
-    		        <div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/chusheng.png','出生公证书样板')">[？]</div>    		        
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/chusheng.png','出生 公证书样本')">[*]</div>    		        
     		        </td>
-    		        <td style="width:230px"><input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分</td>
-    		        <td style="width:230px"><input type="checkbox" value="QSGX" name="notory_key"> 亲属关系</td>
+    		        <td style="width:250px"><input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/wx.png','受过/未受刑事处分 公证书样本')">[*]</div>
+    		        </td>
+    		        <td style="width:250px"><input type="checkbox" value="QSGX" name="notory_key"> 亲属关系
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/qsgx.png','亲属关系 公证书样本')">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="JH" name="notory_key"> 结婚</td>
-    		        <td><input type="checkbox" value="XL" name="notory_key"> 学历</td>
-    		        <td><input type="checkbox" value="XW" name="notory_key"> 学位</td>
+    		        <td><input type="checkbox" value="JH" name="notory_key"> 已婚
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/yh.png','已婚 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="XL" name="notory_key"> 学历
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/xl.png','学历 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="XW" name="notory_key"> 学位
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/xw.png','学位 公证书样本')">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="CSZFYJ" name="notory_key"> 出生证复印件</td>
-    		        <td><input type="checkbox" value="HZFYJ" name="notory_key"> 护照复印件</td>
-    		        <td><input type="checkbox" value="TYCGSMS" name="notory_key"> 同意出国声明书</td>
+    		        <td><input type="checkbox" value="CSZFYJ" name="notory_key"> 出生证复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/cszfy.png','出生证复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="HZFYJ" name="notory_key"> 护照复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/hzfy.png','护照复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="TYCGSMS" name="notory_key"> 同意出国声明书
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/tycg_fm.png','同意出国声明书 样本','resources/samples/tycg_ls.png')">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="JSZFYJ" name="notory_key"> 驾驶证复印件</td>
-    		        <td><input type="checkbox" value="HKBFYJ" name="notory_key"> 户口簿复印件</td>
-    		        <td><input type="checkbox" value="HYZKZMFYJ" name="notory_key"> 婚姻状况证明复印件</td>
+    		        <td><input type="checkbox" value="JSZFYJ" name="notory_key"> 驾驶证复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/jszfy.png','驾驶证复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="HKBFYJ" name="notory_key"> 户口簿复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/hkbfy.png','户口簿复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="HYZKZMFYJ" name="notory_key"> 婚姻状况证明复印件
+    		        	<div style="cursor: pointer; display: inline">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="JHZFYJ" name="notory_key"> 结婚证复印件</td>
-    		        <td><input type="checkbox" value="LHZFYJ" name="notory_key"> 离婚证复印件</td>
-    		        <td><input type="checkbox" value="BYZSFYJ" name="notory_key"> 毕业证书复印件</td>
+    		        <td><input type="checkbox" value="JHZFYJ" name="notory_key"> 结婚证复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/jhzfy.png','结婚证复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="LHZFYJ" name="notory_key"> 离婚证复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/lhzfy.png','结婚证复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="BYZSFYJ" name="notory_key"> 毕业证书复印件
+    		        	<div style="cursor: pointer; display: inline">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="DXDZZGCJFYJ" name="notory_key"> 大学/大专/职高成绩复印件</td>
-    		        <td><input type="checkbox" value="XWZSFYJ" name="notory_key"> 学位证书复印件</td>
-    		        <td><input type="checkbox" value="CZGZCJFYJ" name="notory_key"> 初中/高中成绩复印件</td>    		        
+    		        <td><input type="checkbox" value="DXDZZGCJFYJ" name="notory_key"> 大学/大专/职高成绩复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/dxcjfy.png','大学/大专/职高成绩复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="XWZSFYJ" name="notory_key"> 学位证书复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/xwzsfy.png','学位证书复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="CZGZCJFYJ" name="notory_key"> 初中/高中成绩复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/cgzcjdfy.png','初中/高中成绩复印件 公证书样本')">[*]</div>
+    		        </td>    		        
     		      </tr>
     		    </table>
     		    
@@ -311,29 +345,60 @@
     		    <div id="more_notary" class="hide">
     		    <table class="table td-no-border" style="width:auto">
     		      <tr>
-    		        <td style="width:230px"><input type="checkbox" value="CYM" name="notory_key"> 曾用名</td>
-    		        <td style="width:230px"><input type="checkbox" value="GJ" name="notory_key"> 国籍</td>
-    		        <td style="width:230px"><input type="checkbox" value="SW" name="notory_key"> 死亡</td>
+    		        <td style="width:250px"><input type="checkbox" value="CYM" name="notory_key"> 曾用名
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/cym.png','曾用名 公证书样本')">[*]</div>
+    		        </td>
+    		        <td style="width:250px"><input type="checkbox" value="GJ" name="notory_key"> 国籍
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/gj.png','国籍 公证书样本')">[*]</div>
+    		        </td>
+    		        <td style="width:250px"><input type="checkbox" value="SW" name="notory_key"> 死亡
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/sw.png','死亡 公证书样本')">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="TXZFYJ" name="notory_key"> 退休证复印件</td>
-    		        <td><input type="checkbox" value="FCZFYJ" name="notory_key"> 房产证复印件</td>
-    		        <td><input type="checkbox" value="CKZMFYJ" name="notory_key"> 存款证明复印件</td>
+    		        <td><input type="checkbox" value="TXZFYJ" name="notory_key"> 退休证复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/txz.png','退休证复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="FCZFYJ" name="notory_key"> 房产证复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/txz.png','退休证复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="CKZMFYJ" name="notory_key"> 存款证明复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/ckzm.png','存款证明复印件 公证书样本')">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="GKCJFYJ" name="notory_key"> 高考成绩复印件</td>
-    		        <td><input type="checkbox" value="WH" name="notory_key"> 未婚</td>
-    		        <td><input type="checkbox" value="WZHSMS" name="notory_key"> 未再婚声明书</td>
+    		        <td><input type="checkbox" value="GKCJFYJ" name="notory_key"> 高考成绩复印件
+    		        	<div style="cursor: pointer; display: inline">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="WH" name="notory_key"> 未婚
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/whzm.png','未婚 公证书样本')">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="WZHSMS" name="notory_key"> 未再婚声明书
+    		        	<div style="cursor: pointer; display: inline">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="ZDZMFYJ" name="notory_key"> 在读证明复印件</td>
-    		        <td><input type="checkbox" value="ZGZFYJ" name="notory_key"> 资格证/技术等级证书复印件</td>
-    		        <td><input type="checkbox" value="FYPJTJCDSFYJ" name="notory_key"> 法院判决/调解/裁定书复印件</td>
+    		        <td><input type="checkbox" value="ZDZMFYJ" name="notory_key"> 在读证明复印件
+    		        	<div style="cursor: pointer; display: inline">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="ZGZFYJ" name="notory_key"> 资格证/技术等级证书复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/zgzsfy.png','资格证/技术等级证书复印件 公证书样本')">[*]</div>
+    		        </td>
+    		        
+    		        <td><input type="checkbox" value="FYPJTJCDSFYJ" name="notory_key"> 法院判决/调解/裁定书复印件
+    		        	<div style="cursor: pointer; display: inline">[*]</div>
+    		        </td>
     		      </tr>
     		      <tr>
-    		        <td><input type="checkbox" value="TX" name="notory_key"> 离休/退休/退职</td>
-    		        <td><input type="checkbox" value="ZXXBYZFYJ" name="notory_key"> 中小学毕业证（带成绩）复印件</td>
-    		        <td><input type="checkbox" value="SFZFYJ" name="notory_key"> 身份证复印件</td>
+    		        <td><input type="checkbox" value="TX" name="notory_key"> 离休/退休/退职
+    		        	<div style="cursor: pointer; display: inline">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="ZXXBYZFYJ" name="notory_key"> 中小学毕业证（带成绩）复印件
+    		        	<div style="cursor: pointer; display: inline">[*]</div>
+    		        </td>
+    		        <td><input type="checkbox" value="SFZFYJ" name="notory_key"> 身份证复印件
+    		        	<div style="cursor: pointer; display: inline" onclick="showImage('resources/samples/sfzfy.png','资格证/技术等级证书复印件 公证书样本')">[*]</div>
+    		        </td>
     		      </tr>
     		    </table>
     		    </div>
@@ -360,22 +425,29 @@
       
 <div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true" style="width:780px;">
-	<div class="modal-header">		
-		<h2 id="myModalLabel">图片标题</h2>
+	<div class="modal-header" style="height:10px;">		
+		<p id="myModalLabel">图片标题</p>
 	</div>
 	<div class="modal-body">
 		<img id="sampleImage" src="#"></img>
+		<img id="sampleImage2" src="#"></img>
 	</div>
-	<div class="modal-footer">
+	<div class="modal-footer" style="height:20px;">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 	</div>
 </div>
       <script>
       
-      function showImage(imgURL, title) {
+      function showImage(imgURL1, title,imgURL2) {
 
     	  $("#myModalLabel").text(title);
-    	  $("#sampleImage").attr("src", imgURL);    	  
+    	  $("#sampleImage").attr("src", imgURL1);
+    	  if(imgURL2==null)
+    		  $("#sampleImage2").hide();
+    	  else{
+    		  $("#sampleImage2").attr("src", imgURL2);
+    		  $("#sampleImage2").show();
+    	  }
     	  $("#myModal1").modal("show");  		
       }     
             

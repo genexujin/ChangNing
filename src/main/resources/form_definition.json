@@ -16,7 +16,7 @@
     },
     "JH": {
         "formKey": "JH",
-        "formName": "结婚",
+        "formName": "已婚",
         "fields": [
             {
                 "fieldKey": "JH_JHZ",

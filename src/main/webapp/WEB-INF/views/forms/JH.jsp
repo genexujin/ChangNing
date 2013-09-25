@@ -5,7 +5,7 @@
 	  <div class="bar-bg">
 	      <div class="row">
 	        <div class="span12 navbg2">
-	          <h5>&nbsp;&nbsp;&nbsp;&nbsp;结婚公证信息</h5>
+	          <h5>&nbsp;&nbsp;&nbsp;&nbsp;已婚公证信息</h5>
 	        </div>
 	      </div>
       </div>
