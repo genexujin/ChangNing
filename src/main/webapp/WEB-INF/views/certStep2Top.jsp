@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
-
-	<script src="datepicker/js/bootstrap-datepicker.js"></script>
       
       <ul class="breadcrumb">
         <b>您的位置：</b>
@@ -87,17 +85,131 @@
 			    	</div>
 	    		  </div>
 	    		</div>
-	    		<div class="row">
-	              <div class="span5 offset1">
+	    		<div class="row special">
+	              <div class="span3 offset1">
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="address">出生日期</label>
 			    	  <div class="controls">
-			    		<div data-date-format="mm/dd/yyyy" data-date="now" id="birthDate" class="input-append date">
-				          <input type="text" readonly size="16" class="span2" name="birthDate">
-				          <span class="add-on"><i class="icon-calendar"></i></span>
-			            </div>
+			    	    <SELECT id="bd_year" name="bd_year">
+						  <OPTION value="2013">2013</OPTION>
+						  <OPTION value="2012">2012</OPTION>
+						  <OPTION value="2011">2011</OPTION>
+						  <OPTION value="2010">2010</OPTION>
+						  <OPTION value="2009">2009</OPTION>
+						  <OPTION value="2008">2008</OPTION>
+						  <OPTION value="2007">2007</OPTION>
+						  <OPTION value="2006">2006</OPTION>
+						  <OPTION value="2005">2005</OPTION>
+						  <OPTION value="2004">2004</OPTION>
+						  <OPTION value="2003">2003</OPTION>
+						  <OPTION value="2002">2002</OPTION>
+						  <OPTION value="2001">2001</OPTION>
+						  <OPTION value="2000">2000</OPTION>
+						  <OPTION value="1999">1999</OPTION>
+						  <OPTION value="1998">1998</OPTION>
+						  <OPTION value="1997">1997</OPTION>
+						  <OPTION value="1996">1996</OPTION>
+						  <OPTION value="1995">1995</OPTION>
+						  <OPTION value="1994">1994</OPTION>
+						  <OPTION value="1993">1993</OPTION>
+						  <OPTION value="1992">1992</OPTION>
+						  <OPTION value="1991">1991</OPTION>
+						  <OPTION value="1990">1990</OPTION>
+						  <OPTION value="1989">1989</OPTION>
+						  <OPTION value="1988">1988</OPTION>
+						  <OPTION value="1987">1987</OPTION>
+						  <OPTION value="1986">1986</OPTION>
+						  <OPTION value="1985">1985</OPTION>
+						  <OPTION value="1984">1984</OPTION>
+						  <OPTION value="1983">1983</OPTION>
+						  <OPTION value="1982">1982</OPTION>
+						  <OPTION value="1981">1981</OPTION>
+						  <OPTION value="1980">1980</OPTION>
+						  <OPTION value="1979">1979</OPTION>
+						  <OPTION value="1978">1978</OPTION>
+						  <OPTION value="1977">1977</OPTION>
+						  <OPTION value="1976">1976</OPTION>
+						  <OPTION value="1975">1975</OPTION>
+						  <OPTION value="1974">1974</OPTION>
+						  <OPTION value="1973">1973</OPTION>
+						  <OPTION value="1972">1972</OPTION>
+						  <OPTION value="1971">1971</OPTION>
+						  <OPTION value="1970">1970</OPTION>
+						  <OPTION value="1969">1969</OPTION>
+						  <OPTION value="1968">1968</OPTION>
+						  <OPTION value="1967">1967</OPTION>
+						  <OPTION value="1966">1966</OPTION>
+						  <OPTION value="1965">1965</OPTION>
+						  <OPTION value="1964">1964</OPTION>
+						  <OPTION value="1963">1963</OPTION>
+						  <OPTION value="1962">1962</OPTION>
+						  <OPTION value="1961">1961</OPTION>
+						  <OPTION value="1960">1960</OPTION>
+						  <OPTION value="1959">1959</OPTION>
+						  <OPTION value="1958">1958</OPTION>
+						  <OPTION value="1957">1957</OPTION>
+						  <OPTION value="1956">1956</OPTION>
+						  <OPTION value="1955">1955</OPTION>
+						  <OPTION value="1954">1954</OPTION>
+						  <OPTION value="1953">1953</OPTION>
+						  <OPTION value="1952">1952</OPTION>
+						  <OPTION value="1951">1951</OPTION>
+						  <OPTION value="1950">1950</OPTION>
+						  <OPTION value="1949">1949</OPTION>
+						</SELECT>
 			    	  </div>
 			    	</div>
+	    		  </div>
+	    		  <div class="span1">
+	    		    	<SELECT id="bd_month" name="bd_month">
+						  <OPTION value="1">1</OPTION>
+						  <OPTION value="2">2</OPTION>
+						  <OPTION value="3">3</OPTION>
+						  <OPTION value="4">4</OPTION>
+						  <OPTION value="5">5</OPTION>
+						  <OPTION value="6">6</OPTION>
+						  <OPTION value="7">7</OPTION>
+						  <OPTION value="8">8</OPTION>
+						  <OPTION value="9">9</OPTION>
+						  <OPTION value="10">10</OPTION>
+						  <OPTION value="11">11</OPTION>
+						  <OPTION value="12">12</OPTION>
+						</SELECT>
+	    		  </div>
+	    		  <div class="span1" style="margin-left: 40px">
+						<SELECT id="bd_date" name="bd_date">
+						  <OPTION value="1">1</OPTION>
+						  <OPTION value="2">2</OPTION>
+						  <OPTION value="3">3</OPTION>
+						  <OPTION value="4">4</OPTION>
+						  <OPTION value="5">5</OPTION>
+						  <OPTION value="6">6</OPTION>
+						  <OPTION value="7">7</OPTION>
+						  <OPTION value="8">8</OPTION>
+						  <OPTION value="9">9</OPTION>
+						  <OPTION value="10">10</OPTION>
+						  <OPTION value="11">11</OPTION>
+						  <OPTION value="12">12</OPTION>
+						  <OPTION value="13">13</OPTION>
+						  <OPTION value="14">14</OPTION>
+						  <OPTION value="15">15</OPTION>
+						  <OPTION value="16">16</OPTION>
+						  <OPTION value="17">17</OPTION>
+						  <OPTION value="18">18</OPTION>
+						  <OPTION value="19">19</OPTION>
+						  <OPTION value="20">20</OPTION>
+						  <OPTION value="21">21</OPTION>
+						  <OPTION value="22">22</OPTION>
+						  <OPTION value="23">23</OPTION>
+						  <OPTION value="24">24</OPTION>
+						  <OPTION value="25">25</OPTION>
+						  <OPTION value="26">26</OPTION>
+						  <OPTION value="27">27</OPTION>
+						  <OPTION value="28">28</OPTION>
+						  <OPTION value="29">29</OPTION>
+						  <OPTION value="30">30</OPTION>
+						  <OPTION value="31">31</OPTION>
+						</SELECT>
 	    		  </div>
 	    		  <!-- <div id="address_m" class="span4 tiny-pt hide alert alert-error">地址不能为空
 			      </div> -->
@@ -141,7 +253,6 @@
         	  $("#email").change(validateEmail);
         	  //$("#address").change(validateAddress);
 
-  		      $('#birthDate').datepicker();
           }
           $(prepareBasic);
           

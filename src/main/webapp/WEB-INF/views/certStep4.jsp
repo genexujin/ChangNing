@@ -84,6 +84,7 @@
 		    	  </div>
 		    	</div>
             </div>
+            <div id="sendInfoMsg" class="span4">提示：必须输入送证地址</div>            
           </div>
           
           <div class="row toggle hide">
@@ -102,7 +103,7 @@
 		    </div>
 		  </div>
           
-          <div class="row toggle hide">
+<!--           <div class="row toggle hide">
             <div class="span5 offset1">
                 <div class="control-group">
 		    	  <label class="control-label" for="sendDate">送证时间</label>
@@ -114,9 +115,14 @@
 		    	  </div>
 		    	</div>
             </div>
-            <div id="sendInfoMsg" class="span4">提示：必须输入送证地址和日期
+          </div>	  -->
+          
+          <div class="row toggle hide">
+            <div class="span6 offset2">具体送达时间是在所有材料齐备后，根据以上选择，4个工作日后送达。
             </div>
-          </div>	 
+          </div>
+          
+          <br/>
 		  
 	    </div>
 	    

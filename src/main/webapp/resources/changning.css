@@ -284,3 +284,8 @@ td.segmenthd {
 
 .yw_div {
 	display: inline;
+}
+
+div.special select {
+	width: 80px;
+}

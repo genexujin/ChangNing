@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -165,13 +166,14 @@ public class OrderController {
             order.setRequestorNamePinyin(request.getParameter("pinyin"));
         if (!StringUtils.isEmpty(request.getParameter("email"))) 
             order.setRequestorEmail(request.getParameter("email"));
-        String birthDate = request.getParameter("birthDate");
-        try {
-            if (!StringUtils.isEmpty(birthDate)) 
-                order.setRequestorBirthDate(format.parse(birthDate));
-        } catch (ParseException e) {
-            log.error("Fail to parse the request parameter birthDate.", e);
-        }
+        
+        int birthYear = Integer.parseInt(request.getParameter("bd_year"));
+        int birthMonth = Integer.parseInt(request.getParameter("bd_month"));
+        int birthDate = Integer.parseInt(request.getParameter("bd_date"));
+        Calendar date = Calendar.getInstance();
+        date.set(birthYear, birthMonth - 1, birthDate); // month is 0-based        
+        order.setRequestorBirthDate(date.getTime());
+   
         
         Map<String, List<FormDocItemDef>> allInOneUploadDocs = new HashMap<String, List<FormDocItemDef>>();
         Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
@@ -317,9 +319,29 @@ public class OrderController {
     	
     	orderService.save(order);
     	
-        ModelAndView mav = new ModelAndView("certStep4");
-        mav.addObject("title", "上门送证");
-        return mav;
+    	//复印件公证不能上门送证，所以如果所选forms只有复印件，那么就跳过step4。
+    	boolean goToStep4 = false;
+    	for (Form form : order.getForms()) {
+    	    if (form.getFormKey().contains("FYJ") == false) {
+    	        goToStep4 = true;
+    	    }   
+    	}
+    	
+    	if (goToStep4) {
+    	    ModelAndView mav = new ModelAndView("certStep4");
+            mav.addObject("title", "上门送证");
+            return mav;
+    	} else {
+    	    order.calculateTotalFee();
+            orderService.save(order);
+            
+            ModelAndView mav = new ModelAndView("certStep5");
+            mav.addObject("title", "支付");
+            mav.addObject("order", order);
+            return mav;
+    	}
+    	
+        
     }
     
     @RequestMapping(value = "/certStep5.do")
@@ -339,11 +361,7 @@ public class OrderController {
         order.setSendDoc(sendDoc);
         if (sendDoc) {
             order.setSendAddress(request.getParameter("sendAddress"));
-            try {
-                order.setSendDate(format.parse(request.getParameter("sendDate")));
-            } catch (ParseException e) {
-                log.error("Error occurs during paring the sendDate.", e);
-            }
+            order.setSendOnWorkday(Boolean.parseBoolean(request.getParameter("workday")));
         }
         
         order.calculateTotalFee();

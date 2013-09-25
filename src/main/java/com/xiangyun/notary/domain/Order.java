@@ -110,8 +110,8 @@ public class Order implements Serializable {
     @Column(name = "send_address")
     private String sendAddress;
 
-    @Column(name = "send_date")
-    private Date sendDate;
+    @Column(name = "send_on_workday")
+    private boolean sendOnWorkday;
     
     @Column(name = "requestor_name")
     private String requestorName;
@@ -269,12 +269,12 @@ public class Order implements Serializable {
         this.sendAddress = sendAddress;
     }
 
-    public Date getSendDate() {
-        return sendDate;
+    public boolean isSendOnWorkday() {
+        return sendOnWorkday;
     }
 
-    public void setSendDate(Date sendDate) {
-        this.sendDate = sendDate;
+    public void setSendOnWorkday(boolean sendOnWorkday) {
+        this.sendOnWorkday = sendOnWorkday;
     }
 
     public Set<Form> getForms() {
