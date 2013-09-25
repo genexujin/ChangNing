@@ -18,7 +18,7 @@ public class SMSManager {
         if (enabled){
             messageContent += SURFFIX;
             
-            log.debug("-------------------------sending sms to : "+mobiles);
+            log.debug("-------------------------sending sms to : "+mobiles[0]);
 //            System.err.println("sent sms");
             return SingletonSMSClient.getClient().sendSMS(mobiles, messageContent, priority);
         }

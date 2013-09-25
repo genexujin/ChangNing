@@ -59,7 +59,10 @@
 		  <br/>
 		  
 		  <div class="row">
-		    <div class="span5 offset1">费用明细</div>
+		    <div class="span9 offset1"><font><strong>费用明细</strong></font>
+		    	
+		    </div>
+		    
 		  </div>
 		  <br/>
 		  <div class="row">
@@ -132,7 +135,8 @@
 		    </div>
 		  </div>
 		  <div class="row">
-		    <div class="span5 offset1">
+		    <div class="span9 offset1">
+		    <div style="color:gray;padding-bottom:10px;">注：如有文件翻译费用则为预收费用，待翻译公司最终报价后由客服人员与您确认</div>
 		      <input id="agreement" type="checkbox"> 同意《<a href="#">受理告知协议</a>》
 		    </div>
 		  </div>
