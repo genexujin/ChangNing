@@ -97,14 +97,15 @@ function setLangAndVerify(event) {
 
 function setLanguage(country) {
 	var langs = $("#trans").find("option");
-		
+	var theSelect = document.getElementById('trans');	
 	//Get langs again
 	langs = $("#trans").find("option");
 	
 	//Remove the dynamic ones
 	if (langs.length > 2) {
 		for (var i = 1; i < langs.length - 1; i++) {
-			langs.get(i).remove();
+			
+			theSelect.remove(i); 			
 		}
 	}
 	

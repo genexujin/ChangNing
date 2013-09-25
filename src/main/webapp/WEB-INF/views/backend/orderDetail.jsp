@@ -14,29 +14,39 @@
       <c:choose>
         <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
           <div class="row">
-			<div class="span2">
-			  <a class="btn" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
-			</div>
-			<div class="span2">
-			  <a href="requestExtraDocs.do?oId=${order.id}" class="btn">要求补充材料</a>
-			</div>
-			<div class="span2">
-			  <a href="requestExtraPayment.do?oId=${order.id}" class="btn">要求客户附加费用</a>
-			</div>
-			<div class="span2">
-			  <a href="orderRefund.do?oId=${order.id}" class="btn">退款</a>
-			</div>
-			<div class="span2">
+			<div class="span9">
+			 <c:choose>
+        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'CANCEL_REQUESTED'}">
+			  		<a class="btn" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
+			   </c:when>
+			 </c:choose>
+			  <c:choose>
+        		<c:when test="${order.orderStatus != 'FINISHED'}">				
+			  		<a href="requestExtraDocs.do?oId=${order.id}" class="btn">要求补充材料</a>
+			    </c:when>
+			 </c:choose>
+			  <c:choose>
+        		<c:when test="${order.orderStatus == 'PAID'}">	
+			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn">要求客户附加费用</a>
+			   </c:when>
+			 </c:choose>
+			  <c:choose>
+        		<c:when test="${order.orderStatus == 'CANCEL_REQUESTED'}">	
+			  		<a href="orderRefund.do?oId=${order.id}" class="btn">退款</a>
+			   </c:when>
+			 </c:choose>
 			  <a href="orderQuery.do" class="btn">返回</a>
 			</div>
 	      </div>
         </c:when>
         <c:otherwise>
           <div class="row">
-			<div class="span3">
-			  <a href="orderCancel.do?oId=${order.id}" class="btn">申请撤销</a>
-			</div>
-			<div class="span3">
+			<div class="span9">
+			 <c:choose>
+        		<c:when test="${order.orderStatus == 'SUBMITTED' or order.orderStatus=='PAYING' or order.orderStatus=='PAID'}">
+			  		<a href="orderCancel.do?oId=${order.id}" class="btn">申请撤销</a>
+			   </c:when>
+			 </c:choose>			
 			  <a href="orderQuery.do" class="btn">返回</a>
 			</div>
       	  </div>
@@ -51,16 +61,18 @@
             <div class="row">
               <div class="span9">
                 <h5>&nbsp;&nbsp;&nbsp;&nbsp;订单当前状态详情说明</h5>
-              </div>
+              </div>             
             </div>
           </div>
         </div>
       </div>
       <div class="border">
         <br/>
+        <div class="row">
+            <div class="span10 offset1"><font><strong>${order.orderStatus.text}</strong></font>
+            
         <c:if test="${not empty interactions}">
-          <div class="row">
-            <div class="span10 offset1">
+          
               <ul>
               <c:forEach items="${interactions}" var="interaction">
                 <li>
@@ -76,9 +88,10 @@
                 </li>
               </c:forEach>
               </ul>
-            </div>
-          </div>
+           
         </c:if>
+         </div>
+          </div>
         <br/>
       </div>
       
@@ -92,7 +105,9 @@
             </div>
           </div>
         </div>
+        
       </div>
+      
       <div class="border">
         <br/>
         <div class="row">
