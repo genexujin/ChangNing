@@ -341,6 +341,7 @@ public class ReservationController {
 				rsv.setUser(u);
 
 				reservationService.save(rsv);
+				
 				SMSManager
 						.sendSMS(
 								new String[] { mobile },

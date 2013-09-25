@@ -45,6 +45,7 @@
 			<div class="row">
 				<form action="/ChangNing/saveWorkday.do" method="post"
 					id="workdaysettingform">
+					<!--
 					<c:choose>
 						<c:when test="${sessionScope['LOGIN_USER'].admin}">
 							<div class="row">
@@ -68,7 +69,9 @@
 						<c:otherwise>
 							<div class="row"></div>
 						</c:otherwise>
-					</c:choose>
+					</c:choose> 
+					
+					-->
 
 
 
@@ -77,7 +80,7 @@
 
 					<div class="span12">
 						<div class="row">
-							<div class="controls span4 offset2">
+							<div class="controls span4">
 								日期：&nbsp;<input id="datepicker" class="" type="text" id="date"
 									name="date" />
 							</div>
@@ -90,7 +93,7 @@
 
 
 						<div class="row">
-							<div class="span3 offset2">
+							<div class="span3">
 								<label class="radio"> <input type="radio" name="type"
 									id="type" value="WORKDAY" checked> 工作日
 								</label>
@@ -102,16 +105,16 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="span4 offset2">
+							<div class="span4">
 								说明：
 								<textarea rows="3" cols="60" id="description" name="description"></textarea>
 							</div>
 						</div>
 						<div class="row">
-							<div class="span3 offset4">
+							<div class="span3">
 								<button class="btn btn-large" type="submit">保存工作日设定</button>
 							</div>
-							<div class="span4">
+							<div class="span2">
 								<div id="workday_alert" class="alert" style="display: none">
 								</div>
 							</div>
@@ -137,7 +140,7 @@
 
 
 					<div class="row">
-						<div class="span5 offset2">
+						<div class="span5">
 							请选择年份：<SELECT id="year" name="year">
 								<option>2013</option>
 								<option>2014</option>
@@ -147,7 +150,7 @@
 					</div>
 
 					<div class="row">
-						<div class="span5 offset2">
+						<div class="span5">
 							请选择月份：<SELECT id="month" name="month">
 								<option>1</option>
 								<option>2</option>
@@ -170,12 +173,12 @@
 
 
 					<div class="row">
-						<div class="span8 offset2">
+						<div class="span8">
 							<table class="table table-bordered table-striped" id="infotable">
 
 
 							</table>
-							<div id="example" class="offset3"></div>
+							<div id="example"></div>
 						</div>
 					</div>
 

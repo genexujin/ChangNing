@@ -364,7 +364,7 @@
 											id="modify_user_smsbtn" onclick="senddata()">获取短信验证码</button>
 									</td>
 									<td height="1px"><div id="modify_smscode_alert"
-											class="alert" style="display: none">请点击按钮查收短消息验证码</div></td>
+											class="alert" style="width:100px;display: none">请点击按钮查收短消息验证码</div></td>
 								</tr>
 								<tr height="60px">
 									<td><p class="text-right">修改密码：</p></td>
@@ -372,7 +372,7 @@
 										id="modify_user_pwd" class="input-xlarge" placeholder="新密码"
 										name="password"></td>
 									<td><div class="alert" id="modify_pwd_alert"
-											style="display: none">如需修改密码请在此输入！</div></td>
+											style="width:100px;display: none">如需修改密码请在此输入！</div></td>
 								</tr>
 								<tr height="60px">
 									<td></td>
@@ -381,7 +381,7 @@
 											class="btn" onclick="modifyPwd()">提交修改</button>
 									</td>
 									<td><div id="modifyPwd_submit_alert" class="alert"
-											style="display: none"></div></td>
+											style="width:100px;display: none"></div></td>
 								</tr>
 							</table>
 						</div>

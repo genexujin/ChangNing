@@ -1,15 +1,24 @@
 package com.xiangyun.sms;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xiangyun.notary.controller.ReservationController;
+
 public class SMSManager {
 
-    private static boolean enabled = false;
+    private static boolean enabled = true;
     private static String SURFFIX = " 【长宁公证】";
+    private static Logger log = LoggerFactory
+			.getLogger(SMSManager.class);
 
     //发送SMS
     public static int sendSMS(String[] mobiles, String messageContent, int priority) {
 //        System.err.println("here");
         if (enabled){
             messageContent += SURFFIX;
+            
+            log.debug("-------------------------sending sms to : "+mobiles);
 //            System.err.println("sent sms");
             return SingletonSMSClient.getClient().sendSMS(mobiles, messageContent, priority);
         }
