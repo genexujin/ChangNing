@@ -243,8 +243,7 @@
 </script>
 <ul class="breadcrumb">
 	<b>您的位置：</b>
-	<li><a href="#">首页</a> <span class="divider">/</span></li>
-	<li><a href="#">网上办证</a> <span class="divider">/</span></li>
+	<li><a href="#">首页</a> <span class="divider">/</span></li>	
 	<li class="active">设置新密码</li>
 </ul>
 <hr />

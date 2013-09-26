@@ -9,7 +9,7 @@
       <strong>您的位置：</strong>
       <ul class="breadcrumb">
         <li><a href="#">首页</a> <span class="divider">/</span></li>
-        <li><a href="#">网上办证</a> <span class="divider">/</span></li>
+        <li><a href="certStep1.do">网上办证</a> <span class="divider">/</span></li>
         <li class="active">上传资料</li>
       </ul>
       

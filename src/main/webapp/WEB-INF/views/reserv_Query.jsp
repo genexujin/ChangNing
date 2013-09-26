@@ -8,7 +8,7 @@
 <ul class="breadcrumb">
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
-	<li class="active">订单查询</li>
+	<li class="active">预约查询</li>
 </ul>
 <br />
 
