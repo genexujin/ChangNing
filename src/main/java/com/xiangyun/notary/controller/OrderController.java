@@ -225,7 +225,7 @@ public class OrderController {
         	
         	//Create FeeItems for a form
         	FeeDef feeDef = (FeeDef)ctx.getAttribute(Constants.FEE_DEF);
-        	form.addFeeItem(createGeneralFeeItem(order, formDef, feeDef));
+        	form.addFeeItem(createGeneralFeeItem(order, form, formDef, feeDef));
         	
         	Collection<String> ywKeys = (Collection<String>)session.getAttribute(Constants.SESSION_SELECTED_YWXF);
         	if (ywKeys.contains(formDef.getFormKey() + Constants.YWXF_KEY_SUFFIX)) {
@@ -404,8 +404,7 @@ public class OrderController {
 			str = java.net.URLEncoder.encode(title,"UTF-8");
 			tradeNo = java.net.URLEncoder.encode(tradeNo,"UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Unspported UTF-8 encoding", e);
 		}
     	
     	
@@ -1056,7 +1055,7 @@ public class OrderController {
         
     }
     
-    private FeeItem createGeneralFeeItem(Order order, FormDef formDef, FeeDef feeDef) {
+    private FeeItem createGeneralFeeItem(Order order, Form form, FormDef formDef, FeeDef feeDef) {
         FeeFormDef feeFormDef = feeDef.getFeeFormDefs().get(formDef.getFormKey());
         FeeItem fee = new FeeItem();
         fee.setFeeKey(formDef.getFormKey());
@@ -1064,7 +1063,17 @@ public class OrderController {
         fee.setCopyFee(order.getCertificateCopyCount() * feeDef.getCopyFee());
         fee.setInvestigationFee(feeFormDef.getInvestigateFee());
         fee.setWordTranslationFee(getWordTranslationFee(feeFormDef, order.getTranslationLanguage()));
-        fee.setFileTranslationFee(getFileTranslationFee(feeFormDef, order.getTranslationLanguage()));
+        
+        //Some form's fee are depend on a value in form
+        double fileTranslationFee = getFileTranslationFee(feeFormDef, order.getTranslationLanguage());
+        if (feeFormDef.getFileFeeDependentFormItem() != null) {
+            for (FormItem item : form.getFormItems()) {
+                if (item.getItemKey().equals(feeFormDef.getFileFeeDependentFormItem())) {
+                    fileTranslationFee *= Integer.parseInt(item.getItemValue());
+                }
+            }
+        }
+        fee.setFileTranslationFee(fileTranslationFee);
         fee.setNotaryFee(feeFormDef.getNotaryFee());
         return fee;
     }
