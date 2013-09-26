@@ -35,6 +35,7 @@
 			  		<a href="orderRefund.do?oId=${order.id}" class="btn">退款</a>
 			   </c:when>
 			 </c:choose>
+			  <a href="generateForm.do?oId=${order.id}" class="btn">申请书下载</a>
 			  <a href="orderQuery.do" class="btn">返回</a>
 			</div>
 	      </div>
