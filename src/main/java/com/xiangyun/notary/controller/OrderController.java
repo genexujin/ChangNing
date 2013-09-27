@@ -2,7 +2,6 @@ package com.xiangyun.notary.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,6 +34,7 @@ import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.common.RelativeType;
+import com.xiangyun.notary.common.SendDocDateType;
 import com.xiangyun.notary.domain.DocExtraItem;
 import com.xiangyun.notary.domain.FeeItem;
 import com.xiangyun.notary.domain.Form;
@@ -58,8 +58,6 @@ import com.xiangyun.sms.SMSManager;
 @Controller
 public class OrderController {
 	private static Logger log = LoggerFactory.getLogger(OrderController.class);
-
-	private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
 	@Autowired
 	private ServletContext ctx;
@@ -384,8 +382,7 @@ public class OrderController {
 		order.setSendDoc(sendDoc);
 		if (sendDoc) {
 			order.setSendAddress(request.getParameter("sendAddress"));
-			order.setSendOnWorkday(Boolean.parseBoolean(request
-					.getParameter("workday")));
+			order.setSendDate(SendDocDateType.valueOf((request.getParameter("workday"))));
 		}
 
 		order.calculateTotalFee();

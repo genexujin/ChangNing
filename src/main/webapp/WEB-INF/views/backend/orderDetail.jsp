@@ -323,8 +323,8 @@
                   <td>${order.sendAddress}</td>
                 </tr>
                 <tr>
-                  <td><b>是否可以工作日送证</b></td>
-                  <td>${order.sendOnWorkday?'是':'否'}</td>
+                  <td><b>送证时间</b></td>
+                  <td>${order.sendDate.text}</td>
                 </tr>
               </c:if>
             </table>

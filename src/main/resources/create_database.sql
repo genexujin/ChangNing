@@ -39,7 +39,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `cert_copy_count` INT NULL ,
   `send_doc` VARCHAR(20) NULL ,
   `send_address` VARCHAR(500) NULL ,
-  `send_on_workday` VARCHAR(20) NULL ,
+  `send_date` VARCHAR(20) NULL ,
   `requestor_name` VARCHAR(45) NULL ,
   `requestor_name_pinyin` VARCHAR(45) NULL ,
   `requestor_gender` VARCHAR(20) NULL ,
