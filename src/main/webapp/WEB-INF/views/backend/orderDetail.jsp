@@ -310,7 +310,7 @@
                 </tr>
                 <tr>
                   <td><b>送证时间</b></td>
-                  <td><fmt:formatDate value="${order.sendDate}" pattern="yyyy-MM-dd"/></td>
+                  <td>${order.sendDate.text}</td>
                 </tr>
               </c:if>
             </table>

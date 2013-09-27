@@ -28,6 +28,7 @@ import com.xiangyun.notary.common.Gender;
 import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
+import com.xiangyun.notary.common.SendDocDateType;
 
 @Entity
 @Table(name = "orders")
@@ -110,8 +111,9 @@ public class Order implements Serializable {
     @Column(name = "send_address")
     private String sendAddress;
 
-    @Column(name = "send_on_workday")
-    private boolean sendOnWorkday;
+    @Column(name = "send_date")
+    @Enumerated(EnumType.STRING)
+    private SendDocDateType sendDate;
     
     @Column(name = "requestor_name")
     private String requestorName;
@@ -269,12 +271,12 @@ public class Order implements Serializable {
         this.sendAddress = sendAddress;
     }
 
-    public boolean isSendOnWorkday() {
-        return sendOnWorkday;
+    public SendDocDateType getSendDate() {
+        return sendDate;
     }
 
-    public void setSendOnWorkday(boolean sendOnWorkday) {
-        this.sendOnWorkday = sendOnWorkday;
+    public void setSendDate(SendDocDateType sendDate) {
+        this.sendDate = sendDate;
     }
 
     public Set<Form> getForms() {

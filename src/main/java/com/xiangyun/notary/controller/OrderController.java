@@ -35,6 +35,7 @@ import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.common.RelativeType;
+import com.xiangyun.notary.common.SendDocDateType;
 import com.xiangyun.notary.domain.DocExtraItem;
 import com.xiangyun.notary.domain.FeeItem;
 import com.xiangyun.notary.domain.Form;
@@ -361,7 +362,7 @@ public class OrderController {
         order.setSendDoc(sendDoc);
         if (sendDoc) {
             order.setSendAddress(request.getParameter("sendAddress"));
-            order.setSendOnWorkday(Boolean.parseBoolean(request.getParameter("workday")));
+            order.setSendDate(SendDocDateType.valueOf(request.getParameter("workday")));
         }
         
         order.calculateTotalFee();
