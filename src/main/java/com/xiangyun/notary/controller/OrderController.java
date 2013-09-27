@@ -398,11 +398,28 @@ public class OrderController {
 		return mav;
 	}
 
+	/**
+	 *  支付方法，该方法打开支付宝页面
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/payment.do")
 	public String goToPayment(HttpServletRequest request) {
 
-		Order order = (Order) request.getSession(false).getAttribute(
-				Constants.CURRENT_ORDER);
+		Long orderId = validateOrderIdParameter(request);
+		Order order = null;
+
+		if (orderId != null) {//如果有传oid参数进来、则读取该oid的order。
+			Long userId = getUserIdFromSession(request.getSession(false));
+			order = orderService.findOrderById(orderId, userId);
+			if (order == null) {
+				return "redirect:/orderQuery.do";
+			}
+		} else {
+			order = (Order) request.getSession(false).getAttribute(
+					Constants.CURRENT_ORDER);
+		}
+
 		int seq = order.getPayments().size() + 1;
 		String tradeNo = order.getReadableId() + "-" + seq;
 		String title = order.getPaymentTitle();
@@ -420,9 +437,6 @@ public class OrderController {
 		order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
 		order.addPayment(payment);
 		orderService.save(order);
-
-		System.err.println(title);
-		System.err.println(tradeNo);
 
 		String str = null;
 		try {
@@ -444,6 +458,9 @@ public class OrderController {
 		}
 		// WIDshow_url can be the order detail page for the order
 		sb.append("&WIDshow_url=bbbb");
+
+		order.setOrderStatus(OrderStatus.PAYING);
+		orderService.save(order);
 
 		return sb.toString();
 	}
@@ -587,9 +604,10 @@ public class OrderController {
 		}
 
 		// 如果已经是后面的状态了，则不允许接受了
-//		if (order.getOrderStatus().ordinal() >= OrderStatus.ACCEPTED.ordinal()) {
-//			return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
-//		}
+		// if (order.getOrderStatus().ordinal() >=
+		// OrderStatus.ACCEPTED.ordinal()) {
+		// return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
+		// }
 
 		ModelAndView mav = new ModelAndView("backend/orderAccept");
 		mav.addObject("title", "订单受理");
@@ -619,12 +637,14 @@ public class OrderController {
 		orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("backend/orderAccept");
-		mav.addObject("successMsg","订单受理信息已成功保存！请单击“返回”按钮返回订单详情页面！");
+		mav.addObject("successMsg", "订单受理信息已成功保存！请单击“返回”按钮返回订单详情页面！");
 		mav.addObject("title", "订单受理");
 		mav.addObject("order", order);
-		
+
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
-				"您的办证订单：" + order.getReadableId() + " 已确认受理，我们的公证人员会尽快处理并与您联系，请耐心等待, 谢谢！受理编号为："+notaryId, 1);
+				"您的办证订单：" + order.getReadableId()
+						+ " 已确认受理，我们的公证人员会尽快处理并与您联系，请耐心等待, 谢谢！受理编号为："
+						+ notaryId, 1);
 
 		return mav;
 	}
@@ -646,8 +666,6 @@ public class OrderController {
 		ModelAndView mav = new ModelAndView("backend/orderCancel");
 		mav.addObject("title", "订单撤销");
 		mav.addObject("order", order);
-		
-
 
 		return mav;
 
@@ -673,11 +691,12 @@ public class OrderController {
 		orderService.save(order);
 
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
-				"您的办证订单：" + order.getReadableId() + " 已提交撤销，我们的公证人员会尽快处理并与您联系，请耐心等待，谢谢！", 1);
-		
+				"您的办证订单：" + order.getReadableId()
+						+ " 已提交撤销，我们的公证人员会尽快处理并与您联系，请耐心等待，谢谢！", 1);
+
 		ModelAndView mav = new ModelAndView("backend/orderCancel");
 		mav.addObject("title", "订单受理");
-		mav.addObject("successMsg","订单已成功！请单击“返回”按钮返回订单详情页面！");
+		mav.addObject("successMsg", "订单已成功撤销！请单击“返回”按钮返回订单详情页面！");
 		mav.addObject("order", order);
 
 		return mav;
@@ -828,11 +847,13 @@ public class OrderController {
 			order.addInteraction(i);
 
 		}
-
-		orderService.save(order);
 		
+		order.setOrderStatus(OrderStatus.EXTRADOC_REQUESTED);
+		orderService.save(order);
+
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
-				"您的办证订单：" + order.getReadableId() + " 额外要求补充材料! 需要补充的材料为："+extraDocs , 1);
+				"您的办证订单：" + order.getReadableId() + " 额外要求补充材料! 需要补充的材料为："
+						+ extraDocs, 1);
 
 		ModelAndView mav = new ModelAndView("redirect:orderDetail.do?oId="
 				+ orderId);
@@ -905,12 +926,12 @@ public class OrderController {
 				+ extraPaymentNote);
 		i.setExtraData(pay.getId().toString());
 		order.addInteraction(i);
-
+		order.setOrderStatus(OrderStatus.EXTRADOC_REQUESTED);
 		orderService.save(order);
 
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
-				"您的办证订单：" + order.getReadableId() + " 需要附加额外费用! 金额：" + extraPayment
-						+ "元, 附加费用原因："+extraPaymentNote , 1);
+				"您的办证订单：" + order.getReadableId() + " 需要附加额外费用! 金额："
+						+ extraPayment + "元, 附加费用原因：" + extraPaymentNote, 1);
 
 		ModelAndView mav = new ModelAndView("redirect:orderDetail.do?oId="
 				+ orderId);
@@ -1032,9 +1053,10 @@ public class OrderController {
 		}
 
 		log.debug("The refund url is: " + sb.toString());
-		
+
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
-				"您的办证订单：" + order.getReadableId() + " 已进入退款流程，我们的服务人员会尽快完成退款，请注意查收您的相关账户。", 1);
+				"您的办证订单：" + order.getReadableId()
+						+ " 已进入退款流程，我们的服务人员会尽快完成退款，请注意查收您的相关账户。", 1);
 
 		return new ModelAndView(sb.toString());
 	}

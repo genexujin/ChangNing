@@ -32,8 +32,8 @@ public class AuthenticationFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 
-		log.debug("Context Path : {}", req.getContextPath());
-		log.debug("Servlet Path : {}", req.getServletPath());
+		log.info("================Requested Path : {}", req.getContextPath()
+				+ req.getServletPath());
 
 		String servletPath = req.getServletPath();
 		if (servletPath.indexOf("/home") >= 0
@@ -48,12 +48,17 @@ public class AuthenticationFilter implements Filter {
 		}
 
 		HttpSession session = req.getSession(false);
-		if (session == null	|| session.getAttribute(Constants.LOGIN_USER) == null) {
+		if (session == null
+				|| session.getAttribute(Constants.LOGIN_USER) == null) {
 			log.debug("Not logging yet. Redirecting to login page...");
-			String url = ((HttpServletRequest) request).getRequestURL().toString();
-			String queryString = ((HttpServletRequest) request).getQueryString();
-			queryString = StringUtils.isEmpty(queryString) ? "" : "?" + queryString;
-			//session can be null, so get it again so that a new one can be created when it is null
+			String url = ((HttpServletRequest) request).getRequestURL()
+					.toString();
+			String queryString = ((HttpServletRequest) request)
+					.getQueryString();
+			queryString = StringUtils.isEmpty(queryString) ? "" : "?"
+					+ queryString;
+			// session can be null, so get it again so that a new one can be
+			// created when it is null
 			session = req.getSession();
 			session.setAttribute("openURL", url + queryString);
 			resp.sendRedirect(req.getContextPath() + "/enterLogin.do");

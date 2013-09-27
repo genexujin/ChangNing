@@ -82,7 +82,14 @@
 	</div>
 	<div class="row">
 		<div class="span5 offset1">
-			<a href="#">查看该订单详情</a>
+		<c:choose>
+			<c:when test="${oid!=null}">
+				<a href="orderDetail.do?oId=${oid}">查看该订单详情</a>
+			</c:when>
+			<c:otherwise>
+				<a href="#">查看该订单详情</a>
+			</c:otherwise>
+		</c:choose>
 		</div>
 	</div>
 

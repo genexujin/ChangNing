@@ -83,9 +83,10 @@ public class ReservationServiceImpl extends AbstractService implements
 	public boolean checkCompliance(User user) {
 		boolean result = true;
 
-		String hql = "from Reservation where user =:user and date_format(creationDate, '%Y%m%d') = date_format(current_date(),'%Y%m%d')";
+		String hql = "from Reservation where user =:user and reservationStatus=:status and  date_format(creationDate, '%Y%m%d') = date_format(current_date(),'%Y%m%d')";
 		Query query = em.createQuery(hql);
 		query.setParameter("user", user);
+		query.setParameter("status", ReservationStatus.SUBMITTED);
 		List reservation = query.getResultList();
 		log.debug("reservation made on today: " + reservation.size() );
 		if (reservation != null && reservation.size() > 0)
