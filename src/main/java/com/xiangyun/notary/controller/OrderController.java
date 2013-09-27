@@ -634,6 +634,8 @@ public class OrderController {
 		String notaryId = request.getParameter("notaryId");
 		order.setBackendNotaryId(notaryId);
 		order.setOrderStatus(OrderStatus.ACCEPTED);
+		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);		
+		order.setAccepter(u);
 		orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("backend/orderAccept");
@@ -926,7 +928,7 @@ public class OrderController {
 				+ extraPaymentNote);
 		i.setExtraData(pay.getId().toString());
 		order.addInteraction(i);
-		order.setOrderStatus(OrderStatus.EXTRADOC_REQUESTED);
+		order.setOrderStatus(OrderStatus.ADD_CHARGE);
 		orderService.save(order);
 
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
@@ -959,7 +961,8 @@ public class OrderController {
 		String tradeNo = payment.getOrderTxnNo();
 		String title = payment.getTitle();
 		payment.setPaymentDate(new Date());
-
+		
+		payment.getOrder().setOrderStatus(OrderStatus.PAYING);
 		orderService.save(payment);
 
 		String str = null;
@@ -1014,7 +1017,7 @@ public class OrderController {
 		if (orderId == null) {
 			return new ModelAndView("redirect:orderQuery.do");
 		}
-
+		String refundReason = request.getParameter("refund_reason");
 		String[] paymentIds = request.getParameterValues("payment_id");
 		List<Long> pIds = convertPaymentIds(paymentIds);
 		log.debug("Selected payment ids: " + pIds);
@@ -1029,10 +1032,11 @@ public class OrderController {
 		StringBuilder refundDetailData = new StringBuilder();
 		for (Payment payment : payments) {
 			payment.setRefundDate(new Date());
-			payment.setRefundReason("退款原因");
+			payment.setRefundReason(refundReason);
+			payment.setStatus(OrderPaymentStatus.PENDING_REFUND);
 			refundDetailData.append(payment.getAlipayTxnNo()).append("^")
 					.append(payment.getPaymentTotal()).append("^")
-					.append("退款原因");
+					.append(refundReason);
 			// Always append a "#" and remove it after the loop
 			refundDetailData.append("#");
 			orderService.save(payment);

@@ -25,6 +25,7 @@ import com.alipay.util.AlipaySubmit;
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
+import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.service.OrderService;
 import com.xiangyun.notary.service.PaymentService;
@@ -414,27 +415,31 @@ public class AlipayController {
 				"result_details").getBytes("ISO-8859-1"), "UTF-8");
 
 		// 获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
-		System.out.println("==========接收到支付宝 批量退款回调！！！===========");
-		System.out.println("<p> 批次号： " + batch_no + "<p/>");
-		System.out.println("<p> 批量退款数据中转账成功的笔数： " + success_num + "<p/>");
-		System.out.println("<p> 批量退款数据中的详细信息： " + result_details + "<p/>");
+		log.debug("==========接收到支付宝 批量退款回调！！！===========");
+		log.debug("<p> 批次号： " + batch_no + "<p/>");
+		log.debug("<p> 批量退款数据中转账成功的笔数： " + success_num + "<p/>");
+		log.debug("<p> 批量退款数据中的详细信息： " + result_details + "<p/>");
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-
+		Order order = null;
+		
 		if (AlipayNotify.verify(params)) {// 验证成功
 			// 判断是否在商户网站中已经做过了这次通知返回的处理
 			if (result_details != null && result_details.indexOf("#") >= 0) {
 				log.debug("正在处理退款记录中的一条");
 				String[] results = result_details.split("#");
 				for (String refundStr : results) {
-					updateRefundStatus(refundStr);
+					order = updateRefundStatus(refundStr);
 				}
 			} else {
 				log.debug("正在处理唯一一条退款记录");
-				updateRefundStatus(result_details);
+				order= updateRefundStatus(result_details);
 			}
+			order.setOrderStatus(OrderStatus.CANCELLED);
+			orderService.save(order);
 			out.println("success"); // 请不要修改或删除
+			
 		} else {// 验证失败
 			out.println("fail");
 		}
@@ -445,7 +450,7 @@ public class AlipayController {
 	 * @param refundStr
 	 *            Sample: 2013090846702913^0.01^SUCCESS
 	 */
-	private void updateRefundStatus(String refundStr) {
+	private Order updateRefundStatus(String refundStr) {
 		log.debug(refundStr);
 		String[] lineParams = refundStr.split("\\^");
 		// log.debug(new Integer(lineParams.length).toString());
@@ -455,6 +460,8 @@ public class AlipayController {
 		log.debug(amountStr);
 		String state = lineParams[2];
 		log.debug(state);
+		
+		Order oid = null;
 
 		if (state.equalsIgnoreCase("success")) {
 			// 判断该笔订单是否在商户网站中已经做过处理
@@ -462,17 +469,19 @@ public class AlipayController {
 					.findPaymentByAliOrderNo(aliTxnNo);
 			if (!payments.isEmpty()) {
 				Payment thePayment = payments.get(0);
+				oid = thePayment.getOrder();
 				// 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 				if (!thePayment.getStatus().equals(OrderPaymentStatus.REFUNDED)) {
 					thePayment.setStatus(OrderPaymentStatus.REFUNDED);
 					thePayment.setRefundTotal(Double.parseDouble(amountStr));
 					orderService.save(thePayment.getOrder());
-					System.out.println("退款业务数据更新完成");
+					log.debug("退款业务数据更新完成");
 				}
 
 			}
 
 		}
+		return oid;
 
 	}
 

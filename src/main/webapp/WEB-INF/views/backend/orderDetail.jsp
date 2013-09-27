@@ -66,7 +66,7 @@
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;订单当前状态详情说明</h5>
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;订单当前状态</h5>
               </div>             
             </div>
           </div>
@@ -75,7 +75,13 @@
       <div class="border">
         <br/>
         <div class="row">
-            <div class="span10 offset1"><font><strong>${order.orderStatus.text}</strong></font>
+            <div class="span10 offset1"><font><strong>${order.orderStatus.text}</strong></font> </div>
+            <c:choose>
+            	<c:when test="${order.accepter!=null}">
+            		<div class="span10 offset1"><font><strong>受理人： ${order.accepter.name}</strong></font>            
+            		</div>
+            	</c:when>
+            </c:choose>
             
         <c:if test="${not empty interactions}">
           
@@ -96,10 +102,12 @@
               </ul>
            
         </c:if>
-         </div>
-          </div>
-        <br/>
       </div>
+      <br>
+      </div>
+     
+      
+      
       
       <div class="bar-bg">
         <div class="row">

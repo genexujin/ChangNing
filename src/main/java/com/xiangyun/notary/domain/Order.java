@@ -55,6 +55,10 @@ public class Order implements Serializable {
     @JoinColumn(name="user_id")
     private User user;
     
+    @ManyToOne
+    @JoinColumn(name="accepter_id")
+    private User accepter;
+    
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
     private Set<Form> forms = new HashSet<Form>();
     
@@ -413,8 +417,18 @@ public class Order implements Serializable {
     public void setCancelNote(String cancelNote) {
         this.cancelNote = cancelNote;
     }
+    
+    
 
-    public double calculateTotalFee() {
+    public User getAccepter() {
+		return accepter;
+	}
+
+	public void setAccepter(User accepter) {
+		this.accepter = accepter;
+	}
+
+	public double calculateTotalFee() {
 	    double result = 0.0;
 	    for (Form form : forms) {
 	        result += form.calculateFormFee();

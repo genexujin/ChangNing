@@ -47,12 +47,19 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `requestor_mobile` VARCHAR(45) NULL ,
   `reqeustor_email` VARCHAR(45) NULL ,
   `requestor_address` VARCHAR(500) NULL ,
+  `accepter_id` INT NULL ,
   `upload_note` VARCHAR(1000) NULL ,
   `cancel_note` VARCHAR(1000) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `user_fk_idx` (`user_id` ASC) ,
+  INDEX `accepter_fk_idx` (`user_id` ASC) ,
   CONSTRAINT `user_fk`
     FOREIGN KEY (`user_id` )
+    REFERENCES `changning`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `accepter_fk`
+    FOREIGN KEY (`accepter_id` )
     REFERENCES `changning`.`users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
