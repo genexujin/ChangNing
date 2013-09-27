@@ -16,17 +16,17 @@
           <div class="row">
 			<div class="span9">
 			 <c:choose>
-        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'CANCEL_REQUESTED'}">
+        		<c:when test="${order.orderStatus == 'PAID'}">
 			  		<a class="btn" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
 			   </c:when>
 			 </c:choose>
 			  <c:choose>
-        		<c:when test="${order.orderStatus != 'FINISHED'}">				
+        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">				
 			  		<a href="requestExtraDocs.do?oId=${order.id}" class="btn">要求补充材料</a>
 			    </c:when>
 			 </c:choose>
 			  <c:choose>
-        		<c:when test="${order.orderStatus == 'PAID'}">	
+        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">	
 			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn">要求客户附加费用</a>
 			   </c:when>
 			 </c:choose>
@@ -35,6 +35,7 @@
 			  		<a href="orderRefund.do?oId=${order.id}" class="btn">退款</a>
 			   </c:when>
 			 </c:choose>
+			  <a href="generateForm.do?oId=${order.id}" class="btn">申请书下载</a>
 			  <a href="orderQuery.do" class="btn">返回</a>
 			</div>
 	      </div>
@@ -43,8 +44,13 @@
           <div class="row">
 			<div class="span9">
 			 <c:choose>
-        		<c:when test="${order.orderStatus == 'SUBMITTED' or order.orderStatus=='PAYING' or order.orderStatus=='PAID'}">
+        		<c:when test="${order.orderStatus != 'CANCEL_REQUESTED' and order.orderStatus!='FINISHED'}">
 			  		<a href="orderCancel.do?oId=${order.id}" class="btn">申请撤销</a>
+			   </c:when>
+			 </c:choose>
+			  <c:choose>
+        		<c:when test="${order.orderStatus == 'SUBMITTED' or order.orderStatus=='ADD_CHARGE'}">
+			  		<a href="payment.do?oId=${order.id}" target="_blank" class="btn">支付</a>
 			   </c:when>
 			 </c:choose>			
 			  <a href="orderQuery.do" class="btn">返回</a>

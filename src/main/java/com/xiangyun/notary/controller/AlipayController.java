@@ -184,11 +184,12 @@ public class AlipayController {
 		// 获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
 		// 计算得出通知验证结果
 		boolean verify_result = AlipayNotify.verify(params);
-
+		Long oid = null;
+		
 		if (verify_result) {// 验证成功
 			if (trade_status.equals("TRADE_FINISHED")
 					|| trade_status.equals("TRADE_SUCCESS")) {
-				updatePaymentStatus(out_trade_no, trade_no);
+				oid = updatePaymentStatus(out_trade_no, trade_no);
 				mav.addObject("success", true);
 			} else {
 				mav.addObject("success", false);
@@ -199,6 +200,9 @@ public class AlipayController {
 
 		mav.addObject("orderNo", out_trade_no);
 		mav.addObject("totalFee", total_fee);
+		if(oid!=null)
+			mav.addObject("oid",oid.toString());
+		log.debug("On Payment Return order id is: " + oid);
 		mav.addObject("title", "支付结果");
 
 		return mav;
@@ -214,11 +218,14 @@ public class AlipayController {
 		return mav;
 	}
 
-	private void updatePaymentStatus(String out_trade_no, String trade_no) {
+	private Long updatePaymentStatus(String out_trade_no, String trade_no) {
 		// 判断该笔订单是否在商户网站中已经做过处理
+		Long oid = null;
+		
 		List<Payment> payments = paymentService
 				.findPaymentByOrderNo(out_trade_no);
 		Payment thePayment = payments.get(0);
+		oid = thePayment.getOrder().getId();
 		// 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 		if (!thePayment.getStatus().equals(OrderPaymentStatus.FULL_PAID)) {
 			thePayment.setStatus(OrderPaymentStatus.FULL_PAID);
@@ -226,7 +233,10 @@ public class AlipayController {
 			thePayment.setAlipayTxnNo(trade_no);
 			orderService.save(thePayment.getOrder());
 			System.out.println("业务数据更新完成");
+			
 		}// 如果有做过处理，不执行商户的业务程序
+		
+		return oid;
 	}
 
 	/**

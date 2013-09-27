@@ -15,6 +15,7 @@
 	</appender>
 
     <logger name="org.springframework" level="INFO" />
+    <logger name="com.mchange.v2.c3p0" level="INFO" />
 	<logger name="com.xiangyun" level="DEBUG" />
 
 	<root level="INFO">

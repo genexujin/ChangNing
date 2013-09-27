@@ -17,6 +17,7 @@ public class FeeFormDef implements Serializable {
     private double wordFeeGroup5;
     private double fileFeeGroup5;
     private double investigateFee;
+    private String fileFeeDependentFormItem;
     
     public double getNotaryFee() {
         return notaryFee;
@@ -89,5 +90,11 @@ public class FeeFormDef implements Serializable {
     }
     public void setInvestigateFee(double investigateFee) {
         this.investigateFee = investigateFee;
+    }
+    public String getFileFeeDependentFormItem() {
+        return fileFeeDependentFormItem;
+    }
+    public void setFileFeeDependentFormItem(String fileFeeDependentFormItem) {
+        this.fileFeeDependentFormItem = fileFeeDependentFormItem;
     }
 }

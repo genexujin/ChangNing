@@ -39,7 +39,7 @@
 	  
 	  <div class="row">
 	    <div class="span10 offset1">
-	      <h5><font color="red">请上传所需材料。提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入【个人中心】查找提交的订单并补充材料。 本系统支持 .jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过5M.</font></h5>
+	      <h5><font color="red">请上传所需材料。提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入【个人中心】查找提交的订单并补充材料。 本系统支持 .jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过2M.</font></h5>
 	    </div>
 	  </div>
 	  
@@ -84,7 +84,7 @@
 		      <script>
 				$(function() {
 				    $('#all_upload').uploadify({
-				    	'fileSizeLimit' : '5MB',
+				    	'fileSizeLimit' : '2MB',
 				        'swf'             : 'uploadify/uploadify.swf',
 				        'uploader'        : '<c:url value="/upload.do"/>',
 				        // Put your options here
@@ -142,7 +142,7 @@
 	        	  <script>
 	        	  $(function() {
 	                	$('#${doc.docKey}').uploadify({
-	                		'fileSizeLimit' : '5MB',
+	                		'fileSizeLimit' : '2MB',
 	        		        'swf'             : 'uploadify/uploadify.swf',
 	        		        'uploader'        : '<c:url value="/upload.do"/>',
 	        		        // Put your options here
@@ -247,7 +247,7 @@
 		          
 	                $(function() {
 	                	$('#${doc.docKey}').uploadify({
-	                		'fileSizeLimit' : '5MB',
+	                		'fileSizeLimit' : '2MB',
 	        		        'swf'             : 'uploadify/uploadify.swf',
 	        		        'uploader'        : '<c:url value="/upload.do"/>',
 	        		        // Put your options here
