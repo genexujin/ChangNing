@@ -587,9 +587,9 @@ public class OrderController {
 		}
 
 		// 如果已经是后面的状态了，则不允许接受了
-		if (order.getOrderStatus().ordinal() >= OrderStatus.ACCEPTED.ordinal()) {
-			return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
-		}
+//		if (order.getOrderStatus().ordinal() >= OrderStatus.ACCEPTED.ordinal()) {
+//			return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
+//		}
 
 		ModelAndView mav = new ModelAndView("backend/orderAccept");
 		mav.addObject("title", "订单受理");
@@ -619,6 +619,7 @@ public class OrderController {
 		orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("backend/orderAccept");
+		mav.addObject("successMsg","订单受理信息已成功保存！请单击“返回”按钮返回订单详情页面！");
 		mav.addObject("title", "订单受理");
 		mav.addObject("order", order);
 		
@@ -676,6 +677,7 @@ public class OrderController {
 		
 		ModelAndView mav = new ModelAndView("backend/orderCancel");
 		mav.addObject("title", "订单受理");
+		mav.addObject("successMsg","订单已成功！请单击“返回”按钮返回订单详情页面！");
 		mav.addObject("order", order);
 
 		return mav;

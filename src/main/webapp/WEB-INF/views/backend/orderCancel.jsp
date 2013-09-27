@@ -30,12 +30,20 @@
 	    <div class="border">
 	      <br/>
 	      <div class="row">
-	        <div class="span5 offset1">
+	        <div class="span9 offset1">
 	          <div class="control-group">
 	            <label class="control-label">订单申办号：</label>
 	            <div class="controls">
 	              ${order.readableId}
 	            </div>
+	            <c:choose>
+						<c:when test="${successMsg!=null}">
+	            			<div class="span3">
+								<div id="workday_select_alert" class="alert alert-success">${successMsg}
+								</div>
+							</div>
+					</c:when>
+				</c:choose>
 	          </div>
 	        </div>
 	        <div class="span5">

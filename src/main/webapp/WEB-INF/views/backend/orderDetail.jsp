@@ -310,8 +310,8 @@
                   <td>${order.sendAddress}</td>
                 </tr>
                 <tr>
-                  <td><b>送证时间</b></td>
-                  <td><fmt:formatDate value="${order.sendDate}" pattern="yyyy-MM-dd"/></td>
+                  <td><b>是否可以工作日送证</b></td>
+                  <td>${order.sendOnWorkday?'是':'否'}</td>
                 </tr>
               </c:if>
             </table>
