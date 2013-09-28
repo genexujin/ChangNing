@@ -130,9 +130,10 @@ public class ReservationServiceImpl extends AbstractService implements
 
 		List<Predicate> criteria = new ArrayList<Predicate>();
 		if (readableId != null) {
-			ParameterExpression<String> p = cb.parameter(String.class,
-					"readable_id");
-			criteria.add(cb.equal(o.get("readableId"), p));
+//			ParameterExpression<String> p = cb.parameter(String.class,
+//					"readable_id");
+//			criteria.add(cb.equal(o.get("readableId"), p));
+			criteria.add(cb.like(o.get("readableId").as(String.class),"%"+ readableId +"%"));
 		}
 		
 		if (requestorName != null){
@@ -169,8 +170,8 @@ public class ReservationServiceImpl extends AbstractService implements
 		}
 
 		TypedQuery<Reservation> q = em.createQuery(cq);
-		if (readableId != null)
-			q.setParameter("readable_id", readableId);
+//		if (readableId != null)
+//			q.setParameter("readable_id", readableId);
 //		if (requestorName != null)
 //			q.setParameter("requestor_name", requestorName);
 		if (status != null)
@@ -199,9 +200,10 @@ public class ReservationServiceImpl extends AbstractService implements
 
 		List<Predicate> criteria = new ArrayList<Predicate>();
 		if (readableId != null) {
-			ParameterExpression<String> p = cb.parameter(String.class,
-					"readable_id");
-			criteria.add(cb.equal(o.get("readableId"), p));
+//			ParameterExpression<String> p = cb.parameter(String.class,
+//					"readable_id");
+//			criteria.add(cb.equal(o.get("readableId"), p));
+			criteria.add(cb.like(o.get("readableId").as(String.class),"%"+ readableId +"%"));
 		}
 
 		if (requestorName != null){
@@ -237,8 +239,8 @@ public class ReservationServiceImpl extends AbstractService implements
 		}
 
 		TypedQuery<Long> q = em.createQuery(cq);
-		if (readableId != null)
-			q.setParameter("readable_id", readableId);
+//		if (readableId != null)
+//			q.setParameter("readable_id", readableId);
 //		if (requestorName != null)
 //			q.setParameter("requestor_name", requestorName);
 		if (status != null)
