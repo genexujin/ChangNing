@@ -34,48 +34,45 @@
 	</div>
 
 	
-	<div class="span9" style="margin-left: 40px;">
+	<div class="span9" style="margin-left: 20px;">
 		<form class="form-horizontal" action="" method="POST">
+		  <div class="bar-bg"  style="width:770px;">
+		        <div class="row">
+		          <div class="span9 navbg2">
+		            <div class="row">
+		              <div class="span9">
+		                <h5>&nbsp;&nbsp;&nbsp;&nbsp;订单管理</h5>
+		              </div>             
+		            </div>
+		          </div>
+		        </div>
+		  </div>
+		    
+		  <div class="border"  style="width:769px;">
+		    <br>
+		    <div class="row">
+					<p style="padding-left: 29px; padding-bottom: 5px;color:blue;">
+						<strong>请输入查询条件：</strong>
+					</p>
+			</div>
 			<div class="row">
-				<div class="span4">
+				<div class="span3">
 					<div class="control-group">
 						<label class="control-label" for="rId">申办号</label>
 						<div class="controls">
-							<input name="rId" type="text" placeholder="申办号"></input>
+							<input class="thin" name="rId" type="text" placeholder="申办号"></input>
 						</div>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span3">
 					<div class="control-group">
 						<label class="control-label" for="reqName">姓名</label>
 						<div class="controls">
-							<input name="reqName" type="text" placeholder="申办人姓名"></input>
+							<input class="thin" name="reqName" type="text" placeholder="申办人姓名"></input>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="span4">
-					<div class="control-group">
-						<label class="control-label" for="startDate">开始日期</label>
-						<div class="controls">
-							<input id="datepicker1" type="text" 
-									name="startDate" placeholder="请点击选择开始日期" readonly />
-						</div>
-					</div>
-				</div>
-				<div class="span4">
-					<div class="control-group">
-						<label class="control-label" for="endDate">结束日期</label>
-						<div class="controls">
-							<input id="datepicker2" class="" type="text" 
-									name="endDate" placeholder="请点击选择结束日期" readonly />
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="span4">
+				<div class="span2">
 				  <div class="control-group">
 				    <label class="control-label" for="endDate">状态</label>
 				      <div class="controls">
@@ -94,13 +91,38 @@
 					  </div>
 					</div>
 				</div>
+			</div>
+			<div class="row">
+				<div class="span3">
+					<div class="control-group">
+						<label class="control-label thin2" for="startDate">开始日期</label>
+						<div class="controls">
+							<input class="thin" id="datepicker1" type="text" 
+									name="startDate" placeholder="请点击选择" readonly />
+						</div>
+					</div>
+				</div>
+				<div class="span3">
+					<div class="control-group">
+						<label class="control-label" for="endDate">结束日期</label>
+						<div class="controls thin2">
+							<input class="thin" id="datepicker2" class="" type="text" 
+									name="endDate" placeholder="请点击选择" readonly />
+						</div>
+					</div>
+				</div>				
 				<div class="span1 offset2">
 					<button class="btn btn-block" type="submit">查询</button>
 				</div>
 			</div>
+			<div class="row">
+			  <p style="padding-left: 29px; padding-bottom: 5px;color:blue;">
+				<strong>查询结果：</strong>
+			  </p>
+			</div>
 
 			<div class="row">
-				<table class="table table-striped table-bordered table-hover">
+				<table class="table table-striped table-bordered table-hover" style="margin-left:25px;width:760px;">
 					<thead>
 						<tr>
 							<th>申办号</th>
@@ -163,6 +185,7 @@
 					</c:choose>
 				</ul>
 			</div>
+		  </div>
 
 		</form>
 	</div>
