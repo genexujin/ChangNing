@@ -15,7 +15,7 @@ public interface OrderService {
     
     List<Order> findOrdersByUserIdAndPage(Long userId, int pageNum);
     
-    List<Order> findOrders(String readableId, OrderStatus status, Long userId, int pageNum);
+    List<Order> findOrders(String readableId, String requestorName, Date startDate, Date endDate, OrderStatus status, Long userId, int pageNum);
     
     Order findOrderById(Long orderId, Long userId);
 

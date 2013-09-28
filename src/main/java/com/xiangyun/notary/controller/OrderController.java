@@ -501,7 +501,7 @@ public class OrderController {
         
         Date startDate = null;
         String startDateStr = request.getParameter("startDate");
-        if (StringUtils.isEmpty(startDateStr)) {
+        if (!StringUtils.isEmpty(startDateStr)) {
             try {
                 startDate = format.parse(startDateStr);
             } catch (ParseException e) {
@@ -511,7 +511,7 @@ public class OrderController {
         
         Date endDate = null;
         String endDateStr = request.getParameter("endDate");
-        if (StringUtils.isEmpty(endDateStr)) {
+        if (!StringUtils.isEmpty(endDateStr)) {
             try {
                 endDate = format.parse(endDateStr);
             } catch (ParseException e) {
@@ -531,7 +531,7 @@ public class OrderController {
 
 		Long orderCount = orderService.getOrderCount(readableId, requestorName, startDate, endDate, status, userId);
 		Long pageCount = (orderCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
-		List<Order> orders = orderService.findOrders(readableId, status, userId, pageNum);
+		List<Order> orders = orderService.findOrders(readableId, requestorName, startDate, endDate, status, userId, pageNum);
 
 		ModelAndView mav = new ModelAndView("backend/orderQuery");
 		mav.addObject("title", "订单查询");

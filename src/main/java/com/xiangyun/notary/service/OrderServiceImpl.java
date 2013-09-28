@@ -79,9 +79,9 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     
     @Override
     @Transactional(readOnly=true)
-    public List<Order> findOrders(String readableId, OrderStatus status, Long userId, int pageNum) {
+    public List<Order> findOrders(String readableId, String requestorName, Date startDate, Date endDate, OrderStatus status, Long userId, int pageNum) {
     	log.debug("Now is in findOrders(). Parameters are:");
-    	log.debug("    readableId: {}, status: {}, userId: {}, pageNum: {}", new Object[] {readableId, status, userId, pageNum});
+    	log.debug("    readableId: {},  requestorName: {}, startDate: {}, endDate: {}, status: {}, userId: {}, pageNum: {}", new Object[] {readableId,  requestorName, startDate, endDate, status, userId, pageNum});
     	
     	CriteriaBuilder cb = em.getCriteriaBuilder();
     	CriteriaQuery<Order> cq = cb.createQuery(Order.class);
@@ -90,9 +90,20 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     	
     	List<Predicate> criteria = new ArrayList<Predicate>();
     	if (readableId != null) {
-    		ParameterExpression<String> p = cb.parameter(String.class, "rId");
-    		criteria.add(cb.equal(o.get("readableId"), p));
+    		criteria.add(cb.like(cb.lower(o.<String>get("readableId")), "%" + readableId.toLowerCase() + "%"));
     	}
+    	
+    	if (requestorName != null) {
+            criteria.add(cb.equal(o.<String>get("requestorName"), requestorName));
+        }
+        
+        if (startDate != null) {
+            criteria.add(cb.greaterThanOrEqualTo(o.get("orderDate").as(Date.class), startDate));
+        }
+        
+        if (endDate != null) {
+            criteria.add(cb.lessThanOrEqualTo(o.get("orderDate").as(Date.class), endDate));
+        }
     	
     	if (status != null && status != OrderStatus.NULL) {
     		ParameterExpression<OrderStatus> p = cb.parameter(OrderStatus.class, "status");
@@ -112,7 +123,6 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
 		}
 		
 		TypedQuery<Order> q = em.createQuery(cq);
-		if (readableId != null) q.setParameter("rId", readableId);
 		if (status != null && status != OrderStatus.NULL) q.setParameter("status", status);
 		if (userId != null) q.setParameter("uId", userId);
 		
@@ -155,7 +165,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     @Transactional(readOnly=true)
     public Long getOrderCount(String readableId, String requestorName, Date startDate, Date endDate, OrderStatus status, Long userId) {
         log.debug("Now is in getOrderCount(readableId, requestorName, startDate, endDate, status, userId). Parameters are:");
-        log.debug("    readableId: {}, requestorName: {}, startDate: {}, endDate: {}, status: {}, userId: {}", new Object[] {readableId, status, userId});
+        log.debug("    readableId: {}, requestorName: {}, startDate: {}, endDate: {}, status: {}, userId: {}", new Object[] {readableId, requestorName, startDate, endDate, status, userId});
         
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -164,13 +174,23 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         
         List<Predicate> criteria = new ArrayList<Predicate>();
         if (readableId != null) {
-            ParameterExpression<String> p = cb.parameter(String.class, "rId");
-//            criteria.add(cb.like(o.get("readableId"), p));
+            criteria.add(cb.like(cb.lower(o.<String>get("readableId")), "%" + readableId.toLowerCase() + "%"));
+        }
+        
+        if (requestorName != null) {
+            criteria.add(cb.equal(o.<String>get("requestorName"), requestorName));
+        }
+        
+        if (startDate != null) {
+            criteria.add(cb.greaterThanOrEqualTo(o.get("orderDate").as(Date.class), startDate));
+        }
+        
+        if (endDate != null) {
+            criteria.add(cb.lessThanOrEqualTo(o.get("orderDate").as(Date.class), endDate));
         }
         
         if (status != null && status != OrderStatus.NULL) {
-            ParameterExpression<OrderStatus> p = cb.parameter(OrderStatus.class, "status");
-            criteria.add(cb.equal(o.get("orderStatus"), p));
+            criteria.add(cb.equal(o.get("orderStatus").as(OrderStatus.class), status));
         }
         
         if (userId != null) {
@@ -185,8 +205,6 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         }
         
         TypedQuery<Long> q = em.createQuery(cq);
-        if (readableId != null) q.setParameter("rId", readableId);
-        if (status != null && status != OrderStatus.NULL) q.setParameter("status", status);
         if (userId != null) q.setParameter("uId", userId);
         
         return q.getSingleResult();
