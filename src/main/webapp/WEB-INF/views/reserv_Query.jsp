@@ -4,6 +4,7 @@
 	pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
+<script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 
 <ul class="breadcrumb">
 	<b>您的位置：</b>
@@ -39,6 +40,40 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			
+			
+			<div class="row">
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label" for="startDate">开始日期</label>
+							<div class="controls">
+								<input id="datepicker1" class="" type="text" 
+									name="startDate" placeholder="请点击选择开始日期" readonly />
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="row">
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label" for="endDate">结束日期</label>
+							<div class="controls">
+								<input id="datepicker2" class="" type="text" 
+									name="endDate" placeholder="请点击选择结束日期" readonly />
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="row">
+				<div class="span5">
+					<div class="control-group">
+						<label class="control-label" for="requestor_name">姓名</label>
+						<div class="controls">
+							<input  name="requestor_name" type="text" placeholder="预约人姓名"></input>
+						</div>
+					</div>
+				</div>
 				<div class="span2">
 					<SELECT id="status" name="status">
 						<OPTION selected value="">全部</OPTION>
@@ -52,13 +87,14 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row" style="width:750px;">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th>申办号</th>
 							<th>时间</th>
 							<th>申办人</th>
+							<th>申办人手机</th>
 							<th>公证项</th>
 							<th>处理状态</th>
 							<th>操作</th>
@@ -71,6 +107,7 @@
 								<td><fmt:formatDate value="${reservation.reservationDate}"
 										pattern="yyyy-MM-dd" />&nbsp;${reservation.reservationTimeSegment}</td>
 								<td>${reservation.requestorName}</td>
+								<td>${reservation.requestorMobile}</td>
 								<td>${reservation.reservationKey}</td>
 								<td>${reservation.reservationStatus.getText()}</td>
 								<td><c:choose>
@@ -79,16 +116,19 @@
 
 											<c:if test="${reservation.reservationStatus eq 'SUBMITTED'}">
 												<a onclick="cancle('${reservation.readableId}')"
-													role="button" class="btn btn-primary" data-toggle="modal">取消预约</a>
+													role="button"  class="btn btn-primary" data-toggle="modal">取消</a>
 												<a onclick="finish('${reservation.readableId}')"
-													role="button" class="btn btn-primary" data-toggle="modal">完成预约</a>
+													role="button" class="btn btn-primary" data-toggle="modal">完成</a>
+											</c:if>
+											<c:if test="${reservation.reservationStatus eq 'FINISHED'}">
+												受理人：${reservation.accepter.name}
 											</c:if>
 
 										</c:when>
 										<c:otherwise>
 											<c:if test="${reservation.reservationStatus eq 'SUBMITTED'}">
 												<a onclick="cancle('${reservation.readableId}')"
-													role="button" class="btn btn-primary" data-toggle="modal">取消预约</a>
+													role="button" class="btn btn-primary" data-toggle="modal">取消</a>
 											</c:if>
 										</c:otherwise>
 									</c:choose></td>
@@ -134,8 +174,7 @@
 	</div>
 </div>
 
-<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true">×</button>
@@ -167,6 +206,8 @@
 </div>
 
 <script type="text/javascript">
+	$("#datepicker1").datepicker();
+	$("#datepicker2").datepicker();
 	function cancle(readableId) {
 		$("#myModal1").modal("show");
 		$("#cancle_submit").click(function() {

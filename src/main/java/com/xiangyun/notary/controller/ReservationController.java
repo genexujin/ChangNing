@@ -2,6 +2,8 @@ package com.xiangyun.notary.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,7 +14,9 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
 
+import org.apache.commons.httpclient.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +58,7 @@ public class ReservationController {
 	 * 
 	 * @param request
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/reserv_Query.do")
 	public ModelAndView reservQuery(HttpServletRequest request) {
@@ -75,7 +80,34 @@ public class ReservationController {
 		String readableId = request.getParameter("readable_id");
 		if (StringUtils.isEmpty(readableId))
 			readableId = null;
-
+		
+		String requestorName = request.getParameter("requestor_name");
+		if (StringUtils.isEmpty(requestorName))
+			requestorName = null;
+		
+		
+		DateFormat format = new SimpleDateFormat("MM/dd/yyyy"); 
+		Date startDate = null;
+		String  startDatestr = request.getParameter("startDate");
+		if (!StringUtils.isEmpty(startDatestr))
+			try {
+				startDate = format.parse(startDatestr);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+		Date endDate = null;
+		String endDatestr =request.getParameter("endDate");
+		if (!StringUtils.isEmpty(endDatestr))
+			try {
+				endDate = format.parse(endDatestr);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
 		ReservationStatus status = null;
 		String statusStr = request.getParameter("status");
 		if (!StringUtils.isEmpty(statusStr))
@@ -87,10 +119,10 @@ public class ReservationController {
 		}
 
 		Long reservationCount = reservationService.getReservationCount(
-				readableId, status, userId);
+				readableId, requestorName,startDate,endDate, status, userId);
 		Long pageCount = (reservationCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
 		List<Reservation> reservations = reservationService.findReservations(
-				readableId, status, userId, pageNum);
+				readableId, requestorName,startDate,endDate, status, userId, pageNum);
 		ModelAndView mav = new ModelAndView("reserv_Query");
 		mav.addObject("title", "预约查询");
 		mav.addObject("pageCount", pageCount);
@@ -148,12 +180,21 @@ public class ReservationController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "finishReserv.do")
-	public void finishReserv(String readableId, HttpServletResponse response)
-			throws IOException {
+	public void finishReserv(String readableId, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		Reservation reservation = reservationService
 				.findByReadableId(readableId);
 		reservation.setReservationStatus(ReservationStatus.FINISHED);
+		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
+		reservation.setAccepter(u);
 		reservationService.save(reservation);
+		
+		SMSManager.sendSMS(
+				new String[] { reservation.getRequestorMobile() },
+				"尊敬的" + reservation.getRequestorName()
+						+ "，您在长宁公证处的网上预约已经受理完成，预约号为："
+						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
+		
 		PrintWriter out = response.getWriter();
 		out.print(true);
 	}
@@ -165,13 +206,11 @@ public class ReservationController {
 	 */
 	@RequestMapping(value = "sendCancleMSG.do")
 	public void sendCancleMSG(Reservation reservation) {
-		SMSManager
-				.sendSMS(
-						new String[] { reservation.getRequestorMobile() },
-						"尊敬的" + reservation.getRequestorName()
-								+ "，您在长宁公证处的网上预约已经取消，预约号为"
-								+ reservation.getReservationKey()
-								+ "，谢谢使用长宁网上公证业务！", 1);
+		SMSManager.sendSMS(
+				new String[] { reservation.getRequestorMobile() },
+				"尊敬的" + reservation.getRequestorName()
+						+ "，您在长宁公证处的网上预约已经取消，预约号为："
+						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
 		try {
 			System.out.println("Available SMS: "
 					+ Math.floor(SMSManager.checkBalance()));
@@ -344,13 +383,9 @@ public class ReservationController {
 
 				reservationService.save(rsv);
 
-				SMSManager
-						.sendSMS(
-								new String[] { mobile },
-								"尊敬的" + name + " 先生/女士"
-										+ "，您在长宁公证处的网上预约已经成功，预约号为："
-										+ rsv.getReservationKey()
-										+ "，谢谢使用长宁网上公证业务！", 1);
+				SMSManager.sendSMS(new String[] { mobile },
+						"尊敬的" + name + " 先生/女士" + "，您在长宁公证处的网上预约已经成功，预约号为："
+								+ rsv.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
 
 				// try {
 				// System.out.println("Available SMS: "

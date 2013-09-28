@@ -226,14 +226,21 @@ CREATE  TABLE IF NOT EXISTS `changning`.`Reservations` (
   `reserve_date` DATE NULL ,
   `reserve_time_segment` VARCHAR(50) NULL,
   `creation_date` DATE NULL ,
+  `accepter_id` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `Reservations_Users_Fk_idx` (`user_id` ASC) ,
+  INDEX `reserv_accepter_fk_idx` (`accepter_id` ASC) ,
   CONSTRAINT `reservations_users_fk`
     FOREIGN KEY (`user_id` )
     REFERENCES `changning`.`users` (`id` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
- );
+    ON UPDATE NO ACTION,
+  CONSTRAINT `reserv_accepter_fk`
+    FOREIGN KEY (`accepter_id` )
+    REFERENCES `changning`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
 
 CREATE  TABLE IF NOT EXISTS `changning`.`doc_extra_items` (
   `id` INT NOT NULL AUTO_INCREMENT ,

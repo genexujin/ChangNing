@@ -71,7 +71,7 @@ public class UserController {
 		mav.setViewName("userCenter_login");
 		return mav;
 	}
-	
+
 	/**
 	 * 进入信息维护页面
 	 * 
@@ -96,18 +96,18 @@ public class UserController {
 	 * @return
 	 * @throws IOException
 	 */
-    @RequestMapping(value = "register.do")
-    public ModelAndView register(User user, HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        ModelAndView mav = new ModelAndView();
-        user.setPassword(Encrypt.e(user.getPassword()));
-        userService.save(user);
+	@RequestMapping(value = "register.do")
+	public ModelAndView register(User user, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		user.setPassword(Encrypt.e(user.getPassword()));
+		userService.save(user);
 		HttpSession session = request.getSession(true);
 		session.setAttribute(Constants.LOGIN_USER, user);
-        mav.addObject("user", user);
-        mav.setViewName("userCenter_modify");
-        return mav;
-    }
+		mav.addObject("user", user);
+		mav.setViewName("userCenter_modify");
+		return mav;
+	}
 
 	/**
 	 * 检查手机号码是否存在
@@ -118,15 +118,17 @@ public class UserController {
 	 * @param mobile
 	 */
 	@RequestMapping(value = "checkRegisterMobile.do")
-	public void checkRegisterMobile(String mobile,HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void checkRegisterMobile(String mobile, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		User u = userService.findByMobile(mobile);
-		PrintWriter out = response.getWriter(); 
-		if (u==null){
+		PrintWriter out = response.getWriter();
+		if (u == null) {
 			out.println(0);
-		}else{
+		} else {
 			out.println(1);
-		};
-		
+		}
+		;
+
 	}
 
 	/**
@@ -139,9 +141,9 @@ public class UserController {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("SMSCODE", checksmscode);
 		System.out.println(mobile);
-		SMSManager.sendSMS(new String[] { mobile }, "感谢您使用上海长宁公证处网上公证平台，您的验证码为："
-				+ checksmscode, 1);		
-		
+		SMSManager.sendSMS(new String[] { mobile },
+				"感谢您使用上海长宁公证处网上公证平台，您的验证码为：" + checksmscode, 1);
+
 		try {
 			System.out.println("Available SMS: "
 					+ Math.floor(SMSManager.checkBalance()));
@@ -158,61 +160,69 @@ public class UserController {
 	public int creatCode() {
 		Random random = new Random();
 		int smsCode = random.nextInt(999999);
-		if (smsCode > 100000);
+		if (smsCode > 100000)
+			;
 		return smsCode;
 	}
-	
+
 	/**
 	 * 注册页面检查短信验证码
+	 * 
 	 * @param request
 	 * @param response
 	 */
 	@RequestMapping(value = "checkSMSCode.do")
-	public void checkSMSCode(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void checkSMSCode(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
 		if (!request.getParameter("reg_user_smscode").equals(smscodeString)) {
 			out.println(0);
-		}else{
+		} else {
 			out.println(1);
 		}
 
-		
 	}
+
 	/**
 	 * 修改页面检查短信验证码
+	 * 
 	 * @param request
 	 * @param response
 	 */
 	@RequestMapping(value = "checkSMSCode1.do")
-	public void checkSMSCode1(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void checkSMSCode1(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
 		if (!request.getParameter("modify_user_smscode").equals(smscodeString)) {
 			out.println(0);
-		}else{
+		} else {
 			out.println(1);
 		}
 	}
+
 	/**
 	 * 找回页面检查短信验证码
+	 * 
 	 * @param request
 	 * @param response
 	 */
 	@RequestMapping(value = "checkSMSCode2.do")
-	public void checkSMSCode2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void checkSMSCode2(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
 		if (!request.getParameter("forget_user_smscode").equals(smscodeString)) {
 			out.println(0);
-		}else{
+		} else {
 			out.println(1);
 		}
 	}
-	
+
 	/**
 	 * 用户登录
 	 * 
@@ -239,25 +249,25 @@ public class UserController {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute(Constants.LOGIN_USER, u);
-			String targetURL = (String)session.getAttribute("openURL");
+			String targetURL = (String) session.getAttribute("openURL");
 			if (StringUtils.isEmpty(targetURL)) {
 				mav.addObject("user", u);
 				mav.addObject("title", "个人信息");
 				mav.setViewName("userCenter_modify");
 			} else {
-				mav.setViewName("redirect:"+targetURL);
+				mav.setViewName("redirect:" + targetURL);
 			}
-			
+
 		}
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/logout.do")
 	public ModelAndView logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		if (session != null) 
+		if (session != null)
 			session.invalidate();
-		
+
 		ModelAndView mav = new ModelAndView("userCenter_login");
 		return mav;
 	}
@@ -270,9 +280,12 @@ public class UserController {
 	 * @param user
 	 */
 	@RequestMapping(value = "/modify.do")
-	public ModelAndView modify(HttpServletRequest request, User user) {
-		ModelAndView mav = new ModelAndView();
-		User u = userService.findByMobile(((User)request.getSession(true).getAttribute(Constants.LOGIN_USER)).getMobile());
+	public void modify(HttpServletRequest request, User user,
+			HttpServletResponse response) throws Exception {
+		// ModelAndView mav = new ModelAndView();
+		log.debug("entering method modify user info ........");
+		User u = userService.findByMobile(((User) request.getSession(true)
+				.getAttribute(Constants.LOGIN_USER)).getMobile());
 		u.setGender(user.getGender());
 		u.setAddress(user.getAddress());
 		u.setEmail(user.getEmail());
@@ -280,24 +293,28 @@ public class UserController {
 		u.setCredentialType(user.getCredentialType());
 		u.setCredentialId(user.getCredentialId());
 		userService.save(u);
-		
+
 		HttpSession session = request.getSession(true);
 		session.setAttribute(Constants.LOGIN_USER, u);
-		return mav;
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("success");
+
 	}
 
-	
 	/**
 	 * 修改用户密码
 	 * 
 	 * @author binbin
 	 * @param request
 	 * @param user
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@RequestMapping(value = "/modifyPwd.do")
-	public void modifyPwd(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		User u = userService.findByMobile(((User)request.getSession(true).getAttribute(Constants.LOGIN_USER)).getMobile());
+	public void modifyPwd(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		User u = userService.findByMobile(((User) request.getSession(true)
+				.getAttribute(Constants.LOGIN_USER)).getMobile());
 		u.setPassword(Encrypt.e(request.getParameter("password")));
 		userService.save(u);
 		HttpSession session = request.getSession(true);
@@ -305,6 +322,7 @@ public class UserController {
 		PrintWriter out = response.getWriter();
 		out.println("修改成功！");
 	}
+
 	/**
 	 * 进入忘记密码页面
 	 * 
@@ -332,25 +350,26 @@ public class UserController {
 	public ModelAndView forget(User user, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		User u = userService.findByMobile(user.getMobile());
-			u.setPassword(Encrypt.e(user.getPassword()));
-			userService.save(u);
-			HttpSession session = request.getSession(true);
-			session.setAttribute(Constants.LOGIN_USER, u);
-			mav.addObject("user", u);
-			mav.setViewName("userCenter_modify");
+		u.setPassword(Encrypt.e(user.getPassword()));
+		userService.save(u);
+		HttpSession session = request.getSession(true);
+		session.setAttribute(Constants.LOGIN_USER, u);
+		mav.addObject("user", u);
+		mav.setViewName("userCenter_modify");
 		return mav;
 	}
-	
+
 	/**
 	 * 
 	 * @param response
 	 */
 	@RequestMapping(value = "/whichUser.do")
-	public void whichUser(HttpServletRequest request,HttpServletResponse response)  {
+	public void whichUser(HttpServletRequest request,
+			HttpServletResponse response) {
 		try {
 			HttpSession session = request.getSession(true);
-			User u = (User)session.getAttribute(Constants.LOGIN_USER);
-			if(u!=null){
+			User u = (User) session.getAttribute(Constants.LOGIN_USER);
+			if (u != null) {
 				String userName = u.getName();
 				String mobile = u.getMobile();
 				String email = u.getEmail();
@@ -371,11 +390,10 @@ public class UserController {
 				buffer.append("\"UserCompany\":\"\",");
 				buffer.append("\"UserAddress\":\"\"");
 				buffer.append("}");
-				
+
 				response.getWriter().print(buffer.toString());
 			}
-			
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

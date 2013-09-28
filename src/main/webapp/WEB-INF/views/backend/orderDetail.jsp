@@ -415,6 +415,51 @@
 		    </div>
 		  </div>
       </div>
+      <div class="border">
+	      	<div class="bar-bg">
+		        <div class="row">
+		          <div class="span12 navbg2">
+		            <div class="row">
+		              <div class="span9">
+		                <h5>&nbsp;&nbsp;&nbsp;&nbsp;付款情况</h5>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	      </div>
+	       <br/>
+          <div class="row">
+		    <div class="span10 offset1">
+	      <table class="table table-striped table-bordered table-hover">
+	            <thead>
+	              <tr>	                
+	                <th>付款抬头</th>
+	                <th>状态</th>
+	                <th>付款金额</th>
+	                <th>付款日期</th>
+	                <th>支付宝交易号</th>
+	                <th>退款理由</th>
+	                <th>退款金额</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <c:forEach items="${order.payments}" var="payment" >	                
+	                  <tr>
+	                    <td>${payment.title}</td>
+	                    <td>${payment.status.text}</td>
+	                    <td><fmt:formatNumber value="${payment.paymentTotal}" type="currency" pattern="￥#.00"/></td>
+	                    <td>${payment.paymentDate}</td>
+	                    <td>${payment.alipayTxnNo}</td>
+	                    <td>${payment.refundReason}</td>
+	                    <td><fmt:formatNumber value="${payment.refundTotal}" type="currency" pattern="￥#.00"/></td>
+	                  </tr>	                
+	              </c:forEach>              
+	              
+	            </tbody>
+	          </table>
+	      </div>	      
+	      </div>
+      </div>
 
 
 <%@ include file="../footer.jspf"%>

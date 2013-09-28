@@ -3,9 +3,8 @@
 	pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
-<link href="<c:url value="/resources/user-alert.css" />"
-	rel="stylesheet">
-<script src="http://malsup.github.com/jquery.form.js"></script>
+
+<script src="js/jquery.form.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#modify_user_name").blur(
@@ -137,13 +136,20 @@
 			return true;
 		}
 	}
-	$(function() {
+	
+	$(document).ready(function() { 
 		$("#user_modify_form").ajaxForm(
 				function() {
-					$("#modify_submit_alert").removeClass().addClass(
-							"alert alert-success").show().html("修改成功！");
+					
+					$("#modify_submit_alert").removeClass();
+					$("#modify_submit_alert").addClass(
+							"alert alert-success");
+					$("#modify_submit_alert").show();
+					$("#modify_submit_alert").html("修改成功！");
 				});
-	});
+		
+	 });
+	
 	function checkModifyPwdForm() {
 		if (!($("#modify_user_pwd").val().match(/([a-zA-Z])/) && ($(
 				"#modify_user_pwd").val().match(/([0-9])/)
@@ -207,11 +213,19 @@
 			</c:choose>
 		</ul>
 	</div>
-
+    <br>
 	<div class="span9" style="width: 760px; margin-left: 20px;">
-		<div class="span12">
-			<h2>个人信息</h2>
-		</div>
+		<div class="bar-bg">
+        <div class="row">
+          <div class="span12 navbg2">
+            <div class="row">
+              <div class="span9">
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;修改个人信息</h5>
+              </div>             
+            </div>
+          </div>
+        </div>
+      </div>
 
 		<div>
 			<form onsubmit="return checkModifyForm()" id="user_modify_form"
@@ -221,7 +235,7 @@
 						<div class="span12">
 							<table width="98%">
 								<tr>
-									<th width="15%"></th>
+									<th width="15%"></th>	
 									<th width="15%"></th>
 									<th width="10%"></th>
 									<th width="15%"></th>
@@ -243,7 +257,7 @@
 										</div>
 									</td>
 									<td><div id="modify_name_alert" class="alert"
-											style="display: none">请确认或修改姓名！</div></td>
+											style="width:50px; display: none">请确认或修改姓名！</div></td>
 								</tr>
 								<tr height="60px">
 									<td><p class="text-right">证件类型：</p></td>
@@ -273,7 +287,7 @@
 											其他
 									</label></td>
 									<td><div id="modify_cardtype_alert" class="alert"
-											style="display: none"></div></td>
+											style="width:50px;display: none"></div></td>
 								</tr>
 								<tr height="60px">
 									<td><p class="text-right">证件号码：</p></td>
@@ -281,14 +295,14 @@
 										id="modify_user_cardnum" placeholder="证件号" name="credentialId"
 										value="${user.credentialId}"></td>
 									<td><div id="modify_cardnum_alert" class="alert"
-											style="display: none">请输入或修改证件号码！</div></td>
+											style="width:50px;display: none">请输入或修改证件号码！</div></td>
 								</tr>
 								<tr height="60px">
 									<td><p class="text-right">手机号：</p></td>
 									<td colspan="3"><input type="hidden" name="mobile"
 										id="modify_user_mobile" value="${user.mobile}">${user.mobile}</td>
 									<td><div id="modify_mobile_alert" class="alert"
-											style="display: none"></div></td>
+											style="width:50px;display: none"></div></td>
 								</tr>
 
 
@@ -298,7 +312,7 @@
 										id="modify_user_email" placeholder="电子邮箱地址" name="email"
 										value="${user.email}"></td>
 									<td><div id="modify_email_alert" class="alert"
-											style="display: none">请输入或修改邮箱！</div></td>
+											style="width:50px;display: none">请输入或修改邮箱！</div></td>
 								</tr>
 								<tr height="60px">
 									<td><p class="text-right">联系地址：</p></td>
@@ -306,16 +320,19 @@
 										id="modify_user_address" placeholder="联系地址" name="address"
 										value="${user.address}"></td>
 									<td><div id="modify_address_alert" class="alert"
-											style="display: none">请输入或修改联系地址！</div></td>
+											style="width:50px;display: none">请输入或修改联系地址！</div></td>
 								</tr>
 								<tr height="60px">
 									<td></td>
 									<td colspan="3">
 										<button href="#" id="user_modify_btn" type="submit"
 											class="btn">提交修改</button>
+											
+									
+											
 									</td>
-									<td><div id="modify_submit_alert" class="alert"
-											style="display: none"></div></td>
+									<td style=""><div id="modify_submit_alert" class="alert"
+											style="width:100px;display:none"></div></td>
 								</tr>
 							</table>
 						</div>
@@ -328,11 +345,17 @@
 
 
 
-		<div class="row">
-			<div class="span12">
-				<h2>密码修改</h2>
-			</div>
-		</div>
+		<div class="bar-bg">
+        <div class="row">
+          <div class="span12 navbg2">
+            <div class="row">
+              <div class="span9">
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;修改密码</h5>
+              </div>             
+            </div>
+          </div>
+        </div>
+      </div>
 		<div>
 			<form id="user_modifyPwd_form" name="user_modifyPwd_form">
 				<div class="border">
@@ -380,7 +403,7 @@
 											class="btn" onclick="modifyPwd()">提交修改</button>
 									</td>
 									<td><div id="modifyPwd_submit_alert" class="alert"
-											style="width:100px;display: none"></div></td>
+											style="width:50px;display: none"></div></td>
 								</tr>
 							</table>
 						</div>
