@@ -76,7 +76,7 @@ public class User implements Serializable {
 			CascadeType.MERGE }, mappedBy = "accepter")
 	private Set<Order> acceptOrders = new HashSet<Order>();
 
-	@ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_roles", inverseJoinColumns = @JoinColumn(name = "role_id"), joinColumns = @JoinColumn(name = "user_id"))
 	private Set<Role> roles = new HashSet<Role>();
 

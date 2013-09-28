@@ -450,7 +450,19 @@ public class UserController {
 			HttpServletRequest request) {
 		User user = (User) request.getSession(false).getAttribute(
 				Constants.LOGIN_USER);
-
+		
+		//初始化查询参数
+		if(queryMobile!=null)
+			request.getSession(false).setAttribute("user_query_mobile", queryMobile);
+		else
+			queryMobile = (String)request.getSession(false).getAttribute("user_query_mobile");
+		
+		if(queryName	 !=null)
+			request.getSession(false).setAttribute("user_query_queryName", queryName);
+		else
+			queryName = (String)request.getSession(false).getAttribute("user_query_queryName");
+		
+		
 		ModelAndView mav;
 		log.debug("inside doUserQuery method");
 		log.debug("params: " + queryMobile + "," + queryName);
