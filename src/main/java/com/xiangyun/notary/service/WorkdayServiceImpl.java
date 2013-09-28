@@ -35,14 +35,14 @@ public class WorkdayServiceImpl extends AbstractService implements WorkdayServic
 	    @Override
 	    public Workday save(Workday workday) {
 	        if (workday.getId() == null) {
-	            log.info("Inserting new record...");
+	            log.debug("Inserting new record...");
 	            em.persist(workday);
 	        } else {
-	            log.info("Updating new record...");
+	            log.debug("Updating new record...");
 	            em.merge(workday);
 	        }
 	        
-	        log.info("Record saved with id: " + workday.getId());
+	        log.debug("Record saved with id: " + workday.getId());
 	        return workday;
 	    }
 	    
@@ -98,8 +98,8 @@ public class WorkdayServiceImpl extends AbstractService implements WorkdayServic
 			Query query = em.createQuery(hql);
 			query.setParameter("year", year);
 			query.setParameter("month", month);
-			query.setFirstResult((pageNO-1)*5);
-			query.setMaxResults(5);
+			query.setFirstResult((pageNO-1)*15);
+			query.setMaxResults(15);
 			List<Workday> workdays = query.getResultList();
 			return workdays;
 		}

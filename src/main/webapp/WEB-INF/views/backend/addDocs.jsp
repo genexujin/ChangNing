@@ -79,7 +79,7 @@
 				        'height'          : 25,
 				        'width'           : 80,
 				        'fileTypeDesc'    : 'Image Files',
-				        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif; *.pdf',
+				        'fileTypeExts'    : '*.jpg; *.jpeg; *.doc; *.docx',
 				        "removeCompleted" : false,
 				        'formData'        : {
 				        	'uid' : '${um.uid}',
@@ -128,7 +128,7 @@
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
-	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif; *.pdf',
+	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.doc; *.docx',
 	        		        'removeCompleted' : false,
 	        		        'formData'        : {
 	        		        	'uid' : '${um.uid}',
@@ -223,7 +223,7 @@
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
-	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.png; *.gif',
+	        		        'fileTypeExts'    : '*.jpg; *.jpeg',
 	        		        'removeCompleted' : false,
 	        		        'multi'           : false,
 	        		        'formData'        : {

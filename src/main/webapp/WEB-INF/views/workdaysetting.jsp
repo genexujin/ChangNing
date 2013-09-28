@@ -54,7 +54,7 @@
 					<div class="span12 offset1">
 						<div class="row">
 							<div class="controls span4">
-								日期：&nbsp;<input id="datepicker" class="" type="text" id="date"
+								日期：&nbsp;<input id="datepicker" class="" type="text"
 									name="date" />
 							</div>
 							<div class="span3">
@@ -189,8 +189,8 @@
 
 	var options = {
 		currentPage : 1,
-		totalPages : 7,
-		numberOfPages : 5,
+		totalPages : 3,
+		numberOfPages : 15,
 		alignment : "center",
 		onPageClicked : function(e, originalEvent, type, page) {
 			$
