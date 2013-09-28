@@ -382,7 +382,8 @@ public class OrderController {
 		order.setSendDoc(sendDoc);
 		if (sendDoc) {
 			order.setSendAddress(request.getParameter("sendAddress"));
-			order.setSendDate(SendDocDateType.valueOf((request.getParameter("workday"))));
+			order.setSendDate(SendDocDateType.valueOf((request
+					.getParameter("workday"))));
 		}
 
 		order.calculateTotalFee();
@@ -396,7 +397,8 @@ public class OrderController {
 	}
 
 	/**
-	 *  支付方法，该方法打开支付宝页面
+	 * 支付方法，该方法打开支付宝页面
+	 * 
 	 * @param request
 	 * @return
 	 */
@@ -406,7 +408,7 @@ public class OrderController {
 		Long orderId = validateOrderIdParameter(request);
 		Order order = null;
 
-		if (orderId != null) {//如果有传oid参数进来、则读取该oid的order。
+		if (orderId != null) {// 如果有传oid参数进来、则读取该oid的order。
 			Long userId = getUserIdFromSession(request.getSession(false));
 			order = orderService.findOrderById(orderId, userId);
 			if (order == null) {
@@ -511,13 +513,18 @@ public class OrderController {
 		// integer/integer is still a integer
 		// In JSTL, integer/integer can be float/double, which is not good for
 		// this computation.
-		mav.addObject("loopBegin", ((pageNum - 1) / 5) * 5 + 1);
+		mav.addObject("loopBegin", ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE + 1);
 		mav.addObject(
 				"loopEnd",
-				(((pageNum - 1) / 5) * 5 + 5 < pageCount) ? ((pageNum - 1) / 5) * 5 + 5
+				(((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE < pageCount) ? ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE
 						: pageCount);
-		mav.addObject("left", (((pageNum - 1) / 5) * 5 - 4));
-		mav.addObject("right", (((pageNum - 1) / 5) * 5 + 6));
+		mav.addObject("left", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE - Constants.PAGING_BAR_SIZE - 1));
+		mav.addObject("right", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE + 1));
 		mav.addObject("orders", orders);
 		return mav;
 	}
@@ -631,7 +638,7 @@ public class OrderController {
 		String notaryId = request.getParameter("notaryId");
 		order.setBackendNotaryId(notaryId);
 		order.setOrderStatus(OrderStatus.ACCEPTED);
-		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);		
+		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
 		order.setAccepter(u);
 		orderService.save(order);
 
@@ -846,7 +853,7 @@ public class OrderController {
 			order.addInteraction(i);
 
 		}
-		
+
 		order.setOrderStatus(OrderStatus.EXTRADOC_REQUESTED);
 		orderService.save(order);
 
@@ -958,7 +965,7 @@ public class OrderController {
 		String tradeNo = payment.getOrderTxnNo();
 		String title = payment.getTitle();
 		payment.setPaymentDate(new Date());
-		
+
 		payment.getOrder().setOrderStatus(OrderStatus.PAYING);
 		orderService.save(payment);
 

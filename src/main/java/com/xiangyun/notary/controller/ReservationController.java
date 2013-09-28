@@ -37,8 +37,6 @@ import com.xiangyun.sms.SMSManager;
 @Controller
 public class ReservationController {
 
-	public static final int AVAILABLE_OFFICER_COUNT = 2;
-
 	private static Logger log = LoggerFactory
 			.getLogger(ReservationController.class);
 
@@ -96,14 +94,18 @@ public class ReservationController {
 		ModelAndView mav = new ModelAndView("reserv_Query");
 		mav.addObject("title", "预约查询");
 		mav.addObject("pageCount", pageCount);
-		mav.addObject("currPage", pageNum);
-		mav.addObject("loopBegin", ((pageNum - 1) / 5) * 5 + 1);
+		mav.addObject("loopBegin", ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE + 1);
 		mav.addObject(
 				"loopEnd",
-				(((pageNum - 1) / 5) * 5 + 5 < pageCount) ? ((pageNum - 1) / 5) * 5 + 5
+				(((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE < pageCount) ? ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE
 						: pageCount);
-		mav.addObject("left", (((pageNum - 1) / 5) * 5 - 4));
-		mav.addObject("right", (((pageNum - 1) / 5) * 5 + 6));
+		mav.addObject("left", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE - Constants.PAGING_BAR_SIZE - 1));
+		mav.addObject("right", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE + 1));
 		mav.addObject("reservations", reservations);
 		return mav;
 	}
@@ -228,7 +230,7 @@ public class ReservationController {
 		mav.addObject("dayTypeList", dayLinkStrList);
 		mav.addObject("dayList", dayStrList);
 		mav.addObject("title", "预约申请");
-		mav.addObject("limit", AVAILABLE_OFFICER_COUNT);
+		mav.addObject("limit", Constants.BACK_OFFICER_COUNT);
 		return mav;
 	}
 
@@ -303,7 +305,7 @@ public class ReservationController {
 		if (reservationService.checkCompliance(u)) {
 
 			if (theSeg != null
-					&& theSeg.getResvCount() >= AVAILABLE_OFFICER_COUNT) {
+					&& theSeg.getResvCount() >= Constants.BACK_OFFICER_COUNT) {
 				// return reservation failed
 
 				out.write("{\"sequence\": \"" + sequence + "\",");
@@ -341,7 +343,7 @@ public class ReservationController {
 				rsv.setUser(u);
 
 				reservationService.save(rsv);
-				
+
 				SMSManager
 						.sendSMS(
 								new String[] { mobile },
