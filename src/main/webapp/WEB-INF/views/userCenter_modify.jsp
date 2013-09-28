@@ -215,7 +215,7 @@
 	</div>
     <br>
 	<div class="span9" style="width: 760px; margin-left: 20px;">
-		<div class="bar-bg">
+	<div class="bar-bg">
         <div class="row">
           <div class="span12 navbg2">
             <div class="row">

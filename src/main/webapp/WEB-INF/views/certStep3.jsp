@@ -6,7 +6,7 @@
       <script src="uploadify/jquery.uploadify.js"></script>
       <script src="Jcrop-0.9.12/js/jquery.Jcrop.min.js"></script>
       
-      <strong>您的位置：</strong>
+      <strong>您的位置�?/strong>
       <ul class="breadcrumb">
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li><a href="certStep1.do">网上办证</a> <span class="divider">/</span></li>
@@ -35,16 +35,20 @@
 	    </div>
 	  </div>
 	  
-	  <br>
 	  
-	  <div class="row">
-	    <div class="span10 offset1">
-	      <h5><font color="red">请上传所需材料。提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入【个人中心】查找提交的订单并补充材料。 本系统支持 .jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过2M.</font></h5>
-	      <h5><font color="red">成绩单等复杂表单请用相机拍摄，保证清晰度。</font></h5>
-	    </div>
+
+	  <div class="border">
+	  	<br>
+		  <div class="row">		   
+			    <div class="span10 offset1">
+			      <h5><font color="red">请上传所�?��料�?提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入�?个人中心】查找提交的订单并补充材料�? 本系统支�?.jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过2M.</font></h5>
+			    </div>
+		    
+		  </div>
+		   <br>
+
 	  </div>
-	  
-	  <br>
+	 
 	  
 	  <form class="form-horizontal" action="certStep4.do" method="POST">
 	      
@@ -61,7 +65,7 @@
 		        <br>
 		        <div class="row">
 		          <div class="span11 offset1">
-			        <p><h5>需要上传的材料：</h5>
+			        <p><h5>�?��上传的材料：</h5>
 			        <ul>
 			          <c:forEach items="${um.allInOneValues}" var="docs" >
 			            <c:forEach items="${docs}" var="doc" >
@@ -110,7 +114,7 @@
 			  </script>
 	      </c:if>
 	      
-	      <!-- 需要单独上传 -->
+	      <!-- �?��单独上传 -->
 	      <c:if test="${not um.aloneUploadEmpty}">
 		      <div class="bar-bg">
 			      <div class="row">
@@ -166,7 +170,7 @@
 		      </div>
 	      </c:if>
 	      
-	      <!-- 需要裁剪区 -->
+	      <!-- �?��裁剪�?-->
 	      <c:if test="${not um.needCropEmpty}">
 	        <c:forEach items="${um.needCrop}" var="doc" >
 	          <div class="bar-bg">
@@ -342,7 +346,7 @@
 	      <br/>
 		  <div class="row">
 	   		  <div class="span2 offset5">
-	   		    <button id="goToStep4" class="btn btn-large btn-block btn-info" type="submit">下一步</button>
+	   		    <button id="goToStep4" class="btn btn-large btn-block btn-info" type="submit">下一�?/button>
 	   		  </div>
 	      </div>
       

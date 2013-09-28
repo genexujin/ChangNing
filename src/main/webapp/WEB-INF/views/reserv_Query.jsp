@@ -27,71 +27,73 @@
 			</c:choose>
 		</ul>
 	</div>
+   <div class=span9 style="margin-left:10px;width:780px;">
+	<div class="bar-bg">
+        <div class="row">
+          <div class="span9 navbg2" style="width:780px;">
+            <div class="row">
+              <div class="span9">
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;预约单查询</h5>
+              </div>             
+            </div>
+          </div>
+        </div>
+      </div>
+	<div class="border">
+		<div class="row">
 
-	<div class="span9" style="margin-left: 40px;">
+					<p style="padding-left: 29px; padding-bottom: 5px;color:blue;">
+						<strong>请输入查询条件：</strong>
+					</p>
+				</div>
 		<form class="form-horizontal" action="/ChangNing/reserv_Query.do"
 			method="POST">
-			<div class="row">
-				<div class="span5">
-					<div class="control-group">
-						<label class="control-label" for="readable_id">预约号</label>
-						<div class="controls">
-							<input name="readable_id" type="text" placeholder="预约号"></input>
-						</div>
-					</div>
-				</div>
-			</div>
 			
-			
-			<div class="row">
-					<div class="span5">
-						<div class="control-group">
-							<label class="control-label" for="startDate">开始日期</label>
-							<div class="controls">
-								<input id="datepicker1" class="" type="text" 
-									name="startDate" placeholder="请点击选择开始日期" readonly />
-							</div>
-						</div>
-					</div>
-			</div>
-			<div class="row">
-					<div class="span5">
-						<div class="control-group">
-							<label class="control-label" for="endDate">结束日期</label>
-							<div class="controls">
-								<input id="datepicker2" class="" type="text" 
-									name="endDate" placeholder="请点击选择结束日期" readonly />
-							</div>
-						</div>
-					</div>
-			</div>
-			<div class="row">
-				<div class="span5">
-					<div class="control-group">
-						<label class="control-label" for="requestor_name">姓名</label>
-						<div class="controls">
-							<input  name="requestor_name" type="text" placeholder="预约人姓名"></input>
-						</div>
-					</div>
-				</div>
-				<div class="span2">
-					<SELECT id="status" name="status">
+			 <table class="table td-no-border">
+			 	<tbody>
+			 		<tr>
+	                <td style="width:230px;text-align:center;"><b>预约号：</b><input style="width:80px;padding-left:5px;" name="readable_id" type="text" placeholder="预约号"></input></td>
+	                <td style="width:230px;text-align:center;"><b>姓名：</b><input style="width:80px;padding-left:5px;" name="requestor_name" type="text" placeholder="预约人姓名"></input></td>
+	                <td style="width:230px;text-align:center;">
+	                <b>预约状态：</b>
+	                <SELECT style="width:80px;" id="status" name="status">
 						<OPTION selected value="">全部</OPTION>
 						<OPTION value="SUBMITTED">已创建</OPTION>
 						<OPTION value="FINISHED">已完成</OPTION>
 						<OPTION value="CANCELLED">已取消</OPTION>
-					</SELECT>
-				</div>
-				<div class="span1">
-					<button class="btn btn-block" type="submit">查询</button>
-				</div>
-			</div>
+					</SELECT></td>	                
+	              </tr>
+	              <tr>
+	                <td style="width:230px;text-align:center;">
+	                	<b>开始日期：</b>
+	                	<input style="width:80px;" id="datepicker1" class="" type="text"
+									name="startDate" placeholder="选择开始日期" readonly />
+					</td>
+	                <td style="width:230px;text-align:center;">
+	                	<b>结束日期：</b>
+	                	<input style="width:80px;" id="datepicker2" class="" type="text" 
+									name="endDate" placeholder="选择结束日期" readonly />
+					</td>
+	                <td style="width:230px;text-align:center;">
+	               		<button class="btn btn-medium" type="submit">执行查询</button>
+	               </td>	                
+	              </tr>
+			 	</tbody>			 
+			 </table>
+			
+			
+			
+			<div class="row">
 
-			<div class="row" style="width:750px;">
+					<p style="padding-left: 29px; padding-bottom: 5px;color:blue;">
+						<strong>查询结果：</strong>
+					</p>
+				</div>
+			<div class="row" style="width:750px;padding-left:25px;">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>申办号</th>
+							<th>预约号</th>
 							<th>时间</th>
 							<th>申办人</th>
 							<th>申办人手机</th>
@@ -138,7 +140,7 @@
 				</table>
 			</div>
 
-			<div class="pagination pagination-right">
+			<div class="pagination pagination-right" style="padding-right:5px;">
 				<ul>
 					<c:choose>
 						<c:when test="${left < 1}">
@@ -172,7 +174,10 @@
 
 		</form>
 	</div>
+	
+	</div>
 </div>
+
 
 <div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
