@@ -3,6 +3,7 @@ package com.xiangyun.notary.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ import com.xiangyun.notary.common.Language;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.Reservation;
 import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.service.UserService;
 import com.xiangyun.sms.SMSManager;
@@ -398,5 +400,104 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@RequestMapping(value = "/enterUserQuery.do")
+	public ModelAndView userQuery(HttpServletRequest request) {
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		ModelAndView mav;
+		if (user.isAdmin())
+			mav = new ModelAndView("backend/userQuery");
+		else
+			mav = new ModelAndView("redirect:orderQuery.do");
+		return mav;
+	}
+
+	@RequestMapping(value = "/setUserAsNormal.do")
+	public void setUserAsNormal(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		String mobile = request.getParameter("mobile");
+		userService.setUserAsNormal(mobile);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		log.debug("finished set user as staff method");
+		out.println(1);
+	}
+	
+	@RequestMapping(value = "/setUserAsStaff.do")
+	public void setUserAsStaff(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		String mobile = request.getParameter("mobile");
+		userService.setUserAsStaff(mobile);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		log.debug("finished set user as staff method");
+		out.println(1);
+	}
+
+	/**
+	 * 
+	 * @param queryMobile
+	 * @param queryName
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/doUserQuery.do")
+	public ModelAndView doUserQuery(String queryMobile, String queryName,
+			HttpServletRequest request) {
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+
+		ModelAndView mav;
+		log.debug("inside doUserQuery method");
+		log.debug("params: " + queryMobile + "," + queryName);
+
+		if (user.isAdmin())
+			mav = new ModelAndView("backend/userQuery");
+		else {
+			mav = new ModelAndView("redirect:orderQuery.do");
+			return mav;
+		}
+
+		int pageNum;
+		String pageNumStr = request.getParameter("pn");
+		if (StringUtils.isEmpty(pageNumStr)) {
+			pageNum = 1;
+		} else {
+			try {
+				pageNum = Integer.parseInt(pageNumStr);
+			} catch (NumberFormatException e) {
+				pageNum = 1;
+			}
+		}
+
+		Long userCount = userService.getUserCount(queryMobile, queryName);
+		Long pageCount = (userCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
+		List<User> users = userService.findUsers(queryMobile, queryName,
+				pageNum);
+
+		mav.addObject("title", "用户查询");
+		mav.addObject("pageCount", pageCount);
+		mav.addObject("loopBegin", ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE + 1);
+		mav.addObject(
+				"loopEnd",
+				(((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE < pageCount) ? ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE
+						: pageCount);
+		mav.addObject("left", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE - Constants.PAGING_BAR_SIZE - 1));
+		mav.addObject("right", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE + 1));
+		mav.addObject("users", users);
+
+		mav.addObject("query_mobile", queryMobile);
+		mav.addObject("query_name", queryName);
+
+		return mav;
 	}
 }
