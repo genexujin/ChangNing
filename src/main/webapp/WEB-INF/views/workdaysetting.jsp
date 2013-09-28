@@ -3,7 +3,7 @@
 	pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
-<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="js/jquery.form.js"></script>
 <script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 <script src="<c:url value="/js/bootstrap-paginator.js"/>"></script>
 
@@ -34,50 +34,24 @@
 	<div class="span9" style="width: 760px; margin-left: 20px;">
 
 		<div class="bar-bg">
-			<div class="row">
-				<div class="span12 navbg2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工作日设定</div>
-			</div>
-		</div>
+        <div class="row">
+          <div class="span12 navbg2">
+            <div class="row">
+              <div class="span9">
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;工作日设定</h5>
+              </div>             
+            </div>
+          </div>
+        </div>
+      </div>
 
 		<div class="border">
 			<br />
 			<div class="row">
 				<form action="/ChangNing/saveWorkday.do" method="post"
 					id="workdaysettingform">
-					<!--
-					<c:choose>
-						<c:when test="${sessionScope['LOGIN_USER'].admin}">
-							<div class="row">
-								<div class="span4 offset2">
-									<div class="control-group">
-										<div class="controls">
-											年份：&nbsp;<select id="Year" name="Year">
-												<option value="2013">2013</option>
-												<option value="2014">2014</option>
-												<option value="2015">2015</option>
-											</select> &nbsp;&nbsp;&nbsp;
-											<button class="btn btn-small btn-primary" type="button"
-												onclick="add()">增加</button>
-										</div>
-
-									</div>
-								</div>
-
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="row"></div>
-						</c:otherwise>
-					</c:choose> 
 					
-					-->
-
-
-
-
-
-
-					<div class="span12">
+					<div class="span12 offset1">
 						<div class="row">
 							<div class="controls span4">
 								日期：&nbsp;<input id="datepicker" class="" type="text" id="date"
@@ -91,27 +65,31 @@
 
 
 
-						<div class="row">
-							<div class="span3">
-								<label class="radio"> <input type="radio" name="type"
-									id="type" value="WORKDAY" checked> 工作日
-								</label>
+						<div class="row" style="padding-top:15px;">
+							<div class="span8">
+								<div class="span2" style="width:80px;">
+									<label class="control-label"> <input type="radio" name="type"
+										id="type" value="WORKDAY" class="controls" checked> 工作日
+									</label>
+								</div>
+								<div class="span2" style="width:80px;">
+									<label class="control-label"> <input type="radio" name="type"
+										id="type" class="controls" value="NON_WORKDAY"> 非工作日
+									</label>
+								</div>
 							</div>
-							<div class="span2">
-								<label class="radio"> <input type="radio" name="type"
-									id="type" value="NON_WORKDAY"> 非工作日
-								</label>
+						</div>
+						<div class="row" style="padding-top:15px;">
+							<div class="control-group">
+								<div class="span4">
+									说明：
+									<textarea rows="3" cols="60" id="description" name="description"></textarea>
+								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="span4">
-								说明：
-								<textarea rows="3" cols="60" id="description" name="description"></textarea>
-							</div>
-						</div>
-						<div class="row">
 							<div class="span3">
-								<button class="btn btn-large" type="submit">保存工作日设定</button>
+								<button class="btn btn-medium" type="submit">保存</button>
 							</div>
 							<div class="span2">
 								<div id="workday_alert" class="alert" style="display: none">
@@ -123,19 +101,30 @@
 						</div>
 					</div>
 				</form>
+				
 			</div>
+			<br>
+			<br>
 		</div>
+		
+		
 
 		<div class="bar-bg">
-			<div class="row">
-				<div class="span12 navbg2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工作日查询</div>
-			</div>
-		</div>
+        <div class="row">
+          <div class="span12 navbg2">
+            <div class="row">
+              <div class="span9">
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;已设定的工作日查询</h5>
+              </div>             
+            </div>
+          </div>
+        </div>
+      </div>
 
 		<div class="border">
 			<br />
 			<div class="row">
-				<div class="span10">
+				<div class="span10 offset1">
 
 
 					<div class="row">
