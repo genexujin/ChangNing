@@ -256,7 +256,7 @@
 	        		        'height'          : 25,
 	        		        'width'           : 80,
 	        		        'fileTypeDesc'    : 'Image Files',
-	        		        'fileTypeExts'    : '*.jpg; *.jpeg; *.doc; *.docx',
+	        		        'fileTypeExts'    : '*.jpg; *.jpeg',
 	        		        'removeCompleted' : false,
 	        		        'multi'           : false,
 	        		        'formData'        : {

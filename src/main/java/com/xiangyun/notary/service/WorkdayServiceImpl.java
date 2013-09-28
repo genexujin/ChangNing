@@ -35,14 +35,14 @@ public class WorkdayServiceImpl extends AbstractService implements WorkdayServic
 	    @Override
 	    public Workday save(Workday workday) {
 	        if (workday.getId() == null) {
-	            log.info("Inserting new record...");
+	            log.debug("Inserting new record...");
 	            em.persist(workday);
 	        } else {
-	            log.info("Updating new record...");
+	            log.debug("Updating new record...");
 	            em.merge(workday);
 	        }
 	        
-	        log.info("Record saved with id: " + workday.getId());
+	        log.debug("Record saved with id: " + workday.getId());
 	        return workday;
 	    }
 	    
