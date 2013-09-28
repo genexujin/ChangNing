@@ -98,8 +98,8 @@ public class WorkdayServiceImpl extends AbstractService implements WorkdayServic
 			Query query = em.createQuery(hql);
 			query.setParameter("year", year);
 			query.setParameter("month", month);
-			query.setFirstResult((pageNO-1)*5);
-			query.setMaxResults(5);
+			query.setFirstResult((pageNO-1)*15);
+			query.setMaxResults(15);
 			List<Workday> workdays = query.getResultList();
 			return workdays;
 		}
