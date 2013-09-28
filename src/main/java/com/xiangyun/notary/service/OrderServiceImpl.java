@@ -1,6 +1,7 @@
 package com.xiangyun.notary.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -152,9 +153,9 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     
     @Override
     @Transactional(readOnly=true)
-    public Long getOrderCount(String readableId, OrderStatus status, Long userId) {
-        log.debug("Now is in getOrderCount(readableId, status, userId). Parameters are:");
-        log.debug("    readableId: {}, status: {}, userId: {}", new Object[] {readableId, status, userId});
+    public Long getOrderCount(String readableId, String requestorName, Date startDate, Date endDate, OrderStatus status, Long userId) {
+        log.debug("Now is in getOrderCount(readableId, requestorName, startDate, endDate, status, userId). Parameters are:");
+        log.debug("    readableId: {}, requestorName: {}, startDate: {}, endDate: {}, status: {}, userId: {}", new Object[] {readableId, status, userId});
         
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -164,7 +165,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         List<Predicate> criteria = new ArrayList<Predicate>();
         if (readableId != null) {
             ParameterExpression<String> p = cb.parameter(String.class, "rId");
-            criteria.add(cb.equal(o.get("readableId"), p));
+//            criteria.add(cb.like(o.get("readableId"), p));
         }
         
         if (status != null && status != OrderStatus.NULL) {

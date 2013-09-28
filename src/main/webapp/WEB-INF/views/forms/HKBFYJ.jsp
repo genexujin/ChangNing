@@ -31,6 +31,18 @@
 			    <div id="HKBFYJ_SHHJ_M" class="span4 tiny-pt">提示：若非上海户籍则不可办理公证
 			    </div>
 	          </div>
+	          
+	          <div class="row">
+				<div class="span5 offset1">
+					<div class="control-group">
+						<label class="control-label" for="HKBFYJ_YS">户口本有字页页数</label>
+						<div class="controls">
+							<input id="HKBFYJ_YS" name="HKBFYJ_YS" type="text"></input>
+						</div>
+					</div>
+				</div>
+				<div id="DXDZZGCJFYJ_XN_M" class="span4 tiny-pt">提示：此项不能为空</div>
+			  </div>
 
 	          
 	          <br/>
