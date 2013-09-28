@@ -309,7 +309,7 @@
     		        <td><input type="checkbox" value="JSZFYJ" name="notory_key"> 驾驶证复印件
     		        	<div style="cursor: pointer; display: inline" onclick="showImage('jszfy.png','驾驶证复印件 公证书样本')">[*]</div>
     		        </td>
-    		        <td><input type="checkbox" value="HKBFYJ" name="notory_key"> 户口簿复印件
+    		        <td><input type="checkbox" value="HKBFYJ" name="notory_key"> 户口本复印件
     		        	<div style="cursor: pointer; display: inline" onclick="showImage('hkbfy.png','户口簿复印件 公证书样本')">[*]</div>
     		        </td>
     		        <td><input type="checkbox" value="HYZKZMFYJ" name="notory_key"> 婚姻状况证明复印件

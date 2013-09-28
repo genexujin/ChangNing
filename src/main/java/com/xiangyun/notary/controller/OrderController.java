@@ -2,6 +2,8 @@ package com.xiangyun.notary.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,6 +60,8 @@ import com.xiangyun.sms.SMSManager;
 @Controller
 public class OrderController {
 	private static Logger log = LoggerFactory.getLogger(OrderController.class);
+	
+	private DateFormat format = new SimpleDateFormat("MM/dd/yyyy"); 
 
 	@Autowired
 	private ServletContext ctx;
@@ -473,13 +477,8 @@ public class OrderController {
 
 	@RequestMapping(value = "/orderQuery.do")
 	public ModelAndView orderQuery(HttpServletRequest request) {
-		User user = (User) request.getSession(false).getAttribute(
-				Constants.LOGIN_USER);
-
-		// Cannot use user.getOrders() directly.
-		// Otherwise org.hibernate.LazyInitializationException will throw,
-		// because the Hibernate session has closed.
-
+		User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+		
 		int pageNum;
 		String pageNumStr = request.getParameter("pn");
 		if (StringUtils.isEmpty(pageNumStr)) {
@@ -495,6 +494,30 @@ public class OrderController {
 		String readableId = request.getParameter("rId");
 		if (StringUtils.isEmpty(readableId))
 			readableId = null;
+		
+		String requestorName = request.getParameter("reqName");
+        if (StringUtils.isEmpty(requestorName))
+            requestorName = null;
+        
+        Date startDate = null;
+        String startDateStr = request.getParameter("startDate");
+        if (StringUtils.isEmpty(startDateStr)) {
+            try {
+                startDate = format.parse(startDateStr);
+            } catch (ParseException e) {
+                log.error("The startDate input cannot be parsed.", e);
+            }
+        }
+        
+        Date endDate = null;
+        String endDateStr = request.getParameter("endDate");
+        if (StringUtils.isEmpty(endDateStr)) {
+            try {
+                endDate = format.parse(endDateStr);
+            } catch (ParseException e) {
+                log.error("The endDate input cannot be parsed.", e);
+            }
+        }
 
 		OrderStatus status = null;
 		String statusStr = request.getParameter("status");
@@ -506,11 +529,9 @@ public class OrderController {
 			userId = user.getId();
 		}
 
-		Long orderCount = orderService
-				.getOrderCount(readableId, status, userId);
+		Long orderCount = orderService.getOrderCount(readableId, requestorName, startDate, endDate, status, userId);
 		Long pageCount = (orderCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
-		List<Order> orders = orderService.findOrders(readableId, status,
-				userId, pageNum);
+		List<Order> orders = orderService.findOrders(readableId, status, userId, pageNum);
 
 		ModelAndView mav = new ModelAndView("backend/orderQuery");
 		mav.addObject("title", "订单查询");
@@ -1198,8 +1219,7 @@ public class OrderController {
 				order.getTranslationLanguage());
 		if (feeFormDef.getFileFeeDependentFormItem() != null) {
 			for (FormItem item : form.getFormItems()) {
-				if (item.getItemKey().equals(
-						feeFormDef.getFileFeeDependentFormItem())) {
+				if (item.getItemKey().equals(feeFormDef.getFileFeeDependentFormItem())) {
 					fileTranslationFee *= Integer.parseInt(item.getItemValue());
 				}
 			}

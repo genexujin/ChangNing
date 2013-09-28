@@ -157,7 +157,8 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": 80,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": 80
+            "fileFeeGroup5": 80,
+            "fileFeeDependentFormItem": "HKBFYJ_YS"
         },
         "JHZFYJ": {
             "notaryFee": 100,

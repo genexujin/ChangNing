@@ -4,6 +4,7 @@
 	pageEncoding="utf-8"%>
 
 <%@ include file="../header.jspf"%>
+<script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 
 <ul class="breadcrumb">
 	<b>您的位置：</b>
@@ -30,25 +31,64 @@
 	<div class="span9" style="margin-left: 40px;">
 		<form class="form-horizontal" action="" method="POST">
 			<div class="row">
-				<div class="span5">
+				<div class="span4">
 					<div class="control-group">
 						<label class="control-label" for="rId">申办号</label>
 						<div class="controls">
-							<input name="rId" type="text"></input>
+							<input name="rId" type="text" placeholder="申办号"></input>
 						</div>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label" for="reqName">姓名</label>
+						<div class="controls">
+							<input name="reqName" type="text" placeholder="申办人姓名"></input>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label" for="startDate">开始日期</label>
+						<div class="controls">
+							<input id="datepicker1" type="text" 
+									name="startDate" placeholder="请点击选择开始日期" readonly />
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label" for="endDate">结束日期</label>
+						<div class="controls">
+							<input id="datepicker2" class="" type="text" 
+									name="endDate" placeholder="请点击选择结束日期" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+				  <div class="control-group">
+				    <label class="control-label" for="endDate">状态</label>
+				      <div class="controls">
 					<SELECT id="status" name="status">
 						<OPTION value="NULL">全部</OPTION>
 						<OPTION value="SUBMITTED">已创建</OPTION>
+						<OPTION value="PAYING">付款中</OPTION>
+						<OPTION value="PAID">已付款</OPTION>
 						<OPTION value="ACCEPTED">已受理</OPTION>
 						<OPTION value="FINISHED">已完成</OPTION>
 						<OPTION value="CANCEL_REQUESTED">已申请撤销</OPTION>
-						<OPTION value="CANCELLED">已取消</OPTION>
+						<OPTION value="EXTRADOC_REQUESTED">要求补充材料</OPTION>
+						<OPTION value="ADD_CHARGE">要求附加费用</OPTION>
+						<OPTION value="CANCELLED">已撤销</OPTION>
 					</SELECT>
+					  </div>
+					</div>
 				</div>
-				<div class="span1">
+				<div class="span1 offset2">
 					<button class="btn btn-block" type="submit">查询</button>
 				</div>
 			</div>
@@ -122,6 +162,10 @@
 	</div>
 </div>
 
+<script>
+$("#datepicker1").datepicker();
+$("#datepicker2").datepicker();
+</script>
 
 <%@ include file="../footer.jspf"%>
 

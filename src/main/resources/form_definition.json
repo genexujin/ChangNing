@@ -813,6 +813,10 @@
             {
                 "fieldKey": "HKBFYJ_SHHJ",
                 "fieldName": "户籍是否在上海"
+            },
+            {
+                "fieldKey": "HKBFYJ_YS",
+                "fieldName": "户口本有字页页数"
             }
         ],
         "docs": [
