@@ -9,14 +9,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
@@ -247,8 +247,9 @@ public class UploadController {
 				String zipFileName = order.getReadableId()+"-"+order.getRequestorName() + ".zip";
 				String zipFullPath = saveDir + zipFileName;
 				FileOutputStream fos = new FileOutputStream(zipFullPath);
-				ZipOutputStream zos = new ZipOutputStream(fos);
-
+				ZipArchiveOutputStream  zos = new ZipArchiveOutputStream (fos);
+				zos.setEncoding("GBK");
+				
 				File dir = new File(saveDir);
 				Map<String, String> files = new HashMap<String, String>();
 				addDir(dir, zos, files);
@@ -290,7 +291,7 @@ public class UploadController {
 		}
 	}
 
-	private void addDir(File dirObj, ZipOutputStream out,
+	private void addDir(File dirObj, ZipArchiveOutputStream  out,
 			Map<String, String> processedFiles) throws IOException {
 		File[] files = dirObj.listFiles();
 
@@ -306,11 +307,10 @@ public class UploadController {
 					FileInputStream in = new FileInputStream(
 							files[i].getAbsolutePath());
 					log.debug("file name: " + files[i].getName());
-					out.putNextEntry(new ZipEntry(files[i].getName()));
+					out.putArchiveEntry(new ZipArchiveEntry(files[i].getName()));
 					IOUtils.copy(in, out);
-					out.closeEntry();
+					out.closeArchiveEntry();
 					in.close();
-
 					processedFiles.put(files[i].getName(), files[i].getName());
 				}
 
