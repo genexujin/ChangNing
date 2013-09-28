@@ -6,6 +6,15 @@
 <%@ include file="header.jspf"%>
 <script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 
+<%
+String readableId = request.getParameter("readable_id") != null ? request.getParameter("readable_id") : "";
+String requestorName = request.getParameter("requestor_name") != null ? request.getParameter("requestor_name") : "";
+String  startDatestr = request.getParameter("startDate") != null ? request.getParameter("startDate") : "";
+String endDatestr =request.getParameter("endDate") != null ? request.getParameter("endDate") : "";
+String statusStr = request.getParameter("status") != null ? request.getParameter("status") : "";
+request.setAttribute("statusStr", statusStr);
+%>
+
 <ul class="breadcrumb">
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
@@ -57,27 +66,27 @@
 			 <table class="table td-no-border">
 			 	<tbody>
 			 		<tr>
-	                <td style="width:230px;text-align:center;"><b>预约号：</b><input style="width:80px;padding-left:5px;" name="readable_id" type="text" placeholder="预约号"></input></td>
-	                <td style="width:230px;text-align:center;"><b>姓名：</b><input style="width:80px;padding-left:5px;" name="requestor_name" type="text" placeholder="预约人姓名"></input></td>
+	                <td style="width:230px;text-align:center;"><b>预约号：</b><input style="width:80px;padding-left:5px;" name="readable_id" type="text" placeholder="预约号" value="<%=readableId%>"></input></td>
+	                <td style="width:230px;text-align:center;"><b>姓名：</b><input style="width:80px;padding-left:5px;" name="requestor_name" type="text" placeholder="预约人姓名" value ="<%=requestorName%>"></input></td>
 	                <td style="width:230px;text-align:center;">
 	                <b>预约状态：</b>
 	                <SELECT style="width:80px;" id="status" name="status">
-						<OPTION selected value="">全部</OPTION>
-						<OPTION value="SUBMITTED">已创建</OPTION>
-						<OPTION value="FINISHED">已完成</OPTION>
-						<OPTION value="CANCELLED">已取消</OPTION>
+						<OPTION value="" <c:if test="${empty statusStr}">selected</c:if>>全部</OPTION>
+						<OPTION value="SUBMITTED" <c:if test="${statusStr eq 'SUBMITTED'}">selected</c:if>>已创建</OPTION>
+						<OPTION value="FINISHED" <c:if test="${statusStr eq 'FINISHED'}">selected</c:if>>已完成</OPTION>
+						<OPTION value="CANCELLED" <c:if test="${statusStr eq 'CANCELLED'}">selected</c:if>>已取消</OPTION>
 					</SELECT></td>	                
 	              </tr>
 	              <tr>
 	                <td style="width:230px;text-align:center;">
 	                	<b>开始日期：</b>
 	                	<input style="width:80px;" id="datepicker1" class="" type="text"
-									name="startDate" placeholder="选择开始日期" readonly />
+									name="startDate" placeholder="选择开始日期" readonly value ="<%=startDatestr%>"/>
 					</td>
 	                <td style="width:230px;text-align:center;">
 	                	<b>结束日期：</b>
 	                	<input style="width:80px;" id="datepicker2" class="" type="text" 
-									name="endDate" placeholder="选择结束日期" readonly />
+									name="endDate" placeholder="选择结束日期" readonly value ="<%=endDatestr%>"/>
 					</td>
 	                <td style="width:230px;text-align:center;">
 	               		<button class="btn btn-medium" type="submit">执行查询</button>
