@@ -17,6 +17,7 @@
     "JH": {
         "formKey": "JH",
         "formName": "已婚",
+        "canSendDoc": true,
         "fields": [
             {
                 "fieldKey": "JH_JHZ",
@@ -58,6 +59,7 @@
     "XL": {
         "formKey": "XL",
         "formName": "学历",
+        "canSendDoc": true,
         "fields": [
             {
                 "fieldKey": "XL_BYZ",
@@ -93,13 +95,15 @@
     "SGWSXSCF": {
         "formKey": "SGWSXSCF",
         "formName": "受过/未受刑事处分",
-        "containsItem": false
+        "containsItem": false,
+        "canSendDoc": true
     },
     
     "QSGX": {
         "formKey": "QSGX",
         "formName": "亲属关系",
         "containsVarItem": true,
+        "canSendDoc": true,
         "fields": [
             {
                 "fieldKey": "QSGX_SHHJ",
@@ -188,6 +192,7 @@
     "CS": {
         "formKey": "CS",
         "formName": "出生",
+        "canSendDoc": true,
         "fields": [
             {
                 "fieldKey": "CS_CSZ",
@@ -235,6 +240,18 @@
                 "dependent": true,
                 "dependOn": "CS_SMJZ"
             },
+         	{
+         		"docKey": "FQSFZ",
+         		"docName": "父亲死亡注销户籍证明",
+         		"dependent": false,
+                "dependOn": "CS_SFJZ"
+         	},
+         	{
+         		"docKey": "MQSFZ",
+         		"docName": "母亲死亡注销户籍证明",
+         		"dependent": false,
+                "dependOn": "CS_SMJZ"
+         	},
             {
                 "docKey": "BRHKB",
                 "docName": "本人户口本",
@@ -265,6 +282,7 @@
     "XW": {
         "formKey": "XW",
         "formName": "学位",
+        "canSendDoc": true,
         "fields": [
             {
                 "fieldKey": "XW_BYZXWZ",
@@ -304,6 +322,7 @@
         "formKey": "SW",
         "formName": "死亡",
         "containsVarItem": true,
+        "canSendDoc": true,
         "fields": [
             {
                 "fieldKey": "SW_SH",
@@ -477,14 +496,14 @@
                 "docName": "父亲户口本",
                 "uploadAlone": true,
                 "dependent": true,
-                "dependOn": "CS_SFJZ"
+                "dependOn": "CSZFYJ_SFJZ"
             },
             {
                 "docKey": "MQHKB",
                 "docName": "母亲户口本",
                 "uploadAlone": true,
                 "dependent": true,
-                "dependOn": "CS_SMJZ"
+                "dependOn": "CSZFYJ_SMJZ"
             }
         ]
     },
@@ -752,6 +771,7 @@
     "WH": {
         "formKey": "WH",
         "formName": "未婚",
+        "canSendDoc": true,
         "fields": [
             {
                 "fieldKey": "WH_SHHJ",
@@ -818,11 +838,11 @@
         "docs": [
             {
                 "docKey": "JSZZB",
-                "docName": "驾驶证正本"
+                "docName": "驾驶证正本正反面"
             },
             {
             	"docKey": "JSZFB",
-            	"docName": "驾驶证副本"
+            	"docName": "驾驶证副本正反面"
             },
              {
                 "docKey": "HKB",
@@ -837,6 +857,7 @@
     "GJ": {
         "formKey": "GJ",
         "formName": "国籍",
+        "canSendDoc": true,
         "fields": [
             {
                 "fieldKey": "GJ_SHHJ",

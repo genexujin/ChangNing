@@ -53,7 +53,7 @@
 	                <div class="control-group">
 			    	  <label class="control-label" for="CYM_CYMPY">曾用名拼音</label>
 			    	  <div class="controls">
-				    	<input id="CYM_CYMPY" name="CYM_CYMPY" type="text"></input>
+				    	<input id="CYM_CYMPY" name="CYM_CYMPY" type="text" onkeyup="this.value=this.value.replace(/[^\a-zA-Z ]/g,'')"></input>
 			    	  </div>
 			    	</div>
 	            </div>
@@ -106,7 +106,6 @@
 	      
 	      function validateCYM_CYMPY() {
 	    	  var cym_cympy = $("#CYM_CYMPY").val();
-	    	  alert(cym_cympy);
 	    	  if (cym_cympy != '') {
 		    	  $("#CYM_CYMPY_M").removeClass("alert alert-error");
 		    	  updateValidCYM();
