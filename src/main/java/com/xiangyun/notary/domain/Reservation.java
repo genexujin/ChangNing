@@ -54,6 +54,10 @@ public class Reservation implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "accepter_id")
+	private User accepter;
 
 	public Long getId() {
 		return id;
@@ -97,6 +101,15 @@ public class Reservation implements Serializable {
 
 	public Date getReservationDate() {
 		return reservationDate;
+	}
+	
+
+	public User getAccepter() {
+		return accepter;
+	}
+
+	public void setAccepter(User accepter) {
+		this.accepter = accepter;
 	}
 
 	public void setReservationDate(Date reservationDate) {

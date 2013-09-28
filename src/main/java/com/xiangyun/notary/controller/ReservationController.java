@@ -148,12 +148,21 @@ public class ReservationController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "finishReserv.do")
-	public void finishReserv(String readableId, HttpServletResponse response)
-			throws IOException {
+	public void finishReserv(String readableId, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		Reservation reservation = reservationService
 				.findByReadableId(readableId);
 		reservation.setReservationStatus(ReservationStatus.FINISHED);
+		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
+		reservation.setAccepter(u);
 		reservationService.save(reservation);
+		
+		SMSManager.sendSMS(
+				new String[] { reservation.getRequestorMobile() },
+				"尊敬的" + reservation.getRequestorName()
+						+ "，您在长宁公证处的网上预约已经受理完成，预约号为："
+						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
+		
 		PrintWriter out = response.getWriter();
 		out.print(true);
 	}
@@ -165,13 +174,11 @@ public class ReservationController {
 	 */
 	@RequestMapping(value = "sendCancleMSG.do")
 	public void sendCancleMSG(Reservation reservation) {
-		SMSManager
-				.sendSMS(
-						new String[] { reservation.getRequestorMobile() },
-						"尊敬的" + reservation.getRequestorName()
-								+ "，您在长宁公证处的网上预约已经取消，预约号为"
-								+ reservation.getReservationKey()
-								+ "，谢谢使用长宁网上公证业务！", 1);
+		SMSManager.sendSMS(
+				new String[] { reservation.getRequestorMobile() },
+				"尊敬的" + reservation.getRequestorName()
+						+ "，您在长宁公证处的网上预约已经取消，预约号为："
+						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
 		try {
 			System.out.println("Available SMS: "
 					+ Math.floor(SMSManager.checkBalance()));
@@ -344,13 +351,9 @@ public class ReservationController {
 
 				reservationService.save(rsv);
 
-				SMSManager
-						.sendSMS(
-								new String[] { mobile },
-								"尊敬的" + name + " 先生/女士"
-										+ "，您在长宁公证处的网上预约已经成功，预约号为："
-										+ rsv.getReservationKey()
-										+ "，谢谢使用长宁网上公证业务！", 1);
+				SMSManager.sendSMS(new String[] { mobile },
+						"尊敬的" + name + " 先生/女士" + "，您在长宁公证处的网上预约已经成功，预约号为："
+								+ rsv.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
 
 				// try {
 				// System.out.println("Available SMS: "

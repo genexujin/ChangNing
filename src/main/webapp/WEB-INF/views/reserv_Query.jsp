@@ -52,13 +52,14 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row" style="width:750px;">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th>申办号</th>
 							<th>时间</th>
 							<th>申办人</th>
+							<th>申办人手机</th>
 							<th>公证项</th>
 							<th>处理状态</th>
 							<th>操作</th>
@@ -71,6 +72,7 @@
 								<td><fmt:formatDate value="${reservation.reservationDate}"
 										pattern="yyyy-MM-dd" />&nbsp;${reservation.reservationTimeSegment}</td>
 								<td>${reservation.requestorName}</td>
+								<td>${reservation.requestorMobile}</td>
 								<td>${reservation.reservationKey}</td>
 								<td>${reservation.reservationStatus.getText()}</td>
 								<td><c:choose>
@@ -79,16 +81,19 @@
 
 											<c:if test="${reservation.reservationStatus eq 'SUBMITTED'}">
 												<a onclick="cancle('${reservation.readableId}')"
-													role="button" class="btn btn-primary" data-toggle="modal">取消预约</a>
+													role="button"  class="btn btn-primary" data-toggle="modal">取消</a>
 												<a onclick="finish('${reservation.readableId}')"
-													role="button" class="btn btn-primary" data-toggle="modal">完成预约</a>
+													role="button" class="btn btn-primary" data-toggle="modal">完成</a>
+											</c:if>
+											<c:if test="${reservation.reservationStatus eq 'FINISHED'}">
+												受理人：${reservation.accepter.name}
 											</c:if>
 
 										</c:when>
 										<c:otherwise>
 											<c:if test="${reservation.reservationStatus eq 'SUBMITTED'}">
 												<a onclick="cancle('${reservation.readableId}')"
-													role="button" class="btn btn-primary" data-toggle="modal">取消预约</a>
+													role="button" class="btn btn-primary" data-toggle="modal">取消</a>
 											</c:if>
 										</c:otherwise>
 									</c:choose></td>
