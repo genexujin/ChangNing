@@ -14,9 +14,8 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.Data;
+import javax.servlet.http.HttpSession;
 
-import org.apache.commons.httpclient.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +57,14 @@ public class ReservationController {
 	 * 
 	 * @param request
 	 * @return
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 	@RequestMapping(value = "/reserv_Query.do")
 	public ModelAndView reservQuery(HttpServletRequest request) {
 		User user = (User) request.getSession(false).getAttribute(
 				Constants.LOGIN_USER);
+		ModelAndView mav = new ModelAndView("reserv_Query");
+		HttpSession session = request.getSession(false);
 
 		int pageNum;
 		String pageNumStr = request.getParameter("pn");
@@ -77,41 +78,89 @@ public class ReservationController {
 			}
 		}
 
+		// prepare reserve id param
 		String readableId = request.getParameter("readable_id");
-		if (StringUtils.isEmpty(readableId))
-			readableId = null;
-		
+		if (readableId == null)
+			readableId = (String) session
+					.getAttribute("reserv_query_readable_id");
+		else
+			session.setAttribute("reserv_query_readable_id", readableId);
+		mav.addObject("reserv_query_readable_id", readableId);
+	
+
+		// prepare requester param
 		String requestorName = request.getParameter("requestor_name");
-		if (StringUtils.isEmpty(requestorName))
-			requestorName = null;
-		
-		
-		DateFormat format = new SimpleDateFormat("MM/dd/yyyy"); 
+		if (requestorName == null)
+			requestorName = (String) session
+					.getAttribute("reserv_query_requestorName");
+		else
+			session.setAttribute("reserv_query_requestorName", requestorName);
+		mav.addObject("reserv_query_requestorName", requestorName);
+
+		// prepare startDate param
+		DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		Date startDate = null;
-		String  startDatestr = request.getParameter("startDate");
-		if (!StringUtils.isEmpty(startDatestr))
-			try {
-				startDate = format.parse(startDatestr);
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		String startDatestr = request.getParameter("startDate");
+		if (startDatestr != null) {
+			if (!StringUtils.isEmpty(startDatestr)) {
+				log.debug("startDatestr length: " + startDatestr.length() );
+				log.debug("startDatestr: " + startDatestr);
+				try {
+					startDate = format.parse(startDatestr);
+					session.setAttribute("reserv_query_startDate", startDate);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else {
+				session.setAttribute("reserv_query_startDate", null);
+				startDate = null;
 			}
-		
+		} else {
+			startDate = (Date) session.getAttribute("reserv_query_startDate");
+		}
+		mav.addObject("reserv_query_startDate", startDatestr);
+
+		// prepare endDate param
 		Date endDate = null;
-		String endDatestr =request.getParameter("endDate");
-		if (!StringUtils.isEmpty(endDatestr))
-			try {
-				endDate = format.parse(endDatestr);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		String endDatestr = request.getParameter("endDate");
+		if (endDatestr != null) {
+			log.debug("startDatestr length: " + endDatestr.length() );
+			log.debug("startDatestr: " + endDatestr);
+			if (!StringUtils.isEmpty(endDatestr)) {
+				try {
+					endDate = format.parse(endDatestr);
+					session.setAttribute("reserv_query_endDate", endDate);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				session.setAttribute("reserv_query_endDate", null);
+				endDate = null;
 			}
-		
-		
+		} else {
+			endDate = (Date) session.getAttribute("reserv_query_endDate");
+		}
+		mav.addObject("reserv_query_endDate", endDatestr);
+
+		// prepare status param
 		ReservationStatus status = null;
 		String statusStr = request.getParameter("status");
-		if (!StringUtils.isEmpty(statusStr))
-			status = ReservationStatus.valueOf(statusStr);
+		if (statusStr != null) {
+			log.debug("statusStr:  " +statusStr.length() );
+			if (!StringUtils.isEmpty(statusStr)) {
+				status = ReservationStatus.valueOf(statusStr);
+				session.setAttribute("reserv_query_status", status);
+			} else {
+				session.setAttribute("reserv_query_status", null);
+				status = null;
+			}
+		} else {
+			status = (ReservationStatus) session
+					.getAttribute("reserv_query_status");
+		}
+		mav.addObject("reserv_query_status", statusStr);
 
 		Long userId = null;
 		if (!user.isAdmin() && !user.isStaff()) {
@@ -119,11 +168,12 @@ public class ReservationController {
 		}
 
 		Long reservationCount = reservationService.getReservationCount(
-				readableId, requestorName,startDate,endDate, status, userId);
+				readableId, requestorName, startDate, endDate, status, userId);
 		Long pageCount = (reservationCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
 		List<Reservation> reservations = reservationService.findReservations(
-				readableId, requestorName,startDate,endDate, status, userId, pageNum);
-		ModelAndView mav = new ModelAndView("reserv_Query");
+				readableId, requestorName, startDate, endDate, status, userId,
+				pageNum);
+		
 		mav.addObject("title", "预约查询");
 		mav.addObject("pageCount", pageCount);
 		mav.addObject("loopBegin", ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
@@ -139,6 +189,10 @@ public class ReservationController {
 		mav.addObject("right", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
 				* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE + 1));
 		mav.addObject("reservations", reservations);
+		
+		
+	
+		
 		return mav;
 	}
 
@@ -188,13 +242,13 @@ public class ReservationController {
 		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
 		reservation.setAccepter(u);
 		reservationService.save(reservation);
-		
+
 		SMSManager.sendSMS(
 				new String[] { reservation.getRequestorMobile() },
 				"尊敬的" + reservation.getRequestorName()
 						+ "，您在长宁公证处的网上预约已经受理完成，预约号为："
 						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
-		
+
 		PrintWriter out = response.getWriter();
 		out.print(true);
 	}

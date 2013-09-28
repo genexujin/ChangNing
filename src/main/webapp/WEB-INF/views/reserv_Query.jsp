@@ -66,27 +66,27 @@ request.setAttribute("statusStr", statusStr);
 			 <table class="table td-no-border">
 			 	<tbody>
 			 		<tr>
-	                <td style="width:230px;text-align:center;"><b>预约号：</b><input style="width:80px;padding-left:5px;" name="readable_id" type="text" placeholder="预约号" value="<%=readableId%>"></input></td>
-	                <td style="width:230px;text-align:center;"><b>姓名：</b><input style="width:80px;padding-left:5px;" name="requestor_name" type="text" placeholder="预约人姓名" value ="<%=requestorName%>"></input></td>
+	                <td style="width:230px;text-align:center;"><b>预约号：</b><input style="width:80px;padding-left:5px;" name="readable_id" type="text" placeholder="预约号" value="${reserv_query_readable_id}"></input></td>
+	                <td style="width:230px;text-align:center;"><b>姓名：</b><input style="width:80px;padding-left:5px;" name="requestor_name" type="text" placeholder="预约人姓名" value ="${reserv_query_requestorName}"></input></td>
 	                <td style="width:230px;text-align:center;">
 	                <b>预约状态：</b>
 	                <SELECT style="width:80px;" id="status" name="status">
-						<OPTION value="" <c:if test="${empty statusStr}">selected</c:if>>全部</OPTION>
-						<OPTION value="SUBMITTED" <c:if test="${statusStr eq 'SUBMITTED'}">selected</c:if>>已创建</OPTION>
-						<OPTION value="FINISHED" <c:if test="${statusStr eq 'FINISHED'}">selected</c:if>>已完成</OPTION>
-						<OPTION value="CANCELLED" <c:if test="${statusStr eq 'CANCELLED'}">selected</c:if>>已取消</OPTION>
+						<OPTION value="" <c:if test="${empty reserv_query_status}">selected</c:if>>全部</OPTION>
+						<OPTION value="SUBMITTED" <c:if test="${reserv_query_status eq 'SUBMITTED'}">selected</c:if>>已创建</OPTION>
+						<OPTION value="FINISHED" <c:if test="${reserv_query_status eq 'FINISHED'}">selected</c:if>>已完成</OPTION>
+						<OPTION value="CANCELLED" <c:if test="${reserv_query_status eq 'CANCELLED'}">selected</c:if>>已取消</OPTION>
 					</SELECT></td>	                
 	              </tr>
 	              <tr>
 	                <td style="width:230px;text-align:center;">
 	                	<b>开始日期：</b>
 	                	<input style="width:80px;" id="datepicker1" class="" type="text"
-									name="startDate" placeholder="选择开始日期" readonly value ="<%=startDatestr%>"/>
+									name="startDate" placeholder="选择开始日期" readonly value ="${reserv_query_startDate}"/>
 					</td>
 	                <td style="width:230px;text-align:center;">
 	                	<b>结束日期：</b>
 	                	<input style="width:80px;" id="datepicker2" class="" type="text" 
-									name="endDate" placeholder="选择结束日期" readonly value ="<%=endDatestr%>"/>
+									name="endDate" placeholder="选择结束日期" readonly value ="${reserv_query_endDate}"/>
 					</td>
 	                <td style="width:230px;text-align:center;">
 	               		<button class="btn btn-medium" type="submit">执行查询</button>
