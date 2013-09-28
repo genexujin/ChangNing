@@ -15,6 +15,7 @@ public class FormDef implements Serializable {
 	private String formName;
 	private boolean containsItem = true;
 	private boolean containsVarItem = true;
+	private boolean canSendDoc;
     private List<FormFieldItemDef> fields = new ArrayList<FormFieldItemDef>();
 	private List<FormDocItemDef> docs = new ArrayList<FormDocItemDef>();
 	
@@ -50,7 +51,15 @@ public class FormDef implements Serializable {
         this.containsVarItem = containsVarItem;
     }
 
-	public List<FormFieldItemDef> getFields() {
+	public boolean isCanSendDoc() {
+        return canSendDoc;
+    }
+
+    public void setCanSendDoc(boolean canSendDoc) {
+        this.canSendDoc = canSendDoc;
+    }
+
+    public List<FormFieldItemDef> getFields() {
 		return fields;
 	}
 

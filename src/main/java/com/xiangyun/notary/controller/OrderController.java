@@ -190,12 +190,17 @@ public class OrderController {
 
 		boolean needSpecialNote = false;
 		for (FormDef formDef : selectedForms) {
-			// A special requirement about add a note for 出生公证
+			// A special requirement about add a note for 出生公证 and 出生证复印件公证
 			if (formDef.getFormKey().equals("CS")) {
 				if ("true".equals(request.getParameter("CS_SFJZ"))
 						|| "true".equals(request.getParameter("CS_SMJZ")))
 
 					needSpecialNote = true;
+			} else if (formDef.getFormKey().equals("CSZFYJ")) {
+			    if ("true".equals(request.getParameter("CSZFYJ_SFJZ"))
+                        || "true".equals(request.getParameter("CSZFYJ_SMJZ")))
+
+                    needSpecialNote = true;
 			}
 
 			Form form = new Form();
@@ -214,8 +219,7 @@ public class OrderController {
 				item.setItemName(itemDef.getFieldName());
 				if (itemDef.isComposite()) {
 					// QSGX item
-					RelativeInfo info = createRelativeInfo(
-							itemDef.getFieldKey(), request);
+					RelativeInfo info = createRelativeInfo(itemDef.getFieldKey(), request);
 					if (info == null) {
 						break;
 					}
@@ -328,9 +332,10 @@ public class OrderController {
 	public ModelAndView goToStep4(
 			@RequestParam("upload_note") String uploadNote,
 			HttpServletRequest request) {
+	    
+	    Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx.getAttribute(Constants.FORM_DEFS);
 
-		Order order = (Order) request.getSession(false).getAttribute(
-				Constants.CURRENT_ORDER);
+		Order order = (Order) request.getSession(false).getAttribute(Constants.CURRENT_ORDER);
 		if (order == null) {
 			ModelAndView mav = new ModelAndView("certStep1");
 			mav.addObject("title", "选择申办业务");
@@ -341,26 +346,28 @@ public class OrderController {
 
 		orderService.save(order);
 
-		// 复印件公证不能上门送证，所以如果所选forms只有复印件，那么就跳过step4。
-		boolean goToStep4 = false;
+		// 大部分公证不能上门送证。如果所选forms全部能上门送证，那么才去到step4，否则跳过。
+		boolean skipStep4 = false;
 		for (Form form : order.getForms()) {
-			if (form.getFormKey().contains("FYJ") == false) {
-				goToStep4 = true;
+		    FormDef theDef = formDefs.get(form.getFormKey());
+			if ( theDef != null && theDef.isCanSendDoc() == false ) {
+				skipStep4 = true;
 			}
 		}
 
-		if (goToStep4) {
-			ModelAndView mav = new ModelAndView("certStep4");
-			mav.addObject("title", "上门送证");
-			return mav;
-		} else {
-			order.calculateTotalFee();
-			orderService.save(order);
+		if (skipStep4) {
+		    order.calculateTotalFee();
+            orderService.save(order);
 
-			ModelAndView mav = new ModelAndView("certStep5");
-			mav.addObject("title", "支付");
-			mav.addObject("order", order);
-			return mav;
+            ModelAndView mav = new ModelAndView("certStep5");
+            mav.addObject("title", "支付");
+            mav.addObject("order", order);
+            return mav;
+			
+		} else {
+		    ModelAndView mav = new ModelAndView("certStep4");
+            mav.addObject("title", "上门送证");
+            return mav;
 		}
 
 	}
