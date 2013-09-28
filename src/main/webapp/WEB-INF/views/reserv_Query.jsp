@@ -4,6 +4,7 @@
 	pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
+<script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 
 <ul class="breadcrumb">
 	<b>您的位置：</b>
@@ -36,6 +37,40 @@
 						<label class="control-label" for="readable_id">预约号</label>
 						<div class="controls">
 							<input name="readable_id" type="text" placeholder="预约号"></input>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="row">
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label" for="startDate">开始日期</label>
+							<div class="controls">
+								<input id="datepicker1" class="" type="text" 
+									name="startDate" placeholder="请点击选择开始日期" readonly />
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="row">
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label" for="endDate">结束日期</label>
+							<div class="controls">
+								<input id="datepicker2" class="" type="text" 
+									name="endDate" placeholder="请点击选择结束日期" readonly />
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="row">
+				<div class="span5">
+					<div class="control-group">
+						<label class="control-label" for="requestor_name">姓名</label>
+						<div class="controls">
+							<input  name="requestor_name" type="text" placeholder="预约人姓名"></input>
 						</div>
 					</div>
 				</div>
@@ -139,8 +174,7 @@
 	</div>
 </div>
 
-<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true">×</button>
@@ -172,6 +206,8 @@
 </div>
 
 <script type="text/javascript">
+	$("#datepicker1").datepicker();
+	$("#datepicker2").datepicker();
 	function cancle(readableId) {
 		$("#myModal1").modal("show");
 		$("#cancle_submit").click(function() {

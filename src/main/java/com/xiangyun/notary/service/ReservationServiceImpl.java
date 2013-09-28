@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.ParameterExpression;
@@ -116,11 +117,11 @@ public class ReservationServiceImpl extends AbstractService implements
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Reservation> findReservations(String readableId,
+	public List<Reservation> findReservations(String readableId, String requestorName,Date startDate,Date endDate ,
 			ReservationStatus status, Long userId, int pageNum) {
 		log.debug("Now is in findReservations(). Parameters are:");
 		log.debug("    readableId: {}, status: {}, userId: {}, pageNum: {}",
-				new Object[] { readableId, status, userId, pageNum });
+				new Object[] { readableId, requestorName, status, userId, pageNum });
 
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Reservation> cq = cb.createQuery(Reservation.class);
@@ -132,6 +133,21 @@ public class ReservationServiceImpl extends AbstractService implements
 			ParameterExpression<String> p = cb.parameter(String.class,
 					"readable_id");
 			criteria.add(cb.equal(o.get("readableId"), p));
+		}
+		
+		if (requestorName != null){
+//			ParameterExpression<String> p = cb.parameter(String.class,"requestor_name");
+			criteria.add(cb.like(o.get("requestorName").as(String.class),"%"+ requestorName +"%"));
+		}
+		
+		if (null != startDate) {
+//			ParameterExpression<Date> p = cb.parameter(Date.class,"reserve_date");
+			criteria.add(cb.greaterThanOrEqualTo(o.get("reservationDate").as(Date.class), startDate));
+		}
+		
+		if (null != endDate) {
+//			ParameterExpression<Date> p = cb.parameter(Date.class,"reserve_date");
+			criteria.add(cb.lessThanOrEqualTo(o.get("reservationDate").as(Date.class), endDate));
 		}
 
 		if (status != null) {
@@ -155,6 +171,8 @@ public class ReservationServiceImpl extends AbstractService implements
 		TypedQuery<Reservation> q = em.createQuery(cq);
 		if (readableId != null)
 			q.setParameter("readable_id", readableId);
+//		if (requestorName != null)
+//			q.setParameter("requestor_name", requestorName);
 		if (status != null)
 			q.setParameter("status", status);
 		if (userId != null)
@@ -168,11 +186,11 @@ public class ReservationServiceImpl extends AbstractService implements
 
 	@Override
 	@Transactional(readOnly = true)
-	public Long getReservationCount(String readableId,
+	public Long getReservationCount(String readableId, String requestorName,Date startDate,Date endDate ,
 			ReservationStatus status, Long userId) {
-		log.debug("Now is in getReservationCount(readableId, status, userId). Parameters are:");
-		log.debug("    readableId: {}, status: {}, userId: {}", new Object[] {
-				readableId, status, userId });
+		log.debug("Now is in getReservationCount(readableId,requestorName, status, userId). Parameters are:");
+		log.debug("    readableId: {},requestorName:{}, status: {}, userId: {}", new Object[] {
+				readableId, requestorName,status, userId });
 
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -186,6 +204,21 @@ public class ReservationServiceImpl extends AbstractService implements
 			criteria.add(cb.equal(o.get("readableId"), p));
 		}
 
+		if (requestorName != null){
+//			ParameterExpression<String> p = cb.parameter(String.class,"requestor_name");
+			criteria.add(cb.like(o.get("requestorName").as(String.class),"%"+ requestorName +"%"));
+		}
+
+		if (null != startDate) {
+//			ParameterExpression<Date> p = cb.parameter(Date.class,startDate);
+			criteria.add(cb.greaterThanOrEqualTo(o.get("reservationDate").as(Date.class), startDate));
+		}
+		
+		if (null != endDate) {
+//			ParameterExpression<Date> p = cb.parameter(Date.class,"reserve_date");
+			criteria.add(cb.lessThanOrEqualTo(o.get("reservationDate").as(Date.class), endDate));
+		}
+		
 		if (status != null) {
 			ParameterExpression<ReservationStatus> p = cb.parameter(
 					ReservationStatus.class, "status");
@@ -206,6 +239,8 @@ public class ReservationServiceImpl extends AbstractService implements
 		TypedQuery<Long> q = em.createQuery(cq);
 		if (readableId != null)
 			q.setParameter("readable_id", readableId);
+//		if (requestorName != null)
+//			q.setParameter("requestor_name", requestorName);
 		if (status != null)
 			q.setParameter("status", status);
 		if (userId != null)
