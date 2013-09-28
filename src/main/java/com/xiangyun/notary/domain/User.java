@@ -71,6 +71,9 @@ public class User implements Serializable {
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user")
     private Set<Order> orders = new HashSet<Order>();
     
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "accepter")
+    private Set<Order> acceptOrders = new HashSet<Order>();
+    
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", 
                inverseJoinColumns = @JoinColumn(name = "role_id"), 
@@ -188,8 +191,18 @@ public class User implements Serializable {
         order.setUser(this);
         orders.add(order);
     }
+    
+    
 
-    public Set<Role> getRoles() {
+    public Set<Order> getAcceptOrders() {
+		return acceptOrders;
+	}
+
+	public void setAcceptOrders(Set<Order> acceptOrders) {
+		this.acceptOrders = acceptOrders;
+	}
+
+	public Set<Role> getRoles() {
 		return roles;
 	}
 

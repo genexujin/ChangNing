@@ -16,17 +16,17 @@
           <div class="row">
 			<div class="span9">
 			 <c:choose>
-        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'CANCEL_REQUESTED'}">
+        		<c:when test="${order.orderStatus == 'PAID'}">
 			  		<a class="btn" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
 			   </c:when>
 			 </c:choose>
 			  <c:choose>
-        		<c:when test="${order.orderStatus != 'FINISHED'}">				
+        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">				
 			  		<a href="requestExtraDocs.do?oId=${order.id}" class="btn">要求补充材料</a>
 			    </c:when>
 			 </c:choose>
 			  <c:choose>
-        		<c:when test="${order.orderStatus == 'PAID'}">	
+        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">	
 			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn">要求客户附加费用</a>
 			   </c:when>
 			 </c:choose>
@@ -44,8 +44,13 @@
           <div class="row">
 			<div class="span9">
 			 <c:choose>
-        		<c:when test="${order.orderStatus == 'SUBMITTED' or order.orderStatus=='PAYING' or order.orderStatus=='PAID'}">
+        		<c:when test="${order.orderStatus != 'CANCEL_REQUESTED' and order.orderStatus!='FINISHED'}">
 			  		<a href="orderCancel.do?oId=${order.id}" class="btn">申请撤销</a>
+			   </c:when>
+			 </c:choose>
+			  <c:choose>
+        		<c:when test="${order.orderStatus == 'SUBMITTED' or order.orderStatus=='ADD_CHARGE'}">
+			  		<a href="payment.do?oId=${order.id}" target="_blank" class="btn">支付</a>
 			   </c:when>
 			 </c:choose>			
 			  <a href="orderQuery.do" class="btn">返回</a>
@@ -61,7 +66,7 @@
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;订单当前状态详情说明</h5>
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;订单当前状态</h5>
               </div>             
             </div>
           </div>
@@ -70,7 +75,13 @@
       <div class="border">
         <br/>
         <div class="row">
-            <div class="span10 offset1"><font><strong>${order.orderStatus.text}</strong></font>
+            <div class="span10 offset1"><font><strong>${order.orderStatus.text}</strong></font> </div>
+            <c:choose>
+            	<c:when test="${order.accepter!=null}">
+            		<div class="span10 offset1"><font><strong>受理人： ${order.accepter.name}</strong></font>            
+            		</div>
+            	</c:when>
+            </c:choose>
             
         <c:if test="${not empty interactions}">
           
@@ -91,10 +102,12 @@
               </ul>
            
         </c:if>
-         </div>
-          </div>
-        <br/>
       </div>
+      <br>
+      </div>
+     
+      
+      
       
       <div class="bar-bg">
         <div class="row">
@@ -311,7 +324,7 @@
                 </tr>
                 <tr>
                   <td><b>送证时间</b></td>
-                  <td><fmt:formatDate value="${order.sendDate}" pattern="yyyy-MM-dd"/></td>
+                  <td>${order.sendDate.text}</td>
                 </tr>
               </c:if>
             </table>
@@ -401,6 +414,51 @@
 	          </table>		    
 		    </div>
 		  </div>
+      </div>
+      <div class="border">
+	      	<div class="bar-bg">
+		        <div class="row">
+		          <div class="span12 navbg2">
+		            <div class="row">
+		              <div class="span9">
+		                <h5>&nbsp;&nbsp;&nbsp;&nbsp;付款情况</h5>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	      </div>
+	       <br/>
+          <div class="row">
+		    <div class="span10 offset1">
+	      <table class="table table-striped table-bordered table-hover">
+	            <thead>
+	              <tr>	                
+	                <th>付款抬头</th>
+	                <th>状态</th>
+	                <th>付款金额</th>
+	                <th>付款日期</th>
+	                <th>支付宝交易号</th>
+	                <th>退款理由</th>
+	                <th>退款金额</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <c:forEach items="${order.payments}" var="payment" >	                
+	                  <tr>
+	                    <td>${payment.title}</td>
+	                    <td>${payment.status.text}</td>
+	                    <td><fmt:formatNumber value="${payment.paymentTotal}" type="currency" pattern="￥#.00"/></td>
+	                    <td>${payment.paymentDate}</td>
+	                    <td>${payment.alipayTxnNo}</td>
+	                    <td>${payment.refundReason}</td>
+	                    <td><fmt:formatNumber value="${payment.refundTotal}" type="currency" pattern="￥#.00"/></td>
+	                  </tr>	                
+	              </c:forEach>              
+	              
+	            </tbody>
+	          </table>
+	      </div>	      
+	      </div>
       </div>
 
 

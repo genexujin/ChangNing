@@ -41,8 +41,6 @@ import com.xiangyun.sms.SMSManager;
 @Controller
 public class ReservationController {
 
-	public static final int AVAILABLE_OFFICER_COUNT = 2;
-
 	private static Logger log = LoggerFactory
 			.getLogger(ReservationController.class);
 
@@ -128,14 +126,18 @@ public class ReservationController {
 		ModelAndView mav = new ModelAndView("reserv_Query");
 		mav.addObject("title", "预约查询");
 		mav.addObject("pageCount", pageCount);
-		mav.addObject("currPage", pageNum);
-		mav.addObject("loopBegin", ((pageNum - 1) / 5) * 5 + 1);
+		mav.addObject("loopBegin", ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE + 1);
 		mav.addObject(
 				"loopEnd",
-				(((pageNum - 1) / 5) * 5 + 5 < pageCount) ? ((pageNum - 1) / 5) * 5 + 5
+				(((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE < pageCount) ? ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE
 						: pageCount);
-		mav.addObject("left", (((pageNum - 1) / 5) * 5 - 4));
-		mav.addObject("right", (((pageNum - 1) / 5) * 5 + 6));
+		mav.addObject("left", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE - Constants.PAGING_BAR_SIZE - 1));
+		mav.addObject("right", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+				* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE + 1));
 		mav.addObject("reservations", reservations);
 		return mav;
 	}
@@ -178,12 +180,21 @@ public class ReservationController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "finishReserv.do")
-	public void finishReserv(String readableId, HttpServletResponse response)
-			throws IOException {
+	public void finishReserv(String readableId, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		Reservation reservation = reservationService
 				.findByReadableId(readableId);
 		reservation.setReservationStatus(ReservationStatus.FINISHED);
+		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
+		reservation.setAccepter(u);
 		reservationService.save(reservation);
+		
+		SMSManager.sendSMS(
+				new String[] { reservation.getRequestorMobile() },
+				"尊敬的" + reservation.getRequestorName()
+						+ "，您在长宁公证处的网上预约已经受理完成，预约号为："
+						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
+		
 		PrintWriter out = response.getWriter();
 		out.print(true);
 	}
@@ -195,13 +206,11 @@ public class ReservationController {
 	 */
 	@RequestMapping(value = "sendCancleMSG.do")
 	public void sendCancleMSG(Reservation reservation) {
-		SMSManager
-				.sendSMS(
-						new String[] { reservation.getRequestorMobile() },
-						"尊敬的" + reservation.getRequestorName()
-								+ "，您在长宁公证处的网上预约已经取消，预约号为"
-								+ reservation.getReservationKey()
-								+ "，谢谢使用长宁网上公证业务！", 1);
+		SMSManager.sendSMS(
+				new String[] { reservation.getRequestorMobile() },
+				"尊敬的" + reservation.getRequestorName()
+						+ "，您在长宁公证处的网上预约已经取消，预约号为："
+						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
 		try {
 			System.out.println("Available SMS: "
 					+ Math.floor(SMSManager.checkBalance()));
@@ -260,7 +269,7 @@ public class ReservationController {
 		mav.addObject("dayTypeList", dayLinkStrList);
 		mav.addObject("dayList", dayStrList);
 		mav.addObject("title", "预约申请");
-		mav.addObject("limit", AVAILABLE_OFFICER_COUNT);
+		mav.addObject("limit", Constants.BACK_OFFICER_COUNT);
 		return mav;
 	}
 
@@ -335,7 +344,7 @@ public class ReservationController {
 		if (reservationService.checkCompliance(u)) {
 
 			if (theSeg != null
-					&& theSeg.getResvCount() >= AVAILABLE_OFFICER_COUNT) {
+					&& theSeg.getResvCount() >= Constants.BACK_OFFICER_COUNT) {
 				// return reservation failed
 
 				out.write("{\"sequence\": \"" + sequence + "\",");
@@ -373,14 +382,10 @@ public class ReservationController {
 				rsv.setUser(u);
 
 				reservationService.save(rsv);
-				
-				SMSManager
-						.sendSMS(
-								new String[] { mobile },
-								"尊敬的" + name + " 先生/女士"
-										+ "，您在长宁公证处的网上预约已经成功，预约号为："
-										+ rsv.getReservationKey()
-										+ "，谢谢使用长宁网上公证业务！", 1);
+
+				SMSManager.sendSMS(new String[] { mobile },
+						"尊敬的" + name + " 先生/女士" + "，您在长宁公证处的网上预约已经成功，预约号为："
+								+ rsv.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
 
 				// try {
 				// System.out.println("Available SMS: "

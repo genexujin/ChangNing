@@ -88,15 +88,18 @@
           </div>
           
           <div class="row toggle hide">
-            <div class="span5 offset1">
+            <div class="span8 offset1">
                 <div class="control-group">
 		    	  <label class="control-label" for="sendDate">送证时间</label>
 		    	  <div class="controls">
 		    	    <label class="radio inline">
-				      <input type="radio" value="true" name="workday" checked> 工作日&nbsp;&nbsp;
+				      <input type="radio" value="WORKDAY" name="workday" checked> 工作日&nbsp;&nbsp;
 				    </label>
 				    <label class="radio inline">
-				      <input type="radio" value="false" name="workday"> 非工作日&nbsp;&nbsp;
+				      <input type="radio" value="NON_WORKDAY" name="workday"> 非工作日&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
+				      <input type="radio" value="BOTH" name="workday"> 两者皆可&nbsp;&nbsp;
 				    </label>
 		    	  </div>
 		    	</div>

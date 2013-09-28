@@ -3,7 +3,7 @@ package com.xiangyun.notary;
 public class Constants {
     public static final String FORM_DEFS = "form_defs";
     public static final String FEE_DEF = "fee_def";
-    
+    public static final int PAGING_BAR_SIZE = 10;
     public static final String DOC_ITEM_MAP = "doc_item_map";
     
     public static final String SESSION_SELECTED_FORMS = "selected_forms";
@@ -35,7 +35,7 @@ public class Constants {
     public static final String ROLE_NORMAL_USER = "user";
     
     public static final String COUNT_QUERY_STRING = "select count(%s) from %s x";
-    public static final int QUERY_PAGE_SIZE = 10;
+    public static final int QUERY_PAGE_SIZE = 12;
     
     public static final String ALIPAY_SELLER_EMAIL = "cngzc@6408.com.cn";
     
