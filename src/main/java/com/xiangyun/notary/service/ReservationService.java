@@ -1,5 +1,6 @@
 package com.xiangyun.notary.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.xiangyun.notary.common.ReservationStatus;
@@ -14,9 +15,9 @@ public interface ReservationService {
     
     public Reservation  findByReadableId(String readableId);
     
-    public Long getReservationCount(String readableId, ReservationStatus status, Long userId) ;
+    public Long getReservationCount(String readableId, String requestorName,Date startDate,Date endDate , ReservationStatus status, Long userId) ;
 
-    public List<Reservation> findReservations(String readableId, ReservationStatus status, Long userId, int pageNum);
+    public List<Reservation> findReservations(String readableId, String requestorName,Date startDate,Date endDate , ReservationStatus status, Long userId, int pageNum);
 
 	boolean checkCompliance(User user);
 }
