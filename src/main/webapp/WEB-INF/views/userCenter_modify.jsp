@@ -211,10 +211,15 @@
 					<li><a href="enterWorkdaySetting.do">工作日设定</a></li>
 				</c:when>
 			</c:choose>
+			<c:choose>
+				<c:when test="${sessionScope['LOGIN_USER'].admin}">
+					<li><a href="enterUserQuery.do">用户管理</a></li>
+				</c:when>
+			</c:choose>
 		</ul>
 	</div>
-    <br>
-	<div class="span9" style="width: 760px; margin-left: 20px;">
+    
+	<div class="span9" style="width: 770px; margin-left: 20px;">
 	<div class="bar-bg">
         <div class="row">
           <div class="span12 navbg2">

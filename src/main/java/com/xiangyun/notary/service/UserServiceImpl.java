@@ -120,25 +120,25 @@ public class UserServiceImpl extends AbstractService implements UserService {
 		return q.getResultList();
 	}
 	
-	@Override
-	@Transactional(readOnly = true)
+	@Override	
 	public void setUserAsNormal(String mobile){
 		setUserRole(mobile,"user");
 	}
 	
-	@Override
-	@Transactional(readOnly = true)
+	@Override	
 	public void setUserAsStaff(String mobile){
 		setUserRole(mobile,"staff");
 	}
 
 	private void setUserRole(String mobile,String roleName) {
 		User user = this.findByMobile(mobile);
+		log.debug("role name: " + roleName);
 		String hql = "from Role where roleName =:roleName";
     	Query query = em.createQuery(hql);
     	query.setParameter("roleName", roleName);
     	List<Role> roles =  query.getResultList();
     	if(roles.size() != 0){
+    		log.debug("start to add role to the user!");
     		Role normalUserRole = roles.get(0);
 
     		for(Role r: user.getRoles()){

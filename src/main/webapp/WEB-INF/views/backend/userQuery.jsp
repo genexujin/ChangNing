@@ -10,7 +10,7 @@
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
 	<li class="active">用户管理</li>
 </ul>
-<br />
+<hr />
 
 <div class="row">
 	<div class="span2 well">
@@ -31,8 +31,30 @@
 			</c:choose>
 		</ul>
 	</div>
+	
+	
 
-	<div class="span9" style="margin-left: 40px;">
+	<div class="span9" style="margin-left: 20px;">
+	<div class="bar-bg"  style="width:770px;">
+        <div class="row">
+          <div class="span9 navbg2">
+            <div class="row">
+              <div class="span9">
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;用户管理</h5>
+              </div>             
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border" style="width:769px;">
+      <br>
+      <div class="row">
+
+					<p style="padding-left: 29px; padding-bottom: 5px;color:blue;">
+						<strong>请输入查询条件：</strong>
+					</p>
+				</div>
 		<form class="form-horizontal" action="doUserQuery.do" method="POST">
 			<div class="row">
 				<div class="span3">
@@ -57,9 +79,15 @@
 					<button class="btn btn-block" type="submit">查询</button>
 				</div>
 			</div>
+			<div class="row">
+
+					<p style="padding-left: 29px; padding-bottom: 5px;color:blue;">
+						<strong>查询结果：</strong>
+					</p>
+				</div>
 
 			<div class="row">
-				<table class="table table-striped table-bordered table-hover">
+				<table class="table table-striped table-bordered table-hover" style="margin-left:25px;width:760px;">
 					<thead>
 						<tr>
 							<th>电话号码</th>
@@ -136,6 +164,7 @@
 			</div>
 
 		</form>
+		</div>
 	</div>
 </div>
 
@@ -176,7 +205,7 @@
 					mobile : mobile
 				},
 				success : function(data) {
-					alert(data);
+					
 					if(data==1)
 						window.location.reload();
 				}
@@ -195,7 +224,7 @@
 					mobile : mobile
 				},
 				success : function(data) {
-					alert(data);
+					
 					if(data==1)
 						window.location.reload();
 				}

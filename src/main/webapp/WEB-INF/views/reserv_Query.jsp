@@ -25,6 +25,11 @@
 					<li><a href="enterWorkdaySetting.do">工作日设定</a></li>
 				</c:when>
 			</c:choose>
+			<c:choose>
+				<c:when test="${sessionScope['LOGIN_USER'].admin}">
+					<li><a href="enterUserQuery.do">用户管理</a></li>
+				</c:when>
+			</c:choose>
 		</ul>
 	</div>
    <div class=span9 style="margin-left:10px;width:780px;">
