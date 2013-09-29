@@ -42,5 +42,12 @@ public class Constants {
     public static final int BACK_OFFICER_COUNT =2;
     public static final int WORKDAY_SEGMENT_COUNT = 12;
     
+    public static final String ORDER_QUERY_READABLE_ID = "order_readable_id";
+    public static final String ORDER_QUERY_REQ_NAME = "order_req_name";
+    public static final String ORDER_QUERY_STATUS = "order_status";
+    public static final String ORDER_QUERY_START_DATE = "order_start_date";
+    public static final String ORDER_QUERY_END_DATE = "order_end_date";
+    public static final String ORDER_QUERY_PAGE_NUM = "order_page_num";
+    
 
 }

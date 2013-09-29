@@ -60,7 +60,7 @@
 					<div class="control-group">
 						<label class="control-label" for="rId">申办号</label>
 						<div class="controls">
-							<input class="thin" name="rId" type="text" placeholder="申办号"></input>
+							<input class="thin" id="rId" name="rId" type="text" placeholder="申办号" value="${sessionScope['order_readable_id']}"></input>
 						</div>
 					</div>
 				</div>
@@ -68,25 +68,25 @@
 					<div class="control-group">
 						<label class="control-label" for="reqName">姓名</label>
 						<div class="controls">
-							<input class="thin" name="reqName" type="text" placeholder="申办人姓名"></input>
+							<input class="thin" id="reqName" name="reqName" type="text" placeholder="申办人姓名" value="${sessionScope['order_req_name']}"></input>
 						</div>
 					</div>
 				</div>
 				<div class="span2">
 				  <div class="control-group">
-				    <label class="control-label" for="endDate">状态</label>
+				    <label class="control-label" for="status">状态</label>
 				      <div class="controls">
 					<SELECT id="status" name="status">
-						<OPTION value="NULL">全部</OPTION>
-						<OPTION value="SUBMITTED">已创建</OPTION>
-						<OPTION value="PAYING">付款中</OPTION>
-						<OPTION value="PAID">已付款</OPTION>
-						<OPTION value="ACCEPTED">已受理</OPTION>
-						<OPTION value="FINISHED">已完成</OPTION>
-						<OPTION value="CANCEL_REQUESTED">已申请撤销</OPTION>
-						<OPTION value="EXTRADOC_REQUESTED">要求补充材料</OPTION>
-						<OPTION value="ADD_CHARGE">要求附加费用</OPTION>
-						<OPTION value="CANCELLED">已撤销</OPTION>
+						<OPTION value="NULL" <c:if test="${sessionScope['order_status'] eq 'NULL'}">selected</c:if> >全部</OPTION>
+						<OPTION value="SUBMITTED" <c:if test="${sessionScope['order_status'] eq 'SUBMITTED'}">selected</c:if> >已创建</OPTION>
+						<OPTION value="PAYING" <c:if test="${sessionScope['order_status'] eq 'PAYING'}">selected</c:if> >付款中</OPTION>
+						<OPTION value="PAID" <c:if test="${sessionScope['order_status'] eq 'PAID'}">selected</c:if> >已付款</OPTION>
+						<OPTION value="ACCEPTED" <c:if test="${sessionScope['order_status'] eq 'ACCEPTED'}">selected</c:if> >已受理</OPTION>
+						<OPTION value="FINISHED" <c:if test="${sessionScope['order_status'] eq 'FINISHED'}">selected</c:if> >已完成</OPTION>
+						<OPTION value="CANCEL_REQUESTED" <c:if test="${sessionScope['order_status'] eq 'CANCEL_REQUESTED'}">selected</c:if> >已申请撤销</OPTION>
+						<OPTION value="EXTRADOC_REQUESTED" <c:if test="${sessionScope['order_status'] eq 'EXTRADOC_REQUESTED'}">selected</c:if> >要求补充材料</OPTION>
+						<OPTION value="ADD_CHARGE" <c:if test="${sessionScope['order_status'] eq 'ADD_CHARGE'}">selected</c:if> >要求附加费用</OPTION>
+						<OPTION value="CANCELLED" <c:if test="${sessionScope['order_status'] eq 'CANCELLED'}">selected</c:if> >已撤销</OPTION>
 					</SELECT>
 					  </div>
 					</div>
@@ -97,8 +97,8 @@
 					<div class="control-group">
 						<label class="control-label thin2" for="startDate">开始日期</label>
 						<div class="controls">
-							<input class="thin" id="datepicker1" type="text" 
-									name="startDate" placeholder="请点击选择" readonly />
+							<input class="thin" id="startDate" type="text" 
+									name="startDate" placeholder="请点击选择" readonly value="${sessionScope['order_start_date']}"/>
 						</div>
 					</div>
 				</div>
@@ -106,13 +106,14 @@
 					<div class="control-group">
 						<label class="control-label" for="endDate">结束日期</label>
 						<div class="controls thin2">
-							<input class="thin" id="datepicker2" class="" type="text" 
-									name="endDate" placeholder="请点击选择" readonly />
+							<input class="thin" id="endDate" class="" type="text" 
+									name="endDate" placeholder="请点击选择" readonly  value="${sessionScope['order_end_date']}"/>
 						</div>
 					</div>
 				</div>				
-				<div class="span1 offset2">
-					<button class="btn btn-block" type="submit">查询</button>
+				<div class="span2 offset1">
+					<button class="btn" type="submit">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button id="reset_query" class="btn">重置</button>
 				</div>
 			</div>
 			<div class="row">
@@ -192,8 +193,21 @@
 </div>
 
 <script>
-$("#datepicker1").datepicker();
-$("#datepicker2").datepicker();
+$("#startDate").datepicker();
+$("#endDate").datepicker();
+
+$("#reset_query").click(resetQueryParameters);
+
+function resetQueryParameters() {
+	$("#rId").val("");
+	$("#reqName").val("");
+	$("#startDate").val("");
+	$("#endDate").val("");
+	$("#status").val("NULL");
+	
+	return false;
+}
+
 </script>
 
 <%@ include file="../footer.jspf"%>

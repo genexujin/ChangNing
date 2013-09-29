@@ -477,7 +477,8 @@ public class OrderController {
 
 	@RequestMapping(value = "/orderQuery.do")
 	public ModelAndView orderQuery(HttpServletRequest request) {
-		User user = (User) request.getSession(false).getAttribute(Constants.LOGIN_USER);
+	    HttpSession session = request.getSession(false);
+		User user = (User) session.getAttribute(Constants.LOGIN_USER);
 		
 		int pageNum;
 		String pageNumStr = request.getParameter("pn");
@@ -490,17 +491,21 @@ public class OrderController {
 				pageNum = 1;
 			}
 		}
+		session.setAttribute(Constants.ORDER_QUERY_PAGE_NUM, pageNum + ""); //Looks like no need to save page num
 
 		String readableId = request.getParameter("rId");
 		if (StringUtils.isEmpty(readableId))
 			readableId = null;
+		session.setAttribute(Constants.ORDER_QUERY_READABLE_ID, readableId);
 		
 		String requestorName = request.getParameter("reqName");
         if (StringUtils.isEmpty(requestorName))
             requestorName = null;
+        session.setAttribute(Constants.ORDER_QUERY_REQ_NAME, requestorName);
         
         Date startDate = null;
         String startDateStr = request.getParameter("startDate");
+        session.setAttribute(Constants.ORDER_QUERY_START_DATE, startDateStr);
         if (!StringUtils.isEmpty(startDateStr)) {
             try {
                 startDate = format.parse(startDateStr);
@@ -511,6 +516,7 @@ public class OrderController {
         
         Date endDate = null;
         String endDateStr = request.getParameter("endDate");
+        session.setAttribute(Constants.ORDER_QUERY_END_DATE, endDateStr);
         if (!StringUtils.isEmpty(endDateStr)) {
             try {
                 endDate = format.parse(endDateStr);
@@ -523,6 +529,7 @@ public class OrderController {
 		String statusStr = request.getParameter("status");
 		if (!StringUtils.isEmpty(statusStr))
 			status = OrderStatus.valueOf(statusStr);
+		session.setAttribute(Constants.ORDER_QUERY_STATUS, status);
 
 		Long userId = null;
 		if (!user.isAdmin() && !user.isStaff()) {
