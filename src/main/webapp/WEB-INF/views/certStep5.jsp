@@ -136,7 +136,7 @@
 		  </div>
 		  <div class="row">
 		    <div class="span9 offset1">
-		    <div style="color:gray;padding-bottom:10px;">注：如有文件翻译费用则为预收费用，待翻译公司最终报价后由客服人员与您确认</div>
+		    <div style="color:gray;padding-bottom:10px;">注：文件翻译费为预收，待翻译公司最终报价后由客服人员与您确认</div>
 		      <input id="agreement" type="checkbox"> 同意《<a href="#">受理告知协议</a>》
 		    </div>
 		  </div>

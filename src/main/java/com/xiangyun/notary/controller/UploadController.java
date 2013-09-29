@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -248,7 +249,7 @@ public class UploadController {
 				String zipFullPath = saveDir + zipFileName;
 				FileOutputStream fos = new FileOutputStream(zipFullPath);
 				ZipArchiveOutputStream  zos = new ZipArchiveOutputStream (fos);
-				zos.setEncoding("GBK");
+				zos.setEncoding("UTF-8");
 				
 				File dir = new File(saveDir);
 				Map<String, String> files = new HashMap<String, String>();
@@ -257,7 +258,7 @@ public class UploadController {
 
 				response.setContentType("application/zip");
 				response.setHeader("Content-Disposition",
-						"attachment; filename=\"" + zipFileName + "\"");
+						"attachment; filename=\"" + URLEncoder.encode(zipFileName, "UTF-8") + "\"");
 				// get your file as InputStream
 				FileInputStream is = new FileInputStream(zipFullPath);
 				;
