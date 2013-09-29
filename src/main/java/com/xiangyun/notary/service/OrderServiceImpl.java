@@ -94,7 +94,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     	}
     	
     	if (requestorName != null) {
-            criteria.add(cb.equal(o.<String>get("requestorName"), requestorName));
+            criteria.add(cb.like(cb.lower(o.<String>get("requestorName")), "%" + requestorName.toLowerCase() + "%"));
         }
         
         if (startDate != null) {
@@ -178,7 +178,8 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         }
         
         if (requestorName != null) {
-            criteria.add(cb.equal(o.<String>get("requestorName"), requestorName));
+            criteria.add(cb.like(cb.lower(o.<String>get("requestorName")), "%" + requestorName.toLowerCase() + "%"));
+            
         }
         
         if (startDate != null) {

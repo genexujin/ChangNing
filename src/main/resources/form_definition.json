@@ -820,7 +820,11 @@
             }
         ],
         "docs": [
-             {
+        	{
+                "docKey": "SFZ",
+                "docName": "身份证正反面"
+            },
+            {
                 "docKey": "HKBSYYZY",
                 "docName": "户口本所有有字页"
             }
