@@ -52,11 +52,11 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `cancel_note` VARCHAR(1000) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `user_fk_idx` (`user_id` ASC) ,
-  INDEX `accepter_fk_idx` (`user_id` ASC) ,
+  INDEX `accepter_fk_idx` (`accepter_id` ASC) ,
   CONSTRAINT `user_fk`
     FOREIGN KEY (`user_id` )
     REFERENCES `changning`.`users` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `accepter_fk`
     FOREIGN KEY (`accepter_id` )
@@ -82,7 +82,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`payment` (
   CONSTRAINT `order_pay_fk`
     FOREIGN KEY (`order_id` )
     REFERENCES `changning`.`orders` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
     
@@ -103,7 +103,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`forms` (
   CONSTRAINT `order_fk`
     FOREIGN KEY (`order_id` )
     REFERENCES `changning`.`orders` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
 CREATE  TABLE IF NOT EXISTS `changning`.`form_items` (
@@ -117,7 +117,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`form_items` (
   CONSTRAINT `form_fk`
     FOREIGN KEY (`form_id` )
     REFERENCES `changning`.`forms` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
 CREATE  TABLE IF NOT EXISTS `changning`.`doc_items` (
@@ -133,7 +133,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`doc_items` (
   CONSTRAINT `order_doc_fk`
     FOREIGN KEY (`order_id` )
     REFERENCES `changning`.`orders` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
 CREATE  TABLE IF NOT EXISTS `changning`.`relative_infos` (
@@ -146,7 +146,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`relative_infos` (
   CONSTRAINT `form_items_fk`
     FOREIGN KEY (`form_item_id` )
     REFERENCES `changning`.`form_items` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
 CREATE  TABLE IF NOT EXISTS `changning`.`fee_items` (
@@ -164,7 +164,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`fee_items` (
   CONSTRAINT `fee_form_fk`
     FOREIGN KEY (`form_id` )
     REFERENCES `changning`.`forms` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
 CREATE  TABLE IF NOT EXISTS `changning`.`roles` (
@@ -182,7 +182,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`user_roles` (
   CONSTRAINT `user_role_user_fk`
     FOREIGN KEY (`user_id` )
     REFERENCES `changning`.`users` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `user_role_role_fk`
     FOREIGN KEY (`role_id` )
@@ -212,7 +212,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`time_segments` (
   CONSTRAINT `ts_wk_fk`
     FOREIGN KEY (`workday_id` )
     REFERENCES `changning`.`workdays` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
 CREATE  TABLE IF NOT EXISTS `changning`.`Reservations` (
@@ -233,7 +233,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`Reservations` (
   CONSTRAINT `reservations_users_fk`
     FOREIGN KEY (`user_id` )
     REFERENCES `changning`.`users` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `reserv_accepter_fk`
     FOREIGN KEY (`accepter_id` )
@@ -251,7 +251,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`doc_extra_items` (
   CONSTRAINT `doc_extra_order_fk`
     FOREIGN KEY (`order_id` )
     REFERENCES `changning`.`orders` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
 CREATE  TABLE IF NOT EXISTS `changning`.`interactions` (
@@ -269,7 +269,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`interactions` (
   CONSTRAINT `interactions_order_fk`
     FOREIGN KEY (`order_id` )
     REFERENCES `changning`.`orders` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `interactions_user_fk`
     FOREIGN KEY (`user_id` )
