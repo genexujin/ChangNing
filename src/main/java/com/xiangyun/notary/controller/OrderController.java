@@ -446,7 +446,7 @@ public class OrderController {
 		payment.setOrderTxnNo(tradeNo);
 		order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
 		order.addPayment(payment);
-		orderService.save(order);
+		
 
 		String str = null;
 		try {

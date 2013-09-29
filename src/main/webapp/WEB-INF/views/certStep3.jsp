@@ -6,7 +6,7 @@
       <script src="uploadify/jquery.uploadify.js"></script>
       <script src="Jcrop-0.9.12/js/jquery.Jcrop.min.js"></script>
       
-      <strong>您的位置�?/strong>
+      <strong>您的位置：</strong>
       <ul class="breadcrumb">
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li><a href="certStep1.do">网上办证</a> <span class="divider">/</span></li>
@@ -34,24 +34,22 @@
 		  </div>
 	    </div>
 	  </div>
-	  
-	  
+
 
 	  <div class="border">
 	  	<br>
 		  <div class="row">		   
 			    <div class="span10 offset1">
-			      <h5><font color="red">请上传所�?��料�?提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入�?个人中心】查找提交的订单并补充材料�? 本系统支�?.jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过2M.</font></h5>
+			      <h5><font color="red">请上传所需材料。提示：如果材料暂时无法备齐可以先进入下一步，完成支付后可以进入【个人中心】查找提交的订单并补充材料。 本系统支持 .jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过2M.</font></h5>
 			    </div>
-		    
+
 		  </div>
 		   <br>
-
 	  </div>
-	 
-	  
+
+
 	  <form class="form-horizontal" action="certStep4.do" method="POST">
-	      
+
 	      <c:if test="${not um.allInOneUploadEmpty}">
 	      	  <div class="bar-bg">
 		        <div class="row">
@@ -65,7 +63,7 @@
 		        <br>
 		        <div class="row">
 		          <div class="span11 offset1">
-			        <p><h5>�?��上传的材料：</h5>
+			        <p><h5>需要上传的材料：</h5>
 			        <ul>
 			          <c:forEach items="${um.allInOneValues}" var="docs" >
 			            <c:forEach items="${docs}" var="doc" >
@@ -82,7 +80,7 @@
 			          </div> -->
 			        </div>
 			        <br>
-			        	          
+
 		          </div>
 		        </div>
 		      </div>
@@ -107,14 +105,14 @@
 				        'onUploadSuccess' : function(file, data, response) {
 				            //alert('The file was saved to: ' + data);
 				        }
-				        
+
 				    });
 				});
-		
+
 			  </script>
 	      </c:if>
-	      
-	      <!-- �?��单独上传 -->
+
+	      <!-- 需要单独上传 -->
 	      <c:if test="${not um.aloneUploadEmpty}">
 		      <div class="bar-bg">
 			      <div class="row">
@@ -124,7 +122,7 @@
 			        </div>
 			      </div>
 		      </div>
-		      
+
 		      <div class="border">
 		        <c:if test="${not empty Special_note}">
 		        <br/>
@@ -169,8 +167,8 @@
 	        	</c:forEach>
 		      </div>
 	      </c:if>
-	      
-	      <!-- �?��裁剪�?-->
+
+	      <!-- 需要裁剪区 -->
 	      <c:if test="${not um.needCropEmpty}">
 	        <c:forEach items="${um.needCrop}" var="doc" >
 	          <div class="bar-bg">
@@ -188,7 +186,7 @@
 		            </div>
 		            <div class="span7">
 		              <c:if test="${doc.needCrop}">
-		                
+
 		                <img id="${doc.docKey}_img"/>
 		                <input id="${doc.docKey}_x" style="display:none"/>
 		                <input id="${doc.docKey}_y" style="display:none"/>
@@ -211,12 +209,12 @@
 		                <div class="span2" id="${doc.docKey}_result"></div>
 		              </div>
 		            </div>
-		            
+
 		          </div>
 		          <script>
 		            var ${doc.docKey}_jcrop_api;
-		           
-		            
+
+
 		            function ${doc.docKey}_storeCoords(c) {
 		            	$('#${doc.docKey}_x').val(Math.round(c.x));
 		            	$('#${doc.docKey}_y').val(Math.round(c.y));
@@ -225,7 +223,7 @@
 		            	$('#${doc.docKey}_w').val(Math.round(c.w));
 		            	$('#${doc.docKey}_h').val(Math.round(c.h));
 		            }
-		            
+
 		            function ${doc.docKey}_crop() {
 		            	$.ajax({
 		                    url: "cropImage.do",
@@ -249,7 +247,7 @@
 		                    }
 		            	});
 		            }
-		          
+
 	                $(function() {
 	                	$('#${doc.docKey}').uploadify({
 	                		'fileSizeLimit' : '2MB',
@@ -274,7 +272,7 @@
 	        		        		var fileName = data.substring(data.lastIndexOf("/") + 1).replace(".do", "");
 	        		        		$('#${doc.docKey}_fileName').val(fileName);
 	        		        	}
-	        		        	
+
 	        		        	if (${doc.docKey}_jcrop_api != undefined) {
 	        		        		${doc.docKey}_jcrop_api.destroy();
 	        		        		${doc.docKey}_jcrop_api = undefined;
@@ -285,11 +283,11 @@
 	        		        	var newImg = $('<img id="${doc.docKey}_img"/>')
 	        		        	parent.prepend(newImg);
 	        		        	newImg.prop('src', data);
-	        		        	
+
 	        		        	//$('#${doc.docKey}_img').prop('src', data);
 	        	            	$('#${doc.docKey}_crop').css("display", "inline-block");
 	        	            	$('#${doc.docKey}_crop').click(${doc.docKey}_crop);
-	        	            	
+
 	        	            	//if (${doc.docKey}_jcrop_api == undefined) {
 	        	            	//	$('#${doc.docKey}_img').Jcrop({
 		        		        //		aspectRatio : 0.66,
@@ -303,7 +301,7 @@
 	        	            	//} else {
 	        	            	//	${doc.docKey}_jcrop_api.setImage(data);
 	        	            	//}
-	        	            	
+
 	        	            	if (${doc.docKey}_jcrop_api == undefined) {
 	        	            		$('#${doc.docKey}_img').Jcrop({
 		        		        		aspectRatio : 0.66,
@@ -323,7 +321,7 @@
 		      </div>
 		    </c:forEach>
 	      </c:if>
-	      
+
 	      <div class="bar-bg">
 		      <div class="row">
 		        <div class="span12 navbg2">
@@ -331,7 +329,7 @@
 		        </div>
 		      </div>
 	      </div>
-	      
+
 		  <div class="border">
 		    <br/>
 		    <div class="row">
@@ -346,7 +344,7 @@
 	      <br/>
 		  <div class="row">
 	   		  <div class="span2 offset5">
-	   		    <button id="goToStep4" class="btn btn-large btn-block btn-info" type="submit">下一�?/button>
+	   		    <button id="goToStep4" class="btn btn-large btn-block btn-info" type="submit">下一步</button>
 	   		  </div>
 	      </div>
       
