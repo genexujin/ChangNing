@@ -37,6 +37,9 @@ public class RelativeInfo implements Serializable {
     @Column(name = "relative_name")
     private String relativeName;
     
+    @Column(name = "relative_pinyin")
+    private String relativePinyin;
+    
     @OneToOne
     @JoinColumn(name="form_item_id")
     private FormItem formItem;
@@ -58,6 +61,12 @@ public class RelativeInfo implements Serializable {
     }
     public void setRelativeName(String relativeName) {
         this.relativeName = relativeName;
+    }
+    public String getRelativePinyin() {
+        return relativePinyin;
+    }
+    public void setRelativePinyin(String relativePinyin) {
+        this.relativePinyin = relativePinyin;
     }
     public FormItem getFormItem() {
         return formItem;

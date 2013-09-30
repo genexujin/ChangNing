@@ -18,6 +18,7 @@ public class Constants {
     public static final String LOGIN_USER = "LOGIN_USER";
     
     public static final String QSGX_NAME_SUFFIX = "_NAME";
+    public static final String QSGX_PINYIN_SUFFIX = "_PY";
     public static final String QSGX_FORM_KEY = "QSGX";
     public static final String QSGX_DOC_ID_TEMPLATE = "关系人%的身份证正反面";
     public static final String QSGX_DOC_HK_TEMPLATE = "关系人%的户口本户主页、地址页、本人页";
