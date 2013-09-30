@@ -49,7 +49,7 @@
           <div class="row">
 			<div class="span9">
 			 <c:choose>
-        		<c:when test="${order.orderStatus != 'CANCEL_REQUESTED' and order.orderStatus!='FINISHED'}">
+        		<c:when test="${order.orderStatus != 'CANCEL_REQUESTED' and order.orderStatus!='FINISHED'and order.orderStatus!='CANCELLED'}">
 			  		<a href="orderCancel.do?oId=${order.id}" class="btn">申请撤销</a>
 			   </c:when>
 			 </c:choose>

@@ -85,7 +85,7 @@ public class ExportController {
 		
 		dataMap.put("export_date", format1.format(new Date()));
 		
-		dataMap.put("customer_address", order.getRequestorAddress()==null?" ":order.getRequestorAddress());
+		dataMap.put("customer_mobile", order.getRequestorMobile()==null?" ":order.getRequestorMobile());
 		dataMap.put("customer_id_type", order.getUser().getCredentialType()==null?" ":order.getUser().getCredentialType().getText());
 		dataMap.put("customer_id", order.getUser().getCredentialId()==null?" ":order.getUser().getCredentialId());
 		Set<Form> forms = order.getForms();
@@ -101,7 +101,7 @@ public class ExportController {
 		dataMap.put("order_copy_num", order.getCertificateCopyCount());
 		dataMap.put("order_need_cert", order.isNeedVerify()?"是":"否");
 		dataMap.put("order_reason", order.getCertificatePurpose().getText());		
-		dataMap.put("order_accepter_name", order.getAccepter()==null?"": order.getAccepter().getName());
+		//dataMap.put("order_accepter_name", order.getAccepter()==null?"": order.getAccepter().getName());
 		
 
 		response.setContentType("application/msword");

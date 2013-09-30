@@ -225,7 +225,7 @@
 <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
 <w:sz w:val="24"/>
 </w:rPr>
-<w:t>住所： ${customer_address}          证件名称及号码：${customer_id_type}   ${customer_id}</w:t>
+<w:t> 联系电话： ${customer_mobile}  证件名称及号码：${customer_id_type}   ${customer_id}</w:t>
 </w:r>
 </w:p>
 </w:tc>
@@ -811,7 +811,7 @@
 <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
 <w:sz w:val="24"/>
 </w:rPr>
-<w:t>接待人：${order_accepter_name}</w:t>
+<w:t>接待人：</w:t>
 </w:r>
 </w:p>
 <w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
