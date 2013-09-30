@@ -270,7 +270,7 @@
     		</div>
     		<div class="row">
     			<div class="span12">
-    				<label class="offset1" style="color:gray;padding-bottom:10px;">注：单击 [*]符号可以查看示例公证书证词及相关提交材料样本。</label>
+    				<label class="offset1" style="color:gray;padding-bottom:10px;">注：单击 [*]符号可以查看示例公证书证词及所需提交的相关材料样本。</label>
     			</div>
     		</div>
     		<div id="li_region" class="row">

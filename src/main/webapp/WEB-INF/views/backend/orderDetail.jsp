@@ -130,7 +130,7 @@
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;基本信息查看</h5>
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;申办基本信息</h5>
               </div>
             </div>
           </div>
@@ -247,7 +247,7 @@
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;证件信息及照片查看</h5>
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;上传材料及证件</h5>
               </div>
             </div>
           </div>
@@ -313,7 +313,7 @@
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;上门送证情况</h5>
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;上门送证</h5>
               </div>
             </div>
           </div>
@@ -437,7 +437,7 @@
 		          <div class="span12 navbg2">
 		            <div class="row">
 		              <div class="span9">
-		                <h5>&nbsp;&nbsp;&nbsp;&nbsp;付款情况</h5>
+		                <h5>&nbsp;&nbsp;&nbsp;&nbsp;付款及退款</h5>
 		              </div>
 		            </div>
 		          </div>

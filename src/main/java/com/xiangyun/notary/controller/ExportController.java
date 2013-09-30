@@ -3,6 +3,7 @@ package com.xiangyun.notary.controller;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -33,6 +34,7 @@ public class ExportController {
 	private static Logger log = LoggerFactory.getLogger(OrderController.class);
 
 	private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat format1 = new SimpleDateFormat("yyyy 年 MM 月 dd 日");
 
 	private Configuration configuration = null;
 
@@ -57,7 +59,7 @@ public class ExportController {
 	}
 
 	@RequestMapping(value = "/generateForm.do")
-	public void openPayment(HttpServletRequest request,
+	public void generateForm(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		// 获得参数id
@@ -80,7 +82,11 @@ public class ExportController {
 		}else{
 			dataMap.put("customer_birth_date", " ");
 		}
+		
+		dataMap.put("export_date", format1.format(new Date()));
+		
 		dataMap.put("customer_address", order.getRequestorAddress()==null?" ":order.getRequestorAddress());
+		dataMap.put("customer_id_type", order.getUser().getCredentialType()==null?" ":order.getUser().getCredentialType().getText());
 		dataMap.put("customer_id", order.getUser().getCredentialId()==null?" ":order.getUser().getCredentialId());
 		Set<Form> forms = order.getForms();
 		StringBuffer contents = new StringBuffer();
@@ -94,7 +100,9 @@ public class ExportController {
 		dataMap.put("order_lang", order.getTranslationLanguage().getText());
 		dataMap.put("order_copy_num", order.getCertificateCopyCount());
 		dataMap.put("order_need_cert", order.isNeedVerify()?"是":"否");
-		dataMap.put("order_reason", order.getCertificatePurpose().getText());
+		dataMap.put("order_reason", order.getCertificatePurpose().getText());		
+		dataMap.put("order_accepter_name", order.getAccepter()==null?"": order.getAccepter().getName());
+		
 
 		response.setContentType("application/msword");
 		response.addHeader("Content-Disposition", "attachment; filename="  

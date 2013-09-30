@@ -1,3 +1,1608 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?mso-application progid="Word.Document"?>
-<w:wordDocument xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:wsp="http://schemas.microsoft.com/office/word/2003/wordml/sp2" xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core" w:macrosPresent="no" w:embeddedObjPresent="no" w:ocxPresent="no" xml:space="preserve"><w:ignoreSubtree w:val="http://schemas.microsoft.com/office/word/2003/wordml/sp2"/><o:DocumentProperties><o:Title>公  证  申  请  表</o:Title><o:Author>Magangyi</o:Author><o:LastAuthor>jjixu</o:LastAuthor><o:Revision>23</o:Revision><o:TotalTime>6</o:TotalTime><o:Created>2013-09-26T11:48:00Z</o:Created><o:LastSaved>2013-09-27T14:49:00Z</o:LastSaved><o:Pages>1</o:Pages><o:Words>60</o:Words><o:Characters>344</o:Characters><o:Company>Oracle Corporation</o:Company><o:Lines>2</o:Lines><o:Paragraphs>1</o:Paragraphs><o:CharactersWithSpaces>403</o:CharactersWithSpaces><o:Version>12</o:Version></o:DocumentProperties><w:fonts><w:defaultFonts w:ascii="Times New Roman" w:fareast="宋体" w:h-ansi="Times New Roman" w:cs="Times New Roman"/><w:font w:name="Times New Roman"><w:panose-1 w:val="02020603050405020304"/><w:charset w:val="00"/><w:family w:val="Roman"/><w:pitch w:val="variable"/><w:sig w:usb-0="E0002AFF" w:usb-1="C0007841" w:usb-2="00000009" w:usb-3="00000000" w:csb-0="000001FF" w:csb-1="00000000"/></w:font><w:font w:name="宋体"><w:altName w:val="SimSun"/><w:panose-1 w:val="02010600030101010101"/><w:charset w:val="86"/><w:family w:val="auto"/><w:pitch w:val="variable"/><w:sig w:usb-0="00000003" w:usb-1="288F0000" w:usb-2="00000016" w:usb-3="00000000" w:csb-0="00040001" w:csb-1="00000000"/></w:font><w:font w:name="Cambria Math"><w:panose-1 w:val="02040503050406030204"/><w:charset w:val="00"/><w:family w:val="Roman"/><w:pitch w:val="variable"/><w:sig w:usb-0="E00002FF" w:usb-1="420024FF" w:usb-2="00000000" w:usb-3="00000000" w:csb-0="0000019F" w:csb-1="00000000"/></w:font><w:font w:name="仿宋_GB2312"><w:altName w:val="Arial Unicode MS"/><w:charset w:val="86"/><w:family w:val="Modern"/><w:pitch w:val="fixed"/><w:sig w:usb-0="00000000" w:usb-1="080E0000" w:usb-2="00000010" w:usb-3="00000000" w:csb-0="00040000" w:csb-1="00000000"/></w:font><w:font w:name="@宋体"><w:panose-1 w:val="02010600030101010101"/><w:charset w:val="86"/><w:family w:val="auto"/><w:pitch w:val="variable"/><w:sig w:usb-0="00000003" w:usb-1="288F0000" w:usb-2="00000016" w:usb-3="00000000" w:csb-0="00040001" w:csb-1="00000000"/></w:font><w:font w:name="@仿宋_GB2312"><w:charset w:val="86"/><w:family w:val="Modern"/><w:pitch w:val="fixed"/><w:sig w:usb-0="00000000" w:usb-1="080E0000" w:usb-2="00000010" w:usb-3="00000000" w:csb-0="00040000" w:csb-1="00000000"/></w:font></w:fonts><w:styles><w:versionOfBuiltInStylenames w:val="7"/><w:latentStyles w:defLockedState="off" w:latentStyleCount="267"><w:lsdException w:name="Normal"/><w:lsdException w:name="heading 1"/><w:lsdException w:name="heading 2"/><w:lsdException w:name="heading 3"/><w:lsdException w:name="heading 4"/><w:lsdException w:name="heading 5"/><w:lsdException w:name="heading 6"/><w:lsdException w:name="heading 7"/><w:lsdException w:name="heading 8"/><w:lsdException w:name="heading 9"/><w:lsdException w:name="caption"/><w:lsdException w:name="Title"/><w:lsdException w:name="Subtitle"/><w:lsdException w:name="Strong"/><w:lsdException w:name="Emphasis"/><w:lsdException w:name="No Spacing"/><w:lsdException w:name="List Paragraph"/><w:lsdException w:name="Quote"/><w:lsdException w:name="Intense Quote"/><w:lsdException w:name="Subtle Emphasis"/><w:lsdException w:name="Intense Emphasis"/><w:lsdException w:name="Subtle Reference"/><w:lsdException w:name="Intense Reference"/><w:lsdException w:name="Book Title"/><w:lsdException w:name="TOC Heading"/></w:latentStyles><w:style w:type="paragraph" w:default="on" w:styleId="Normal"><w:name w:val="Normal"/><w:rsid w:val="000E537E"/><w:pPr><w:widowControl w:val="off"/><w:jc w:val="both"/></w:pPr><w:rPr><wx:font wx:val="Times New Roman"/><w:kern w:val="2"/><w:sz w:val="21"/><w:sz-cs w:val="24"/><w:lang w:val="EN-US" w:fareast="ZH-CN" w:bidi="AR-SA"/></w:rPr></w:style><w:style w:type="character" w:default="on" w:styleId="DefaultParagraphFont"><w:name w:val="Default Paragraph Font"/></w:style><w:style w:type="table" w:default="on" w:styleId="TableNormal"><w:name w:val="Normal Table"/><wx:uiName wx:val="Table Normal"/><w:rPr><wx:font wx:val="Times New Roman"/><w:lang w:val="EN-US" w:fareast="ZH-CN" w:bidi="AR-SA"/></w:rPr><w:tblPr><w:tblInd w:w="0" w:type="dxa"/><w:tblCellMar><w:top w:w="0" w:type="dxa"/><w:left w:w="108" w:type="dxa"/><w:bottom w:w="0" w:type="dxa"/><w:right w:w="108" w:type="dxa"/></w:tblCellMar></w:tblPr></w:style><w:style w:type="list" w:default="on" w:styleId="NoList"><w:name w:val="No List"/></w:style><w:style w:type="paragraph" w:styleId="Header"><w:name w:val="header"/><wx:uiName wx:val="Header"/><w:basedOn w:val="Normal"/><w:rsid w:val="000E537E"/><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="6" wx:bdrwidth="15" w:space="1" w:color="auto"/></w:pBdr><w:tabs><w:tab w:val="center" w:pos="4153"/><w:tab w:val="right" w:pos="8306"/></w:tabs><w:snapToGrid w:val="off"/><w:jc w:val="center"/></w:pPr><w:rPr><wx:font wx:val="Times New Roman"/><w:sz w:val="18"/><w:sz-cs w:val="18"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Footer"><w:name w:val="footer"/><wx:uiName wx:val="Footer"/><w:basedOn w:val="Normal"/><w:rsid w:val="000E537E"/><w:pPr><w:tabs><w:tab w:val="center" w:pos="4153"/><w:tab w:val="right" w:pos="8306"/></w:tabs><w:snapToGrid w:val="off"/><w:jc w:val="left"/></w:pPr><w:rPr><wx:font wx:val="Times New Roman"/><w:sz w:val="18"/><w:sz-cs w:val="18"/></w:rPr></w:style></w:styles><w:shapeDefaults><o:shapedefaults v:ext="edit" spidmax="9218"/><o:shapelayout v:ext="edit"><o:idmap v:ext="edit" data="1"/></o:shapelayout></w:shapeDefaults><w:docPr><w:view w:val="print"/><w:zoom w:percent="100"/><w:doNotEmbedSystemFonts/><w:bordersDontSurroundHeader/><w:bordersDontSurroundFooter/><w:defaultTabStop w:val="420"/><w:drawingGridVerticalSpacing w:val="156"/><w:displayHorizontalDrawingGridEvery w:val="0"/><w:displayVerticalDrawingGridEvery w:val="2"/><w:punctuationKerning/><w:characterSpacingControl w:val="CompressPunctuation"/><w:optimizeForBrowser/><w:validateAgainstSchema/><w:saveInvalidXML w:val="off"/><w:ignoreMixedContent w:val="off"/><w:alwaysShowPlaceholderText w:val="off"/><w:hdrShapeDefaults><o:shapedefaults v:ext="edit" spidmax="9218"/></w:hdrShapeDefaults><w:footnotePr><w:footnote w:type="separator"><w:p wsp:rsidR="00F62098" wsp:rsidRDefault="00F62098"><w:r><w:separator/></w:r></w:p></w:footnote><w:footnote w:type="continuation-separator"><w:p wsp:rsidR="00F62098" wsp:rsidRDefault="00F62098"><w:r><w:continuationSeparator/></w:r></w:p></w:footnote></w:footnotePr><w:endnotePr><w:endnote w:type="separator"><w:p wsp:rsidR="00F62098" wsp:rsidRDefault="00F62098"><w:r><w:separator/></w:r></w:p></w:endnote><w:endnote w:type="continuation-separator"><w:p wsp:rsidR="00F62098" wsp:rsidRDefault="00F62098"><w:r><w:continuationSeparator/></w:r></w:p></w:endnote></w:endnotePr><w:compat><w:spaceForUL/><w:balanceSingleByteDoubleByteWidth/><w:doNotLeaveBackslashAlone/><w:ulTrailSpace/><w:doNotExpandShiftReturn/><w:adjustLineHeightInTable/><w:breakWrappedTables/><w:dontAllowFieldEndSelect/><w:useWord2002TableStyleRules/><w:useFELayout/></w:compat><wsp:rsids><wsp:rsidRoot wsp:val="0046719F"/><wsp:rsid wsp:val="000230DD"/><wsp:rsid wsp:val="00040AA0"/><wsp:rsid wsp:val="0006358A"/><wsp:rsid wsp:val="000B4637"/><wsp:rsid wsp:val="000E537E"/><wsp:rsid wsp:val="002A22AC"/><wsp:rsid wsp:val="002E3969"/><wsp:rsid wsp:val="002E4707"/><wsp:rsid wsp:val="00323B34"/><wsp:rsid wsp:val="00325771"/><wsp:rsid wsp:val="00377844"/><wsp:rsid wsp:val="00407AF4"/><wsp:rsid wsp:val="00434D5D"/><wsp:rsid wsp:val="0046719F"/><wsp:rsid wsp:val="004C35A1"/><wsp:rsid wsp:val="00561E67"/><wsp:rsid wsp:val="0058709B"/><wsp:rsid wsp:val="006C41AD"/><wsp:rsid wsp:val="006D29F1"/><wsp:rsid wsp:val="007819F5"/><wsp:rsid wsp:val="0079035F"/><wsp:rsid wsp:val="0089532E"/><wsp:rsid wsp:val="009D08EB"/><wsp:rsid wsp:val="00BC1635"/><wsp:rsid wsp:val="00D068CB"/><wsp:rsid wsp:val="00D319C6"/><wsp:rsid wsp:val="00D47B44"/><wsp:rsid wsp:val="00D64A3F"/><wsp:rsid wsp:val="00D958C5"/><wsp:rsid wsp:val="00DA6381"/><wsp:rsid wsp:val="00DD1C67"/><wsp:rsid wsp:val="00E63FFC"/><wsp:rsid wsp:val="00EC4B25"/><wsp:rsid wsp:val="00EC4E89"/><wsp:rsid wsp:val="00EC557C"/><wsp:rsid wsp:val="00F368A9"/><wsp:rsid wsp:val="00F62098"/></wsp:rsids></w:docPr><w:body><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="center"/><w:rPr><w:rFonts w:fareast="仿宋_GB2312"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>公</w:t></w:r><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>  </w:t></w:r><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>证</w:t></w:r><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>  </w:t></w:r><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>申</w:t></w:r><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>  </w:t></w:r><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>请</w:t></w:r><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>  </w:t></w:r><w:r><w:rPr><w:rFonts w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:b/><w:b-cs/><w:sz w:val="36"/></w:rPr><w:t>表</w:t></w:r></w:p><w:tbl><w:tblPr><w:tblW w:w="0" w:type="auto"/><w:tblInd w:w="108" w:type="dxa"/><w:tblBorders><w:top w:val="double" w:sz="4" wx:bdrwidth="30" w:space="0" w:color="auto"/><w:left w:val="double" w:sz="4" wx:bdrwidth="30" w:space="0" w:color="auto"/><w:bottom w:val="double" w:sz="4" wx:bdrwidth="30" w:space="0" w:color="auto"/><w:right w:val="double" w:sz="4" wx:bdrwidth="30" w:space="0" w:color="auto"/><w:insideH w:val="double" w:sz="4" wx:bdrwidth="30" w:space="0" w:color="auto"/><w:insideV w:val="double" w:sz="4" wx:bdrwidth="30" w:space="0" w:color="auto"/></w:tblBorders></w:tblPr><w:tblGrid><w:gridCol w:w="555"/><w:gridCol w:w="8805"/></w:tblGrid><w:tr wsp:rsidR="002E3969"><w:trPr><w:cantSplit/><w:trHeight w:val="600"/></w:trPr><w:tc><w:tcPr><w:tcW w:w="555" w:type="dxa"/><w:vmerge w:val="restart"/><w:tcBorders><w:right w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/></w:tcBorders><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>申</w:t></w:r></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>请</w:t></w:r></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>人</w:t></w:r></w:p></w:tc><w:tc><w:tcPr><w:tcW w:w="8805" w:type="dxa"/><w:tcBorders><w:left w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/><w:bottom w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/></w:tcBorders><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="00325771" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>姓名：</w:t></w:r><w:r wsp:rsidRPr="00323B34"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${customer_name} </w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>          性别：</w:t></w:r><w:r wsp:rsidRPr="00323B34"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${customer_sex}</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>     </w:t></w:r></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>出生日期：</w:t></w:r><w:r wsp:rsidRPr="00323B34"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${customer_birth_date}</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>          工作单位：</w:t></w:r></w:p></w:tc></w:tr><w:tr wsp:rsidR="002E3969"><w:trPr><w:cantSplit/><w:trHeight w:val="585"/></w:trPr><w:tc><w:tcPr><w:tcW w:w="555" w:type="dxa"/><w:vmerge/><w:tcBorders><w:right w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/></w:tcBorders><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr></w:p></w:tc><w:tc><w:tcPr><w:tcW w:w="8805" w:type="dxa"/><w:tcBorders><w:top w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/><w:left w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/><w:bottom w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/></w:tcBorders><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="00E63FFC" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>住所：</w:t></w:r><w:r wsp:rsidRPr="00D958C5"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${customer_address}</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>                       </w:t></w:r></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>证件名称及号码：</w:t></w:r><w:r wsp:rsidRPr="00D958C5"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${customer_id}</w:t></w:r></w:p></w:tc></w:tr><w:tr wsp:rsidR="002E3969" wsp:rsidTr="006C41AD"><w:trPr><w:trHeight w:val="2516"/></w:trPr><w:tc><w:tcPr><w:tcW w:w="9360" w:type="dxa"/><w:gridSpan w:val="2"/><w:tcBorders><w:top w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/><w:bottom w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/></w:tcBorders></w:tcPr><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969" wsp:rsidP="0089532E"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t> 申请公证内容：</w:t></w:r><w:r wsp:rsidRPr="00F368A9"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${order_content}</w:t></w:r></w:p><w:p wsp:rsidR="007819F5" wsp:rsidRDefault="00EC4E89" wsp:rsidP="00EC4E89"><w:pPr><w:ind w:first-line-chars="50" w:first-line="120"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r wsp:rsidRPr="00EC4E89"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>前往国家或地区</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>: </w:t></w:r><w:r wsp:rsidRPr="00F368A9"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${order_country}</w:t></w:r></w:p><w:p wsp:rsidR="00434D5D" wsp:rsidRDefault="00EC4E89" wsp:rsidP="00EC4E89"><w:pPr><w:ind w:first-line-chars="50" w:first-line="120"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r wsp:rsidRPr="00EC4E89"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>公证翻译</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>:</w:t></w:r><w:r wsp:rsidR="00F368A9"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t> </w:t></w:r><w:r wsp:rsidRPr="000B4637"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${order_lang}</w:t></w:r><w:r wsp:rsidR="00EC4B25" wsp:rsidRPr="000B4637"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>   </w:t></w:r><w:r wsp:rsidR="00EC4B25"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>            </w:t></w:r></w:p><w:p wsp:rsidR="00EC4E89" wsp:rsidRDefault="00EC4B25" wsp:rsidP="00EC4E89"><w:pPr><w:ind w:first-line-chars="50" w:first-line="120"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>公证副本数：</w:t></w:r><w:r wsp:rsidRPr="000B4637"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${order_copy_num}</w:t></w:r></w:p><w:p wsp:rsidR="00DD1C67" wsp:rsidRDefault="00DD1C67" wsp:rsidP="00DA6381"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t> 是否认证：</w:t></w:r><w:r wsp:rsidRPr="000B4637"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${order_need_cert}</w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>     </w:t></w:r><w:r wsp:rsidR="00DA6381"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>    </w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>办证用途</w:t></w:r><w:r wsp:rsidR="0079035F"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>：</w:t></w:r><w:r wsp:rsidR="0079035F" wsp:rsidRPr="000B4637"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:i/><w:sz w:val="24"/></w:rPr><w:t>${order_reason}</w:t></w:r><w:r wsp:rsidR="0079035F"><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t> </w:t></w:r></w:p><w:p wsp:rsidR="0079035F" wsp:rsidRPr="006C41AD" wsp:rsidRDefault="0079035F" wsp:rsidP="00DD1C67"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr></w:p></w:tc></w:tr><w:tr wsp:rsidR="002E3969" wsp:rsidTr="00D64A3F"><w:trPr><w:trHeight w:val="1823"/></w:trPr><w:tc><w:tcPr><w:tcW w:w="9360" w:type="dxa"/><w:gridSpan w:val="2"/><w:tcBorders><w:top w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="auto"/></w:tcBorders></w:tcPr><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t> 申请人、代理人签名（盖章）：</w:t></w:r></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="right"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>年    月    日</w:t></w:r></w:p></w:tc></w:tr></w:tbl><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/></w:rPr></w:pPr></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>接待人：</w:t></w:r></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr></w:p><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:jc w:val="right"/><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="仿宋_GB2312" w:fareast="仿宋_GB2312" w:hint="fareast"/><wx:font wx:val="仿宋_GB2312"/><w:sz w:val="24"/></w:rPr><w:t>&lt; 表七 &gt;</w:t></w:r></w:p><w:sectPr wsp:rsidR="002E3969" wsp:rsidSect="000E537E"><w:hdr w:type="odd"><wx:pBdrGroup><wx:borders><wx:bottom wx:val="solid" wx:bdrwidth="15" wx:space="1" wx:color="auto"/></wx:borders><w:p wsp:rsidR="002E3969" wsp:rsidRDefault="002E3969"><w:pPr><w:pStyle w:val="Header"/></w:pPr></w:p></wx:pBdrGroup></w:hdr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1246" w:right="746" w:bottom="1091" w:left="1800" w:header="851" w:footer="992" w:gutter="0"/><w:cols w:space="425"/><w:docGrid w:type="lines" w:line-pitch="312"/></w:sectPr></w:body></w:wordDocument>
+<pkg:package xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">
+<pkg:part pkg:name="/_rels/.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="512">
+<pkg:xmlData>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>
+<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/_rels/document.xml.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="256">
+<pkg:xmlData>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/webSettings" Target="webSettings.xml"/>
+<Relationship Id="rId7" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme" Target="theme/theme1.xml"/>
+<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/>
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+<Relationship Id="rId6" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable" Target="fontTable.xml"/>
+<Relationship Id="rId5" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/endnotes" Target="endnotes.xml"/>
+<Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/footnotes" Target="footnotes.xml"/>
+</Relationships>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+<pkg:xmlData>
+<w:document xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml">
+<w:body>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:b/>
+<w:bCs/>
+<w:sz w:val="36"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:b/>
+<w:bCs/>
+<w:sz w:val="36"/>
+</w:rPr>
+<w:t>公  证  申  请  表</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:tbl>
+<w:tblPr>
+<w:tblW w:w="0" w:type="auto"/>
+<w:tblInd w:w="108" w:type="dxa"/>
+<w:tblBorders>
+<w:top w:val="double" w:sz="4" w:space="0" w:color="auto"/>
+<w:left w:val="double" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="double" w:sz="4" w:space="0" w:color="auto"/>
+<w:right w:val="double" w:sz="4" w:space="0" w:color="auto"/>
+<w:insideH w:val="double" w:sz="4" w:space="0" w:color="auto"/>
+<w:insideV w:val="double" w:sz="4" w:space="0" w:color="auto"/>
+</w:tblBorders>
+<w:tblLook w:val="0000"/>
+</w:tblPr>
+<w:tblGrid>
+<w:gridCol w:w="555"/>
+<w:gridCol w:w="8805"/>
+</w:tblGrid>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:cantSplit/>
+<w:trHeight w:val="600"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="555" w:type="dxa"/>
+<w:vMerge w:val="restart"/>
+<w:tcBorders>
+<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>申</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>请</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>人</w:t>
+</w:r>
+</w:p>
+</w:tc>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="8805" w:type="dxa"/>
+<w:tcBorders>
+<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>姓名：${customer_name}           性别：${customer_sex}      出生日期： ${customer_birth_date}      工作单位：</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:cantSplit/>
+<w:trHeight w:val="585"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="555" w:type="dxa"/>
+<w:vMerge/>
+<w:tcBorders>
+<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+</w:tc>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="8805" w:type="dxa"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>住所： ${customer_address}          证件名称及号码：${customer_id_type}   ${customer_id}</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:cantSplit/>
+<w:trHeight w:val="600"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="555" w:type="dxa"/>
+<w:vMerge/>
+<w:tcBorders>
+<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+</w:tc>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="8805" w:type="dxa"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>姓名：           性别：      出生日期：          工作单位：</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:cantSplit/>
+<w:trHeight w:val="586"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="555" w:type="dxa"/>
+<w:vMerge/>
+<w:tcBorders>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+</w:tc>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="8805" w:type="dxa"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>住所：                       证件名称及号码：</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:cantSplit/>
+<w:trHeight w:val="614"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="555" w:type="dxa"/>
+<w:vMerge w:val="restart"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>代</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>理</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="center"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>人</w:t>
+</w:r>
+</w:p>
+</w:tc>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="8805" w:type="dxa"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>姓名：           性别：      出生日期：          工作单位：</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:cantSplit/>
+<w:trHeight w:val="585"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="555" w:type="dxa"/>
+<w:vMerge/>
+<w:tcBorders>
+<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+</w:tc>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="8805" w:type="dxa"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>住所：                       证件名称及号码：</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:cantSplit/>
+<w:trHeight w:val="600"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="555" w:type="dxa"/>
+<w:vMerge/>
+<w:tcBorders>
+<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+</w:tc>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="8805" w:type="dxa"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>姓名：           性别：      出生日期：          工作单位：</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:cantSplit/>
+<w:trHeight w:val="590"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="555" w:type="dxa"/>
+<w:vMerge/>
+<w:tcBorders>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+</w:tc>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="8805" w:type="dxa"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+<w:vAlign w:val="center"/>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>住所：                       证件名称及号码：</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9">
+<w:trPr>
+<w:trHeight w:val="4995"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="9360" w:type="dxa"/>
+<w:gridSpan w:val="2"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t xml:space="preserve"> </w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00BA79FF" w:rsidRDefault="002E3969" w:rsidP="00BA79FF">
+<w:pPr>
+<w:ind w:firstLineChars="100" w:firstLine="360"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="36"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00BA79FF">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="36"/>
+</w:rPr>
+<w:t>申请公证内容：${order_content}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00ED1AB8" w:rsidRPr="00BA79FF" w:rsidRDefault="00ED1AB8" w:rsidP="00BA79FF">
+<w:pPr>
+<w:ind w:firstLineChars="100" w:firstLine="360"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="36"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00BA79FF">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="36"/>
+</w:rPr>
+<w:t>前往国家：${order_country}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00ED1AB8" w:rsidRPr="00BA79FF" w:rsidRDefault="00ED1AB8" w:rsidP="00BA79FF">
+<w:pPr>
+<w:ind w:firstLineChars="100" w:firstLine="360"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="36"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00BA79FF">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="36"/>
+</w:rPr>
+<w:t>翻译语种：${order_lang}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00ED1AB8" w:rsidRPr="00BA79FF" w:rsidRDefault="00ED1AB8" w:rsidP="00BA79FF">
+<w:pPr>
+<w:ind w:firstLineChars="100" w:firstLine="360"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="36"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00BA79FF">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="36"/>
+</w:rPr>
+<w:t>副本数：${order_copy_num}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00ED1AB8" w:rsidRPr="00BA79FF" w:rsidRDefault="00ED1AB8" w:rsidP="00BA79FF">
+<w:pPr>
+<w:ind w:firstLineChars="100" w:firstLine="360"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="36"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00BA79FF">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="36"/>
+</w:rPr>
+<w:t>需要认证：${order_need_cert}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00ED1AB8" w:rsidRPr="00BA79FF" w:rsidRDefault="00ED1AB8" w:rsidP="00BA79FF">
+<w:pPr>
+<w:ind w:firstLineChars="100" w:firstLine="360"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="36"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00BA79FF">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="36"/>
+</w:rPr>
+<w:t>办证用途：${order_reason}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00ED1AB8" w:rsidRPr="00ED1AB8" w:rsidRDefault="00ED1AB8">
+<w:pPr>
+<w:ind w:firstLineChars="100" w:firstLine="240"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+</w:tc>
+</w:tr>
+<w:tr w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidTr="000451BA">
+<w:trPr>
+<w:trHeight w:val="839"/>
+</w:trPr>
+<w:tc>
+<w:tcPr>
+<w:tcW w:w="9360" w:type="dxa"/>
+<w:gridSpan w:val="2"/>
+<w:tcBorders>
+<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+</w:tcBorders>
+</w:tcPr>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t xml:space="preserve"> 申请人、代理人签名（盖章）：${customer_name}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="right"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>${export_date}</w:t>
+</w:r>
+</w:p>
+</w:tc>
+</w:tr>
+</w:tbl>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>接待人：${order_accepter_name}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidRDefault="002E3969">
+<w:pPr>
+<w:jc w:val="right"/>
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+<w:sz w:val="24"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="00230CC9">
+<w:rPr>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:sz w:val="24"/>
+</w:rPr>
+<w:t>&lt; 表七 &gt;</w:t>
+</w:r>
+</w:p>
+<w:sectPr w:rsidR="002E3969" w:rsidRPr="00230CC9" w:rsidSect="00154DE2">
+<w:pgSz w:w="11906" w:h="16838"/>
+<w:pgMar w:top="1246" w:right="746" w:bottom="1091" w:left="1800" w:header="851" w:footer="992" w:gutter="0"/>
+<w:cols w:space="425"/>
+<w:docGrid w:type="lines" w:linePitch="312"/>
+</w:sectPr>
+</w:body>
+</w:document>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/footnotes.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml">
+<pkg:xmlData>
+<w:footnotes xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml">
+<w:footnote w:type="separator" w:id="-1">
+<w:p w:rsidR="005C0F72" w:rsidRDefault="005C0F72">
+<w:r>
+<w:separator/>
+</w:r>
+</w:p>
+</w:footnote>
+<w:footnote w:type="continuationSeparator" w:id="0">
+<w:p w:rsidR="005C0F72" w:rsidRDefault="005C0F72">
+<w:r>
+<w:continuationSeparator/>
+</w:r>
+</w:p>
+</w:footnote>
+</w:footnotes>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/endnotes.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml">
+<pkg:xmlData>
+<w:endnotes xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml">
+<w:endnote w:type="separator" w:id="-1">
+<w:p w:rsidR="005C0F72" w:rsidRDefault="005C0F72">
+<w:r>
+<w:separator/>
+</w:r>
+</w:p>
+</w:endnote>
+<w:endnote w:type="continuationSeparator" w:id="0">
+<w:p w:rsidR="005C0F72" w:rsidRDefault="005C0F72">
+<w:r>
+<w:continuationSeparator/>
+</w:r>
+</w:p>
+</w:endnote>
+</w:endnotes>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/theme/theme1.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.theme+xml">
+<pkg:xmlData>
+<a:theme name="Office Theme" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+<a:themeElements>
+<a:clrScheme name="Office">
+<a:dk1>
+<a:sysClr val="windowText" lastClr="000000"/>
+</a:dk1>
+<a:lt1>
+<a:sysClr val="window" lastClr="FFFFFF"/>
+</a:lt1>
+<a:dk2>
+<a:srgbClr val="1F497D"/>
+</a:dk2>
+<a:lt2>
+<a:srgbClr val="EEECE1"/>
+</a:lt2>
+<a:accent1>
+<a:srgbClr val="4F81BD"/>
+</a:accent1>
+<a:accent2>
+<a:srgbClr val="C0504D"/>
+</a:accent2>
+<a:accent3>
+<a:srgbClr val="9BBB59"/>
+</a:accent3>
+<a:accent4>
+<a:srgbClr val="8064A2"/>
+</a:accent4>
+<a:accent5>
+<a:srgbClr val="4BACC6"/>
+</a:accent5>
+<a:accent6>
+<a:srgbClr val="F79646"/>
+</a:accent6>
+<a:hlink>
+<a:srgbClr val="0000FF"/>
+</a:hlink>
+<a:folHlink>
+<a:srgbClr val="800080"/>
+</a:folHlink>
+</a:clrScheme>
+<a:fontScheme name="Office">
+<a:majorFont>
+<a:latin typeface="Cambria"/>
+<a:ea typeface=""/>
+<a:cs typeface=""/>
+<a:font script="Jpan" typeface="ＭＳ ゴシック"/>
+<a:font script="Hang" typeface="맑은 고딕"/>
+<a:font script="Hans" typeface="宋体"/>
+<a:font script="Hant" typeface="新細明體"/>
+<a:font script="Arab" typeface="Times New Roman"/>
+<a:font script="Hebr" typeface="Times New Roman"/>
+<a:font script="Thai" typeface="Angsana New"/>
+<a:font script="Ethi" typeface="Nyala"/>
+<a:font script="Beng" typeface="Vrinda"/>
+<a:font script="Gujr" typeface="Shruti"/>
+<a:font script="Khmr" typeface="MoolBoran"/>
+<a:font script="Knda" typeface="Tunga"/>
+<a:font script="Guru" typeface="Raavi"/>
+<a:font script="Cans" typeface="Euphemia"/>
+<a:font script="Cher" typeface="Plantagenet Cherokee"/>
+<a:font script="Yiii" typeface="Microsoft Yi Baiti"/>
+<a:font script="Tibt" typeface="Microsoft Himalaya"/>
+<a:font script="Thaa" typeface="MV Boli"/>
+<a:font script="Deva" typeface="Mangal"/>
+<a:font script="Telu" typeface="Gautami"/>
+<a:font script="Taml" typeface="Latha"/>
+<a:font script="Syrc" typeface="Estrangelo Edessa"/>
+<a:font script="Orya" typeface="Kalinga"/>
+<a:font script="Mlym" typeface="Kartika"/>
+<a:font script="Laoo" typeface="DokChampa"/>
+<a:font script="Sinh" typeface="Iskoola Pota"/>
+<a:font script="Mong" typeface="Mongolian Baiti"/>
+<a:font script="Viet" typeface="Times New Roman"/>
+<a:font script="Uigh" typeface="Microsoft Uighur"/>
+</a:majorFont>
+<a:minorFont>
+<a:latin typeface="Calibri"/>
+<a:ea typeface=""/>
+<a:cs typeface=""/>
+<a:font script="Jpan" typeface="ＭＳ 明朝"/>
+<a:font script="Hang" typeface="맑은 고딕"/>
+<a:font script="Hans" typeface="宋体"/>
+<a:font script="Hant" typeface="新細明體"/>
+<a:font script="Arab" typeface="Arial"/>
+<a:font script="Hebr" typeface="Arial"/>
+<a:font script="Thai" typeface="Cordia New"/>
+<a:font script="Ethi" typeface="Nyala"/>
+<a:font script="Beng" typeface="Vrinda"/>
+<a:font script="Gujr" typeface="Shruti"/>
+<a:font script="Khmr" typeface="DaunPenh"/>
+<a:font script="Knda" typeface="Tunga"/>
+<a:font script="Guru" typeface="Raavi"/>
+<a:font script="Cans" typeface="Euphemia"/>
+<a:font script="Cher" typeface="Plantagenet Cherokee"/>
+<a:font script="Yiii" typeface="Microsoft Yi Baiti"/>
+<a:font script="Tibt" typeface="Microsoft Himalaya"/>
+<a:font script="Thaa" typeface="MV Boli"/>
+<a:font script="Deva" typeface="Mangal"/>
+<a:font script="Telu" typeface="Gautami"/>
+<a:font script="Taml" typeface="Latha"/>
+<a:font script="Syrc" typeface="Estrangelo Edessa"/>
+<a:font script="Orya" typeface="Kalinga"/>
+<a:font script="Mlym" typeface="Kartika"/>
+<a:font script="Laoo" typeface="DokChampa"/>
+<a:font script="Sinh" typeface="Iskoola Pota"/>
+<a:font script="Mong" typeface="Mongolian Baiti"/>
+<a:font script="Viet" typeface="Arial"/>
+<a:font script="Uigh" typeface="Microsoft Uighur"/>
+</a:minorFont>
+</a:fontScheme>
+<a:fmtScheme name="Office">
+<a:fillStyleLst>
+<a:solidFill>
+<a:schemeClr val="phClr"/>
+</a:solidFill>
+<a:gradFill rotWithShape="1">
+<a:gsLst>
+<a:gs pos="0">
+<a:schemeClr val="phClr">
+<a:tint val="50000"/>
+<a:satMod val="300000"/>
+</a:schemeClr>
+</a:gs>
+<a:gs pos="35000">
+<a:schemeClr val="phClr">
+<a:tint val="37000"/>
+<a:satMod val="300000"/>
+</a:schemeClr>
+</a:gs>
+<a:gs pos="100000">
+<a:schemeClr val="phClr">
+<a:tint val="15000"/>
+<a:satMod val="350000"/>
+</a:schemeClr>
+</a:gs>
+</a:gsLst>
+<a:lin ang="16200000" scaled="1"/>
+</a:gradFill>
+<a:gradFill rotWithShape="1">
+<a:gsLst>
+<a:gs pos="0">
+<a:schemeClr val="phClr">
+<a:shade val="51000"/>
+<a:satMod val="130000"/>
+</a:schemeClr>
+</a:gs>
+<a:gs pos="80000">
+<a:schemeClr val="phClr">
+<a:shade val="93000"/>
+<a:satMod val="130000"/>
+</a:schemeClr>
+</a:gs>
+<a:gs pos="100000">
+<a:schemeClr val="phClr">
+<a:shade val="94000"/>
+<a:satMod val="135000"/>
+</a:schemeClr>
+</a:gs>
+</a:gsLst>
+<a:lin ang="16200000" scaled="0"/>
+</a:gradFill>
+</a:fillStyleLst>
+<a:lnStyleLst>
+<a:ln w="9525" cap="flat" cmpd="sng" algn="ctr">
+<a:solidFill>
+<a:schemeClr val="phClr">
+<a:shade val="95000"/>
+<a:satMod val="105000"/>
+</a:schemeClr>
+</a:solidFill>
+<a:prstDash val="solid"/>
+</a:ln>
+<a:ln w="25400" cap="flat" cmpd="sng" algn="ctr">
+<a:solidFill>
+<a:schemeClr val="phClr"/>
+</a:solidFill>
+<a:prstDash val="solid"/>
+</a:ln>
+<a:ln w="38100" cap="flat" cmpd="sng" algn="ctr">
+<a:solidFill>
+<a:schemeClr val="phClr"/>
+</a:solidFill>
+<a:prstDash val="solid"/>
+</a:ln>
+</a:lnStyleLst>
+<a:effectStyleLst>
+<a:effectStyle>
+<a:effectLst>
+<a:outerShdw blurRad="40000" dist="20000" dir="5400000" rotWithShape="0">
+<a:srgbClr val="000000">
+<a:alpha val="38000"/>
+</a:srgbClr>
+</a:outerShdw>
+</a:effectLst>
+</a:effectStyle>
+<a:effectStyle>
+<a:effectLst>
+<a:outerShdw blurRad="40000" dist="23000" dir="5400000" rotWithShape="0">
+<a:srgbClr val="000000">
+<a:alpha val="35000"/>
+</a:srgbClr>
+</a:outerShdw>
+</a:effectLst>
+</a:effectStyle>
+<a:effectStyle>
+<a:effectLst>
+<a:outerShdw blurRad="40000" dist="23000" dir="5400000" rotWithShape="0">
+<a:srgbClr val="000000">
+<a:alpha val="35000"/>
+</a:srgbClr>
+</a:outerShdw>
+</a:effectLst>
+<a:scene3d>
+<a:camera prst="orthographicFront">
+<a:rot lat="0" lon="0" rev="0"/>
+</a:camera>
+<a:lightRig rig="threePt" dir="t">
+<a:rot lat="0" lon="0" rev="1200000"/>
+</a:lightRig>
+</a:scene3d>
+<a:sp3d>
+<a:bevelT w="63500" h="25400"/>
+</a:sp3d>
+</a:effectStyle>
+</a:effectStyleLst>
+<a:bgFillStyleLst>
+<a:solidFill>
+<a:schemeClr val="phClr"/>
+</a:solidFill>
+<a:gradFill rotWithShape="1">
+<a:gsLst>
+<a:gs pos="0">
+<a:schemeClr val="phClr">
+<a:tint val="40000"/>
+<a:satMod val="350000"/>
+</a:schemeClr>
+</a:gs>
+<a:gs pos="40000">
+<a:schemeClr val="phClr">
+<a:tint val="45000"/>
+<a:shade val="99000"/>
+<a:satMod val="350000"/>
+</a:schemeClr>
+</a:gs>
+<a:gs pos="100000">
+<a:schemeClr val="phClr">
+<a:shade val="20000"/>
+<a:satMod val="255000"/>
+</a:schemeClr>
+</a:gs>
+</a:gsLst>
+<a:path path="circle">
+<a:fillToRect l="50000" t="-80000" r="50000" b="180000"/>
+</a:path>
+</a:gradFill>
+<a:gradFill rotWithShape="1">
+<a:gsLst>
+<a:gs pos="0">
+<a:schemeClr val="phClr">
+<a:tint val="80000"/>
+<a:satMod val="300000"/>
+</a:schemeClr>
+</a:gs>
+<a:gs pos="100000">
+<a:schemeClr val="phClr">
+<a:shade val="30000"/>
+<a:satMod val="200000"/>
+</a:schemeClr>
+</a:gs>
+</a:gsLst>
+<a:path path="circle">
+<a:fillToRect l="50000" t="50000" r="50000" b="50000"/>
+</a:path>
+</a:gradFill>
+</a:bgFillStyleLst>
+</a:fmtScheme>
+</a:themeElements>
+<a:objectDefaults/>
+<a:extraClrSchemeLst/>
+</a:theme>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/settings.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml">
+<pkg:xmlData>
+<w:settings xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:sl="http://schemas.openxmlformats.org/schemaLibrary/2006/main">
+<w:zoom w:percent="100"/>
+<w:bordersDoNotSurroundHeader/>
+<w:bordersDoNotSurroundFooter/>
+<w:proofState w:spelling="clean" w:grammar="clean"/>
+<w:doNotTrackMoves/>
+<w:defaultTabStop w:val="420"/>
+<w:drawingGridVerticalSpacing w:val="156"/>
+<w:displayHorizontalDrawingGridEvery w:val="0"/>
+<w:displayVerticalDrawingGridEvery w:val="2"/>
+<w:characterSpacingControl w:val="compressPunctuation"/>
+<w:hdrShapeDefaults>
+<o:shapedefaults v:ext="edit" spidmax="9218"/>
+</w:hdrShapeDefaults>
+<w:footnotePr>
+<w:footnote w:id="-1"/>
+<w:footnote w:id="0"/>
+</w:footnotePr>
+<w:endnotePr>
+<w:endnote w:id="-1"/>
+<w:endnote w:id="0"/>
+</w:endnotePr>
+<w:compat>
+<w:spaceForUL/>
+<w:balanceSingleByteDoubleByteWidth/>
+<w:doNotLeaveBackslashAlone/>
+<w:ulTrailSpace/>
+<w:doNotExpandShiftReturn/>
+<w:adjustLineHeightInTable/>
+<w:doNotBreakWrappedTables/>
+<w:doNotSnapToGridInCell/>
+<w:selectFldWithFirstOrLastChar/>
+<w:doNotWrapTextWithPunct/>
+<w:doNotUseEastAsianBreakRules/>
+<w:useWord2002TableStyleRules/>
+<w:growAutofit/>
+<w:useFELayout/>
+<w:useNormalStyleForList/>
+<w:doNotUseIndentAsNumberingTabStop/>
+<w:useAltKinsokuLineBreakRules/>
+<w:allowSpaceOfSameStyleInTable/>
+<w:doNotSuppressIndentation/>
+<w:doNotAutofitConstrainedTables/>
+<w:autofitToFirstFixedWidthCell/>
+<w:underlineTabInNumList/>
+<w:displayHangulFixedWidth/>
+<w:splitPgBreakAndParaMark/>
+<w:doNotVertAlignCellWithSp/>
+<w:doNotBreakConstrainedForcedTable/>
+<w:doNotVertAlignInTxbx/>
+<w:useAnsiKerningPairs/>
+<w:cachedColBalance/>
+</w:compat>
+<w:rsids>
+<w:rsidRoot w:val="0046719F"/>
+<w:rsid w:val="000451BA"/>
+<w:rsid w:val="00073B47"/>
+<w:rsid w:val="00154DE2"/>
+<w:rsid w:val="00230CC9"/>
+<w:rsid w:val="00234CDB"/>
+<w:rsid w:val="002E3969"/>
+<w:rsid w:val="0046719F"/>
+<w:rsid w:val="005C0F72"/>
+<w:rsid w:val="008811D3"/>
+<w:rsid w:val="00AB06A0"/>
+<w:rsid w:val="00BA79FF"/>
+<w:rsid w:val="00DC6A24"/>
+<w:rsid w:val="00EB4286"/>
+<w:rsid w:val="00ED1AB8"/>
+</w:rsids>
+<m:mathPr>
+<m:mathFont m:val="Cambria Math"/>
+<m:brkBin m:val="before"/>
+<m:brkBinSub m:val="--"/>
+<m:smallFrac m:val="off"/>
+<m:dispDef/>
+<m:lMargin m:val="0"/>
+<m:rMargin m:val="0"/>
+<m:defJc m:val="centerGroup"/>
+<m:wrapIndent m:val="1440"/>
+<m:intLim m:val="subSup"/>
+<m:naryLim m:val="undOvr"/>
+</m:mathPr>
+<w:uiCompat97To2003/>
+<w:themeFontLang w:val="en-US" w:eastAsia="zh-CN"/>
+<w:clrSchemeMapping w:bg1="light1" w:t1="dark1" w:bg2="light2" w:t2="dark2" w:accent1="accent1" w:accent2="accent2" w:accent3="accent3" w:accent4="accent4" w:accent5="accent5" w:accent6="accent6" w:hyperlink="hyperlink" w:followedHyperlink="followedHyperlink"/>
+<w:doNotIncludeSubdocsInStats/>
+<w:shapeDefaults>
+<o:shapedefaults v:ext="edit" spidmax="9218"/>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1"/>
+</o:shapelayout>
+</w:shapeDefaults>
+<w:decimalSymbol w:val="."/>
+<w:listSeparator w:val=","/>
+</w:settings>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/webSettings.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.webSettings+xml">
+<pkg:xmlData>
+<w:webSettings xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:optimizeForBrowser/>
+</w:webSettings>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/docProps/core.xml" pkg:contentType="application/vnd.openxmlformats-package.core-properties+xml" pkg:padding="256">
+<pkg:xmlData>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<dc:title>公  证  申  请  表</dc:title>
+<dc:creator>Magangyi</dc:creator>
+<cp:lastModifiedBy>jjixu</cp:lastModifiedBy>
+<cp:revision>4</cp:revision>
+<dcterms:created xsi:type="dcterms:W3CDTF">2013-09-30T02:52:00Z</dcterms:created>
+<dcterms:modified xsi:type="dcterms:W3CDTF">2013-09-30T03:00:00Z</dcterms:modified>
+</cp:coreProperties>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/styles.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml">
+<pkg:xmlData>
+<w:styles xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:docDefaults>
+<w:rPrDefault>
+<w:rPr>
+<w:rFonts w:ascii="Times New Roman" w:eastAsia="宋体" w:hAnsi="Times New Roman" w:cs="Times New Roman"/>
+<w:lang w:val="en-US" w:eastAsia="zh-CN" w:bidi="ar-SA"/>
+</w:rPr>
+</w:rPrDefault>
+<w:pPrDefault/>
+</w:docDefaults>
+<w:latentStyles w:defLockedState="0" w:defUIPriority="99" w:defSemiHidden="1" w:defUnhideWhenUsed="1" w:defQFormat="0" w:count="267">
+<w:lsdException w:name="Normal" w:semiHidden="0" w:uiPriority="0" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="heading 1" w:semiHidden="0" w:uiPriority="9" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="heading 2" w:uiPriority="9" w:qFormat="1"/>
+<w:lsdException w:name="heading 3" w:uiPriority="9" w:qFormat="1"/>
+<w:lsdException w:name="heading 4" w:uiPriority="9" w:qFormat="1"/>
+<w:lsdException w:name="heading 5" w:uiPriority="9" w:qFormat="1"/>
+<w:lsdException w:name="heading 6" w:uiPriority="9" w:qFormat="1"/>
+<w:lsdException w:name="heading 7" w:uiPriority="9" w:qFormat="1"/>
+<w:lsdException w:name="heading 8" w:uiPriority="9" w:qFormat="1"/>
+<w:lsdException w:name="heading 9" w:uiPriority="9" w:qFormat="1"/>
+<w:lsdException w:name="toc 1" w:uiPriority="39"/>
+<w:lsdException w:name="toc 2" w:uiPriority="39"/>
+<w:lsdException w:name="toc 3" w:uiPriority="39"/>
+<w:lsdException w:name="toc 4" w:uiPriority="39"/>
+<w:lsdException w:name="toc 5" w:uiPriority="39"/>
+<w:lsdException w:name="toc 6" w:uiPriority="39"/>
+<w:lsdException w:name="toc 7" w:uiPriority="39"/>
+<w:lsdException w:name="toc 8" w:uiPriority="39"/>
+<w:lsdException w:name="toc 9" w:uiPriority="39"/>
+<w:lsdException w:name="caption" w:uiPriority="35" w:qFormat="1"/>
+<w:lsdException w:name="Title" w:semiHidden="0" w:uiPriority="10" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Default Paragraph Font" w:uiPriority="1"/>
+<w:lsdException w:name="Subtitle" w:semiHidden="0" w:uiPriority="11" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Strong" w:semiHidden="0" w:uiPriority="22" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Emphasis" w:semiHidden="0" w:uiPriority="20" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Table Grid" w:semiHidden="0" w:uiPriority="59" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Placeholder Text" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="No Spacing" w:semiHidden="0" w:uiPriority="1" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Light Shading" w:semiHidden="0" w:uiPriority="60" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light List" w:semiHidden="0" w:uiPriority="61" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Grid" w:semiHidden="0" w:uiPriority="62" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 1" w:semiHidden="0" w:uiPriority="63" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 2" w:semiHidden="0" w:uiPriority="64" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 1" w:semiHidden="0" w:uiPriority="65" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 2" w:semiHidden="0" w:uiPriority="66" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 1" w:semiHidden="0" w:uiPriority="67" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 2" w:semiHidden="0" w:uiPriority="68" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 3" w:semiHidden="0" w:uiPriority="69" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Dark List" w:semiHidden="0" w:uiPriority="70" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Shading" w:semiHidden="0" w:uiPriority="71" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful List" w:semiHidden="0" w:uiPriority="72" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Grid" w:semiHidden="0" w:uiPriority="73" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Shading Accent 1" w:semiHidden="0" w:uiPriority="60" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light List Accent 1" w:semiHidden="0" w:uiPriority="61" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Grid Accent 1" w:semiHidden="0" w:uiPriority="62" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 1 Accent 1" w:semiHidden="0" w:uiPriority="63" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 2 Accent 1" w:semiHidden="0" w:uiPriority="64" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 1 Accent 1" w:semiHidden="0" w:uiPriority="65" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Revision" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="List Paragraph" w:semiHidden="0" w:uiPriority="34" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Quote" w:semiHidden="0" w:uiPriority="29" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Intense Quote" w:semiHidden="0" w:uiPriority="30" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Medium List 2 Accent 1" w:semiHidden="0" w:uiPriority="66" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 1 Accent 1" w:semiHidden="0" w:uiPriority="67" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 2 Accent 1" w:semiHidden="0" w:uiPriority="68" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 3 Accent 1" w:semiHidden="0" w:uiPriority="69" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Dark List Accent 1" w:semiHidden="0" w:uiPriority="70" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Shading Accent 1" w:semiHidden="0" w:uiPriority="71" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful List Accent 1" w:semiHidden="0" w:uiPriority="72" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Grid Accent 1" w:semiHidden="0" w:uiPriority="73" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Shading Accent 2" w:semiHidden="0" w:uiPriority="60" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light List Accent 2" w:semiHidden="0" w:uiPriority="61" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Grid Accent 2" w:semiHidden="0" w:uiPriority="62" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 1 Accent 2" w:semiHidden="0" w:uiPriority="63" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 2 Accent 2" w:semiHidden="0" w:uiPriority="64" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 1 Accent 2" w:semiHidden="0" w:uiPriority="65" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 2 Accent 2" w:semiHidden="0" w:uiPriority="66" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 1 Accent 2" w:semiHidden="0" w:uiPriority="67" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 2 Accent 2" w:semiHidden="0" w:uiPriority="68" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 3 Accent 2" w:semiHidden="0" w:uiPriority="69" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Dark List Accent 2" w:semiHidden="0" w:uiPriority="70" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Shading Accent 2" w:semiHidden="0" w:uiPriority="71" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful List Accent 2" w:semiHidden="0" w:uiPriority="72" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Grid Accent 2" w:semiHidden="0" w:uiPriority="73" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Shading Accent 3" w:semiHidden="0" w:uiPriority="60" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light List Accent 3" w:semiHidden="0" w:uiPriority="61" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Grid Accent 3" w:semiHidden="0" w:uiPriority="62" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 1 Accent 3" w:semiHidden="0" w:uiPriority="63" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 2 Accent 3" w:semiHidden="0" w:uiPriority="64" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 1 Accent 3" w:semiHidden="0" w:uiPriority="65" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 2 Accent 3" w:semiHidden="0" w:uiPriority="66" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 1 Accent 3" w:semiHidden="0" w:uiPriority="67" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 2 Accent 3" w:semiHidden="0" w:uiPriority="68" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 3 Accent 3" w:semiHidden="0" w:uiPriority="69" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Dark List Accent 3" w:semiHidden="0" w:uiPriority="70" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Shading Accent 3" w:semiHidden="0" w:uiPriority="71" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful List Accent 3" w:semiHidden="0" w:uiPriority="72" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Grid Accent 3" w:semiHidden="0" w:uiPriority="73" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Shading Accent 4" w:semiHidden="0" w:uiPriority="60" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light List Accent 4" w:semiHidden="0" w:uiPriority="61" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Grid Accent 4" w:semiHidden="0" w:uiPriority="62" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 1 Accent 4" w:semiHidden="0" w:uiPriority="63" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 2 Accent 4" w:semiHidden="0" w:uiPriority="64" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 1 Accent 4" w:semiHidden="0" w:uiPriority="65" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 2 Accent 4" w:semiHidden="0" w:uiPriority="66" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 1 Accent 4" w:semiHidden="0" w:uiPriority="67" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 2 Accent 4" w:semiHidden="0" w:uiPriority="68" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 3 Accent 4" w:semiHidden="0" w:uiPriority="69" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Dark List Accent 4" w:semiHidden="0" w:uiPriority="70" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Shading Accent 4" w:semiHidden="0" w:uiPriority="71" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful List Accent 4" w:semiHidden="0" w:uiPriority="72" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Grid Accent 4" w:semiHidden="0" w:uiPriority="73" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Shading Accent 5" w:semiHidden="0" w:uiPriority="60" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light List Accent 5" w:semiHidden="0" w:uiPriority="61" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Grid Accent 5" w:semiHidden="0" w:uiPriority="62" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 1 Accent 5" w:semiHidden="0" w:uiPriority="63" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 2 Accent 5" w:semiHidden="0" w:uiPriority="64" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 1 Accent 5" w:semiHidden="0" w:uiPriority="65" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 2 Accent 5" w:semiHidden="0" w:uiPriority="66" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 1 Accent 5" w:semiHidden="0" w:uiPriority="67" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 2 Accent 5" w:semiHidden="0" w:uiPriority="68" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 3 Accent 5" w:semiHidden="0" w:uiPriority="69" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Dark List Accent 5" w:semiHidden="0" w:uiPriority="70" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Shading Accent 5" w:semiHidden="0" w:uiPriority="71" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful List Accent 5" w:semiHidden="0" w:uiPriority="72" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Grid Accent 5" w:semiHidden="0" w:uiPriority="73" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Shading Accent 6" w:semiHidden="0" w:uiPriority="60" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light List Accent 6" w:semiHidden="0" w:uiPriority="61" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Light Grid Accent 6" w:semiHidden="0" w:uiPriority="62" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 1 Accent 6" w:semiHidden="0" w:uiPriority="63" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Shading 2 Accent 6" w:semiHidden="0" w:uiPriority="64" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 1 Accent 6" w:semiHidden="0" w:uiPriority="65" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium List 2 Accent 6" w:semiHidden="0" w:uiPriority="66" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 1 Accent 6" w:semiHidden="0" w:uiPriority="67" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 2 Accent 6" w:semiHidden="0" w:uiPriority="68" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Medium Grid 3 Accent 6" w:semiHidden="0" w:uiPriority="69" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Dark List Accent 6" w:semiHidden="0" w:uiPriority="70" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Shading Accent 6" w:semiHidden="0" w:uiPriority="71" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful List Accent 6" w:semiHidden="0" w:uiPriority="72" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Colorful Grid Accent 6" w:semiHidden="0" w:uiPriority="73" w:unhideWhenUsed="0"/>
+<w:lsdException w:name="Subtle Emphasis" w:semiHidden="0" w:uiPriority="19" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Intense Emphasis" w:semiHidden="0" w:uiPriority="21" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Subtle Reference" w:semiHidden="0" w:uiPriority="31" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Intense Reference" w:semiHidden="0" w:uiPriority="32" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Book Title" w:semiHidden="0" w:uiPriority="33" w:unhideWhenUsed="0" w:qFormat="1"/>
+<w:lsdException w:name="Bibliography" w:uiPriority="37"/>
+<w:lsdException w:name="TOC Heading" w:uiPriority="39" w:qFormat="1"/>
+</w:latentStyles>
+<w:style w:type="paragraph" w:default="1" w:styleId="Normal">
+<w:name w:val="Normal"/>
+<w:qFormat/>
+<w:rsid w:val="00154DE2"/>
+<w:pPr>
+<w:widowControl w:val="0"/>
+<w:jc w:val="both"/>
+</w:pPr>
+<w:rPr>
+<w:kern w:val="2"/>
+<w:sz w:val="21"/>
+<w:szCs w:val="24"/>
+</w:rPr>
+</w:style>
+<w:style w:type="character" w:default="1" w:styleId="DefaultParagraphFont">
+<w:name w:val="Default Paragraph Font"/>
+<w:uiPriority w:val="1"/>
+<w:semiHidden/>
+<w:unhideWhenUsed/>
+</w:style>
+<w:style w:type="table" w:default="1" w:styleId="TableNormal">
+<w:name w:val="Normal Table"/>
+<w:uiPriority w:val="99"/>
+<w:semiHidden/>
+<w:unhideWhenUsed/>
+<w:qFormat/>
+<w:tblPr>
+<w:tblInd w:w="0" w:type="dxa"/>
+<w:tblCellMar>
+<w:top w:w="0" w:type="dxa"/>
+<w:left w:w="108" w:type="dxa"/>
+<w:bottom w:w="0" w:type="dxa"/>
+<w:right w:w="108" w:type="dxa"/>
+</w:tblCellMar>
+</w:tblPr>
+</w:style>
+<w:style w:type="numbering" w:default="1" w:styleId="NoList">
+<w:name w:val="No List"/>
+<w:uiPriority w:val="99"/>
+<w:semiHidden/>
+<w:unhideWhenUsed/>
+</w:style>
+<w:style w:type="paragraph" w:styleId="Header">
+<w:name w:val="header"/>
+<w:basedOn w:val="Normal"/>
+<w:semiHidden/>
+<w:rsid w:val="00154DE2"/>
+<w:pPr>
+<w:pBdr>
+<w:bottom w:val="single" w:sz="6" w:space="1" w:color="auto"/>
+</w:pBdr>
+<w:tabs>
+<w:tab w:val="center" w:pos="4153"/>
+<w:tab w:val="right" w:pos="8306"/>
+</w:tabs>
+<w:snapToGrid w:val="0"/>
+<w:jc w:val="center"/>
+</w:pPr>
+<w:rPr>
+<w:sz w:val="18"/>
+<w:szCs w:val="18"/>
+</w:rPr>
+</w:style>
+<w:style w:type="paragraph" w:styleId="Footer">
+<w:name w:val="footer"/>
+<w:basedOn w:val="Normal"/>
+<w:semiHidden/>
+<w:rsid w:val="00154DE2"/>
+<w:pPr>
+<w:tabs>
+<w:tab w:val="center" w:pos="4153"/>
+<w:tab w:val="right" w:pos="8306"/>
+</w:tabs>
+<w:snapToGrid w:val="0"/>
+<w:jc w:val="left"/>
+</w:pPr>
+<w:rPr>
+<w:sz w:val="18"/>
+<w:szCs w:val="18"/>
+</w:rPr>
+</w:style>
+</w:styles>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/word/fontTable.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.fontTable+xml">
+<pkg:xmlData>
+<w:fonts xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:font w:name="Times New Roman">
+<w:panose1 w:val="02020603050405020304"/>
+<w:charset w:val="00"/>
+<w:family w:val="roman"/>
+<w:pitch w:val="variable"/>
+<w:sig w:usb0="E0002AFF" w:usb1="C0007841" w:usb2="00000009" w:usb3="00000000" w:csb0="000001FF" w:csb1="00000000"/>
+</w:font>
+<w:font w:name="宋体">
+<w:altName w:val="SimSun"/>
+<w:panose1 w:val="02010600030101010101"/>
+<w:charset w:val="86"/>
+<w:family w:val="auto"/>
+<w:pitch w:val="variable"/>
+<w:sig w:usb0="00000003" w:usb1="288F0000" w:usb2="00000016" w:usb3="00000000" w:csb0="00040001" w:csb1="00000000"/>
+</w:font>
+<w:font w:name="Cambria">
+<w:panose1 w:val="02040503050406030204"/>
+<w:charset w:val="00"/>
+<w:family w:val="roman"/>
+<w:pitch w:val="variable"/>
+<w:sig w:usb0="E00002FF" w:usb1="400004FF" w:usb2="00000000" w:usb3="00000000" w:csb0="0000019F" w:csb1="00000000"/>
+</w:font>
+<w:font w:name="Calibri">
+<w:panose1 w:val="020F0502020204030204"/>
+<w:charset w:val="00"/>
+<w:family w:val="swiss"/>
+<w:pitch w:val="variable"/>
+<w:sig w:usb0="E10002FF" w:usb1="4000ACFF" w:usb2="00000009" w:usb3="00000000" w:csb0="0000019F" w:csb1="00000000"/>
+</w:font>
+</w:fonts>
+</pkg:xmlData>
+</pkg:part>
+<pkg:part pkg:name="/docProps/app.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.extended-properties+xml" pkg:padding="256">
+<pkg:xmlData>
+<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
+<Template>Normal.dotm</Template>
+<TotalTime>3</TotalTime>
+<Pages>1</Pages>
+<Words>80</Words>
+<Characters>462</Characters>
+<Application>Microsoft Office Word</Application>
+<DocSecurity>0</DocSecurity>
+<Lines>3</Lines>
+<Paragraphs>1</Paragraphs>
+<ScaleCrop>false</ScaleCrop>
+<HeadingPairs>
+<vt:vector size="4" baseType="variant">
+<vt:variant>
+<vt:lpstr>Title</vt:lpstr>
+</vt:variant>
+<vt:variant>
+<vt:i4>1</vt:i4>
+</vt:variant>
+<vt:variant>
+<vt:lpstr>题目</vt:lpstr>
+</vt:variant>
+<vt:variant>
+<vt:i4>1</vt:i4>
+</vt:variant>
+</vt:vector>
+</HeadingPairs>
+<TitlesOfParts>
+<vt:vector size="2" baseType="lpstr">
+<vt:lpstr>公  证  申  请  表</vt:lpstr>
+<vt:lpstr>公  证  申  请  表</vt:lpstr>
+</vt:vector>
+</TitlesOfParts>
+<Company>Oracle Corporation</Company>
+<LinksUpToDate>false</LinksUpToDate>
+<CharactersWithSpaces>541</CharactersWithSpaces>
+<SharedDoc>false</SharedDoc>
+<HyperlinksChanged>false</HyperlinksChanged>
+<AppVersion>12.0000</AppVersion>
+</Properties>
+</pkg:xmlData>
+</pkg:part>
+</pkg:package>
