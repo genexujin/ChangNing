@@ -27,13 +27,17 @@
 
 </div>
 
-</div>
 <!-- <div id = "olhd_anchor"></div> -->
 <c:choose>
 	<c:when test="${sessionScope['LOGIN_USER']!=null}">
-		<script language="javascript">var qykf_userinfo_url='http://210.22.116.47:4848/ChangNing/whichUser.do'</script>
+		<script language="javascript">
+			var qykf_userinfo_url = 'http://210.22.116.47:4848/ChangNing/whichUser.do'
+		</script>
+		
 		<script src="http://59064.fy.kf.qycn.com/vclient/state.php?webid=59064" language="javascript" type="text/javascript"></script>
-   </c:when>
+		
+		 
+	</c:when>
 </c:choose>
 
 <!-- <script>
