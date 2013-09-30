@@ -291,6 +291,13 @@ public class UploadController {
 							+ orderId, e);
 		}
 	}
+	
+	@RequestMapping(value = "/getShengMingShu/{fileName}", method = RequestMethod.GET)
+    public void getFile(@PathVariable("fileName") String fileName,
+            HttpServletRequest request, HttpServletResponse response) {
+	    
+	    
+	}
 
 	private void addDir(File dirObj, ZipArchiveOutputStream  out,
 			Map<String, String> processedFiles) throws IOException {

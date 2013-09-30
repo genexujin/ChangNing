@@ -190,9 +190,9 @@ public class OrderController {
 		// First put the 通用 docs in the map.
 		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
 				.getAttribute(Constants.FORM_DEFS);
-		FormDef ty = null;
-
+		
 		boolean needSpecialNote = false;
+		boolean needTY = true;
 		for (FormDef formDef : selectedForms) {
 			// A special requirement about add a note for 出生公证 and 出生证复印件公证
 			if (formDef.getFormKey().equals("CS")) {
@@ -208,10 +208,13 @@ public class OrderController {
 			}
 
 			Form form = new Form();
-			form.setFormKey(formDef.getFormKey());
+			String formKey = formDef.getFormKey();
+			form.setFormKey(formKey);
 			form.setFormName(formDef.getFormName());
-			if (!(formDef.getFormName().equals("户口本复印件"))) {
-				ty = formDefs.get("TY");
+			//HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
+			//CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
+			if (formKey.equals("HKBFYJ") || formKey.equals("CS") || formKey.equals("CSZFYJ")) {
+				needTY = false;
 			}
 
 			// Create FormItems for a form
@@ -299,7 +302,8 @@ public class OrderController {
 				}
 			}
 		}
-		if (ty != null) {
+		if (needTY) {
+		    FormDef ty = formDefs.get("TY");
 			for (FormDocItemDef docDef : ty.getDocs()) {
 				//
 				// String strKey=docDef.getDocKey();
@@ -1231,14 +1235,15 @@ public class OrderController {
 					"The QSGX form must select a relativeType other than NULL");
 		}
 		RelativeType type = RelativeType.valueOf(typeStr);
-		String name = request.getParameter(fieldKey
-				+ Constants.QSGX_NAME_SUFFIX);
+		String name = request.getParameter(fieldKey	+ Constants.QSGX_NAME_SUFFIX);
+		String pinyin = request.getParameter(fieldKey + Constants.QSGX_PINYIN_SUFFIX);
 
-		log.debug("relativeType is: " + type + " relativeName is: " + name);
+		log.debug("relativeType is: " + type + " relativeName is: " + name + " relativePinyin is: " + pinyin);
 
 		RelativeInfo result = new RelativeInfo();
 		result.setRelativeType(type);
 		result.setRelativeName(name);
+		result.setRelativePinyin(pinyin);
 		return result;
 
 	}

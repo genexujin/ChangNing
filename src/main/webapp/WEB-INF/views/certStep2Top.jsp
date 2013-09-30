@@ -80,7 +80,7 @@
 						</SELECT>
 			    	  </div> --%>
 			    	  <div class="controls">
-			    		<input id="username" name="pinyin" type="text"></input>
+			    		<input id="username" name="pinyin" type="text" onkeyup="this.value=this.value.replace(/[^\a-zA-Z ]/g,'')"></input>
 			    	  </div>
 			    	</div>
 	    		  </div>

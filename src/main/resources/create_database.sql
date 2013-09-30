@@ -140,6 +140,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`relative_infos` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `relative_type` VARCHAR(20) NULL ,
   `relative_name` VARCHAR(50) NULL ,
+  `relative_pinyin` VARCHAR(50) NULL ,
   `form_item_id` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `form_items_fk_idx` (`form_item_id` ASC) ,

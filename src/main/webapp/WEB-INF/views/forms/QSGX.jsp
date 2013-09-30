@@ -50,11 +50,21 @@
 			    	  </div>
 			    	</div>
 	            </div>
-	            <div class="span5">
+	            <div class="span3">
 	                <div class="control-group">
 			    	  <label class="control-label" for="relativeName">关系人姓名</label>
 			    	  <div class="controls">
-		    		    <input id="QSGX_RELATION_1_NAME" name="QSGX_RELATION_1_NAME" type="text" class="QSGX_INPUT"></input>
+		    		    <input id="QSGX_RELATION_1_NAME" name="QSGX_RELATION_1_NAME" type="text" class="thin QSGX_INPUT"></input>
+		    	      </div>
+		    	    </div>
+	            </div>
+	            
+	            <div class="span3">
+	                <div class="control-group">
+			    	  <label class="control-label" for="relativeName">拼音</label>
+			    	  <div class="controls">
+		    		    <input id="QSGX_RELATION_1_PINYIN" name="QSGX_RELATION_1_PY" type="text" class="thin QSGX_INPUT_PY"
+		    		           onkeyup="this.value=this.value.replace(/[^\a-zA-Z ]/g,'')"></input>
 		    	      </div>
 		    	    </div>
 	            </div>
@@ -175,6 +185,9 @@
     		var input = cloned.find(".QSGX_INPUT");
     		input.attr("id", newId + "_NAME");
     		input.attr("name", newId + "_NAME");
+    		var input = cloned.find(".QSGX_INPUT_PY");
+    		input.attr("id", newId + "_PY");
+    		input.attr("name", newId + "_PY");
     		toClone.after(cloned);
 	    }
 	    
