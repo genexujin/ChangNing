@@ -331,7 +331,7 @@
 									<td></td>
 									<td colspan="3">
 										<button href="#" id="user_modify_btn" type="submit"
-											class="btn">提交修改</button>
+											class="btn btn-primary">提交修改</button>
 											
 									
 											
@@ -405,7 +405,7 @@
 									<td></td>
 									<td colspan="3">
 										<button href="#" id="user_modifypwd_btn" type="button"
-											class="btn" onclick="modifyPwd()">提交修改</button>
+											class="btn btn-primary" onclick="modifyPwd()">提交修改</button>
 									</td>
 									<td><div id="modifyPwd_submit_alert" class="alert"
 											style="width:50px;display: none"></div></td>

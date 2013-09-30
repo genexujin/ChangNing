@@ -115,7 +115,7 @@
 		<h2>网上办证</h2>
 		<p>在线办理30余种涉外公证事项，快捷的受理通道使您免去舟车劳顿之苦。</p>
 		<p>
-			<a class="btn"
+			<a class="btn btn-success"
 				href="http://getbootstrap.com/2.3.2/examples/carousel.html#">进入网上办证 »</a>
 		</p>
 	</div>
@@ -124,7 +124,7 @@
 		<h2>现场办证预约</h2>
 		<p>在线预约到场办证。</p>
 		<p>
-			<a class="btn"
+			<a class="btn btn-success"
 				href="http://getbootstrap.com/2.3.2/examples/carousel.html#">进入在线预约»</a>
 		</p>
 	</div>
@@ -133,7 +133,7 @@
 		<h2>在线咨询</h2>
 		<p>在线咨询业务</p>
 		<p>
-			<a class="btn"
+			<a class="btn btn-success"
 				href="#" onclick="window.open('http://59064.fy.kf.qycn.com/vclient/chat/?websiteid=59064&clerkid=&clienturl=http%3A%2F%2Fwww.6408.com.cn%2F&originPageTitle='+encodeURIComponent(window.document.title)+'&originPageUrl='+encodeURIComponent(document.referrer), '_blank', 'toolbar=no,scrollbars=yes,menubar=no,status=no,resizable=yes,location=no,width=650,height=530,top=100,left=200')">打开咨询窗口 »</a>
 		</p>
 	</div>

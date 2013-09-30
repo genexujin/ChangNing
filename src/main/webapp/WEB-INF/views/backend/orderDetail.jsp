@@ -17,31 +17,31 @@
 			<div class="span9">
 			 <c:choose>
         		<c:when test="${order.orderStatus == 'PAID'}">
-			  		<a class="btn" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
+			  		<a class="btn btn-info" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
 			   </c:when>
 			 </c:choose>
 			  <c:choose>
         		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">				
-			  		<a href="requestExtraDocs.do?oId=${order.id}" class="btn">要求补充材料</a>
+			  		<a href="requestExtraDocs.do?oId=${order.id}" class="btn btn-primary">要求补充材料</a>
 			    </c:when>
 			 </c:choose>
 			  <c:choose>
         		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">	
-			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn">要求客户附加费用</a>
+			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn btn-primary">要求客户附加费用</a>
 			   </c:when>
 			 </c:choose>
 			  <c:choose>
         		<c:when test="${hasPaid}">	
-			  		<a href="orderRefund.do?oId=${order.id}" class="btn">退款</a>
+			  		<a href="orderRefund.do?oId=${order.id}" class="btn btn-primary">退款</a>
 			   </c:when>
 			 </c:choose>
 			  <c:choose>
         		<c:when test="${order.orderStatus == 'CANCEL_REQUESTED'}">	
-			  		<a href="#" class="btn" onclick="confirmCancel(${order.id})">确认撤销</a>
+			  		<a href="#" class="btn btn-primary" onclick="confirmCancel(${order.id})">确认撤销</a>
 			   </c:when>
 			 </c:choose>
-			  <a href="generateForm.do?oId=${order.id}" class="btn">申请书下载</a>
-			  <a href="orderQuery.do" class="btn">返回</a>
+			  <a href="generateForm.do?oId=${order.id}" class="btn btn-primary">申请书下载</a>
+			  <a href="orderQuery.do" class="btn btn-success">返回</a>
 			</div>
 	      </div>
         </c:when>
@@ -50,15 +50,15 @@
 			<div class="span9">
 			 <c:choose>
         		<c:when test="${order.orderStatus != 'CANCEL_REQUESTED' and order.orderStatus!='FINISHED'and order.orderStatus!='CANCELLED'}">
-			  		<a href="orderCancel.do?oId=${order.id}" class="btn">申请撤销</a>
+			  		<a href="orderCancel.do?oId=${order.id}" class="btn btn-primary">申请撤销</a>
 			   </c:when>
 			 </c:choose>
 			  <c:choose>
         		<c:when test="${order.orderStatus == 'SUBMITTED' or order.orderStatus=='PAYING'}">
-			  		<a href="payment.do?oId=${order.id}" target="_blank" class="btn">支付</a>
+			  		<a href="payment.do?oId=${order.id}" target="_blank" class="btn btn-primary">支付</a>
 			   </c:when>
 			 </c:choose>			
-			  <a href="orderQuery.do" class="btn">返回</a>
+			  <a href="orderQuery.do" class="btn btn-success">返回</a>
 			</div>
       	  </div>
         </c:otherwise>
@@ -104,13 +104,13 @@
                   <c:when test="${order.orderStatus=='EXTRADOC_REQUESTED' and interaction.interactionType == 'ADD_DOCS'}">
                    	<div class="span10 offset1 alert alert-block">
 	                   	${interaction.interactionContent} 
-	                    <a href="addDocs.do?oId=${order.id}" class="btn">补充材料</a>
+	                    <a href="addDocs.do?oId=${order.id}" class="btn btn-primary">补充材料</a>
                     </div>
                   </c:when>
                   <c:when test="${order.orderStatus=='ADD_CHARGE' and interaction.interactionType == 'ADD_PAYMENT'}">
                     <div class="span10 offset1 alert alert-block">
                     	${interaction.interactionContent}
-                    	<a href="extraPayment.do?oId=${order.id}&pId=${interaction.extraData}" class="btn medium">支付</a>
+                    	<a href="extraPayment.do?oId=${order.id}&pId=${interaction.extraData}" class="btn btn-primary medium">支付</a>
                     </div>
                   </c:when>
                 </c:choose>
@@ -302,7 +302,7 @@
             <c:if test="${not empty order.docs}">
               <a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
             </c:if>
-            <a href="addDocs.do?oId=${order.id}" class="btn">补充材料</a>
+            <a href="addDocs.do?oId=${order.id}" class="btn btn-primary">补充材料</a>
           </div>
         </div>
         <br/>

@@ -34,7 +34,7 @@
 	  </div>
 	  
 	  <br>
-	  <form class="form-horizontal" action="payment.do" method="POST">
+	  <form class="form-horizontal" action="payment.do" method="POST" id="payForm" target="_blank">
 	  
 		<div class="bar-bg">
 	      <div class="row">
@@ -161,12 +161,52 @@
 	    
 	    <div class="row">
    		  <div class="span2 offset5">
-   		    <button id="payBill" class="btn btn-large btn-block btn-info" type="submit" disabled>立即支付</button>
+   		    <button id="payBill" class="btn btn-large btn-block btn-info" disabled>立即支付</button>
    		  </div>    		  
    	    </div>
 	  </form>
 	  
+<div id="myModal1" class="modal hide fade" style="margin-top:100px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<h3 id="myModalLabel">支付</h3>
+	</div>
+	<div class="modal-body">
+		<p>请您在新打开的支付宝支付页面中进行支付，支付完成前请不要关闭该窗口！</p>
+		<div class="row">
+			<div class="span5">
+				<button class="btn" id="success_btn" class="btn btn-primary">已完成支付</button>
+				<button class="btn" id="issue_btn" class="btn btn-primary">支付遇到问题</button>
+			</div>
+		</div>
+	</div>
+</div>
+	  
 	  <script>
+	  
+	  $( document ).ready(function() {
+	  	$("#payBill").click(
+	  		function(){
+	  			$("#myModal1").modal("show");
+	  			$("#payForm").submit();
+	  		}	
+	  	);
+	  	
+	  	$("#success_btn").click(
+		  		function(){
+		  			window.location="orderDetail.do?oId="+${order.id};
+		  		}	
+		);
+	  	
+	  	$("#issue_btn").click(
+		  		function(){
+		  			window.location="orderDetail.do?oId="+${order.id};
+		  		}	
+		);
+	  });
+	  	
+	  	
+	  	
+	  	
 	    function preparePayment() {
 	    	$("#agreement").change(function (event) {
 	    		if (event.target.checked == true) {

@@ -173,7 +173,7 @@
 						<tr height="60px">
 							<td></td>
 							<td colspan="2">
-								<button id="user_login_btn" type="submit" class="btn">用户登录</button>
+								<button id="user_login_btn" type="submit" class="btn btn-primary">用户登录</button>
 							</td>
 							<td colspan="2"></td>
 						</tr>

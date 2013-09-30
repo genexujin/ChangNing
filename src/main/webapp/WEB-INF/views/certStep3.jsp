@@ -15,6 +15,19 @@
       
       <hr/>
       
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;">
+	<div class="modal-header" style="height:10px;">		
+		<p id="myModalLabel">请按照样张示例裁剪，注意头部周围留出足够空间。</p>
+	</div>
+	<div class="modal-body">
+		<img id="sampleImage" width="240px;" height="364px;" src="resources/crop_sample.png"></img>		
+	</div>
+	<div class="modal-footer" style="height:20px;">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	</div>
+</div>
+      
       <div class="row">
         <div class="span12">
           <h2>网上办证</h2>
@@ -175,6 +188,7 @@
 			      <div class="row">
 			        <div class="span12 navbg2">
 			          <h5>&nbsp;&nbsp;&nbsp;&nbsp;上传${doc.docName}</h5>
+
 			        </div>
 			      </div>
 		      </div>
@@ -182,7 +196,7 @@
 		          <br>
 			      <div class="row">
 		            <div class="span offset1">
-		              <h5>${doc.docName} </h5>
+		              <h5>${doc.docName} <a class="yz" style="padding-left:5px;">样张</a></h5>
 		            </div>
 		            <div class="span7">
 		              <c:if test="${doc.needCrop}">
@@ -347,10 +361,18 @@
 	   		    <button id="goToStep4" class="btn btn-large btn-block btn-info" type="submit">下一步</button>
 	   		  </div>
 	      </div>
+	      
+
       
       <!-- </form> -->
       
       <script>
+        $(".yz").click(
+        	function(){        		
+        		$("#myModal1").modal("show");
+        	}
+        );
+      
         function prepareCertStep3() {
         	$("#goToStep4").click(function() {
         		window.location = '<c:url value="/certStep4.do" />';
