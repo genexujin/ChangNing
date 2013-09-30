@@ -109,10 +109,10 @@
 
 		<div class="row">
 			<div class="span2 offset2">
-				<button id="refund_submit" class="btn" type="submit">确认</button>
+				<button id="refund_submit" class="btn btn-primary" type="submit">确认</button>
 			</div>
 			<div class="span2">
-				<a href="orderDetail.do?oId=${order.id}" class="btn">返回</a>
+				<a href="orderDetail.do?oId=${order.id}" class="btn btn-success">返回</a>
 			</div>
 		</div>
 

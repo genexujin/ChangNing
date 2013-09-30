@@ -89,7 +89,7 @@ request.setAttribute("statusStr", statusStr);
 									name="endDate" placeholder="选择结束日期" readonly value ="${reserv_query_endDate}"/>
 					</td>
 	                <td style="width:230px;text-align:center;">
-	               		<button class="btn btn-medium" type="submit">执行查询</button>
+	               		<button class="btn btn-medium btn-primary" type="submit">执行查询</button>
 	               </td>	                
 	              </tr>
 			 	</tbody>			 

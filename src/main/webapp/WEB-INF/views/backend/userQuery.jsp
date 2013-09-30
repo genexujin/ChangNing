@@ -76,7 +76,7 @@
 					</div>
 				</div>
 				<div class="span1" style="margin-left:65px;">
-					<button class="btn btn-block" type="submit">查询</button>
+					<button class="btn btn-block btn-primary" type="submit">查询</button>
 				</div>
 			</div>
 			<div class="row">
@@ -116,11 +116,11 @@
 									<td>
 											<c:if test="${user.staff or user.noRole}">
 												<a onclick="setNormalUser('${user.mobile}')"
-													role="button"  class="btn" data-toggle="modal">设为客户</a>												
+													role="button"  class="btn btn-primary" data-toggle="modal">设为客户</a>												
 											</c:if>
 											<c:if test="${user.normalUser or user.noRole}">
 												<a onclick="setStaff('${user.mobile}')"
-													role="button"  class="btn" data-toggle="modal">设为公证员</a>												
+													role="button"  class="btn btn-primary" data-toggle="modal">设为公证员</a>												
 											</c:if>									
 									</td>
 									</c:when>

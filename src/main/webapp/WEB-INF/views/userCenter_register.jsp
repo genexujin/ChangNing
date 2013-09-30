@@ -365,7 +365,7 @@
 					<tr height="60px">
 						<td></td>
 						<td colspan="2">
-							<button href="#" id="user_reg_btn" type="submit" class="btn btn-large btn-block ">用户注册</button>
+							<button href="#" id="user_reg_btn" type="submit" class="btn btn-large btn-block btn-primary">用户注册</button>
 						</td>
 						<td colspan="2"></td>
 					</tr>

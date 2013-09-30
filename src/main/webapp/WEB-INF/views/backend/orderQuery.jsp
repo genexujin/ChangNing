@@ -112,8 +112,8 @@
 					</div>
 				</div>				
 				<div class="span2 offset1">
-					<button class="btn" type="submit">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
-					<button id="reset_query" class="btn">重置</button>
+					<button class="btn btn-primary" type="submit">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button id="reset_query" class="btn btn-success">重置</button>
 				</div>
 			</div>
 			<div class="row">

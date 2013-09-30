@@ -84,7 +84,7 @@
 		<div class="span5 offset1">
 		<c:choose>
 			<c:when test="${oid!=null}">
-				<a href="orderDetail.do?oId=${oid}">查看该订单详情</a>
+				<a href="orderDetail.do?oId=${oid}" class="btn btn-primary">查看该订单详情</a>
 			</c:when>
 			<c:otherwise>
 				<a href="#">查看该订单详情</a>
