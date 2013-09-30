@@ -57,7 +57,7 @@
     		<div class="row">
     		  <div class="span4">
     		    <div class="control-group">
-		    	  <label class="control-label" for="dest">前往国家或地区</label>
+		    	  <label class="control-label" for="dest"><strong>前往国家或地区</strong></label>
 		    	  <div class="controls">
 		    		<SELECT id="dest" name="dest">
 						<OPTION selected value="NULL">请选择</OPTION>
@@ -182,7 +182,7 @@
     		  </div>
     		  <div class="span4">
     		    <div class="control-group">
-		    	  <label class="control-label" for="trans">公证翻译</label>
+		    	  <label class="control-label" for="trans"><strong>公证翻译</strong></label>
 		    	  <div class="controls">
 		    		<SELECT id="trans" name="trans">
 						<OPTION selected value="English">英语</OPTION>
@@ -193,7 +193,7 @@
     		  </div>
     		  <div class="span4">
     		    <div class="control-group">
-		    	  <label class="control-label" for="copies">公证书</label>
+		    	  <label class="control-label" for="copies"><strong>公证书</strong></label>
 		    	  <div class="controls">
 		    		<input class="thin" id="copies" name="copies" type="text" value="1">&nbsp;本
 		    	  </div>
@@ -203,7 +203,7 @@
     		<div class="row">
     		  <div class="span12">
     		    <div class="control-group">
-    		      <label class="control-label" for="verify">是否认证</label>
+    		      <label class="control-label" for="verify"><strong>是否认证</strong></label>
     		      <div class="controls">
     		        <label class="radio inline">
 				      <input type="radio" value="true" name="verify" checked> 是&nbsp;&nbsp;
@@ -218,7 +218,7 @@
     		<div class="row">
     		  <div class="span12">
     		    <div class="control-group">
-    		      <label class="control-label" for="purpose">选择办证用途</label>
+    		      <label class="control-label" for="purpose"><strong>选择办证用途</strong></label>
     		      <div class="controls">
     		        <label class="radio inline">
 				      <input type="radio" value="RESIDENCE" name="purpose" checked> 定居&nbsp;&nbsp;
@@ -246,7 +246,7 @@
     		<br>
     		<div id="sel_region" class="row hide">
     		  <div class="span2">
-    		    <label class="control-label" for="verify">已选公证业务</label>
+    		    <label class="control-label" for="verify"><strong>已选公证业务</strong></label>
     		  </div>
     		  <div class="span9 tiny-pt">
     		      
@@ -263,9 +263,15 @@
     		<div class="row">
     		  <div class="span12">
     		    <div class="control-group">
-    		      <label class="control-label">可选公证业务</label>
+    		      <label class="control-label"><strong>可选公证业务</strong></label>
+    		      
     		    </div>
     		  </div>
+    		</div>
+    		<div class="row">
+    			<div class="span12">
+    				<label class="offset1" style="color:gray;padding-bottom:10px;">注：单击 [*]符号可以查看示例公证书证词及相关提交材料样本。</label>
+    			</div>
     		</div>
     		<div id="li_region" class="row">
     		  <div class="span11 offset1">

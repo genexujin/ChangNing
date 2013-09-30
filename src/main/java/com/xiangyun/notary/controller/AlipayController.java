@@ -232,8 +232,9 @@ public class AlipayController {
 			thePayment.setStatus(OrderPaymentStatus.FULL_PAID);
 			thePayment.getOrder().setOrderStatus(OrderStatus.PAID);
 			thePayment.setAlipayTxnNo(trade_no);
+			thePayment.setPaymentDate(new Date());
 			orderService.save(thePayment.getOrder());
-			System.out.println("业务数据更新完成");
+			log.debug("订单状态变更完成！");
 			
 		}// 如果有做过处理，不执行商户的业务程序
 		
@@ -436,7 +437,7 @@ public class AlipayController {
 				log.debug("正在处理唯一一条退款记录");
 				order= updateRefundStatus(result_details);
 			}
-			order.setOrderStatus(OrderStatus.CANCELLED);
+			//order.setOrderStatus(OrderStatus.CANCELLED);
 			orderService.save(order);
 			out.println("success"); // 请不要修改或删除
 			

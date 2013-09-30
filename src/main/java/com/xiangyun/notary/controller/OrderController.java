@@ -437,7 +437,7 @@ public class OrderController {
 		// 先创建Payment
 		Payment payment = new Payment();
 
-		payment.setPaymentDate(new Date());
+		//payment.setPaymentDate(new Date());
 		payment.setPaymentTotal(0.01);// 暂时写死
 		payment.setTitle(title);
 		payment.setPaymentReason("公证费用");
@@ -618,10 +618,19 @@ public class OrderController {
 
 		List<Interaction> interactions = orderService
 				.findIncompletedInteractionsForOrder(orderId, userId);
-
+		
 		ModelAndView mav = new ModelAndView("backend/orderDetail");
+		
+		for(Payment p: order.getPayments()){
+			if(p.getStatus().equals(OrderPaymentStatus.FULL_PAID)){
+				mav.addObject("hasPaid",true);
+				break;
+			}
+		}
+				
 		mav.addObject("title", "订单详情");
 		mav.addObject("order", order);
+		
 		mav.addObject("allDocs", allDocs.values());
 		mav.addObject("interactions", interactions);
 
@@ -740,6 +749,31 @@ public class OrderController {
 		mav.addObject("successMsg", "订单已成功撤销！请单击“返回”按钮返回订单详情页面！");
 		mav.addObject("order", order);
 
+		return mav;
+	}
+	
+	@RequestMapping(value = "/confirmCancel.do")
+	public ModelAndView confirmCancel(HttpServletRequest request) {
+		Long orderId = validateOrderIdParameter(request);
+		if (orderId == null) {
+			return new ModelAndView("redirect:orderQuery.do");
+		}
+
+		Long userId = getUserIdFromSession(request.getSession(false));
+
+		Order order = orderService.findOrderById(orderId, userId);
+		if (order == null) {
+			return new ModelAndView("redirect:orderQuery.do");
+		}
+				
+		order.setOrderStatus(OrderStatus.CANCELLED);
+		orderService.save(order);
+
+		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
+				"您的办证订单：" + order.getReadableId()
+						+ " 已撤销，如有疑问请询问在线客服或电话联系我们，谢谢！", 1);
+
+		ModelAndView mav = new ModelAndView("redirect:orderDetail.do?oId="+order.getId());		
 		return mav;
 	}
 
