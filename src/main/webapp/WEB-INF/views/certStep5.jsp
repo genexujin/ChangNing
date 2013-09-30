@@ -166,7 +166,7 @@
    	    </div>
 	  </form>
 	  
-<div id="myModal1" class="modal hide fade" style="margin-top:200px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal1" class="modal hide fade" style="margin-top:100px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<h3 id="myModalLabel">支付</h3>
 	</div>
