@@ -9,7 +9,8 @@
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li class="active">订单详情</li>
       </ul>
-      <div class="row">
+      <hr>
+      <div class="row" style="padding-top:5px;">
       <c:choose>
         <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
           
@@ -209,7 +210,7 @@
             <c:forEach items="${order.forms}" var="form" >
               <table class="table table-bordered">
 	            <tbody>
-	              <tr>
+	              <tr class="info">
 	                <td colspan="4"><b>${form.formName}公证录入信息</b></td>
 	              </tr>
 	              <c:choose>
