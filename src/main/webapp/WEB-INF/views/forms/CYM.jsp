@@ -70,6 +70,7 @@
 	          validCYM = false;
 		      validateCYM_CYM();
 		      validateCYM_CYMPY();
+		      validateCYM_SHHJ();
 		    	
 		      $("input[name='CYM_CYM']").change(validateCYM_CYM);
 		      

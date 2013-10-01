@@ -33,7 +33,7 @@
 	  </div>
 
       <br>
-      <form class="form-horizontal" action="certStep3.do" method="POST">
+      <form id="theform" class="form-horizontal" action="certStep3.do" method="POST">
       <!-- 基本信息 -->
       <div class="bar-bg">
 	      <div class="row">

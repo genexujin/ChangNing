@@ -74,6 +74,9 @@
 	  
 	  <script>
 	    function prepareXL() {
+	    	validateXL1();
+	    	validateXL2();
+	    	
 	    	$("input[name='XL_BYZ']").change(validateXL1);
 	    	
 	    	$("input[name='XL_SHHJ']").change(validateXL2);

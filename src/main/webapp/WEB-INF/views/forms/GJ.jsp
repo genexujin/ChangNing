@@ -52,6 +52,8 @@
 	  
 	  <script>
 	    function prepareGJ() {
+	    	validGJ = false;
+	    	validateGJ2();
 	    	
 	    	$("input[name='GJ_SHHJ']").change(validateGJ2);
 	    	

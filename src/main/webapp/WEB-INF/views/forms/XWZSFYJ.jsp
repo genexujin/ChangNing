@@ -74,6 +74,9 @@
 	  
 	  <script>
 	    function prepareXWZSFYJ() {
+	    	validateXWZSFYJ1();
+	    	validateXWZSFYJ2();
+	    	
 	    	$("input[name='XWZSFYJ_BYZXWZSFYJZ']").change(validateXWZSFYJ1);
 	    	
 	    	$("input[name='XWZSFYJ_SHHJ']").change(validateXWZSFYJ2);

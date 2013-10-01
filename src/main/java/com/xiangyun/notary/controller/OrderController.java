@@ -187,20 +187,19 @@ public class OrderController {
 		Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
 		Map<String, FormDocItemDef> needCropDocs = new HashMap<String, FormDocItemDef>();
 
-		// First put the 通用 docs in the map.
-		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
-				.getAttribute(Constants.FORM_DEFS);
+		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx.getAttribute(Constants.FORM_DEFS);
 		
 		boolean needSpecialNote = false;
 		boolean needTY = true;
 		for (FormDef formDef : selectedForms) {
+            String formKey = formDef.getFormKey();
 			// A special requirement about add a note for 出生公证 and 出生证复印件公证
-			if (formDef.getFormKey().equals("CS")) {
+			if (formKey.equals("CS")) {
 				if ("true".equals(request.getParameter("CS_SFJZ"))
 						|| "true".equals(request.getParameter("CS_SMJZ")))
 
 					needSpecialNote = true;
-			} else if (formDef.getFormKey().equals("CSZFYJ")) {
+			} else if (formKey.equals("CSZFYJ")) {
 			    if ("true".equals(request.getParameter("CSZFYJ_SFJZ"))
                         || "true".equals(request.getParameter("CSZFYJ_SMJZ")))
 
@@ -208,7 +207,6 @@ public class OrderController {
 			}
 
 			Form form = new Form();
-			String formKey = formDef.getFormKey();
 			form.setFormKey(formKey);
 			form.setFormName(formDef.getFormName());
 			//HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
@@ -585,11 +583,8 @@ public class OrderController {
 		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
 				.getAttribute(Constants.FORM_DEFS);
 		Map<String, List<FormDocItemDef>> allDocs = new HashMap<String, List<FormDocItemDef>>();
-		// First put the 通用 docs in the map.
-		FormDef ty = formDefs.get("TY");
-		for (FormDocItemDef docDef : ty.getDocs()) {
-			putIfAbsent(allDocs, ty, docDef);
-		}
+		
+		boolean needTY = true;
 
 		Set<Form> forms = order.getForms();
 		for (Form form : forms) {
@@ -600,7 +595,14 @@ public class OrderController {
 						formItem.getItemValue());
 			}
 
-			FormDef formDef = formDefs.get(form.getFormKey());
+			String formKey = form.getFormKey();
+			FormDef formDef = formDefs.get(formKey);
+			//HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
+            //CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
+            if (formKey.equals("HKBFYJ") || formKey.equals("CS") || formKey.equals("CSZFYJ")) {
+                needTY = false;
+            }
+			
 			// Collect the doc items for display
 			for (FormDocItemDef docDef : formDef.getDocs()) {
 				boolean shouldPut = true;
@@ -619,6 +621,13 @@ public class OrderController {
 				}
 			}
 		}
+		
+		if (needTY) {
+            FormDef ty = formDefs.get("TY");
+            for (FormDocItemDef docDef : ty.getDocs()) {
+                putIfAbsent(allDocs, ty, docDef);
+            }
+        }
 
 		List<Interaction> interactions = orderService
 				.findIncompletedInteractionsForOrder(orderId, userId);
@@ -800,18 +809,35 @@ public class OrderController {
 		Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
 		Map<String, FormDocItemDef> needCropDocs = new HashMap<String, FormDocItemDef>();
 
-		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
-				.getAttribute(Constants.FORM_DEFS);
-
-		// First put the 通用 docs in the map.
-		FormDef ty = formDefs.get("TY");
-		for (FormDocItemDef docDef : ty.getDocs()) {
-			putIfAbsent(allInOneUploadDocs, ty, docDef);
-		}
+		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx.getAttribute(Constants.FORM_DEFS);
+		
+		boolean needSpecialNote = false;
+        boolean needTY = true;
 
 		Set<Form> forms = order.getForms();
 		for (Form form : forms) {
 			FormDef formDef = formDefs.get(form.getFormKey());
+			
+			String formKey = formDef.getFormKey();
+            // A special requirement about add a note for 出生公证 and 出生证复印件公证
+            if (formKey.equals("CS")) {
+                if ("true".equals(getItemValueFromForm(form, "CS_SFJZ"))
+                        || "true".equals(getItemValueFromForm(form, "CS_SMJZ")))
+
+                    needSpecialNote = true;
+            } else if (formKey.equals("CSZFYJ")) {
+                if ("true".equals(getItemValueFromForm(form, "CSZFYJ_SFJZ"))
+                        || "true".equals(getItemValueFromForm(form, "CSZFYJ_SMJZ")))
+
+                    needSpecialNote = true;
+            }
+            
+            //HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
+            //CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
+            if (formKey.equals("HKBFYJ") || formKey.equals("CS") || formKey.equals("CSZFYJ")) {
+                needTY = false;
+            }
+			
 			for (FormDocItemDef docDef : formDef.getDocs()) {
 				boolean shouldPut = true;
 				// Check if we should add the doc if the doc is dependent.
@@ -854,6 +880,13 @@ public class OrderController {
 				}
 			}
 		}
+		
+		if (needTY) {
+            FormDef ty = formDefs.get("TY");
+            for (FormDocItemDef docDef : ty.getDocs()) {
+                putIfAbsent(allInOneUploadDocs, ty, docDef);
+            }
+        }
 
 		ModelAndView mav = new ModelAndView("backend/addDocs");
 		mav.addObject("title", "补充资料");
@@ -867,6 +900,9 @@ public class OrderController {
 
 		mav.addObject("um", m);
 		mav.addObject("order", order);
+		
+		if (needSpecialNote)
+            mav.addObject("Special_note", "如本人和父母不在同一本户口本，请分别上传");
 
 		return mav;
 	}
@@ -1347,5 +1383,16 @@ public class OrderController {
 		default:
 			return 0;
 		}
+	}
+	
+	private String getItemValueFromForm(Form form, String itemKey) {
+	    Set<FormItem> items = form.getFormItems();
+	    for (FormItem item : items) {
+	        if (item.getItemKey().equals(itemKey)) {
+	            return item.getItemValue();
+	        }
+	    }
+	    
+	    return null;
 	}
 }

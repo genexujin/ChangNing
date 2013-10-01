@@ -62,6 +62,7 @@
 		
 		validCZGZCJFYJ = false;
 		validateCZGZCJFYJ_XN();
+		validateCZGZCJFYJ2();
 		
 		$("input[name='CZGZCJFYJ_XN']").change(validateCZGZCJFYJ_XN);
 

@@ -297,6 +297,16 @@
             </div>
           </div>
         </c:if>
+        <c:if test="${not empty order.uploadNote}">
+	        <div class="row">
+	          <div class="span2 offset1">
+	            <b>用户上传时的备注：</b>
+	          </div>
+	          <div class="span5">${order.uploadNote}
+	          </div>
+	        </div>
+        </c:if>
+        <br/>
         <div class="row">
           <div class="span5 offset1">
             <c:if test="${not empty order.docs}">

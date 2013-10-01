@@ -43,6 +43,7 @@
       <script>
 	    function prepareFYPJTJCDSFYJ() {
 	    	validFYPJTJCDSFYJ = false;
+	    	validateFYPJTJCDSFYJ_SHFY();
 	    	
 	    	$("input[name='FYPJTJCDSFYJ_SHFY']").change(validateFYPJTJCDSFYJ_SHFY);
 	    	

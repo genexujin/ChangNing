@@ -78,6 +78,10 @@
 
 <script>
 	function prepareTYCGSMS() {
+		validTYCGSMS = false;
+		validateTYCGSMS1();
+		validateTYCGSMS2();
+		
 		$("input[name='TYCGSMS_SHHJ']").change(validateTYCGSMS1);
 
 		$("input[name='TYCGSMS_XHCSZ']").change(validateTYCGSMS2);

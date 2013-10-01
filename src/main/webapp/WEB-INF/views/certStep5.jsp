@@ -187,6 +187,7 @@
 	  	$("#payBill").click(
 	  		function(){
 	  			$("#myModal1").modal("show");
+	  			$("#payBill").attr("disabled","disabled");
 	  			$("#payForm").submit();
 	  		}	
 	  	);

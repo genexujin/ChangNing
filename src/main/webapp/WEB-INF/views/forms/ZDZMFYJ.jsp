@@ -54,6 +54,7 @@
 	  
 	  <script>
 	    function prepareZDZMFYJ() {
+	    	validateZDZMFYJ2();
 	    	
 	    	$("input[name='ZDZMFYJ_SHHJ']").change(validateZDZMFYJ2);
 	    	

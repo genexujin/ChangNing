@@ -54,6 +54,8 @@
 	  
 	  <script>
 	    function prepareTXZFYJ() {
+	    	validTXZFYJ = false;
+	    	validateTXZFYJ2();
 	    	
 	    	$("input[name='TXZFYJ_SHHJ']").change(validateTXZFYJ2);
 	    	

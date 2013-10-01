@@ -108,6 +108,10 @@
 	  
 	  <script>
 	    function prepareCSZFYJ() {
+	    	validCSZFYJ = false;
+	    	validateCSZFYJ1();
+	    	validateCSZFYJ2();
+	    	
 	    	$("input[name='CSZFYJ_CSZM']").change(validateCSZFYJ1);
 	    	
 	    	$("input[name='CSZFYJ_SHHJ']").change(validateCSZFYJ2);

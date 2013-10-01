@@ -37,11 +37,11 @@
 					<div class="control-group">
 						<label class="control-label" for="HKBFYJ_YS">户口本有字页页数</label>
 						<div class="controls">
-							<input id="HKBFYJ_YS" name="HKBFYJ_YS" type="text"></input>
+							<input id="HKBFYJ_YS" name="HKBFYJ_YS" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></input>
 						</div>
 					</div>
 				</div>
-				<div id="DXDZZGCJFYJ_XN_M" class="span4 tiny-pt">提示：此项不能为空</div>
+				<div id="HKBFYJ_YS_M" class="span4 tiny-pt">提示：此项不能为空，且必须为数字</div>
 			  </div>
 
 	          
@@ -55,8 +55,12 @@
       <script>
 	    function prepareHKBFYJ() {
 	    	validHKBFYJ = false;
+	    	validateHKBFYJ_SHHJ();
+	    	validateHKBFYJ_YS();
 	    	
 	    	$("input[name='HKBFYJ_SHHJ']").change(validateHKBFYJ_SHHJ);
+	    	
+	    	$("input[name='HKBFYJ_YS']").change(validateHKBFYJ_YS);
 	    	
 	    }
 	    
@@ -72,9 +76,24 @@
 		    	disableGoToStep3Button();
 		    }
 	    }
+	    
+	    function validateHKBFYJ_YS() {
+	    	var hkbfyj_ys = $("input[name='HKBFYJ_YS']").val();
+		    if (hkbfyj_ys != '') {
+		        $("#HKBFYJ_YS_M").removeClass("alert alert-error");
+		        updateValidHKBFYJ();
+		    	tryToEnableGoToStep3Button();
+		    } else {
+		    	$("#HKBFYJ_YS_M").addClass("alert alert-error");
+		    	validHKBFYJ = false;
+		    	disableGoToStep3Button();
+		    }
+	    }
+	    
 	    function updateValidHKBFYJ(){
 		    var hkbfyj_shhj = $("input[name='HKBFYJ_SHHJ']:checked").val();
-		    if(hkbfyj_shhj=='true')
+		    var hkbfyj_ys = $("input[name='HKBFYJ_YS']").val();
+		    if(hkbfyj_shhj=='true' && hkbfyj_ys != '')
 		    	validHKBFYJ=true;
 
 	    }

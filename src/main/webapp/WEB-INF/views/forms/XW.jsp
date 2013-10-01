@@ -74,6 +74,9 @@
 	  
 	  <script>
 	    function prepareXW() {
+	    	validateXW1();
+	    	validateXW2();
+	    	
 	    	$("input[name='XW_BYZXWZ']").change(validateXW1);
 	    	
 	    	$("input[name='XW_SHHJ']").change(validateXW2);

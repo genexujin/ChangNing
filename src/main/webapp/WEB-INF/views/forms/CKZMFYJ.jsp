@@ -43,6 +43,7 @@
       <script>
 	    function prepareCKZMFYJ() {
 	    	validCKZMFYJ = false;
+	    	validateCKZMFYJ_YHINSH();
 	    	
 	    	$("input[name='CKZMFYJ_YHINSH']").change(validateCKZMFYJ_YHINSH);
 	    	

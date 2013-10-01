@@ -74,6 +74,10 @@
 	  
 	  <script>
 	    function prepareTX() {
+	    	validTX = false;
+	    	validateTX1();
+	    	validateTX2();
+	    	
 	    	$("input[name='TX_TXZ']").change(validateTX1);
 	    	
 	    	$("input[name='TX_SHHJ']").change(validateTX2);

@@ -43,6 +43,7 @@
       <script>
 	    function prepareWH() {
 	    	validWH = false;
+	    	validateWH_SHHJ();
 	    	
 	    	$("input[name='WH_SHHJ']").change(validateWH_SHHJ);
 	    	

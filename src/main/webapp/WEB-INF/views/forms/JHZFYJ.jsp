@@ -54,6 +54,8 @@
 	  
 	  <script>
 	    function prepareJHZFYJ() {
+	    	validJHZFYJ = false;
+	    	validateJHZFYJ2();
 	    	
 	    	$("input[name='JHZFYJ_SHHJ']").change(validateJHZFYJ2);
 	    	

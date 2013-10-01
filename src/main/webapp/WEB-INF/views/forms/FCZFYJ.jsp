@@ -43,6 +43,7 @@
       <script>
 	    function prepareFCZFYJ() {
 	    	validFCZFYJ = false;
+	    	validateFCZFYJ_SHFC();
 	    	
 	    	$("input[name='FCZFYJ_SHFC']").change(validateFCZFYJ_SHFC);
 	    	

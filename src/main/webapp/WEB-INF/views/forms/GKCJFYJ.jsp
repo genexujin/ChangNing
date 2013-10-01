@@ -43,6 +43,7 @@
       <script>
 	    function prepareGKCJFYJ() {
 	    	validGKCJFYJ = false;
+	    	validateGKCJFYJ_SHHJ();
 	    	
 	    	$("input[name='GKCJFYJ_SHHJ']").change(validateGKCJFYJ_SHHJ);
 	    	

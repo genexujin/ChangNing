@@ -53,6 +53,11 @@ function disableGoToStep2Button() {
 	$("#goToStep2").attr("disabled", "disabled");
 }
 
+function disableButtonAfterClick(event) {
+	$(event.target).attr("disabled", "disabled");
+	$("#theform").submit();
+}
+
 function confirmDeselect(event) {
 	if (event.target.checked == false) {
 		var deselect = confirm("该国通常需要译文公证，是否确认取消？");

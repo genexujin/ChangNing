@@ -35,7 +35,7 @@
 
       <br>
 	  
-      <form class="form-horizontal" action="certStep2.do" method="POST">
+      <form id="theform" class="form-horizontal" action="certStep2.do" method="POST">
 	  
 	  <div class="bar-bg">
       <div class="row">
@@ -504,6 +504,10 @@
             
       
         function prepareStep1() {
+        	$("input[name='notory_key']").prop("checked", false);
+        	
+        	$("#goToStep2").click(disableButtonAfterClick);
+        	
         	$("#expand").click(expandMoreRegion);
         	$("#collpase").click(collpaseMoreRegion);
         	$("#dest").change(setLangAndVerify);

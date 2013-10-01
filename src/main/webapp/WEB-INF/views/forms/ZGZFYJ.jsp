@@ -43,6 +43,7 @@
       <script>
 	    function prepareZGZFYJ() {
 	    	validZGZFYJ = false;
+	    	validateZGZFYJ_SHJG();
 	    	
 	    	$("input[name='ZGZFYJ_SHJG']").change(validateZGZFYJ_SHJG);
 	    	

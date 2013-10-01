@@ -74,6 +74,10 @@
 	  
 	  <script>
 	    function prepareBYZSFYJ() {
+	    	validBYZSFYJ = false;
+	    	validateBYZSFYJ1();
+	    	validateBYZSFYJ2();
+	    	
 	    	$("input[name='BYZSFYJ_BYZ']").change(validateBYZSFYJ1);
 	    	
 	    	$("input[name='BYZSFYJ_SHHJ']").change(validateBYZSFYJ2);

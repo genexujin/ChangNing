@@ -91,8 +91,9 @@
       
       <script>
 	    function prepareQSGX() {
-	    	//The form is invalid at the beginning, so set validQSGX false and disable the button here	    	
+	    		    	
 	    	validQSGX = false;
+	    	validateQSGX_SHHJ();
 	    	validateQSGX_Relations();
 	    	
 	    	$("input[name='QSGX_SHHJ']").change(validateQSGX_SHHJ);
@@ -138,7 +139,7 @@
 	    	$("#QSGX_ADD").click( function(event) {
 	    		event.preventDefault();	    		
 
-	    		var currCount = $("#QSGX_COUNT").val();
+	    		var currCount = $(".QSGX_OPTION").length;
 	    		if ($("#QSGX_COUNT").val() == 10) {
 	    			alert("最多一次只能公证10个亲属关系！");
 	    			return;
@@ -156,7 +157,7 @@
 	    	$("#QSGX_REMOVE").click( function(event) {
 	    		event.preventDefault();
 	    		
-	    		var currCount = $("#QSGX_COUNT").val();
+	    		var currCount = $(".QSGX_OPTION").length;
 	    		if (currCount == 1) {
 	    			alert("必须至少输入一个亲属关系！");
 	    			return;

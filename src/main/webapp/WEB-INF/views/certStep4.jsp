@@ -35,7 +35,7 @@
 	  </div>
 	  
 	  <br>
-	  <form class="form-horizontal" action="certStep5.do" method="POST">
+	  <form id="theform" class="form-horizontal" action="certStep5.do" method="POST">
 	  
 		<div class="bar-bg">
 	      <div class="row">
@@ -153,6 +153,8 @@
 		    		return date.valueOf() < now.valueOf() ? 'disabled' : '';
 		    	}
 		    });
+		    
+		    $("#goToStep5").click(validateForm);
 	    }
 	    
 	    function toggleInput() {
@@ -184,6 +186,22 @@
 		    	$('#sendInfoMsg').addClass("alert alert-error");
 		    	$("#goToStep5").attr("disabled", "disabled");
 		    }
+	    }
+	    
+	    function validateForm(event) {
+	    	var next = true;
+	    	var sendDoc = $("input[name='sendDoc']:checked").val();
+	    	if (sendDoc == 'true' && $(".toggle").hasClass("hide"))
+	    		next = false;
+	    		
+	    	toggleInput();
+	    	
+	    	if (next) {
+	    		$(event.target).attr("disabled", "disabled");
+	    		$("#theform").submit();
+	    	} else {
+	    		return false;
+	    	}
 	    }
 	    
 	    $(prepareCertStep4);

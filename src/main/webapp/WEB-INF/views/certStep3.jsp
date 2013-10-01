@@ -61,7 +61,7 @@
 	  </div>
 
 
-	  <form class="form-horizontal" action="certStep4.do" method="POST">
+	  <form id="theform" class="form-horizontal" action="certStep4.do" method="POST">
 
 	      <c:if test="${not um.allInOneUploadEmpty}">
 	      	  <div class="bar-bg">
@@ -348,7 +348,7 @@
 		    <br/>
 		    <div class="row">
 		      <div class="span8 offset1">
-		        <textarea rows="5" cols="150" name="upload_note" style="width: 700px;">如有特殊上传情况，可在此说明</textarea>
+		        <textarea rows="5" cols="150" name="upload_note" style="width: 700px;" placeholder="如有特殊上传情况，可在此说明"></textarea>
 		      </div>
 		    </div>
 		    <br/>
@@ -374,9 +374,11 @@
         );
       
         function prepareCertStep3() {
-        	$("#goToStep4").click(function() {
-        		window.location = '<c:url value="/certStep4.do" />';
-        	});
+        	//$("#goToStep4").click(function() {
+        	//	window.location = '<c:url value="/certStep4.do" />';
+        	//});
+        	
+        	$("#goToStep4").click(disableButtonAfterClick);
         }
         
         $(prepareCertStep3);

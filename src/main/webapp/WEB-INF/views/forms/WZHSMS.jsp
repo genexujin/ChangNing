@@ -42,7 +42,8 @@
       
       <script>
 	    function prepareWZHSMS() {
-	    	//validWZHSMS = false;
+	    	validWZHSMS = false;
+	    	validateWZHSMS_SHHJ();
 	    	
 	    	$("input[name='WZHSMS_SHHJ']").change(validateWZHSMS_SHHJ);
 	    	

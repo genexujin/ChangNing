@@ -109,6 +109,9 @@
 	  
 	  <script>
 	    function prepareCS() {
+	    	validCS = false;
+	    	validateCS_CSZ();
+	    	validateCS2();
 	    	
 	        $("input[name='CS_CSZ']").change(validateCS_CSZ);
 	    	

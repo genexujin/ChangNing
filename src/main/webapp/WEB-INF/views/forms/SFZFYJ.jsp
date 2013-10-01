@@ -54,9 +54,10 @@
 	    
 	    <script>
 	      function prepareSFZFYJ() {
-		      //The form is invalid at the beginning, so set validSFZFYJ false and disable the button here
+		      
 	          validSFZFYJ = false;
 		      validateSFZFYJ_GZYT();
+		      validateSFZFYJ_SHHJ();
 		    	
 		      $("input[name='SFZFYJ_GZYT']").change(validateSFZFYJ_GZYT);
 		    	

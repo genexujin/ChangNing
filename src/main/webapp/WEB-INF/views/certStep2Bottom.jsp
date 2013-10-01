@@ -11,4 +11,12 @@
       
       </form>
       
+      <script>
+        function bindGoToStep3() {
+        	$("#goToStep3").click(disableButtonAfterClick);
+        }
+        
+        $(bindGoToStep3);
+      </script>
+      
 <%@ include file="footer.jspf"%>

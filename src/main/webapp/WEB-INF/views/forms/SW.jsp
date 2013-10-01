@@ -82,8 +82,9 @@
       
       <script>
 	    function prepareSW() {
-	    	//The form is invalid at the beginning, so set validSW false and disable the button here	    	
+	    		    	
 	    	validSW = false;
+	    	validateSW_SH();
 	    	validateSW_Relations();
 	    	
 	    	$("input[name='SW_SH']").change(validateSW_SH);

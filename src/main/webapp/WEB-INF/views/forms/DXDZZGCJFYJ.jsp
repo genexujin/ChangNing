@@ -62,6 +62,7 @@
 
 		validDXDZZGCJFYJ = false;
 		validateDXDZZGCJFYJ_XN();
+		validateDXDZZGCJFYJ2();
 		
 		$("input[name='DXDZZGCJFYJ_XN']").change(validateDXDZZGCJFYJ_XN);
 
