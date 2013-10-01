@@ -34,6 +34,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.domain.DocItem;
 import com.xiangyun.notary.domain.Order;
@@ -237,28 +242,34 @@ public class UploadController {
 			User user = (User) request.getSession(false).getAttribute(
 					Constants.LOGIN_USER);
 			Order order = null;
-			if(user.isAdmin())	
+			if (user.isAdmin())
 				order = orderService.findById(new Long(orderId));
 			else
-				order = orderService.findOrderById(new Long(orderId), user.getId());
-			
-			if(order==null) return;
+				order = orderService.findOrderById(new Long(orderId),
+						user.getId());
+
+			if (order == null)
+				return;
 
 			if (Constants.ALL_IN_ONE_KEY.equals(docKey)) {
-				String zipFileName = order.getReadableId()+"-"+order.getRequestorName() + ".zip";
+				String zipFileName = order.getReadableId() + "-"
+						+ order.getRequestorName() + ".zip";
 				String zipFullPath = saveDir + zipFileName;
 				FileOutputStream fos = new FileOutputStream(zipFullPath);
-				ZipArchiveOutputStream  zos = new ZipArchiveOutputStream (fos);
+				ZipArchiveOutputStream zos = new ZipArchiveOutputStream(fos);
 				zos.setEncoding("UTF-8");
-				
+
 				File dir = new File(saveDir);
 				Map<String, String> files = new HashMap<String, String>();
 				addDir(dir, zos, files);
 				zos.close();
 
 				response.setContentType("application/zip");
-				response.setHeader("Content-Disposition",
-						"attachment; filename=\"" + URLEncoder.encode(zipFileName, "UTF-8") + "\"");
+				response.setHeader(
+						"Content-Disposition",
+						"attachment; filename=\""
+								+ URLEncoder.encode(zipFileName, "UTF-8")
+								+ "\"");
 				// get your file as InputStream
 				FileInputStream is = new FileInputStream(zipFullPath);
 				;
@@ -291,15 +302,14 @@ public class UploadController {
 							+ orderId, e);
 		}
 	}
-	
+
 	@RequestMapping(value = "/getShengMingShu/{fileName}", method = RequestMethod.GET)
-    public void getFile(@PathVariable("fileName") String fileName,
-            HttpServletRequest request, HttpServletResponse response) {
-	    
-	    
+	public void getFile(@PathVariable("fileName") String fileName,
+			HttpServletRequest request, HttpServletResponse response) {
+
 	}
 
-	private void addDir(File dirObj, ZipArchiveOutputStream  out,
+	private void addDir(File dirObj, ZipArchiveOutputStream out,
 			Map<String, String> processedFiles) throws IOException {
 		File[] files = dirObj.listFiles();
 
@@ -310,7 +320,8 @@ public class UploadController {
 				continue;
 			}
 
-			if (files[i].isFile() && !files[i].getName().endsWith(".zip")) {
+			if (files[i].isFile() && !files[i].getName().endsWith(".zip")
+					&& !files[i].getName().endsWith(".pdf")) {
 				if (processedFiles.containsKey(files[i].getName()) == false) {
 					FileInputStream in = new FileInputStream(
 							files[i].getAbsolutePath());
@@ -323,6 +334,134 @@ public class UploadController {
 				}
 
 			}
+		}
+	}
+
+	/**
+	 * Add images into a PDF
+	 * 
+	 * @param dirObj
+	 * @param out
+	 * @param processedFiles
+	 * @throws IOException
+	 */
+	private void addDirToPDF(File dirObj, Document doc,
+			Map<String, String> processedFiles) throws Exception {
+		File[] files = dirObj.listFiles();
+
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isDirectory()
+					&& !files[i].getName().equals(Constants.FOR_CROP_DIR)) {
+				addDirToPDF(files[i], doc, processedFiles);
+				continue;
+			}
+
+			if (files[i].isFile() && !files[i].getName().endsWith(".doc")
+					&& !files[i].getName().endsWith(".docx")
+					&& !files[i].getName().endsWith(".zip")
+					&& !files[i].getName().endsWith(".pdf")) {
+				if (processedFiles.containsKey(files[i].getName()) == false) {
+					Image img = Image.getInstance(files[i].getAbsolutePath());
+					float scaler = ((doc.getPageSize().getWidth()
+							- doc.leftMargin() - doc.rightMargin()) / img
+							.getWidth()) * 100;
+					img.scalePercent(scaler);
+					doc.add(new Paragraph());
+					doc.add(img);
+					log.debug("image name added: " + files[i].getName());
+
+					processedFiles.put(files[i].getName(), files[i].getName());
+				}
+
+			}
+		}
+	}
+
+	/**
+	 * Generate PDF file, and all in one
+	 * 
+	 * @param orderId
+	 * @param fileName
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getPDF/{uid}/{fileName}", method = RequestMethod.GET)
+	public void getPDF(@PathVariable("uid") String orderId,
+			@PathVariable("fileName") String fileName,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		try {
+			String docKey = fileName.lastIndexOf(".") >= 0 ? fileName
+					.substring(0, fileName.lastIndexOf(".")) : fileName;
+			String saveDir = getSaveDir(orderId, docKey);
+
+			User user = (User) request.getSession(false).getAttribute(
+					Constants.LOGIN_USER);
+			Order order = null;
+			if (user.isAdmin())
+				order = orderService.findById(new Long(orderId));
+			else
+				order = orderService.findOrderById(new Long(orderId),
+						user.getId());
+
+			if (order == null)
+				return;
+
+			if (Constants.ALL_IN_ONE_KEY.equals(docKey)) {
+				String pdfFileName = order.getReadableId() + "-"
+						+ order.getRequestorName() + ".pdf";
+				String pdfFullPath = saveDir + pdfFileName;
+				// 新建PDF文件
+				Document document = new Document(PageSize.A4, 40, 40, 40, 40);
+				FileOutputStream fos = new FileOutputStream(pdfFullPath);
+				PdfWriter writer = PdfWriter.getInstance(document, fos);
+
+				document.open();
+
+				// 将图片写入PDF
+				File dir = new File(saveDir);
+				Map<String, String> files = new HashMap<String, String>();
+				addDirToPDF(dir, document, files);
+				document.close();
+
+				// 返回可下载文件
+				response.setContentType("application/zip");
+				response.setHeader(
+						"Content-Disposition",
+						"attachment; filename=\""
+								+ URLEncoder.encode(pdfFileName, "UTF-8")
+								+ "\"");
+				// get your file as InputStream
+				FileInputStream is = new FileInputStream(pdfFullPath);
+				;
+				// copy it to response's OutputStream
+				IOUtils.copy(is, response.getOutputStream());
+				response.flushBuffer();
+				// } else {
+				// //TODO: No file uploaded. So need to find a way to let client
+				// know there is no files.
+				// }
+			} else {
+				// Upload alone or need crop doc
+				response.setHeader("Content-Disposition",
+						"attachment; filename=\"" + fileName + "\"");
+				// get your file as InputStream
+				FileInputStream is = new FileInputStream(saveDir
+						+ File.separator + fileName);
+				;
+				// copy it to response's OutputStream
+				IOUtils.copy(is, response.getOutputStream());
+				response.flushBuffer();
+			}
+
+		} catch (FileNotFoundException e) {
+			log.error("Error occurs during zipping files for order. Order id: "
+					+ orderId, e);
+		} catch (IOException e) {
+			log.error(
+					"Error occurs during zipping files or downloading. Order id: "
+							+ orderId, e);
 		}
 	}
 
