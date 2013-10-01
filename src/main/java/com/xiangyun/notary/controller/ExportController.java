@@ -1,5 +1,10 @@
 package com.xiangyun.notary.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -12,15 +17,21 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.service.OrderService;
 import com.xiangyun.notary.service.UserService;
 import com.xiangyun.notary.view.MultipleViewFactory;
@@ -136,6 +147,10 @@ public class ExportController {
 
 		return orderId;
 	}
+	
+	
+	
+	
 
 
 

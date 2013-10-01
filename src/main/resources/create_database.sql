@@ -277,6 +277,19 @@ CREATE  TABLE IF NOT EXISTS `changning`.`interactions` (
     REFERENCES `changning`.`users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+CREATE  TABLE IF NOT EXISTS `changning`.`order_history` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `order_id` INT NULL ,
+  `user_id` INT NULL ,
+  `operation_date` DATE NULL ,
+  `operation_type` VARCHAR(200) NULL ,
+  `flex1` VARCHAR(200) NULL ,
+  `flex2` VARCHAR(200) NULL ,
+  `flex3` VARCHAR(200) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `history_order_fk_idx` (`order_id` ASC) ,
+  INDEX `history_user_fk_idx` (`user_id` ASC) );
 
 insert into roles (role_name) values ('admin');
 insert into roles (role_name) values ('staff');

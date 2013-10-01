@@ -9,15 +9,15 @@
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li class="active">订单详情</li>
       </ul>
-      <br/>
-      
+      <hr>
+      <div class="row" style="padding-top:5px;">
       <c:choose>
         <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
-          <div class="row">
+          
 			<div class="span9">
 			 <c:choose>
         		<c:when test="${order.orderStatus == 'PAID'}">
-			  		<a class="btn btn-info" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
+			  		<a class="btn btn-warning" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
 			   </c:when>
 			 </c:choose>
 			  <c:choose>
@@ -43,10 +43,10 @@
 			  <a href="generateForm.do?oId=${order.id}" class="btn btn-primary">申请书下载</a>
 			  <a href="orderQuery.do" class="btn btn-success">返回</a>
 			</div>
-	      </div>
+	      
         </c:when>
         <c:otherwise>
-          <div class="row">
+          
 			<div class="span9">
 			 <c:choose>
         		<c:when test="${order.orderStatus != 'CANCEL_REQUESTED' and order.orderStatus!='FINISHED'and order.orderStatus!='CANCELLED'}">
@@ -59,11 +59,21 @@
 			   </c:when>
 			 </c:choose>			
 			  <a href="orderQuery.do" class="btn btn-success">返回</a>
-			</div>
-      	  </div>
+			</div>		
+      	 
         </c:otherwise>
       </c:choose>
-      
+      		
+       </div>
+       <div class="row" style="padding-top:5px;">
+       		<div class="span6">
+      			<a href="#section_basic">[基本信息]</a>
+				<a href="#section_doc">[公证材料]</a>
+				<a href="#section_bill">[收费明细]</a>
+				<a href="#section_pay">[付款记录]</a>
+				<a href="#section_history">[操作历史]</a>
+			</div>
+       </div>
       <br/>
       
       <div class="bar-bg">
@@ -130,7 +140,7 @@
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;申办基本信息</h5>
+                <h5 id="section_basic">&nbsp;&nbsp;&nbsp;&nbsp;申办基本信息</h5>
               </div>
             </div>
           </div>
@@ -148,7 +158,7 @@
 	                <td style="width:120px"><b>申办号</b></td>
 	                <td style="width:100px"><font color='blue'><strong>${order.readableId}</strong></font></td>
 	                <td style="width:120px"><b>公证号</b></td>
-	                <td style="width:100px">${order.backendNotaryId}</td>
+	                <td style="width:100px"><font color='blue'><strong>${order.backendNotaryId}</strong></font></td>
 	              </tr>
 	              <tr>
 	                <td style="width:120px"><b>订单日期</b></td>
@@ -200,7 +210,7 @@
             <c:forEach items="${order.forms}" var="form" >
               <table class="table table-bordered">
 	            <tbody>
-	              <tr>
+	              <tr class="info">
 	                <td colspan="4"><b>${form.formName}公证录入信息</b></td>
 	              </tr>
 	              <c:choose>
@@ -247,7 +257,7 @@
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;上传材料及证件</h5>
+                <h5 id="section_doc">&nbsp;&nbsp;&nbsp;&nbsp;上传材料及证件</h5>
               </div>
             </div>
           </div>
@@ -310,7 +320,8 @@
         <div class="row">
           <div class="span5 offset1">
             <c:if test="${not empty order.docs}">
-              <a href="getFile/${order.id}/allInOne.do" class="btn">下载</a>
+              <a href="getFile/${order.id}/allInOne.do" class="btn btn-success">打包下载</a>
+              <a href="getPDF/${order.id}/allInOne.do" class="btn btn-success">PDF下载</a>
             </c:if>
             <a href="addDocs.do?oId=${order.id}" class="btn btn-primary">补充材料</a>
           </div>
@@ -363,7 +374,7 @@
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;收费明细</h5>
+                <h5 id="section_bill">&nbsp;&nbsp;&nbsp;&nbsp;收费明细</h5>
               </div>
             </div>
           </div>
@@ -447,7 +458,7 @@
 		          <div class="span12 navbg2">
 		            <div class="row">
 		              <div class="span9">
-		                <h5>&nbsp;&nbsp;&nbsp;&nbsp;付款及退款</h5>
+		                <h5 id="section_pay">&nbsp;&nbsp;&nbsp;&nbsp;付款及退款</h5>
 		              </div>
 		            </div>
 		          </div>
@@ -456,13 +467,14 @@
 	       <br/>
           <div class="row">
 		    <div class="span10 offset1">
-	      <table class="table table-striped table-bordered table-hover">
+	      <table class="table table-striped table-bordered table-hover" style="width:820px;">
 	            <thead>
 	              <tr>	                
 	                <th>付款抬头</th>
 	                <th>状态</th>
 	                <th>付款金额</th>
 	                <th>付款日期</th>
+	                <th>内部付款号</th>
 	                <th>支付宝交易号</th>
 	                <th>退款理由</th>
 	                <th>退款金额</th>
@@ -475,9 +487,47 @@
 	                    <td><font color='blue'>${payment.status.text}</font></td>
 	                    <td><fmt:formatNumber value="${payment.paymentTotal}" type="currency" pattern="￥#.00"/></td>
 	                    <td>${payment.paymentDate}</td>
+	                    <td>${payment.orderTxnNo}</td>
 	                    <td>${payment.alipayTxnNo}</td>
 	                    <td>${payment.refundReason}</td>
 	                    <td><fmt:formatNumber value="${payment.refundTotal}" type="currency" pattern="￥#.00"/></td>
+	                  </tr>	                
+	              </c:forEach>              
+	              
+	            </tbody>
+	          </table>
+	      </div>	      
+	      </div>
+	      <div class="border">
+	      	<div class="bar-bg">
+		        <div class="row">
+		          <div class="span12 navbg2">
+		            <div class="row">
+		              <div class="span9">
+		                <h5 id="section_history">&nbsp;&nbsp;&nbsp;&nbsp;订单历史</h5>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	      </div>
+	      </div>
+	       <br/>
+	      <div class="row">
+		    <div class="span10 offset1">
+	      <table class="table table-striped table-bordered table-hover">
+	            <thead>
+	              <tr>	                
+	                <th>操作人</th>
+	                <th>时间</th>
+	                <th>操作</th>	                
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <c:forEach items="${order.histories}" var="history" >	                
+	                  <tr>
+	                    <td>${history.user.name}</td>
+	                    <td><font color='blue'>${history.operationDate}</font></td>
+	                    <td>${history.operation}</td>	                   
 	                  </tr>	                
 	              </c:forEach>              
 	              

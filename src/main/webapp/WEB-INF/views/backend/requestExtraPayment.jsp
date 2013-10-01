@@ -13,7 +13,7 @@
       
       <div class="row">
         <div class="span12">
-          <h2>网上办证</h2>
+          <h2>附加费用</h2>
         </div>
       </div>
 	  

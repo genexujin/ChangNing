@@ -50,5 +50,14 @@ public class Constants {
     public static final String ORDER_QUERY_END_DATE = "order_end_date";
     public static final String ORDER_QUERY_PAGE_NUM = "order_page_num";
     
+    public static final String ORDER_OPERATION_NEW = "创建订单";
+    public static final String ORDER_OPERATION_PAY = "提交付款";
+    public static final String ORDER_OPERATION_ACCEPT = "受理订单";
+    public static final String ORDER_OPERATION_REQUEST_CANCEL = "请求撤销";
+    public static final String ORDER_OPERATION_CANCEL = "撤销订单";
+    public static final String ORDER_OPERATION_EXTRADOC = "要求补充材料";
+    public static final String ORDER_OPERATION_ADDCHARGE = "补充收费";
+    public static final String ORDER_OPERATION_ADDDOC = "已补充收费";
+    
 
 }
