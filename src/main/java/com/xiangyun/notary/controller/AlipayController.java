@@ -230,7 +230,13 @@ public class AlipayController {
 		// 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 		if (!thePayment.getStatus().equals(OrderPaymentStatus.FULL_PAID)) {
 			thePayment.setStatus(OrderPaymentStatus.FULL_PAID);
-			thePayment.getOrder().setOrderStatus(OrderStatus.PAID);
+			String notaryId = thePayment.getOrder().getBackendNotaryId();
+			//如果已经受理过，则成功付款后改为已受理
+			if(notaryId!=null && notaryId.length()>0){
+				thePayment.getOrder().setOrderStatus(OrderStatus.ACCEPTED);
+			}else{
+				thePayment.getOrder().setOrderStatus(OrderStatus.PAID);
+			}
 			thePayment.setAlipayTxnNo(trade_no);
 			thePayment.setPaymentDate(new Date());
 			orderService.save(thePayment.getOrder());

@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,6 +44,7 @@ import com.xiangyun.notary.domain.Form;
 import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Interaction;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.OrderHistory;
 import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.domain.RelativeInfo;
 import com.xiangyun.notary.domain.User;
@@ -60,8 +62,8 @@ import com.xiangyun.sms.SMSManager;
 @Controller
 public class OrderController {
 	private static Logger log = LoggerFactory.getLogger(OrderController.class);
-	
-	private DateFormat format = new SimpleDateFormat("MM/dd/yyyy"); 
+
+	private DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
 	@Autowired
 	private ServletContext ctx;
@@ -190,7 +192,7 @@ public class OrderController {
 		// First put the 通用 docs in the map.
 		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
 				.getAttribute(Constants.FORM_DEFS);
-		
+
 		boolean needSpecialNote = false;
 		boolean needTY = true;
 		for (FormDef formDef : selectedForms) {
@@ -201,19 +203,20 @@ public class OrderController {
 
 					needSpecialNote = true;
 			} else if (formDef.getFormKey().equals("CSZFYJ")) {
-			    if ("true".equals(request.getParameter("CSZFYJ_SFJZ"))
-                        || "true".equals(request.getParameter("CSZFYJ_SMJZ")))
+				if ("true".equals(request.getParameter("CSZFYJ_SFJZ"))
+						|| "true".equals(request.getParameter("CSZFYJ_SMJZ")))
 
-                    needSpecialNote = true;
+					needSpecialNote = true;
 			}
 
 			Form form = new Form();
 			String formKey = formDef.getFormKey();
 			form.setFormKey(formKey);
 			form.setFormName(formDef.getFormName());
-			//HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
-			//CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
-			if (formKey.equals("HKBFYJ") || formKey.equals("CS") || formKey.equals("CSZFYJ")) {
+			// HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
+			// CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
+			if (formKey.equals("HKBFYJ") || formKey.equals("CS")
+					|| formKey.equals("CSZFYJ")) {
 				needTY = false;
 			}
 
@@ -226,7 +229,8 @@ public class OrderController {
 				item.setItemName(itemDef.getFieldName());
 				if (itemDef.isComposite()) {
 					// QSGX item
-					RelativeInfo info = createRelativeInfo(itemDef.getFieldKey(), request);
+					RelativeInfo info = createRelativeInfo(
+							itemDef.getFieldKey(), request);
 					if (info == null) {
 						break;
 					}
@@ -303,7 +307,7 @@ public class OrderController {
 			}
 		}
 		if (needTY) {
-		    FormDef ty = formDefs.get("TY");
+			FormDef ty = formDefs.get("TY");
 			for (FormDocItemDef docDef : ty.getDocs()) {
 				//
 				// String strKey=docDef.getDocKey();
@@ -317,6 +321,17 @@ public class OrderController {
 			}
 		}
 		order.calculateTotalFee();
+
+		// 保存历史记录
+		if (order.getHistories() == null || order.getHistories().isEmpty()) {
+
+			OrderHistory operation = new OrderHistory();
+			operation.setOperation(Constants.ORDER_OPERATION_NEW);
+			operation.setOperationDate(new Date());
+			User user = (User) session.getAttribute(Constants.LOGIN_USER);
+			operation.setUser(user);
+			order.addHistory(operation);
+		}
 		orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("certStep3");
@@ -340,10 +355,12 @@ public class OrderController {
 	public ModelAndView goToStep4(
 			@RequestParam("upload_note") String uploadNote,
 			HttpServletRequest request) {
-	    
-	    Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx.getAttribute(Constants.FORM_DEFS);
 
-		Order order = (Order) request.getSession(false).getAttribute(Constants.CURRENT_ORDER);
+		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
+				.getAttribute(Constants.FORM_DEFS);
+
+		Order order = (Order) request.getSession(false).getAttribute(
+				Constants.CURRENT_ORDER);
 		if (order == null) {
 			ModelAndView mav = new ModelAndView("certStep1");
 			mav.addObject("title", "选择申办业务");
@@ -357,25 +374,25 @@ public class OrderController {
 		// 大部分公证不能上门送证。如果所选forms全部能上门送证，那么才去到step4，否则跳过。
 		boolean skipStep4 = false;
 		for (Form form : order.getForms()) {
-		    FormDef theDef = formDefs.get(form.getFormKey());
-			if ( theDef != null && theDef.isCanSendDoc() == false ) {
+			FormDef theDef = formDefs.get(form.getFormKey());
+			if (theDef != null && theDef.isCanSendDoc() == false) {
 				skipStep4 = true;
 			}
 		}
 
 		if (skipStep4) {
-		    order.calculateTotalFee();
-            orderService.save(order);
+			order.calculateTotalFee();
+			orderService.save(order);
 
-            ModelAndView mav = new ModelAndView("certStep5");
-            mav.addObject("title", "支付");
-            mav.addObject("order", order);
-            return mav;
-			
+			ModelAndView mav = new ModelAndView("certStep5");
+			mav.addObject("title", "支付");
+			mav.addObject("order", order);
+			return mav;
+
 		} else {
-		    ModelAndView mav = new ModelAndView("certStep4");
-            mav.addObject("title", "上门送证");
-            return mav;
+			ModelAndView mav = new ModelAndView("certStep4");
+			mav.addObject("title", "上门送证");
+			return mav;
 		}
 
 	}
@@ -441,7 +458,7 @@ public class OrderController {
 		// 先创建Payment
 		Payment payment = new Payment();
 
-		//payment.setPaymentDate(new Date());
+		// payment.setPaymentDate(new Date());
 		payment.setPaymentTotal(0.01);// 暂时写死
 		payment.setTitle(title);
 		payment.setPaymentReason("公证费用");
@@ -450,7 +467,6 @@ public class OrderController {
 		payment.setOrderTxnNo(tradeNo);
 		order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
 		order.addPayment(payment);
-		
 
 		String str = null;
 		try {
@@ -474,16 +490,30 @@ public class OrderController {
 		sb.append("&WIDshow_url=bbbb");
 
 		order.setOrderStatus(OrderStatus.PAYING);
+		logHistory(Constants.ORDER_OPERATION_PAY, order, getUser(request));
 		orderService.save(order);
 
 		return sb.toString();
 	}
 
+	private User getUser(HttpServletRequest request) {
+		return (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+	}
+
+	private void logHistory(String operationType, Order order, User user) {
+		OrderHistory operation = new OrderHistory();
+		operation.setOperation(operationType);
+		operation.setOperationDate(new Date());
+		operation.setUser(user);
+		order.addHistory(operation);
+	}
+
 	@RequestMapping(value = "/orderQuery.do")
 	public ModelAndView orderQuery(HttpServletRequest request) {
-	    HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute(Constants.LOGIN_USER);
-		
+
 		int pageNum;
 		String pageNumStr = request.getParameter("pn");
 		if (StringUtils.isEmpty(pageNumStr)) {
@@ -495,39 +525,46 @@ public class OrderController {
 				pageNum = 1;
 			}
 		}
-		session.setAttribute(Constants.ORDER_QUERY_PAGE_NUM, pageNum + ""); //Looks like no need to save page num
+		session.setAttribute(Constants.ORDER_QUERY_PAGE_NUM, pageNum + ""); // Looks
+																			// like
+																			// no
+																			// need
+																			// to
+																			// save
+																			// page
+																			// num
 
 		String readableId = request.getParameter("rId");
 		if (StringUtils.isEmpty(readableId))
 			readableId = null;
 		session.setAttribute(Constants.ORDER_QUERY_READABLE_ID, readableId);
-		
+
 		String requestorName = request.getParameter("reqName");
-        if (StringUtils.isEmpty(requestorName))
-            requestorName = null;
-        session.setAttribute(Constants.ORDER_QUERY_REQ_NAME, requestorName);
-        
-        Date startDate = null;
-        String startDateStr = request.getParameter("startDate");
-        session.setAttribute(Constants.ORDER_QUERY_START_DATE, startDateStr);
-        if (!StringUtils.isEmpty(startDateStr)) {
-            try {
-                startDate = format.parse(startDateStr);
-            } catch (ParseException e) {
-                log.error("The startDate input cannot be parsed.", e);
-            }
-        }
-        
-        Date endDate = null;
-        String endDateStr = request.getParameter("endDate");
-        session.setAttribute(Constants.ORDER_QUERY_END_DATE, endDateStr);
-        if (!StringUtils.isEmpty(endDateStr)) {
-            try {
-                endDate = format.parse(endDateStr);
-            } catch (ParseException e) {
-                log.error("The endDate input cannot be parsed.", e);
-            }
-        }
+		if (StringUtils.isEmpty(requestorName))
+			requestorName = null;
+		session.setAttribute(Constants.ORDER_QUERY_REQ_NAME, requestorName);
+
+		Date startDate = null;
+		String startDateStr = request.getParameter("startDate");
+		session.setAttribute(Constants.ORDER_QUERY_START_DATE, startDateStr);
+		if (!StringUtils.isEmpty(startDateStr)) {
+			try {
+				startDate = format.parse(startDateStr);
+			} catch (ParseException e) {
+				log.error("The startDate input cannot be parsed.", e);
+			}
+		}
+
+		Date endDate = null;
+		String endDateStr = request.getParameter("endDate");
+		session.setAttribute(Constants.ORDER_QUERY_END_DATE, endDateStr);
+		if (!StringUtils.isEmpty(endDateStr)) {
+			try {
+				endDate = format.parse(endDateStr);
+			} catch (ParseException e) {
+				log.error("The endDate input cannot be parsed.", e);
+			}
+		}
 
 		OrderStatus status = null;
 		String statusStr = request.getParameter("status");
@@ -540,9 +577,11 @@ public class OrderController {
 			userId = user.getId();
 		}
 
-		Long orderCount = orderService.getOrderCount(readableId, requestorName, startDate, endDate, status, userId);
+		Long orderCount = orderService.getOrderCount(readableId, requestorName,
+				startDate, endDate, status, userId);
 		Long pageCount = (orderCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
-		List<Order> orders = orderService.findOrders(readableId, requestorName, startDate, endDate, status, userId, pageNum);
+		List<Order> orders = orderService.findOrders(readableId, requestorName,
+				startDate, endDate, status, userId, pageNum);
 
 		ModelAndView mav = new ModelAndView("backend/orderQuery");
 		mav.addObject("title", "订单查询");
@@ -622,19 +661,19 @@ public class OrderController {
 
 		List<Interaction> interactions = orderService
 				.findIncompletedInteractionsForOrder(orderId, userId);
-		
+
 		ModelAndView mav = new ModelAndView("backend/orderDetail");
-		
-		for(Payment p: order.getPayments()){
-			if(p.getStatus().equals(OrderPaymentStatus.FULL_PAID)){
-				mav.addObject("hasPaid",true);
+
+		for (Payment p : order.getPayments()) {
+			if (p.getStatus().equals(OrderPaymentStatus.FULL_PAID)) {
+				mav.addObject("hasPaid", true);
 				break;
 			}
 		}
-				
+
 		mav.addObject("title", "订单详情");
 		mav.addObject("order", order);
-		
+
 		mav.addObject("allDocs", allDocs.values());
 		mav.addObject("interactions", interactions);
 
@@ -688,6 +727,7 @@ public class OrderController {
 		order.setOrderStatus(OrderStatus.ACCEPTED);
 		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
 		order.setAccepter(u);
+		logHistory(Constants.ORDER_OPERATION_ACCEPT, order, u);
 		orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("backend/orderAccept");
@@ -742,6 +782,8 @@ public class OrderController {
 		String cancelNote = request.getParameter("cancel_note");
 		order.setCancelNote(cancelNote);
 		order.setOrderStatus(OrderStatus.CANCEL_REQUESTED);
+		logHistory(Constants.ORDER_OPERATION_REQUEST_CANCEL, order,
+				getUser(request));
 		orderService.save(order);
 
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
@@ -750,12 +792,12 @@ public class OrderController {
 
 		ModelAndView mav = new ModelAndView("backend/orderCancel");
 		mav.addObject("title", "订单受理");
-		mav.addObject("successMsg", "订单已成功撤销！请单击“返回”按钮返回订单详情页面！");
+		mav.addObject("successMsg", "订单撤销请求已发送！请单击“返回”按钮返回订单详情页面！");
 		mav.addObject("order", order);
 
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/confirmCancel.do")
 	public ModelAndView confirmCancel(HttpServletRequest request) {
 		Long orderId = validateOrderIdParameter(request);
@@ -769,16 +811,46 @@ public class OrderController {
 		if (order == null) {
 			return new ModelAndView("redirect:orderQuery.do");
 		}
-				
+
 		order.setOrderStatus(OrderStatus.CANCELLED);
+		logHistory(Constants.ORDER_OPERATION_CANCEL, order, getUser(request));
 		orderService.save(order);
 
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
 				"您的办证订单：" + order.getReadableId()
 						+ " 已撤销，如有疑问请询问在线客服或电话联系我们，谢谢！", 1);
 
-		ModelAndView mav = new ModelAndView("redirect:orderDetail.do?oId="+order.getId());		
+		ModelAndView mav = new ModelAndView("redirect:orderDetail.do?oId="
+				+ order.getId());
 		return mav;
+	}
+	
+	@RequestMapping(value = "/confirmAddDoc.do")
+	public ModelAndView confirmAddDoc(HttpServletRequest request) {
+		
+		Long orderId = validateOrderIdParameter(request);
+		if (orderId == null) {
+			return new ModelAndView("redirect:orderQuery.do");
+		}
+		
+		Long userId = getUserIdFromSession(request.getSession(false));
+
+		Order order = orderService.findOrderById(orderId, userId);
+		if (order == null) {
+			return new ModelAndView("redirect:orderQuery.do");
+		}
+		
+		if(order.getBackendNotaryId()!=null&&order.getBackendNotaryId().length()>0)
+			order.setOrderStatus(OrderStatus.ACCEPTED);
+		else
+			order.setOrderStatus(OrderStatus.PAID);
+		
+		logHistory(Constants.ORDER_OPERATION_ADDDOC,order,getUser(request));
+		
+		orderService.save(order);
+		
+		return new ModelAndView("redirect:orderDetail.do?oId="+orderId);
+		
 	}
 
 	@RequestMapping(value = "/addDocs.do")
@@ -871,6 +943,11 @@ public class OrderController {
 		return mav;
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/requestExtraDocs.do")
 	public ModelAndView requestExtraDocs(HttpServletRequest request) {
 		Long orderId = validateOrderIdParameter(request);
@@ -928,6 +1005,7 @@ public class OrderController {
 		}
 
 		order.setOrderStatus(OrderStatus.EXTRADOC_REQUESTED);
+		logHistory(Constants.ORDER_OPERATION_EXTRADOC, order, user);
 		orderService.save(order);
 
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
@@ -1006,6 +1084,7 @@ public class OrderController {
 		i.setExtraData(pay.getId().toString());
 		order.addInteraction(i);
 		order.setOrderStatus(OrderStatus.ADD_CHARGE);
+		logHistory(Constants.ORDER_OPERATION_ADDCHARGE, order, user);
 		orderService.save(order);
 
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
@@ -1040,6 +1119,8 @@ public class OrderController {
 		payment.setPaymentDate(new Date());
 
 		payment.getOrder().setOrderStatus(OrderStatus.PAYING);
+		logHistory(Constants.ORDER_OPERATION_PAY, payment.getOrder(),
+				getUser(request));
 		orderService.save(payment);
 
 		String str = null;
@@ -1235,10 +1316,13 @@ public class OrderController {
 					"The QSGX form must select a relativeType other than NULL");
 		}
 		RelativeType type = RelativeType.valueOf(typeStr);
-		String name = request.getParameter(fieldKey	+ Constants.QSGX_NAME_SUFFIX);
-		String pinyin = request.getParameter(fieldKey + Constants.QSGX_PINYIN_SUFFIX);
+		String name = request.getParameter(fieldKey
+				+ Constants.QSGX_NAME_SUFFIX);
+		String pinyin = request.getParameter(fieldKey
+				+ Constants.QSGX_PINYIN_SUFFIX);
 
-		log.debug("relativeType is: " + type + " relativeName is: " + name + " relativePinyin is: " + pinyin);
+		log.debug("relativeType is: " + type + " relativeName is: " + name
+				+ " relativePinyin is: " + pinyin);
 
 		RelativeInfo result = new RelativeInfo();
 		result.setRelativeType(type);
@@ -1265,7 +1349,8 @@ public class OrderController {
 				order.getTranslationLanguage());
 		if (feeFormDef.getFileFeeDependentFormItem() != null) {
 			for (FormItem item : form.getFormItems()) {
-				if (item.getItemKey().equals(feeFormDef.getFileFeeDependentFormItem())) {
+				if (item.getItemKey().equals(
+						feeFormDef.getFileFeeDependentFormItem())) {
 					fileTranslationFee *= Integer.parseInt(item.getItemValue());
 				}
 			}

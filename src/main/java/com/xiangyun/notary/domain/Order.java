@@ -63,6 +63,10 @@ public class Order implements Serializable {
 	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
 			CascadeType.MERGE }, mappedBy = "order")
 	private Set<Form> forms = new HashSet<Form>();
+	
+	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
+			CascadeType.MERGE }, mappedBy = "order")
+	private Set<OrderHistory> histories = new HashSet<OrderHistory>();
 
 	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
 			CascadeType.MERGE }, mappedBy = "order")
@@ -305,6 +309,11 @@ public class Order implements Serializable {
 		payment.setOrder(this);
 		payments.add(payment);
 	}
+	
+	public void addHistory(OrderHistory history) {
+		history.setOrder(this);
+		histories.add(history);
+	}
 
 	public Set<DocItem> getDocs() {
 		return docs;
@@ -479,4 +488,14 @@ public class Order implements Serializable {
 
 		return result.toString();
 	}
+
+	public Set<OrderHistory> getHistories() {
+		return histories;
+	}
+
+	public void setHistories(Set<OrderHistory> histories) {
+		this.histories = histories;
+	}
+	
+	
 }

@@ -14,9 +14,6 @@
       </ul>
       
       <hr/>
-      
-	  <br>
-	  
 	  <div class="row">
 	    <div class="span10">
 	      <h5>申办号：${um.orderReadableId}</h5>
@@ -290,7 +287,7 @@
 	      <br/>
 		  <div class="row">
 	   		  <div class="span2 offset5">
-	   		    <a href="orderDetail.do?oId=${um.uid}" class="btn">返回</a>
+	   		    <a href="confirmAddDoc.do?oId=${um.uid}" class="btn btn-primary">完成</a>
 	   		  </div>
 	      </div>
       
