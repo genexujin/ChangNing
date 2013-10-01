@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import com.xiangyun.notary.Constants;
@@ -66,6 +67,7 @@ public class Order implements Serializable {
 	
 	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
 			CascadeType.MERGE }, mappedBy = "order")
+	@OrderBy("operationDate ASC")
 	private Set<OrderHistory> histories = new HashSet<OrderHistory>();
 
 	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
@@ -78,6 +80,7 @@ public class Order implements Serializable {
 
 	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
 			CascadeType.MERGE }, mappedBy = "order", fetch = FetchType.EAGER)
+	@OrderBy("paymentDate ASC")
 	private Set<Payment> payments = new HashSet<Payment>();
 
 	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
