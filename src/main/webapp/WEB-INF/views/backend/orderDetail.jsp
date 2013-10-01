@@ -158,7 +158,7 @@
 	                <td style="width:120px"><b>申办号</b></td>
 	                <td style="width:100px"><font color='blue'><strong>${order.readableId}</strong></font></td>
 	                <td style="width:120px"><b>公证号</b></td>
-	                <td style="width:100px">${order.backendNotaryId}</td>
+	                <td style="width:100px"><font color='blue'><strong>${order.backendNotaryId}</strong></font></td>
 	              </tr>
 	              <tr>
 	                <td style="width:120px"><b>订单日期</b></td>
