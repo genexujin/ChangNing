@@ -20,6 +20,8 @@ public interface OrderService {
     Order findOrderById(Long orderId, Long userId);
 
     Order save(Order order);
+    
+    Order merge(Order order);
 
     void delete(Order order);
     

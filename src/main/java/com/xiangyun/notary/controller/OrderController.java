@@ -170,6 +170,12 @@ public class OrderController {
 			mav.addObject("title", "选择申办业务");
 			return mav;
 		}
+		
+		//Need to query order's data to avoid duplication orders
+		Order orderInDB = orderService.findById(order.getId());
+		if (orderInDB != null) { //The order is already there.
+		    order = orderInDB;
+		}
 
 		order.setRequestorName(requestorName);
 		order.setRequestorMobile(requestorMobile);
@@ -208,35 +214,39 @@ public class OrderController {
 
 					needSpecialNote = true;
 			}
-
-			Form form = new Form();
-			form.setFormKey(formKey);
-			form.setFormName(formDef.getFormName());
+			
 			// HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
-			// CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
-			if (formKey.equals("HKBFYJ") || formKey.equals("CS")
-					|| formKey.equals("CSZFYJ")) {
-				needTY = false;
+            // CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
+            if (formKey.equals("HKBFYJ") || formKey.equals("CS")
+                    || formKey.equals("CSZFYJ")) {
+                needTY = false;
+            }
+
+			Form form = getFormByKeyFromOrder(order, formKey);
+			if (form == null) { //A new form!
+			    form = new Form();
+	            form.setFormKey(formKey);
+	            form.setFormName(formDef.getFormName());
 			}
 
 			// Create FormItems for a form
-			// it is this
 			Map<String, String> formKeyValueMap = new HashMap<String, String>();
 			for (FormFieldItemDef itemDef : formDef.getFields()) {
-				FormItem item = new FormItem();
-				item.setItemKey(itemDef.getFieldKey());
-				item.setItemName(itemDef.getFieldName());
+				FormItem item = getFormItemByKeyFromForm(form, itemDef.getFieldKey());
+				if (item == null) {
+				    item = new FormItem();
+	                item.setItemKey(itemDef.getFieldKey());
+	                item.setItemName(itemDef.getFieldName());
+				}
 				if (itemDef.isComposite()) {
 					// QSGX item
-					RelativeInfo info = createRelativeInfo(
-							itemDef.getFieldKey(), request);
+					RelativeInfo info = createRelativeInfo(itemDef.getFieldKey(), request);
 					if (info == null) {
 						break;
 					}
 					item.setRelativeInfo(info);
 				} else {
-					item.setItemValue(request.getParameter(itemDef
-							.getFieldKey()));// 获取对应值
+					item.setItemValue(request.getParameter(itemDef.getFieldKey()));// 获取对应值
 					// Put it to a map for doc dependency. Currently no doc
 					// depends on a composite value.
 					// So just put it in the "else"
@@ -491,6 +501,9 @@ public class OrderController {
 		order.setOrderStatus(OrderStatus.PAYING);
 		logHistory(Constants.ORDER_OPERATION_PAY, order, getUser(request));
 		orderService.save(order);
+		
+		//Remove current order from session, to avoid any error
+		request.getSession(false).removeAttribute(Constants.CURRENT_ORDER);
 
 		return sb.toString();
 	}
@@ -1340,8 +1353,7 @@ public class OrderController {
 
 	}
 
-	private RelativeInfo createRelativeInfo(String fieldKey,
-			HttpServletRequest request) {
+	private RelativeInfo createRelativeInfo(String fieldKey, HttpServletRequest request) {
 		String typeStr = request.getParameter(fieldKey);
 		if (StringUtils.isEmpty(typeStr)) {
 			// Empty means no value is submitted. That will happen when this
@@ -1481,4 +1493,29 @@ public class OrderController {
 	    
 	    return null;
 	}
+	
+	private Form getFormByKeyFromOrder(Order order, String formKey) {
+	    Set<Form> forms = order.getForms();
+	    for (Form form : forms) {
+	        if (formKey.equals(form.getFormKey()))
+	            return form;
+	    }
+	    
+	    return null;
+	}
+	
+	private FormItem getFormItemByKeyFromForm(Form form, String itemKey) {
+        Set<FormItem> items = form.getFormItems();
+        for (FormItem item : items) {
+            if (itemKey.equals(item.getItemKey()))
+                return item;
+        }
+        
+        return null;
+    }
+	
+//	private RelativeInfo getRelativeInfo(FormItem item, RelativeType type, String name) {
+//	    RelativeInfo info = item.getRelativeInfo();
+//	    if (type.eq)
+//	}
 }
