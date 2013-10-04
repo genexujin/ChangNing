@@ -865,7 +865,7 @@ public class OrderController {
 		
 		if(order.getBackendNotaryId()!=null&&order.getBackendNotaryId().length()>0)
 			order.setOrderStatus(OrderStatus.ACCEPTED);
-		else
+		else if(order.hasPaidPayment())
 			order.setOrderStatus(OrderStatus.PAID);
 		
 		logHistory(Constants.ORDER_OPERATION_ADDDOC,order,getUser(request));
