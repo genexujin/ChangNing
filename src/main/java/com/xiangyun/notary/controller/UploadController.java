@@ -242,16 +242,19 @@ public class UploadController {
 			User user = (User) request.getSession(false).getAttribute(
 					Constants.LOGIN_USER);
 			Order order = null;
-			if (user.isAdmin())
+			if (user.isAdmin()||user.isStaff())
 				order = orderService.findById(new Long(orderId));
 			else
 				order = orderService.findOrderById(new Long(orderId),
 						user.getId());
+			
+			
 
 			if (order == null)
 				return;
 
 			if (Constants.ALL_IN_ONE_KEY.equals(docKey)) {
+				log.debug("start to package files");
 				String zipFileName = order.getReadableId() + "-"
 						+ order.getRequestorName() + ".zip";
 				String zipFullPath = saveDir + zipFileName;
@@ -262,6 +265,7 @@ public class UploadController {
 				File dir = new File(saveDir);
 				Map<String, String> files = new HashMap<String, String>();
 				addDir(dir, zos, files);
+				log.debug("end of loop...");
 				zos.close();
 
 				response.setContentType("application/zip");
@@ -312,7 +316,7 @@ public class UploadController {
 	private void addDir(File dirObj, ZipArchiveOutputStream out,
 			Map<String, String> processedFiles) throws IOException {
 		File[] files = dirObj.listFiles();
-
+		
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isDirectory()
 					&& !files[i].getName().equals(Constants.FOR_CROP_DIR)) {
@@ -330,6 +334,7 @@ public class UploadController {
 					IOUtils.copy(in, out);
 					out.closeArchiveEntry();
 					in.close();
+					
 					processedFiles.put(files[i].getName(), files[i].getName());
 				}
 
@@ -399,7 +404,7 @@ public class UploadController {
 			User user = (User) request.getSession(false).getAttribute(
 					Constants.LOGIN_USER);
 			Order order = null;
-			if (user.isAdmin())
+			if (user.isAdmin()||user.isStaff())
 				order = orderService.findById(new Long(orderId));
 			else
 				order = orderService.findOrderById(new Long(orderId),
