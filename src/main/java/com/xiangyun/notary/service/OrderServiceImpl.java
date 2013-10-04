@@ -255,7 +255,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
             log.debug("Inserting new order...");
             em.persist(order);
             //Need to format readableId and set
-            order.setReadableId(generateReadableId(order.getId(), "VV"));
+            order.setReadableId(generateReadableId(order.getId(), "UAU"));
             em.merge(order);
         } else {
             log.debug("Updating an order...");

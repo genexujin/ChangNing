@@ -469,8 +469,8 @@ public class OrderController {
 		Payment payment = new Payment();
 
 		// payment.setPaymentDate(new Date());
-//		payment.setPaymentTotal(order.getPaymentTotal());
-		payment.setPaymentTotal(0.01);
+		payment.setPaymentTotal(order.getPaymentTotal());
+//		payment.setPaymentTotal(0.01);
 		payment.setTitle(title);
 		payment.setPaymentReason("公证费用");
 
@@ -1114,8 +1114,8 @@ public class OrderController {
 		}
 
 		Payment pay = new Payment();
-//		pay.setPaymentTotal(extraPayment);
-		pay.setPaymentTotal(0.01);
+		pay.setPaymentTotal(extraPayment);
+//		pay.setPaymentTotal(0.01);
 		pay.setStatus(OrderPaymentStatus.NOT_PAID);
 		pay.setPaymentReason(extraPaymentNote);
 		pay.setTitle("附加费用");

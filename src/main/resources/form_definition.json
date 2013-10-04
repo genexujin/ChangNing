@@ -304,9 +304,7 @@
             },
             {
                 "docKey": "XWZ",
-                "docName": "学位证",
-                "uploadAlone": true,
-                "needCrop": true
+                "docName": "学位证"
             },
             {
                 "docKey": "SFZ",
@@ -666,9 +664,7 @@
             },
             {
                 "docKey": "XWZ",
-                "docName": "学位证",
-                "uploadAlone": true,
-                "needCrop": true
+                "docName": "学位证"
             }
         ]
     },
