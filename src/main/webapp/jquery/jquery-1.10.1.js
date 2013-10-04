@@ -1911,9 +1911,14 @@ Sizzle.attr = function( elem, name ) {
 			fn( elem, name, !documentIsHTML ) :
 			undefined );
 
+	//A fix in ChangNing project. Fix the problem in IE there will be “缺少对象” errors. 
+	if (elem.getAttribute !== null && typeof elem.getAttribute !== core_strundefined) {
+		var ret = elem.getAttribute( name );
+	}
+	
 	return val === undefined ?
 		support.attributes || !documentIsHTML ?
-			elem.getAttribute( name ) :
+			ret :
 			(val = elem.getAttributeNode(name)) && val.specified ?
 				val.value :
 				null :

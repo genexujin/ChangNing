@@ -21,7 +21,7 @@
 		<p id="myModalLabel">请按照样张示例裁剪，注意头部周围留出足够空间。</p>
 	</div>
 	<div class="modal-body">
-		<img id="sampleImage" width="240px;" height="364px;" src="resources/crop_sample.png"></img>		
+		<img id="sampleImage" width="240px;" height="364px;" src="resources/crop_sample.png"/>		
 	</div>
 	<div class="modal-footer" style="height:20px;">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
@@ -292,29 +292,15 @@
 	        		        		${doc.docKey}_jcrop_api = undefined;
 	        		        	}
 	        		        	var oldImg = $('#${doc.docKey}_img');
+	        		        	//oldImg.prop('src', data);
 	        		        	var parent = oldImg.parent();
 	        		        	oldImg.remove();
-	        		        	var newImg = $('<img id="${doc.docKey}_img"/>')
+	        		        	var newImg = $('<img id="${doc.docKey}_img"/>');
 	        		        	parent.prepend(newImg);
 	        		        	newImg.prop('src', data);
-
-	        		        	//$('#${doc.docKey}_img').prop('src', data);
+	        		        	
 	        	            	$('#${doc.docKey}_crop').css("display", "inline-block");
 	        	            	$('#${doc.docKey}_crop').click(${doc.docKey}_crop);
-
-	        	            	//if (${doc.docKey}_jcrop_api == undefined) {
-	        	            	//	$('#${doc.docKey}_img').Jcrop({
-		        		        //		aspectRatio : 0.66,
-		        		        //		setSelect : [0, 0, 120, 180],
-		        		        //		allowSelect : false,
-		        		        //		allowResize : true,
-		        		        //		onSelect : ${doc.docKey}_storeCoords
-		        		        //	}, function() {
-		        		        //		${doc.docKey}_jcrop_api = this;
-		        		        //	});
-	        	            	//} else {
-	        	            	//	${doc.docKey}_jcrop_api.setImage(data);
-	        	            	//}
 
 	        	            	if (${doc.docKey}_jcrop_api == undefined) {
 	        	            		$('#${doc.docKey}_img').Jcrop({

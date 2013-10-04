@@ -54,6 +54,7 @@ function disableGoToStep2Button() {
 }
 
 function disableButtonAfterClick(event) {
+	event.preventDefault();
 	$(event.target).attr("disabled", "disabled");
 	$("#theform").submit();
 }

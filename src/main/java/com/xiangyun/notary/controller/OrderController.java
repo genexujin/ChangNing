@@ -468,7 +468,7 @@ public class OrderController {
 		Payment payment = new Payment();
 
 		// payment.setPaymentDate(new Date());
-		payment.setPaymentTotal(0.01);// 暂时写死
+		payment.setPaymentTotal(order.getPaymentTotal());
 		payment.setTitle(title);
 		payment.setPaymentReason("公证费用");
 
@@ -1112,8 +1112,8 @@ public class OrderController {
 		}
 
 		Payment pay = new Payment();
-		// pay.setPaymentTotal(extraPayment);
-		pay.setPaymentTotal(0.01); // 暂时写死
+		pay.setPaymentTotal(extraPayment);
+//		pay.setPaymentTotal(0.01); // 暂时写死
 		pay.setStatus(OrderPaymentStatus.NOT_PAID);
 		pay.setPaymentReason(extraPaymentNote);
 		pay.setTitle("附加费用");
@@ -1186,7 +1186,7 @@ public class OrderController {
 				"redirect:/openPayment.do?WIDout_trade_no=");
 		sb.append(tradeNo);
 		sb.append("&WIDsubject=" + str);
-		sb.append("&WIDtotal_fee=0.01");
+		sb.append("&WIDtotal_fee=" + payment.getPaymentTotal());
 		try {
 			sb.append("&WIDbody=").append(URLEncoder.encode("公证收费", "UTF-8"));
 		} catch (UnsupportedEncodingException e) {

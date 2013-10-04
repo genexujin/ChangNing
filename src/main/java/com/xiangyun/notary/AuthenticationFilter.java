@@ -46,7 +46,8 @@ public class AuthenticationFilter implements Filter {
 				|| servletPath.indexOf("/onPaymentReturn.do") >= 0
 				|| servletPath.indexOf("/onPaymentNotify.do") >= 0
 				|| servletPath.indexOf("/onRefundNotify.do") >= 0
-				|| servletPath.indexOf("/whichUser.do") >= 0) {
+				|| servletPath.indexOf("/whichUser.do") >= 0
+				|| servletPath.indexOf("/upload.do") >= 0) {
 			chain.doFilter(request, response);
 			return;
 		}
