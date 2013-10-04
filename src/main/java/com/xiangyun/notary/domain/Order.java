@@ -456,6 +456,17 @@ public class Order implements Serializable {
 		paymentTotal = result;
 		return result;
 	}
+	
+	public boolean hasPaidPayment(){
+		boolean result = false;
+		
+		for(Payment pay: payments){
+			if(pay.getStatus().equals(OrderPaymentStatus.FULL_PAID))
+				return true;
+		}
+		
+		return result;
+	}
 
 	public Set<DocItem> getAllInOneDocs() {
 		Set<DocItem> allInOneDocs = new HashSet<DocItem>();
