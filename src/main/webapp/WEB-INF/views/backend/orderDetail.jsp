@@ -328,7 +328,7 @@
         </div>
         <br/>
       </div>
-      
+      <c:if test="${not order.skipSendDoc}">
       <div class="bar-bg">
         <div class="row">
           <div class="span12 navbg2">
@@ -368,6 +368,7 @@
           </div>
         </div>
       </div>
+      </c:if>
       
       <div class="bar-bg">
         <div class="row">

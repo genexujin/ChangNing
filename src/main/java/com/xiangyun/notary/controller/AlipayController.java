@@ -226,20 +226,22 @@ public class AlipayController {
 		List<Payment> payments = paymentService
 				.findPaymentByOrderNo(out_trade_no);
 		Payment thePayment = payments.get(0);
-		oid = thePayment.getOrder().getId();
+		Order theOrder = thePayment.getOrder();
+		oid = theOrder.getId();
 		// 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 		if (!thePayment.getStatus().equals(OrderPaymentStatus.FULL_PAID)) {
 			thePayment.setStatus(OrderPaymentStatus.FULL_PAID);
-			String notaryId = thePayment.getOrder().getBackendNotaryId();
+			String notaryId = theOrder.getBackendNotaryId();
 			//如果已经受理过，则成功付款后改为已受理
 			if(notaryId!=null && notaryId.length()>0){
-				thePayment.getOrder().setOrderStatus(OrderStatus.ACCEPTED);
+			    theOrder.setOrderStatus(OrderStatus.ACCEPTED);
 			}else{
-				thePayment.getOrder().setOrderStatus(OrderStatus.PAID);
+			    theOrder.setOrderStatus(OrderStatus.PAID);
 			}
 			thePayment.setAlipayTxnNo(trade_no);
 			thePayment.setPaymentDate(new Date());
-			orderService.save(thePayment.getOrder());
+			theOrder.calculateTotalPaid();
+			orderService.save(theOrder);
 			log.debug("订单状态变更完成！");
 			
 		}// 如果有做过处理，不执行商户的业务程序
@@ -444,6 +446,7 @@ public class AlipayController {
 				order= updateRefundStatus(result_details);
 			}
 			//order.setOrderStatus(OrderStatus.CANCELLED);
+			order.calculateTotalPaid();
 			orderService.save(order);
 			out.println("success"); // 请不要修改或删除
 			

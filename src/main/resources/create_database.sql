@@ -37,6 +37,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `destination` VARCHAR(20) NULL ,
   `cert_purpose` VARCHAR(20) NULL ,
   `cert_copy_count` INT NULL ,
+  `skip_send_doc` VARCHAR(20) NULL ,
   `send_doc` VARCHAR(20) NULL ,
   `send_address` VARCHAR(500) NULL ,
   `send_date` VARCHAR(20) NULL ,

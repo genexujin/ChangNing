@@ -391,6 +391,7 @@ public class OrderController {
 
 		if (skipStep4) {
 			order.calculateTotalFee();
+			order.setSkipSendDoc(true);
 			orderService.save(order);
 
 			ModelAndView mav = new ModelAndView("certStep5");
@@ -468,7 +469,8 @@ public class OrderController {
 		Payment payment = new Payment();
 
 		// payment.setPaymentDate(new Date());
-		payment.setPaymentTotal(order.getPaymentTotal());
+//		payment.setPaymentTotal(order.getPaymentTotal());
+		payment.setPaymentTotal(0.01);
 		payment.setTitle(title);
 		payment.setPaymentReason("公证费用");
 
@@ -1112,8 +1114,8 @@ public class OrderController {
 		}
 
 		Payment pay = new Payment();
-		pay.setPaymentTotal(extraPayment);
-//		pay.setPaymentTotal(0.01); // 暂时写死
+//		pay.setPaymentTotal(extraPayment);
+		pay.setPaymentTotal(0.01);
 		pay.setStatus(OrderPaymentStatus.NOT_PAID);
 		pay.setPaymentReason(extraPaymentNote);
 		pay.setTitle("附加费用");

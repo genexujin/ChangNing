@@ -120,6 +120,9 @@ public class Order implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private DestinationCountry destination;
+	
+	@Column(name = "skip_send_doc")
+    private boolean skipSendDoc;
 
 	@Column(name = "send_doc")
 	private boolean sendDoc;
@@ -271,7 +274,15 @@ public class Order implements Serializable {
 		this.destination = destination;
 	}
 
-	public boolean isSendDoc() {
+	public boolean isSkipSendDoc() {
+        return skipSendDoc;
+    }
+
+    public void setSkipSendDoc(boolean skipSendDoc) {
+        this.skipSendDoc = skipSendDoc;
+    }
+
+    public boolean isSendDoc() {
 		return sendDoc;
 	}
 
@@ -456,6 +467,18 @@ public class Order implements Serializable {
 		paymentTotal = result;
 		return result;
 	}
+	
+	public double calculateTotalPaid() {
+        double result = 0.0;
+        for (Payment payment : payments) {
+            if (payment.getStatus() == OrderPaymentStatus.FULL_PAID) {
+                result += payment.getPaymentTotal();
+            }
+        }
+        
+        paymentPaid = result;
+        return result;
+    }
 	
 	public boolean hasPaidPayment(){
 		boolean result = false;
