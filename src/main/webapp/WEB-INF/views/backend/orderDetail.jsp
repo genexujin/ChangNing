@@ -90,16 +90,16 @@
       <div class="border">
         <br/>
         <div class="row">
-            <div class="span10 offset1"><font color='orange'><strong>${order.orderStatus.text}</strong></font> </div>
+            <div class="span10 offset1"><font color='orange'><strong><c:out value="${order.orderStatus.text}"></c:out></strong></font> </div>
             <c:choose>
             	<c:when test="${order.accepter!=null}">
-            		<div class="span10 offset1"><font color='blue'><strong>受理人： ${order.accepter.name}</strong></font>            
+            		<div class="span10 offset1"><font color='blue'><strong>受理人： <c:out value="${order.accepter.name}"></c:out></strong></font>            
             		</div>
             	</c:when>
             </c:choose>
             <c:choose>
             	<c:when test="${order.cancelNote!=null and order.orderStatus=='CANCEL_REQUESTED'}">
-            		<div class="span10 offset1"><font color='blue'><strong>撤销理由： ${order.cancelNote}</strong></font>            
+            		<div class="span10 offset1"><font color='blue'><strong>撤销理由： <c:out value="${order.cancelNote}"></c:out></strong></font>            
             		</div>
             	</c:when>
             </c:choose>
@@ -113,13 +113,13 @@
                 <c:choose>
                   <c:when test="${order.orderStatus=='EXTRADOC_REQUESTED' and interaction.interactionType == 'ADD_DOCS'}">
                    	<div class="span10 offset1 alert alert-block">
-	                   	${interaction.interactionContent} 
+	                   	<c:out value="${interaction.interactionContent}"></c:out> 
 	                    <a href="addDocs.do?oId=${order.id}" class="btn btn-primary">补充材料</a>
                     </div>
                   </c:when>
                   <c:when test="${order.orderStatus=='ADD_CHARGE' and interaction.interactionType == 'ADD_PAYMENT'}">
                     <div class="span10 offset1 alert alert-block">
-                    	${interaction.interactionContent}
+                    	<c:out value="${interaction.interactionContent}"/>
                     	<a href="extraPayment.do?oId=${order.id}&pId=${interaction.extraData}" class="btn btn-primary medium">支付</a>
                     </div>
                   </c:when>
@@ -158,7 +158,7 @@
 	                <td style="width:120px"><b>申办号</b></td>
 	                <td style="width:100px"><font color='blue'><strong>${order.readableId}</strong></font></td>
 	                <td style="width:120px"><b>公证号</b></td>
-	                <td style="width:100px"><font color='blue'><strong>${order.backendNotaryId}</strong></font></td>
+	                <td style="width:100px"><font color='blue'><strong><c:out value="${order.backendNotaryId}"/></strong></font></td>
 	              </tr>
 	              <tr>
 	                <td style="width:120px"><b>订单日期</b></td>
@@ -168,13 +168,13 @@
 	              </tr>
 	              <tr>
 	                <td><b>前往国家或地区</b></td>
-	                <td>${order.destination.text}</td>
+	                <td><c:out value="${order.destination.text}"></c:out></td>
 	                <td><b>翻译语言</b></td>
-	                <td>${order.translationLanguage.text}</td>
+	                <td><c:out value="${order.translationLanguage.text}"></c:out></td>
 	              </tr>
 	              <tr>
 	                <td><b>办证用途</b></td>
-	                <td>${order.certificatePurpose.text}</td>
+	                <td><c:out value="${order.certificatePurpose.text}"></c:out></td>
 	                <td><b>是否认证</b></td>
 	                <td>
 	                  <c:choose>
@@ -185,19 +185,19 @@
 	              </tr>
 	              <tr>
 	                <td><b>申请人姓名</b></td>
-	                <td>${order.requestorName}</td>
+	                <td><c:out value="${order.requestorName}"></c:out></td>
 	                <td><b>姓名拼音</b></td>
-	                <td>${order.requestorNamePinyin}</td>
+	                <td><c:out value="${order.requestorNamePinyin}"></c:out></td>
 	              </tr>
 	              <tr>
 	                <td><b>出生日期</b></td>
 	                <td><fmt:formatDate value="${order.requestorBirthDate}" pattern="yyyy-MM-dd"/></td>
 	                <td><b>手机号</b></td>
-	                <td>${order.requestorMobile}</td>
+	                <td><c:out value="${order.requestorMobile}"></c:out></td>
 	              </tr>
 	              <tr>
 	                <td><b>邮箱</b></td>
-	                <td>${order.requestorEmail}</td>
+	                <td><c:out value="${order.requestorEmail}"></c:out></td>
 	                <td><b></b></td>
 	                <td></td>
 	              </tr>
@@ -219,16 +219,16 @@
 	                    <tr>
 	                      <c:choose>
 	                        <c:when test="${item.relativeInfo == null}">
-	                          <td style="width:120px"><b>${item.itemName}</b></td>
-	                          <td style="width:100px">${item.text}</td>
+	                          <td style="width:120px"><b><c:out value="${item.itemName}"></c:out></b></td>
+	                          <td style="width:100px"><c:out value="${item.text}"></c:out></td>
 	                          <td style="width:120px"></td>
 	                          <td style="width:100px"></td>
 	                        </c:when>
 	                        <c:otherwise>
 	                          <td style="width:120px"><b>和申请人关系</b></td>
-	                          <td style="width:100px">${item.relativeInfo.relativeType.text}</td>
+	                          <td style="width:100px"><c:out value="${item.relativeInfo.relativeType.text}"></c:out></td>
 	                          <td style="width:120px"><b>关系人姓名</b></td>
-	                          <td style="width:100px">${item.relativeInfo.relativeName}</td>
+	                          <td style="width:100px"><c:out value="${item.relativeInfo.relativeName}"></c:out></td>
 	                        </c:otherwise>
 	                      </c:choose>
 	                    </tr>
@@ -238,8 +238,8 @@
 	                  <tr>
 	                    <c:forEach items="${form.formItems}" var="item" varStatus="counter">
 	                      <c:if test="${counter.index % 2 == 0}"></tr><tr></c:if>
-	                      <td style="width:120px"><b>${item.itemName}</b></td>
-	                      <td style="width:100px">${item.text}</td>
+	                      <td style="width:120px"><b><c:out value="${item.itemName}"></c:out></b></td>
+	                      <td style="width:100px"><c:out value="${item.text}"></c:out></td>
 	                    </c:forEach>
 	                    <c:if test="${form.formItemsSize % 2 == 1}"><td></td><td></td></c:if>
 	                  </tr>
@@ -301,7 +301,7 @@
               <b>额外要求补充的材料：</b>
               <ul>
 	          <c:forEach items="${order.extraDocs}" var="docs" >
-	              <li>${docs.extraDocNames}</li>
+	              <li><c:out value="${docs.extraDocNames}"></c:out></li>
 	          </c:forEach>
 	        </ul>
             </div>
@@ -312,7 +312,7 @@
 	          <div class="span2 offset1">
 	            <b>用户上传时的备注：</b>
 	          </div>
-	          <div class="span5">${order.uploadNote}
+	          <div class="span5"><c:out value="${order.uploadNote}"></c:out>
 	          </div>
 	        </div>
         </c:if>
@@ -357,11 +357,11 @@
               <c:if test="${order.sendDoc}">
                 <tr>
                   <td><b>联系地址</b></td>
-                  <td>${order.sendAddress}</td>
+                  <td><c:out value="${order.sendAddress}"></c:out></td>
                 </tr>
                 <tr>
                   <td><b>送证时间</b></td>
-                  <td>${order.sendDate.text}</td>
+                  <td><c:out value="${order.sendDate.text}"></c:out></td>
                 </tr>
               </c:if>
             </table>
@@ -484,13 +484,13 @@
 	            <tbody>
 	              <c:forEach items="${order.payments}" var="payment" >	                
 	                  <tr>
-	                    <td>${payment.title}</td>
-	                    <td><font color='blue'>${payment.status.text}</font></td>
+	                    <td><c:out value="${payment.title}"></c:out></td>
+	                    <td><font color='blue'><c:out value="${payment.status.text}"></c:out></font></td>
 	                    <td><fmt:formatNumber value="${payment.paymentTotal}" type="currency" pattern="￥#.00"/></td>
-	                    <td>${payment.paymentDate}</td>
-	                    <td>${payment.orderTxnNo}</td>
-	                    <td>${payment.alipayTxnNo}</td>
-	                    <td>${payment.refundReason}</td>
+	                    <td><c:out value="${payment.paymentDate}"></c:out></td>
+	                    <td><c:out value="${payment.orderTxnNo}"></c:out></td>
+	                    <td><c:out value="${payment.alipayTxnNo}"></c:out></td>
+	                    <td><c:out value="${payment.refundReason}"></c:out></td>
 	                    <td><fmt:formatNumber value="${payment.refundTotal}" type="currency" pattern="￥#.00"/></td>
 	                  </tr>	                
 	              </c:forEach>              
@@ -526,9 +526,9 @@
 	            <tbody>
 	              <c:forEach items="${order.histories}" var="history" >	                
 	                  <tr>
-	                    <td>${history.user.name}</td>
-	                    <td><font color='blue'>${history.operationDate}</font></td>
-	                    <td>${history.operation}</td>	                   
+	                    <td><c:out value="${history.user.name}"></c:out></td>
+	                    <td><font color='blue'><c:out value="${history.operationDate}"></c:out></font></td>
+	                    <td><c:out value="${history.operation}"></c:out></td>	                   
 	                  </tr>	                
 	              </c:forEach>              
 	              
