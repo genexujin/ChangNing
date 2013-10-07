@@ -116,7 +116,7 @@
 		<p>在线办理30余种涉外公证事项，快捷的受理通道使您免去舟车劳顿之苦。</p>
 		<p>
 			<a class="btn btn-success"
-				href="http://getbootstrap.com/2.3.2/examples/carousel.html#">进入网上办证 »</a>
+				href="certStep1.do">进入网上办证 »</a>
 		</p>
 	</div>
 	<!-- /.span4 -->
@@ -125,7 +125,7 @@
 		<p>在线预约到场办证。</p>
 		<p>
 			<a class="btn btn-success"
-				href="http://getbootstrap.com/2.3.2/examples/carousel.html#">进入在线预约»</a>
+				href="enterReserv.do">进入在线预约»</a>
 		</p>
 	</div>
 	<!-- /.span4 -->
