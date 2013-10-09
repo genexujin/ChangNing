@@ -29,6 +29,7 @@ import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.service.OrderService;
 import com.xiangyun.notary.service.PaymentService;
+import com.xiangyun.sms.SMSManager;
 
 @Controller
 public class AlipayController {
@@ -43,8 +44,9 @@ public class AlipayController {
 
 	@Autowired
 	private PaymentService paymentService;
-	
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+	private static SimpleDateFormat sdf = new SimpleDateFormat(
+			"yyyy-MM-dd hh:mm:ss");
 
 	/**
 	 * 支付函数
@@ -186,7 +188,7 @@ public class AlipayController {
 		// 计算得出通知验证结果
 		boolean verify_result = AlipayNotify.verify(params);
 		Long oid = null;
-		
+
 		if (verify_result) {// 验证成功
 			if (trade_status.equals("TRADE_FINISHED")
 					|| trade_status.equals("TRADE_SUCCESS")) {
@@ -201,8 +203,8 @@ public class AlipayController {
 
 		mav.addObject("orderNo", out_trade_no);
 		mav.addObject("totalFee", total_fee);
-		if(oid!=null)
-			mav.addObject("oid",oid.toString());
+		if (oid != null)
+			mav.addObject("oid", oid.toString());
 		log.debug("On Payment Return order id is: " + oid);
 		mav.addObject("title", "支付结果");
 
@@ -222,7 +224,7 @@ public class AlipayController {
 	private Long updatePaymentStatus(String out_trade_no, String trade_no) {
 		// 判断该笔订单是否在商户网站中已经做过处理
 		Long oid = null;
-		
+
 		List<Payment> payments = paymentService
 				.findPaymentByOrderNo(out_trade_no);
 		Payment thePayment = payments.get(0);
@@ -232,20 +234,24 @@ public class AlipayController {
 		if (!thePayment.getStatus().equals(OrderPaymentStatus.FULL_PAID)) {
 			thePayment.setStatus(OrderPaymentStatus.FULL_PAID);
 			String notaryId = theOrder.getBackendNotaryId();
-			//如果已经受理过，则成功付款后改为已受理
-			if(notaryId!=null && notaryId.length()>0){
-			    theOrder.setOrderStatus(OrderStatus.ACCEPTED);
-			}else{
-			    theOrder.setOrderStatus(OrderStatus.PAID);
+			// 如果已经受理过，则成功付款后改为已受理
+			if (notaryId != null && notaryId.length() > 0) {
+				theOrder.setOrderStatus(OrderStatus.ACCEPTED);
+			} else {
+				theOrder.setOrderStatus(OrderStatus.PAID);
 			}
 			thePayment.setAlipayTxnNo(trade_no);
 			thePayment.setPaymentDate(new Date());
 			theOrder.calculateTotalPaid();
 			orderService.save(theOrder);
 			log.debug("订单状态变更完成！");
-			
+
+			SMSManager.sendSMS(new String[] { theOrder.getRequestorMobile() },
+					"您的订单：" + theOrder.getReadableId()
+							+ " 已完成付款！我们会尽快处理，请耐心等待, 谢谢！", 1);
+
 		}// 如果有做过处理，不执行商户的业务程序
-		
+
 		return oid;
 	}
 
@@ -325,8 +331,8 @@ public class AlipayController {
 	@RequestMapping(value = "/openRefund.do")
 	public void openRefund(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-	    //TODO: 先改一下Payment状态
-	    
+		// TODO: 先改一下Payment状态
+
 		// 服务器异步通知页面路径
 		String notify_url = "http://hjyoa.hpe.cn:4848/ChangNing/onRefundNotify.do";
 
@@ -432,7 +438,7 @@ public class AlipayController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		Order order = null;
-		
+
 		if (AlipayNotify.verify(params)) {// 验证成功
 			// 判断是否在商户网站中已经做过了这次通知返回的处理
 			if (result_details != null && result_details.indexOf("#") >= 0) {
@@ -443,13 +449,13 @@ public class AlipayController {
 				}
 			} else {
 				log.debug("正在处理唯一一条退款记录");
-				order= updateRefundStatus(result_details);
+				order = updateRefundStatus(result_details);
 			}
-			//order.setOrderStatus(OrderStatus.CANCELLED);
+			// order.setOrderStatus(OrderStatus.CANCELLED);
 			order.calculateTotalPaid();
 			orderService.save(order);
 			out.println("success"); // 请不要修改或删除
-			
+
 		} else {// 验证失败
 			out.println("fail");
 		}
@@ -470,7 +476,7 @@ public class AlipayController {
 		log.debug(amountStr);
 		String state = lineParams[2];
 		log.debug(state);
-		
+
 		Order oid = null;
 
 		if (state.equalsIgnoreCase("success")) {
@@ -486,6 +492,10 @@ public class AlipayController {
 					thePayment.setRefundTotal(Double.parseDouble(amountStr));
 					orderService.save(thePayment.getOrder());
 					log.debug("退款业务数据更新完成");
+					SMSManager.sendSMS(new String[] { thePayment.getOrder()
+							.getRequestorMobile() }, "您的订单："
+							+ thePayment.getOrder().getReadableId()
+							+ " 已完成退款，退款会在一到二个工作日内转到您的付款账户，请注意查收，谢谢！", 1);
 				}
 
 			}

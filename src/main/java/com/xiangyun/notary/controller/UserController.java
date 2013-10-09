@@ -99,16 +99,16 @@ public class UserController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "register.do")
-	public ModelAndView register(User user, HttpServletRequest request,
+	public String register(User user, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		ModelAndView mav = new ModelAndView();
+		// ModelAndView mav = new ModelAndView();
 		user.setPassword(Encrypt.e(user.getPassword()));
 		userService.save(user);
 		HttpSession session = request.getSession(true);
 		session.setAttribute(Constants.LOGIN_USER, user);
-		mav.addObject("user", user);
-		mav.setViewName("userCenter_modify");
-		return mav;
+		// mav.addObject("user", user);
+		// mav.setViewName("userCenter_modify");
+		return "redirect:/home.do";
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class UserController {
 			if (StringUtils.isEmpty(targetURL)) {
 				mav.addObject("user", u);
 				mav.addObject("title", "个人信息");
-				mav.setViewName("userCenter_modify");
+				mav.setViewName("redirect:home.do");
 			} else {
 				mav.setViewName("redirect:" + targetURL);
 			}
@@ -417,25 +417,46 @@ public class UserController {
 	@RequestMapping(value = "/setUserAsNormal.do")
 	public void setUserAsNormal(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
-		String mobile = request.getParameter("mobile");
-		userService.setUserAsNormal(mobile);
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		log.debug("finished set user as staff method");
-		out.println(1);
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if (user.isAdmin()) {
+			String mobile = request.getParameter("mobile");
+			userService.setUserAsNormal(mobile);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			log.debug("finished set user as staff method");
+			out.println(1);
+		}
 	}
-	
+
 	@RequestMapping(value = "/setUserAsStaff.do")
 	public void setUserAsStaff(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if (user.isAdmin()) {
+			String mobile = request.getParameter("mobile");
+			userService.setUserAsStaff(mobile);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			log.debug("finished set user as staff method");
+			out.println(1);
+		}
+	}
 
-		String mobile = request.getParameter("mobile");
-		userService.setUserAsStaff(mobile);
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		log.debug("finished set user as staff method");
-		out.println(1);
+	@RequestMapping(value = "/setUserAsAdmin.do")
+	public void setUserAsAdmin(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if (user.isAdmin()) {
+			String mobile = request.getParameter("mobile");
+			userService.setUserAsAdmin(mobile);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			log.debug("finished set user as admin method");
+			out.println(1);
+		}
 	}
 
 	/**
@@ -450,19 +471,22 @@ public class UserController {
 			HttpServletRequest request) {
 		User user = (User) request.getSession(false).getAttribute(
 				Constants.LOGIN_USER);
-		
-		//初始化查询参数
-		if(queryMobile!=null)
-			request.getSession(false).setAttribute("user_query_mobile", queryMobile);
+
+		// 初始化查询参数
+		if (queryMobile != null)
+			request.getSession(false).setAttribute("user_query_mobile",
+					queryMobile);
 		else
-			queryMobile = (String)request.getSession(false).getAttribute("user_query_mobile");
-		
-		if(queryName	 !=null)
-			request.getSession(false).setAttribute("user_query_queryName", queryName);
+			queryMobile = (String) request.getSession(false).getAttribute(
+					"user_query_mobile");
+
+		if (queryName != null)
+			request.getSession(false).setAttribute("user_query_queryName",
+					queryName);
 		else
-			queryName = (String)request.getSession(false).getAttribute("user_query_queryName");
-		
-		
+			queryName = (String) request.getSession(false).getAttribute(
+					"user_query_queryName");
+
 		ModelAndView mav;
 		log.debug("inside doUserQuery method");
 		log.debug("params: " + queryMobile + "," + queryName);
