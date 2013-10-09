@@ -41,7 +41,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="HKBFYJ_YS_M" class="span4 tiny-pt">提示：此项不能为空，且必须为数字</div>
+				<div id="HKBFYJ_YS_M" class="span4 tiny-pt">提示：请填写阿拉伯数字，上限50</div>
 			  </div>
 
 	          
@@ -60,7 +60,7 @@
 	    	
 	    	$("input[name='HKBFYJ_SHHJ']").change(validateHKBFYJ_SHHJ);
 	    	
-	    	$("input[name='HKBFYJ_YS']").change(validateHKBFYJ_YS);
+	    	$("#HKBFYJ_YS").keyup(validateHKBFYJ_YS); //Why "change" event is not working on IE? Very strange!
 	    	
 	    }
 	    
@@ -79,7 +79,7 @@
 	    
 	    function validateHKBFYJ_YS() {
 	    	var hkbfyj_ys = $("input[name='HKBFYJ_YS']").val();
-		    if (hkbfyj_ys != '') {
+		    if (hkbfyj_ys != '' && (hkbfyj_ys <= 50) && (hkbfyj_ys > 0)) {
 		        $("#HKBFYJ_YS_M").removeClass("alert alert-error");
 		        updateValidHKBFYJ();
 		    	tryToEnableGoToStep3Button();
