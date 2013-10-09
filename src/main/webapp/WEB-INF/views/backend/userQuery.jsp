@@ -97,7 +97,7 @@
 							<c:choose>
 								<c:when
 									test="${sessionScope['LOGIN_USER'].admin}">
-									<th style="width:35%;">操作</th>	
+									<th style="width:35%;">设置用户角色</th>	
 								</c:when>
 							</c:choose>						
 						</tr>
@@ -114,13 +114,17 @@
 									<c:when
 									test="${sessionScope['LOGIN_USER'].admin}">
 									<td>
-											<c:if test="${user.staff or user.noRole}">
+											<c:if test="${!user.normalUser or user.noRole}">
 												<a onclick="setNormalUser('${user.mobile}')"
-													role="button"  class="btn btn-primary" data-toggle="modal">设为客户</a>												
+													role="button"  class="btn btn-success" data-toggle="modal">客户</a>												
 											</c:if>
-											<c:if test="${user.normalUser or user.noRole}">
+											<c:if test="${!user.staff or user.noRole}">
 												<a onclick="setStaff('${user.mobile}')"
-													role="button"  class="btn btn-primary" data-toggle="modal">设为公证员</a>												
+													role="button"  class="btn btn-success" data-toggle="modal">公证员</a>												
+											</c:if>
+											<c:if test="${!user.admin or user.noRole}">
+												<a onclick="setAdmin('${user.mobile}')"
+													role="button"  class="btn btn-success" data-toggle="modal">管理员</a>												
 											</c:if>									
 									</td>
 									</c:when>
@@ -169,7 +173,7 @@
 </div>
 
 <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true">×</button>
@@ -182,7 +186,7 @@
 </div>
 
 <div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true">×</button>
@@ -191,6 +195,19 @@
 	<div class="modal-footer" style="height:20px;padding:13px;">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 		<button id="normal_submit" class="btn btn-primary">确定</button>
+	</div>
+</div>
+
+<div id="myModal3" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<p><strong>您确定将该用户的角色设置为管理员吗？</strong></p>
+	</div>	
+	<div class="modal-footer" style="height:20px;padding:13px;">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		<button id="admin_submit" class="btn btn-primary">确定</button>
 	</div>
 </div>
 
@@ -220,6 +237,26 @@
 			$.ajax({
 				type : "post",
 				url : "/ChangNing/setUserAsStaff.do",
+				data : {
+					mobile : mobile
+				},
+				success : function(data) {
+					
+					if(data==1)
+						window.location.reload();
+				}
+
+			});
+		});
+
+	}
+	
+	function setAdmin(mobile) {
+		$("#myModal3").modal("show");
+		$("#admin_submit").click(function() {
+			$.ajax({
+				type : "post",
+				url : "/ChangNing/setUserAsAdmin.do",
 				data : {
 					mobile : mobile
 				},

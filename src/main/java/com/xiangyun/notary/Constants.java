@@ -57,7 +57,7 @@ public class Constants {
     public static final String ORDER_OPERATION_CANCEL = "撤销订单";
     public static final String ORDER_OPERATION_EXTRADOC = "要求补充材料";
     public static final String ORDER_OPERATION_ADDCHARGE = "补充收费";
-    public static final String ORDER_OPERATION_ADDDOC = "已补充收费";
+    public static final String ORDER_OPERATION_ADDDOC = "已补充材料";
     
 
 }

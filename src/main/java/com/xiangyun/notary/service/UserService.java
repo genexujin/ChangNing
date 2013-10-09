@@ -24,6 +24,8 @@ public interface UserService {
 	void setUserAsNormal(String mobile);
 
 	void setUserAsStaff(String mobile);
+	
+	void setUserAsAdmin(String mobile);
 
 
 }

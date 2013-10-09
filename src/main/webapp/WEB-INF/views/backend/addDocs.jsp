@@ -14,6 +14,30 @@
       </ul>
       
       <hr/>
+      
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;">
+	<div class="modal-header" style="height:10px;">		
+		<p id="myModalLabel">请按照样张示例裁剪，注意头部周围留出足够空间。</p>
+	</div>
+	<div class="modal-body">
+		<img id="sampleImage" style="width:240px;height:364px;" src="resources/crop_sample.png"/>		
+	</div>
+	<div class="modal-footer" style="height:20px;">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	</div>
+</div>
+		<div class="border">
+	  	<br>
+		  <div class="row">		   
+			    <div class="span10 offset1">
+			      <h5><font color="red">请上传所需材料。提示：本系统支持 .jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过4M.</font></h5>
+			    </div>
+
+		  </div>
+		   <br>
+	  </div>
+
 	  <div class="row">
 	    <div class="span10">
 	      <h5>申办号：${um.orderReadableId}</h5>
@@ -67,7 +91,7 @@
 		      <script>
 				$(function() {
 				    $('#all_upload').uploadify({
-				    	'fileSizeLimit' : '5MB',
+				    	'fileSizeLimit' : '4MB',
 				        'swf'             : 'uploadify/uploadify.swf',
 				        'uploader'        : '<c:url value="/upload.do"/>',
 				        // Put your options here
@@ -124,7 +148,7 @@
 	        	  <script>
 	        	  $(function() {
 	                	$('#${doc.docKey}').uploadify({
-	                		'fileSizeLimit' : '5MB',
+	                		'fileSizeLimit' : '4MB',
 	        		        'swf'             : 'uploadify/uploadify.swf',
 	        		        'uploader'        : '<c:url value="/upload.do"/>',
 	        		        // Put your options here
@@ -161,7 +185,7 @@
 		          <br>
 			      <div class="row">
 		            <div class="span offset1">
-		              <h5>${doc.docName} </h5>
+		              <h5>${doc.docName} <a class="yz" style="padding-left:5px;">样张</a></h5>
 		            </div>
 		            <div class="span7">
 		              <c:if test="${doc.needCrop}">
@@ -219,7 +243,7 @@
 		          
 	                $(function() {
 	                	$('#${doc.docKey}').uploadify({
-	                		'fileSizeLimit' : '5MB',
+	                		'fileSizeLimit' : '4MB',
 	        		        'swf'             : 'uploadify/uploadify.swf',
 	        		        'uploader'        : '<c:url value="/upload.do"/>',
 	        		        // Put your options here
@@ -298,6 +322,13 @@
 	   		    <a href="confirmAddDoc.do?oId=${um.uid}" class="btn btn-primary">完成</a>
 	   		  </div>
 	      </div>
+	       <script>
+	       	$(".yz").click(
+	           	function(){        		
+	           		$("#myModal1").modal("show");
+	           	}
+	           );
+	       </script>
       
       
 <%@ include file="../footer.jspf"%>

@@ -120,7 +120,7 @@
                   <c:when test="${order.orderStatus=='ADD_CHARGE' and interaction.interactionType == 'ADD_PAYMENT'}">
                     <div class="span10 offset1 alert alert-block">
                     	<c:out value="${interaction.interactionContent}"/>
-                    	<a href="extraPayment.do?oId=${order.id}&pId=${interaction.extraData}" class="btn btn-primary medium">支付</a>
+                    	<a id="payBill" href="extraPayment.do?oId=${order.id}&pId=${interaction.extraData}" target="_blank" class="btn btn-primary medium">支付</a>
                     </div>
                   </c:when>
                 </c:choose>
@@ -538,7 +538,11 @@
 	      </div>
       </div>
       
+
+      
       <script>
+      
+    
       	function confirmCancel(oid){
       		var confirmed = window.confirm("您确认要撤销该订单吗？");
       		if(confirmed){
