@@ -227,6 +227,7 @@
 		          </div>
 		          <script>
 		            var ${doc.docKey}_jcrop_api;
+		            var ${doc.docKey}_crop_binded = false;
 
 
 		            function ${doc.docKey}_storeCoords(c) {
@@ -300,7 +301,10 @@
 	        		        	newImg.prop('src', data);
 	        		        	
 	        	            	$('#${doc.docKey}_crop').css("display", "inline-block");
-	        	            	$('#${doc.docKey}_crop').click(${doc.docKey}_crop);
+	        	            	if (${doc.docKey}_crop_binded == false) {
+	        	            		$('#${doc.docKey}_crop').click(${doc.docKey}_crop);
+	        	            		${doc.docKey}_crop_binded = true;
+	        	            	}
 
 	        	            	if (${doc.docKey}_jcrop_api == undefined) {
 	        	            		$('#${doc.docKey}_img').Jcrop({

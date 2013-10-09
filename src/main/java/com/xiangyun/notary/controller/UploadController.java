@@ -97,7 +97,7 @@ public class UploadController {
 					String fileName = saveUploadedFileForCrop(cropDir, mpf,
 							docKey);
 
-					return "getImage/" + uid + "/" + fileName + ".do";
+					return "getImage/" + uid + "/" + fileName + ".do?ts=" + System.currentTimeMillis();
 
 				}
 			} else { // No need to crop, so upload it and save the order
@@ -156,6 +156,10 @@ public class UploadController {
 	public @ResponseBody
 	String cropImage(int x, int y, int x2, int y2, int w, int h, Long uid,
 			String imageName, String dockey) throws IOException {
+	    int querypos = imageName.indexOf("?");
+	    if (querypos != -1) {
+	        imageName = imageName.substring(0, querypos);
+	    }
 		BufferedImage bi = ImageIO.read(new File(getCropDir(uid.toString())
 				+ imageName));
 		log.debug("Now is cropping the image... ");
@@ -202,7 +206,7 @@ public class UploadController {
 
 		// return the docPath
 		return "getCroppedImage/" + uid + "/" + dockey + "/" + imageName
-				+ ".do";
+				+ ".do?ts=" + System.currentTimeMillis();
 	}
 
 	@RequestMapping(value = "/getCroppedImage/{uid}/{dockey}/{imageName}", produces = {
