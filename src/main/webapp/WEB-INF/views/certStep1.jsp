@@ -513,6 +513,7 @@
         	$("#expand").click(expandMoreRegion);
         	$("#collpase").click(collpaseMoreRegion);
         	$("#dest").change(setLangAndVerify);
+        	$("#trans").change(confirmNoTranslation);
         	$("input[name='notory_key']").change(onNotaryKeyChange);
         	//When entering the page, the button should be disabled
         	disableGoToStep2Button();
