@@ -403,9 +403,9 @@ public class OrderController {
 			order.setSkipSendDoc(true);
 			orderService.save(order);
 
-			ModelAndView mav = new ModelAndView("certStep45");
-			mav.addObject("title", "支付");
-			mav.addObject("order", order);
+			ModelAndView mav = new ModelAndView("redirect:certStep45.do?sendDoc=false");
+//			mav.addObject("title", "支付");
+//			mav.addObject("order", order);
 			return mav;
 
 		} else {
@@ -449,6 +449,7 @@ public class OrderController {
 		
 		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
 				.getAttribute(Constants.FORM_DEFS);
+		log.debug("Start to generate doc list.....");
 		Map<String, List<FormDocItemDef>> allDocs = generateDocList(order,
 				formDefs);
 		
