@@ -363,6 +363,12 @@ public class OrderController {
 		return mav;
 	}
 
+	/**
+	 * 
+	 * @param uploadNote
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/certStep4.do")
 	public ModelAndView goToStep4(
 			@RequestParam("upload_note") String uploadNote,
@@ -397,7 +403,7 @@ public class OrderController {
 			order.setSkipSendDoc(true);
 			orderService.save(order);
 
-			ModelAndView mav = new ModelAndView("certStep5");
+			ModelAndView mav = new ModelAndView("certStep45");
 			mav.addObject("title", "支付");
 			mav.addObject("order", order);
 			return mav;
@@ -409,13 +415,19 @@ public class OrderController {
 		}
 
 	}
-
-	@RequestMapping(value = "/certStep5.do")
-	public ModelAndView goToStep5(@RequestParam("sendDoc") boolean sendDoc,
+	
+	/**
+	 * 受理通知单
+	 * @param sendDoc
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/certStep45.do")
+	public ModelAndView goToStep45(@RequestParam("sendDoc") boolean sendDoc,
 			HttpServletRequest request) {
-
+		
 		log.debug("Should send doc? {}", sendDoc);
-
+		
 		HttpSession session = request.getSession(false);
 		Order order = (Order) session.getAttribute(Constants.CURRENT_ORDER);
 		if (order == null) {
@@ -423,7 +435,7 @@ public class OrderController {
 			mav.addObject("title", "选择申办业务");
 			return mav;
 		}
-
+		
 		order.setSendDoc(sendDoc);
 		if (sendDoc) {
 			order.setSendAddress(request.getParameter("sendAddress"));
@@ -434,6 +446,56 @@ public class OrderController {
 		order.calculateTotalFee();
 
 		orderService.save(order);
+		
+		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
+				.getAttribute(Constants.FORM_DEFS);
+		Map<String, List<FormDocItemDef>> allDocs = generateDocList(order,
+				formDefs);
+		
+		ModelAndView mav = new ModelAndView("certStep45");
+		mav.addObject("title", "受理通知单");
+		mav.addObject("allDocs", allDocs.values());
+		mav.addObject("order", order);
+		return mav;
+		
+	}
+
+	/**
+	 * 
+	 * @param sendDoc
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/certStep5.do")
+	public ModelAndView goToStep5(
+			HttpServletRequest request) {
+
+//		log.debug("Should send doc? {}", sendDoc);
+
+		HttpSession session = request.getSession(false);
+		Order order = (Order) session.getAttribute(Constants.CURRENT_ORDER);
+		if (order == null) {
+			ModelAndView mav = new ModelAndView("certStep1");
+			mav.addObject("title", "选择申办业务");
+			return mav;
+		}
+		
+		
+		SMSManager.sendSMS(new String[]{order.getRequestorMobile()}, "我处已收取您提交的公证申请，订单号为："+order.getReadableId()+" ，您付款并递交材料齐全后，" +
+				"我处会于五个工作日出具公证书。 声明书和身份证复印件公证必需要本人持上传的所有材料原件来领取，" +
+				"其他公证可以凭短信和上传的所有材料原件代领。如果提交申请后七日内未补充材料或者未付款，" +
+				"此公证申请将被撤销。", 1);
+
+//		order.setSendDoc(sendDoc);
+//		if (sendDoc) {
+//			order.setSendAddress(request.getParameter("sendAddress"));
+//			order.setSendDate(SendDocDateType.valueOf((request
+//					.getParameter("workday"))));
+//		}
+//
+//		order.calculateTotalFee();
+//
+//		orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("certStep5");
 		mav.addObject("title", "支付");
@@ -652,6 +714,32 @@ public class OrderController {
 
 		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
 				.getAttribute(Constants.FORM_DEFS);
+		Map<String, List<FormDocItemDef>> allDocs = generateDocList(order,
+				formDefs);
+
+		List<Interaction> interactions = orderService
+				.findIncompletedInteractionsForOrder(orderId, userId);
+
+		ModelAndView mav = new ModelAndView("backend/orderDetail");
+
+		for (Payment p : order.getPayments()) {
+			if (p.getStatus().equals(OrderPaymentStatus.FULL_PAID)) {
+				mav.addObject("hasPaid", true);
+				break;
+			}
+		}
+
+		mav.addObject("title", "订单详情");
+		mav.addObject("order", order);
+
+		mav.addObject("allDocs", allDocs.values());
+		mav.addObject("interactions", interactions);
+
+		return mav;
+	}
+
+	private Map<String, List<FormDocItemDef>> generateDocList(Order order,
+			Map<String, FormDef> formDefs) {
 		Map<String, List<FormDocItemDef>> allDocs = new HashMap<String, List<FormDocItemDef>>();
 
 		boolean needTY = true;
@@ -699,26 +787,8 @@ public class OrderController {
 				putIfAbsent(allDocs, ty, docDef);
 			}
 		}
-
-		List<Interaction> interactions = orderService
-				.findIncompletedInteractionsForOrder(orderId, userId);
-
-		ModelAndView mav = new ModelAndView("backend/orderDetail");
-
-		for (Payment p : order.getPayments()) {
-			if (p.getStatus().equals(OrderPaymentStatus.FULL_PAID)) {
-				mav.addObject("hasPaid", true);
-				break;
-			}
-		}
-
-		mav.addObject("title", "订单详情");
-		mav.addObject("order", order);
-
-		mav.addObject("allDocs", allDocs.values());
-		mav.addObject("interactions", interactions);
-
-		return mav;
+		log.debug("generate doc list, list size is : " + allDocs.size()); 
+		return allDocs;
 	}
 
 	@RequestMapping(value = "/orderAccept.do")

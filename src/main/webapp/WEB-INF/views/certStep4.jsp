@@ -28,6 +28,7 @@
 				<li class="pass">输入信息</li>
 		        <li class="ago">上传资料</li>
 				<li class="step">上门送证</li>
+				<li class="">确认订单</li>
 		        <li class="end">支付</li>
 			</ol>
 		  </div>
@@ -35,7 +36,7 @@
 	  </div>
 	  
 	  <br>
-	  <form id="theform" class="form-horizontal" action="certStep5.do" method="POST">
+	  <form id="theform" class="form-horizontal" action="certStep45.do" method="POST">
 	  
 		<div class="bar-bg">
 	      <div class="row">

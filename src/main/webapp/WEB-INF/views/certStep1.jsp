@@ -27,6 +27,7 @@
 				<li class="">输入信息</li>
 		        <li class="">上传资料</li>
 				<li class="">上门送证</li>
+				<li class="">确认订单</li>
 		        <li class="end">支付</li>
 			</ol>
 		  </div>
@@ -319,7 +320,7 @@
     		        	<div style="cursor: pointer; display: inline;color:blue;" onclick="showImage('wx.png','受过/未受刑事处分 公证书样本')">[样本]</div>
     		        </td>
     		        <td><input type="checkbox" value="HYZKZMFYJ" name="notory_key"> 婚姻状况证明复印件
-    		        	<div style="cursor: pointer; display: inline;color:blue;">[样本]</div>
+    		        	<div style="cursor: pointer; display: inline;color:blue;" onclick="showImage('whdj_fy.jpg','无婚姻登记证明公证书样本','whdj.png')">[样本]</div>
     		        </td>
     		      </tr>
     		      <tr>
