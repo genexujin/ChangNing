@@ -24,7 +24,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="CZGZCJFYJ_XN_M" class="span4 tiny-pt">提示：此项不能为空</div>
+				<div id="CZGZCJFYJ_XN_M" class="span4 tiny-pt">提示：请输入学年数--1到10的数字</div>
 			</div>
 
 			<div class="row">
@@ -38,7 +38,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="CZGZCJFYJ_2_M" class="span4 tiny-pt">提示：若此两项全否则不可办理公证</div>
+				<div id="CZGZCJFYJ_2_M" class="span4 tiny-pt">提示：若此两项全否暂不开放网上公证业务</div>
 			</div>
 			<div class="row">
 				<div class="span5 offset1">
@@ -74,7 +74,7 @@
 	function validateCZGZCJFYJ_XN() {
 		var czgzcjfyj_xn = $("#CZGZCJFYJ_XN").val();
 		
-		if (czgzcjfyj_xn != ''){
+		if (czgzcjfyj_xn != '' && czgzcjfyj_xn >0 && czgzcjfyj_xn <10){
 			//alert('有值');
 			$("#CZGZCJFYJ_XN_M").removeClass("alert alert-error");
 			//updateCZGZCJFYJ();
@@ -107,7 +107,7 @@
 		var czgzcjfyj_shhj = $("input[name='CZGZCJFYJ_SHHJ']:checked").val();
 		var czgzcjfyj_shxx = $("input[name='CZGZCJFYJ_SHXX']:checked").val();
 
-		if (czgzcjfyj_xn!='' &&(czgzcjfyj_shhj == 'true' || czgzcjfyj_shxx == 'true'))
+		if (czgzcjfyj_xn!='' && czgzcjfyj_xn >0 && czgzcjfyj_xn <10 &&(czgzcjfyj_shhj == 'true' || czgzcjfyj_shxx == 'true'))
 			validCZGZCJFYJ = true;
 	}
 

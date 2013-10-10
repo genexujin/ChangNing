@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="CKZMFYJ_YHINSH_M" class="span4 tiny-pt">提示：若存款证明颁发银行不在上海则不可办理公证
+			    <div id="CKZMFYJ_YHINSH_M" class="span4 tiny-pt">提示：若存款证明颁发银行不在上海暂不开放网上公证业务
 			    </div>
 	          </div>
 

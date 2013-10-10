@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="QSGX_SHHJ_M" class="span4 tiny-pt">提示：若户籍不在上海则不可办理公证
+			    <div id="QSGX_SHHJ_M" class="span4 tiny-pt">提示：若户籍不在上海暂不开放网上公证业务
 			    </div>
 	          </div>
 	          
@@ -74,8 +74,8 @@
 	          
 	          <div class="row">
 	            <div class="span2 offset1" style="padding-top: 9px;">
-	              <button id="QSGX_ADD" class="btn btn-small">+</button>
-	              <button id="QSGX_REMOVE" class="btn btn-small">-</button>
+	              <button id="QSGX_ADD" class="btn btn-small"><font size="5">+</font></button>
+	              <button id="QSGX_REMOVE" class="btn btn-small"><font size="5">-</font></button>
 	            </div>
 	            <div id="QSGX_RELATION_M" class="span6 tiny-pt">提示：添加的亲属必须选择关系类型，并且关系人姓名不能为空
 			    </div>

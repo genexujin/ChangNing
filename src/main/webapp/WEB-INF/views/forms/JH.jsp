@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="JH_JHZ_M" class="span4 tiny-pt">提示：无结婚证暂不开放网上申办公证
+			    <div id="JH_JHZ_M" class="span4 tiny-pt">提示：无结婚证暂不开放网上公证业务
 			    </div>
 	          </div>
 	          
@@ -49,7 +49,7 @@
 			    	  </div>
 			    	</div>
 	            </div>
-	            <div id="JH_2_M" class="span4 tiny-pt">提示：若此两项全否则暂不开放网上申办公证
+	            <div id="JH_2_M" class="span4 tiny-pt">提示：若此两项全否暂不开放网上公证业务
 	            </div>
 	          </div>
 	          <div class="row">

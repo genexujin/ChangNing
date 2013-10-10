@@ -524,10 +524,6 @@
         "formName": "结婚证复印件",
         "fields": [
             {
-                "fieldKey": "JHZFYJ_SHHJ",
-                "fieldName": "户籍是否在上海"
-            },
-            {
                 "fieldKey": "JHZFYJ_SHJH",
                 "fieldName": "结婚地是否在上海"
             }
