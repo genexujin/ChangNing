@@ -7,6 +7,7 @@ public enum CertificatePurpose {
     WORK("工作"),
     STUDY("学习"),
     MARRIAGE("结婚"),
+    TRAVEL("旅游"),
     OTHER("其他");
     
     private String text;

@@ -66,14 +66,20 @@ function confirmDeselect(event) {
 	}
 }
 
-function confirmNoTranslation(event) {
+function setAccordingTranslation(event) {
 	if (isCountryOfYWXF() && event.target.value == 'NULL') {
 		var noTrans = confirm("该国家通常需要译文相符公证。选择不翻译则不会添加译文相符公证，是否确认不翻译？");
 		if (noTrans == false) {
 			event.target.value = 'English';
 			return false;
 		}
-	}	
+		
+		//Otherwise need to remove the YWXF from the selected forms and update copies
+		$(".yw_div").remove();
+		$("#copies").val(1);
+	} else if (isCountryOfYWXF() && event.target.value != 'NULL') {
+		updateCopiesAndYWXF();
+	}
 }
 
 function setLangAndVerify(event) {
@@ -83,8 +89,18 @@ function setLangAndVerify(event) {
 	//setVerify
 	setVerify(event);
 	
-	
 	//Update copies and 译文相符
+	updateCopiesAndYWXF();
+	
+	//One edge case: if select "请选择", disable the "下一步" button
+	if (event.target.value == 'NULL') {
+		disableGoToStep2Button();
+	} else if ($("#sel_region").find(".sel_item").length > 0) {
+		enableGoToStep2Button();
+	}
+}
+
+function updateCopiesAndYWXF() {
 	if (isCountryOfYWXF() && needTranslation()) {
 		$("#copies").val(2);
 		
@@ -101,13 +117,6 @@ function setLangAndVerify(event) {
 	} else {
 		$("#copies").val(1);
 		$(".yw_div").remove();
-	}
-	
-	//One edge case: if select "请选择", disable the "下一步" button
-	if (event.target.value == 'NULL') {
-		disableGoToStep2Button();
-	} else if ($("#sel_region").find(".sel_item").length > 0) {
-		enableGoToStep2Button();
 	}
 }
 

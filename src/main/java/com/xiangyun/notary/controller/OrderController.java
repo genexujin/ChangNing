@@ -140,6 +140,11 @@ public class OrderController {
 		Order order = new Order();
 		order.setCertificateCopyCount(copies);
 		order.setCertificatePurpose(purpose);
+		if (CertificatePurpose.OTHER.equals(purpose)) {
+			String customPurpose = request.getParameter("custom_purpose");
+			if (!StringUtils.isEmpty(customPurpose))
+				order.setCertCustomPurpose(customPurpose);
+		}
 		order.setDestination(destination);
 		order.setTranslationLanguage(transLanguage);
 		order.setNeedVerify(needVerify);

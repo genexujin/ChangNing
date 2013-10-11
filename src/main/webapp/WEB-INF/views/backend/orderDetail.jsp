@@ -174,7 +174,11 @@
 	              </tr>
 	              <tr>
 	                <td><b>办证用途</b></td>
-	                <td><c:out value="${order.certificatePurpose.text}"></c:out></td>
+	                <td><c:out value="${order.certificatePurpose.text}"></c:out>
+	                  <c:if test="${order.certificatePurpose == 'OTHER'}">
+	                    <c:out value=": ${order.certCustomPurpose}"></c:out>
+	                  </c:if>
+	                </td>
 	                <td><b>是否认证</b></td>
 	                <td>
 	                  <c:choose>

@@ -237,8 +237,12 @@
 				      <input type="radio" value="MARRIAGE" name="purpose"> 结婚&nbsp;&nbsp;
 				    </label>
 				    <label class="radio inline">
+				      <input type="radio" value="TRAVEL" name="purpose"> 旅游&nbsp;&nbsp;
+				    </label>
+				    <label class="radio inline">
 				      <input type="radio" value="OTHER" name="purpose"> 其他&nbsp;&nbsp;
 				    </label>
+				    <input class="thin hide" id="custom_purpose" name="custom_purpose" type="text">
     		      </div>
     		    </div>
     		  </div>
@@ -556,8 +560,9 @@
         	$("#expand").click(expandMoreRegion);
         	$("#collpase").click(collpaseMoreRegion);
         	$("#dest").change(setLangAndVerify);
-        	$("#trans").change(confirmNoTranslation);
+        	$("#trans").change(setAccordingTranslation);
         	$("input[name='notory_key']").change(onNotaryKeyChange);
+        	$("input[name='purpose']").change(onPurposeChange);
         	//When entering the page, the button should be disabled
         	disableGoToStep2Button();
         }
@@ -572,6 +577,14 @@
         	$("#expand").show();
         	$("#collpase").hide();
         	$("#more_notary").hide("slow");
+        }
+        
+        function onPurposeChange(event) {
+        	if (event.target.value == 'OTHER') {
+        		$("#custom_purpose").removeClass("hide");
+        	} else {
+        		$("#custom_purpose").addClass("hide");
+        	}
         }
         
         $(prepareStep1);
