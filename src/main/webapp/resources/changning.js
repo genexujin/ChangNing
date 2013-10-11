@@ -201,6 +201,9 @@ function setVerify(event) {
 	} else {
 		$("input[name='verify']").get(1).checked = true;
 	}
+	
+	initVerifyValue = $("input[name='verify']:checked").val();
+	//alert(initVerifyValue);
 }
 
 function setTranslation(event) {

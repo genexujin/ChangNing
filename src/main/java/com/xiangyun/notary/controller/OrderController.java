@@ -138,7 +138,8 @@ public class OrderController {
 
 		// Create the order to save information for next step
 		Order order = new Order();
-		order.setCertificateCopyCount(copies);
+		//公证书总数减一为所需要的副本数
+		order.setCertificateCopyCount(copies-1);
 		order.setCertificatePurpose(purpose);
 		if (CertificatePurpose.OTHER.equals(purpose)) {
 			String customPurpose = request.getParameter("custom_purpose");

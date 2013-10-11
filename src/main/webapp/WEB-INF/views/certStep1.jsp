@@ -547,7 +547,15 @@
     	  
     	  $("#myModal1").modal("show");  		
       }     
-            
+       
+      	function isNormalInteger(str) {
+    	    return /^\+?(0|[1-9]\d*)$/.test(str);
+    	}
+      	
+      	var initVerifyValue;
+      	
+      	
+      	
       
         function prepareStep1() {
         	$("#notrayTable").css("font-weight","bold");
@@ -561,6 +569,23 @@
         	$("#collpase").click(collpaseMoreRegion);
         	$("#dest").change(setLangAndVerify);
         	$("#trans").change(setAccordingTranslation);
+        	$("#copies").change(function(){
+        		var num = $("#copies").val();
+        		
+        		if(!isNormalInteger(num) || num <= 0){        			
+        			alert("请输入一个大于等于1的数字！");
+        			$("#copies").val(1);
+        		}
+        	});
+        	
+        	$("input[name='verify']").change(function(){
+	        		var newValue = $("input[name='verify']:checked").val();
+	        		
+	        		if(initVerifyValue=='true' && newValue=='false'){
+	        			alert("该国通常需要外办认证，请确认是否取消!");
+	        		}
+        		}
+        	);
         	$("input[name='notory_key']").change(onNotaryKeyChange);
         	$("input[name='purpose']").change(onPurposeChange);
         	//When entering the page, the button should be disabled
