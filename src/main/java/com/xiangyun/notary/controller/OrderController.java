@@ -403,9 +403,10 @@ public class OrderController {
 			order.setSkipSendDoc(true);
 			orderService.save(order);
 
-			ModelAndView mav = new ModelAndView("redirect:certStep45.do?sendDoc=false");
-//			mav.addObject("title", "支付");
-//			mav.addObject("order", order);
+			ModelAndView mav = new ModelAndView(
+					"redirect:certStep45.do?sendDoc=false");
+			// mav.addObject("title", "支付");
+			// mav.addObject("order", order);
 			return mav;
 
 		} else {
@@ -415,9 +416,10 @@ public class OrderController {
 		}
 
 	}
-	
+
 	/**
 	 * 受理通知单
+	 * 
 	 * @param sendDoc
 	 * @param request
 	 * @return
@@ -425,9 +427,9 @@ public class OrderController {
 	@RequestMapping(value = "/certStep45.do")
 	public ModelAndView goToStep45(@RequestParam("sendDoc") boolean sendDoc,
 			HttpServletRequest request) {
-		
+
 		log.debug("Should send doc? {}", sendDoc);
-		
+
 		HttpSession session = request.getSession(false);
 		Order order = (Order) session.getAttribute(Constants.CURRENT_ORDER);
 		if (order == null) {
@@ -435,7 +437,7 @@ public class OrderController {
 			mav.addObject("title", "选择申办业务");
 			return mav;
 		}
-		
+
 		order.setSendDoc(sendDoc);
 		if (sendDoc) {
 			order.setSendAddress(request.getParameter("sendAddress"));
@@ -446,19 +448,19 @@ public class OrderController {
 		order.calculateTotalFee();
 
 		orderService.save(order);
-		
+
 		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
 				.getAttribute(Constants.FORM_DEFS);
 		log.debug("Start to generate doc list.....");
 		Map<String, List<FormDocItemDef>> allDocs = generateDocList(order,
 				formDefs);
-		
+
 		ModelAndView mav = new ModelAndView("certStep45");
 		mav.addObject("title", "受理通知单");
 		mav.addObject("allDocs", allDocs.values());
 		mav.addObject("order", order);
 		return mav;
-		
+
 	}
 
 	/**
@@ -468,10 +470,9 @@ public class OrderController {
 	 * @return
 	 */
 	@RequestMapping(value = "/certStep5.do")
-	public ModelAndView goToStep5(
-			HttpServletRequest request) {
+	public ModelAndView goToStep5(HttpServletRequest request) {
 
-//		log.debug("Should send doc? {}", sendDoc);
+		// log.debug("Should send doc? {}", sendDoc);
 
 		HttpSession session = request.getSession(false);
 		Order order = (Order) session.getAttribute(Constants.CURRENT_ORDER);
@@ -480,23 +481,24 @@ public class OrderController {
 			mav.addObject("title", "选择申办业务");
 			return mav;
 		}
-		
-		
-		SMSManager.sendSMS(new String[]{order.getRequestorMobile()}, "我处已收取您提交的公证申请，订单号为："+order.getReadableId()+" ，您付款并递交材料齐全后，" +
-				"我处会于五个工作日出具公证书。 声明书和身份证复印件公证必需要本人持上传的所有材料原件来领取，" +
-				"其他公证可以凭短信和上传的所有材料原件代领。如果提交申请后七日内未补充材料或者未付款，" +
-				"此公证申请将被撤销。", 1);
 
-//		order.setSendDoc(sendDoc);
-//		if (sendDoc) {
-//			order.setSendAddress(request.getParameter("sendAddress"));
-//			order.setSendDate(SendDocDateType.valueOf((request
-//					.getParameter("workday"))));
-//		}
-//
-//		order.calculateTotalFee();
-//
-//		orderService.save(order);
+		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
+				"我处已收取您提交的公证申请，订单号为：" + order.getReadableId()
+						+ " ，您付款并递交材料齐全后，"
+						+ "我处会于五个工作日出具公证书。 声明书和身份证复印件公证必需要本人持上传的所有材料原件来领取，"
+						+ "其他公证可以凭短信和上传的所有材料原件代领。如果提交申请后七日内未补充材料或者未付款，"
+						+ "此公证申请将被撤销。", 1);
+
+		// order.setSendDoc(sendDoc);
+		// if (sendDoc) {
+		// order.setSendAddress(request.getParameter("sendAddress"));
+		// order.setSendDate(SendDocDateType.valueOf((request
+		// .getParameter("workday"))));
+		// }
+		//
+		// order.calculateTotalFee();
+		//
+		// orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("certStep5");
 		mav.addObject("title", "支付");
@@ -529,12 +531,13 @@ public class OrderController {
 
 		int seq = order.getPayments().size() + 1;
 		String tradeNo = order.getReadableId() + "-" + seq;
-		String title = order.getPaymentTitle() +" 订单号：" + order.getReadableId();
+		String title = order.getPaymentTitle() + " 订单号："
+				+ order.getReadableId();
 
 		Set<Payment> pays = order.getPayments();
 		Payment payment = null;
-		
-		//检查是否有付款中的payment，如果没有则新建，如果有则先付付款中的
+
+		// 检查是否有付款中的payment，如果没有则新建，如果有则先付付款中的
 		if (pays.isEmpty()) {
 
 			// 先创建Payment
@@ -550,16 +553,17 @@ public class OrderController {
 			payment.setOrderTxnNo(tradeNo);
 			order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
 			order.addPayment(payment);
-		}else{
-			for(Payment pay: pays){
-				if(pay.getStatus().equals(OrderPaymentStatus.NOT_PAID))
+		} else {
+			for (Payment pay : pays) {
+				if (pay.getStatus().equals(OrderPaymentStatus.NOT_PAID))
 					payment = pay;
 			}
 		}
 
 		String str = null;
 		try {
-			str = java.net.URLEncoder.encode(payment.getTitle()+"  "+payment.getPaymentReason(), "UTF-8");
+			str = java.net.URLEncoder.encode(payment.getTitle() + "  "
+					+ payment.getPaymentReason(), "UTF-8");
 			tradeNo = java.net.URLEncoder.encode(tradeNo, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			log.error("Unspported UTF-8 encoding", e);
@@ -627,42 +631,64 @@ public class OrderController {
 																			// num
 
 		String readableId = request.getParameter("rId");
-		if (StringUtils.isEmpty(readableId))
-			readableId = null;
-		session.setAttribute(Constants.ORDER_QUERY_READABLE_ID, readableId);
+		if (readableId != null) {
+			session.setAttribute(Constants.ORDER_QUERY_READABLE_ID, readableId);
+		} else
+			readableId = (String) session
+					.getAttribute(Constants.ORDER_QUERY_READABLE_ID);
 
 		String requestorName = request.getParameter("reqName");
-		if (StringUtils.isEmpty(requestorName))
-			requestorName = null;
-		session.setAttribute(Constants.ORDER_QUERY_REQ_NAME, requestorName);
+		if (requestorName != null) {
+			session.setAttribute(Constants.ORDER_QUERY_REQ_NAME, requestorName);
+		} else {
+			requestorName = (String) session
+					.getAttribute(Constants.ORDER_QUERY_REQ_NAME);
+		}
 
 		Date startDate = null;
 		String startDateStr = request.getParameter("startDate");
-		session.setAttribute(Constants.ORDER_QUERY_START_DATE, startDateStr);
-		if (!StringUtils.isEmpty(startDateStr)) {
+        log.debug("query startDate Str is : "+startDateStr);
+        
+		if (startDateStr != null) {
 			try {
-				startDate = format.parse(startDateStr);
+				if(!StringUtils.isEmpty(startDateStr))
+					startDate = format.parse(startDateStr);
+				session.setAttribute(Constants.ORDER_QUERY_START_DATE,
+						startDate);
 			} catch (ParseException e) {
 				log.error("The startDate input cannot be parsed.", e);
 			}
+		} else {
+				startDate = (Date) session
+						.getAttribute(Constants.ORDER_QUERY_START_DATE);
+	
 		}
 
 		Date endDate = null;
 		String endDateStr = request.getParameter("endDate");
-		session.setAttribute(Constants.ORDER_QUERY_END_DATE, endDateStr);
-		if (!StringUtils.isEmpty(endDateStr)) {
+
+		if (endDateStr != null) {
 			try {
-				endDate = format.parse(endDateStr);
+				if(!StringUtils.isEmpty(endDateStr))
+					endDate = format.parse(endDateStr);
+				session.setAttribute(Constants.ORDER_QUERY_END_DATE, endDate);
 			} catch (ParseException e) {
 				log.error("The endDate input cannot be parsed.", e);
 			}
+		} else {
+			endDate = (Date) session
+						.getAttribute(Constants.ORDER_QUERY_END_DATE);				 
 		}
 
 		OrderStatus status = null;
 		String statusStr = request.getParameter("status");
-		if (!StringUtils.isEmpty(statusStr))
+		if (statusStr!=null){
 			status = OrderStatus.valueOf(statusStr);
-		session.setAttribute(Constants.ORDER_QUERY_STATUS, status);
+			session.setAttribute(Constants.ORDER_QUERY_STATUS, status);
+		}else{
+			status = (OrderStatus)session.getAttribute(Constants.ORDER_QUERY_STATUS);
+		}
+		
 
 		Long userId = null;
 		if (!user.isAdmin() && !user.isStaff()) {
@@ -788,7 +814,7 @@ public class OrderController {
 				putIfAbsent(allDocs, ty, docDef);
 			}
 		}
-		log.debug("generate doc list, list size is : " + allDocs.size()); 
+		log.debug("generate doc list, list size is : " + allDocs.size());
 		return allDocs;
 	}
 
@@ -1227,7 +1253,7 @@ public class OrderController {
 		// pay.setPaymentTotal(0.01);
 		pay.setStatus(OrderPaymentStatus.NOT_PAID);
 		pay.setPaymentReason(extraPaymentNote);
-		pay.setTitle("附加费用 订单号："+order.getReadableId());
+		pay.setTitle("附加费用 订单号：" + order.getReadableId());
 		int seq = order.getPayments().size() + 1;
 		String tradeNo = order.getReadableId() + "-" + seq;
 		pay.setOrderTxnNo(tradeNo);

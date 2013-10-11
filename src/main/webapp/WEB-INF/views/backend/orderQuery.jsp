@@ -35,7 +35,7 @@
 
 	
 	<div class="span9" style="margin-left: 20px;">
-		<form class="form-horizontal" action="" method="POST">
+		<form class="form-horizontal" action="orderQuery.do" method="POST">
 		  <div class="bar-bg"  style="width:770px;">
 		        <div class="row">
 		          <div class="span9 navbg2">
@@ -98,7 +98,7 @@
 						<label class="control-label thin2" for="startDate">开始日期</label>
 						<div class="controls">
 							<input class="thin" id="startDate" type="text" 
-									name="startDate" placeholder="请点击选择" readonly value="${sessionScope['order_start_date']}"/>
+									name="startDate" placeholder="请点击选择" readonly value="<fmt:formatDate pattern="MM/dd/yyyy" value="${sessionScope['order_start_date']}" type="date"/>"/>
 						</div>
 					</div>
 				</div>
@@ -107,7 +107,7 @@
 						<label class="control-label" for="endDate">结束日期</label>
 						<div class="controls thin2">
 							<input class="thin" id="endDate" class="" type="text" 
-									name="endDate" placeholder="请点击选择" readonly  value="${sessionScope['order_end_date']}"/>
+									name="endDate" placeholder="请点击选择" readonly  value="<fmt:formatDate pattern="MM/dd/yyyy" value="${sessionScope['order_end_date']}" type="date"/>"/>
 						</div>
 					</div>
 				</div>				
@@ -193,8 +193,8 @@
 </div>
 
 <script>
-$("#startDate").datepicker();
-$("#endDate").datepicker();
+$("#startDate").datepicker({language: 'cn'});
+$("#endDate").datepicker({language: 'cn'});
 
 $("#reset_query").click(resetQueryParameters);
 
