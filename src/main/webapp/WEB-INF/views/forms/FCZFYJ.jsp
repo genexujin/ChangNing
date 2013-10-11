@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="FCZFYJ_SHFC_M" class="span4 tiny-pt">提示：若房产不在上海则不可办理公证
+			    <div id="FCZFYJ_SHFC_M" class="span4 tiny-pt">提示：若房产不在上海暂不开放网上公证业务
 			    </div>
 	          </div>
 

@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="WH_SHHJ_M" class="span4 tiny-pt">提示：若非上海户籍则不可办理公证
+			    <div id="WH_SHHJ_M" class="span4 tiny-pt">提示：若非上海户籍暂不开放网上公证业务
 			    </div>
 	          </div>
 

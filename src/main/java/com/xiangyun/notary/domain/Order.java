@@ -107,6 +107,9 @@ public class Order implements Serializable {
 	@Column(name = "cert_purpose")
 	@Enumerated(EnumType.STRING)
 	private CertificatePurpose certificatePurpose;
+	
+	@Column(name = "cert_custom_purpose")
+	private String certCustomPurpose;
 
 	@Column(name = "cert_copy_count")
 	private int certificateCopyCount;
@@ -240,6 +243,14 @@ public class Order implements Serializable {
 
 	public void setCertificatePurpose(CertificatePurpose certificatePurpose) {
 		this.certificatePurpose = certificatePurpose;
+	}
+
+	public String getCertCustomPurpose() {
+		return certCustomPurpose;
+	}
+
+	public void setCertCustomPurpose(String certCustomPurpose) {
+		this.certCustomPurpose = certCustomPurpose;
 	}
 
 	public int getCertificateCopyCount() {

@@ -29,7 +29,7 @@
 			    	  </div>
 			    	</div>
 	            </div>
-	            <div id="JSZFYJ_2_M" class="span4 tiny-pt">提示：若此两项全否则不可办理公证
+	            <div id="JSZFYJ_2_M" class="span4 tiny-pt">提示：若此两项全否暂不开放网上公证业务
 	            </div>
 	          </div>
 	          <div class="row">

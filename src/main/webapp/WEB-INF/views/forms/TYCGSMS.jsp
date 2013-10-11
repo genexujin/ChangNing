@@ -25,7 +25,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="TYCGSMS_SHHJ_M" class="span4 tiny-pt">提示：若户籍不在上海则不可办理公证</div>
+				<div id="TYCGSMS_SHHJ_M" class="span4 tiny-pt">提示：若户籍不在上海暂不开放网上公证业务</div>
 			</div>
 
 			<hr />
@@ -42,7 +42,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="TYCGSMS_2_M" class="span4 tiny-pt">提示：若此两项全否则不可办理公证</div>
+				<div id="TYCGSMS_2_M" class="span4 tiny-pt">提示：若此两项全否暂不开放网上公证业务</div>
 			</div>
 			<div class="row">
 				<div class="span5 offset1">
@@ -65,8 +65,8 @@
 					<div class="control-group">
 						<label class="control-label" >请下载声明书</label>
 						<div class="controls">
-							<a href="resources/docs/WithParent.doc" class="btn">随父母声明书</a>
-							<a href="resources/docs/WithTeacher.doc" class="btn">随老师声明书</a>
+							<a href="resources/docs/WithParent.doc"  target="_blank" class="btn">随父母声明书</a>
+							<a href="resources/docs/WithTeacher.doc"  target="_blank" class="btn">随老师声明书</a>
 						</div>
 					</div>
 				</div>

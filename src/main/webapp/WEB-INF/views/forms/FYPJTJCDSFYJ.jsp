@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="FYPJTJCDSFYJ_SHFY_M" class="span4 tiny-pt">提示：若非上海法院判决则不可办理公证
+			    <div id="FYPJTJCDSFYJ_SHFY_M" class="span4 tiny-pt">提示：若非上海法院判决暂不开放网上公证业务
 			    </div>
 	          </div>
 

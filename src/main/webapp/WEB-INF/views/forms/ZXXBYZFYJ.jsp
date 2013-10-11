@@ -28,7 +28,7 @@
 			    	  </div>
 			    	</div>
 			    </div>
-			    <div id="ZXXBYZFYJ_BYZ_M" class="span4 tiny-pt">提示：若无毕业证则不可办理公证
+			    <div id="ZXXBYZFYJ_BYZ_M" class="span4 tiny-pt">提示：若无毕业证暂不开放网上公证业务
 			    </div>
 	          </div>
 	          
@@ -49,7 +49,7 @@
 			    	  </div>
 			    	</div>
 	            </div>
-	            <div id="ZXXBYZFYJ_2_M" class="span4 tiny-pt">提示：若此两项全否则不可办理公证
+	            <div id="ZXXBYZFYJ_2_M" class="span4 tiny-pt">提示：若此两项全否暂不开放网上公证业务
 	            </div>
 	          </div>
 	          <div class="row">
