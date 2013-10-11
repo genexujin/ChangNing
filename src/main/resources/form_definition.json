@@ -51,7 +51,7 @@
             },
             {
                 "docKey": "POSFZ",
-                "docName": "配偶身份证"
+                "docName": "配偶身份证正反面"
             }
         ]
     }, 
@@ -534,7 +534,7 @@
                 "docName": "结婚证"
             } ,
             {
-                "docKey": "POZ",
+                "docKey": "POSFZ",
                 "docName": "配偶身份证正反面"
             }
             
@@ -575,7 +575,7 @@
         ],
         "docs": [
             {
-                "docKey": "TXZM",
+                "docKey": "TXZ",
                 "docName": "退休证"
             }
         ]
@@ -684,7 +684,7 @@
         "docs": [
             {
                 "docKey": "ZXXBYZ",
-                "docName": "毕业证"
+                "docName": "中小学毕业证"
             }
         ]
     },
