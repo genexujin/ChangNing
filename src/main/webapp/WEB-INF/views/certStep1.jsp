@@ -275,7 +275,7 @@
     		</div>
     		<div class="row">
     			<div class="span12">
-    				<label class="offset1" style="color:gray;padding-bottom:10px;">注：单击 <img src="resources/info.jpg" style="padding-right:2px;display: inline;"/>符号可以查看示例公证书证词及所需提交的相关材料样本。</label>
+    				<label class="offset1" style="color:blue;padding-bottom:10px;">注：单击 <img src="resources/info.jpg" style="padding-right:2px;display: inline;"/>符号可以查看示例公证书证词及所需提交的相关材料样本。</label>
     			</div>
     		</div>
     		<div id="li_region" class="row">
@@ -374,8 +374,8 @@
     		      </tr>
     		    </table>
     		    
-    		    <div id="expand" style="cursor: pointer;"><i class="icon-plus"></i><font>更多</font></div>
-    		    <div id="collpase" class="hide" style="cursor: pointer;"><i class="icon-minus"></i><font>收起</font></div>
+    		    <div id="expand" style="cursor: pointer;"><i class="icon-plus"></i><font color='blue'>更多</font></div>
+    		    <div id="collpase" class="hide" style="cursor: pointer;"><i class="icon-minus"></i><font color='blue'>收起</font></div>
     		    <div id="more_notary" class="hide">
     		    <table class="table td-no-border" style="width:auto" id="hiddenNotrayTable">
     		      <tr>
