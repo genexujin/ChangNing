@@ -66,6 +66,16 @@ function confirmDeselect(event) {
 	}
 }
 
+function confirmNoTranslation(event) {
+	if (isCountryOfYWXF() && event.target.value == 'NULL') {
+		var noTrans = confirm("该国家通常需要译文相符公证。选择不翻译则不会添加译文相符公证，是否确认不翻译？");
+		if (noTrans == false) {
+			event.target.value = 'English';
+			return false;
+		}
+	}	
+}
+
 function setLangAndVerify(event) {
 	//setLanguage
 	setLanguage(event.target.value);
@@ -75,7 +85,7 @@ function setLangAndVerify(event) {
 	
 	
 	//Update copies and 译文相符
-	if (isCountryOfYWXF()) {
+	if (isCountryOfYWXF() && needTranslation()) {
 		$("#copies").val(2);
 		
 		$.each($(".yw_parent"), function(index, object) {
@@ -109,9 +119,9 @@ function setLanguage(country) {
 	
 	//Remove the dynamic ones
 	if (langs.length > 2) {
-		for (var i = 1; i < langs.length - 1; i++) {
-			
-			theSelect.remove(i); 			
+		var removeCount = langs.length - 2; //保留“英语”和“不翻译”这两个。
+		for (var i = 0; i < removeCount; i++) {
+			theSelect.remove(1); //移掉一个以后，下一个移上来了，所以一直是1 			
 		}
 	}
 	
@@ -163,6 +173,14 @@ function setLanguage(country) {
 		$(first).after(createOptionByClone($(first), "Spanish", "西班牙语"));
 	} else if (country == 'Venezuela') {
 		$(first).after(createOptionByClone($(first), "Spanish", "西班牙语"));
+	} else if (country == 'Peru') {
+		$(first).after(createOptionByClone($(first), "Spanish", "西班牙语"));
+		$(first).after(createOptionByClone($(first), "Portuguese", "葡萄牙语"));
+	} else if (country == 'Chile') {
+		$(first).after(createOptionByClone($(first), "Spanish", "西班牙语"));
+		$(first).after(createOptionByClone($(first), "Portuguese", "葡萄牙语"));
+	} else if (country == 'Angola') {
+		$(first).after(createOptionByClone($(first), "Portuguese", "葡萄牙语"));
 	}
 }
 
@@ -174,6 +192,10 @@ function setVerify(event) {
 	} else {
 		$("input[name='verify']").get(1).checked = true;
 	}
+}
+
+function setTranslation(event) {
+	
 }
 
 function createOptionByClone(proto, lang, langText) {
@@ -191,6 +213,11 @@ function isCountryOfYWXF() {
 		|| $("#dest").val() == 'Russia') {
 		return true;
 	}
+	return false;
+}
+
+function needTranslation() {
+	if ($("#trans").val() != 'NULL') return true;
 	return false;
 }
 
@@ -237,7 +264,7 @@ function createSelItem(value, text) {
 	
 	spanDiv.append(nInput).append(text);
 	
-	if (isCountryOfYWXF()) {
+	if (isCountryOfYWXF() && needTranslation()) {
 		var ywInput = $('<div class="yw_div">&nbsp;&nbsp;+&nbsp;&nbsp;<input type="checkbox" value="' + value + '_YW" name="n_key_yw" class="yw" checked>&nbsp;译文相符</div>');
 		spanDiv.append(ywInput);
 		ywInput.find(".yw").click(confirmDeselect);

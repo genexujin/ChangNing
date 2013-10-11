@@ -129,6 +129,11 @@ public class UserServiceImpl extends AbstractService implements UserService {
 	public void setUserAsStaff(String mobile){
 		setUserRole(mobile,"staff");
 	}
+	
+	@Override	
+	public void setUserAsAdmin(String mobile){
+		setUserRole(mobile,"admin");
+	}
 
 	private void setUserRole(String mobile,String roleName) {
 		User user = this.findByMobile(mobile);

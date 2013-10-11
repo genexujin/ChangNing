@@ -26,7 +26,8 @@
 				<li class="pass">选择申办业务</li>
 				<li class="pass">输入信息</li>
 		        <li class="pass">上传资料</li>
-				<li class="ago">上门送证</li>
+				<li class="pass">上门送证</li>
+				<li class="ago">确认订单</li>
 		        <li class="step">支付</li>
 			</ol>
 		  </div>
@@ -137,7 +138,7 @@
 		  <div class="row">
 		    <div class="span9 offset1">
 		    <div style="padding-bottom:10px;"><font color=red>注：文件翻译费为预收，待翻译公司最终报价后由客服人员与您确认</font></div>
-		      <input id="agreement" type="checkbox"> 同意《<a href="#">受理告知协议</a>》
+		      
 		    </div>
 		  </div>
 		  
@@ -161,7 +162,7 @@
 	    
 	    <div class="row">
    		  <div class="span2 offset5">
-   		    <button id="payBill" class="btn btn-large btn-block btn-info" disabled>立即支付</button>
+   		    <button id="payBill" class="btn btn-large btn-block btn-info">立即支付</button>
    		  </div>    		  
    	    </div>
 	  </form>
@@ -208,16 +209,7 @@
 	  	
 	  	
 	  	
-	    function preparePayment() {
-	    	$("#agreement").change(function (event) {
-	    		if (event.target.checked == true) {
-	    			$("#payBill").removeAttr("disabled");
-	    		} else {
-	    			$("#payBill").attr("disabled", "disabled");
-	    		}
-	    	});
-	    }
-	    $(preparePayment);
+	    
 	  </script>
 
 <%@ include file="footer.jspf"%>	  

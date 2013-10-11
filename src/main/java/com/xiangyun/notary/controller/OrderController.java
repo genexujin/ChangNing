@@ -170,11 +170,11 @@ public class OrderController {
 			mav.addObject("title", "选择申办业务");
 			return mav;
 		}
-		
-		//Need to query order's data to avoid duplication orders
+
+		// Need to query order's data to avoid duplication orders
 		Order orderInDB = orderService.findById(order.getId());
-		if (orderInDB != null) { //The order is already there.
-		    order = orderInDB;
+		if (orderInDB != null) { // The order is already there.
+			order = orderInDB;
 		}
 
 		order.setRequestorName(requestorName);
@@ -195,12 +195,13 @@ public class OrderController {
 		Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
 		Map<String, FormDocItemDef> needCropDocs = new HashMap<String, FormDocItemDef>();
 
-		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx.getAttribute(Constants.FORM_DEFS);
+		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
+				.getAttribute(Constants.FORM_DEFS);
 
 		boolean needSpecialNote = false;
 		boolean needTY = true;
 		for (FormDef formDef : selectedForms) {
-            String formKey = formDef.getFormKey();
+			String formKey = formDef.getFormKey();
 			// A special requirement about add a note for 出生公证 and 出生证复印件公证
 			if (formKey.equals("CS")) {
 				if ("true".equals(request.getParameter("CS_SFJZ"))
@@ -208,45 +209,47 @@ public class OrderController {
 
 					needSpecialNote = true;
 			} else if (formKey.equals("CSZFYJ")) {
-			    if ("true".equals(request.getParameter("CSZFYJ_SFJZ"))
-                        || "true".equals(request.getParameter("CSZFYJ_SMJZ")))
-
+				if ("true".equals(request.getParameter("CSZFYJ_SFJZ"))
+						|| "true".equals(request.getParameter("CSZFYJ_SMJZ")))
 
 					needSpecialNote = true;
 			}
-			
+
 			// HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
-            // CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
-            if (formKey.equals("HKBFYJ") || formKey.equals("CS")
-                    || formKey.equals("CSZFYJ")) {
-                needTY = false;
-            }
+			// CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
+			if (formKey.equals("HKBFYJ") || formKey.equals("CS")
+					|| formKey.equals("CSZFYJ")) {
+				needTY = false;
+			}
 
 			Form form = getFormByKeyFromOrder(order, formKey);
-			if (form == null) { //A new form!
-			    form = new Form();
-	            form.setFormKey(formKey);
-	            form.setFormName(formDef.getFormName());
+			if (form == null) { // A new form!
+				form = new Form();
+				form.setFormKey(formKey);
+				form.setFormName(formDef.getFormName());
 			}
 
 			// Create FormItems for a form
 			Map<String, String> formKeyValueMap = new HashMap<String, String>();
 			for (FormFieldItemDef itemDef : formDef.getFields()) {
-				FormItem item = getFormItemByKeyFromForm(form, itemDef.getFieldKey());
+				FormItem item = getFormItemByKeyFromForm(form,
+						itemDef.getFieldKey());
 				if (item == null) {
-				    item = new FormItem();
-	                item.setItemKey(itemDef.getFieldKey());
-	                item.setItemName(itemDef.getFieldName());
+					item = new FormItem();
+					item.setItemKey(itemDef.getFieldKey());
+					item.setItemName(itemDef.getFieldName());
 				}
 				if (itemDef.isComposite()) {
 					// QSGX item
-					RelativeInfo info = createRelativeInfo(itemDef.getFieldKey(), request);
+					RelativeInfo info = createRelativeInfo(
+							itemDef.getFieldKey(), request);
 					if (info == null) {
 						break;
 					}
 					item.setRelativeInfo(info);
 				} else {
-					item.setItemValue(request.getParameter(itemDef.getFieldKey()));// 获取对应值
+					item.setItemValue(request.getParameter(itemDef
+							.getFieldKey()));// 获取对应值
 					// Put it to a map for doc dependency. Currently no doc
 					// depends on a composite value.
 					// So just put it in the "else"
@@ -360,6 +363,12 @@ public class OrderController {
 		return mav;
 	}
 
+	/**
+	 * 
+	 * @param uploadNote
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/certStep4.do")
 	public ModelAndView goToStep4(
 			@RequestParam("upload_note") String uploadNote,
@@ -394,9 +403,9 @@ public class OrderController {
 			order.setSkipSendDoc(true);
 			orderService.save(order);
 
-			ModelAndView mav = new ModelAndView("certStep5");
-			mav.addObject("title", "支付");
-			mav.addObject("order", order);
+			ModelAndView mav = new ModelAndView("redirect:certStep45.do?sendDoc=false");
+//			mav.addObject("title", "支付");
+//			mav.addObject("order", order);
 			return mav;
 
 		} else {
@@ -406,13 +415,19 @@ public class OrderController {
 		}
 
 	}
-
-	@RequestMapping(value = "/certStep5.do")
-	public ModelAndView goToStep5(@RequestParam("sendDoc") boolean sendDoc,
+	
+	/**
+	 * 受理通知单
+	 * @param sendDoc
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/certStep45.do")
+	public ModelAndView goToStep45(@RequestParam("sendDoc") boolean sendDoc,
 			HttpServletRequest request) {
-
+		
 		log.debug("Should send doc? {}", sendDoc);
-
+		
 		HttpSession session = request.getSession(false);
 		Order order = (Order) session.getAttribute(Constants.CURRENT_ORDER);
 		if (order == null) {
@@ -420,7 +435,7 @@ public class OrderController {
 			mav.addObject("title", "选择申办业务");
 			return mav;
 		}
-
+		
 		order.setSendDoc(sendDoc);
 		if (sendDoc) {
 			order.setSendAddress(request.getParameter("sendAddress"));
@@ -431,6 +446,57 @@ public class OrderController {
 		order.calculateTotalFee();
 
 		orderService.save(order);
+		
+		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
+				.getAttribute(Constants.FORM_DEFS);
+		log.debug("Start to generate doc list.....");
+		Map<String, List<FormDocItemDef>> allDocs = generateDocList(order,
+				formDefs);
+		
+		ModelAndView mav = new ModelAndView("certStep45");
+		mav.addObject("title", "受理通知单");
+		mav.addObject("allDocs", allDocs.values());
+		mav.addObject("order", order);
+		return mav;
+		
+	}
+
+	/**
+	 * 
+	 * @param sendDoc
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/certStep5.do")
+	public ModelAndView goToStep5(
+			HttpServletRequest request) {
+
+//		log.debug("Should send doc? {}", sendDoc);
+
+		HttpSession session = request.getSession(false);
+		Order order = (Order) session.getAttribute(Constants.CURRENT_ORDER);
+		if (order == null) {
+			ModelAndView mav = new ModelAndView("certStep1");
+			mav.addObject("title", "选择申办业务");
+			return mav;
+		}
+		
+		
+		SMSManager.sendSMS(new String[]{order.getRequestorMobile()}, "我处已收取您提交的公证申请，订单号为："+order.getReadableId()+" ，您付款并递交材料齐全后，" +
+				"我处会于五个工作日出具公证书。 声明书和身份证复印件公证必需要本人持上传的所有材料原件来领取，" +
+				"其他公证可以凭短信和上传的所有材料原件代领。如果提交申请后七日内未补充材料或者未付款，" +
+				"此公证申请将被撤销。", 1);
+
+//		order.setSendDoc(sendDoc);
+//		if (sendDoc) {
+//			order.setSendAddress(request.getParameter("sendAddress"));
+//			order.setSendDate(SendDocDateType.valueOf((request
+//					.getParameter("workday"))));
+//		}
+//
+//		order.calculateTotalFee();
+//
+//		orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("certStep5");
 		mav.addObject("title", "支付");
@@ -463,25 +529,37 @@ public class OrderController {
 
 		int seq = order.getPayments().size() + 1;
 		String tradeNo = order.getReadableId() + "-" + seq;
-		String title = order.getPaymentTitle();
+		String title = order.getPaymentTitle() +" 订单号：" + order.getReadableId();
 
-		// 先创建Payment
-		Payment payment = new Payment();
+		Set<Payment> pays = order.getPayments();
+		Payment payment = null;
+		
+		//检查是否有付款中的payment，如果没有则新建，如果有则先付付款中的
+		if (pays.isEmpty()) {
 
-		// payment.setPaymentDate(new Date());
-		payment.setPaymentTotal(order.getPaymentTotal());
-//		payment.setPaymentTotal(0.01);
-		payment.setTitle(title);
-		payment.setPaymentReason("公证费用");
+			// 先创建Payment
+			payment = new Payment();
 
-		payment.setStatus(OrderPaymentStatus.NOT_PAID);
-		payment.setOrderTxnNo(tradeNo);
-		order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
-		order.addPayment(payment);
+			// payment.setPaymentDate(new Date());
+			payment.setPaymentTotal(order.getPaymentTotal());
+			// payment.setPaymentTotal(0.01);
+			payment.setTitle(title);
+			payment.setPaymentReason("公证费用");
+
+			payment.setStatus(OrderPaymentStatus.NOT_PAID);
+			payment.setOrderTxnNo(tradeNo);
+			order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
+			order.addPayment(payment);
+		}else{
+			for(Payment pay: pays){
+				if(pay.getStatus().equals(OrderPaymentStatus.NOT_PAID))
+					payment = pay;
+			}
+		}
 
 		String str = null;
 		try {
-			str = java.net.URLEncoder.encode(title, "UTF-8");
+			str = java.net.URLEncoder.encode(payment.getTitle()+"  "+payment.getPaymentReason(), "UTF-8");
 			tradeNo = java.net.URLEncoder.encode(tradeNo, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			log.error("Unspported UTF-8 encoding", e);
@@ -503,8 +581,8 @@ public class OrderController {
 		order.setOrderStatus(OrderStatus.PAYING);
 		logHistory(Constants.ORDER_OPERATION_PAY, order, getUser(request));
 		orderService.save(order);
-		
-		//Remove current order from session, to avoid any error
+
+		// Remove current order from session, to avoid any error
 		request.getSession(false).removeAttribute(Constants.CURRENT_ORDER);
 
 		return sb.toString();
@@ -637,52 +715,8 @@ public class OrderController {
 
 		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
 				.getAttribute(Constants.FORM_DEFS);
-		Map<String, List<FormDocItemDef>> allDocs = new HashMap<String, List<FormDocItemDef>>();
-		
-		boolean needTY = true;
-
-		Set<Form> forms = order.getForms();
-		for (Form form : forms) {
-			// Put form key/value pairs in a map for doc dependency.
-			Map<String, String> formKeyValueMap = new HashMap<String, String>();
-			for (FormItem formItem : form.getFormItems()) {
-				formKeyValueMap.put(formItem.getItemKey(),
-						formItem.getItemValue());
-			}
-
-			String formKey = form.getFormKey();
-			FormDef formDef = formDefs.get(formKey);
-			//HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
-            //CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
-            if (formKey.equals("HKBFYJ") || formKey.equals("CS") || formKey.equals("CSZFYJ")) {
-                needTY = false;
-            }
-			
-			// Collect the doc items for display
-			for (FormDocItemDef docDef : formDef.getDocs()) {
-				boolean shouldPut = true;
-				if (docDef.isDependent()
-						&& formKeyValueMap.get(docDef.getDependOn()) != null
-						&& formKeyValueMap.get(docDef.getDependOn()).equals(
-								"false")) {
-					shouldPut = false;
-				}
-
-				// if (shouldPut && !docDef.isNeedCrop() &&
-				// !docDef.isUploadAlone()){
-				// Put all the files in. Download all together
-				if (shouldPut) {
-					putIfAbsent(allDocs, formDef, docDef);
-				}
-			}
-		}
-		
-		if (needTY) {
-            FormDef ty = formDefs.get("TY");
-            for (FormDocItemDef docDef : ty.getDocs()) {
-                putIfAbsent(allDocs, ty, docDef);
-            }
-        }
+		Map<String, List<FormDocItemDef>> allDocs = generateDocList(order,
+				formDefs);
 
 		List<Interaction> interactions = orderService
 				.findIncompletedInteractionsForOrder(orderId, userId);
@@ -703,6 +737,59 @@ public class OrderController {
 		mav.addObject("interactions", interactions);
 
 		return mav;
+	}
+
+	private Map<String, List<FormDocItemDef>> generateDocList(Order order,
+			Map<String, FormDef> formDefs) {
+		Map<String, List<FormDocItemDef>> allDocs = new HashMap<String, List<FormDocItemDef>>();
+
+		boolean needTY = true;
+
+		Set<Form> forms = order.getForms();
+		for (Form form : forms) {
+			// Put form key/value pairs in a map for doc dependency.
+			Map<String, String> formKeyValueMap = new HashMap<String, String>();
+			for (FormItem formItem : form.getFormItems()) {
+				formKeyValueMap.put(formItem.getItemKey(),
+						formItem.getItemValue());
+			}
+
+			String formKey = form.getFormKey();
+			FormDef formDef = formDefs.get(formKey);
+			// HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
+			// CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
+			if (formKey.equals("HKBFYJ") || formKey.equals("CS")
+					|| formKey.equals("CSZFYJ")) {
+				needTY = false;
+			}
+
+			// Collect the doc items for display
+			for (FormDocItemDef docDef : formDef.getDocs()) {
+				boolean shouldPut = true;
+				if (docDef.isDependent()
+						&& formKeyValueMap.get(docDef.getDependOn()) != null
+						&& formKeyValueMap.get(docDef.getDependOn()).equals(
+								"false")) {
+					shouldPut = false;
+				}
+
+				// if (shouldPut && !docDef.isNeedCrop() &&
+				// !docDef.isUploadAlone()){
+				// Put all the files in. Download all together
+				if (shouldPut) {
+					putIfAbsent(allDocs, formDef, docDef);
+				}
+			}
+		}
+
+		if (needTY) {
+			FormDef ty = formDefs.get("TY");
+			for (FormDocItemDef docDef : ty.getDocs()) {
+				putIfAbsent(allDocs, ty, docDef);
+			}
+		}
+		log.debug("generate doc list, list size is : " + allDocs.size()); 
+		return allDocs;
 	}
 
 	@RequestMapping(value = "/orderAccept.do")
@@ -849,35 +936,54 @@ public class OrderController {
 				+ order.getId());
 		return mav;
 	}
-	
+
+	/**
+	 * 保存补充的材料
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/confirmAddDoc.do")
 	public ModelAndView confirmAddDoc(HttpServletRequest request) {
-		
+
 		Long orderId = validateOrderIdParameter(request);
 		if (orderId == null) {
 			return new ModelAndView("redirect:orderQuery.do");
 		}
-		
+
 		Long userId = getUserIdFromSession(request.getSession(false));
 
 		Order order = orderService.findOrderById(orderId, userId);
 		if (order == null) {
 			return new ModelAndView("redirect:orderQuery.do");
 		}
-		
-		if(order.getBackendNotaryId()!=null&&order.getBackendNotaryId().length()>0)
+
+		if (order.getBackendNotaryId() != null
+				&& order.getBackendNotaryId().length() > 0)
 			order.setOrderStatus(OrderStatus.ACCEPTED);
-		else if(order.hasPaidPayment())
+		else if (order.hasPaidPayment())
 			order.setOrderStatus(OrderStatus.PAID);
-		
-		logHistory(Constants.ORDER_OPERATION_ADDDOC,order,getUser(request));
-		
+
+		Set<Interaction> actions = order.getInteractions();
+		for (Interaction act : actions) {
+			act.setOrder(null);
+			actions.remove(act);
+		}
+
+		logHistory(Constants.ORDER_OPERATION_ADDDOC, order, getUser(request));
+
 		orderService.save(order);
-		
-		return new ModelAndView("redirect:orderDetail.do?oId="+orderId);
-		
+
+		return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
+
 	}
 
+	/**
+	 * 显示补充材料页面
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/addDocs.do")
 	public ModelAndView addDocs(HttpServletRequest request) {
 		Long orderId = validateOrderIdParameter(request);
@@ -897,35 +1003,38 @@ public class OrderController {
 		Map<String, FormDocItemDef> aloneUploadDocs = new HashMap<String, FormDocItemDef>();
 		Map<String, FormDocItemDef> needCropDocs = new HashMap<String, FormDocItemDef>();
 
-		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx.getAttribute(Constants.FORM_DEFS);
-		
+		Map<String, FormDef> formDefs = (Map<String, FormDef>) ctx
+				.getAttribute(Constants.FORM_DEFS);
+
 		boolean needSpecialNote = false;
-        boolean needTY = true;
+		boolean needTY = true;
 
 		Set<Form> forms = order.getForms();
 		for (Form form : forms) {
 			FormDef formDef = formDefs.get(form.getFormKey());
-			
+
 			String formKey = formDef.getFormKey();
-            // A special requirement about add a note for 出生公证 and 出生证复印件公证
-            if (formKey.equals("CS")) {
-                if ("true".equals(getItemValueFromForm(form, "CS_SFJZ"))
-                        || "true".equals(getItemValueFromForm(form, "CS_SMJZ")))
+			// A special requirement about add a note for 出生公证 and 出生证复印件公证
+			if (formKey.equals("CS")) {
+				if ("true".equals(getItemValueFromForm(form, "CS_SFJZ"))
+						|| "true".equals(getItemValueFromForm(form, "CS_SMJZ")))
 
-                    needSpecialNote = true;
-            } else if (formKey.equals("CSZFYJ")) {
-                if ("true".equals(getItemValueFromForm(form, "CSZFYJ_SFJZ"))
-                        || "true".equals(getItemValueFromForm(form, "CSZFYJ_SMJZ")))
+					needSpecialNote = true;
+			} else if (formKey.equals("CSZFYJ")) {
+				if ("true".equals(getItemValueFromForm(form, "CSZFYJ_SFJZ"))
+						|| "true".equals(getItemValueFromForm(form,
+								"CSZFYJ_SMJZ")))
 
-                    needSpecialNote = true;
-            }
-            
-            //HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
-            //CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
-            if (formKey.equals("HKBFYJ") || formKey.equals("CS") || formKey.equals("CSZFYJ")) {
-                needTY = false;
-            }
-			
+					needSpecialNote = true;
+			}
+
+			// HKBFYJ所需户口本，有个特殊的表述“户口本所有有字页”，并且他自己也需要“身份证”，所以完全取代了TY
+			// CS和CSZFYJ则户口本在需要单独上传的有了，而身份证也是有自己的特殊表述“本人身份证正反面”，所以完全取代了TY
+			if (formKey.equals("HKBFYJ") || formKey.equals("CS")
+					|| formKey.equals("CSZFYJ")) {
+				needTY = false;
+			}
+
 			for (FormDocItemDef docDef : formDef.getDocs()) {
 				boolean shouldPut = true;
 				// Check if we should add the doc if the doc is dependent.
@@ -968,13 +1077,13 @@ public class OrderController {
 				}
 			}
 		}
-		
+
 		if (needTY) {
-            FormDef ty = formDefs.get("TY");
-            for (FormDocItemDef docDef : ty.getDocs()) {
-                putIfAbsent(allInOneUploadDocs, ty, docDef);
-            }
-        }
+			FormDef ty = formDefs.get("TY");
+			for (FormDocItemDef docDef : ty.getDocs()) {
+				putIfAbsent(allInOneUploadDocs, ty, docDef);
+			}
+		}
 
 		ModelAndView mav = new ModelAndView("backend/addDocs");
 		mav.addObject("title", "补充资料");
@@ -988,9 +1097,9 @@ public class OrderController {
 
 		mav.addObject("um", m);
 		mav.addObject("order", order);
-		
+
 		if (needSpecialNote)
-            mav.addObject("Special_note", "如本人和父母不在同一本户口本，请分别上传");
+			mav.addObject("Special_note", "如本人和父母不在同一本户口本，请分别上传");
 
 		return mav;
 	}
@@ -1115,10 +1224,10 @@ public class OrderController {
 
 		Payment pay = new Payment();
 		pay.setPaymentTotal(extraPayment);
-//		pay.setPaymentTotal(0.01);
+		// pay.setPaymentTotal(0.01);
 		pay.setStatus(OrderPaymentStatus.NOT_PAID);
 		pay.setPaymentReason(extraPaymentNote);
-		pay.setTitle("附加费用");
+		pay.setTitle("附加费用 订单号："+order.getReadableId());
 		int seq = order.getPayments().size() + 1;
 		String tradeNo = order.getReadableId() + "-" + seq;
 		pay.setOrderTxnNo(tradeNo);
@@ -1149,6 +1258,12 @@ public class OrderController {
 		return mav;
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param paymentId
+	 * @return
+	 */
 	@RequestMapping(value = "/extraPayment.do")
 	public ModelAndView extraPayment(HttpServletRequest request,
 			@RequestParam("pId") Long paymentId) {
@@ -1173,6 +1288,13 @@ public class OrderController {
 		payment.getOrder().setOrderStatus(OrderStatus.PAYING);
 		logHistory(Constants.ORDER_OPERATION_PAY, payment.getOrder(),
 				getUser(request));
+
+		Set<Interaction> actions = payment.getOrder().getInteractions();
+		for (Interaction act : actions) {
+			act.setOrder(null);
+			actions.remove(act);
+		}
+
 		orderService.save(payment);
 
 		String str = null;
@@ -1355,7 +1477,8 @@ public class OrderController {
 
 	}
 
-	private RelativeInfo createRelativeInfo(String fieldKey, HttpServletRequest request) {
+	private RelativeInfo createRelativeInfo(String fieldKey,
+			HttpServletRequest request) {
 		String typeStr = request.getParameter(fieldKey);
 		if (StringUtils.isEmpty(typeStr)) {
 			// Empty means no value is submitted. That will happen when this
@@ -1484,40 +1607,41 @@ public class OrderController {
 			return 0;
 		}
 	}
-	
+
 	private String getItemValueFromForm(Form form, String itemKey) {
-	    Set<FormItem> items = form.getFormItems();
-	    for (FormItem item : items) {
-	        if (item.getItemKey().equals(itemKey)) {
-	            return item.getItemValue();
-	        }
-	    }
-	    
-	    return null;
+		Set<FormItem> items = form.getFormItems();
+		for (FormItem item : items) {
+			if (item.getItemKey().equals(itemKey)) {
+				return item.getItemValue();
+			}
+		}
+
+		return null;
 	}
-	
+
 	private Form getFormByKeyFromOrder(Order order, String formKey) {
-	    Set<Form> forms = order.getForms();
-	    for (Form form : forms) {
-	        if (formKey.equals(form.getFormKey()))
-	            return form;
-	    }
-	    
-	    return null;
+		Set<Form> forms = order.getForms();
+		for (Form form : forms) {
+			if (formKey.equals(form.getFormKey()))
+				return form;
+		}
+
+		return null;
 	}
-	
+
 	private FormItem getFormItemByKeyFromForm(Form form, String itemKey) {
-        Set<FormItem> items = form.getFormItems();
-        for (FormItem item : items) {
-            if (itemKey.equals(item.getItemKey()))
-                return item;
-        }
-        
-        return null;
-    }
-	
-//	private RelativeInfo getRelativeInfo(FormItem item, RelativeType type, String name) {
-//	    RelativeInfo info = item.getRelativeInfo();
-//	    if (type.eq)
-//	}
+		Set<FormItem> items = form.getFormItems();
+		for (FormItem item : items) {
+			if (itemKey.equals(item.getItemKey()))
+				return item;
+		}
+
+		return null;
+	}
+
+	// private RelativeInfo getRelativeInfo(FormItem item, RelativeType type,
+	// String name) {
+	// RelativeInfo info = item.getRelativeInfo();
+	// if (type.eq)
+	// }
 }
