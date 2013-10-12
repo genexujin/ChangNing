@@ -39,7 +39,7 @@ public class Constants {
     public static final String COUNT_QUERY_STRING = "select count(%s) from %s x";
     public static final int QUERY_PAGE_SIZE = 12;
     
-    public static final String ALIPAY_SELLER_EMAIL = "cngzc@6408.com.cn";
+    
     
     public static final int BACK_OFFICER_COUNT =2;
     public static final int WORKDAY_SEGMENT_COUNT = 12;
@@ -59,6 +59,11 @@ public class Constants {
     public static final String ORDER_OPERATION_EXTRADOC = "要求补充材料";
     public static final String ORDER_OPERATION_ADDCHARGE = "补充收费";
     public static final String ORDER_OPERATION_ADDDOC = "已补充材料";
+    
+    public static final String ALIPAY_PAY_NOTIFY_URL  = "http://hjyoa.hpe.cn:4848/ChangNing/onPaymentNotify.do";
+    public static final String ALIPAY_PAY_RETURN_URL  = "http://hjyoa.hpe.cn:4848/ChangNing/onPaymentReturn.do";
+    public static final String ALIPAY_PAY_REFUND_RETURN_URL  = "http://hjyoa.hpe.cn:4848/ChangNing/onRefundNotify.do";
+    public static final String ALIPAY_SELLER_EMAIL = "cngzc@6408.com.cn";
     
 
 }

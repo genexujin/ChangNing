@@ -62,11 +62,11 @@ public class AlipayController {
 		String payment_type = "1";
 		// 必填，不能修改
 		// 服务器异步通知页面路径
-		String notify_url = "http://hjyoa.hpe.cn:4848/ChangNing/onPaymentNotify.do";
+		String notify_url = Constants.ALIPAY_PAY_NOTIFY_URL;
 		// 需http://格式的完整路径，不能加?id=123这类自定义参数
 
 		// 页面跳转同步通知页面路径
-		String return_url = "http://hjyoa.hpe.cn:4848/ChangNing/onPaymentReturn.do";
+		String return_url = Constants.ALIPAY_PAY_RETURN_URL;
 		// 需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 		// 卖家支付宝帐户
@@ -211,15 +211,6 @@ public class AlipayController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/testReturn.do")
-	public ModelAndView testReturn(HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("success", false);
-		mav.addObject("totalFee", "0.01");
-		mav.addObject("orderNo", "B000120301");
-		mav.setViewName("paymentReturn");
-		return mav;
-	}
 
 	private Long updatePaymentStatus(String out_trade_no, String trade_no) {
 		// 判断该笔订单是否在商户网站中已经做过处理
@@ -334,7 +325,7 @@ public class AlipayController {
 		// TODO: 先改一下Payment状态
 
 		// 服务器异步通知页面路径
-		String notify_url = "http://hjyoa.hpe.cn:4848/ChangNing/onRefundNotify.do";
+		String notify_url = Constants.ALIPAY_PAY_REFUND_RETURN_URL;
 
 		// 卖家支付宝帐户
 		String seller_email = Constants.ALIPAY_SELLER_EMAIL;

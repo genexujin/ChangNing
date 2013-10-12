@@ -28,7 +28,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.WorkdayType;
+import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.domain.Workday;
 import com.xiangyun.notary.service.WorkdayService;
 
@@ -39,7 +41,12 @@ public class WorkdayController {
 	private WorkdayService workdayService;
 
 	@RequestMapping(value = "/enterWorkdaySetting.do")
-	public ModelAndView workdaySetting() {
+	public ModelAndView workdaySetting(HttpServletRequest request) {
+		
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if(!user.isAdmin()) return null;
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("workdaysetting");
 		return mav;
@@ -48,6 +55,11 @@ public class WorkdayController {
 	@RequestMapping(value = "/saveWorkday.do")
 	public ModelAndView saveWorkday(HttpServletRequest request,
 			HttpServletResponse response, Workday workday) {
+		
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if(!user.isAdmin()) return null;
+		
 		ModelAndView mav = new ModelAndView();
 		Workday w = workdayService.findByDate(workday.getDate());
 		if (w == null) {
@@ -69,8 +81,13 @@ public class WorkdayController {
 	}
 
 	@RequestMapping(value = "/getWorkdayList.do")
-	public void getWorkdayList(int year, int month, int pageNO,
+	public void getWorkdayList(int year, int month, int pageNO,HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if(!user.isAdmin()) return;
+		
 		String json = null;
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<Workday> findList = workdayService.findByYear(year, month, pageNO);
@@ -95,34 +112,40 @@ public class WorkdayController {
 
 	}
 
-	@RequestMapping(value = "/setOneYear.do")
-	public void setOneYear() {
-		Calendar date = Calendar.getInstance();
-		// Create workday for a year
-		for (int i = 0; i < 365; i++) {
-			Workday day = new Workday();
-			day.setDate(date.getTime());
-			day.setYear(date.get(Calendar.YEAR));
-			day.setMonth(date.get(Calendar.MONTH) + 1);
-			day.setDay(date.get(Calendar.DAY_OF_MONTH));
-
-			if (date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY
-					&& date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
-
-				day.setType(WorkdayType.WORKDAY);
-			} else {
-				day.setType(WorkdayType.NON_WORKDAY);
-			}
-
-			workdayService.saveByDate(day);
-			date.add(Calendar.DATE, 1);
-		}
-
-	}
+//	@RequestMapping(value = "/setOneYear.do")
+//	public void setOneYear() {
+//		Calendar date = Calendar.getInstance();
+//		// Create workday for a year
+//		for (int i = 0; i < 365; i++) {
+//			Workday day = new Workday();
+//			day.setDate(date.getTime());
+//			day.setYear(date.get(Calendar.YEAR));
+//			day.setMonth(date.get(Calendar.MONTH) + 1);
+//			day.setDay(date.get(Calendar.DAY_OF_MONTH));
+//
+//			if (date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY
+//					&& date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
+//
+//				day.setType(WorkdayType.WORKDAY);
+//			} else {
+//				day.setType(WorkdayType.NON_WORKDAY);
+//			}
+//
+//			workdayService.saveByDate(day);
+//			date.add(Calendar.DATE, 1);
+//		}
+//
+//	}
 
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/setYear/{year}.do")
-	public void setYear(@PathVariable("year") int year,HttpServletResponse response) throws IOException {
+	public void setYear(@PathVariable("year") int year,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if(!user.isAdmin()) return;
+		
+		
 		List<Workday> workdays = workdayService.findYear(year);
 		int msg =0;
 		if (workdays.size() == 0) {
