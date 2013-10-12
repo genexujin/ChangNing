@@ -122,7 +122,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
 			cq.where(cb.and(criteria.toArray(new Predicate[0])));
 		}
 		
-		cq.orderBy(cb.desc(o.get("orderDate")));
+		cq.orderBy(cb.desc(o.get("readableId")));
 		
 		TypedQuery<Order> q = em.createQuery(cq);
 		if (status != null && status != OrderStatus.NULL) q.setParameter("status", status);

@@ -780,7 +780,7 @@
     
     "WZHSMS": {
         "formKey": "WZHSMS",
-        "formName": "未再婚声明书",
+        "formName": "未婚/未再婚声明书",
         "fields": [
             {
                 "fieldKey": "WZHSMS_SHHJ",

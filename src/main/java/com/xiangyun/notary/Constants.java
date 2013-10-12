@@ -14,6 +14,7 @@ public class Constants {
     public static final String ALL_IN_ONE_KEY = "allInOne";
     
     public static final String FOR_CROP_DIR = "forCrop";
+    public static final String CROP_DIR = "2CZP";
     
     public static final String LOGIN_USER = "LOGIN_USER";
     

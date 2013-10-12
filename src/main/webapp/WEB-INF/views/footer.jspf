@@ -30,7 +30,7 @@
 
 </div>
 
-<!-- <div id = "olhd_anchor"></div> -->
+<!-- <div id = "olhd_anchor"></div> 
 <c:choose>
 	<c:when test="${sessionScope['LOGIN_USER']!=null}">
 		<script language="javascript">
@@ -42,7 +42,7 @@
 		 
 	</c:when>
 </c:choose>
-
+-->
 <!-- <script>
     //setTimeout(loadOnlineHelpdesk, 2000);
     //function loadOnlineHelpdesk() {

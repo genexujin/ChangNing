@@ -360,7 +360,8 @@ public class UploadController {
 
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isDirectory()
-					&& !files[i].getName().equals(Constants.FOR_CROP_DIR)) {
+					&& !files[i].getName().equals(Constants.FOR_CROP_DIR)
+					&& files[i].getName().indexOf(Constants.CROP_DIR)<=0) {
 				addDirToPDF(files[i], doc, processedFiles);
 				continue;
 			}
@@ -371,14 +372,13 @@ public class UploadController {
 					&& !files[i].getName().endsWith(".pdf")) {
 				if (processedFiles.containsKey(files[i].getName()) == false) {
 					Image img = Image.getInstance(files[i].getAbsolutePath());
-					float scaler = ((doc.getPageSize().getWidth()
-							- doc.leftMargin() - doc.rightMargin()) / img
+					float docWidth = doc.getPageSize().getWidth()- doc.leftMargin() - doc.rightMargin();					
+					float scaler = (docWidth / img
 							.getWidth()) * 100;
 					img.scalePercent(scaler);
 					doc.add(new Paragraph());
 					doc.add(img);
 					log.debug("image name added: " + files[i].getName());
-
 					processedFiles.put(files[i].getName(), files[i].getName());
 				}
 

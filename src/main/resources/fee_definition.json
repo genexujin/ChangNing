@@ -301,8 +301,7 @@
             "wordFeeGroup4": 200,
             "fileFeeGroup4": 80,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": 80,
-            "fileFeeDependentFormItem": "CZGZCJFYJ_XN"
+            "fileFeeGroup5": 80
         },
         "GKCJFYJ": {
             "notaryFee": 100,

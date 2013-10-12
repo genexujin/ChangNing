@@ -11,7 +11,7 @@
       </ul>
       
       <hr/>
-      
+   
       <div class="row">
         <div class="span12">
           <h2>网上办证</h2>
@@ -34,6 +34,7 @@
 	  </div>
 
       <br>
+     
       <form id="theform" class="form-horizontal" action="certStep3.do" method="POST">
       <!-- 基本信息 -->
       <div class="bar-bg">

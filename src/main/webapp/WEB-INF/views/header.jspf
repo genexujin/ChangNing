@@ -32,6 +32,7 @@
 
 
 	<div class="container">
+	
 		<div class="row">
 			<div class="span6">
 				<h1>
@@ -42,24 +43,28 @@
 			<div class="span5 pull-right small-pt">
 				<div>
 					<p style="margin-top: 10px;">
-						<span
-							class="text-font text-r">${sessionScope['LOGIN_USER'].name}</span>
-						<span class="text-font text-b"> 欢迎登录！ </span> <span
+					
+						 <span
 							class="text-font"> <c:choose>
 								<c:when test="${sessionScope['LOGIN_USER']==null}">
 									<a href="enterLogin.do">[登录]</a>&nbsp;
 						  </c:when>
-								<c:otherwise>
-									<a href="logout.do">[登出]</a>
+						 <c:otherwise>
+								<span class="text-font text-b"> 当前用户： </span>
+								<span class="text-font text-r">${sessionScope['LOGIN_USER'].name}</span>							
+								<span class="text-font text-b" style="padding-left:10px;"> 登录身份： </span>
+								<span class="text-font text-r"> <c:out value="${sessionScope['LOGIN_USER'].staff?'公证员':(sessionScope['LOGIN_USER'].admin?'管理员':'用户')}"/> </span>
+								<a href="logout.do" style="padding-left:10px;">[登出]</a>
 								</c:otherwise>
 							</c:choose>
-						</span> <span class="text-font">|&nbsp; <a href="#">联系我们&nbsp;</a>|&nbsp;<a
+						</span> <!-- span class="text-font">|&nbsp; <a href="#">联系我们&nbsp;</a>|&nbsp;<a
 							href="#">常见问题</a>
-						</span>
+						</span-->
 					</p>
 				</div>
 			</div>
 		</div>
+		
 
 		<div class="masthead">
 			<div class="navbar">

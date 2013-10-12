@@ -18,7 +18,7 @@
           <h2>网上办证</h2>
         </div>
       </div>
-
+		
 	  <div class="row">
 	    <div class="span12">
 		  <div class="flowstep">
@@ -35,7 +35,7 @@
 	  </div>
 
       <br>
-	  
+	
       <form id="theform" class="form-horizontal" action="certStep2.do" method="POST">
 	  
 	  <div class="bar-bg">
@@ -275,7 +275,7 @@
     		</div>
     		<div class="row">
     			<div class="span12">
-    				<label class="offset1" style="color:blue;padding-bottom:10px;">注：单击 <img src="resources/info.jpg" style="padding-right:2px;display: inline;"/>符号可以查看示例公证书证词及所需提交的相关材料样本。</label>
+    				<label  style="color:blue;padding-left:85px;padding-bottom:10px;">注：单击 <img src="resources/info.png" style="padding-right:2px;display: inline;"/>查看样例公证书证词及所需提交的相关材料样本。</label>
     			</div>
     		</div>
     		<div id="li_region" class="row">
@@ -285,91 +285,91 @@
     		        <td style="width:250px">
     		     
     		        <input type="checkbox" value="CS" name="notory_key"> 出生  
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('chusheng.png','出生 公证书样本')"></img>    		        
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('chusheng.png','出生 公证书样本')"></img>    		        
     		        </td>
     		        <td><input type="checkbox" value="CSZFYJ" name="notory_key"> 出生证复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('cszfy_copy1.jpg','出生证复印件 公证书样本', 'cszfy_copy2.jpg','cszfy.png')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('cszfy_copy1.jpg','出生证复印件 公证书样本', 'cszfy_copy2.jpg','cszfy.png')"></img>
     		        </td>
     		        <td style="width:250px">
     		        	<input type="checkbox" value="TYCGSMS" name="notory_key"> 同意出国声明书
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('tycg_fm.png','同意出国声明书 样本','tycg_ls.png')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('tycg_fm.png','同意出国声明书 样本','tycg_ls.png')"></img>
     		        
     		        </td>
     		      </tr>
     		      <tr>
     		        <td>
     		        	<input type="checkbox" value="QSGX" name="notory_key"> 亲属关系
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('qsgx.png','亲属关系 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('qsgx.png','亲属关系 公证书样本')"></img>
     		        </td>
     		        <td>
     		        <input type="checkbox" value="JH" name="notory_key"> 已婚
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('yh.png','已婚 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('yh.png','已婚 公证书样本')"></img>
     		        
     		        </td>
     		        <td>
     		        <input type="checkbox" value="JHZFYJ" name="notory_key"> 结婚证复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('jhzfy_copy4.jpg','结婚证复印件 公证书样本','jhzfy_copy1.jpg','jhzfy_copy2.jpg','jhzfy_copy3.jpg','jhzfy.png')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('jhzfy_copy4.jpg','结婚证复印件 公证书样本','jhzfy_copy1.jpg','jhzfy_copy2.jpg','jhzfy_copy3.jpg','jhzfy.png')"></img>
     		        
     		        </td>
     		      </tr>
     		      <tr>
     		        <td>
     		        <input type="checkbox" value="HYZKZMFYJ" name="notory_key"> 婚姻状况证明复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('whdj_fy.jpg','无婚姻登记证明公证书样本','whdj.png')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('whdj_fy.jpg','无婚姻登记证明公证书样本','whdj.png')"></img>
     		        
     		        </td>
     		        <td>
     		        <input type="checkbox" value="LHZFYJ" name="notory_key"> 离婚证复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('lhzfy.png','结婚证复印件 公证书样本')"></img>    		        
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('lhzfy.png','结婚证复印件 公证书样本')"></img>    		        
     		        </td>
     		        <td>
     		        <input type="checkbox" value="XL" name="notory_key"> 学历
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('xl.png','学历 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('xl.png','学历 公证书样本')"></img>
     		        </td>
     		      </tr>
     		      <tr>
     		        <td>
     		        <input type="checkbox" value="XW" name="notory_key"> 学位
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('xw.png','学位 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('xw.png','学位 公证书样本')"></img>
     		        
     		        </td>
     		        <td style="width:250px">
     		        <input type="checkbox" value="BYZSFYJ" name="notory_key"> 毕业证书复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('dxby_copy1.jpg','毕业证书复印件 公证书样本','dxby.png','byzs.png')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('dxby_copy1.jpg','毕业证书复印件 公证书样本','dxby.png','byzs.png')"></img>
     		        
     		        </td>
     		        <td>
     		        	<input type="checkbox" value="XWZSFYJ" name="notory_key"> 学位证书复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('xwzsfy_copy2.jpg','学位证书复印件 公证书样本','xwzsfy_copy1.jpg','xwzsfy.png')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('xwzsfy_copy2.jpg','学位证书复印件 公证书样本','xwzsfy_copy1.jpg','xwzsfy.png')"></img>
     		        </td>
     		      </tr>
     		      <tr>
     		        <td>
     		        <input type="checkbox" value="DXDZZGCJFYJ" name="notory_key"> 大学/大专/职高成绩复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('dxcjfy.png','大学/大专/职高成绩复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('dxcjfy.png','大学/大专/职高成绩复印件 公证书样本')"></img>
     		       
     		        </td>
     		        <td>
     		        <input type="checkbox" value="CZGZCJFYJ" name="notory_key"> 初中/高中成绩复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('cgzcjdfy.png','初中/高中成绩复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('cgzcjdfy.png','初中/高中成绩复印件 公证书样本')"></img>
     		        </td>
     		        <td>
     		        <input type="checkbox" value="SGWSXSCF" name="notory_key"> 受过/未受刑事处分
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('wx.png','受过/未受刑事处分 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('wx.png','受过/未受刑事处分 公证书样本')"></img>
     		        </td>
     		      </tr>
     		      <tr>
     		        <td>
     		        <input type="checkbox" value="JSZFYJ" name="notory_key"> 驾驶证复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('jszfy.png','驾驶证复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('jszfy.png','驾驶证复印件 公证书样本')"></img>
     		        </td>
     		        <td>
     		         <input type="checkbox" value="HKBFYJ" name="notory_key"> 户口本复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('hkbfy.png','户口簿复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('hkbfy.png','户口簿复印件 公证书样本')"></img>
     		        </td>
     		        <td>
     		        	<input type="checkbox" value="HZFYJ" name="notory_key"> 护照复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('hzfy.png','护照复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('hzfy.png','护照复印件 公证书样本')"></img>
     		        </td>    		        
     		      </tr>
     		    </table>
@@ -381,75 +381,75 @@
     		      <tr>
     		        <td style="width:250px">
     		        <input type="checkbox" value="SW" name="notory_key"> 死亡
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('sw.png','死亡 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('sw.png','死亡 公证书样本')"></img>
     		        
     		        </td>
     		        <td style="width:250px"><input type="checkbox" value="GJ" name="notory_key"> 国籍
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('gj.png','国籍 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('gj.png','国籍 公证书样本')"></img>
     		        </td>
     		        <td style="width:250px">
     		        <input type="checkbox" value="WH" name="notory_key"> 未婚
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('whzm.png','未婚 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('whzm.png','未婚 公证书样本')"></img>
     		        </td>
     		      </tr>
     		      <tr>
     		        <td>
     		        <input type="checkbox" value="WZHSMS" name="notory_key"> 未再婚声明书
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('wzhsm.png','未再婚声明书')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('wzhsm.png','未再婚声明书')"></img>
     		        
     		        </td>
     		        <td>
     		        <input type="checkbox" value="ZDZMFYJ" name="notory_key"> 在读证明复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('zdzm.png','在读证明复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('zdzm.png','在读证明复印件 公证书样本')"></img>
     		        
     		        </td>
     		        <td>
     		        <input type="checkbox" value="ZXXBYZFYJ" name="notory_key">中小学毕业证（带成绩）复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('byzs.png','毕业证书复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('byzs.png','毕业证书复印件 公证书样本')"></img>
     		       
     		        </td>
     		      </tr>
     		      <tr>
     		        <td>
     		        <input type="checkbox" value="SFZFYJ" name="notory_key"> 身份证复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('sfzfy.png','资格证/技术等级证书复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('sfzfy.png','资格证/技术等级证书复印件 公证书样本')"></img>
     		        
     		        </td>
     		        <td>
     		        <input type="checkbox" value="FCZFYJ" name="notory_key"> 房产证复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('txz.png','退休证复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('txz.png','退休证复印件 公证书样本')"></img>
     		        </td>
     		        <td>
     		        <input type="checkbox" value="GKCJFYJ" name="notory_key"> 高考成绩复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('cjd.jpg','高考成绩复印件 公证书样本','cjzm.png')"></img>
     		        </td>
     		      </tr>
     		      <tr>
     		        <td>
     		        <input type="checkbox" value="FYPJTJCDSFYJ" name="notory_key"> 法院判决/调解/裁定书复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('tjs.png','法院判决/调解/裁定书复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('tjs.png','法院判决/调解/裁定书复印件 公证书样本')"></img>
     		        </td>
     		        <td>
     		        <input type="checkbox" value="CYM" name="notory_key"> 曾用名
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('cym.png','曾用名 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('cym.png','曾用名 公证书样本')"></img>
     		        
     		        </td>    		        
     		        <td>
     		        <input type="checkbox" value="TXZFYJ" name="notory_key"> 退休证复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('txz.png','退休证复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('txz.png','退休证复印件 公证书样本')"></img>
     		        </td>
     		      </tr>
     		      <tr>
     		        <td><input type="checkbox" value="TX" name="notory_key"> 离休/退休/退职
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('txlx.png','法院判决/调解/裁定书复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('txlx.png','法院判决/调解/裁定书复印件 公证书样本')"></img>
     		        </td>
     		        <td>
     		        <input type="checkbox" value="ZGZFYJ" name="notory_key"> 资格证/技术等级证书复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('zgzsfy.png','资格证/技术等级证书复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('zgzsfy.png','资格证/技术等级证书复印件 公证书样本')"></img>
     		        </td>
     		        <td>
     		         <input type="checkbox" value="CKZMFYJ" name="notory_key"> 存款证明复印件
-    		        	<img src="resources/info.jpg" style="cursor: pointer; display: inline;" onclick="showImage('ckzm.png','存款证明复印件 公证书样本')"></img>
+    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('ckzm.png','存款证明复印件 公证书样本')"></img>
     		        </td>
     		      </tr>
     		    </table>
