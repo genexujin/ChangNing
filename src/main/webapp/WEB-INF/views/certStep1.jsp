@@ -404,7 +404,7 @@
     		        
     		        </td>
     		        <td>
-    		        <input type="checkbox" value="ZXXBYZFYJ" name="notory_key">中小学毕业证（带成绩）复印件
+    		        <input type="checkbox" value="ZXXBYZFYJ" name="notory_key"> 中小学毕业证（带成绩）复印件
     		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('byzs.png','毕业证书复印件 公证书样本')"></img>
     		       
     		        </td>

@@ -84,11 +84,7 @@
                 "docName": "本人2寸照片",
                 "uploadAlone": true,
                 "needCrop": true
-            },
-             {
-             	"docKey": "XLZS",
-             	"docName": "学历证书"
-             }
+            }
         ]
     },
     
