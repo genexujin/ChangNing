@@ -2,7 +2,7 @@
 DROP DATABASE IF EXISTS changning;
 CREATE DATABASE changning;
 
-GRANT ALL PRIVILEGES ON changning.* TO cn@localhost IDENTIFIED BY "easy";
+GRANT ALL PRIVILEGES ON changning.* TO cn@localhost IDENTIFIED BY "CNGZ6408HCLWYLK";
 
 -- select the database
 USE changning;
@@ -297,12 +297,10 @@ insert into roles (role_name) values ('admin');
 insert into roles (role_name) values ('staff');
 insert into roles (role_name) values ('user');
 
-INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address) VALUES ('13524173173', '刘峻', 'MALE', 'pairliu@gmail.com', 'ID_CARD', '440306199983273137', 'e19d5cd5af0378da05f63f891c7467af', 'adfadfasdfasdf');
-INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address) VALUES ('18621910893', 'aaa', 'MALE', 'test@test.com', 'ID_CARD', '440306199983274248', 'e19d5cd5af0378da05f63f891c7467af', 'zzzzzzzzzzzz');
+
 INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address) VALUES ('13817676005', '史静', 'FEMALE', 'test2@test.com', 'ID_CARD', '440306199983274259', 'e19d5cd5af0378da05f63f891c7467af', 'yyyyyyyyyyyyyy');
 
-insert into user_roles (user_id, role_id) values (1, 3);
-insert into user_roles (user_id, role_id) values (2, 2);
-insert into user_roles (user_id, role_id) values (3, 1);
+insert into user_roles (user_id, role_id) values (1, 1);
+
 
 commit;

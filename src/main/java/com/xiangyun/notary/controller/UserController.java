@@ -270,7 +270,8 @@ public class UserController {
 		if (session != null)
 			session.invalidate();
 
-		ModelAndView mav = new ModelAndView("userCenter_login");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:"+"http://www.6408.com.cn/CNservice%20hall/intohall.asp");
 		return mav;
 	}
 

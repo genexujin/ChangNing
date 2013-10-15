@@ -81,7 +81,7 @@
 							<%
 								} else {
 							%>
-							<li><a class="clean" href="home.do">首页</a></li>
+							<li><a class="clean" href="http://www.6408.com.cn/CNservice%20hall/intohall.asp">首页</a></li>
 							<%
 								}
 							%>

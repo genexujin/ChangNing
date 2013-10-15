@@ -8,9 +8,9 @@
 	</appender>
 
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>c:/temp/changning.log</file>
+		<file>e:/platform/temp/changning.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>c:/temp/changning-%d{yyyy-MM-dd_HH-mm}.%i.log</fileNamePattern>
+			<fileNamePattern>e:/platform/temp/changning-%d{yyyy-MM-dd_HH-mm}.%i.log</fileNamePattern>
 			<maxHistory>7</maxHistory>			
 		</rollingPolicy> 
 		<encoder>

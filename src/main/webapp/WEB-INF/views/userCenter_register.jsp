@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%@ include file="header.jspf"%>
@@ -359,7 +359,7 @@
 					</tr>
 					<tr height="60px">
 						<td></td>
-						<td colspan="3"><input type="checkbox" value="checked" id="reg_user_checkbox" checked="checked"> 我接受<a href="#">长宁公证处注册协议</a></td>
+						<td colspan="3"><input type="checkbox" value="checked" id="reg_user_checkbox" checked="checked"> 我接受<a href="agreement.html" target="_blank">长宁公证处注册协议</a></td>
 						<td><div class="alert" id="reg_checkbox_alert" style="display: none">请仔细阅读本协议！</div></td>
 					</tr>
 					<tr height="60px">
