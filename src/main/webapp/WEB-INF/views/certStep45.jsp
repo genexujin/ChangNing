@@ -11,8 +11,6 @@
         <li class="active">支付</li>
       </ul>
       
-      <hr/>
-      
       <div class="row">
         <div class="span12">
           <h2>网上办证</h2>
@@ -33,24 +31,22 @@
 		  </div>
 	    </div>
 	  </div>
-	  
 	  <br>
-	  
-	  <div class="border">
+	  	  
         <div class="row">
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9 offset1" style="padding-bottom:5px;">
                 <h5 style="color:blue;font-weight:bold;">受理告知：我处已收取您提交的公证申请，您付款并递交材料齐全后，我处会于五个工作日出具公证书。
                 声明书和身份证复印件公证必需要本人持上传的所有材料原件来领取，其他公证可以凭短信和上传的所有材料原件代领。如果提交申请后七日内未补充材料或者未付款，此公证申请将被撤销。</h5>
-                <input id="agreement"  type="checkbox"> 已阅读受理告知
+                <input id="agreement"  type="checkbox" style="vertical-align: top;"> 已阅读受理告知
               </div>             
             </div>
           </div>
         </div>
-      </div>
+        <br>
 	  <form class="form-horizontal" action="certStep5.do" method="POST" id="payForm">
-	  
+	    <div class="workarea">
 		<div class="bar-bg">
         <div class="row">
           <div class="span12 navbg2">
@@ -364,7 +360,8 @@
 	          </table>		    
 		    </div>
 		  </div>
-      </div>
+      </div>	      
+	    </div>
 	    
 	    <br/>
 	    <br/>

@@ -20,7 +20,6 @@ request.setAttribute("statusStr", statusStr);
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
 	<li class="active">预约查询</li>
 </ul>
-<hr/>
 
 <div class="row">
 	<div class="span2 well">

@@ -9,7 +9,6 @@
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li class="active">订单详情</li>
       </ul>
-      <hr>
       <div class="row" style="padding-top:5px;">
       <c:choose>
         <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">

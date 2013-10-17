@@ -2,6 +2,10 @@ html * {
 	font-family: 'Microsoft YaHei', Arial, sans-serif !important;
 }
 
+body {
+	background-color: #F0F4F7;
+}
+
 .navbar .nav li a {
 	/*    border-left: 1px solid rgba(255, 255, 255, 0.75);
     border-right: 1px solid rgba(0, 0, 0, 0.1); */
@@ -118,12 +122,16 @@ select {
 }
 
 .breadcrumb {
-	background-color: #FFFFFF;
+	background-color: #F0F4F7;
 	margin: 0px;
 }
 
 .container {
 	height: 100%
+}
+
+.workarea {
+	background-color: #fff;
 }
 
 h2 {

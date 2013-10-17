@@ -246,7 +246,6 @@
 	<li><a href="#">首页</a> <span class="divider">/</span></li>	
 	<li class="active">设置新密码</li>
 </ul>
-<hr />
 
 <div class="row">
 	<div class="span12">
@@ -310,7 +309,8 @@
 					</table>
 				</div>
 			</div>
-		</div>
+		</div>	  
+
 	</form>
 </div>
 <%@ include file="footer.jspf"%>

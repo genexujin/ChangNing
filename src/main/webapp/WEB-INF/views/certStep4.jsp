@@ -12,8 +12,6 @@
         <li class="active">上门送证</li>
       </ul>
       
-      <hr/>
-      
       <div class="row">
         <div class="span12">
           <h2>网上办证</h2>
@@ -37,97 +35,98 @@
 	  
 	  <br>
 	  <form id="theform" class="form-horizontal" action="certStep45.do" method="POST">
-	  
-		<div class="bar-bg">
-	      <div class="row">
-	        <div class="span12 navbg2">
-	          <div class="row">
-	            <div class="span9">
-	              <h5>&nbsp;&nbsp;&nbsp;&nbsp;上门送证</h5>
+	    <div class="workarea">
+			<div class="bar-bg">
+		      <div class="row">
+		        <div class="span12 navbg2">
+		          <div class="row">
+		            <div class="span9">
+		              <h5>&nbsp;&nbsp;&nbsp;&nbsp;上门送证</h5>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    
+		    <div class="border">
+		      <br/>
+		      <div class="row">
+			      <div class="span5 offset1">上门送证费用：<font color=red>100.00</font>元人民币。</div>
+			  </div>
+			  
+			  <br/>
+			  <hr/>
+			  <br/>
+			  
+			  <div class="row">
+		        <div class="span5 offset1">
+		    	  <div class="control-group">
+				    <label class="control-label" for="sendDoc">是否需要上门送证</label>
+				    <div class="controls">
+					  <label class="radio inline">
+					    <input type="radio" value="true" name="sendDoc"> 是&nbsp;&nbsp;
+					  </label>
+					  <label class="radio inline">
+					    <input type="radio" value="false" name="sendDoc" checked> 否&nbsp;&nbsp;
+					  </label>
+				    </div>
+				  </div>
+				</div>
+		      </div>
+		      
+	          <div class="row toggle hide">
+	            <div class="span5 offset1">
+	                <div class="control-group">
+			    	  <label class="control-label" for="sendAddress">联系地址</label>
+			    	  <div class="controls">
+				    	<input id="sendAddress" name="sendAddress" type="text"></input>
+			    	  </div>
+			    	</div>
 	            </div>
+	            <div id="sendInfoMsg" class="span4">提示：必须输入送证地址</div>            
 	          </div>
-	        </div>
-	      </div>
-	    </div>
-	    
-	    <div class="border">
-	      <br/>
-	      <div class="row">
-		      <div class="span5 offset1">上门送证费用：<font color=red>100.00</font>元人民币。</div>
-		  </div>
-		  
-		  <br/>
-		  <hr/>
-		  <br/>
-		  
-		  <div class="row">
-	        <div class="span5 offset1">
-	    	  <div class="control-group">
-			    <label class="control-label" for="sendDoc">是否需要上门送证</label>
-			    <div class="controls">
-				  <label class="radio inline">
-				    <input type="radio" value="true" name="sendDoc"> 是&nbsp;&nbsp;
-				  </label>
-				  <label class="radio inline">
-				    <input type="radio" value="false" name="sendDoc" checked> 否&nbsp;&nbsp;
-				  </label>
+	          
+	          <div class="row toggle hide">
+	            <div class="span8 offset1">
+	                <div class="control-group">
+			    	  <label class="control-label" for="sendDate">送证时间</label>
+			    	  <div class="controls">
+			    	    <label class="radio inline">
+					      <input type="radio" value="WORKDAY" name="workday" checked> 工作日&nbsp;&nbsp;
+					    </label>
+					    <label class="radio inline">
+					      <input type="radio" value="NON_WORKDAY" name="workday"> 非工作日&nbsp;&nbsp;
+					    </label>
+					    <label class="radio inline">
+					      <input type="radio" value="BOTH" name="workday"> 两者皆可&nbsp;&nbsp;
+					    </label>
+			    	  </div>
+			    	</div>
 			    </div>
 			  </div>
-			</div>
-	      </div>
-	      
-          <div class="row toggle hide">
-            <div class="span5 offset1">
-                <div class="control-group">
-		    	  <label class="control-label" for="sendAddress">联系地址</label>
-		    	  <div class="controls">
-			    	<input id="sendAddress" name="sendAddress" type="text"></input>
-		    	  </div>
-		    	</div>
-            </div>
-            <div id="sendInfoMsg" class="span4">提示：必须输入送证地址</div>            
-          </div>
-          
-          <div class="row toggle hide">
-            <div class="span8 offset1">
-                <div class="control-group">
-		    	  <label class="control-label" for="sendDate">送证时间</label>
-		    	  <div class="controls">
-		    	    <label class="radio inline">
-				      <input type="radio" value="WORKDAY" name="workday" checked> 工作日&nbsp;&nbsp;
-				    </label>
-				    <label class="radio inline">
-				      <input type="radio" value="NON_WORKDAY" name="workday"> 非工作日&nbsp;&nbsp;
-				    </label>
-				    <label class="radio inline">
-				      <input type="radio" value="BOTH" name="workday"> 两者皆可&nbsp;&nbsp;
-				    </label>
-		    	  </div>
-		    	</div>
-		    </div>
-		  </div>
-          
-<!--           <div class="row toggle hide">
-            <div class="span5 offset1">
-                <div class="control-group">
-		    	  <label class="control-label" for="sendDate">送证时间</label>
-		    	  <div class="controls">
-			    	<div data-date-format="mm/dd/yyyy" data-date="now" id="sendDate" class="input-append date">
-				      <input type="text" readonly size="16" class="span2" name="sendDate">
-				      <span class="add-on"><i class="icon-calendar"></i></span>
-			        </div>
-		    	  </div>
-		    	</div>
-            </div>
-          </div>	  -->
-          
-          <div class="row toggle hide">
-            <div class="span6 offset2">具体送达时间是在所有材料齐备后，根据以上选择，4个工作日后送达。
-            </div>
-          </div>
-          
-          <br/>
-		  
+	          
+	<!--           <div class="row toggle hide">
+	            <div class="span5 offset1">
+	                <div class="control-group">
+			    	  <label class="control-label" for="sendDate">送证时间</label>
+			    	  <div class="controls">
+				    	<div data-date-format="mm/dd/yyyy" data-date="now" id="sendDate" class="input-append date">
+					      <input type="text" readonly size="16" class="span2" name="sendDate">
+					      <span class="add-on"><i class="icon-calendar"></i></span>
+				        </div>
+			    	  </div>
+			    	</div>
+	            </div>
+	          </div>	  -->
+	          
+	          <div class="row toggle hide">
+	            <div class="span6 offset2">具体送达时间是在所有材料齐备后，根据以上选择，4个工作日后送达。
+	            </div>
+	          </div>
+	          
+	          <br/>
+			  
+		    </div>	    
 	    </div>
 	    
 	    <br>

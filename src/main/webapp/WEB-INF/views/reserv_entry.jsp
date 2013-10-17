@@ -11,8 +11,6 @@
 	<li class="active">预约申请</li>
 </ul>
 
-<hr />
-
 <div class="row">
 	<div class="span12">
 		<h2>预约申请</h2>
@@ -36,7 +34,7 @@
       <br>-->
 
 <form class="form-horizontal" action="certStep2.do" method="POST">
-
+  <div class="workarea">
 	<div class="bar-bg">
 		<div class="row">
 			<div class="span12 navbg2">
@@ -211,10 +209,8 @@
 			</div>
 
 		</div>
-	</div>
-
-
-
+	</div>  
+  </div>
 
 	<br> <br>
 

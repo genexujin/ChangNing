@@ -13,8 +13,6 @@
 	<li class="active">工作日设定与查询</li>
 </ul>
 
-<hr />
-
 <div class="row">
 
 	<div class="span2 well">
