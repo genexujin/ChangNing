@@ -3,7 +3,7 @@ html * {
 }
 
 body {
-	background-color: #F0F4F7;
+	background: url(banner.png) #F0F4F7 repeat-x;
 }
 
 .navbar .nav li a {
