@@ -6,11 +6,6 @@
 <%@ include file="../header.jspf"%>
 <script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 
-<ul class="breadcrumb">
-	<b>您的位置：</b>
-	<li><a href="#">首页</a> <span class="divider">/</span></li>
-	<li class="active">订单查询</li>
-</ul>
 
 <div class="row">
 	<div class="span2 well">
@@ -32,7 +27,7 @@
 		</ul>
 	</div>
 
-	
+	<div class="workarea">
 	<div class="span9" style="margin-left: 20px;">
 		<form class="form-horizontal" action="orderQuery.do" method="POST">
 		  <div class="bar-bg"  style="width:770px;">
@@ -188,7 +183,8 @@
 		  </div>
 
 		</form>
-	</div>
+	</div></div>
+	
 </div>
 
 <script>

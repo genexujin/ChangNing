@@ -4,12 +4,7 @@
 
 <%@ include file="header.jspf"%>
 
-<ul class="breadcrumb">
-	<b>您的位置：</b>
-	<li><a href="#">首页</a> <span class="divider">/</span></li>
-	<li><a href="enterReserv.do">网上预约</a> <span class="divider">/</span></li>
-	<li class="active">预约申请</li>
-</ul>
+
 
 <div class="row">
 	<div class="span12">

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -450,6 +451,50 @@ public class AlipayController {
 		} else {// 验证失败
 			out.println("fail");
 		}
+	}
+	
+	@RequestMapping(value = "/manualConfirmPayment.do")
+	public ModelAndView manualConfirmPayment(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		String oId = request.getParameter("oId"); 
+		String aliTxNo = request.getParameter("aliTxNo");
+		
+		log.debug("about to munual confirm payment !");
+		log.debug("oId: " + oId);
+		log.debug("aliTxNo" + aliTxNo);
+		
+		if(oId!=null && aliTxNo!=null){
+			Order order = orderService.findById(new Long(oId));
+			Set<Payment> payments = order.getPayments();
+			boolean hasPayingPayment = false;
+			for(Payment pay: payments){
+				if(pay.getStatus().equals(OrderPaymentStatus.NOT_PAID)){
+					pay.setStatus(OrderPaymentStatus.FULL_PAID);
+					pay.setPaymentDate(new Date());
+					pay.setAlipayTxnNo(aliTxNo);
+					hasPayingPayment=true;
+				}
+			}
+			
+			if(hasPayingPayment){
+				String notaryId = order.getBackendNotaryId();
+				// 如果已经受理过，则成功付款后改为已受理
+				if (notaryId != null && notaryId.length() > 0) {
+					order.setOrderStatus(OrderStatus.ACCEPTED);
+				} else {
+					order.setOrderStatus(OrderStatus.PAID);
+				}
+			}
+			
+			orderService.save(order);		
+			
+		}
+		
+		ModelAndView mav = new ModelAndView(
+				"redirect:orderDetail.do?oId="+oId);
+		return mav;
+		
 	}
 
 	/**

@@ -189,11 +189,7 @@
 	}
 </script>
 
-<ul class="breadcrumb">
-	<b>您的位置：</b>
-	<li><a href="#">首页</a> <span class="divider">/</span></li>	
-	<li class="active">个人信息</li>
-</ul>
+
 
 <div class="row">
 
@@ -229,7 +225,7 @@
         </div>
       </div>
 
-		<div>
+<div class="workarea">
 			<form onsubmit="return checkModifyForm()" id="user_modify_form"
 				name="user_modify_form" method="post" action="/ChangNing/modify.do">
 				<div class="border">
@@ -358,7 +354,7 @@
           </div>
         </div>
       </div>
-		<div>
+<div class="workarea">
 			<form id="user_modifyPwd_form" name="user_modifyPwd_form">
 				<div class="border">
 					<div class="row">

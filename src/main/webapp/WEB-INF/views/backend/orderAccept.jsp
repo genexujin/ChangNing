@@ -3,12 +3,7 @@
 	pageEncoding="utf-8"%>
 
 <%@ include file="../header.jspf"%>
-<ul class="breadcrumb">
-	<b>您的位置：</b>
-	<li><a href="#">首页</a> <span class="divider">/</span></li>
-	<li><a href="#">网上办证</a> <span class="divider">/</span></li>
-	<li class="active">订单受理</li>
-</ul>
+
 
 <hr />
 
@@ -19,6 +14,8 @@
 </div>
 
 <br>
+
+<div class="workarea">
 <form class="form-horizontal" action="doAccept.do" method="POST">
 
 	<div class="bar-bg">
@@ -82,5 +79,6 @@
 	</div>
 
 </form>
+</div>
 
 <%@ include file="../footer.jspf"%>

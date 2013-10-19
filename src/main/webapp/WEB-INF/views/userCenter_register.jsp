@@ -295,11 +295,7 @@
 		}
 	}
 </script>
-<ul class="breadcrumb">
-	<b>您的位置：</b>
-	<li><a href="#">首页</a> <span class="divider">/</span></li>	
-	<li class="active">用户注册</li>
-</ul>
+
 <hr />
 
 <div class="row">
@@ -309,7 +305,7 @@
 </div>
 
 
-
+<div class="workarea">
 <form id="reg_user_form" name="reg_user_form" method="post" onsubmit="return checkRegForm()" action="/ChangNing/register.do">
 	<div class="border">
 		<div class="row">
@@ -375,5 +371,6 @@
 	</div>
 
 </form>
+</div>
 
 <%@ include file="footer.jspf"%>

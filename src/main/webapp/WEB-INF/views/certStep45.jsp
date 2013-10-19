@@ -4,12 +4,6 @@
 
 <%@ include file="header.jspf"%>
 
-      <ul class="breadcrumb">
-        <b>您的位置：</b>
-        <li><a href="#">首页</a> <span class="divider">/</span></li>
-        <li><a href="certStep1.do">网上办证</a> <span class="divider">/</span></li>
-        <li class="active">支付</li>
-      </ul>
       
       <div class="row">
         <div class="span12">
@@ -32,7 +26,8 @@
 	    </div>
 	  </div>
 	  <br>
-	  	  
+	  <div class="border">
+	  <div class="workarea">
         <div class="row">
           <div class="span12 navbg2">
             <div class="row">
@@ -45,6 +40,8 @@
           </div>
         </div>
         <br>
+        </div>
+       </div>
 	  <form class="form-horizontal" action="certStep5.do" method="POST" id="payForm">
 	    <div class="workarea">
 		<div class="bar-bg">

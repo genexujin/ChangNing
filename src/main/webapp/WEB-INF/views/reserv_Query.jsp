@@ -15,11 +15,7 @@ String statusStr = request.getParameter("status") != null ? request.getParameter
 request.setAttribute("statusStr", statusStr);
 %>
 
-<ul class="breadcrumb">
-	<b>您的位置：</b>
-	<li><a href="#">首页</a> <span class="divider">/</span></li>
-	<li class="active">预约查询</li>
-</ul>
+
 
 <div class="row">
 	<div class="span2 well">
@@ -52,6 +48,7 @@ request.setAttribute("statusStr", statusStr);
           </div>
         </div>
       </div>
+<div class="workarea">
 	<div class="border">
 		<div class="row">
 
@@ -59,6 +56,7 @@ request.setAttribute("statusStr", statusStr);
 						<strong>请输入查询条件：</strong>
 					</p>
 				</div>
+
 		<form class="form-horizontal" action="/ChangNing/reserv_Query.do"
 			method="POST">
 			
@@ -190,7 +188,7 @@ request.setAttribute("statusStr", statusStr);
 	
 	</div>
 </div>
-
+</div>
 
 <div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">

@@ -120,11 +120,7 @@
 		}
 	}
 </script>
-<ul class="breadcrumb">
-	<b>您的位置：</b>
-	<li><a href="#">首页</a> <span class="divider">/</span></li>	
-	<li class="active">用户登录</li>
-</ul>
+
 
 <div class="row">
 	<div class="span12">
@@ -132,7 +128,7 @@
 	</div>
 </div>
 
-<div>
+<div class="workarea">
 	<form id="login_user_form" name="login_user_form" action="/ChangNing/login.do" method="post" onsubmit="return checkLoginForm()">
 
 		<div class="border">

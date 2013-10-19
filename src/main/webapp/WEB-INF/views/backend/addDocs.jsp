@@ -6,12 +6,7 @@
       <script src="uploadify/jquery.uploadify.js"></script>
       <script src="Jcrop-0.9.12/js/jquery.Jcrop.min.js"></script>
       
-      <strong>您的位置：</strong>
-      <ul class="breadcrumb">
-        <li><a href="#">首页</a> <span class="divider">/</span></li>
-        <li><a href="#">网上办证</a> <span class="divider">/</span></li>
-        <li class="active">补充材料</li>
-      </ul>
+    
       
       <hr/>
       
