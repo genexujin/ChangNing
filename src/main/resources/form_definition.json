@@ -301,14 +301,6 @@
             {
                 "docKey": "XWZ",
                 "docName": "学位证"
-            },
-            {
-                "docKey": "SFZ",
-                "docName": "身份证正反面"
-            },
-            {
-                "docKey": "HKB",
-                "docName": "户口本地址、户主、本人"
             }
         ]
     },
@@ -839,14 +831,6 @@
             {
             	"docKey": "JSZFB",
             	"docName": "驾驶证副本正反面"
-            },
-             {
-                "docKey": "HKB",
-                "docName": "户口本"
-            },
-            {
-                "docKey": "SFZJ",
-                "docName": "身份证件"
             }
         ]
     },
