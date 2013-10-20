@@ -395,7 +395,8 @@
 	  
 	  $( document ).ready(function() {
 	  	$("#payBill").click(
-	  		function(){
+	  		function(event){
+	  			event.preventDefault();
 	  			$("#myModal1").modal("show");	  				  			
 	  		}	
 	  	);
