@@ -52,7 +52,7 @@
 	            </div>
 	            <div class="span5">
 	                <div class="control-group">
-			    	  <label class="control-label" for="relativeName">关系人姓名</label>
+			    	  <label class="control-label" for="relativeName">死亡人姓名</label>
 			    	  <div class="controls">
 		    		    <input id="SW_RELATION_1_NAME" name="SW_RELATION_1_NAME" type="text" class="SW_INPUT"></input>
 		    	      </div>
@@ -68,7 +68,7 @@
 	              <button id="SW_REMOVE" class="btn btn-small">-</button>
 	            </div>
 	             -->
-	            <div id="SW_RELATION_M" class="span6 tiny-pt" >提示：添加的亲属必须选择关系类型，并且关系人姓名不能为空
+	            <div id="SW_RELATION_M" class="span6 tiny-pt" >提示：添加的死亡人必须选择关系类型，并且死亡人姓名不能为空
 			    </div>
 			    <br/>
 	          </div>

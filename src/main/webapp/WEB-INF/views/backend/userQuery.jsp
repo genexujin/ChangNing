@@ -5,11 +5,11 @@
 
 <%@ include file="../header.jspf"%>
 
-<ul class="breadcrumb">
+<!-- <ul class="breadcrumb">
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
 	<li class="active">用户管理</li>
-</ul>
+</ul> -->
 
 <div class="row">
 	<div class="span2 well">

@@ -79,7 +79,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     
     @Override
     @Transactional(readOnly=true)
-    public List<Order> findOrders(String readableId, String requestorName, Date startDate, Date endDate, OrderStatus status, Long userId, int pageNum) {
+    public List<Order> findOrders(String readableId, String requestorName, String requestorMobile, Date startDate, Date endDate, OrderStatus status, Long userId, int pageNum) {
     	log.debug("Now is in findOrders(). Parameters are:");
     	log.debug("    readableId: {},  requestorName: {}, startDate: {}, endDate: {}, status: {}, userId: {}, pageNum: {}", new Object[] {readableId,  requestorName, startDate, endDate, status, userId, pageNum});
     	
@@ -95,6 +95,10 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     	
     	if (requestorName != null) {
             criteria.add(cb.like(cb.lower(o.<String>get("requestorName")), "%" + requestorName.toLowerCase() + "%"));
+        }
+    	
+    	if (requestorMobile != null) {
+            criteria.add(cb.like(cb.lower(o.<String>get("requestorMobile")), "%" + requestorMobile.toLowerCase() + "%"));
         }
         
         if (startDate != null) {
@@ -167,7 +171,7 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
     
     @Override
     @Transactional(readOnly=true)
-    public Long getOrderCount(String readableId, String requestorName, Date startDate, Date endDate, OrderStatus status, Long userId) {
+    public Long getOrderCount(String readableId, String requestorName, String requestorMobile, Date startDate, Date endDate, OrderStatus status, Long userId) {
         log.debug("Now is in getOrderCount(readableId, requestorName, startDate, endDate, status, userId). Parameters are:");
         log.debug("    readableId: {}, requestorName: {}, startDate: {}, endDate: {}, status: {}, userId: {}", new Object[] {readableId, requestorName, startDate, endDate, status, userId});
         
@@ -184,6 +188,10 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         if (requestorName != null) {
             criteria.add(cb.like(cb.lower(o.<String>get("requestorName")), "%" + requestorName.toLowerCase() + "%"));
             
+        }
+        
+        if (requestorMobile != null) {
+            criteria.add(cb.like(cb.lower(o.<String>get("requestorMobile")), "%" + requestorMobile.toLowerCase() + "%"));
         }
         
         if (startDate != null) {

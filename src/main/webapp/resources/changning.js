@@ -222,7 +222,8 @@ function isCountryOfYWXF() {
 	if ($("#dest").val() == 'United_States' 
 		|| $("#dest").val() == 'Korea'
 		|| $("#dest").val() == 'Austria'
-		|| $("#dest").val() == 'Russia') {
+		|| $("#dest").val() == 'Russia'
+		|| $("#dest").val() == 'Uzbekistan') {
 		return true;
 	}
 	return false;

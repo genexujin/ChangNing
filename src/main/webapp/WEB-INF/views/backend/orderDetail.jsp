@@ -4,11 +4,11 @@
 
 <%@ include file="../header.jspf"%>
 
-      <ul class="breadcrumb">
+<!--       <ul class="breadcrumb">
         <b>您的位置：</b>
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li class="active">订单详情</li>
-      </ul>
+      </ul> -->
       <div class="row" style="padding-top:5px;">
       <c:choose>
         <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">

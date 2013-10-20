@@ -89,4 +89,7 @@
     <servlet-name>PaymentServlet</servlet-name>
     <url-pattern>/pay</url-pattern>
   </servlet-mapping>
+  <session-config>
+    <session-timeout>120</session-timeout>
+  </session-config>
 </web-app>

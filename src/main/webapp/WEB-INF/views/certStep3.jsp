@@ -7,12 +7,12 @@
 <script src="uploadify/jquery.uploadify.js"></script>
 <script src="Jcrop-0.9.12/js/jquery.Jcrop.min.js"></script>
 
-	<ul class="breadcrumb">	    
+<!-- 	<ul class="breadcrumb">	    
 	    <strong>您的位置：</strong>
 		<li><a href="#">首页</a> <span class="divider">/</span></li>
 		<li><a href="certStep1.do">网上办证</a> <span class="divider">/</span></li>
 		<li class="active">上传资料</li>
-	</ul>
+	</ul> -->
 
 	<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"

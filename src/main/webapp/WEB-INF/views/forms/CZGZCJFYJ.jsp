@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="span12">
 
-			<div class="row">
+<!-- 			<div class="row">
 				<div class="span5 offset1">
 					<div class="control-group">
 						<label class="control-label" for="CZGZCJFYJ_XN">学年</label>
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 				<div id="CZGZCJFYJ_XN_M" class="span4 tiny-pt">提示：请输入学年数--1到10的数字</div>
-			</div>
+			</div> -->
 
 			<div class="row">
 				<div class="span5 offset1">
@@ -61,10 +61,10 @@
 	function prepareCZGZCJFYJ() {
 		
 		validCZGZCJFYJ = false;
-		validateCZGZCJFYJ_XN();
+		//validateCZGZCJFYJ_XN();
 		validateCZGZCJFYJ2();
 		
-		$("input[name='CZGZCJFYJ_XN']").change(validateCZGZCJFYJ_XN);
+		//$("input[name='CZGZCJFYJ_XN']").change(validateCZGZCJFYJ_XN);
 
 		$("input[name='CZGZCJFYJ_SHHJ']").change(validateCZGZCJFYJ2);
 
@@ -103,11 +103,12 @@
 	}
 
 	function updateValidCZGZCJFYJ() {
-		var czgzcjfyj_xn = $("#CZGZCJFYJ_XN").val();
+		//var czgzcjfyj_xn = $("#CZGZCJFYJ_XN").val();
 		var czgzcjfyj_shhj = $("input[name='CZGZCJFYJ_SHHJ']:checked").val();
 		var czgzcjfyj_shxx = $("input[name='CZGZCJFYJ_SHXX']:checked").val();
 
-		if (czgzcjfyj_xn!='' && czgzcjfyj_xn >0 && czgzcjfyj_xn <10 &&(czgzcjfyj_shhj == 'true' || czgzcjfyj_shxx == 'true'))
+		//if (czgzcjfyj_xn!='' && czgzcjfyj_xn >0 && czgzcjfyj_xn <10 &&(czgzcjfyj_shhj == 'true' || czgzcjfyj_shxx == 'true'))
+		if (czgzcjfyj_shhj == 'true' || czgzcjfyj_shxx == 'true')
 			validCZGZCJFYJ = true;
 	}
 

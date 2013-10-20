@@ -4,12 +4,12 @@
 <%@ include file="header.jspf"%>
 	
 
-      <ul class="breadcrumb">
+<!--       <ul class="breadcrumb">
         <b>您的位置：</b>
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li><a href="certStep1.do">网上办证</a> <span class="divider">/</span></li>
         <li class="active">选择申办业务</li>
-      </ul>
+      </ul> -->
       
       
       <div class="row">
@@ -454,6 +454,7 @@
 	    		        </td>
 	    		      </tr>
 	    		    </table>
+	    		    <div style="color:blue;padding-bottom:10px;">注：若网上无法办理请来我处咨询办理。</div>
 	    		    </div>
 	    		    <br/>
 	    		  </div>

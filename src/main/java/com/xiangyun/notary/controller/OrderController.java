@@ -627,14 +627,7 @@ public class OrderController {
 				pageNum = 1;
 			}
 		}
-		session.setAttribute(Constants.ORDER_QUERY_PAGE_NUM, pageNum + ""); // Looks
-																			// like
-																			// no
-																			// need
-																			// to
-																			// save
-																			// page
-																			// num
+		session.setAttribute(Constants.ORDER_QUERY_PAGE_NUM, pageNum + ""); // Looks like no need to save page num
 
 		String readableId = request.getParameter("rId");
 		if (readableId != null) {
@@ -650,6 +643,14 @@ public class OrderController {
 			requestorName = (String) session
 					.getAttribute(Constants.ORDER_QUERY_REQ_NAME);
 		}
+		
+		String requestorMobile = request.getParameter("reqMobile");
+        if (requestorName != null) {
+            session.setAttribute(Constants.ORDER_QUERY_REQ_MOBILE, requestorMobile);
+        } else {
+            requestorName = (String) session
+                    .getAttribute(Constants.ORDER_QUERY_REQ_MOBILE);
+        }
 
 		Date startDate = null;
 		String startDateStr = request.getParameter("startDate");
@@ -667,7 +668,6 @@ public class OrderController {
 		} else {
 				startDate = (Date) session
 						.getAttribute(Constants.ORDER_QUERY_START_DATE);
-	
 		}
 
 		Date endDate = null;
@@ -701,10 +701,10 @@ public class OrderController {
 			userId = user.getId();
 		}
 
-		Long orderCount = orderService.getOrderCount(readableId, requestorName,
+		Long orderCount = orderService.getOrderCount(readableId, requestorName, requestorMobile, 
 				startDate, endDate, status, userId);
 		Long pageCount = (orderCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
-		List<Order> orders = orderService.findOrders(readableId, requestorName,
+		List<Order> orders = orderService.findOrders(readableId, requestorName, requestorMobile,
 				startDate, endDate, status, userId, pageNum);
 
 		ModelAndView mav = new ModelAndView("backend/orderQuery");

@@ -359,15 +359,15 @@
         "FYPJTJCDSFYJ": {
             "notaryFee": 100,
             "wordFeeGroup1": 60,
-            "fileFeeGroup1": 80,
+            "fileFeeGroup1": 200,
             "wordFeeGroup2": 100,
-            "fileFeeGroup2": 80,
+            "fileFeeGroup2": 200,
             "wordFeeGroup3": 120,
-            "fileFeeGroup3": 80,
+            "fileFeeGroup3": 200,
             "wordFeeGroup4": 200,
-            "fileFeeGroup4": 80,
+            "fileFeeGroup4": 200,
             "wordFeeGroup5": 400,
-            "fileFeeGroup5": 80
+            "fileFeeGroup5": 200
         },
         "WZHSMS": {
             "notaryFee": 200,

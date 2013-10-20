@@ -6,12 +6,12 @@
 <%@ include file="../header.jspf"%>
 <script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 
-<ul class="breadcrumb">
+<!-- <ul class="breadcrumb">
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>
 	<li class="active">订单查询</li>
 </ul>
-
+ -->
 <div class="row">
 	<div class="span2 well">
 		<ul class="nav nav-list">
@@ -105,16 +105,28 @@
 					<div class="control-group">
 						<label class="control-label" for="endDate">结束日期</label>
 						<div class="controls thin2">
-							<input class="thin" id="endDate" class="" type="text" 
+							<input class="thin" id="endDate" type="text" 
 									name="endDate" placeholder="请点击选择" readonly  value="<fmt:formatDate pattern="MM/dd/yyyy" value="${sessionScope['order_end_date']}" type="date"/>"/>
 						</div>
 					</div>
 				</div>				
-				<div class="span2 offset1">
+				<div class="span3">
+				    <div class="control-group">
+						<label class="control-label" for="reqMobile">手机号</label>
+						<div class="controls thin2">
+							<input class="thin" id="reqMobile" type="text" 
+									name="reqMobile" placeholder="手机号" value="${sessionScope['order_req_mobile']}"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			  <div class="span5 offset2">
 					<button class="btn btn-primary" type="submit">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
 					<button id="reset_query" class="btn btn-success">重置</button>
 				</div>
 			</div>
+			<br>
 			<div class="row">
 			  <p style="padding-left: 29px; padding-bottom: 5px;color:blue;">
 				<strong>查询结果：</strong>
@@ -203,6 +215,7 @@ function resetQueryParameters() {
 	$("#startDate").val("");
 	$("#endDate").val("");
 	$("#status").val("NULL");
+	$("#reqMobile").val("");
 	
 	return false;
 }

@@ -6,12 +6,12 @@
 <script src="js/jquery.form.js"></script>
 <script src="<c:url value="/datepicker/js/bootstrap-datepicker.js"/>"></script>
 <script src="<c:url value="/js/bootstrap-paginator.js"/>"></script>
-
+<!-- 
 <ul class="breadcrumb">
 	<b>您的位置：</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>	
 	<li class="active">工作日设定与查询</li>
-</ul>
+</ul> -->
 
 <div class="row">
 
