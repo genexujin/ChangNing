@@ -115,17 +115,8 @@
 
 							<!-- 个人中心      -->
 
-							<%
-								if (reqURL.indexOf("home.jsp") > 0) {
-							%>
-							<li class="clean"><a class="clean" href="orderQuery.do">个人中心</a></li>
-							<%
-								} else {
-							%>
-							<!-- li><a class="clean" href="orderQuery.do">个人中心</a></li-->
-							<%
-								}
-							%>
+							
+							<li class="clean"><a class="clean" href="orderQuery.do">个人中心</a></li>				
 
 
 

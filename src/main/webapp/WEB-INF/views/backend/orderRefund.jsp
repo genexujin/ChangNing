@@ -14,6 +14,8 @@
 <hr />
 
 <br>
+
+	<div class="workarea">
 <form class="form-horizontal" action="doRefund.do" method="POST">
 
 	<div class="bar-bg">
@@ -121,6 +123,8 @@
 	</div>
 
 </form>
+
+</div>
 
 <script>
 	function prepareRefund() {

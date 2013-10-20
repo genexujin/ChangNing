@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>
-
+<div class="workarea">
 		<div class="border">
 			<br />
 			<div class="row">
@@ -179,7 +179,7 @@
 		</div>
 
 	</div>
-
+</div>
 </div>
 
 <script type="text/javascript">

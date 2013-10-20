@@ -32,7 +32,7 @@
 		</ul>
 	</div>
 
-	
+	<div class="workarea">
 	<div class="span9" style="margin-left: 20px;">
 		<form class="form-horizontal" action="orderQuery.do" method="POST">
 		  <div class="bar-bg"  style="width:770px;">
@@ -200,7 +200,8 @@
 		  </div>
 
 		</form>
-	</div>
+	</div></div>
+	
 </div>
 
 <script>

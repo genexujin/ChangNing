@@ -32,7 +32,8 @@
 	    </div>
 	  </div>
 	  <br>
-	  	  
+	  <div class="border">
+	  <div class="workarea">
         <div class="row">
           <div class="span12 navbg2">
             <div class="row">
@@ -45,6 +46,8 @@
           </div>
         </div>
         <br>
+        </div>
+       </div>
 	  <form class="form-horizontal" action="certStep5.do" method="POST" id="payForm">
 	    <div class="workarea">
 		<div class="bar-bg">

@@ -132,7 +132,7 @@
 	</div>
 </div>
 
-<div>
+<div class="workarea">
 	<form id="login_user_form" name="login_user_form" action="/ChangNing/login.do" method="post" onsubmit="return checkLoginForm()">
 
 		<div class="border">

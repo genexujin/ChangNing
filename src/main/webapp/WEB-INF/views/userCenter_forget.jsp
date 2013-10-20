@@ -246,13 +246,12 @@
 	<li><a href="#">首页</a> <span class="divider">/</span></li>	
 	<li class="active">设置新密码</li>
 </ul> -->
-
 <div class="row">
 	<div class="span12">
 		<h2>设置新密码</h2>
 	</div>
 </div>
-<div>
+<div class="workarea">
 	<form onsubmit="return checkForgetForm()" id="forget_user_form" action="/ChangNing/forget.do" method="POST">
 		<div class="border">
 			<div class="row">

@@ -18,6 +18,7 @@
       </div>
 	  
 	  <br>
+	  	<div class="workarea">
 	  <form class="form-horizontal" action="doRequestExtraDocs.do" method="POST">
 	  
 		<div class="bar-bg">
@@ -71,5 +72,6 @@
         </div>
       
 	  </form>
+	  </div>
 	  
 <%@ include file="../footer.jspf"%>

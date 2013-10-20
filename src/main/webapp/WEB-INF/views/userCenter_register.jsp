@@ -309,7 +309,7 @@
 </div>
 
 
-
+<div class="workarea">
 <form id="reg_user_form" name="reg_user_form" method="post" onsubmit="return checkRegForm()" action="/ChangNing/register.do">
 	<div class="border">
 		<div class="row">
@@ -375,5 +375,6 @@
 	</div>
 
 </form>
+</div>
 
 <%@ include file="footer.jspf"%>

@@ -9,6 +9,8 @@
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li class="active">订单详情</li>
       </ul> -->
+<div class="workarea">
+     
       <div class="row" style="padding-top:5px;">
       <c:choose>
         <c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
@@ -27,6 +29,11 @@
 			  <c:choose>
         		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">	
 			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn btn-primary">要求客户附加费用</a>
+			   </c:when>
+			 </c:choose>
+			 <c:choose>
+        		<c:when test="${order.orderStatus == 'PAYING'}">
+			 	 	<a id="checkPayBill" class="btn btn-primary">人工确认收款</a>
 			   </c:when>
 			 </c:choose>
 			  <c:choose>
@@ -493,7 +500,8 @@
 	                    <td><fmt:formatNumber value="${payment.paymentTotal}" type="currency" pattern="￥#.00"/></td>
 	                    <td><c:out value="${payment.paymentDate}"></c:out></td>
 	                    <td><c:out value="${payment.orderTxnNo}"></c:out></td>
-	                    <td><c:out value="${payment.alipayTxnNo}"></c:out></td>
+	                    <td><c:out value="${payment.alipayTxnNo}"></c:out>
+	                    </td>
 	                    <td><c:out value="${payment.refundReason}"></c:out></td>
 	                    <td><fmt:formatNumber value="${payment.refundTotal}" type="currency" pattern="￥#.00"/></td>
 	                    <td><c:out value="${payment.refundDate}"></c:out></td>
@@ -543,10 +551,42 @@
 	      </div>
       </div>
       
-
+ </div>
+      
+<div id="myModal1" class="modal hide fade" style="margin-top:100px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<h3 id="myModalLabel">支付</h3>
+	</div>
+	<div class="modal-body">
+		<p>如果确认该款项已支付，请输入该笔交易的支付宝交易号：</p>
+		<label class="control-label" for="sendAddress">支付宝交易号</label>
+		<div class="controls">
+				    	<input id="aliTxnNo" name="aliTxnNo" type="text"></input>
+		</div>
+		<div class="row">
+			<div class="span5">
+				<button class="btn" id="success_btn" class="btn btn-primary">确认已支付</button>				
+			</div>
+		</div>
+	</div>
+</div>
       
       <script>
-      
+      $(document).ready(
+    	function(){
+	  	  	$("#checkPayBill").click(
+	  	  		function(){
+	  	  			$("#myModal1").modal("show");  	  			  	  			
+	  	  		});
+  	  		}
+  	  	);
+       
+  	  	
+  	  	$("#success_btn").click(
+		  		function(){
+		  			window.location="manualConfirmPayment.do?oId="+"${order.id}"+"&aliTxNo="+$("#aliTxnNo").val();
+		  		}	
+		);
     
       	function confirmCancel(oid){
       		var confirmed = window.confirm("您确认要撤销该订单吗？");

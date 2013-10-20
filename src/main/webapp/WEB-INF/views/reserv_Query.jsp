@@ -52,6 +52,7 @@ request.setAttribute("statusStr", statusStr);
           </div>
         </div>
       </div>
+<div class="workarea">
 	<div class="border">
 		<div class="row">
 
@@ -59,6 +60,7 @@ request.setAttribute("statusStr", statusStr);
 						<strong>请输入查询条件：</strong>
 					</p>
 				</div>
+
 		<form class="form-horizontal" action="/ChangNing/reserv_Query.do"
 			method="POST">
 			
@@ -190,7 +192,7 @@ request.setAttribute("statusStr", statusStr);
 	
 	</div>
 </div>
-
+</div>
 
 <div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
