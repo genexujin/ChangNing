@@ -32,22 +32,24 @@
 	    </div>
 	  </div>
 	  <br>
-	  <div class="border">
-	  <div class="workarea">
-        <div class="row">
+<div class="workarea">
+
+<div class="border">
+	    <div class="row">
           <div class="span12 navbg2">
             <div class="row">
               <div class="span9 offset1" style="padding-bottom:5px;">
-                <h5 style="color:blue;font-weight:bold;">受理告知：我处已收取您提交的公证申请，您付款并递交材料齐全后，我处会于五个工作日出具公证书。
-                声明书和身份证复印件公证必需要本人持上传的所有材料原件来领取，其他公证可以凭短信和上传的所有材料原件代领。如果提交申请后七日内未补充材料或者未付款，此公证申请将被撤销。</h5>
-                <input id="agreement"  type="checkbox" style="vertical-align: top;"> 已阅读受理告知
+                <h5 style="color:blue;font-weight:bold;">请在付款前确认您的订单信息、阅读并确认本页底部的受理告知！</h5>
+                
               </div>             
             </div>
           </div>
         </div>
-        <br>
         </div>
-       </div>
+ 
+    
+   
+	 
 	  <form class="form-horizontal" action="certStep5.do" method="POST" id="payForm">
 	    <div class="workarea">
 		<div class="bar-bg">
@@ -363,18 +365,44 @@
 	          </table>		    
 		    </div>
 		  </div>
+      </div>
+       <div class="bar-bg">
+        <div class="row">
+          <div class="span12 navbg2">
+            <div class="row">
+              <div class="span9">
+                <h5 id="section_bill">&nbsp;&nbsp;&nbsp;&nbsp;受理告知</h5>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>	      
-	    </div>
-	    
+	  
+	<div class="border">
+	    <div class="row">
+          <div class="span12 navbg2">
+            <div class="row">
+              <div class="span9 offset1" style="padding-bottom:5px;">
+                <h5 style="color:blue;font-weight:bold;">我处将收取您提交的公证申请，您付款并递交材料齐全后，我处会于五个工作日内出具公证书。
+                声明书和身份证复印件公证必需要本人持上传的所有材料原件来领取，其他公证可以凭短信和上传的所有材料原件代领。如果提交申请后七日内未补充材料或者未付款，此公证申请将被撤销。</h5>
+                <input id="agreement"  type="checkbox" style="vertical-align: top;"> <strong>已阅读受理告知</strong>
+              </div>             
+            </div>
+          </div>
+        </div>
+        </div>
+     </div>
+     </form>
+     </div>
+       
 	    <br/>
 	    <br/>
-	    
 	    <div class="row">
    		  <div class="span2 offset5">
    		    <button id="payBill" class="btn btn-large btn-block btn-info" disabled>确认并支付</button>
    		  </div>    		  
    	    </div>
-	  </form>
+	  
 	  
 <div id="myModal1" class="modal hide fade" style="margin-top:100px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
