@@ -267,13 +267,17 @@ public class OrderController {
 
 			// Create FeeItems for a form
 			FeeDef feeDef = (FeeDef) ctx.getAttribute(Constants.FEE_DEF);
-			form.addFeeItem(createGeneralFeeItem(order, form, formDef, feeDef));
+			FeeItem feeItem = getFeeItemByKeyFromForm(form, formKey);
+			if (feeItem == null) {
+			    form.addFeeItem(createGeneralFeeItem(order, form, formDef, feeDef));
+			}
 
 			Collection<String> ywKeys = (Collection<String>) session
 					.getAttribute(Constants.SESSION_SELECTED_YWXF);
-			if (ywKeys.contains(formDef.getFormKey()
-					+ Constants.YWXF_KEY_SUFFIX)) {
-				form.addFeeItem(createYWXFFeeItem(order, formDef, feeDef));
+			if (ywKeys.contains(formDef.getFormKey() + Constants.YWXF_KEY_SUFFIX)) {
+			    FeeItem ywFeeItem = getFeeItemByKeyFromForm(form, formKey + Constants.YWXF_KEY_SUFFIX);
+			    if (ywFeeItem == null)
+			        form.addFeeItem(createYWXFFeeItem(order, formDef, feeDef));
 			}
 
 			order.addForm(form);
@@ -1670,6 +1674,16 @@ public class OrderController {
 
 		return null;
 	}
+	
+	private FeeItem getFeeItemByKeyFromForm(Form form, String itemKey) {
+        Set<FeeItem> items = form.getFeeItems();
+        for (FeeItem item : items) {
+            if (itemKey.equals(item.getFeeKey()))
+                return item;
+        }
+
+        return null;
+    }
 
 	// private RelativeInfo getRelativeInfo(FormItem item, RelativeType type,
 	// String name) {
