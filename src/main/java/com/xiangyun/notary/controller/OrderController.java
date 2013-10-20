@@ -724,7 +724,7 @@ public class OrderController {
 						* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE
 						: pageCount);
 		mav.addObject("left", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
-				* Constants.PAGING_BAR_SIZE - Constants.PAGING_BAR_SIZE - 1));
+				* Constants.PAGING_BAR_SIZE - Constants.PAGING_BAR_SIZE + 1));
 		mav.addObject("right", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
 				* Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE + 1));
 		mav.addObject("orders", orders);

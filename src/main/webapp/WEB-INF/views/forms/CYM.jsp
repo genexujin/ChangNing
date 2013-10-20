@@ -74,7 +74,7 @@
 		    	
 		      $("input[name='CYM_CYM']").change(validateCYM_CYM);
 		      
-		      $("#CYM_CYMPY").change(validateCYM_CYMPY);
+		      $("#CYM_CYMPY").keyup(validateCYM_CYMPY);
 		    	
 		      $("input[name='CYM_SHHJ']").change(validateCYM_SHHJ);
 		  }
