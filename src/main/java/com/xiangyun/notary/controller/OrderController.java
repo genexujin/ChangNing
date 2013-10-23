@@ -206,6 +206,7 @@ public class OrderController {
 
 		boolean needSpecialNote = false;
 		boolean needTY = true;
+		boolean noNeedSFZ = false;
 		for (FormDef formDef : selectedForms) {
 			String formKey = formDef.getFormKey();
 			// A special requirement about add a note for 出生公证 and 出生证复印件公证
@@ -227,6 +228,10 @@ public class OrderController {
 					|| formKey.equals("CSZFYJ")) {
 				needTY = false;
 			}
+			
+			//JSZFYJ不需要身份证
+			if (formKey.equals("JSZFYJ")) 
+			    noNeedSFZ = true;
 
 			Form form = getFormByKeyFromOrder(order, formKey);
 			if (form == null) { // A new form!
@@ -331,6 +336,7 @@ public class OrderController {
 		if (needTY) {
 			FormDef ty = formDefs.get("TY");
 			for (FormDocItemDef docDef : ty.getDocs()) {
+			    if (noNeedSFZ && docDef.getDocKey().equals("SFZ")) continue;
 				//
 				// String strKey=docDef.getDocKey();
 				// if(HKBdoc&&strKey.equals("HKB")){
@@ -389,7 +395,7 @@ public class OrderController {
 
 		Order order = (Order) request.getSession(false).getAttribute(
 				Constants.CURRENT_ORDER);
-		if (order == null) {
+		if (order == null || order.getId() == null) { //Access the link directly.
 			ModelAndView mav = new ModelAndView("certStep1");
 			mav.addObject("title", "选择申办业务");
 			return mav;
@@ -442,7 +448,7 @@ public class OrderController {
 
 		HttpSession session = request.getSession(false);
 		Order order = (Order) session.getAttribute(Constants.CURRENT_ORDER);
-		if (order == null) {
+		if (order == null || order.getId() == null) {
 			ModelAndView mav = new ModelAndView("certStep1");
 			mav.addObject("title", "选择申办业务");
 			return mav;
@@ -486,7 +492,7 @@ public class OrderController {
 
 		HttpSession session = request.getSession(false);
 		Order order = (Order) session.getAttribute(Constants.CURRENT_ORDER);
-		if (order == null) {
+		if (order == null || order.getId() == null) {
 			ModelAndView mav = new ModelAndView("certStep1");
 			mav.addObject("title", "选择申办业务");
 			return mav;
