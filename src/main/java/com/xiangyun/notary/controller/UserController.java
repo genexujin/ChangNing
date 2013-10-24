@@ -161,9 +161,9 @@ public class UserController {
 	 */
 	public int creatCode() {
 		Random random = new Random();
-		int smsCode = random.nextInt(999999);
-		if (smsCode > 100000)
-			;
+		int smsCode = random.nextInt(899999)+100000;
+
+		
 		return smsCode;
 	}
 
@@ -179,7 +179,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
-		if (!request.getParameter("reg_user_smscode").equals(smscodeString)) {
+		if (StringUtils.isEmpty(request.getParameter("reg_user_smscode"))&&(!request.getParameter("reg_user_smscode").equals(smscodeString))) {
 			out.println(0);
 		} else {
 			out.println(1);
@@ -199,7 +199,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
-		if (!request.getParameter("modify_user_smscode").equals(smscodeString)) {
+		if ((StringUtils.isEmpty(request.getParameter("modify_user_smscode")))&&(!request.getParameter("modify_user_smscode").equals(smscodeString))) {
 			out.println(0);
 		} else {
 			out.println(1);
@@ -218,7 +218,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
-		if (!request.getParameter("forget_user_smscode").equals(smscodeString)) {
+		if ((StringUtils.isEmpty(request.getParameter("forget_user_smscode")))&&(!request.getParameter("forget_user_smscode").equals(smscodeString))) {
 			out.println(0);
 		} else {
 			out.println(1);
