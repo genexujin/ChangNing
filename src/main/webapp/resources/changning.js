@@ -236,14 +236,17 @@ function needTranslation() {
 
 function onNotaryKeyChange(event) {
 	//First check if country has been selected.
-	if ($("#dest").val() == 'NULL') {
-		event.target.checked = false;
-		alert("请先选择前往国家或地区");
-	} else {
+//	if ($("#dest").val() == 'NULL') {
+//		event.target.checked = false;
+//		alert("请先选择前往国家或地区");
+//	} else {
     	//Show sel_region if it is hidden
     	if ($("#sel_region").hasClass("hide") ) {
     		$("#sel_region").removeClass("hide");
-    		enableGoToStep2Button();
+    		if ($("#dest").val() != 'NULL') {
+    			enableGoToStep2Button();
+    		}
+    		
     	}
     	
     	var kValue = event.target.value;
@@ -263,7 +266,7 @@ function onNotaryKeyChange(event) {
     		$("#sel_region").addClass("hide");
     		disableGoToStep2Button();
     	}
-	}
+//	}
 
 }
 
