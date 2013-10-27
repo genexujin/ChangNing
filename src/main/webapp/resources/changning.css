@@ -1,9 +1,12 @@
 html * {
-	font-family: 'Microsoft YaHei', Arial, sans-serif !important;
+	font-family: 'STKaiti', Arial, sans-serif !important;
 }
 
 body {
-	background: #F0F4F7;
+	/* background: #F0F4F7;*/
+	
+	background-image: url(polaroid.png);
+  	background-repeat: repeat;
 }
 
 .navbar .nav li a {
@@ -131,7 +134,8 @@ select {
 }
 
 .workarea {
-	background-color: #fff;
+	/* background-color: #fff; */
+	background: #F0F4F7;
 }
 
 h2 {
