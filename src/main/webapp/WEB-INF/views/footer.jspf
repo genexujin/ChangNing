@@ -1,35 +1,86 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ page import="java.net.*" %>
 
 <br>
 <br>
-<br>
+<hr>
+</div>
+</div>
 
-<div class="row">
+
+<div class="row footer">
 	<div class="span9">
 		<p>
-			<span>&nbsp;&nbsp;投诉监督：（+86）021 &nbsp;62592877
-			</span>
+			<span>&nbsp;&nbsp;投诉监督：（+86）021 &nbsp;62592877 <a id="moveTop" name="moveTop" style="padding-left:20px;">沪ICP备10014575号</a></span>
 		</p>
-		<p>
-				&nbsp;&nbsp;地址：上海市长宁路1055号  &nbsp;&nbsp;邮编：200050
-				&nbsp;&nbsp;电话：021-62126364
-				&nbsp;&nbsp;email：cngzc@6408.com.cn</p>
-		<p>
-			<span>&nbsp;&nbsp;Copyright &copy; 2013 SHANGHAI CHANGNING
-				NOTARY PUBLIC OFFICE All Right Reserved</span>
-		</p>
-	</div>
-	<div class="span3">
-		<p>
-			<a id="moveTop" name="moveTop">沪ICP备10014575号</a>
-		</p>
-	</div>
+		<p>&nbsp;&nbsp;地址：上海市长宁路1055号 &nbsp;&nbsp;邮编：200050
+			&nbsp;&nbsp;电话：021-62126364 &nbsp;&nbsp;email：cngzc@6408.com.cn</p>
+			
+		
+
+	</div>	
 
 </div>
 <br>
 
+
+
+<c:choose>
+	<c:when test="${sessionScope['LOGIN_USER']!=null}">
+	
+	
+	<c:set var="userName" value="${sessionScope['LOGIN_USER'].name}" />
+<%
+  String userName = (String)pageContext.getAttribute("userName");
+  String encodedName;
+  //String encodedNameIE = new String(userName.getBytes("UTF-8"),"GB2312"); 
+  encodedName = URLEncoder.encode(userName,"UTF-8");
+  
+  //System.out.println(encodedNameIE);
+  
+  pageContext.setAttribute("encodedName",encodedName);
+%>
+
+
+
+<div style="position:fixed;z-index:999;top:45%;right:0;">
+<!-- mibew button --><a id="supportLink" href="#" target="_blank" ><img src="http://localhost/mibew/b.php?i=mibew&amp;amp;lang=zh-cn" border="0" alt=""/></a><!-- / mibew button -->
+
+</div>
+
+<script>
+	//alert('${encodedName}');
+	$("#supportLink").click(
+			function() {
+				if(navigator.userAgent.toLowerCase().indexOf('opera') != -1 && window.event.preventDefault){
+					window.event.preventDefault();
+				}
+				var user_name;
+				if(navigator.appName.indexOf('Microsoft')!=-1)
+					user_name = '${encodedName}';
+				else
+					user_name = '${userName}';
+				
+			    var mobile = ${sessionScope['LOGIN_USER'].mobile};
+
+				this.newWindow = window.open("http://localhost/mibew/client.php?locale=zh-cn&url="+escape(document.location.href)+"&referrer="+escape(mobile)+"&name="+escape(user_name), 
+						'mibew', 'toolbar=0,scrollbars=0,location=0,status=1,menubar=0,width=640,height=480,resizable=1');
+				this.newWindow.focus();
+				this.newWindow.opener=window;
+				
+				return false;
+			}
+	);
+	
+	
+	
+		
+</script>
+	 
+	</c:when>
+</c:choose>
 <!-- <div id = "olhd_anchor"></div> 
 <c:choose>
 	<c:when test="${sessionScope['LOGIN_USER']!=null}">

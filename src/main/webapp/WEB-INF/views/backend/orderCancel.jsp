@@ -11,7 +11,11 @@
 	<li class="active">订单撤销</li>
 </ul> -->
 
-<hr />
+ <div class="row">
+        <div class="span12 content_title">
+          <h2>取消订单</h2>
+        </div>
+      </div>
 
 <br>
 <div class="workarea">

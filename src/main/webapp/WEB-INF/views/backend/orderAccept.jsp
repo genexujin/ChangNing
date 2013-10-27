@@ -14,8 +14,8 @@
 <hr />
 
 <div class="row">
-	<div class="span12">
-		<h2>网上办证</h2>
+	<div class="span12 content_title">
+		<h2>订单受理</h2>
 	</div>
 </div>
 

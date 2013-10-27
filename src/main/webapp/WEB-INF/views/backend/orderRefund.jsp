@@ -11,7 +11,11 @@
 	<li class="active">退款</li>
 </ul> -->
 
-<hr />
+ <div class="row">
+        <div class="span12 content_title">
+          <h2>退款</h2>
+        </div>
+      </div>
 
 <br>
 

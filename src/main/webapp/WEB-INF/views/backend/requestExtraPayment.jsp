@@ -12,8 +12,8 @@
       <hr/>
       
       <div class="row">
-        <div class="span12">
-          <h2>附加费用</h2>
+        <div class="span12 content_title">
+          <h2>要求附加费用</h2>
         </div>
       </div>
 	  

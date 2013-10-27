@@ -127,7 +127,7 @@
 </ul> -->
 
 <div class="row">
-	<div class="span12">
+	<div class="span12 content_title">
 		<h2>用户登录</h2>
 	</div>
 </div>

@@ -12,7 +12,11 @@
 	<li><a href="#">首页</a> <span class="divider">/</span></li>	
 	<li class="active">工作日设定与查询</li>
 </ul> -->
-
+ <div class="row">
+        <div class="span12 content_title">
+          <h2>个人中心</h2>
+        </div>
+      </div>
 <div class="row">
 
 	<div class="span2 well">

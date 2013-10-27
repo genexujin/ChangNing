@@ -12,8 +12,8 @@
       <hr/>
       
       <div class="row">
-        <div class="span12">
-          <h2>补充材料</h2>
+        <div class="span12 content_title">
+          <h2>要求补充材料</h2>
         </div>
       </div>
 	  

@@ -13,7 +13,7 @@
       </ul> -->
       
       <div class="row">
-        <div class="span12">
+        <div class="span12 content_title">
           <h2>网上办证</h2>
         </div>
       </div>

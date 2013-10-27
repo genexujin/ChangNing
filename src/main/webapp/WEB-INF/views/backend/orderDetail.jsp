@@ -9,6 +9,11 @@
         <li><a href="#">首页</a> <span class="divider">/</span></li>
         <li class="active">订单详情</li>
       </ul> -->
+ <div class="row">
+        <div class="span12 content_title">
+          <h2>订单详情</h2>
+        </div>
+</div>
 <div class="workarea">
      
       <div class="row" style="padding-top:5px;">

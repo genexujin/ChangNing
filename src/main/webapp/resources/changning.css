@@ -1,12 +1,223 @@
 html * {
-	font-family: 'STKaiti', Arial, sans-serif !important;
+	font-family: 'Microsoft YaHei', Arial, sans-serif !important;
 }
 
 body {
-	/* background: #F0F4F7;*/
+	background: url(background.gif) top center repeat-x #CFDEEA;
+	color: #282828;
+	padding: 16px 0;
+	margin: 0px;
+	/*background-image: url(polaroid.png);
+  	background-repeat: repeat;*/
+}
+
+a {
+	color: #2E9FED;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #1471B1;
+}
+
+#welcome h1 {
+	padding: 5px 0 0 20px;
+	margin: 0px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+.container {
+	position: relative;
+	width: 970px;
+	margin: 0 auto;
+	padding: 0px;
+	text-align: left;
+}
+
+.head {
+	width: 970px;
+	height: 172px;
+	background: url(head.jpg) no-repeat;
+}
+
+
+#head h1 a {
+	text-indent: -2000px;
+	width: 154px;
+	height: 59px;
+	display: block;
+	background: url(logo.jpg) no-repeat;
+}
+
+.top_head_banner {
+	float: right;
+	width: 200px;
+	height: 120px;
+	padding-right:3px;
+	background: url(top_head.gif) no-repeat right;
+	background-position: -12px 12px;
+}
+
+#menu {
+	position: absolute;
+	width: 450px;
+	top: 155px;
+	left: 35px;
+	margin: 0px;
+	padding: 0px;
+	z-index: 100;
 	
-	background-image: url(polaroid.png);
-  	background-repeat: repeat;
+}
+
+#menu li {
+	list-style-type: none;
+	float: left;
+	margin: 0 8px;
+	height: 22px;
+	font-size:110%;
+}
+
+#menu li a {
+	padding: 0 0 7px 0;
+	height: 22px;
+	color: #8A8A8A;
+}
+
+#menu li a:hover {
+	color: #000033;
+}
+
+#menu .current {
+	color: #000033;
+	font-weight: bold;
+}
+
+.area {
+	width: 970px;
+	height: 54px;
+	background: url(area.jpg);
+}
+
+.main {
+	background: url(bg_mainbig.jpg) repeat-y;
+	width: 972px;
+	height: auto;
+}
+
+#content_left {
+	float: left;
+	padding: 0 30px 30px 30px;
+	width: 445px;
+	height: auto;
+}
+
+#content_right {
+	float: left;
+	padding: 5px;
+	width: 200px;
+	height: auto;
+}
+
+.content_title {
+	background: url(center_banner.jpg) no-repeat;
+	padding-left:10px;
+}
+
+.content_title h2{
+	color:white;
+}
+
+.item_box {
+	width: auto;
+	height: auto;
+	padding: 10px 0 5px 0;
+	border-bottom: 1px #666666 dashed;
+}
+
+.spacer {
+	width: auto;
+	height: 2px;
+	clear: both;
+	padding-bottom: 2px;
+}
+/*---------contact----------*/
+#form {
+	padding: 0px;
+	margin: 0px;
+}
+
+#fields label {
+	width: 260px;
+	display: block;
+	padding: 0px;
+}
+
+#fields input {
+	border: 1px solid #C8D2D9;
+	margin: 0 0 3px 0;
+	width: 260px;
+}
+
+#fields textarea {
+	border: 1px solid #C8D2D9;
+	margin: 0 0 3px 0;
+	width: 260px;
+	height: 63px;
+}
+
+#send input {
+	width: 64px;
+	height: 20px;
+	margin: 0px;
+}
+
+ul {
+	margin: 0 0 20px 0;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.contact_info {
+	float: left;
+	padding: 15px;
+}
+
+/*work------------*/
+.project_details {
+	float: left;
+	width: 200px;
+	color: #0099FF;
+	padding: 10px 0 0 10px;
+}
+
+.footer {
+	font-size: 10px;
+	color: #000033;
+	background: url(footer.png) no-repeat;
+	background-position: 0px 0px;
+	padding-top: 10px;
+	width: 970px;
+	height: 85px;
+}
+
+.footer a {
+	background: none;
+	padding: 0px;
+}
+
+#madeby {
+	width: 200px;
+	height: 85px;
+	float: right;
+	padding-right: 30px;
+	text-align: center;
+}
+
+#madeby a {
+	text-decoration: none;
+	color: #666666;
 }
 
 .navbar .nav li a {
@@ -220,7 +431,7 @@ td.workday {
 	padding: 5px;
 	background-color: #80CC80;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 	cursor: pointer;
 }
 
@@ -230,7 +441,7 @@ td.selected_workday {
 	padding: 5px;
 	background-color: #FFFF70;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 	cursor: pointer;
 }
 
@@ -244,8 +455,7 @@ td.fullworkday {
 	padding: 5px;
 	background-color: #FF8484;
 	text-align: center;
-	vertical-align:middle;
-	
+	vertical-align: middle;
 }
 
 td.fullworkday a {
@@ -258,7 +468,7 @@ td.nonworkday {
 	padding: 5px;
 	background-color: #ffffff;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
 td.nonworkday a {
@@ -274,22 +484,22 @@ td.wdheader {
 }
 
 td.segmentfull {
-	height: 10px;	
+	height: 10px;
 	text-align: center;
 	background-color: #FF8484;
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
 td.segment {
-	height: 10px;	
-	text-align: center;	
+	height: 10px;
 	text-align: center;
-	vertical-align:middle;	
+	text-align: center;
+	vertical-align: middle;
 	cursor: pointer;
 }
 
 td.segmenthd {
-	height: 10px;	
+	height: 10px;
 	text-align: center;
 	background-color: #E5E5E5;
 }
@@ -301,4 +511,3 @@ td.segmenthd {
 div.special select {
 	width: 80px;
 }
-

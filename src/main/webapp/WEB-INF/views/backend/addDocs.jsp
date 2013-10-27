@@ -13,7 +13,11 @@
         <li class="active">补充材料</li>
       </ul> -->
       
-      <hr/>
+ <div class="row">
+        <div class="span12 content_title">
+          <h2>补充材料</h2>
+        </div>
+      </div>
       
 <div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;">

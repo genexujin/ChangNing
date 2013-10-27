@@ -303,7 +303,7 @@
 <hr />
 
 <div class="row">
-	<div class="span12">
+	<div class="span12 content_title">
 		<h2>用户注册</h2>
 	</div>
 </div>

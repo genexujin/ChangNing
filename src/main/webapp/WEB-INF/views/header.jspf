@@ -4,15 +4,15 @@
 	pageEncoding="utf-8"%>
 <html>
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link href="<c:url value="/uploadify/uploadify.css" />" rel="stylesheet"/>
+<link href="<c:url value="/uploadify/uploadify.css" />" rel="stylesheet" />
 <link href="<c:url value="/bootstrap/css/bootstrap.min.css" />"
-	rel="stylesheet"/>
+	rel="stylesheet" />
 <link href="<c:url value="/datepicker/css/datepicker.css" />"
-	rel="stylesheet"/>
-<link href="<c:url value="/resources/changning.css" />" rel="stylesheet"/>
+	rel="stylesheet" />
+<link href="<c:url value="/resources/changning.css" />" rel="stylesheet" />
 <link href="<c:url value="Jcrop-0.9.12/css/jquery.Jcrop.css" />"
 	type="text/css" rel="stylesheet" />
 
@@ -23,8 +23,7 @@
 <title>${title}</title>
 
 <script type="text/javascript">
-  //window.onbeforeunload = function() { return "You work will be lost."; };
-  
+	//window.onbeforeunload = function() { return "You work will be lost."; };
 </script>
 
 </head>
@@ -32,98 +31,60 @@
 
 
 	<div class="container">
-	
-		<div class="row">
-			<div class="span6">
-				<h1>
-					<img src="<c:url value="/resources/logo.jpg"/>" alt="Logo"/>上海市长宁公证处网上服务大厅
-				</h1>
-			</div>
 
-			<div class="span5 pull-right small-pt">
-				<div>
-					<p style="margin-top: 10px;">
-					
-						 <span
-							class="text-font"> <c:choose>
-								<c:when test="${sessionScope['LOGIN_USER']==null}">
-									<a href="enterLogin.do">[登录]</a>&nbsp;
-						  </c:when>
-						 <c:otherwise>
-								<span class="text-font text-b"> 当前用户： </span>
-								<span class="text-font text-r">${sessionScope['LOGIN_USER'].name}</span>							
-								<span class="text-font text-b" style="padding-left:10px;"> 登录身份： </span>
-								<span class="text-font text-r"> <c:out value="${sessionScope['LOGIN_USER'].staff?'公证员':(sessionScope['LOGIN_USER'].admin?'管理员':'用户')}"/> </span>
-								<a href="logout.do" style="padding-left:10px;">[登出]</a>
-								</c:otherwise>
-							</c:choose>
-						</span> <!-- span class="text-font">|&nbsp; <a href="#">联系我们&nbsp;</a>|&nbsp;<a
+		<div class="row head">
+			 <div class="row">
+                        <div class="span6"  style="padding-left:30px;padding-top:30px;">
+                                <h1>
+                                        <img src="<c:url value="/resources/logo.jpg"/>" alt="Logo"/>上海市长宁公证处网上服务大厅
+                                </h1>
+                        </div>
+                        
+                        <div style="padding-left:775px;padding-top:12px;">
+                        		<img src="<c:url value="/resources/top_head.gif"/>" alt="Logo"/>
+                        </div>
+             </div>
+			<div class="row">
+			  
+				<ul id="menu">
+					<li><a class="current"
+						href="http://www.6408.com.cn/CNservice%20hall/intohall.asp"
+						title="">首页</a></li>
+					<li><a href="certStep1.do" title="">网上办证</a></li>
+					<li><a href="enterReserv.do" title="">网上预约</a></li>
+					<li><a href="orderQuery.do" title="">个人中心</a></li>
+				</ul>
+				<div class="span4 pull-right small-pt" style="text-align:center;">
+					<div>
+						<p style="margin-top: 10px;">
+
+							<span class="text-font"> <c:choose>
+									<c:when test="${sessionScope['LOGIN_USER']==null}">
+										<a href="enterLogin.do">[登录]</a>&nbsp;
+						  			</c:when>
+									<c:otherwise>
+										<span class="text-font text-b"> 当前用户： </span>
+										<span class="text-font text-r">${sessionScope['LOGIN_USER'].name}</span>
+										<span class="text-font text-b" style="padding-left: 10px;">
+											登录身份： </span>
+										<span class="text-font text-r"> <c:out
+												value="${sessionScope['LOGIN_USER'].staff?'公证员':(sessionScope['LOGIN_USER'].admin?'管理员':'用户')}" />
+										</span>
+										<a href="logout.do" style="padding-left: 10px;">[登出]</a>
+									</c:otherwise>
+								</c:choose>
+							</span>
+							<!-- span class="text-font">|&nbsp; <a href="#">联系我们&nbsp;</a>|&nbsp;<a
 							href="#">常见问题</a>
 						</span-->
-					</p>
-				</div>
-			</div>
-		</div>
-		
-
-		<div class="masthead">
-			<div class="navbar">
-				<div class="navbar-inner navbg3">
-					<div class="container">
-						<ul class="nav">
-							<%
-								String reqURL = request.getRequestURL().toString();
-
-								if (reqURL.indexOf("home.jsp") > 0) {
-							%>
-							<!-- 首页            -->
-							<li class="active"><a class="clean" href="#">首页</a></li>
-							<%
-								} else {
-							%>
-							<li><a class="clean" href="http://www.6408.com.cn/CNservice%20hall/intohall.asp">首页</a></li>
-							<%
-								}
-							%>
-							<!-- 主流程        -->
-							<%
-								if (reqURL.indexOf("home.jsp") > 0) {
-							%>
-							<li class="clean"><a class="clean" href="certStep1.do">网上办证</a></li>
-							
-							<%
-								} else {
-							%>
-							<!-- li><a class="clean" href="certStep1.do">网上办证</a></li-->
-							<%
-								}
-							%>
-
-
-							<!-- 预约流程      -->
-							<%
-								if (reqURL.indexOf("home.jsp") > 0) {
-							%>
-							<li class="clean"><a class="clean" href="enterReserv.do">网上预约</a></li>
-							<%
-								} else {
-							%>
-							<!-- li><a class="clean" href="enterReserv.do">网上预约</a></li-->
-							<%
-								}
-							%>
-
-							<!-- 个人中心      -->
-
-							
-							<li class="clean"><a class="clean" href="orderQuery.do">个人中心</a></li>				
-
-
-
-						</ul>
+						</p>
 					</div>
 				</div>
 			</div>
+
+			
+
 		</div>
-		
-		
+		<div class="row area"></div>
+		<div class="row main" style="margin-left:-21px;">
+		 <div style="margin-left:17px;margin-right:17px;background: #F0F4F7;">

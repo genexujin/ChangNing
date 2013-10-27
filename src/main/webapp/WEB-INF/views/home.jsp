@@ -86,7 +86,8 @@
 
 
 </style>
-<hr/>
+
+<!-- 
 <div id="myCarousel" class="carousel slide">
 	<div class="carousel-inner">
 		<div class="item active">
@@ -102,13 +103,9 @@
 		</div>
 		
 	</div>
-	<!-- a class="left carousel-control"
-		href="http://getbootstrap.com/2.3.2/examples/carousel.html#myCarousel"
-		data-slide="prev">‹</a> <a class="right carousel-control"
-		href="http://getbootstrap.com/2.3.2/examples/carousel.html#myCarousel"
-		data-slide="next">›</a-->
+	
 </div>
-<!-- /.carousel -->
+
 
 <div class="row">
 	<div class="span4">
@@ -119,7 +116,7 @@
 				href="certStep1.do">进入网上办证 »</a>
 		</p>
 	</div>
-	<!-- /.span4 -->
+
 	<div class="span4">
 		<h2>现场办证预约</h2>
 		<p>在线预约到场办证。</p>
@@ -128,7 +125,7 @@
 				href="enterReserv.do">进入在线预约»</a>
 		</p>
 	</div>
-	<!-- /.span4 -->
+	
 	<div class="span4">
 		<h2>在线咨询</h2>
 		<p>在线咨询业务</p>
@@ -137,10 +134,11 @@
 				href="#" onclick="window.open('http://59064.fy.kf.qycn.com/vclient/chat/?websiteid=59064&clerkid=&clienturl=http%3A%2F%2Fwww.6408.com.cn%2F&originPageTitle='+encodeURIComponent(window.document.title)+'&originPageUrl='+encodeURIComponent(document.referrer), '_blank', 'toolbar=no,scrollbars=yes,menubar=no,status=no,resizable=yes,location=no,width=650,height=530,top=100,left=200')">打开咨询窗口 »</a>
 		</p>
 	</div>
-	<!-- /.span4 -->
+	
 </div>
-<!-- /.row -->
 
+ -->
+<!-- /.row -->
 
 
 

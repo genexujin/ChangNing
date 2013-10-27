@@ -11,7 +11,7 @@
 </ul> -->
 
 <div class="row">
-	<div class="span12">
+	<div class="span12 content_title">
 		<h2>预约申请</h2>
 	</div>
 </div>

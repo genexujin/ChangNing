@@ -13,6 +13,11 @@
 </ul>
  -->
 <div class="row">
+        <div class="span12 content_title">
+          <h2>个人中心</h2>
+        </div>
+</div>
+<div class="row">
 	<div class="span2 well">
 		<ul class="nav nav-list">
 			<li><h5>我的菜单</h5>

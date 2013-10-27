@@ -247,7 +247,7 @@
 	<li class="active">设置新密码</li>
 </ul> -->
 <div class="row">
-	<div class="span12">
+	<div class="span12 content_title">
 		<h2>设置新密码</h2>
 	</div>
 </div>
