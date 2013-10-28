@@ -75,7 +75,7 @@
 	);
 	
 	
-	
+	$('.modal').appendTo($('body'));
 		
 </script>
 	 
