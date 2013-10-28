@@ -42,6 +42,7 @@ public class AuthenticationFilter implements Filter {
 				|| servletPath.indexOf("/enterForget") >= 0
 				|| servletPath.indexOf("/check") >= 0
 				|| servletPath.indexOf("/register") >= 0
+				|| servletPath.indexOf("/forget") >= 0
 				|| servletPath.indexOf("/login") >= 0
 				|| servletPath.indexOf("/onPaymentReturn.do") >= 0
 				|| servletPath.indexOf("/onPaymentNotify.do") >= 0

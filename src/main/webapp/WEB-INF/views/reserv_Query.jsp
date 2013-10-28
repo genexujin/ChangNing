@@ -25,8 +25,8 @@ request.setAttribute("statusStr", statusStr);
           <h2>个人中心</h2>
         </div>
       </div>
-<div class="row">
-	<div class="span2 well">
+<div class="row"> 
+	<div class="span2 well" style="margin-left:22px;width:154px;">
 		<ul class="nav nav-list">
 			<li><h5>我的菜单</h5>
 			<li><a href="orderQuery.do">办证订单管理</a></li>
@@ -44,10 +44,10 @@ request.setAttribute("statusStr", statusStr);
 			</c:choose>
 		</ul>
 	</div>
-   <div class=span9 style="margin-left:10px;width:780px;">
-	<div class="bar-bg">
+   <div class="span9" style="margin-left: 6px;width:770px;">
+	<div class="bar-bg" >
         <div class="row">
-          <div class="span9 navbg2" style="width:780px;">
+          <div class="span9 navbg2" >
             <div class="row">
               <div class="span9">
                 <h5>&nbsp;&nbsp;&nbsp;&nbsp;预约单查询</h5>
@@ -65,7 +65,7 @@ request.setAttribute("statusStr", statusStr);
 					</p>
 				</div>
 
-		<form class="form-horizontal" action="/ChangNing/reserv_Query.do"
+		<form class="form-horizontal" action="reserv_Query.do"
 			method="POST">
 			
 			 <table class="table td-no-border">

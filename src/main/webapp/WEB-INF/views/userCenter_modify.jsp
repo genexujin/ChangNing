@@ -201,7 +201,7 @@
       </div>
 <div class="row">
 
-	<div class="span2 well">
+	<div class="span2 well" style="margin-left:22px;width:154px;">
 		<ul class="nav nav-list">
 			<li><h5>我的菜单</h5>
 			<li><a href="orderQuery.do">办证订单管理</a></li>
@@ -220,7 +220,7 @@
 		</ul>
 	</div>
     
-	<div class="span9" style="width: 770px; margin-left: 20px;">
+	<div class="span9" style="width: 770px; margin-left: 6px;">
 	<div class="bar-bg">
         <div class="row">
           <div class="span12 navbg2">

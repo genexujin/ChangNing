@@ -143,7 +143,8 @@ public class VerifyCodeServlet extends HttpServlet {
         }      
         // 将四位的验证码保存到Session中。      
         HttpSession session = req.getSession();      
-        session.setAttribute("validateCode", String.valueOf(numOperate));      
+        session.setAttribute("validateCode", String.valueOf(numOperate));
+        System.out.println("validate Code saved in session: " + String.valueOf(numOperate));
      
         // 禁止图像缓存。      
         resp.setHeader("Pragma", "no-cache");      

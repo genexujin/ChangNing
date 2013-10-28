@@ -17,8 +17,8 @@
           <h2>个人中心</h2>
         </div>
 </div>
-<div class="row">
-	<div class="span2 well">
+<div class="row" >
+	<div class="span2 well" style="margin-left:22px;width:154px;">
 		<ul class="nav nav-list">
 			<li><h5>我的菜单</h5>
 			<li class="active"><a href="orderQuery.do">办证订单管理</a></li>
@@ -38,7 +38,7 @@
 	</div>
 
 	<div class="workarea">
-	<div class="span9" style="margin-left: 20px;">
+	<div class="span9" style="margin-left:6px;">
 		<form class="form-horizontal" action="orderQuery.do" method="POST">
 		  <div class="bar-bg"  style="width:770px;">
 		        <div class="row">

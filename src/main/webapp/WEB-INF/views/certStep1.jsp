@@ -206,7 +206,7 @@
 	    		        </td>
 	    		        <td>
 	    		        <input type="checkbox" value="FCZFYJ" name="notory_key"> 房产证复印件
-	    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('txz.png','退休证复印件 公证书样本')"></img>
+	    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('fdcz1.jpg','房产证复印件 公证书样本','fdcz2.jpg','fdcz3.jpg','fdcz4.jpg','fdcz5.jpg','fdcz9.jpg','fdcz.png')"></img>
 	    		        </td>
 	    		        <td>
 	    		        <input type="checkbox" value="GKCJFYJ" name="notory_key"> 高考成绩复印件
@@ -230,7 +230,7 @@
 	    		      </tr>
 	    		      <tr>
 	    		        <td><input type="checkbox" value="TX" name="notory_key"> 离休/退休/退职
-	    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('txlx.png','法院判决/调解/裁定书复印件 公证书样本')"></img>
+	    		        	<img src="resources/info.png" style="cursor: pointer; display: inline;" onclick="showImage('txlx.png','离休/退休/退职 公证书样本')"></img>
 	    		        </td>
 	    		        <td>
 	    		        <input type="checkbox" value="ZGZFYJ" name="notory_key"> 资格证/技术等级证书复印件

@@ -351,11 +351,17 @@ public class UserController {
 	 */
 	@RequestMapping("/forget.do")
 	public ModelAndView forget(User user, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		session.getAttribute("user");
+		
 		ModelAndView mav = new ModelAndView();
 		User u = userService.findByMobile(user.getMobile());
+		log.debug("user changing password...." + u.getName());
+		
 		u.setPassword(Encrypt.e(user.getPassword()));
 		userService.save(u);
-		HttpSession session = request.getSession(true);
+		
 		session.setAttribute(Constants.LOGIN_USER, u);
 		mav.addObject("user", u);
 		mav.setViewName("userCenter_modify");
