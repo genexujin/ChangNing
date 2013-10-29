@@ -30,7 +30,7 @@
 				</c:when>
 			</c:choose>
 			<c:choose>
-				<c:when test="${sessionScope['LOGIN_USER'].admin}">
+				<c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
 					<li><a href="enterUserQuery.do">用户管理</a></li>
 				</c:when>
 			</c:choose>

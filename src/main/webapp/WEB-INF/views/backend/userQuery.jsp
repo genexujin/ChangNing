@@ -28,7 +28,7 @@
 				</c:when>
 			</c:choose>
 			<c:choose>
-				<c:when test="${sessionScope['LOGIN_USER'].admin}">
+				<c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
 					<li  class="active"><a href="enterUserQuery.do">用户管理</a></li>
 				</c:when>
 			</c:choose>
@@ -99,7 +99,7 @@
 							<th>角色</th>
 							<c:choose>
 								<c:when
-									test="${sessionScope['LOGIN_USER'].admin}">
+									test="${sessionScope['LOGIN_USER'].admin }">
 									<th style="width:35%;">设置用户角色</th>	
 								</c:when>
 							</c:choose>						
@@ -108,7 +108,14 @@
 					<tbody>
 						<c:forEach items="${users}" var="user">
 							<tr>
-								<td>${user.mobile}</td>
+								<td>${user.mobile}
+								<c:choose>
+									<c:when
+									test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
+										<a href="checkChatHistory.do?mobile=${user.mobile}" target="_blank">客服聊天记录</a>
+									</c:when>
+								</c:choose>							
+								</td>
 								<td>${user.name}</td>
 								<td>${user.gender.text}</td>
 								<td>${user.userRoleList}</td>
