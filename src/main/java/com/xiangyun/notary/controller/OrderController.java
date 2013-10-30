@@ -206,7 +206,7 @@ public class OrderController {
 
 		boolean needSpecialNote = false;
 		boolean needTY = true;
-		boolean noNeedSFZ = false;
+//		boolean noNeedSFZ = false;
 		for (FormDef formDef : selectedForms) {
 			String formKey = formDef.getFormKey();
 			// A special requirement about add a note for 出生公证 and 出生证复印件公证
@@ -229,9 +229,9 @@ public class OrderController {
 				needTY = false;
 			}
 			
-			//JSZFYJ不需要身份证
-			if (formKey.equals("JSZFYJ")) 
-			    noNeedSFZ = true;
+			//JSZFYJ不需要身份证（后来又说需要了）
+//			if (formKey.equals("JSZFYJ")) 
+//			    noNeedSFZ = true;
 
 			Form form = getFormByKeyFromOrder(order, formKey);
 			if (form == null) { // A new form!
@@ -336,15 +336,8 @@ public class OrderController {
 		if (needTY) {
 			FormDef ty = formDefs.get("TY");
 			for (FormDocItemDef docDef : ty.getDocs()) {
-			    if (noNeedSFZ && docDef.getDocKey().equals("SFZ")) continue;
-				//
-				// String strKey=docDef.getDocKey();
-				// if(HKBdoc&&strKey.equals("HKB")){
-				// docDef.setDocName(docDef.getDocName().substring(0,
-				// docDef.getDocName().lastIndexOf('及')));
-				// }else{
-				// docDef.setDocName(docDef.getDocName());
-				// }
+//			    if (noNeedSFZ && docDef.getDocKey().equals("SFZ")) continue;
+				
 				putIfAbsent(allInOneUploadDocs, ty, docDef);
 			}
 		}

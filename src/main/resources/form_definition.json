@@ -929,10 +929,6 @@
         "formKey": "CZGZCJFYJ",
         "formName": "初中高中成绩复印件",
         "fields": [
-        	{
-                "fieldKey": "CZGZCJFYJ_XN",
-                "fieldName": "学年"
-            },
             {
                 "fieldKey": "CZGZCJFYJ_SHHJ",
                 "fieldName": "是否在沪户籍"
