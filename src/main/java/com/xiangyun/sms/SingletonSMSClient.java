@@ -16,7 +16,7 @@ public class SingletonSMSClient {
 	//public static String password = "704168";
 
 	// CNGZC环境账号
-	 public static String password = "885365";
+	 public static String password = "993873";
 
 	private SingletonSMSClient() {
 	}
@@ -73,12 +73,14 @@ public class SingletonSMSClient {
 	// 执行一次，激活账号
 	public static void main(String str[]) {
 		Client theclient = SingletonSMSClient.getClient();
+		//int result = theclient.serialPwdUpd(password, "800809");
+		//System.out.println("result: " + result);
 		// No need to register again, because we have already register it.
 		// int i = theclient.registEx(password);
 		// System.out.println("注册结果:" + i);
 
-		// theclient.sendSMS(new String[] { "18621910893" },
-		// "测试短信,发送时间： " + new Date() + ",请查看是否收到及时 【祥韵公司】", 1);
+		 theclient.sendSMS(new String[] { "18621910893" },
+		 "测试短信,发送时间： " + new Date() + ",请查看是否收到及时 【长宁公证】", 1);
 		try {
 			System.out.println("Available SMS: "
 					+ Math.floor(theclient.getBalance() / 0.09));

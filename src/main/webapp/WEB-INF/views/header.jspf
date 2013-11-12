@@ -50,8 +50,10 @@
 					<li><a class="current"
 						href="http://www.6408.com.cn/CNservice%20hall/intohall.asp"
 						title="">首页</a></li>
+						<!-- 
 					<li><a href="certStep1.do" title="">网上办证</a></li>
 					<li><a href="enterReserv.do" title="">网上预约</a></li>
+					 -->
 					<li><a href="orderQuery.do" title="">个人中心</a></li>
 				</ul>
 				<div class="span4 pull-right small-pt" style="text-align:center;">
