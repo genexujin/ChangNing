@@ -102,10 +102,12 @@ public class UserController {
 	public String register(User user, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		// ModelAndView mav = new ModelAndView();
+		if(userService.findByMobile(user.getMobile())==null){
 		user.setPassword(Encrypt.e(user.getPassword()));
 		userService.save(user);
 		HttpSession session = request.getSession(true);
 		session.setAttribute(Constants.LOGIN_USER, user);
+		}
 		// mav.addObject("user", user);
 		// mav.setViewName("userCenter_modify");
 		return "redirect:/home.do";
@@ -179,10 +181,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
-		if (StringUtils.isEmpty(request.getParameter("reg_user_smscode"))&&(!request.getParameter("reg_user_smscode").equals(smscodeString))) {
+		if (StringUtils.isEmpty(request.getParameter("reg_user_smscode"))||(!request.getParameter("reg_user_smscode").equals(smscodeString))) {
 			out.println(0);
 		} else {
 			out.println(1);
+			session.removeAttribute("SMSCODE");
 		}
 
 	}
@@ -199,10 +202,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
-		if ((StringUtils.isEmpty(request.getParameter("modify_user_smscode")))&&(!request.getParameter("modify_user_smscode").equals(smscodeString))) {
+		if ((StringUtils.isEmpty(request.getParameter("modify_user_smscode")))||(!request.getParameter("modify_user_smscode").equals(smscodeString))) {
 			out.println(0);
 		} else {
 			out.println(1);
+			session.removeAttribute("SMSCODE");
 		}
 	}
 
@@ -218,10 +222,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		String smscodeString = String.valueOf(session.getAttribute("SMSCODE"));
 		PrintWriter out = response.getWriter();
-		if ((StringUtils.isEmpty(request.getParameter("forget_user_smscode")))&&(!request.getParameter("forget_user_smscode").equals(smscodeString))) {
+		if ((StringUtils.isEmpty(request.getParameter("forget_user_smscode")))||(!request.getParameter("forget_user_smscode").equals(smscodeString))) {
 			out.println(0);
 		} else {
 			out.println(1);
+			session.removeAttribute("SMSCODE");
 		}
 	}
 
