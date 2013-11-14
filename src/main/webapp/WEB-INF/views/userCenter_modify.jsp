@@ -250,7 +250,7 @@
 								<tr height="60px">
 									<td><p class="text-right">您的姓名：</p></td>
 									<td colspan="2"><input type="text" class="input"
-										id="modify_user_name" placeholder="姓名" value="${user.name}"
+										id="modify_user_name" placeholder="姓名" value="<c:out value="${user.name}"/>"
 										name="name"></td>
 									<td>
 										<div class="controls">
@@ -299,7 +299,7 @@
 									<td><p class="text-right">证件号码：</p></td>
 									<td colspan="3"><input type="text" class="input-xlarge"
 										id="modify_user_cardnum" placeholder="证件号" name="credentialId"
-										value="${user.credentialId}"></td>
+										value="<c:out value="${user.credentialId}"/>"></td>
 									<td><div id="modify_cardnum_alert" class="alert"
 											style="width:50px;display: none">请输入或修改证件号码！</div></td>
 								</tr>
@@ -316,7 +316,7 @@
 									<td><p class="text-right">邮箱：</p></td>
 									<td colspan="3"><input type="text" class="input-xlarge"
 										id="modify_user_email" placeholder="电子邮箱地址" name="email"
-										value="${user.email}"></td>
+										value="<c:out value="${user.email}"/>"></td>
 									<td><div id="modify_email_alert" class="alert"
 											style="width:50px;display: none">请输入或修改邮箱！</div></td>
 								</tr>
@@ -324,7 +324,7 @@
 									<td><p class="text-right">联系地址：</p></td>
 									<td colspan="3"><input type="text" class="input-xlarge"
 										id="modify_user_address" placeholder="联系地址" name="address"
-										value="${user.address}"></td>
+										value="<c:out value="${user.address}"/>"></td>
 									<td><div id="modify_address_alert" class="alert"
 											style="width:50px;display: none">请输入或修改联系地址！</div></td>
 								</tr>

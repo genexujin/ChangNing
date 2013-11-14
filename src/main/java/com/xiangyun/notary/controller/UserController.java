@@ -358,7 +358,7 @@ public class UserController {
 	public ModelAndView forget(User user, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		session.getAttribute("user");
+//		session.getAttribute("user");
 		
 		ModelAndView mav = new ModelAndView();
 		User u = userService.findByMobile(user.getMobile());

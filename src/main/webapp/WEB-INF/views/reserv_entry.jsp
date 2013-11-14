@@ -85,7 +85,7 @@
 							<label class="control-label" for="username">申请人姓名</label>
 							<div class="offset1" style="padding-left: 40px;">
 								<input id="username" name="username" type="text"
-									value="${currUser.name}"></input>
+									value="<c:out value="${currUser.name}"/>"></input>
 							</div>
 						</div>
 					</div>
@@ -99,7 +99,7 @@
 							<label class="control-label" for="mobile">手机号</label>
 							<div class="offset1" style="padding-left: 40px;">
 								<input id="mobile" name="mobile" type="text"
-									value="${currUser.mobile}"></input>
+									value="<c:out value="${currUser.mobile}"/>"></input>
 							</div>
 						</div>
 					</div>

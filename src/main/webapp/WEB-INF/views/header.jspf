@@ -66,7 +66,7 @@
 						  			</c:when>
 									<c:otherwise>
 										<span class="text-font text-b"> 当前用户： </span>
-										<span class="text-font text-r">${sessionScope['LOGIN_USER'].name}</span>
+										<span class="text-font text-r"><c:out value="${sessionScope['LOGIN_USER'].name}"/></span>
 										<span class="text-font text-b" style="padding-left: 10px;">
 											登录身份： </span>
 										<span class="text-font text-r"> <c:out
