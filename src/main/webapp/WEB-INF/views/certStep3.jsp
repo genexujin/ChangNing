@@ -345,7 +345,7 @@
 			<div class="row">
 				<div class="span8 offset1">
 					<textarea rows="5" cols="150" name="upload_note"
-						style="width: 700px;" placeholder="如有特殊上传情况，可在此说明"></textarea>
+						style="width: 700px;" placeholder="如有特殊上传情况，可在此说明" maxLength="200"></textarea>
 				</div>
 			</div>
 			<br />

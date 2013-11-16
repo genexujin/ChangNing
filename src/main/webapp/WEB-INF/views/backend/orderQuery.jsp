@@ -156,15 +156,15 @@
 							<tr>
 								<td><a
 									href="<c:url value="/orderDetail.do?oId=${order.id}"/>">${order.readableId}</a></td>
-								<td>${order.backendNotaryId}</td>
+								<td><c:out value="${order.backendNotaryId}"></c:out></td>
 								<td><fmt:formatDate value="${order.orderDate}"
 										pattern="yyyy-MM-dd" /></td>
-								<td>${order.requestorName}</td>
+								<td><c:out value="${order.requestorName}"></c:out></td>
 								<td><fmt:formatNumber value="${order.paymentTotal}"
 										type="currency" pattern="￥#0.00" /></td>
 								<td><fmt:formatNumber value="${order.paymentPaid}"
 										type="currency" pattern="￥#0.00" /></td>
-								<td>${order.orderStatus.text}</td>
+								<td><c:out value="${order.orderStatus.text}"></c:out></td>
 							</tr>
 						</c:forEach>
 					</tbody>

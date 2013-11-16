@@ -34,6 +34,9 @@
 	<c:set var="userName" value="${sessionScope['LOGIN_USER'].name}" />
 <%
   String userName = (String)pageContext.getAttribute("userName");
+  userName = userName.replace("<", "");
+  userName = userName.replace(">", "");
+  pageContext.setAttribute("userName",userName);
   String encodedName;
   //String encodedNameIE = new String(userName.getBytes("UTF-8"),"GB2312"); 
   encodedName = URLEncoder.encode(userName,"UTF-8");
@@ -46,7 +49,7 @@
 
 
 <div style="position:fixed;z-index:999;top:45%;right:0;">
-<!-- mibew button --><a id="supportLink" href="#" target="_blank" ><img src="http://218.242.13.165/mibew/b.php?i=mibew&amp;amp;lang=zh-cn" border="0" alt=""/></a><!-- / mibew button -->
+<!-- mibew button --><a id="supportLink" href="#" target="_blank" ><img src="http://192.168.11.130/mibew/b.php?i=mibew&amp;amp;lang=zh-cn" border="0" alt=""/></a><!-- / mibew button -->
 
 </div>
 
@@ -62,10 +65,10 @@
 					user_name = '${encodedName}';
 				else
 					user_name = '${userName}';
-				
+					
 			    var mobile = ${sessionScope['LOGIN_USER'].mobile};
 
-				this.newWindow = window.open("http://218.242.13.165/mibew/client.php?locale=zh-cn&url="+escape(document.location.href)+"&referrer="+escape(mobile)+"&name="+escape(user_name), 
+				this.newWindow = window.open("http://192.168.11.130/mibew/client.php?locale=zh-cn&url="+escape(document.location.href)+"&referrer="+escape(mobile)+"&name="+escape(user_name), 
 						'mibew', 'toolbar=0,scrollbars=0,location=0,status=1,menubar=0,width=640,height=480,resizable=1');
 				this.newWindow.focus();
 				this.newWindow.opener=window;

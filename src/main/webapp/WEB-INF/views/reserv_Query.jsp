@@ -124,13 +124,13 @@ request.setAttribute("statusStr", statusStr);
 					<tbody>
 						<c:forEach items="${reservations}" var="reservation">
 							<tr>
-								<td>${reservation.readableId}</td>
+								<td><c:out value="${reservation.readableId}"></c:out></td>
 								<td><fmt:formatDate value="${reservation.reservationDate}"
-										pattern="yyyy-MM-dd" />&nbsp;${reservation.reservationTimeSegment}</td>
-								<td>${reservation.requestorName}</td>
-								<td>${reservation.requestorMobile}</td>
-								<td>${reservation.reservationKey}</td>
-								<td>${reservation.reservationStatus.getText()}</td>
+										pattern="yyyy-MM-dd" />&nbsp;<c:out value="${reservation.reservationTimeSegment}"></c:out></td>
+								<td><c:out value="${reservation.requestorName}"></c:out></td>
+								<td><c:out value="${reservation.requestorMobile}"></c:out></td>
+								<td><c:out value="${reservation.reservationKey}"></c:out></td>
+								<td><c:out value="${reservation.reservationStatus.getText()}"></c:out></td>
 								<td><c:choose>
 										<c:when
 											test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
@@ -142,7 +142,7 @@ request.setAttribute("statusStr", statusStr);
 													role="button" class="btn btn-primary" data-toggle="modal">完成</a>
 											</c:if>
 											<c:if test="${reservation.reservationStatus eq 'FINISHED'}">
-												受理人：${reservation.accepter.name}
+												受理人：<c:out value="${reservation.accepter.name}"></c:out>
 											</c:if>
 
 										</c:when>

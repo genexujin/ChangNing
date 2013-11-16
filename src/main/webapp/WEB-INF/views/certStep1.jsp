@@ -570,8 +570,8 @@
         	$("#copies").change(function(){
         		var num = $("#copies").val();
         		
-        		if(!isNormalInteger(num) || num <= 0){        			
-        			alert("请输入一个大于等于1的数字！");
+        		if(!isNormalInteger(num) || num <= 0 || num > 10){        			
+        			alert("请输入一个大于等于1小于10的数字！");
         			$("#copies").val(1);
         		}
         	});

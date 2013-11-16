@@ -108,7 +108,7 @@
 					<tbody>
 						<c:forEach items="${users}" var="user">
 							<tr>
-								<td>${user.mobile}
+								<td><c:out value="${user.mobile}"></c:out>
 								<c:choose>
 									<c:when
 									test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
@@ -116,9 +116,9 @@
 									</c:when>
 								</c:choose>							
 								</td>
-								<td>${user.name}</td>
-								<td>${user.gender.text}</td>
-								<td>${user.userRoleList}</td>
+								<td><c:out value="${user.name}"></c:out></td>
+								<td><c:out value="${user.gender.text}"></c:out></td>
+								<td><c:out value="${user.userRoleList}"></c:out></td>
 								
 								<c:choose>
 									<c:when
