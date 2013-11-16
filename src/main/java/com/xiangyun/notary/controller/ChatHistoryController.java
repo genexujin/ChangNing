@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
@@ -69,13 +70,20 @@ public class ChatHistoryController {
 				PreparedStatement ps = conn.prepareStatement(queryThreadStmt);
 				ps.setString(1, "%"+mobile+"%");
 				ResultSet rs = ps.executeQuery();
+				Calendar cal = Calendar.getInstance();
+				
 				while(rs.next()){
 					theThread =  new ChatThread();					
 					theThread.setAgentName(rs.getString("agentName"));
-					Timestamp end = rs.getTimestamp("dtmmodified");				
-					theThread.setThreadEnd(new Date(end.getTime()));
-					Timestamp start = rs.getTimestamp("dtmcreated");
-					theThread.setThreadStart(new Date(start.getTime()));
+					//矫正时间
+					cal.setTimeInMillis(rs.getTimestamp("dtmmodified").getTime());
+					cal.add(Calendar.HOUR_OF_DAY, -12);								
+					theThread.setThreadEnd(new Date(cal.getTimeInMillis()));
+					//矫正时间
+					cal.setTimeInMillis(rs.getTimestamp("dtmcreated").getTime());
+					cal.add(Calendar.HOUR_OF_DAY, -12);					
+					theThread.setThreadStart(new Date(cal.getTimeInMillis()));
+					
 					theThread.setUserName(rs.getString("userName"));
 					theThread.setThreadid(rs.getInt("threadid"));					
 					threads.add(theThread);
@@ -124,13 +132,19 @@ public class ChatHistoryController {
 				PreparedStatement ps = conn.prepareStatement(queryThreadByIdStmt);
 				ps.setInt(1, threadid);
 				ResultSet rs = ps.executeQuery();
+				Calendar cal = Calendar.getInstance();
+				
 				if(rs.next()){
 					thread = new ChatThread();
 					thread.setAgentName(rs.getString("agentName"));
-					Timestamp end = rs.getTimestamp("dtmmodified");				
-					thread.setThreadEnd(new Date(end.getTime()));
-					Timestamp start = rs.getTimestamp("dtmcreated");
-					thread.setThreadStart(new Date(start.getTime()));
+					//矫正时间
+					cal.setTimeInMillis(rs.getTimestamp("dtmmodified").getTime());
+					cal.add(Calendar.HOUR_OF_DAY, -12);								
+					thread.setThreadEnd(new Date(cal.getTimeInMillis()));
+					//矫正时间
+					cal.setTimeInMillis(rs.getTimestamp("dtmcreated").getTime());
+					cal.add(Calendar.HOUR_OF_DAY, -12);					
+					thread.setThreadStart(new Date(cal.getTimeInMillis()));
 					thread.setUserName(rs.getString("userName"));
 					thread.setThreadid(rs.getInt("threadid"));
 					
@@ -143,8 +157,10 @@ public class ChatHistoryController {
 						msg.setContent(rs1.getString("tmessage"));
 						msg.setTname(rs1.getString("tname"));
 						msg.setIkind(rs1.getInt("ikind"));
-						Timestamp time = rs.getTimestamp("dtmcreated");
-						msg.setMsgTime(new Date(time.getTime()));						
+						//矫正时间
+						cal.setTimeInMillis(rs1.getTimestamp("dtmcreated").getTime());
+						cal.add(Calendar.HOUR_OF_DAY, -12);							
+						msg.setMsgTime(new Date(cal.getTimeInMillis()));						
 						messages.add(msg);
 					}
 					
