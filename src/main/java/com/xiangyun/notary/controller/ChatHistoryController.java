@@ -77,11 +77,11 @@ public class ChatHistoryController {
 					theThread.setAgentName(rs.getString("agentName"));
 					//矫正时间
 					cal.setTimeInMillis(rs.getTimestamp("dtmmodified").getTime());
-					cal.add(Calendar.HOUR_OF_DAY, -12);								
+					cal.add(Calendar.HOUR_OF_DAY, -8);								
 					theThread.setThreadEnd(new Date(cal.getTimeInMillis()));
 					//矫正时间
 					cal.setTimeInMillis(rs.getTimestamp("dtmcreated").getTime());
-					cal.add(Calendar.HOUR_OF_DAY, -12);					
+					cal.add(Calendar.HOUR_OF_DAY, -8);					
 					theThread.setThreadStart(new Date(cal.getTimeInMillis()));
 					
 					theThread.setUserName(rs.getString("userName"));
@@ -139,11 +139,11 @@ public class ChatHistoryController {
 					thread.setAgentName(rs.getString("agentName"));
 					//矫正时间
 					cal.setTimeInMillis(rs.getTimestamp("dtmmodified").getTime());
-					cal.add(Calendar.HOUR_OF_DAY, -12);								
+					cal.add(Calendar.HOUR_OF_DAY, -8);								
 					thread.setThreadEnd(new Date(cal.getTimeInMillis()));
 					//矫正时间
 					cal.setTimeInMillis(rs.getTimestamp("dtmcreated").getTime());
-					cal.add(Calendar.HOUR_OF_DAY, -12);					
+					cal.add(Calendar.HOUR_OF_DAY, -8);					
 					thread.setThreadStart(new Date(cal.getTimeInMillis()));
 					thread.setUserName(rs.getString("userName"));
 					thread.setThreadid(rs.getInt("threadid"));
@@ -159,7 +159,7 @@ public class ChatHistoryController {
 						msg.setIkind(rs1.getInt("ikind"));
 						//矫正时间
 						cal.setTimeInMillis(rs1.getTimestamp("dtmcreated").getTime());
-						cal.add(Calendar.HOUR_OF_DAY, -12);							
+						cal.add(Calendar.HOUR_OF_DAY, -8);							
 						msg.setMsgTime(new Date(cal.getTimeInMillis()));						
 						messages.add(msg);
 					}
