@@ -335,7 +335,7 @@
 		<div class="bar-bg">
 			<div class="row">
 				<div class="span12 navbg2">
-					<h5>&nbsp;&nbsp;&nbsp;&nbsp;备注</h5>
+					<h5>&nbsp;&nbsp;&nbsp;&nbsp;备注（最多输入200字）</h5>
 				</div>
 			</div>
 		</div>
