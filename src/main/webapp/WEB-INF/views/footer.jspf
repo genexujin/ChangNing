@@ -49,7 +49,13 @@
 
 
 <div style="position:fixed;z-index:999;top:45%;right:0;">
-<!-- mibew button --><a id="supportLink" href="#" target="_blank" ><img src="http://218.242.13.165/mibew/b.php?i=mibew&amp;amp;lang=zh-cn" border="0" alt=""/></a><!-- / mibew button -->
+<!-- mibew button --><a id="supportLink" href="#" target="_blank" >
+<!--
+<img src="http://218.242.13.165/mibew/b.php?i=mibew&amp;amp;lang=zh-cn" border="0" alt=""/>
+-->
+<img src="http://localhost/mibew/b.php?i=mibew&amp;amp;lang=zh-cn" border="0" alt=""/>
+
+</a><!-- / mibew button -->
 
 </div>
 
@@ -68,8 +74,11 @@
 					
 			    var mobile = ${sessionScope['LOGIN_USER'].mobile};
 
-				this.newWindow = window.open("http://218.242.13.165/mibew/client.php?locale=zh-cn&url="+escape(document.location.href)+"&referrer="+escape(mobile)+"&name="+escape(user_name), 
+				//this.newWindow = window.open("http://218.242.13.165/mibew/client.php?locale=zh-cn&url="+escape(document.location.href)+"&referrer="+escape(mobile)+"&name="+escape(user_name), 
+				//		'mibew', 'toolbar=0,scrollbars=0,location=0,status=1,menubar=0,width=640,height=480,resizable=1');
+				this.newWindow = window.open("http://localhost/mibew/client.php?locale=zh-cn&url="+escape(document.location.href)+"&referrer="+escape(mobile)+"&name="+escape(user_name), 
 						'mibew', 'toolbar=0,scrollbars=0,location=0,status=1,menubar=0,width=640,height=480,resizable=1');
+				
 				this.newWindow.focus();
 				this.newWindow.opener=window;
 				

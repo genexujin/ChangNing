@@ -12,7 +12,17 @@ public class ChatThread {
 	
 	private Date threadStart;
 	
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
 	private Date threadEnd;
+	
+	private String mobile;
 
 	public int getThreadid() {
 		return threadid;
