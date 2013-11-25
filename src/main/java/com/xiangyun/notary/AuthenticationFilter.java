@@ -1,6 +1,7 @@
 package com.xiangyun.notary;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -20,6 +21,7 @@ public class AuthenticationFilter implements Filter {
 	private static final Logger log = LoggerFactory
 			.getLogger(AuthenticationFilter.class);
 
+	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// Do nothing
@@ -34,6 +36,8 @@ public class AuthenticationFilter implements Filter {
 
 		log.info("================Requested Path : {}", req.getContextPath()
 				+ req.getServletPath());
+		
+		
 
 		String servletPath = req.getServletPath();
 		if (servletPath.indexOf("/home") >= 0
@@ -49,7 +53,7 @@ public class AuthenticationFilter implements Filter {
 				|| servletPath.indexOf("/onRefundNotify.do") >= 0
 				|| servletPath.indexOf("/whichUser.do") >= 0
 				|| servletPath.indexOf("/upload.do") >= 0) {
-			chain.doFilter(request, response);
+			chain.doFilter(new RequestWrapper((HttpServletRequest) request), response);
 			return;
 		}
 
@@ -71,7 +75,7 @@ public class AuthenticationFilter implements Filter {
 			return;
 		}
 
-		chain.doFilter(request, response);
+		chain.doFilter(new RequestWrapper((HttpServletRequest) request), response);
 	}
 
 	@Override
