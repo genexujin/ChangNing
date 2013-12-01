@@ -22,6 +22,13 @@ public class HomeController {
 		mav.addObject("title", "网上办证");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/auditTrail.do")
+	public ModelAndView auditTrail() {
+		ModelAndView mav = new ModelAndView("auditTrail");
+		mav.addObject("title", "审计");
+		return mav;
+	}
 
 	@RequestMapping(value = "/smsRegister.do")	
 	public void registerSMS(HttpServletRequest request,HttpServletResponse response) throws Exception {
