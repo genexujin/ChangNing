@@ -1,17 +1,20 @@
 package com.xiangyun.notary.common;
 
-import java.awt.Color;      
-import java.awt.Font;      
-import java.awt.Graphics2D;      
-import java.awt.image.BufferedImage;      
-import java.util.Random;      
-import javax.imageio.ImageIO;      
-import javax.servlet.ServletException;      
-import javax.servlet.ServletOutputStream;      
-import javax.servlet.http.HttpServlet;      
-import javax.servlet.http.HttpServletRequest;      
-import javax.servlet.http.HttpServletResponse;      
-import javax.servlet.http.HttpSession;      
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.xiangyun.notary.Constants;
      
 public class VerifyCodeServlet extends HttpServlet {      
      
@@ -143,7 +146,7 @@ public class VerifyCodeServlet extends HttpServlet {
         }      
         // 将四位的验证码保存到Session中。      
         HttpSession session = req.getSession();      
-        session.setAttribute("validateCode", String.valueOf(numOperate));
+        session.setAttribute(Constants.VERIFY_SESSION_KEY, String.valueOf(numOperate));
         System.out.println("validate Code saved in session: " + String.valueOf(numOperate));
      
         // 禁止图像缓存。      

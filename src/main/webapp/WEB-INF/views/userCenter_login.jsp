@@ -161,7 +161,7 @@
 						<tr height="60px">
 							<td><p class="text-right">请输入答案：</p></td>
 
-							<td><input type="text" class="input-small" id="veryCode" placeholder="验证码答案"></td>
+							<td><input type="text" class="input-small" name="veryCode" id="veryCode" placeholder="验证码答案"></td>
 							<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
 							<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
 							<td><div class="alert" id="info" style="display: none">请输入图片中的结果！</div></td>
