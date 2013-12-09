@@ -265,13 +265,7 @@ public class ReservationController {
 				"尊敬的" + reservation.getRequestorName()
 						+ "，您在长宁公证处的网上预约已经取消，预约号为："
 						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
-		try {
-			System.out.println("Available SMS: "
-					+ Math.floor(SMSManager.checkBalance()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		System.err.println("ended!");
 	}
 

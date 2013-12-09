@@ -75,6 +75,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             for (Pattern scriptPattern : patterns){
                 value = scriptPattern.matcher(value).replaceAll("");
             }
+//            System.out.println("parameters cleaned!");
         }
         return value;
     }

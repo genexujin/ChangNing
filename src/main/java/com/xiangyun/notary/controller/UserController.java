@@ -145,13 +145,7 @@ public class UserController {
 		SMSManager.sendSMS(new String[] { mobile },
 				"感谢您使用上海长宁公证处网上公证平台，您的验证码为：" + checksmscode, 1);
 
-		try {
-			System.out.println("Available SMS: "
-					+ Math.floor(SMSManager.checkBalance()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		System.err.println("ended!");
 	}
 
@@ -231,17 +225,6 @@ public class UserController {
 			String veryCode) {
 		String msg = null;
 		ModelAndView mav = new ModelAndView();
-		// HttpSession session = request.getSession();
-		// if(session.getAttribute("Login_Error_Count")!=null){
-		// Integer errorCnt =
-		// (Integer)session.getAttribute("Login_Error_Count");
-		// if(errorCnt>=3){
-		// msg = "已超过登录重试次数，账户已锁定，请联系！";
-		// mav.addObject("msg", msg);
-		// mav.addObject("title", "用户登录");
-		// mav.setViewName("userCenter_login");
-		// }
-		// }
 
 		if (!VerifyCodeChecker.isCodeValid(veryCode, request)) {
 			msg = "验证码输入错误，请重试！";
