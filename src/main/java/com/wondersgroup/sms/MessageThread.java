@@ -7,7 +7,9 @@ import com.wondersgroup.sms.MessageServiceStub.SendMessageToCenter;
 public class MessageThread extends Thread{
 	
 	//static String url="http://192.168.11.233:20001/MessageService/service";	//���Է�������ַ
+	//static String url="http://31.0.128.91:20001/MessageService/service";		//��ʵ��������ַ
 	static String url="http://31.0.128.91:20001/MessageService/service";		//��ʵ��������ַ
+	
 	
 	private SendMessageToCenter stc;
 	

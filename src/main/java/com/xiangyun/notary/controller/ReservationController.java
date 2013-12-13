@@ -245,9 +245,8 @@ public class ReservationController {
 
 		SMSManager.sendSMS(
 				new String[] { reservation.getRequestorMobile() },
-				"尊敬的" + reservation.getRequestorName()
-						+ "，您在长宁公证处的网上预约已经受理完成，预约号为："
-						+ reservation.getReadableId() + "，谢谢使用长宁网上公证业务！", 1);
+				"您在长宁公证处的网上预约已经受理完成，预约号为："
+						+ reservation.getReadableId() + "", 1);
 
 		PrintWriter out = response.getWriter();
 		out.print(true);

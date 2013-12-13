@@ -35,6 +35,7 @@ import com.wondersgroup.sms.MessageServiceStub.SenderType;
     {
 
     	//static String url="http://192.168.11.233:20001/MessageService/service";	//测试服务器地址
+    	//static String url="http://31.0.128.91:20001/MessageService/service";		//真实服务器地址
     	static String url="http://31.0.128.91:20001/MessageService/service";		//真实服务器地址
     	
         /**
@@ -323,11 +324,13 @@ import com.wondersgroup.sms.MessageServiceStub.SenderType;
         public  static void main(String args[]) throws Exception{
         	HashMap info=new HashMap();
         	Random rd=new Random();
-        	//info.put("receiveUser", "");
+        	//info.put("receiveUser", "18621910893");
+        	//info.put("elseReveive","18621910893");
         	info.put("elseReveive","18621910893");
+//        	info.put("elseReveive","13621927920");
         	info.put("receiveCode", "SMS");
         	info.put("receiveTime","");
-        	info.put("content", "测试内容1ss");
+        	info.put("content", "aaaaa");
         	info.put("msgId", java.util.UUID.randomUUID().toString());
         	SendMessageToCenter(info);
         	System.out.println(java.util.UUID.randomUUID().toString());

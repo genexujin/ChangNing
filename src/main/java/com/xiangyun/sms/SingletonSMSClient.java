@@ -79,7 +79,7 @@ public class SingletonSMSClient {
 		// int i = theclient.registEx(password);
 		// System.out.println("注册结果:" + i);
 
-		 theclient.sendSMS(new String[] { "18621910893" },
+		 theclient.sendSMS(new String[] { "13621927920","18221889387" },
 		 "测试短信,发送时间： " + new Date() + ",请查看是否收到及时 【长宁公证】", 1);
 		try {
 			System.out.println("Available SMS: "

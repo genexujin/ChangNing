@@ -51,9 +51,12 @@
 			  		<a href="#" class="btn btn-primary" onclick="confirmCancel(${order.id})">确认撤销</a>
 			   </c:when>
 			 </c:choose>
+			  
+			  <a href="checkChatHistory.do?mobile=${order.requestorMobile}" class="btn btn-primary" target="_blank">客服记录</a>
 			  <a href="generateForm.do?oId=${order.id}" class="btn btn-primary">申请书下载</a>
 			  <a href="orderQuery.do" class="btn btn-success">返回</a>
 			</div>
+			
 	      
         </c:when>
         <c:otherwise>

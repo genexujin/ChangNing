@@ -12,7 +12,7 @@ import com.wondersgroup.sms.MessageServiceTest;
 public class SMSManager {
 
     private static boolean enabled = true;
-    private static String SURFFIX = " 【长宁公证】";
+    private static String SURFFIX = "[长宁公证]";
     private static Logger log = LoggerFactory
 			.getLogger(SMSManager.class);
 
@@ -23,7 +23,7 @@ public class SMSManager {
             messageContent += SURFFIX;
             
             log.debug("-------------------------sending sms to : "+mobiles[0]);
-//            System.err.println("sent sms");
+            System.err.println("sent sms");
             HashMap info=new HashMap();
         	Random rd=new Random();
         	//info.put("receiveUser", "");
