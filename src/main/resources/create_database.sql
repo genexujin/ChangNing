@@ -292,6 +292,17 @@ CREATE  TABLE IF NOT EXISTS `changning`.`order_history` (
   PRIMARY KEY (`id`) ,
   INDEX `history_order_fk_idx` (`order_id` ASC) ,
   INDEX `history_user_fk_idx` (`user_id` ASC) );
+  
+  
+ALTER TABLE orders  MODIFY COLUMN requestor_birth_date DATETIME;
+ALTER TABLE orders  MODIFY COLUMN order_date DATETIME;
+ALTER TABLE order_history  MODIFY COLUMN operation_date DATETIME;
+ALTER TABLE interactions MODIFY COLUMN interaction_date DATETIME;
+ALTER TABLE payment MODIFY COLUMN payment_date DATETIME;
+ALTER TABLE payment MODIFY COLUMN refund_date DATETIME;
+ALTER TABLE reservations MODIFY COLUMN reserve_date DATETIME;
+ALTER TABLE reservations MODIFY COLUMN creation_date DATETIME;
+
 
 insert into roles (role_name) values ('admin');
 insert into roles (role_name) values ('staff');

@@ -58,7 +58,7 @@
 	    	</div>
 		  </div>
 		  
-		  <div class="row">
+		  <div class="row" style="padding-top:8px;">
 		    <div class="span2 offset2">
 		      <button class="btn btn-primary" type="submit">确认</button>
 		    </div>

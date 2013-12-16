@@ -554,7 +554,7 @@ public class OrderController {
 
 			// payment.setPaymentDate(new Date());
 			payment.setPaymentTotal(order.getPaymentTotal());
-			// payment.setPaymentTotal(0.01);
+//			 payment.setPaymentTotal(0.01);
 			payment.setTitle(title);
 			payment.setPaymentReason("公证费用");
 

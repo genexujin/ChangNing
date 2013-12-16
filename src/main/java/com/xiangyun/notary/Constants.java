@@ -64,6 +64,13 @@ public class Constants {
     public static final String ALIPAY_PAY_NOTIFY_URL  = "http://www.6408.com.cn/ChangNing/onPaymentNotify.do";
     public static final String ALIPAY_PAY_RETURN_URL  = "http://www.6408.com.cn/ChangNing/onPaymentReturn.do";
     public static final String ALIPAY_PAY_REFUND_RETURN_URL  = "http://www.6408.com.cn/ChangNing/onRefundNotify.do";
+//    
+    
+//    public static final String ALIPAY_PAY_NOTIFY_URL  = "http://hjyoa.hpe.cn:4848/ChangNing/onPaymentNotify.do";
+//    public static final String ALIPAY_PAY_RETURN_URL  = "http://hjyoa.hpe.cn:4848/ChangNing/onPaymentReturn.do";
+//    public static final String ALIPAY_PAY_REFUND_RETURN_URL  = "http://hjyoa.hpe.cn:4848/ChangNing/onRefundNotify.do";
+//   
+    
     public static final String ALIPAY_SELLER_EMAIL = "cngzc@6408.com.cn";
     
     public static final String VERIFY_SESSION_KEY ="validateCode";
