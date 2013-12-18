@@ -314,4 +314,173 @@ INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id
 insert into user_roles (user_id, role_id) values (1, 1);
 
 
+-- -----------------------------------------------------
+-- Table `changning`.`chatban`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatban` (
+  `banid` INT(11) NOT NULL AUTO_INCREMENT ,
+  `dtmcreated` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `dtmtill` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `address` VARCHAR(255) NULL DEFAULT NULL ,
+  `comment` VARCHAR(255) NULL DEFAULT NULL ,
+  `blockedCount` INT(11) NULL DEFAULT '0' ,
+  PRIMARY KEY (`banid`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatconfig`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatconfig` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `vckey` VARCHAR(255) NULL DEFAULT NULL ,
+  `vcvalue` VARCHAR(255) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 36
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatgroup`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatgroup` (
+  `groupid` INT(11) NOT NULL AUTO_INCREMENT ,
+  `vcemail` VARCHAR(64) NULL DEFAULT NULL ,
+  `vclocalname` VARCHAR(64) NOT NULL ,
+  `vccommonname` VARCHAR(64) NOT NULL ,
+  `vclocaldescription` VARCHAR(1024) NOT NULL ,
+  `vccommondescription` VARCHAR(1024) NOT NULL ,
+  PRIMARY KEY (`groupid`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatgroupoperator`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatgroupoperator` (
+  `groupid` INT(11) NOT NULL ,
+  `operatorid` INT(11) NOT NULL )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatmessage`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatmessage` (
+  `messageid` INT(11) NOT NULL AUTO_INCREMENT ,
+  `threadid` INT(11) NOT NULL ,
+  `ikind` INT(11) NOT NULL ,
+  `agentId` INT(11) NOT NULL DEFAULT '0' ,
+  `tmessage` TEXT NOT NULL ,
+  `dtmcreated` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `tname` VARCHAR(64) NULL DEFAULT NULL ,
+  PRIMARY KEY (`messageid`) ,
+  INDEX `idx_agentid` (`agentId` ASC) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 152
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatnotification`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatnotification` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `locale` VARCHAR(8) NULL DEFAULT NULL ,
+  `vckind` VARCHAR(16) NULL DEFAULT NULL ,
+  `vcto` VARCHAR(256) NULL DEFAULT NULL ,
+  `dtmcreated` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `vcsubject` VARCHAR(256) NULL DEFAULT NULL ,
+  `tmessage` TEXT NOT NULL ,
+  `refoperator` INT(11) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatoperator`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatoperator` (
+  `operatorid` INT(11) NOT NULL AUTO_INCREMENT ,
+  `vclogin` VARCHAR(64) NOT NULL ,
+  `vcpassword` VARCHAR(64) NOT NULL ,
+  `vclocalename` VARCHAR(64) NOT NULL ,
+  `vccommonname` VARCHAR(64) NOT NULL ,
+  `vcemail` VARCHAR(64) NULL DEFAULT NULL ,
+  `dtmlastvisited` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `istatus` INT(11) NULL DEFAULT '0' ,
+  `vcavatar` VARCHAR(255) NULL DEFAULT NULL ,
+  `vcjabbername` VARCHAR(255) NULL DEFAULT NULL ,
+  `iperm` INT(11) NULL DEFAULT '65535' ,
+  `inotify` INT(11) NULL DEFAULT '0' ,
+  `dtmrestore` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `vcrestoretoken` VARCHAR(64) NULL DEFAULT NULL ,
+  PRIMARY KEY (`operatorid`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatresponses`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatresponses` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `locale` VARCHAR(8) NULL DEFAULT NULL ,
+  `groupid` INT(11) NULL DEFAULT NULL ,
+  `vcvalue` VARCHAR(1024) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatrevision`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatrevision` (
+  `id` INT(11) NOT NULL )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `changning`.`chatthread`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `changning`.`chatthread` (
+  `threadid` INT(11) NOT NULL AUTO_INCREMENT ,
+  `userName` VARCHAR(64) NOT NULL ,
+  `userid` VARCHAR(255) NULL DEFAULT NULL ,
+  `agentName` VARCHAR(64) NULL DEFAULT NULL ,
+  `agentId` INT(11) NOT NULL DEFAULT '0' ,
+  `dtmcreated` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `dtmmodified` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `lrevision` INT(11) NOT NULL DEFAULT '0' ,
+  `istate` INT(11) NOT NULL DEFAULT '0' ,
+  `ltoken` INT(11) NOT NULL ,
+  `remote` VARCHAR(255) NULL DEFAULT NULL ,
+  `referer` TEXT NULL DEFAULT NULL ,
+  `nextagent` INT(11) NOT NULL DEFAULT '0' ,
+  `locale` VARCHAR(8) NULL DEFAULT NULL ,
+  `lastpinguser` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `lastpingagent` DATETIME NULL DEFAULT '0000-00-00 00:00:00' ,
+  `userTyping` INT(11) NULL DEFAULT '0' ,
+  `agentTyping` INT(11) NULL DEFAULT '0' ,
+  `shownmessageid` INT(11) NOT NULL DEFAULT '0' ,
+  `userAgent` VARCHAR(255) NULL DEFAULT NULL ,
+  `messageCount` VARCHAR(16) NULL DEFAULT NULL ,
+  `groupid` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`threadid`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 21
+DEFAULT CHARACTER SET = utf8;
+
+
+
+
 commit;
