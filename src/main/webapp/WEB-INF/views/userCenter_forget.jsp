@@ -38,6 +38,17 @@
 
 	function callback(data) {
 		data1 = data;
+		if (data1 == 1) {
+			$("#info").removeClass().addClass("alert alert-error").show().html(
+					"验证码错误！");
+			$("#veryCode").focus();	
+			$("#forget_user_smsbtn").attr("disabled", true);
+		}else{
+			$("#info").removeClass()
+			.addClass("alert alert-success").show().html(
+					"<h7 style='font-family:幼圆'>√</h7>");
+			$("#forget_user_smsbtn").attr("disabled", false);
+		}
 	}
 
 	function sbm() {
@@ -264,6 +275,7 @@
 							<th width="15%"></th>
 							<th width="35%"></th>
 						</tr>
+						
 
 						<tr height="60px">
 							<td><p class="text-right">您注册时的手机号：</p></td>
@@ -271,10 +283,18 @@
 							<td><div id="forget_mobile_alert" class="alert" style="display: none">请输入手机号码！</div></td>
 						</tr>
 						<tr height="60px">
+							<td><p class="text-right">请输入答案：</p></td>
+
+							<td><input type="text" class="input-small" id="veryCode" placeholder="验证码答案"></td>
+							<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
+							<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
+							<td><div class="alert" id="info" style="display: none">请输入图片中的结果！</div></td>
+						</tr>
+						<tr height="60px">
 							<td><p class="text-right">手机验证码：</p></td>
 							<td><input type="text" class="input-small" id="forget_user_smscode" name="forget_user_smscode" placeholder="短信验证码"></td>
 							<td colspan="2">
-								<button type="button" class="btn btn-info" id=forget_user_smsbtn onclick="senddata()">获取短信验证码</button>
+								<button type="button" class="btn btn-info" disabled="disabled" id=forget_user_smsbtn onclick="senddata()">获取短信验证码</button>
 							</td>
 							<td><div id="forget_smscode_alert" class="alert" style="display: none">请点击按钮查收短消息验证码</div></td>
 						</tr>
@@ -288,14 +308,7 @@
 							<td colspan="3"><input type="password" id="forget_user_pwd1" class="input-xlarge" placeholder="重复新密码"></td>
 							<td><div class="alert" id="forget_pwd1_alert" style="display: none">请重复输入密码！</div></td>
 						</tr>
-						<tr height="60px">
-							<td><p class="text-right">请输入答案：</p></td>
-
-							<td><input type="text" class="input-small" id="veryCode" placeholder="验证码答案"></td>
-							<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
-							<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
-							<td><div class="alert" id="info" style="display: none">请输入图片中的结果！</div></td>
-						</tr>
+						
 						<tr height="60px">
 							<td></td>
 							<td colspan="2">

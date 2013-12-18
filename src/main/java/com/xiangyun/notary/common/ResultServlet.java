@@ -43,6 +43,8 @@ public class ResultServlet extends HttpServlet {
         String validateC = (String) request.getSession().getAttribute("validateCode");      
         String veryCode = request.getParameter("c");
         PrintWriter out = response.getWriter();      
+//        System.out.println("verifycode is :" + veryCode);
+//        System.out.println("validateC is :" + validateC);
         if(validateC==null||veryCode==null||"".equals(veryCode)){
             out.println("请输入图片中的结果！");      
         }else{      

@@ -39,6 +39,17 @@
 
 	function callback(data) {
 		data1 = data;
+		if (data1 == 1) {
+			$("#info").removeClass().addClass("alert alert-error").show().html(
+					"验证码错误！");
+			$("#veryCode").focus();	
+			$("#reg_user_smsbtn").attr("disabled", true);
+		}else{
+			$("#info").removeClass()
+			.addClass("alert alert-success").show().html(
+					"<h7 style='font-family:幼圆'>√</h7>");
+			$("#reg_user_smsbtn").attr("disabled", false);
+		}
 	}
 
 	function sbm() {
@@ -219,15 +230,18 @@
 					if ($("#veryCode").val().length == 0) {
 						$("#info").removeClass().addClass("alert alert-error")
 								.show().html("请输入图片中的结果！");
+						
 					} else {
 						$("#info").removeClass()
 								.addClass("alert alert-success").show().html(
 										"<h7 style='font-family:幼圆'>√</h7>");
+						
 					}
 				});
 	});
 
 	function checkRegForm() {
+		
 		if ($("#reg_user_name").val().length == 0) {
 			$("#reg_name_alert").removeClass().addClass("alert alert-error")
 					.show().html("姓名不能为空！");
@@ -327,16 +341,24 @@
 						<td colspan="3"><input type="text" class="input-xlarge" id="reg_user_name" placeholder="您的姓名" name="name"></td>
 						<td height="1px"><div id="reg_name_alert" class="alert" style="display: none">请输入姓名！</div></td>
 					</tr>
+					
 					<tr height="60px">
 						<td><p class="text-right">手机号：</p></td>
 						<td colspan="3"><input type="text" class="input-xlarge" id="reg_user_mobile" placeholder="您的手机号码" name="mobile"></td>
 						<td height="1px"><div id="reg_mobile_alert" class="alert" style="display: none">请输入手机号码！</div></td>
 					</tr>
 					<tr height="60px">
+						<td><p class="text-right">请输入答案：</p></td>
+						<td><input type="text" class="input-small" id="veryCode" placeholder="验证码答案"></td>
+						<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
+						<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
+						<td><div class="alert" id="info" style="display: none">请输入图片中的结果！</div></td>
+					</tr>
+					<tr height="60px">
 						<td><p class="text-right">手机验证码：</p></td>
 						<td><input type="text" class="input-small" id="reg_user_smscode" name="reg_user_smscode" placeholder="短信验证码"></td>
 						<td colspan="2">
-							<button type="button" class="btn btn-info" id="reg_user_smsbtn" onclick="senddata()">获取短信验证码</button>
+							<button type="button" class="btn btn-info" id="reg_user_smsbtn" disabled="disabled" onclick="senddata()">获取短信验证码</button>
 						</td>
 						<td height="1px"><div id="reg_smscode_alert" class="alert" style="display: none">请点击按钮查收短消息验证码</div></td>
 					</tr>
@@ -350,13 +372,7 @@
 						<td colspan="3"><input type="password" id="reg_user_pwd1" class="input-xlarge" placeholder="重复密码"></td>
 						<td><div class="alert" id="reg_pwd1_alert" style="display: none">请重复输入密码！</div></td>
 					</tr>
-					<tr height="60px">
-						<td><p class="text-right">请输入答案：</p></td>
-						<td><input type="text" class="input-small" id="veryCode" placeholder="验证码答案"></td>
-						<td><img id="imgObj" alt="" src="verifyCodeServlet" /></td>
-						<td><a href="javascript:void(0)" onclick="changeImg()">看不清？换一个</a></td>
-						<td><div class="alert" id="info" style="display: none">请输入图片中的结果！</div></td>
-					</tr>
+					
 					<tr height="60px">
 						<td></td>
 						<td colspan="3"><input type="checkbox" value="checked" id="reg_user_checkbox" checked="checked"> 我接受<a href="agreement.html" target="_blank">长宁公证处注册协议</a></td>
