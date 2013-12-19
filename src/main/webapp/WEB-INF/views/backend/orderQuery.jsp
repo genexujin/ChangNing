@@ -38,9 +38,9 @@
 	</div>
 
 	<div class="workarea">
-	<div class="span9" style="margin-left:6px;">
+	<div class="span9" style="margin-left:1px;">
 		<form class="form-horizontal" action="orderQuery.do" method="POST">
-		  <div class="bar-bg"  style="width:770px;">
+		  <div class="bar-bg"  style="width:780px;">
 		        <div class="row">
 		          <div class="span9 navbg2">
 		            <div class="row">
@@ -52,7 +52,7 @@
 		        </div>
 		  </div>
 		    
-		  <div class="border"  style="width:769px;">
+		  <div class="border"  style="width:777px;">
 		    <br>
 		    <div class="row">
 					<p style="padding-left: 29px; padding-bottom: 5px;color:blue;">

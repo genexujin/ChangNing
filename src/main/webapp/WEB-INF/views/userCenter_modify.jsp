@@ -220,8 +220,8 @@
 		</ul>
 	</div>
     
-	<div class="span9" style="width: 770px; margin-left: 6px;">
-	<div class="bar-bg">
+	<div class="span9" style="width: 770px; margin-left: 1px;">
+	<div class="bar-bg" style="width: 777px; ">
         <div class="row">
           <div class="span12 navbg2">
             <div class="row">
@@ -236,7 +236,7 @@
 <div class="workarea">
 			<form onsubmit="return checkModifyForm()" id="user_modify_form"
 				name="user_modify_form" method="post" action="/ChangNing/modify.do">
-				<div class="border">
+				<div class="border" style="width: 775px; ">
 					<div class="row">
 						<div class="span12">
 							<table width="98%">
@@ -351,7 +351,7 @@
 
 
 
-		<div class="bar-bg">
+		<div class="bar-bg" style="width: 777px; ">
         <div class="row">
           <div class="span12 navbg2">
             <div class="row">
@@ -364,7 +364,7 @@
       </div>
 <div class="workarea">
 			<form id="user_modifyPwd_form" name="user_modifyPwd_form">
-				<div class="border">
+				<div class="border" style="width: 775px; ">
 					<div class="row">
 						<div class="span12">
 							<table width="98%">

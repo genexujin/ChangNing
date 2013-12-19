@@ -38,9 +38,9 @@
 		</ul>
 	</div>
 
-	<div class="span9" style="width: 760px; margin-left: 6px;">
+	<div class="span9" style="width: 777px; margin-left: 1px;">
 
-		<div class="bar-bg">
+		<div class="bar-bg" style="width:777px;">
         <div class="row">
           <div class="span12 navbg2">
             <div class="row">
@@ -52,7 +52,7 @@
         </div>
       </div>
 <div class="workarea">
-		<div class="border">
+		<div class="border" style="width:777px;">
 			<br />
 			<div class="row">
 				<form action="/ChangNing/saveWorkday.do" method="post"
@@ -116,7 +116,7 @@
 		
 		
 
-		<div class="bar-bg">
+		<div class="bar-bg" style="width:777px;">
         <div class="row">
           <div class="span12 navbg2">
             <div class="row">
@@ -128,7 +128,7 @@
         </div>
       </div>
 
-		<div class="border">
+		<div class="border" style="width:777px;">
 			<br />
 			<div class="row">
 				<div class="span10 offset1">

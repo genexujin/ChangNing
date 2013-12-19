@@ -44,8 +44,8 @@ request.setAttribute("statusStr", statusStr);
 			</c:choose>
 		</ul>
 	</div>
-   <div class="span9" style="margin-left: 6px;width:770px;">
-	<div class="bar-bg" >
+   <div class="span9" style="margin-left:1px;width:770px;">
+	<div class="bar-bg" style="margin-left:1px;width:778px;">
         <div class="row">
           <div class="span9 navbg2" >
             <div class="row">
@@ -57,7 +57,7 @@ request.setAttribute("statusStr", statusStr);
         </div>
       </div>
 <div class="workarea">
-	<div class="border">
+	<div class="border" style="width:773px;">
 		<div class="row">
 
 					<p style="padding-left: 29px; padding-bottom: 5px;color:blue;">
