@@ -559,6 +559,27 @@
 	      </div>
       </div>
       
+      <div class="bar-bg">
+        <div class="row">
+          <div class="span12 navbg2">
+            <div class="row">
+              <div class="span9">
+                <h5 id="section_bill">&nbsp;&nbsp;&nbsp;&nbsp;备注</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border">
+		<br />
+		<div class="row">
+		  <div class="span8 offset1">
+			<textarea rows="5" cols="150" name="order_note"
+						style="width: 700px;" placeholder="如有关于订单的特殊情况，可在此说明" maxLength="200"></textarea>
+		  </div>
+		</div>
+		<br />
+	  </div>
  </div>
       
 <div id="myModal1" class="modal hide fade" style="margin-top:100px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

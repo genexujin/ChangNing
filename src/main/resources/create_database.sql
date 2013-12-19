@@ -52,6 +52,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `accepter_id` INT NULL ,
   `upload_note` VARCHAR(1000) NULL ,
   `cancel_note` VARCHAR(1000) NULL ,
+  `order_note` VARCHAR(2000) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `user_fk_idx` (`user_id` ASC) ,
   INDEX `accepter_fk_idx` (`accepter_id` ASC) ,

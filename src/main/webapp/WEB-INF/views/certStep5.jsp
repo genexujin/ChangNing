@@ -39,9 +39,12 @@
 		      <div class="row">
 		        <div class="span12 navbg2">
 		          <div class="row">
-		            <div class="span9">
+		            <div class="span8">
 		              <h5>&nbsp;&nbsp;&nbsp;&nbsp;在线支付</h5>
 		            </div>
+		            <div class="span3">
+						<h5>申办号：<c:out value="${order.readableId}"></c:out></h5>
+					</div>
 		          </div>
 		        </div>
 		      </div>

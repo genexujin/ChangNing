@@ -164,8 +164,11 @@ public class Order implements Serializable {
 
 	@Column(name = "cancel_note")
 	private String cancelNote;
+	
+	@Column(name = "order_note")
+    private String orderNote;
 
-	public Long getId() {
+    public Long getId() {
 		return id;
 	}
 
@@ -544,6 +547,14 @@ public class Order implements Serializable {
 	public void setHistories(Set<OrderHistory> histories) {
 		this.histories = histories;
 	}
+	
+    public String getOrderNote() {
+        return orderNote;
+    }
+
+    public void setOrderNote(String orderNote) {
+        this.orderNote = orderNote;
+    }
 	
 	
 }
