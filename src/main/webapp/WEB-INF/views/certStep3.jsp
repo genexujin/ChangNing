@@ -61,7 +61,7 @@
 				</h5>
 			</div>
 
-		</div>
+		</div>		
 		<br>
 
 
@@ -71,8 +71,11 @@
   		<c:if test="${not um.allInOneUploadEmpty}">
 			<div class="bar-bg">
 				<div class="row">
-					<div class="span12 navbg2">
+					<div class="span8 navbg2">
 						<h5>&nbsp;&nbsp;&nbsp;&nbsp;基本材料</h5>
+					</div>
+					<div class="span3">
+						<h5>申办号：<c:out value="${orderId}"></c:out></h5>
 					</div>
 				</div>
 			</div>

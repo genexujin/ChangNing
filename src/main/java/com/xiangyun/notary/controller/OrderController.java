@@ -353,7 +353,7 @@ public class OrderController {
 			operation.setUser(user);
 			order.addHistory(operation);
 		}
-		orderService.save(order);
+		Order savedOrder = orderService.save(order);
 
 		ModelAndView mav = new ModelAndView("certStep3");
 		mav.addObject("title", "上传资料");
@@ -365,6 +365,7 @@ public class OrderController {
 		m.setNeedCrop(needCropDocs.values());
 
 		mav.addObject("um", m);
+		mav.addObject("orderId", savedOrder.getReadableId());
 
 		if (needSpecialNote)
 			mav.addObject("Special_note", "如本人和父母不在同一本户口本，请分别上传");
@@ -421,6 +422,7 @@ public class OrderController {
 		} else {
 			ModelAndView mav = new ModelAndView("certStep4");
 			mav.addObject("title", "上门送证");
+			mav.addObject("orderId", order.getReadableId());
 			return mav;
 		}
 
