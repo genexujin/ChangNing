@@ -37,7 +37,7 @@
 			   </c:when>
 			 </c:choose>
 			 <c:choose>
-        		<c:when test="${order.orderStatus == 'PAYING'}">
+        		<c:when test="${order.orderStatus == 'PAYING' or order.orderStatus =='ADD_CHARGE'}">
 			 	 	<a id="checkPayBill" class="btn btn-primary">人工确认收款</a>
 			   </c:when>
 			 </c:choose>

@@ -485,6 +485,8 @@ public class AlipayController {
 				} else {
 					order.setOrderStatus(OrderStatus.PAID);
 				}
+				
+				order.calculateTotalPaid();
 			}
 			
 			orderService.save(order);		

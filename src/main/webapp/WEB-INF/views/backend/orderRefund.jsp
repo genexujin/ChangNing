@@ -20,7 +20,7 @@
 <br>
 
 	<div class="workarea">
-<form class="form-horizontal" action="doRefund.do" method="POST">
+<form class="form-horizontal" action="doRefund.do" method="POST" target="_blank">
 
 	<div class="bar-bg">
 		<div class="row">

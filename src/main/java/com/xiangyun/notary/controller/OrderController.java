@@ -538,17 +538,20 @@ public class OrderController {
 					Constants.CURRENT_ORDER);
 		}
 
-		int seq = order.getPayments().size() + 1;
-		String tradeNo = order.getReadableId() + "-" + seq;
-		String title = order.getPaymentTitle() + " 订单号："
-				+ order.getReadableId();
-
+		
+		String tradeNo= null;
 		Set<Payment> pays = order.getPayments();
 		Payment payment = null;
 
 		// 检查是否有付款中的payment，如果没有则新建，如果有则先付付款中的
 		if (pays.isEmpty()) {
-
+			tradeNo = order.getReadableId();
+			int seq = order.getPayments().size() + 1;
+			tradeNo = tradeNo + "-" + seq;
+			String title = order.getPaymentTitle() + " 订单号："
+					+ order.getReadableId();
+			
+			log.debug("create payment");
 			// 先创建Payment
 			payment = new Payment();
 
@@ -563,9 +566,11 @@ public class OrderController {
 			order.setPaymentStatus(OrderPaymentStatus.NOT_PAID);
 			order.addPayment(payment);
 		} else {
+			log.debug("old payment");
 			for (Payment pay : pays) {
 				if (pay.getStatus().equals(OrderPaymentStatus.NOT_PAID))
 					payment = pay;
+					tradeNo = payment.getOrderTxnNo();
 			}
 		}
 
