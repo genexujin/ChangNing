@@ -10,7 +10,6 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -45,6 +44,7 @@ import com.xiangyun.notary.domain.FormItem;
 import com.xiangyun.notary.domain.Interaction;
 import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.domain.OrderHistory;
+import com.xiangyun.notary.domain.OrderNote;
 import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.domain.RelativeInfo;
 import com.xiangyun.notary.domain.User;
@@ -619,6 +619,15 @@ public class OrderController {
 		operation.setOperationDate(new Date());
 		operation.setUser(user);
 		order.addHistory(operation);
+	}
+	
+	private void addNote(String noteContent, Order order, User user) {
+	    OrderNote note = new OrderNote();
+	    note.setNoteContent(noteContent);
+	    note.setNoteDate(new Date());
+	    note.setUser(user);
+	    order.addNote(note);
+	    
 	}
 
 	@RequestMapping(value = "/orderQuery.do")

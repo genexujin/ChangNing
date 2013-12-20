@@ -52,7 +52,6 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `accepter_id` INT NULL ,
   `upload_note` VARCHAR(1000) NULL ,
   `cancel_note` VARCHAR(1000) NULL ,
-  `order_note` VARCHAR(2000) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `user_fk_idx` (`user_id` ASC) ,
   INDEX `accepter_fk_idx` (`accepter_id` ASC) ,
@@ -63,6 +62,26 @@ CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
     ON UPDATE NO ACTION,
   CONSTRAINT `accepter_fk`
     FOREIGN KEY (`accepter_id` )
+    REFERENCES `changning`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE  TABLE IF NOT EXISTS `changning`.`order_notes` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `order_id` INT NULL ,
+  `user_id` INT NULL ,
+  `note_content` VARCHAR(1000) NULL ,
+  `note_date` DATE NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `order_notes_order_fk_idx` (`order_id` ASC) ,
+  INDEX `order_notes_user_fk_idx` (`user_id` ASC) ,
+  CONSTRAINT `order_notes_orders_fk`
+    FOREIGN KEY (`order_id` )
+    REFERENCES `changning`.`orders` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `order_notes_user_fk`
+    FOREIGN KEY (`user_id` )
     REFERENCES `changning`.`users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);

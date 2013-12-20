@@ -69,6 +69,11 @@ public class Order implements Serializable {
 			CascadeType.MERGE }, mappedBy = "order")
 	@OrderBy("operationDate ASC")
 	private Set<OrderHistory> histories = new HashSet<OrderHistory>();
+	
+	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
+            CascadeType.MERGE }, mappedBy = "order")
+    @OrderBy("noteDate ASC")
+    private Set<OrderNote> notes = new HashSet<OrderNote>();
 
 	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
 			CascadeType.MERGE }, mappedBy = "order")
@@ -164,9 +169,6 @@ public class Order implements Serializable {
 
 	@Column(name = "cancel_note")
 	private String cancelNote;
-	
-	@Column(name = "order_note")
-    private String orderNote;
 
     public Long getId() {
 		return id;
@@ -547,14 +549,18 @@ public class Order implements Serializable {
 	public void setHistories(Set<OrderHistory> histories) {
 		this.histories = histories;
 	}
-	
-    public String getOrderNote() {
-        return orderNote;
+
+    public Set<OrderNote> getNotes() {
+        return notes;
     }
 
-    public void setOrderNote(String orderNote) {
-        this.orderNote = orderNote;
+    public void setNotes(Set<OrderNote> notes) {
+        this.notes = notes;
     }
-	
+    
+    public void addNote(OrderNote note) {
+        note.setOrder(this);
+        notes.add(note);
+    }
 	
 }
