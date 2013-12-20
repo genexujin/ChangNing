@@ -149,7 +149,9 @@
 							<th>总费用</th>
 							<th>已支付</th>
 							<th>状态</th>
+							<c:if test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
 							<th>备注</th>
+							</c:if>
 						</tr>
 					</thead>
 					<tbody>
@@ -166,11 +168,13 @@
 								<td><fmt:formatNumber value="${order.paymentPaid}"
 										type="currency" pattern="￥#0.00" /></td>
 								<td><c:out value="${order.orderStatus.text}"></c:out></td>
+								<c:if test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
 								<td>
 								  <c:if test="${not empty order.notes}">
 								    <img src="resources/info.png" style="cursor: pointer; display: inline; padding-left:10px" onclick="showNotes(${order.id})"></img>
 								  </c:if>
 								</td>
+								</c:if>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -218,10 +222,10 @@
 <div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true" style="width:840px;">
 	<div class="modal-header" style="height:10px;">		
-		<p id="myModalLabel">图片标题</p>
+		<p id="myModalLabel">订单备注</p>
 	</div>
 	<div class="modal-body">
-	  <iframe src="getOrderNotes.do?oId=1" width="810" height="200" frameborder="0"></iframe>
+	  <iframe id="noteframe" width="810" height="200" frameborder="0"></iframe>
 	</div>
 	<div class="modal-footer" style="height:20px;">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
@@ -246,6 +250,8 @@ function resetQueryParameters() {
 }
 
 function showNotes(orderId) {
+	var frameLink = "getOrderNotes.do?oId=" + orderId;
+	$("#noteframe").attr("src", frameLink);
 	$("#myModal1").modal("show");
 }
 

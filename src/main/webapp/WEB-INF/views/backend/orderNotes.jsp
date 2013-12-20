@@ -15,7 +15,12 @@
 <body style="background:none">
       	<div class="row">
 		  <div class="span10">
-	      <table class="table table-striped table-bordered table-hover">
+		  <c:choose>
+        	<c:when test="${not empty message}">
+        	  <c:out value="${message}"></c:out>
+        	</c:when>
+        	<c:otherwise>
+              <table class="table table-striped table-bordered table-hover">
 	            <thead>
 	              <tr>	                
 	                <th style="width:60px">备注人</th>
@@ -34,6 +39,8 @@
 	              
 	            </tbody>
 	          </table>
+        	</c:otherwise>
+		  </c:choose>
 	      </div>	      
 	    </div>
 </body>

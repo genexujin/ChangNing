@@ -559,6 +559,7 @@
 	      </div>
       </div>
       
+      <c:if test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
       <div class="bar-bg">
         <div class="row">
           <div class="span12 navbg2">
@@ -613,6 +614,7 @@
 		</form>
 		<br />
 	  </div>
+	  </c:if>
  </div>
       
 <div id="myModal1" class="modal hide fade" style="margin-top:100px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

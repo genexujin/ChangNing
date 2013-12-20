@@ -1473,11 +1473,23 @@ public class OrderController {
     
     @RequestMapping(value = "/getOrderNotes.do")
     public ModelAndView getOrderNotes(HttpServletRequest request) {
-        
         ModelAndView mav = new ModelAndView("backend/orderNotes");
         
-        Order order = orderService.findById(1L);
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            mav.addObject("message", "不存在该订单");
+            return mav;
+        }
+
+        Long userId = getUserIdFromSession(request.getSession(false));
+
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            mav.addObject("message", "不存在该订单");
+            return mav;
+        }
         
+        mav.addObject("message", "");
         mav.addObject("notes", order.getNotes());
         
         return mav;
