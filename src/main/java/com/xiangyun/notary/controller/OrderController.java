@@ -1447,6 +1447,29 @@ public class OrderController {
 
 		return new ModelAndView(sb.toString());
 	}
+	
+    @RequestMapping(value = "/addOrderNote.do")
+    public ModelAndView addOrderNote(HttpServletRequest request) {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+
+        Long userId = getUserIdFromSession(request.getSession(false));
+
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+        String orderNote = request.getParameter("order_note");
+        if (StringUtils.isEmpty(orderNote) == false) {
+            addNote(orderNote, order, getUser(request));
+            orderService.save(order);
+        }
+        
+        return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
+    }
 
 	private List<Long> convertPaymentIds(String[] paymentIds) {
 		List<Long> pIds = new ArrayList<Long>();

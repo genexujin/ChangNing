@@ -548,9 +548,9 @@
 	              <c:forEach items="${order.histories}" var="history" >	                
 	                  <tr>
 	                    <td><c:out value="${history.user.name}"></c:out></td>
-	                    <td><font color='blue'><c:out value="${history.operationDate}"></c:out></font></td>
+	                    <td><font color='blue'><fmt:formatDate value="${history.operationDate}" pattern="yyyy-MM-dd HH:mm:ss"/></font></td>
 	                    <td><c:out value="${history.operation}"></c:out></td>	                   
-	                  </tr>	                
+	                  </tr>
 	              </c:forEach>              
 	              
 	            </tbody>
@@ -571,13 +571,46 @@
         </div>
       </div>
       <div class="border">
+        <br/>
+      	<div class="row">
+		  <div class="span10 offset1">
+	      <table class="table table-striped table-bordered table-hover">
+	            <thead>
+	              <tr>	                
+	                <th>备注人</th>
+	                <th>时间</th>
+	                <th>内容</th>	                
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <c:forEach items="${order.notes}" var="note" >	                
+	                  <tr>
+	                    <td><c:out value="${note.user.name}"></c:out></td>
+	                    <td><font color='blue'><fmt:formatDate value="${note.noteDate}" pattern="yyyy-MM-dd HH:mm:ss"/></font></td>
+	                    <td><c:out value="${note.noteContent}"></c:out></td>	                   
+	                  </tr>	                
+	              </c:forEach>              
+	              
+	            </tbody>
+	          </table>
+	      </div>	      
+	    </div>
 		<br />
+		<form id="theform" class="form-horizontal" action="addOrderNote.do" method="POST">
 		<div class="row">
 		  <div class="span8 offset1">
+		    <input name="oId" type="hidden" value="<c:out value='${order.id}'/>"></input>
 			<textarea rows="5" cols="150" name="order_note"
 						style="width: 700px;" placeholder="如有关于订单的特殊情况，可在此说明" maxLength="200"></textarea>
 		  </div>
 		</div>
+		<br/>
+		<div class="row">
+		  <div class="span2 offset4">
+		  <button class="btn btn-block btn-info" type="submit">提交备注</button>
+		  </div>
+		</div>
+		</form>
 		<br />
 	  </div>
  </div>
