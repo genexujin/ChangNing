@@ -1470,6 +1470,18 @@ public class OrderController {
         
         return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
     }
+    
+    @RequestMapping(value = "/getOrderNotes.do")
+    public ModelAndView getOrderNotes(HttpServletRequest request) {
+        
+        ModelAndView mav = new ModelAndView("backend/orderNotes");
+        
+        Order order = orderService.findById(1L);
+        
+        mav.addObject("notes", order.getNotes());
+        
+        return mav;
+    }
 
 	private List<Long> convertPaymentIds(String[] paymentIds) {
 		List<Long> pIds = new ArrayList<Long>();

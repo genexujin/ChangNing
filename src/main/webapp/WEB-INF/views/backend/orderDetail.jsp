@@ -577,8 +577,8 @@
 	      <table class="table table-striped table-bordered table-hover">
 	            <thead>
 	              <tr>	                
-	                <th>备注人</th>
-	                <th>时间</th>
+	                <th style="width:60px">备注人</th>
+	                <th style="width:90px">时间</th>
 	                <th>内容</th>	                
 	              </tr>
 	            </thead>

@@ -148,7 +148,8 @@
 							<th>申办人</th>
 							<th>总费用</th>
 							<th>已支付</th>
-							<th>处理状态</th>
+							<th>状态</th>
+							<th>备注</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -165,6 +166,11 @@
 								<td><fmt:formatNumber value="${order.paymentPaid}"
 										type="currency" pattern="￥#0.00" /></td>
 								<td><c:out value="${order.orderStatus.text}"></c:out></td>
+								<td>
+								  <c:if test="${not empty order.notes}">
+								    <img src="resources/info.png" style="cursor: pointer; display: inline; padding-left:10px" onclick="showNotes(${order.id})"></img>
+								  </c:if>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -209,6 +215,19 @@
 	
 </div>
 
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:840px;">
+	<div class="modal-header" style="height:10px;">		
+		<p id="myModalLabel">图片标题</p>
+	</div>
+	<div class="modal-body">
+	  <iframe src="getOrderNotes.do?oId=1" width="810" height="200" frameborder="0"></iframe>
+	</div>
+	<div class="modal-footer" style="height:20px;">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	</div>
+</div>
+
 <script>
 $("#startDate").datepicker({language: 'cn'});
 $("#endDate").datepicker({language: 'cn'});
@@ -224,6 +243,10 @@ function resetQueryParameters() {
 	$("#reqMobile").val("");
 	
 	return false;
+}
+
+function showNotes(orderId) {
+	$("#myModal1").modal("show");
 }
 
 </script>
