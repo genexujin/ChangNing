@@ -511,3 +511,42 @@ td.segmenthd {
 div.special select {
 	width: 80px;
 }
+
+#bottombar-wrap-w {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 999999;
+	_position: absolute;
+	_top: expression(eval(document.documentElement.scrollTop +
+		document.documentElement.clientHeight-this.offsetHeight- ( parseInt(this.currentStyle.marginTop
+		, 10)||0)-(parseInt(this.currentStyle.marginBottom, 10)||0)));
+}
+
+#bottombar-wrap-w {
+	background: transparent
+		url(botbar18.gif)
+		repeat-x scroll 0 0;
+}
+
+
+#bottombar-wrap-w .close-w a {
+	background: transparent
+		url(botbar19.gif)
+		repeat-x scroll 0 0;
+}
+
+#bottombar-wrap-w .close-w a:hover {
+	background: transparent
+		url(botbar20.gif)
+		repeat-x scroll 0 0;
+}
+
+#bottombar-wrap-w .wrap-cont-w .cont-comment-w a.comment-link-w,#bottombar-wrap-w .wrap-cont-w .cont-comment-w span.comment-text-w
+	{
+	color: #5788aa;
+}
+
+#bottombar-wrap-w .wrap-cont-w .cont-comment-w .comment-link-w:hover {
+	color: #ee542a;
+}
