@@ -31,8 +31,13 @@ import com.xiangyun.notary.util.MailSender;
 
 @Controller
 public class ChatHistoryController {
+	
 	private static Logger log = LoggerFactory
 			.getLogger(ChatHistoryController.class);
+	
+	//调节显示时间，-4表示如果快了4小时则减去快了的4小时
+	private static final int timeAdjust = -4;
+	
 	private static String dbURL;
 	private static String queryThreadStmt = "select threadid, userName, agentName, dtmcreated,dtmmodified, referer from chatthread where referer like ?";
 	private static String queryThreadByIdStmt = "select threadid, userName, agentName, dtmcreated,dtmmodified,referer from chatthread where threadid = ?";
@@ -155,11 +160,11 @@ public class ChatHistoryController {
 					// 矫正时间
 					cal.setTimeInMillis(rs.getTimestamp("dtmmodified")
 							.getTime());
-					cal.add(Calendar.HOUR_OF_DAY, 0);
+					cal.add(Calendar.HOUR_OF_DAY, timeAdjust);
 					theThread.setThreadEnd(new Date(cal.getTimeInMillis()));
 					// 矫正时间
 					cal.setTimeInMillis(rs.getTimestamp("dtmcreated").getTime());
-					cal.add(Calendar.HOUR_OF_DAY, 0);
+					cal.add(Calendar.HOUR_OF_DAY, timeAdjust);
 					theThread.setThreadStart(new Date(cal.getTimeInMillis()));
 
 					theThread.setUserName(rs.getString("userName"));
@@ -223,11 +228,11 @@ public class ChatHistoryController {
 					// 矫正时间
 					cal.setTimeInMillis(rs.getTimestamp("dtmmodified")
 							.getTime());
-					cal.add(Calendar.HOUR_OF_DAY, 0);
+					cal.add(Calendar.HOUR_OF_DAY, timeAdjust);
 					thread.setThreadEnd(new Date(cal.getTimeInMillis()));
 					// 矫正时间
 					cal.setTimeInMillis(rs.getTimestamp("dtmcreated").getTime());
-					cal.add(Calendar.HOUR_OF_DAY, 0);
+					cal.add(Calendar.HOUR_OF_DAY, timeAdjust);
 					thread.setThreadStart(new Date(cal.getTimeInMillis()));
 					thread.setUserName(rs.getString("userName"));
 					thread.setThreadid(rs.getInt("threadid"));
@@ -251,7 +256,7 @@ public class ChatHistoryController {
 						// 矫正时间
 						cal.setTimeInMillis(rs1.getTimestamp("dtmcreated")
 								.getTime());
-						cal.add(Calendar.HOUR_OF_DAY, 0);
+						cal.add(Calendar.HOUR_OF_DAY, timeAdjust);
 						msg.setMsgTime(new Date(cal.getTimeInMillis()));
 						messages.add(msg);
 					}

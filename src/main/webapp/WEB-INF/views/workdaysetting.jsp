@@ -23,11 +23,17 @@
 		<ul class="nav nav-list">
 			<li><h5>我的菜单</h5>
 			<li><a href="orderQuery.do">办证订单管理</a></li>
+			<div class="divider"></div>
 			<li><a href="reserv_Query.do">预约订单管理</a></li>
+			<div class="divider"></div>
 			<li><a href="enterModify.do">个人信息修改</a></li>
+			<div class="divider"></div>
 			<c:choose>
 				<c:when test="${sessionScope['LOGIN_USER'].admin}">
 					<li class="active"><a href="enterWorkdaySetting.do">工作日设定</a></li>
+					<div class="divider"></div>
+					<li><a href="listSiteNews.do">站点通知</a></li>
+					<div class="divider"></div>
 				</c:when>
 			</c:choose>
 			<c:choose>

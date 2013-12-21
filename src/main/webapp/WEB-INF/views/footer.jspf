@@ -42,113 +42,41 @@
 					String encodedName;
 					//String encodedNameIE = new String(userName.getBytes("UTF-8"),"GB2312"); 
 					encodedName = URLEncoder.encode(userName, "UTF-8");
-
 					//System.out.println(encodedNameIE);
-
 					pageContext.setAttribute("encodedName", encodedName);
 		%>
 
-		<!-- 
-<div style="position:fixed;z-index:999;top:30%;left:0;width:150px;padding-left:10px;">
-<div style="padding: 20px 20px 20px 40px;
-    margin-bottom: 15px;
-    border-style: solid;
-    border-width: 1px;
-    background-position: 10px 10px;
-    background-repeat: no-repeat;background-color:#dfeff5;background-repeat:none;background-image:url(<c:url value="/resources/info_big.png"/>);border-color:#9ebcce;">
-   <p></p>
-   <p>中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文中文</p>
-</div>
-
-</div>
- -->
-
+	
+<!--         底部信息栏               -->
 		<div id="changyan_floatbar_wrapper" data-tongji="1"
 			style="display: block;">
 			<!--[if IE 6]><style type="text/css">#bottombar-wrap-w .wrap-cont-w .cont-login-w{margin:-38px 0 0!important;}</style><![endif]-->
-			<style type="text/css">
-
-
-</style>
+			
 			<div id="bottombar-wrap-w" class=""
 				style="font-weight: normal; margin: 0; border: 0; font-size: 100%; float: none; text-align: right; width: 100%; height: 38px; padding: 0; overflow: hidden; font-family: SimSun;">
 				<div class="close-w"
 					style="margin: 0; padding: 0; border: 0; font-size: 100%; text-align: left; width: 40px; height: 38px; margin-left: -40px; overflow: hidden; line-height: 500px; float: right;">
-					<a href="javascript:void(0)"
+					<a href="javascript:void(0)" id="hideInfoBtn"
 						style="margin: 0; padding: 0; border: 0; font-size: 100%; float: none; text-align: left; display: block; width: 100%; height: 100%;">关闭</a>
 				</div>
 				<div class="wrap-cont-w post-wrap-w"
-					style="margin: 0; padding: 0; border: 0; font-size: 100%; float: none; text-align: left; width: 980px; height: 48px; margin: 0 auto;">
+					style="font-size: 100%; float: none; text-align: left; width: 980px; height: 48px; margin-left:30px;">
 					<div class="cont-minwidth-w"
-						style="margin: 0; padding: 0 249px 0 0; border: 0; overflow: hidden;">
+						style="margin: 0; padding: 0 0 0 0; border: 0; overflow: hidden;">
 						<div class="cont-comment-w"
 							style="margin: 0; padding: 0; border: 0; font-size: 100%; text-align: center; float: left; zoom: 1; height: 48px; line-height: 48px; font-family: Microsoft YaHei, SimSun;">
-							<a class="comment-link-w"
-								href="http://pinglun.sohu.com/s392095636.html"
-								style="margin: 0; padding: 8px 20px 0 0; border: 0; font-size: 100%; float: none; text-align: center; font-size: 16px; text-decoration: none; display: block; line-height: 22px;">查看<i
-								style="margin: 0; padding: 0; border: 0; font-size: 100%; float: none; text-align: center; font-family: 'Georgia'; font-size: 18px; color: #ee542a; padding: 0 4px;">26</i>条评论
-							</a>
-						</div>
-						<div class="cont-form-w"
-							style="margin: 0; border: 0; font-size: 100%; text-align: left; overflow: hidden; position: relative; zoom: 1;">
-							<div class="form-text-w area-textarea-w"
-								style="margin: 0; font-size: 100%; float: none; text-align: left; height: 38px; padding: 0 100px 0 10px; border-left: 2px solid #5788a9; border-radius: 3px 0 0 3px;">
-								<a class="button-w btn-bf" href="javascript:void(0)"
-									style="padding: 0; border: 0; font-size: 100%; float: none; text-align: left; float: right; width: 100px; height: 38px; margin: 0 -100px 0 0; line-height: 500px; overflow: hidden;">按钮</a><input
-									type="text" name="" value="" class="textarea-fw text-w"
-									style="padding: 0; border: 0; font-size: 100%; float: none; text-align: left; float: right; width: 100%; height: 34px; overflow: hidden; margin: 2px 0 0; line-height: 34px; color: #999; font-size: 14px; font-family: Microsoft YaHei, SimSun; outline: none; background-color: transparent;">
-								<div></div>
-								<div class="activity-entry-w"
-									style="margin: 0; padding: 0 1px 0 0; border: 0; text-align: left; zoom: 1; height: 34px; position: absolute; bottom: 2px; left: 12px; overflow: hidden;">
-									<div class="entry-text-w"
-										style="position: relative; margin: 0; padding: 10px 0 0; border: 0; text-align: left; float: left; zoom: 1; color: #b8b8b8; font-size: 14px; font-family: SimSun; line-height: 16px;">发评论，有机会赢取乐蜂网超值兑换券！</div>
-									<div class="entry-img-w"
-										style="margin: 1px 0 0; padding: 0; border: 0; text-align: left; float: left; width: 44px; height: 32px;">
-										<img
-											src="http://changyan.itc.cn/activity/activity_default_pic/float_icon_0.gif?20131207"
-											width="44" height="32" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="cont-login-w"
-						style="padding: 0; margin: -48px 0 0; border: 0; text-align: left; overflow: hidden; float: right; width: 240px;">
-						<div class="logout-wrap-w"
-							style="margin: 0; padding: 4px 0 0 10px; height: 30px; border: 0; text-align: left; overflow: hidden;">
-							<ul class="floatbar_platform"
-								style="margin: 0; padding: 0; border: 0; text-align: left; overflow: hidden;">
-								<li
-									style="margin: 0; padding: 0; border: 0; text-align: left; overflow: hidden; line-height: 22px; float: left;"><span
-									style="margin: 0; padding: 4px 0 0; border: 0; display: inline-block; font-size: 16px; color: #666; font-family: Microsoft YaHei, SimSun;">登录：</span></li>
-								<li
-									style="cursor: pointer; margin: 0; padding: 0 10px 0 0; border: 0; text-align: left; overflow: hidden; width: 30px; height: 30px; float: left; display: block"><a
-									class="icon-sohu-w"
-									style="margin: 0; padding: 0; border: 0; display: inline-block; width: 100%; height: 100%;"
-									href="http://changyan.sohu.com/api/2/login/passport?client_id=cyqemw6s1&amp;platform_id=11"
-									post-data="" win-height="424" win-width="580" data-type="open"
-									title="搜狐" alt="搜狐"></a></li>
-								<li
-									style="cursor: pointer; margin: 0; padding: 0 10px 0 0; border: 0; text-align: left; overflow: hidden; width: 30px; height: 30px; float: left; display: block"><a
-									class="icon-sina-w"
-									style="margin: 0; padding: 0; border: 0; display: inline-block; width: 100%; height: 100%;"
-									href="http://changyan.sohu.com/api/2/login/passport?client_id=cyqemw6s1&amp;platform_id=2"
-									post-data="" win-height="537" win-width="754" data-type="open"
-									title="新浪微博" alt="新浪微博"></a></li>
-								<li
-									style="cursor: pointer; margin: 0; padding: 0 10px 0 0; border: 0; text-align: left; overflow: hidden; width: 30px; height: 30px; float: left; display: block"><a
-									class="icon-qq-w"
-									style="margin: 0; padding: 0; border: 0; display: inline-block; width: 100%; height: 100%;"
-									href="http://changyan.sohu.com/api/2/login/passport?client_id=cyqemw6s1&amp;platform_id=3"
-									post-data="" win-height="520" win-width="800" data-type="open"
-									title="QQ" alt="QQ"></a></li>
-							</ul>
-						</div>
-					</div>
+							<p class="comment-link-w"								
+								style="margin: 0; padding: 8px 20px 0 0; border: 0; font-size: 100%; float: none; text-align: center; font-size: 16px; text-decoration: none; display: block; line-height: 22px;">
+								站点通知：<c:out value="${applicationScope.theNews}" />
+							</p>							
+						</div>						
+					</div>					
 				</div>
 			</div>
 		</div>
 
+
+<!--   -------------------------    客服链接    ------------------------        -->
 
 		<div style="position: fixed; z-index: 999; top: 45%; right: 0;">
 			<!-- mibew button -->
@@ -158,11 +86,13 @@
 <img src="http://localhost/mibew/b.php?i=mibew&amp;amp;lang=zh-cn" border="0" alt=""/>
 -->
 			</a>
-			<!-- / mibew button -->
-
 		</div>
-
-		<script>
+		<script>		
+		   $("#hideInfoBtn").click(
+					function() {
+						$("#changyan_floatbar_wrapper").hide();
+					}
+			);
 			//alert('${encodedName}');
 			$("#supportLink")
 					.click(
@@ -205,7 +135,6 @@
 
 			$('.modal').appendTo($('body'));
 		</script>
-
 	</c:when>
 </c:choose>
 <!-- <div id = "olhd_anchor"></div> 
