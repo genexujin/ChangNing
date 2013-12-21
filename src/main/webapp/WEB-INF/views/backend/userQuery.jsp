@@ -31,6 +31,8 @@
 					<div class="divider"></div>
 					<li><a href="listSiteNews.do">站点通知</a></li>
 					<div class="divider"></div>
+					<li><a href="enterSMS.do">短信管理</a></li>
+					<div class="divider"></div>
 				</c:when>
 			</c:choose>
 			<c:choose>

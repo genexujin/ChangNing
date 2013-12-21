@@ -72,16 +72,12 @@ public class SingletonSMSClient {
 
 	// 执行一次，激活账号
 	public static void main(String str[]) {
-		Client theclient = SingletonSMSClient.getClient();
-		//int result = theclient.serialPwdUpd(password, "800809");
-		//System.out.println("result: " + result);
-		// No need to register again, because we have already register it.
-		// int i = theclient.registEx(password);
-		// System.out.println("注册结果:" + i);
+		 Client theclient = SingletonSMSClient.getClient();
 
-		 theclient.sendSMS(new String[] { "13621927920","18221889387" },
+		 int res = theclient.sendSMS(new String[] { "18621910893"},
 		 "测试短信,发送时间： " + new Date() + ",请查看是否收到及时 【长宁公证】", 1);
 		try {
+			System.out.println("success:"+res);
 			System.out.println("Available SMS: "
 					+ Math.floor(theclient.getBalance() / 0.09));
 		} catch (Exception e) {
