@@ -19,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.Encrypt;
+import com.xiangyun.notary.domain.SiteNews;
 import com.xiangyun.notary.domain.User;
+import com.xiangyun.notary.service.SiteNewsService;
 import com.xiangyun.notary.service.UserService;
 import com.xiangyun.notary.util.VerifyCodeChecker;
 import com.xiangyun.sms.SMSManager;
@@ -31,6 +33,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private SiteNewsService newsService;
 
 	/**
 	 * 进入注册页面
@@ -93,12 +98,12 @@ public class UserController {
 	public String register(User user, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		// ModelAndView mav = new ModelAndView();
-		
-		if(!checkSMS(request, response, "reg_user_smscode")){
+
+		if (!checkSMS(request, response, "reg_user_smscode")) {
 			request.getSession().removeAttribute("SMSCODE");
 			return "redirect:/enterRegister.do";
 		}
-		
+
 		if (userService.findByMobile(user.getMobile()) == null) {
 			user.setPassword(Encrypt.e(user.getPassword()));
 			userService.save(user);
@@ -145,7 +150,6 @@ public class UserController {
 		SMSManager.sendSMS(new String[] { mobile },
 				"感谢您使用上海长宁公证处网上公证平台，您的验证码为：" + checksmscode, 1);
 
-		
 		System.err.println("ended!");
 	}
 
@@ -206,7 +210,7 @@ public class UserController {
 			out.println(0);
 			result = false;
 		} else {
-			out.println(1);			
+			out.println(1);
 		}
 
 		return result;
@@ -225,6 +229,9 @@ public class UserController {
 			String veryCode) {
 		String msg = null;
 		ModelAndView mav = new ModelAndView();
+
+		//如果site news为空则加载
+		loadSiteNews(request);
 
 		if (!VerifyCodeChecker.isCodeValid(veryCode, request)) {
 			msg = "验证码输入错误，请重试！";
@@ -260,6 +267,20 @@ public class UserController {
 
 		}
 		return mav;
+	}
+
+	private void loadSiteNews(HttpServletRequest request) {
+		
+		log.debug("site news: "+ request.getSession().getServletContext().getAttribute("theNews") );
+		if (request.getSession().getServletContext().getAttribute("theNews") == null) {
+			List<SiteNews> news = newsService.findAll();
+			if (news != null && !news.isEmpty()) {
+				SiteNews theNews = (SiteNews) news.get(0);
+				request.getSession().getServletContext()
+						.setAttribute("theNews", theNews.getContent());
+				log.debug("site news loaded: " + theNews.getContent());	
+			}
+		}
 	}
 
 	@RequestMapping(value = "/logout.do")
@@ -353,8 +374,8 @@ public class UserController {
 			HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-		
-		if(!checkSMS(request, response, "forget_user_smscode")){
+
+		if (!checkSMS(request, response, "forget_user_smscode")) {
 			request.getSession().removeAttribute("SMSCODE");
 			mav.addObject("user", null);
 			mav.setViewName("userCenter_forget");
@@ -364,7 +385,6 @@ public class UserController {
 		HttpSession session = request.getSession();
 		// session.getAttribute("user");
 
-		
 		User u = userService.findByMobile(user.getMobile());
 		log.debug("user changing password...." + u.getName());
 

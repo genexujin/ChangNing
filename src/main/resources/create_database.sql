@@ -71,7 +71,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`order_notes` (
   `order_id` INT NULL ,
   `user_id` INT NULL ,
   `note_content` VARCHAR(1000) NULL ,
-  `note_date` DATE NULL ,
+  `note_date` DATETIME NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `order_notes_order_fk_idx` (`order_id` ASC) ,
   INDEX `order_notes_user_fk_idx` (`user_id` ASC) ,
@@ -314,14 +314,6 @@ CREATE  TABLE IF NOT EXISTS `changning`.`order_history` (
   INDEX `history_user_fk_idx` (`user_id` ASC) );
   
   
-ALTER TABLE orders  MODIFY COLUMN requestor_birth_date DATETIME;
-ALTER TABLE orders  MODIFY COLUMN order_date DATETIME;
-ALTER TABLE order_history  MODIFY COLUMN operation_date DATETIME;
-ALTER TABLE interactions MODIFY COLUMN interaction_date DATETIME;
-ALTER TABLE payment MODIFY COLUMN payment_date DATETIME;
-ALTER TABLE payment MODIFY COLUMN refund_date DATETIME;
-ALTER TABLE reservations MODIFY COLUMN reserve_date DATETIME;
-ALTER TABLE reservations MODIFY COLUMN creation_date DATETIME;
 
 
 insert into roles (role_name) values ('admin');
@@ -504,3 +496,19 @@ DEFAULT CHARACTER SET = utf8;
 
 
 commit;
+
+
+CREATE  TABLE IF NOT EXISTS `changning`.`site_news` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `content` VARCHAR(500) NULL,
+  `visible` VARCHAR(1) NULL,
+  PRIMARY KEY (`id`));
+
+ALTER TABLE orders  MODIFY COLUMN requestor_birth_date DATETIME;
+ALTER TABLE orders  MODIFY COLUMN order_date DATETIME;
+ALTER TABLE order_history  MODIFY COLUMN operation_date DATETIME;
+ALTER TABLE interactions MODIFY COLUMN interaction_date DATETIME;
+ALTER TABLE payment MODIFY COLUMN payment_date DATETIME;
+ALTER TABLE payment MODIFY COLUMN refund_date DATETIME;
+ALTER TABLE reservations MODIFY COLUMN reserve_date DATETIME;
+ALTER TABLE reservations MODIFY COLUMN creation_date DATETIME;
