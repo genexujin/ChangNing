@@ -72,7 +72,8 @@
 									value="Y" name="purpose" ${useEmay?"checked":""}>
 									亿美&nbsp;&nbsp;
 								</label> <label class="radio inline"> <input type="radio"
-									value="N" name="purpose"  ${!useEmay?"checked":""}> 区政府&nbsp;&nbsp;
+									value="N" name="purpose" ${!useEmay?"checked":""}>
+									区政府&nbsp;&nbsp;
 								</label>
 							</div>
 						</div>
@@ -95,32 +96,35 @@
 				<hr />
 				<div class="row">
 					<div class="span9">
+						<div class="control-group"
+							style="padding-left: 30px; margin-bottom: 10px; margin-top: 10px;">
+							<label class="control-label" for="purpose"><strong>测试短信</strong></label>
+							<table class="table table-striped table-bordered table-hover"
+								style="margin-left: 10px;">
+								<tbody>
+									<tr>
+										<td style="width: 20px"></td>
+										<td style="width: 70px"><b>请编辑测试短信内容,
+												如需要多个接收人，请用空格分隔手机号码</b></td>
+									</tr>
+									<tr>
+										<td style="width: 20px"><b>接收手机号码（不超过10个）</b></td>
+										<td style="width: 70px"><input id="mobile"
+											style="width: 90%;" maxlength="150" /></td>
+									</tr>
+									<tr>
+										<td style="width: 20px"><b>短信正文(不超过200字)</b></td>
+										<td style="width: 70px"><textarea id="content"
+												style="width: 90%;" rows="6" cols="100" maxlength="200"> </textarea></td>
+									</tr>
 
-						<table class="table table-striped table-bordered table-hover"
-							style="margin-left: 10px;">
-							<tbody>
-								<tr>
-									<td style="width: 20px"></td>
-									<td style="width: 70px"><b>请编辑测试短信内容, 如需要多个接收人，请用空格分隔手机号码</b></td>
-								</tr>
-								<tr>
-									<td style="width: 20px"><b>接收手机号码（不超过10个）</b></td>
-									<td style="width: 70px"><input id="mobile"
-										style="width: 90%;" maxlength="150" /></td>
-								</tr>
-								<tr>
-									<td style="width: 20px"><b>短信正文(不超过200字)</b></td>
-									<td style="width: 70px"><textarea id="content"
-											style="width: 90%;" rows="6" cols="100" maxlength="200"> </textarea></td>
-								</tr>
-
-								<tr>
-									<td style="width: 20px"></td>
-									<td style="width: 70px"><a id="smsSendBtn" class="btn">发送</a></td>
-								</tr>
-							</tbody>
-						</table>
-
+									<tr>
+										<td style="width: 20px"></td>
+										<td style="width: 70px"><a id="smsSendBtn" class="btn">发送</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 
@@ -130,9 +134,8 @@
 </div>
 <script>
 	//alert('${encodedName}');
-	
-	
-	$("#smsSendBtn").click(function(){
+
+	$("#smsSendBtn").click(function() {
 		if ($("#content").val() == null || $("#mobile").val() == null) {
 			alert("请输入手机号码和内容！");
 		} else {
@@ -148,7 +151,7 @@
 				success : function(data) {
 					//alert(data);
 					var result = jQuery.parseJSON(data);
-					if (result.success == '1') {						
+					if (result.success == '1') {
 						alert('短信已发送');
 						location.reload();
 					} else {
@@ -158,34 +161,31 @@
 				}
 			});
 		}
-	}
-	);
-	
-	$('input[type=radio][name=purpose]').change(function(){
+	});
+
+	$('input[type=radio][name=purpose]').change(function() {
 		var purposeVal = $('input[name=purpose]:checked').val();
-		var res = confirm("确认要切换短信通道吗？"); 
-		if(res){
+		var res = confirm("确认要切换短信通道吗？");
+		if (res) {
 			$.ajax({
 				type : "post",
 				url : "/ChangNing/switchSMSSender.do",
 				data : {
-					useEmay : purposeVal					
+					useEmay : purposeVal
 				},
 				async : false,
 				success : function(data) {
 					//alert(data);
 					var result = jQuery.parseJSON(data);
-					if (result.success == '1') {						
-						alert('通道已切换');						
-					} else {						
+					if (result.success == '1') {
+						alert('通道已切换');
+					} else {
 						alert('通道切换失败！');
 					}
 				}
 			});
 		}
-	}); 
-	
-			
+	});
 </script>
 
 <%@ include file="../footer.jspf"%>

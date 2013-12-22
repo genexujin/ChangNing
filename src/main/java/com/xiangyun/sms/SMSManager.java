@@ -22,7 +22,7 @@ public class SMSManager {
 		// System.err.println("here");
 		if (enabled) {
 
-			log.debug("-------------------------sending sms to : " + mobiles[0]);
+			log.debug("sending sms to : " + mobiles);
 			if (useEmay) {
 				log.debug("use emay sms provider");
 				messageContent += SURFFIX;
