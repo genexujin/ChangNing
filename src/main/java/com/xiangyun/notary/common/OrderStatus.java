@@ -8,6 +8,7 @@ public enum OrderStatus {
     ACCEPTED("已受理"),    
     CANCEL_REQUESTED("已申请撤销"),
     EXTRADOC_REQUESTED("要求补充材料"),
+    EXTRADOC_ADDED("已补充材料"),
     ADD_CHARGE("附加费用"),    
     CANCELLED("已撤销"),
     FINISHED("已完成");

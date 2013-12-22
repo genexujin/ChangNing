@@ -885,8 +885,11 @@ public class OrderController {
 			return new ModelAndView("redirect:orderQuery.do");
 		}
 
-		String notaryId = request.getParameter("notaryId");
-		order.setBackendNotaryId(notaryId);
+		//No need to set backend notary id now.
+		//Set it in a separate action.
+//		String notaryId = request.getParameter("notaryId");
+//		order.setBackendNotaryId(notaryId);		
+		
 		order.setOrderStatus(OrderStatus.ACCEPTED);
 		User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
 		order.setAccepter(u);
@@ -900,12 +903,45 @@ public class OrderController {
 
 		SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
 				"您的办证订单：" + order.getReadableId()
-						+ " 已确认受理，我们的公证人员会尽快处理并与您联系，请耐心等待, 谢谢！受理编号为："
-						+ notaryId, 1);
+						+ " 已确认受理，我们的公证人员会尽快处理并与您联系，请耐心等待, 谢谢！", 1);
 
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = "/enterBENotaryId.do")
+    public ModelAndView enterBENotaryId(HttpServletRequest request) {
+	    Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
 
+        Long userId = getUserIdFromSession(request.getSession(false));
+
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return new ModelAndView("redirect:orderQuery.do");
+        }
+        
+//        String notaryId = request.getParameter("notaryId");
+        String notaryId;
+        try {
+            notaryId = new String(request.getParameter("notaryId").getBytes("ISO-8859-1"),"utf-8");
+
+            log.info("输入的公证号是：" + notaryId);
+            order.setBackendNotaryId(notaryId); 
+        } catch (UnsupportedEncodingException e) {
+            log.error("转码时出现错误", e);
+        }
+        
+        orderService.save(order);
+        
+        ModelAndView mav = new ModelAndView("redirect:orderDetail.do?oId="
+                + orderId);
+        
+        return mav;
+	}
+	
 	@RequestMapping(value = "/orderCancel.do")
 	public ModelAndView orderCancel(HttpServletRequest request) {
 		Long orderId = validateOrderIdParameter(request);
@@ -1009,11 +1045,13 @@ public class OrderController {
 			return new ModelAndView("redirect:orderQuery.do");
 		}
 
-		if (order.getBackendNotaryId() != null
-				&& order.getBackendNotaryId().length() > 0)
-			order.setOrderStatus(OrderStatus.ACCEPTED);
-		else if (order.hasPaidPayment())
-			order.setOrderStatus(OrderStatus.PAID);
+//		if (order.getBackendNotaryId() != null
+//				&& order.getBackendNotaryId().length() > 0)
+//			order.setOrderStatus(OrderStatus.ACCEPTED);
+//		else if (order.hasPaidPayment())
+//			order.setOrderStatus(OrderStatus.PAID);
+		
+        order.setOrderStatus(OrderStatus.EXTRADOC_ADDED);
 
 		Set<Interaction> actions = order.getInteractions();
 		for (Interaction act : actions) {

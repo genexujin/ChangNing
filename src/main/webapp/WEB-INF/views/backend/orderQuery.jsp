@@ -108,6 +108,8 @@
 											<c:if test="${sessionScope['order_status'] eq 'CANCEL_REQUESTED'}">selected</c:if>>已申请撤销</OPTION>
 										<OPTION value="EXTRADOC_REQUESTED"
 											<c:if test="${sessionScope['order_status'] eq 'EXTRADOC_REQUESTED'}">selected</c:if>>要求补充材料</OPTION>
+										<OPTION value="EXTRADOC_ADDED"
+											<c:if test="${sessionScope['order_status'] eq 'EXTRADOC_ADDED'}">selected</c:if>>已补充材料</OPTION>
 										<OPTION value="ADD_CHARGE"
 											<c:if test="${sessionScope['order_status'] eq 'ADD_CHARGE'}">selected</c:if>>要求附加费用</OPTION>
 										<OPTION value="CANCELLED"
@@ -175,7 +177,9 @@
 									<th>总费用</th>
 									<th>已支付</th>
 									<th>状态</th>
+									<c:if test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
 									<th>备注</th>
+									</c:if>
 								</tr>
 							</thead>
 							<tbody>
@@ -192,11 +196,13 @@
 										<td><fmt:formatNumber value="${order.paymentPaid}"
 												type="currency" pattern="￥#0.00" /></td>
 										<td><c:out value="${order.orderStatus.text}"></c:out></td>
+										<c:if test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
 										<td><c:if test="${not empty order.notes}">
 												<img src="resources/info.png"
 													style="cursor: pointer; display: inline; padding-left: 10px"
 													onclick="showNotes(${order.id})"></img>
 											</c:if></td>
+										</c:if>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -247,7 +253,7 @@
 			<p id="myModalLabel">订单备注</p>
 		</div>
 		<div class="modal-body">
-			<iframe width="810" height="200"
+			<iframe id="noteframe" width="810" height="250"
 				frameborder="0"></iframe>
 		</div>
 		<div class="modal-footer" style="height: 20px;">

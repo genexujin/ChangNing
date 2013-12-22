@@ -54,22 +54,23 @@
 				<div class="control-group">
 					<label class="control-label" for="backendNotaryId">订单申办号：</label>
 					<div class="controls">${order.readableId}</div>
+					<input name="oId" type="hidden" value="${order.id}"></input>
 
 				</div>
 			</div>
 		</div>
 
-		<div class="row">
+<!-- 		<div class="row">
 			<div class="span5 offset1">
 				<div class="control-group">
 					<label class="control-label" for="backendNotaryId">公证受理号：</label>
 					<div class="controls">
-						<input name="oId" type="hidden" value="${order.id}"></input> 
+						 
 						<input name="notaryId" type="text" value="${(empty order.backendNotaryId) ? '(2013)沪长证外字第()号' : order.backendNotaryId}"></input>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="row">
 			<div class="span2 offset2">

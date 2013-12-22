@@ -26,7 +26,12 @@
 			  		<a class="btn btn-warning" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
 			   </c:when>
 			 </c:choose>
-			  <c:choose>
+			 <c:choose>
+        		<c:when test="${order.orderStatus == 'ACCEPTED'}">				
+			  		<a id="enterBENotaryId" class="btn btn-primary">输入公证号</a>
+			    </c:when>
+			 </c:choose>
+			 <c:choose>
         		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">				
 			  		<a href="requestExtraDocs.do?oId=${order.id}" class="btn btn-primary">要求补充材料</a>
 			    </c:when>
@@ -579,7 +584,7 @@
 	            <thead>
 	              <tr>	                
 	                <th style="width:60px">备注人</th>
-	                <th style="width:90px">时间</th>
+	                <th style="width:150px">时间</th>
 	                <th>内容</th>	                
 	              </tr>
 	            </thead>
@@ -634,6 +639,23 @@
 		</div>
 	</div>
 </div>
+
+<div id="myModal2" class="modal hide fade" style="margin-top:100px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<h3 id="myModalLabel">输入公证号</h3>
+	</div>
+	<div class="modal-body">
+		<label class="control-label" for="backendNotaryId">公证受理号：</label>
+		<div class="controls">
+			<input id="notaryId" name="notaryId" type="text" value="${(empty order.backendNotaryId) ? '(2013)沪长证外字第()号' : order.backendNotaryId}"></input>
+		</div>
+		<div class="row">
+			<div class="span5">
+				<button class="btn" id="notary_id_enter" class="btn btn-primary">确认</button>				
+			</div>
+		</div>
+	</div>
+</div>
       
       <script>
       $(document).ready(
@@ -641,14 +663,23 @@
 	  	  	$("#checkPayBill").click(
 	  	  		function(){
 	  	  			$("#myModal1").modal("show");  	  			  	  			
-	  	  		});
-  	  		}
-  	  	);
-       
-  	  	
+	  	  	});
+	  	    $("#enterBENotaryId").click(
+		  	  	function(){
+		  	  		$("#myModal2").modal("show");  	  			  	  			
+		  	});
+  	  	}
+  	  );
+        
   	  	$("#success_btn").click(
 		  		function(){
 		  			window.location="manualConfirmPayment.do?oId="+"${order.id}"+"&aliTxNo="+$("#aliTxnNo").val();
+		  		}	
+		);
+  	  	
+  	    $("#notary_id_enter").click(
+		  		function(){
+		  			window.location="enterBENotaryId.do?oId="+"${order.id}"+"&notaryId="+$("#notaryId").val();
 		  		}	
 		);
     

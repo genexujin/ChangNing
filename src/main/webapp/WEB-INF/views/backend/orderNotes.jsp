@@ -24,7 +24,7 @@
 	            <thead>
 	              <tr>	                
 	                <th style="width:60px">备注人</th>
-	                <th style="width:90px">时间</th>
+	                <th style="width:150px">时间</th>
 	                <th>内容</th>
 	              </tr>
 	            </thead>
