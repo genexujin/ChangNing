@@ -13,7 +13,7 @@ public class SMSManager {
 
 	private static boolean useEmay = false;
 	private static boolean enabled = true;
-	private static String SURFFIX = "[长宁公证处]";
+	private static String SURFFIX = " 【长宁公证处】";
 	private static Logger log = LoggerFactory.getLogger(SMSManager.class);
 
 	// 发送SMS
