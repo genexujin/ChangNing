@@ -1066,6 +1066,36 @@ public class OrderController {
 		return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
 
 	}
+	
+	@RequestMapping(value = "/addDocOnSite.do")
+	public ModelAndView addDocOnSite(HttpServletRequest request) {
+
+		Long orderId = validateOrderIdParameter(request);
+		if (orderId == null) {
+			return new ModelAndView("redirect:orderQuery.do");
+		}
+
+		Long userId = getUserIdFromSession(request.getSession(false));
+
+		Order order = orderService.findOrderById(orderId, userId);
+		if (order == null) {
+			return new ModelAndView("redirect:orderQuery.do");
+		}
+		
+        order.setOrderStatus(OrderStatus.ACCEPTED);
+
+		Set<Interaction> actions = order.getInteractions();
+		for (Interaction act : actions) {
+			act.setOrder(null);
+			actions.remove(act);
+		}
+
+		logHistory(Constants.ORDER_OPERATION_ADDDOC_ONSITE, order, getUser(request));
+
+		orderService.save(order);
+
+		return new ModelAndView("redirect:orderDetail.do?oId=" + orderId);
+	}
 
 	/**
 	 * 显示补充材料页面

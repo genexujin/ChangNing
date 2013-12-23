@@ -35,7 +35,8 @@
 	  	<br>
 		  <div class="row">		   
 			    <div class="span10 offset1">
-			      <h5><font color="red">请上传所需材料。提示：本系统支持 .jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过4M.</font></h5>
+			      <h5><font color="red">请上传所需材料。提示：本系统支持 .jpg, .jpeg, .doc, .docx类型文件，且单个文件大小不能超过4M。</font></h5>
+			      <h5><font color="red">若无法通过网络上传，可以选择现场补充材料。</font></h5>
 			    </div>
 
 		  </div>
@@ -322,8 +323,11 @@
 	      <br>
 	      <br/>
 		  <div class="row">
-	   		  <div class="span2 offset5">
-	   		    <a href="confirmAddDoc.do?oId=${um.uid}" class="btn btn-primary">完成</a>
+	   		  <div class="span2 offset4">
+	   		    <a href="confirmAddDoc.do?oId=${um.uid}" class="btn btn-primary">上传完成</a>	   		    
+	   		  </div>
+	   		  <div class="span2">
+	   		    <a href="addDocOnSite.do?oId=${um.uid}" class="btn btn-primary">现场补充材料</a>
 	   		  </div>
 	      </div>
 	       <script>

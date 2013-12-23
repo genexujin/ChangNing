@@ -61,6 +61,7 @@ public class Constants {
     public static final String ORDER_OPERATION_ADDCHARGE = "要求补充收费";
     public static final String ORDER_OPERATION_MANUAL_CONFIRM_PAY = "人工确认收费";
     public static final String ORDER_OPERATION_ADDDOC = "已补充材料";
+    public static final String ORDER_OPERATION_ADDDOC_ONSITE = "客户确认现场补充材料";
     
     public static final String ALIPAY_PAY_NOTIFY_URL  = "http://www.6408.com.cn/ChangNing/onPaymentNotify.do";
     public static final String ALIPAY_PAY_RETURN_URL  = "http://www.6408.com.cn/ChangNing/onPaymentReturn.do";
