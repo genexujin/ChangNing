@@ -23,7 +23,7 @@
 			<div class="span9">
 			 <c:choose>
         		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus =='EXTRADOC_ADDED' or order.orderStatus =='ADD_CHARGE'}">
-			  		<a class="btn btn-warning" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
+			  		<a id="acceptBtn" class="btn btn-warning" href="#">确认受理</a>
 			   </c:when>
 			 </c:choose>
 			 <c:choose>
@@ -34,6 +34,11 @@
 			 <c:choose>
         		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">				
 			  		<a href="requestExtraDocs.do?oId=${order.id}" class="btn btn-primary">要求补充材料</a>
+			    </c:when>
+			 </c:choose>
+			 <c:choose>
+        		<c:when test="${order.orderStatus == 'EXTRADOC_REQUESTED'}">				
+			  		<a href="addDocOnSite.do?oId=${order.id}" class="btn btn-primary">现场补充材料</a>
 			    </c:when>
 			 </c:choose>
 			  <c:choose>
@@ -658,6 +663,9 @@
 </div>
       
       <script>
+      
+      var oid = ${order.id};
+      
       $(document).ready(
     	function(){
 	  	  	$("#checkPayBill").click(
@@ -668,6 +676,26 @@
 		  	  	function(){
 		  	  		$("#myModal2").modal("show");  	  			  	  			
 		  	});
+	  	    
+	  	  $("#acceptBtn").click(
+	  			  
+	  			  function(){
+			  	  	var accept = confirm("确认受理该订单吗？"); 	
+			  	  	if(accept){
+			  	  	$.ajax({
+						type : "post",
+						url : "/ChangNing/doAccept.do",
+						data : {
+							oId : oid
+						},
+						async : false,
+						success : function(data) {
+							window.location.reload();
+						}
+					});
+			  	  	}
+    			}
+			 );
   	  	}
   	  );
         

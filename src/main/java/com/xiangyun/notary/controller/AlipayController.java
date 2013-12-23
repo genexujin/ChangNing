@@ -240,6 +240,7 @@ public class AlipayController {
 			orderService.save(theOrder);
 			log.debug("订单状态变更完成！");
 			logHistory(Constants.ORDER_OPERATION_MANUAL_CONFIRM_PAY, theOrder, theOrder.getUser());
+			orderService.save(theOrder);
 			SMSManager.sendSMS(new String[] { theOrder.getRequestorMobile() },
 					"您的订单：" + theOrder.getReadableId()
 							+ " 已完成付款！我们会尽快处理，请耐心等待, 谢谢！", 1);
@@ -499,9 +500,9 @@ public class AlipayController {
 				order.calculateTotalPaid();
 			}
 			
-			orderService.save(order);		
+				
 			logHistory(Constants.ORDER_OPERATION_MANUAL_CONFIRM_PAY,order, order.getUser());
-			
+			orderService.save(order);	
 		}
 		
 		ModelAndView mav = new ModelAndView(

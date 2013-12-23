@@ -326,9 +326,11 @@
 	   		  <div class="span2 offset4">
 	   		    <a href="confirmAddDoc.do?oId=${um.uid}" class="btn btn-primary">上传完成</a>	   		    
 	   		  </div>
+	   		  <!-- 
 	   		  <div class="span2">
 	   		    <a href="addDocOnSite.do?oId=${um.uid}" class="btn btn-primary">现场补充材料</a>
 	   		  </div>
+	   		   -->
 	      </div>
 	       <script>
 	       	$(".yz").click(

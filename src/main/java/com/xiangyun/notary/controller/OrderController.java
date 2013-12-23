@@ -1,5 +1,6 @@
 package com.xiangyun.notary.controller;
 
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -16,6 +17,7 @@ import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -872,17 +874,17 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/doAccept.do")
-	public ModelAndView doAccept(HttpServletRequest request) {
+	public void doAccept(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Long orderId = validateOrderIdParameter(request);
 		if (orderId == null) {
-			return new ModelAndView("redirect:orderQuery.do");
+			return;
 		}
 
 		Long userId = getUserIdFromSession(request.getSession(false));
 
 		Order order = orderService.findOrderById(orderId, userId);
 		if (order == null) {
-			return new ModelAndView("redirect:orderQuery.do");
+			return;
 		}
 
 		//No need to set backend notary id now.
@@ -905,7 +907,10 @@ public class OrderController {
 				"您的办证订单：" + order.getReadableId()
 						+ " 已确认受理，我们的公证人员会尽快处理并与您联系，请耐心等待, 谢谢！", 1);
 
-		return mav;
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.write("{\"success\": \"1\"}");
+		out.close();
 	}
 	
 	

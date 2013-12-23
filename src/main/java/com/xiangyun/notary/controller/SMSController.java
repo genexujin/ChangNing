@@ -51,11 +51,13 @@ public class SMSController {
 				Constants.LOGIN_USER);
 		if (!user.isAdmin()||mobile==null){
 			out.write("{\"success\": \"0\"}");
+			out.close();
 			return;
 		}
 		
 		int success = SMSManager.sendSMS(mobile.split(" "), content, 1);
 		out.write("{\"success\": \""+success+"\"}");
+		out.close();
 	}
 
 	/**
@@ -89,6 +91,7 @@ public class SMSController {
 		}
 
 		out.write("{\"success\": \"1\"}");
+		out.close();
 
 	}
 
