@@ -58,7 +58,8 @@ public class Constants {
     public static final String ORDER_OPERATION_REQUEST_CANCEL = "请求撤销";
     public static final String ORDER_OPERATION_CANCEL = "撤销订单";
     public static final String ORDER_OPERATION_EXTRADOC = "要求补充材料";
-    public static final String ORDER_OPERATION_ADDCHARGE = "补充收费";
+    public static final String ORDER_OPERATION_ADDCHARGE = "要求补充收费";
+    public static final String ORDER_OPERATION_MANUAL_CONFIRM_PAY = "人工确认收费";
     public static final String ORDER_OPERATION_ADDDOC = "已补充材料";
     
     public static final String ALIPAY_PAY_NOTIFY_URL  = "http://www.6408.com.cn/ChangNing/onPaymentNotify.do";

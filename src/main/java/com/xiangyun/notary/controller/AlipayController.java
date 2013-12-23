@@ -27,7 +27,9 @@ import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.OrderPaymentStatus;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.OrderHistory;
 import com.xiangyun.notary.domain.Payment;
+import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.service.OrderService;
 import com.xiangyun.notary.service.PaymentService;
 import com.xiangyun.sms.SMSManager;
@@ -237,7 +239,7 @@ public class AlipayController {
 			theOrder.calculateTotalPaid();
 			orderService.save(theOrder);
 			log.debug("订单状态变更完成！");
-
+			logHistory(Constants.ORDER_OPERATION_MANUAL_CONFIRM_PAY, theOrder, theOrder.getUser());
 			SMSManager.sendSMS(new String[] { theOrder.getRequestorMobile() },
 					"您的订单：" + theOrder.getReadableId()
 							+ " 已完成付款！我们会尽快处理，请耐心等待, 谢谢！", 1);
@@ -457,6 +459,14 @@ public class AlipayController {
 	public ModelAndView manualConfirmPayment(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
+		
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		
+		if (!user.isAdmin() && !user.isStaff()) {
+			return null;
+		}
+		
 		String oId = request.getParameter("oId"); 
 		String aliTxNo = request.getParameter("aliTxNo");
 		
@@ -490,6 +500,7 @@ public class AlipayController {
 			}
 			
 			orderService.save(order);		
+			logHistory(Constants.ORDER_OPERATION_MANUAL_CONFIRM_PAY,order, order.getUser());
 			
 		}
 		
@@ -541,6 +552,14 @@ public class AlipayController {
 		}
 		return oid;
 
+	}
+	
+	private void logHistory(String operationType, Order order, User user) {
+		OrderHistory operation = new OrderHistory();
+		operation.setOperation(operationType);
+		operation.setOperationDate(new Date());
+		operation.setUser(user);
+		order.addHistory(operation);
 	}
 
 }

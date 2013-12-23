@@ -52,7 +52,7 @@
 	    	    <label class="control-label" for="backendNotaryId">需补充的材料：</label>
 	    	    <div class="controls">
 	    	      <input name="oId" type="hidden" value="${order.id}"></input>
-			      <textarea rows="5" cols="150" name="extra_docs"></textarea>
+			      <textarea placeholder="请说明附加文档的理由，不超过250个字。" style="width: 500px;" rows="5" cols="150" name="extra_docs" maxLength="250"></textarea>
 		    	</div>
 	    	  </div>
 	    	</div>

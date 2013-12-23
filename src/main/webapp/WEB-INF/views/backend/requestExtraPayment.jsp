@@ -63,7 +63,7 @@
 	    	  <div class="control-group">
 	    	    <label class="control-label" for="backendNotaryId">附加费用原因：</label>
 	    	    <div class="controls">
-	    	      <textarea rows="5" cols="150" name="extra_pay_note"></textarea>
+	    	      <textarea placeholder="请说附加费用的理由，不超过250个字。" style="width: 500px;" rows="5" cols="150" name="extra_pay_note" maxLength="250"></textarea>
 		    	</div>
 	    	  </div>
 	    	</div>

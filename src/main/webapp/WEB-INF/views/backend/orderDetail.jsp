@@ -22,7 +22,7 @@
           
 			<div class="span9">
 			 <c:choose>
-        		<c:when test="${order.orderStatus == 'PAID'}">
+        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus =='EXTRADOC_ADDED' or order.orderStatus =='ADD_CHARGE'}">
 			  		<a class="btn btn-warning" href="<c:url value="/orderAccept.do?oId=${order.id}"/>">确认受理</a>
 			   </c:when>
 			 </c:choose>
@@ -37,7 +37,7 @@
 			    </c:when>
 			 </c:choose>
 			  <c:choose>
-        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">	
+        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED' or order.orderStatus =='EXTRADOC_ADDED'}">	
 			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn btn-primary">要求客户附加费用</a>
 			   </c:when>
 			 </c:choose>
@@ -490,7 +490,7 @@
 	      </div>
 	       <br/>
           <div class="row">
-		    <div class="span10" style="margin-left:30px;">
+		    <div class="span11" style="margin-left:30px;">
 	      <table class="table table-striped table-bordered table-hover" style="width:920px;">
 	            <thead>
 	              <tr>	                

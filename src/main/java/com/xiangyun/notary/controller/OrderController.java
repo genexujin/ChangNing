@@ -1229,7 +1229,7 @@ public class OrderController {
 
 		User user = (User) request.getSession(false).getAttribute(
 				Constants.LOGIN_USER);
-		Long userId = null;
+		Long userId = null;	
 		if (!user.isAdmin() && !user.isStaff()) {
 			userId = user.getId();
 		}
