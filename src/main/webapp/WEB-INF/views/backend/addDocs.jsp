@@ -44,7 +44,7 @@
 	  </div>
 
 	  <div class="row">
-	    <div class="span10">
+	    <div class="span10 offset1">
 	      <h5>申办号：${um.orderReadableId}</h5>
 	    </div>
 	  </div>

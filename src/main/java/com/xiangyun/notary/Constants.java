@@ -74,7 +74,7 @@ public class Constants {
 //   
     
     public static final String ALIPAY_SELLER_EMAIL = "cngzc@6408.com.cn";
-    
+    public static final String ORDER_PREFIX = "CNGZC";
     public static final String VERIFY_SESSION_KEY ="validateCode";
     
 

@@ -74,16 +74,10 @@ CREATE  TABLE IF NOT EXISTS `changning`.`order_notes` (
   `note_date` DATETIME NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `order_notes_order_fk_idx` (`order_id` ASC) ,
-  INDEX `order_notes_user_fk_idx` (`user_id` ASC) ,
   CONSTRAINT `order_notes_orders_fk`
     FOREIGN KEY (`order_id` )
     REFERENCES `changning`.`orders` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `order_notes_user_fk`
-    FOREIGN KEY (`user_id` )
-    REFERENCES `changning`.`users` (`id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);
     
 CREATE  TABLE IF NOT EXISTS `changning`.`payment` (

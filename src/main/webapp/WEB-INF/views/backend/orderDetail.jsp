@@ -32,7 +32,7 @@
 			    </c:when>
 			 </c:choose>
 			 <c:choose>
-        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED'}">				
+        		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED' or order.orderStatus =='EXTRADOC_ADDED'}">				
 			  		<a href="requestExtraDocs.do?oId=${order.id}" class="btn btn-primary">要求补充材料</a>
 			    </c:when>
 			 </c:choose>
@@ -43,7 +43,7 @@
 			 </c:choose>
 			  <c:choose>
         		<c:when test="${order.orderStatus == 'PAID' or order.orderStatus == 'ACCEPTED' or order.orderStatus =='EXTRADOC_ADDED'}">	
-			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn btn-primary">要求客户附加费用</a>
+			 	 	<a href="requestExtraPayment.do?oId=${order.id}" class="btn btn-primary">要求附加费用</a>
 			   </c:when>
 			 </c:choose>
 			 <c:choose>
