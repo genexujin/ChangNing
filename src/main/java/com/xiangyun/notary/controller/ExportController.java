@@ -64,14 +64,19 @@ public class ExportController {
 	ExportController() {
 		configuration = new Configuration();
 		configuration.setDefaultEncoding("utf-8");
-		configuration.setClassForTemplateLoading(this.getClass(),
-				"/");
-		
+		configuration.setClassForTemplateLoading(this.getClass(), "/");
+
 	}
 
 	@RequestMapping(value = "/generateForm.do")
 	public void generateForm(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+
+		// 如果不是管理员，则不能进入该页面
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if (!user.isAdmin() && !user.isStaff())
+			return;
 
 		// 获得参数id
 		Long orderId = validateOrderIdParameter(request);
@@ -83,45 +88,56 @@ public class ExportController {
 		if (order == null) {
 			return;
 		}
-		
+
 		Template t = configuration.getTemplate("template.ftl");
-		Map dataMap=new HashMap();
-		dataMap.put("customer_name", order.getRequestorName()==null?" ":order.getRequestorName());	    
-		dataMap.put("customer_sex", order.getRequestorGender()==null?" ":order.getRequestorGender());
-		if(order.getRequestorBirthDate()!=null){
-			dataMap.put("customer_birth_date", format.format(order.getRequestorBirthDate()));
-		}else{
+		Map dataMap = new HashMap();
+		dataMap.put("customer_name", order.getRequestorName() == null ? " "
+				: order.getRequestorName());
+		dataMap.put("customer_sex", order.getRequestorGender() == null ? " "
+				: order.getRequestorGender());
+		if (order.getRequestorBirthDate() != null) {
+			dataMap.put("customer_birth_date",
+					format.format(order.getRequestorBirthDate()));
+		} else {
 			dataMap.put("customer_birth_date", " ");
 		}
-		
+
 		dataMap.put("export_date", format1.format(new Date()));
-		
-		dataMap.put("customer_mobile", order.getRequestorMobile()==null?" ":order.getRequestorMobile());
-		dataMap.put("customer_id_type", order.getUser().getCredentialType()==null?" ":order.getUser().getCredentialType().getText());
-		dataMap.put("customer_id", order.getUser().getCredentialId()==null?" ":order.getUser().getCredentialId());
+
+		dataMap.put("customer_mobile", order.getRequestorMobile() == null ? " "
+				: order.getRequestorMobile());
+		dataMap.put("customer_id_type",
+				order.getUser().getCredentialType() == null ? " " : order
+						.getUser().getCredentialType().getText());
+		dataMap.put("customer_id",
+				order.getUser().getCredentialId() == null ? " " : order
+						.getUser().getCredentialId());
 		Set<Form> forms = order.getForms();
 		StringBuffer contents = new StringBuffer();
-		for(Form f: forms){
+		for (Form f : forms) {
 			contents.append(f.getFormName());
 			contents.append(",");
 		}
-		contents.deleteCharAt(contents.length()-1);
-		dataMap.put("order_content",contents.toString());
+		contents.deleteCharAt(contents.length() - 1);
+		dataMap.put("order_content", contents.toString());
 		dataMap.put("order_country", order.getDestination().getText());
 		dataMap.put("order_lang", order.getTranslationLanguage().getText());
 		dataMap.put("order_copy_num", order.getCertificateCopyCount());
-		dataMap.put("order_need_cert", order.isNeedVerify()?"是":"否");
-		dataMap.put("order_reason", order.getCertificatePurpose().getText());		
-		//dataMap.put("order_accepter_name", order.getAccepter()==null?"": order.getAccepter().getName());
-		
+		dataMap.put("order_need_cert", order.isNeedVerify() ? "是" : "否");
+		dataMap.put("order_reason", order.getCertificatePurpose().getText());
+		// dataMap.put("order_accepter_name", order.getAccepter()==null?"":
+		// order.getAccepter().getName());
 
 		response.setContentType("application/msword");
-		response.addHeader("Content-Disposition", "attachment; filename="  
-                + URLEncoder.encode("申请书-"+order.getReadableId()+".doc", "UTF-8"));
+		response.addHeader(
+				"Content-Disposition",
+				"attachment; filename="
+						+ URLEncoder.encode("申请书-" + order.getReadableId()
+								+ ".doc", "UTF-8"));
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		 t.process(dataMap, out);
-		 out.close();
+		t.process(dataMap, out);
+		out.close();
 
 	}
 
@@ -147,11 +163,5 @@ public class ExportController {
 
 		return orderId;
 	}
-	
-	
-	
-	
-
-
 
 }

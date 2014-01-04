@@ -36,7 +36,7 @@ public class ChatHistoryController {
 			.getLogger(ChatHistoryController.class);
 	
 	//调节显示时间，-4表示如果快了4小时则减去快了的4小时
-	private static final int timeAdjust = -4;
+	private static final int timeAdjust = 0;
 	
 	private static String dbURL;
 	private static String queryThreadStmt = "select threadid, userName, agentName, dtmcreated,dtmmodified, referer from chatthread where referer like ?";
@@ -57,7 +57,7 @@ public class ChatHistoryController {
 
 	}
 	
-	@RequestMapping(value = "recordCall.do")
+	@RequestMapping(value = "/recordCall.do")
 	public void recordCall(int threadid,
 			HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -79,7 +79,7 @@ public class ChatHistoryController {
 		}
 	}
 
-	@RequestMapping(value = "sendEmail.do")
+	@RequestMapping(value = "/sendEmail.do")
 	public void sendEmail(String to, String subject, String body, int threadid,
 			HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
