@@ -652,7 +652,7 @@
 	<div class="modal-body">
 		<label class="control-label" for="backendNotaryId">公证受理号：</label>
 		<div class="controls">
-			<input id="notaryId" name="notaryId" type="text" value="${(empty order.backendNotaryId) ? '(2013)沪长证外字第()号' : order.backendNotaryId}"></input>
+			<input id="notaryId" name="notaryId" type="text" value="${(empty order.backendNotaryId) ? '(2014)沪长证外字第()号' : order.backendNotaryId}"></input>
 		</div>
 		<div class="row">
 			<div class="span5">

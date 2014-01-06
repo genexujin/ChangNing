@@ -67,7 +67,7 @@
 							<div class="controls">
 								<SELECT id="rsvKey" name="rsvKey">
 									<OPTION selected value="NULL">请选择</OPTION>
-									<OPTION value="房产买卖">房产买卖</OPTION>
+									<OPTION value="房产买卖">房产买卖合同</OPTION>
 									<OPTION value="赠予">赠予</OPTION>
 									<OPTION value="抵押">抵押</OPTION>
 									<OPTION value="继承">继承</OPTION>

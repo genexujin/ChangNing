@@ -406,7 +406,7 @@
 	    		    <div class="control-group">
 			    	  <label class="control-label" for="copies"><strong>公证书</strong></label>
 			    	  <div class="controls">
-			    		<input class="thin" id="copies" name="copies" type="text" value="1">&nbsp;本
+			    		<input class="thin" id="copies" name="copies" type="text" value="2">&nbsp;本
 			    	  </div>
 			    	</div>
 	    		  </div>
