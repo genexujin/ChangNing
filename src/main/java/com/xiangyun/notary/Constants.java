@@ -54,6 +54,7 @@ public class Constants {
     
     public static final String ORDER_OPERATION_NEW = "创建订单";
     public static final String ORDER_OPERATION_PAY = "提交付款";
+    public static final String ORDER_OPERATION_PAID = "付款完成";
     public static final String ORDER_OPERATION_ACCEPT = "受理订单";
     public static final String ORDER_OPERATION_REQUEST_CANCEL = "请求撤销";
     public static final String ORDER_OPERATION_CANCEL = "撤销订单";

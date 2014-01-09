@@ -239,7 +239,7 @@ public class AlipayController {
 			theOrder.calculateTotalPaid();
 			orderService.save(theOrder);
 			log.debug("订单状态变更完成！");
-			logHistory(Constants.ORDER_OPERATION_MANUAL_CONFIRM_PAY, theOrder, theOrder.getUser());
+			logHistory(Constants.ORDER_OPERATION_PAID, theOrder, theOrder.getUser());
 			orderService.save(theOrder);
 			SMSManager.sendSMS(new String[] { theOrder.getRequestorMobile() },
 					"您的订单：" + theOrder.getReadableId()

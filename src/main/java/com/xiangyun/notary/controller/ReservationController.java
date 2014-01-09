@@ -363,12 +363,8 @@ public class ReservationController {
 	public void makeReservation(String title, String name, String mobile,
 			String sequence, String startTime, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		log.debug("sequence: " + sequence);
-		log.debug("title:" + title);
-		log.debug("name:" + name);
-		log.debug("mobile:" + mobile);
-		log.debug("startTime:" + startTime);
-
+		log.debug("start to make reservation ");
+		
 		Calendar endDate = Calendar.getInstance();
 		endDate.setTime(new Date());
 		endDate.add(Calendar.DAY_OF_MONTH, Integer.parseInt(sequence));
@@ -385,10 +381,14 @@ public class ReservationController {
 
 		// query segments
 		TimeSegment theSeg = timeSegmentsService.find(wkd, startTime);
+		
+		//get user from session
+		User user = (User) request.getSession().getAttribute(
+				Constants.LOGIN_USER);
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if (reservationService.checkCompliance(u)) {
+		if (user.isAdmin()||user.isStaff()||reservationService.checkCompliance(u)) {
 
 			if (theSeg != null
 					&& theSeg.getResvCount() >= Constants.BACK_OFFICER_COUNT) {
