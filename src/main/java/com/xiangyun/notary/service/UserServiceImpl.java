@@ -113,6 +113,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
 			cq.where(cb.and(criteria.toArray(new Predicate[0])));
 		}
 		
+		cq.orderBy(cb.desc(o.get("id")));
+		
 		TypedQuery<User> q = em.createQuery(cq);
 		q.setFirstResult((pageNum - 1) * Constants.QUERY_PAGE_SIZE);
 		q.setMaxResults(Constants.QUERY_PAGE_SIZE);	

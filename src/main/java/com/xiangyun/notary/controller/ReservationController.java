@@ -210,20 +210,28 @@ public class ReservationController {
 				.findByReadableId(readableId);
 		reservation.setReservationStatus(ReservationStatus.CANCELLED);
 		reservationService.save(reservation);
-		Workday workday = workdayService.findByDate(reservation
-				.getReservationDate());
-		Set<TimeSegment> timeSegments = workday.getTimeSegments();
-		for (TimeSegment timeSegment : timeSegments) {
-			if (timeSegment.getStartTime().equals(
-					reservation.getReservationTimeSegment())
-					&& timeSegment.getResvCount() > 0) {
-				timeSegment.setResvCount(timeSegment.getResvCount() - 1);
-				timeSegmentsService.save(timeSegment);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = format.format(reservation.getReservationDate());
+		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date datetimeDate  = format2.parse(dateString);
+			Workday workday = workdayService.findByDate(datetimeDate);
+			Set<TimeSegment> timeSegments = workday.getTimeSegments();
+			for (TimeSegment timeSegment : timeSegments) {
+				if (timeSegment.getStartTime().equals(
+						reservation.getReservationTimeSegment())
+						&& timeSegment.getResvCount() > 0) {
+					timeSegment.setResvCount(timeSegment.getResvCount() - 1);
+					timeSegmentsService.save(timeSegment);
+				}
 			}
+			this.sendCancleMSG(reservation);
+			PrintWriter out = response.getWriter();
+			out.print(true);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		this.sendCancleMSG(reservation);
-		PrintWriter out = response.getWriter();
-		out.print(true);
 	}
 
 	/**
