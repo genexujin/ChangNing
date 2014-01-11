@@ -56,7 +56,7 @@
 			  		<a href="orderRefund.do?oId=${order.id}" class="btn btn-primary">退款</a>
 			   </c:when>
 			 </c:choose>
-			  <c:choose>
+			 <c:choose>
         		<c:when test="${order.orderStatus == 'CANCEL_REQUESTED'}">	
 			  		<a href="#" class="btn btn-primary" onclick="confirmCancel(${order.id})">确认撤销</a>
 			   </c:when>
@@ -64,6 +64,11 @@
 			  
 			  <a href="checkChatHistory.do?mobile=${order.requestorMobile}" class="btn btn-primary" target="_blank">客服记录</a>
 			  <a href="generateForm.do?oId=${order.id}" class="btn btn-primary">申请书下载</a>
+			  <c:choose>
+        		<c:when test="${order.orderStatus != 'FINISHED'}">
+			      <a id="completeBtn" href="#" class="btn btn-primary">完成订单</a>
+			    </c:when>
+			  </c:choose>
 			  <a href="orderQuery.do" class="btn btn-success">返回</a>
 			</div>
 			
@@ -696,6 +701,25 @@
 			  	  	}
     			}
 			 );
+	  	  $("#completeBtn").click(
+	  			  
+	  			  function(){
+			  	  	var complete = confirm("确认完成该订单吗？"); 	
+			  	  	if(complete){
+			  	  	$.ajax({
+						type : "post",
+						url : "/ChangNing/doComplete.do",
+						data : {
+							oId : oid
+						},
+						async : false,
+						success : function(data) {
+							window.location.reload();
+						}
+					});
+			  	  	}
+  			}
+		  );
   	  	}
   	  );
         

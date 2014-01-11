@@ -913,6 +913,39 @@ public class OrderController {
 		out.close();
 	}
 	
+    @RequestMapping(value = "/doComplete.do")
+    public void doComplete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Long orderId = validateOrderIdParameter(request);
+        if (orderId == null) {
+            return;
+        }
+
+        Long userId = getUserIdFromSession(request.getSession(false));
+
+        Order order = orderService.findOrderById(orderId, userId);
+        if (order == null) {
+            return;
+        }
+
+        order.setOrderStatus(OrderStatus.FINISHED);
+        User u = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
+        logHistory(Constants.ORDER_OPERATION_FINISH, order, u);
+        orderService.save(order);
+
+/*        ModelAndView mav = new ModelAndView("backend/orderAccept");
+        mav.addObject("successMsg", "订单受理信息已成功保存！请单击“返回”按钮返回订单详情页面！");
+        mav.addObject("title", "订单受理");
+        mav.addObject("order", order);*/
+
+        // SMSManager.sendSMS(new String[] { order.getRequestorMobile() },
+        // "您的办证订单：" + order.getReadableId()
+        // + " 已确认受理，我们的公证人员会尽快处理并与您联系，请耐心等待, 谢谢！", 1);
+
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.write("{\"success\": \"1\"}");
+        out.close();
+    }
 	
 	@RequestMapping(value = "/enterBENotaryId.do")
     public ModelAndView enterBENotaryId(HttpServletRequest request) {
