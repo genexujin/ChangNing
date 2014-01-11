@@ -168,6 +168,8 @@ public class ReservationServiceImpl extends AbstractService implements
 		} else {
 			cq.where(cb.and(criteria.toArray(new Predicate[0])));
 		}
+		
+		cq.orderBy(cb.desc(o.get("id")));
 
 		TypedQuery<Reservation> q = em.createQuery(cq);
 //		if (readableId != null)
