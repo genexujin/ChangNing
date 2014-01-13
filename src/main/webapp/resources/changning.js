@@ -76,7 +76,9 @@ function setAccordingTranslation(event) {
 		
 		//Otherwise need to remove the YWXF from the selected forms and update copies
 		$(".yw_div").remove();
-		$("#copies").val(1);
+		//2014-01-13: A new requirement asks to keep the copies as 2 for default
+		//So an easy way is to change it here
+//		$("#copies").val(1);
 	} else if (isCountryOfYWXF() && event.target.value != 'NULL') {
 		updateCopiesAndYWXF();
 	}
@@ -115,7 +117,10 @@ function updateCopiesAndYWXF() {
 		
 		$(".yw").click(confirmDeselect);
 	} else {
-		$("#copies").val(1);
+		//2014-01-13: A new requirement asks to keep the copies as 2 for default
+		//So an easy way is to change it here
+//		$("#copies").val(1);
+		$("#copies").val(2);
 		$(".yw_div").remove();
 	}
 }
