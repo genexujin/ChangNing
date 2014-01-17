@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.Encrypt;
+import com.xiangyun.notary.common.UserAllowStatus;
 import com.xiangyun.notary.domain.SiteNews;
 import com.xiangyun.notary.domain.User;
 import com.xiangyun.notary.service.SiteNewsService;
@@ -106,6 +107,7 @@ public class UserController {
 
 		if (userService.findByMobile(user.getMobile()) == null) {
 			user.setPassword(Encrypt.e(user.getPassword()));
+			user.setStatus(UserAllowStatus.ALLOW);
 			userService.save(user);
 			HttpSession session = request.getSession(true);
 			session.setAttribute(Constants.LOGIN_USER, user);
@@ -135,6 +137,24 @@ public class UserController {
 		}
 		;
 
+	}
+	
+	/**
+	 * 手机号码是否被封禁验证
+	 * @param request
+	 * @param response
+	 * @param mobile
+	 * @throws IOException 
+	 */
+	@RequestMapping(value = "checkAllowStatus.do")
+	public void checkAllowStatus(String  mobile,HttpServletRequest request,HttpServletResponse response) throws IOException{
+		User u = userService.findByMobile(mobile);
+		PrintWriter out = response.getWriter();
+		if(UserAllowStatus.NON_ALLOW.equals(u.getStatus())){
+			out.println(1);
+		}else{
+			out.println(0);
+		}
 	}
 
 	/**
@@ -230,7 +250,7 @@ public class UserController {
 		String msg = null;
 		ModelAndView mav = new ModelAndView();
 
-		//如果site news为空则加载
+		// 如果site news为空则加载
 		loadSiteNews(request);
 
 		if (!VerifyCodeChecker.isCodeValid(veryCode, request)) {
@@ -270,15 +290,17 @@ public class UserController {
 	}
 
 	private void loadSiteNews(HttpServletRequest request) {
-		
-		log.debug("site news: "+ request.getSession().getServletContext().getAttribute("theNews") );
+
+		log.debug("site news: "
+				+ request.getSession().getServletContext()
+						.getAttribute("theNews"));
 		if (request.getSession().getServletContext().getAttribute("theNews") == null) {
 			List<SiteNews> news = newsService.findAll();
 			if (news != null && !news.isEmpty()) {
 				SiteNews theNews = (SiteNews) news.get(0);
 				request.getSession().getServletContext()
 						.setAttribute("theNews", theNews.getContent());
-				log.debug("site news loaded: " + theNews.getContent());	
+				log.debug("site news loaded: " + theNews.getContent());
 			}
 		}
 	}
@@ -488,6 +510,40 @@ public class UserController {
 		if (user.isAdmin()) {
 			String mobile = request.getParameter("mobile");
 			userService.setUserAsAdmin(mobile);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			log.debug("finished set user as admin method");
+			out.println(1);
+		}
+	}
+
+	@RequestMapping(value = "setNonAllow.do")
+	public void setNonAllow(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if (user.isAdmin()) {
+			String mobile = request.getParameter("mobile");
+			User u = userService.findByMobile(mobile);
+			u.setStatus(UserAllowStatus.NON_ALLOW);
+			userService.save(u);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			log.debug("finished set user as admin method");
+			out.println(1);
+		}
+	}
+	
+	@RequestMapping(value = "setAllow.do")
+	public void setAllow(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		User user = (User) request.getSession(false).getAttribute(
+				Constants.LOGIN_USER);
+		if (user.isAdmin()) {
+			String mobile = request.getParameter("mobile");
+			User u = userService.findByMobile(mobile);
+			u.setStatus(UserAllowStatus.ALLOW);
+			userService.save(u);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			log.debug("finished set user as admin method");

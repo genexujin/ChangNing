@@ -20,6 +20,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`users` (
   `password` VARCHAR(200) NULL ,
   `birth_date` DATE NULL ,
   `address` VARCHAR(500) NULL ,
+  `allow_status` VARCHAR(30) NULL ,
   PRIMARY KEY (`id`) );
 
 CREATE  TABLE IF NOT EXISTS `changning`.`orders` (

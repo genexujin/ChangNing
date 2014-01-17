@@ -36,6 +36,27 @@
 			success : callback
 		});
 	}
+	
+	function checkAllowStatus(){
+		var flag = false;
+		var mobile = $("#login_user_mobile").val();
+		$.ajax({
+			type:"POST",
+			url:"/ChangNing/checkAllowStatus.do",
+			data:{mobile:mobile},
+			async : false,
+			success : function(data){
+				if(data==1){
+					$("#login_mobile_alert").removeClass().addClass("alert alert-error").show().html("您的账号存在问题，请联系公证处解决！");
+					$("#login_user_mobile").focus();
+				}else{
+					flag = true;
+				}
+					
+			}
+		});
+		return flag;
+	}
 
 	function callback(data) {
 		data1 = data;
@@ -115,8 +136,9 @@
 			$("#info").removeClass().addClass("alert alert-error").show().html("验证码错误！");
 			$("#veryCode").focus();
 			return false;
-		} else {
-			return true;
+		}
+		else {
+			return checkAllowStatus();
 		}
 	}
 </script>

@@ -110,6 +110,12 @@
 									test="${sessionScope['LOGIN_USER'].admin }">
 									<th style="width:35%;">设置用户角色</th>	
 								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when
+									test="${sessionScope['LOGIN_USER'].admin }">
+									<th style="width:10%;">状态</th>	
+								</c:when>
 							</c:choose>						
 						</tr>
 					</thead>
@@ -146,7 +152,22 @@
 											</c:if>									
 									</td>
 									</c:when>
-								</c:choose>								
+								</c:choose>	
+								<c:choose>
+									<c:when
+									test="${sessionScope['LOGIN_USER'].admin}">
+									<td>
+											<c:if test="${user.status eq 'ALLOW'}">
+												<a onclick="setNonAllow('${user.mobile}')"
+													role="button"  class="btn btn-danger" data-toggle="modal">封禁</a>												
+											</c:if>
+											<c:if test="${user.status eq 'NON_ALLOW'}">
+												<a onclick="setAllow('${user.mobile}')"
+													role="button"  class="btn btn-success" data-toggle="modal">解封</a>												
+											</c:if>
+									</td>
+									</c:when>
+								</c:choose>									
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -229,6 +250,32 @@
 	</div>
 </div>
 
+<div id="myModal4" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<p><strong>您确定将该用户封禁吗？</strong></p>
+	</div>	
+	<div class="modal-footer" style="height:20px;padding:13px;">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		<button id="non_allow_submit" class="btn btn-primary">确定</button>
+	</div>
+</div>
+
+<div id="myModal5" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<p><strong>您确定将该用户解封吗？</strong></p>
+	</div>	
+	<div class="modal-footer" style="height:20px;padding:13px;">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		<button id="allow_submit" class="btn btn-primary">确定</button>
+	</div>
+</div>
+
 <script type="text/javascript">
 	function setNormalUser(mobile) {
 		$("#myModal1").modal("show");
@@ -287,6 +334,44 @@
 			});
 		});
 
+	}
+	function setNonAllow(mobile) {
+		$("#myModal4").modal("show");
+		$("#non_allow_submit").click(function() {
+			$.ajax({
+				type : "post",
+				url : "/ChangNing/setNonAllow.do",
+				data : {
+					mobile : mobile
+				},
+				success : function(data) {
+					
+					if(data==1)
+						window.location.reload();
+				}
+	
+			});
+		});
+	
+	}
+	function setAllow(mobile) {
+		$("#myModal5").modal("show");
+		$("#allow_submit").click(function() {
+			$.ajax({
+				type : "post",
+				url : "/ChangNing/setAllow.do",
+				data : {
+					mobile : mobile
+				},
+				success : function(data) {
+					
+					if(data==1)
+						window.location.reload();
+				}
+	
+			});
+		});
+	
 	}
 </script>
 

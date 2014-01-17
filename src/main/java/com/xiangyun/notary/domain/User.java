@@ -27,6 +27,7 @@ import javax.persistence.Table;
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.CredentialType;
 import com.xiangyun.notary.common.Gender;
+import com.xiangyun.notary.common.UserAllowStatus;
 
 @Entity
 @Table(name = "users")
@@ -63,6 +64,10 @@ public class User implements Serializable {
 	private Date birthDate;
 
 	private String address;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "allow_status")
+	private UserAllowStatus status;
 
 	@Lob
 	@Column(name = "cred_copy")
@@ -188,6 +193,15 @@ public class User implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+
+	public UserAllowStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(UserAllowStatus status) {
+		this.status = status;
 	}
 
 	public byte[] getCredentialCopy() {
