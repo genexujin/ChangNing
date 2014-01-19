@@ -37,6 +37,8 @@ request.setAttribute("statusStr", statusStr);
 			<div class="divider"></div>
 			<c:choose>
 				<c:when test="${sessionScope['LOGIN_USER'].admin}">
+				<li><a href="enterSlots.do">预约时间段</a></li>
+				<div class="divider"></div>
 					<li><a href="enterWorkdaySetting.do">工作日设定</a></li>
 					<div class="divider"></div>
 					<li><a href="listSiteNews.do">站点通知</a></li>

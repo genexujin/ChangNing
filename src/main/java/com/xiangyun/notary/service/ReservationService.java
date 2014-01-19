@@ -4,12 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 import com.xiangyun.notary.common.ReservationStatus;
+import com.xiangyun.notary.domain.ReservSlot;
 import com.xiangyun.notary.domain.Reservation;
 import com.xiangyun.notary.domain.User;
 
 public interface ReservationService {
     
     Reservation save(Reservation resv);
+    
+    List<ReservSlot> findAllSlots();
     
     void delete(Reservation resv);
     
@@ -20,4 +23,8 @@ public interface ReservationService {
     public List<Reservation> findReservations(String readableId, String requestorName,Date startDate,Date endDate , ReservationStatus status, Long userId, int pageNum);
 
 	boolean checkCompliance(User user);
+	
+	ReservSlot saveSlot(ReservSlot slot);
+	
+	void deleteAllSlots();
 }

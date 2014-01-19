@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.ReservationStatus;
 import com.xiangyun.notary.common.WorkdayDisplay;
+import com.xiangyun.notary.domain.ReservSlot;
 import com.xiangyun.notary.domain.Reservation;
 import com.xiangyun.notary.domain.TimeSegment;
 import com.xiangyun.notary.domain.User;
@@ -45,6 +46,7 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationService reservationService;
+
 
 	@Autowired
 	private WorkdayService workdayService;
@@ -195,6 +197,8 @@ public class ReservationController {
 		
 		return mav;
 	}
+	
+	
 
 	/**
 	 * 取消预约
@@ -459,5 +463,61 @@ public class ReservationController {
 			out.write("{\"sequence\": \"" + sequence + "\",");
 			out.write("\"success\": \"2\"}");
 		}
+	}
+	
+	@RequestMapping(value = "enterSlots.do")
+	public ModelAndView enterSlots(HttpServletRequest request) throws IOException {
+		//check permission, only admin
+		User user = (User) request.getSession().getAttribute(
+				Constants.LOGIN_USER);
+		if(!user.isAdmin()) return null;
+		//get all slots
+		ModelAndView mav = new ModelAndView("reserv_slots");
+		List<ReservSlot> slots = reservationService.findAllSlots();
+		List<ReservSlot> amslots =  new ArrayList<ReservSlot>();
+		List<ReservSlot> pmslots=  new ArrayList<ReservSlot>();
+		for(ReservSlot slot: slots){
+			if(slot.getAm().equalsIgnoreCase("Y"))
+				amslots.add(slot);
+			else
+				pmslots.add(slot);
+		}
+		
+		mav.addObject("amslots", amslots);
+		mav.addObject("pmslots", pmslots);
+		mav.addObject("title", "预约时间段定义");
+		//go to page
+		return mav;
+	}
+	
+	@RequestMapping(value = "saveSlot.do")
+	public ModelAndView saveSlot(String amKey, String slotTag, HttpServletRequest request) throws IOException {
+		//check permission, only admin
+		User user = (User) request.getSession().getAttribute(
+				Constants.LOGIN_USER);
+		if(!user.isAdmin()) return null;
+		ReservSlot slot = new ReservSlot();
+		slot.setAm(amKey);
+		slot.setTag(slotTag);
+		log.debug("Start to save a slot : AM:" + amKey +" Tag: " + slotTag);
+		//save the slot
+		reservationService.saveSlot(slot);	
+		
+		//go to page
+		return enterSlots(request);
+	}
+	
+	@RequestMapping(value = "cleanSlots.do")
+	public ModelAndView cleanSlots(HttpServletRequest request) throws IOException {
+		//check permission, only admin
+		User user = (User) request.getSession().getAttribute(
+				Constants.LOGIN_USER);
+		if(!user.isAdmin()) return null;
+		
+		log.debug("Start to clean all slots!");
+		//save the slot
+		reservationService.deleteAllSlots();			
+		//go to page
+		return enterSlots(request);
 	}
 }

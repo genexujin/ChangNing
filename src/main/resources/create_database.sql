@@ -508,3 +508,9 @@ ALTER TABLE payment MODIFY COLUMN payment_date DATETIME;
 ALTER TABLE payment MODIFY COLUMN refund_date DATETIME;
 ALTER TABLE reservations MODIFY COLUMN reserve_date DATETIME;
 ALTER TABLE reservations MODIFY COLUMN creation_date DATETIME;
+
+CREATE  TABLE IF NOT EXISTS `changning`.`reservation_slots` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `tag` VARCHAR(45) NOT NULL ,
+  `am` VARCHAR(1) NULL,  
+    PRIMARY KEY (`id`) );
