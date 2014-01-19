@@ -20,8 +20,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`users` (
   `password` VARCHAR(200) NULL ,
   `birth_date` DATE NULL ,
   `address` VARCHAR(500) NULL ,
-  `allow_status` VARCHAR(30) NULL ,
-  PRIMARY KEY (`id`) );
+    PRIMARY KEY (`id`) );
 
 CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT ,
@@ -316,7 +315,7 @@ insert into roles (role_name) values ('staff');
 insert into roles (role_name) values ('user');
 
 
-INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address, allow_status) VALUES ('13817676005', '史静', 'FEMALE', 'test2@test.com', 'ID_CARD', '440306199983274259', 'e19d5cd5af0378da05f63f891c7467af', 'yyyyyyyyyyyyyy', 'ALLOW');
+INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address) VALUES ('13817676005', '史静', 'FEMALE', 'test2@test.com', 'ID_CARD', '440306199983274259', 'e19d5cd5af0378da05f63f891c7467af', 'yyyyyyyyyyyyyy');
 
 insert into user_roles (user_id, role_id) values (1, 1);
 
@@ -507,6 +506,9 @@ ALTER TABLE payment MODIFY COLUMN payment_date DATETIME;
 ALTER TABLE payment MODIFY COLUMN refund_date DATETIME;
 ALTER TABLE reservations MODIFY COLUMN reserve_date DATETIME;
 ALTER TABLE reservations MODIFY COLUMN creation_date DATETIME;
+alter table `changning`.`users` add column `allow_status` VARCHAR(30) NULL;
+
+update `changning`.`users` set allow_status = 'ALLOW' where id = 1;
 
 CREATE VIEW `changning`.`order_history_recent_ids` AS
 select max(id) id from order_history group by order_id;
