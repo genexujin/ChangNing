@@ -293,6 +293,22 @@ public class ReservationController {
 		List<Workday> dayList = workdayService.retrieveDayList();
 		List<String> dayStrList = new ArrayList<String>();
 		List<WorkdayDisplay> dayLinkStrList = new ArrayList<WorkdayDisplay>();
+		
+		//load all defined slots
+		List<ReservSlot> slots = reservationService.findAllSlots();
+		int segmentCount = slots.size();
+		List<ReservSlot> amslots =  new ArrayList<ReservSlot>();
+		List<ReservSlot> pmslots=  new ArrayList<ReservSlot>();
+		for(ReservSlot slot: slots){
+			if(slot.getAm().equalsIgnoreCase("Y"))
+				amslots.add(slot);
+			else
+				pmslots.add(slot);
+		}		
+		mav.addObject("amslots", amslots);
+		mav.addObject("pmslots", pmslots);
+		mav.addObject("amSize", amslots.size());
+		mav.addObject("pmSize", pmslots.size());
 
 		log.debug("dayList size is : " + dayList.size());
 		if (dayList != null) {
@@ -311,7 +327,7 @@ public class ReservationController {
 					}
 					log.debug("workday: " + wd.getDate() + " rsv count: "
 							+ rsvdCnt);
-					if (rsvdCnt >= (Constants.WORKDAY_SEGMENT_COUNT * Constants.BACK_OFFICER_COUNT)) {
+					if (rsvdCnt >= (segmentCount * Constants.BACK_OFFICER_COUNT)) {
 						dis.setStyle("fullworkday");
 						dis.setLinkText("坐席满");
 					} else {

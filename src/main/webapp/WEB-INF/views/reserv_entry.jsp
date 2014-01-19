@@ -162,50 +162,21 @@
 								<tr>
 									<td id="segheader" class="segmenthd">2013-09-11 星期三</td>
 								</tr>
-								<tr>
-									<td id="slot1" class="segment">09:00 ~ 10:00</td>
-								</tr>
-								<tr>
-									<td id="slot2" class="segment">10:00 ~ 11:00</td>
-								</tr>
-								<tr>
-									<td class="segmenthd">午休</td>
-								</tr>
-								<tr>
-									<td id="slot3" class="segment">13:30 ~ 14:30</td>
-								</tr>
-								<tr>
-									<td id="slot4" class="segment">14:30 ~ 15:30</td>
-								</tr>
-								<tr>
-									<td id="slot5" class="segment">15:30 ~ 16:00</td>
-								</tr>	
-								<!-- 					
-								<tr>
-									<td id="slot6" class="segment">11:00 ~ 11:30</td>
-								</tr>
+								<c:forEach items="${amslots}" var="amslot" varStatus="idx">
+									<tr>
+										<td id="slot${idx.index+1}" class="segment"><c:out value="${amslot.tag}"/></td>
+									</tr>
+								</c:forEach>
+								
 								<tr>
 									<td class="segmenthd">午休</td>
 								</tr>
-								<tr>
-									<td id="slot7" class="segment">13:30 ~ 14:00</td>
-								</tr>
-								<tr>
-									<td id="slot8" class="segment">14:00 ~ 14:30</td>
-								</tr>
-								<tr>
-									<td id="slot9" class="segment">14:30 ~ 15:00</td>
-								</tr>
-								<tr>
-									<td id="slot10" class="segment">15:00 ~ 15:30</td>
-								</tr>
-								<tr>
-									<td id="slot11" class="segment">15:30 ~ 16:00</td>
-								</tr>
-								<tr>
-									<td id="slot12" class="segment">16:00 ~ 16:30</td>
-								</tr>
-								 -->		
+								<c:forEach items="${pmslots}" var="pmslot" varStatus="idx">
+									<tr>
+										<td id="slot${idx.index+pmSize}" class="segment"><c:out value="${pmslot.tag}"/></td>
+									</tr>
+								</c:forEach>
+									
 							</table>
 						</div>
 					</div>
@@ -345,156 +316,30 @@
 
 		}
 	}
+	
+	function bindBookMethod(slotTag, j) {
+		return function(){bookSegment(slotTag, '#slot'+j);}
+	}
 
 	function initializeSegemnts() {
 		//initialize all segments to be available for booking...
-		$("#slot1").removeAttr('style');
-		$("#slot2").removeAttr('style');
-		$("#slot3").removeAttr('style');
-		$("#slot4").removeAttr('style');
-		$("#slot5").removeAttr('style');
-		//$("#slot6").removeAttr('style');
-		//$("#slot7").removeAttr('style');
-		//$("#slot8").removeAttr('style');
-		//$("#slot9").removeAttr('style');
-		//$("#slot10").removeAttr('style');
-		//$("#slot11").removeAttr('style');
-		//$("#slot12").removeAttr('style');
-
-		if (ifSegAvailable('09:00 ~ 10:00')) {
-			$("#slot1").html('09:00 ~ 10:00    有空闲');
-			$("#slot1").click(function() {
-				bookSegment('09:00 ~ 10:00', '#slot1');
-			});
-
-		} else {
-			$("#slot1").html('09:00 ~ 10:00   坐席满');
-			$("#slot1").attr("class", "segmentfull");
-
+		var size = ${amSize+pmSize};
+		var i = 1;
+		while(i<=size){			
+			$("#slot"+i).removeAttr('style');			
+			tag = $("#slot"+i).html();			
+			if(ifSegAvailable(tag)) {
+				$("#slot"+i).html(tag+' 有空闲');
+				$("#slot"+i).click(bindBookMethod(tag,i));
+			}else {
+				$("#slot"+i).html(tag+' 坐席满');
+				$("#slot"+i).attr("class", "segmentfull");
+			}
+			i++;
 		}
-
-		if (ifSegAvailable('10:00 ~ 11:00')) {
-			$("#slot2").html('10:00 ~ 11:00 有空闲');
-			$("#slot2").click(function() {
-				bookSegment('10:00 ~ 11:00', '#slot2');
-			});
-		} else {
-			$("#slot2").html('10:00 ~ 11:00  坐席满');
-			$("#slot2").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('13:30 ~ 14:30')) {
-			$("#slot3").html('13:30 ~ 14:30    有空闲');
-
-			$("#slot3").click(function() {
-				bookSegment('13:30 ~ 14:30', '#slot3');
-			});
-		} else {
-			$("#slot3").html('13:30 ~ 14:30    坐席满');
-			$("#slot3").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('14:30 ~ 15:30')) {
-			$("#slot4").html('14:30 ~ 15:30    有空闲');
-
-			$("#slot4").click(function() {
-				bookSegment('14:30 ~ 15:30', '#slot4');
-			});
-		} else {
-			$("#slot4").html('14:30 ~ 15:30    坐席满');
-			$("#slot4").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('15:30 ~ 16:30')) {
-			$("#slot5").html('15:30 ~ 16:30    有空闲');
-
-			$("#slot5").click(function() {
-				bookSegment('15:30 ~ 16:30', '#slot5');
-			});
-		} else {
-			$("#slot5").html('15:30 ~ 16:30    坐席满');
-			$("#slot5").attr("class", "segmentfull");
-		}
-		/*
-		if (ifSegAvailable('11:00 ~ 11:30')) {
-			$("#slot6").html('11:00 ~ 11:30    有空闲');
-
-			$("#slot6").click(function() {
-				bookSegment('11:00 ~ 11:30', '#slot6');
-			});
-		} else {
-			$("#slot6").html('11:00 ~ 11:30    坐席满');
-			$("#slot6").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('13:30 ~ 14:00')) {
-			$("#slot7").html('13:30 ~ 14:00    有空闲');
-
-			$("#slot7").click(function() {
-				bookSegment('13:30 ~ 14:00', '#slot7');
-			});
-		} else {
-			$("#slot7").html('13:30 ~ 14:00    坐席满');
-			$("#slot7").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('14:00 ~ 14:30')) {
-			$("#slot8").html('14:00 ~ 14:30    有空闲');
-
-			$("#slot8").click(function() {
-				bookSegment('14:00 ~ 14:30', '#slot8');
-			});
-		} else {
-			$("#slot8").html('14:00 ~ 14:30    坐席满');
-			$("#slot8").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('14:30 ~ 15:00')) {
-			$("#slot9").html('14:30 ~ 15:00    有空闲');
-
-			$("#slot9").click(function() {
-				bookSegment('14:30 ~ 15:00', '#slot9')
-			});
-		} else {
-			$("#slot9").html('14:30 ~ 15:00    坐席满');
-			$("#slot9").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('15:00 ~ 15:30')) {
-			$("#slot10").html('15:00 ~ 15:30    有空闲');
-
-			$("#slot10").click(function() {
-				bookSegment('15:00 ~ 15:30', '#slot10');
-			});
-		} else {
-			$("#slot10").html('15:00 ~ 15:30    坐席满');
-			$("#slot10").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('15:30 ~ 16:00')) {
-			$("#slot11").html('15:30 ~ 16:00    有空闲');
-
-			$("#slot11").click(function() {
-				bookSegment('15:30 ~ 16:00', '#slot11');
-			});
-		} else {
-			$("#slot11").html('15:30 ~ 16:00    坐席满');
-			$("#slot11").attr("class", "segmentfull");
-		}
-
-		if (ifSegAvailable('16:00 ~ 16:30')) {
-			$("#slot12").html('16:00 ~ 16:30    有空闲');
-
-			$("#slot12").click(function() {
-				bookSegment('16:00 ~ 16:30', '#slot12');
-			});
-		} else {
-			$("#slot12").html('16:00 ~ 16:30    坐席满');
-			$("#slot12").attr("class", "segmentfull");
-		}
-		*/
-
 	}
+	
+	
 
 	function ifSegAvailable(key) {
 		//alert('checking key: '  + key + ' in segments: '+ theSegments.length);
