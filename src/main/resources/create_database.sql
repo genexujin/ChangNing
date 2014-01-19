@@ -316,7 +316,7 @@ insert into roles (role_name) values ('staff');
 insert into roles (role_name) values ('user');
 
 
-INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address) VALUES ('13817676005', '史静', 'FEMALE', 'test2@test.com', 'ID_CARD', '440306199983274259', 'e19d5cd5af0378da05f63f891c7467af', 'yyyyyyyyyyyyyy');
+INSERT INTO `changning`.`users` (mobile, name, gender, email, cred_type, cred_id, password, address, allow_status) VALUES ('13817676005', '史静', 'FEMALE', 'test2@test.com', 'ID_CARD', '440306199983274259', 'e19d5cd5af0378da05f63f891c7467af', 'yyyyyyyyyyyyyy', 'ALLOW');
 
 insert into user_roles (user_id, role_id) values (1, 1);
 
@@ -507,3 +507,13 @@ ALTER TABLE payment MODIFY COLUMN payment_date DATETIME;
 ALTER TABLE payment MODIFY COLUMN refund_date DATETIME;
 ALTER TABLE reservations MODIFY COLUMN reserve_date DATETIME;
 ALTER TABLE reservations MODIFY COLUMN creation_date DATETIME;
+
+CREATE VIEW `changning`.`order_history_recent_ids` AS
+select max(id) id from order_history group by order_id;
+
+CREATE VIEW `changning`.`order_recent_activities` AS 
+select oh.operation_date, oh.operation_type, u.name, o.id, o.readable_id
+from order_history_recent_ids a, 
+    order_history oh, users u, orders o
+where a.id = oh.id and oh.user_id = u.id and oh.order_id = o.id
+order by oh.operation_date desc;
