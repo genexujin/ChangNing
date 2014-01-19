@@ -22,8 +22,6 @@ CREATE  TABLE IF NOT EXISTS `changning`.`users` (
   `address` VARCHAR(500) NULL ,
     PRIMARY KEY (`id`) );
 
-alter table `changning`.`users` add column `allow_status` VARCHAR(30) NULL;
-
 CREATE  TABLE IF NOT EXISTS `changning`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `readable_id` VARCHAR(45) NULL ,
@@ -509,8 +507,24 @@ ALTER TABLE payment MODIFY COLUMN refund_date DATETIME;
 ALTER TABLE reservations MODIFY COLUMN reserve_date DATETIME;
 ALTER TABLE reservations MODIFY COLUMN creation_date DATETIME;
 
+
 CREATE  TABLE IF NOT EXISTS `changning`.`reservation_slots` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `tag` VARCHAR(45) NOT NULL ,
   `am` VARCHAR(1) NULL,  
     PRIMARY KEY (`id`) );
+
+alter table `changning`.`users` add column `allow_status` VARCHAR(30) NULL;
+
+update `changning`.`users` set allow_status = 'ALLOW;
+
+CREATE VIEW `changning`.`order_history_recent_ids` AS
+select max(id) id from order_history group by order_id;
+
+CREATE VIEW `changning`.`order_recent_activities` AS 
+select oh.operation_date, oh.operation_type, u.name, o.id, o.readable_id
+from order_history_recent_ids a, 
+    order_history oh, users u, orders o
+where a.id = oh.id and oh.user_id = u.id and oh.order_id = o.id
+order by oh.operation_date desc;
+

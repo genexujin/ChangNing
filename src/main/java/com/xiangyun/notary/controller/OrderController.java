@@ -47,6 +47,7 @@ import com.xiangyun.notary.domain.Interaction;
 import com.xiangyun.notary.domain.Order;
 import com.xiangyun.notary.domain.OrderHistory;
 import com.xiangyun.notary.domain.OrderNote;
+import com.xiangyun.notary.domain.OrderRecentActivity;
 import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.domain.RelativeInfo;
 import com.xiangyun.notary.domain.User;
@@ -791,6 +792,53 @@ public class OrderController {
 
 		return mav;
 	}
+	
+    @RequestMapping(value = "/orderRecentActivity.do")
+    public ModelAndView orderRecentActivity(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute(Constants.LOGIN_USER);
+
+        int pageNum;
+        String pageNumStr = request.getParameter("pn");
+        if (StringUtils.isEmpty(pageNumStr)) {
+            pageNum = 1;
+        } else {
+            try {
+                pageNum = Integer.parseInt(pageNumStr);
+            } catch (NumberFormatException e) {
+                pageNum = 1;
+            }
+        }
+        
+        Long aCount = orderService.getActivityCount();
+        List<OrderRecentActivity> oras = orderService.getOrderRecentActivities(pageNum);
+        
+        Long pageCount = (aCount - 1) / Constants.QUERY_PAGE_SIZE + 1;
+
+        ModelAndView mav = new ModelAndView("backend/orderRecentActivity");
+        mav.addObject("title", "订单近期活动");
+        mav.addObject("pageCount", pageCount);
+        mav.addObject("currPage", pageNum);
+        // Need to compute in Java. The we can leverage the feature that
+        // integer/integer is still a integer
+        // In JSTL, integer/integer can be float/double, which is not good for
+        // this computation.
+        mav.addObject("loopBegin", ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+                * Constants.PAGING_BAR_SIZE + 1);
+        mav.addObject(
+                "loopEnd",
+                (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+                        * Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE < pageCount) ? ((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+                        * Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE
+                        : pageCount);
+        mav.addObject("left", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+                * Constants.PAGING_BAR_SIZE - Constants.PAGING_BAR_SIZE + 1));
+        mav.addObject("right", (((pageNum - 1) / Constants.PAGING_BAR_SIZE)
+                * Constants.PAGING_BAR_SIZE + Constants.PAGING_BAR_SIZE + 1));
+        mav.addObject("oras", oras);
+
+        return mav;
+    }
 
 	private Map<String, List<FormDocItemDef>> generateDocList(Order order,
 			Map<String, FormDef> formDefs) {

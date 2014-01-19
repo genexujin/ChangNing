@@ -6,6 +6,7 @@ import java.util.List;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Interaction;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.OrderRecentActivity;
 import com.xiangyun.notary.domain.Payment;
 
 public interface OrderService {
@@ -42,4 +43,8 @@ public interface OrderService {
     List<Payment> findPaymentsByOrderIdAndPaymentIds(Long orderId, List<Long> paymentIds);
     
     Payment save(Payment payment);
+    
+    List<OrderRecentActivity> getOrderRecentActivities(int pageNum);
+    
+    Long getActivityCount();
 }

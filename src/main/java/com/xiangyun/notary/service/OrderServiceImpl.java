@@ -24,6 +24,7 @@ import com.xiangyun.notary.Constants;
 import com.xiangyun.notary.common.OrderStatus;
 import com.xiangyun.notary.domain.Interaction;
 import com.xiangyun.notary.domain.Order;
+import com.xiangyun.notary.domain.OrderRecentActivity;
 import com.xiangyun.notary.domain.Payment;
 import com.xiangyun.notary.domain.User;
 
@@ -314,6 +315,27 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         
         log.debug("Payment saved with id: " + payment.getId());
         return payment;
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<OrderRecentActivity> getOrderRecentActivities(int pageNum) {
+        TypedQuery<OrderRecentActivity> q = 
+                em.createNamedQuery("OrderRecentActivity.findAll", OrderRecentActivity.class);
+                
+        q.setFirstResult((pageNum - 1) * Constants.QUERY_PAGE_SIZE);
+        q.setMaxResults(Constants.QUERY_PAGE_SIZE);
+        
+        List<OrderRecentActivity> result = q.getResultList();
+        
+        return result;
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public Long getActivityCount() {
+        TypedQuery<Long> query = em.createNamedQuery("OrderRecentActivity.getCount", Long.class);
+        return query.getSingleResult();
     }
 
 }
