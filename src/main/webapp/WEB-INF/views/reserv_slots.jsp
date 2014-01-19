@@ -24,6 +24,12 @@
 			<li><h5>我的菜单</h5>
 			<li><a href="orderQuery.do">办证订单管理</a></li>
 			<div class="divider"></div>
+			<c:choose>
+				<c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
+					<li><a href="orderRecentActivity.do">办证订单近期活动</a></li>
+				</c:when>
+			</c:choose>
+			<div class="divider"></div>
 			<li><a href="reserv_Query.do">预约订单管理</a></li>
 			
 			<div class="divider"></div>
@@ -60,14 +66,14 @@
 			<div class="span12 navbg2">
 				<div class="row">
 					<div class="span9">
-						<h5>&nbsp;&nbsp;&nbsp;&nbsp;在线预约申请信息</h5>
+						<h5>&nbsp;&nbsp;&nbsp;&nbsp;在线预约可选时间段管理</h5>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="border" style="width: 777px;">
+	<div class="border" style="width:777px;">
 		<br />
 		<div class="row">
 			<p style="padding-left: 70px; padding-bottom: 10px;">

@@ -516,7 +516,7 @@ CREATE  TABLE IF NOT EXISTS `changning`.`reservation_slots` (
 
 alter table `changning`.`users` add column `allow_status` VARCHAR(30) NULL;
 
-update `changning`.`users` set allow_status = 'ALLOW;
+update `changning`.`users` set allow_status = 'ALLOW';
 
 CREATE VIEW `changning`.`order_history_recent_ids` AS
 select max(id) id from order_history group by order_id;

@@ -12,11 +12,11 @@
 				function() {
 					if ($("#modify_user_name").val().length == 0) {
 						$("#modify_name_alert").removeClass().addClass(
-								"alert alert-error").show().html("姓名不能为空�?);
+								"alert alert-error").show().html("姓名不能为空<);
 					} else {
 						$("#modify_name_alert").removeClass().addClass(
 								"alert alert-success").show().html(
-								"<h7 style='font-family:幼圆'>�?/h7>");
+								"<h7 style='font-family:幼圆'></h7>");
 					}
 				});
 
@@ -24,11 +24,11 @@
 				function() {
 					if ($("#modify_user_smscode").val().length == 0) {
 						$("#modify_smscode_alert").removeClass().addClass(
-								"alert alert-error").show().html("请输入短信验证码�?);
+								"alert alert-error").show().html("请输入短信验证码<);
 					} else {
 						$("#modify_smscode_alert").removeClass().addClass(
 								"alert alert-success").show().html(
-								"<h7 style='font-family:幼圆'>�?/h7>");
+								"<h7 style='font-family:幼圆'></h7>");
 					}
 				});
 		$("#modify_user_pwd").blur(
@@ -39,11 +39,11 @@
 							&& ($("#modify_user_pwd").val().length <= 16)) {
 						$("#modify_pwd_alert").removeClass().addClass(
 								"alert alert-success").show().html(
-								"<h7 style='font-family:幼圆'>�?/h7>");
+								"<h7 style='font-family:幼圆'></h7>");
 					} else {
 						$("#modify_pwd_alert").removeClass().addClass(
 								"alert alert-error").show().html(
-								"请输�?-16位的密码，必须包含数字和字母�?);
+								"请输<-16位的密码，必须包含数字和字母<);
 					}
 				});
 		$("#modify_user_email")
@@ -54,14 +54,14 @@
 											.test($("#modify_user_email").val()))) {
 								$("#modify_email_alert").removeClass()
 										.addClass("alert alert-error").show()
-										.html("邮箱格式错误�?);
+										.html("邮箱格式错误<);
 							} else {
 								$("#modify_email_alert")
 										.removeClass()
 										.addClass("alert alert-success")
 										.show()
 										.html(
-												"<h7 style='font-family:幼圆'>�?/h7>");
+												"<h7 style='font-family:幼圆'></h7>");
 							}
 						});
 	});
@@ -76,7 +76,7 @@
 					.addClass("btn").html(count + "秒后可以使用");
 			if (count == 0) {
 				$("#modify_user_smsbtn").removeClass().addClass("btn btn-info")
-						.attr("disabled", false).html("获取短信验证�?);
+						.attr("disabled", false).html("获取短信验证<);
 				clearInterval(countdown);
 			}
 			count--;
@@ -121,7 +121,7 @@
 	function checkModifyForm() {
 		if ($("#modify_user_name").val().length == 0) {
 			$("#modify_name_alert").removeClass().addClass("alert alert-error")
-					.show().html("姓名不能为空�?);
+					.show().html("姓名不能为空<);
 			$("#modify_user_name").focus();
 			return false;
 		}
@@ -130,7 +130,7 @@
 				&& (!(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)
 						.test($("#modify_user_email").val()))) {
 			$("#modify_email_alert").removeClass()
-					.addClass("alert alert-error").show().html("邮箱格式错误�?);
+					.addClass("alert alert-error").show().html("邮箱格式错误<);
 			$("#modify_user_email").focus();
 			return false;
 		} else {
@@ -146,7 +146,7 @@
 					$("#modify_submit_alert").addClass(
 							"alert alert-success");
 					$("#modify_submit_alert").show();
-					$("#modify_submit_alert").html("修改成功�?);
+					$("#modify_submit_alert").html("修改成功<);
 				});
 		
 	 });
@@ -157,13 +157,13 @@
 				&& ($("#modify_user_pwd").val().length >= 8) && ($(
 				"#modify_user_pwd").val().length <= 16)))) {
 			$("#modify_pwd_alert").removeClass().addClass("alert alert-error")
-					.show().html("请输�?-16位的密码，必须包含数字和字母�?);
+					.show().html("请输<-16位的密码，必须包含数字和字母<);
 			$("#modify_user_pwd").focus();
 			return false;
 		}
 		if ($("#modify_user_smscode").val().length == 0) {
 			$("#modify_smscode_alert").removeClass().addClass(
-					"alert alert-error").show().html("请输入短信验证码�?);
+					"alert alert-error").show().html("请输入短信验证码<);
 			$("#modify_user_smscode").focus();
 			return false;
 		} else {
@@ -191,7 +191,7 @@
 </script>
 
 <!-- <ul class="breadcrumb">
-	<b>您的位置�?/b>
+	<b>您的位置</b>
 	<li><a href="#">首页</a> <span class="divider">/</span></li>	
 	<li class="active">个人信息</li>
 </ul> -->
@@ -207,26 +207,21 @@
 			<li><h5>我的菜单</h5>
 			<li><a href="orderQuery.do">办证订单管理</a></li>
 			<div class="divider"></div>
-
-			<li><a href="reserv_Query.do">预约订单管理</a></li>			
-
-			<c:choose>
+<c:choose>
 				<c:when test="${sessionScope['LOGIN_USER'].admin or sessionScope['LOGIN_USER'].staff}">
 					<li><a href="orderRecentActivity.do">办证订单近期活动</a></li>
 				</c:when>
 			</c:choose>
 			<div class="divider"></div>
-			<li><a href="reserv_Query.do">预约订单管理</a></li>
-
+			<li><a href="reserv_Query.do">预约订单管理</a></li>		
 			<div class="divider"></div>
 			<li class="active"><a href="enterModify.do">个人信息修改</a></li>
 			<div class="divider"></div>
 			<c:choose>
 				<c:when test="${sessionScope['LOGIN_USER'].admin}">
-				
-					<li><a href="enterSlots.do">预约时间�?/a></li>
-					<div class="divider"></div>
-					<li><a href="enterWorkdaySetting.do">工作日设�?/a></li>
+				<li><a href="enterSlots.do">预约时间段</a></li>
+			<div class="divider"></div>
+					<li><a href="enterWorkdaySetting.do">工作日设</a></li>
 					<div class="divider"></div>
 					<li><a href="listSiteNews.do">站点通知</a></li>
 					<div class="divider"></div>
@@ -271,35 +266,35 @@
 									<th width="35%"></th>
 								</tr>
 								<tr height="60px">
-									<td><p class="text-right">您的姓名�?/p></td>
+									<td><p class="text-right">您的姓名</p></td>
 									<td colspan="2"><input type="text" class="input"
 										id="modify_user_name" placeholder="姓名" value="<c:out value="${user.name}"/>"
 										name="name"></td>
 									<td>
 										<div class="controls">
 											<SELECT id="gender" name="gender">
-												<OPTION selected value="MALE"
-													<c:if test="${user.gender=='MALE'}">selected="selected"</c:if>>�?/OPTION>
+												<OPTION selected value="MALE" 
+													<c:if test="${user.gender=='MALE'}"> selected="selected"</c:if> > 男</OPTION>
 												<OPTION value="FEMALE"
-													<c:if test="${user.gender=='FEMALE'}">selected="selected"</c:if>>�?/OPTION>
+													<c:if test="${user.gender=='FEMALE'}"> selected="selected"</c:if> > 女</OPTION>
 											</SELECT>
 										</div>
 									</td>
 									<td><div id="modify_name_alert" class="alert"
-											style="width:50px; display: none">请确认或修改姓名�?/div></td>
+											style="width:50px; display: none">请确认或修改姓名</div></td>
 								</tr>
 								<tr height="60px">
-									<td><p class="text-right">证件类型�?/p></td>
+									<td><p class="text-right">证件类型</p></td>
 									<td colspan="3"><label class="radio inline"> <input
 											type="radio" name="credentialType" id="modify_user_cardtype1"
 											value="ID_CARD"
 											<c:if test="${user.credentialType=='ID_CARD'}"> checked="checked" </c:if>>
-											身份�?
+											身份证
 									</label> <label class="radio inline"> <input type="radio"
 											name="credentialType" id="modify_user_cardtype2"
 											value="ARMY_ID_CARD"
 											<c:if test="${user.credentialType=='ARMY_ID_CARD'}">checked="checked" </c:if>>
-											军官�?
+											军官证
 									</label><label class="radio inline"> <input type="radio"
 											name="credentialType" id="modify_user_cardtype3"
 											value="PASSPORT"
@@ -307,8 +302,9 @@
 											护照
 									</label> <label class="radio inline"> <input type="radio"
 											name="credentialType" id="modify_user_cardtype4"
-											value="HK_MC_TW_PASS"
-											<c:if test="${user.credentialType=='HK_MC_TW_PASS'}"  >checked="checked" </c:if>>港澳台居民�?行证
+											value="HK_MC_TW_PASS"/>
+											<c:if test="${user.credentialType=='HK_MC_TW_PASS'}"  >checked="checked" </c:if>
+											港澳台居民通行证
 									</label><label class="radio inline"> <input type="radio"
 											name="credentialType" id="modify_user_cardtype5"
 											value="OTHER"
@@ -319,12 +315,12 @@
 											style="width:50px;display: none"></div></td>
 								</tr>
 								<tr height="60px">
-									<td><p class="text-right">证件号码�?/p></td>
+									<td><p class="text-right">证件号码</p></td>
 									<td colspan="3"><input type="text" class="input-xlarge"
-										id="modify_user_cardnum" placeholder="证件�? name="credentialId"
+										id="modify_user_cardnum" placeholder="证件< name="credentialId"
 										value="<c:out value="${user.credentialId}"/>"></td>
 									<td><div id="modify_cardnum_alert" class="alert"
-											style="width:50px;display: none">请输入或修改证件号码�?/div></td>
+											style="width:50px;display: none">请输入或修改证件号码</div></td>
 								</tr>
 								<tr height="60px">
 									<td><p class="text-right">手机号：</p></td>
@@ -336,20 +332,20 @@
 
 
 								<tr height="60px">
-									<td><p class="text-right">邮箱�?/p></td>
+									<td><p class="text-right">邮箱</p></td>
 									<td colspan="3"><input type="text" class="input-xlarge"
 										id="modify_user_email" placeholder="电子邮箱地址" name="email"
 										value="<c:out value="${user.email}"/>"></td>
 									<td><div id="modify_email_alert" class="alert"
-											style="width:50px;display: none">请输入或修改邮箱�?/div></td>
+											style="width:50px;display: none">请输入或修改邮箱</div></td>
 								</tr>
 								<tr height="60px">
-									<td><p class="text-right">联系地址�?/p></td>
+									<td><p class="text-right">联系地址</p></td>
 									<td colspan="3"><input type="text" class="input-xlarge"
 										id="modify_user_address" placeholder="联系地址" name="address"
 										value="<c:out value="${user.address}"/>"></td>
 									<td><div id="modify_address_alert" class="alert"
-											style="width:50px;display: none">请输入或修改联系地址�?/div></td>
+											style="width:50px;display: none">请输入或修改联系地址</div></td>
 								</tr>
 								<tr height="60px">
 									<td></td>
@@ -409,18 +405,18 @@
 									<td><p class="text-right">手机验证码：</p></td>
 									<td><input type="text" class="input-small"
 										id="modify_user_smscode" name="modify_user_smscode"
-										placeholder="短信验证�?></td>
+										placeholder="短信验证"></td>
 									<td colspan="2">
 										<button type="button" class="btn btn-info"
-											id="modify_user_smsbtn" onclick="senddata()">获取短信验证�?/button>
+											id="modify_user_smsbtn" onclick="senddata()">获取短信验证</button>
 									</td>
 									<td height="1px"><div id="modify_smscode_alert"
-											class="alert" style="width:100px;display: none">请点击按钮查收短消息验证�?/div></td>
+											class="alert" style="width:100px;display: none">请点击按钮查收短消息验证</div></td>
 								</tr>
 								<tr height="60px">
-									<td><p class="text-right">修改密码�?/p></td>
+									<td><p class="text-right">修改密码</p></td>
 									<td colspan="3"><input type="password"
-										id="modify_user_pwd" class="input-xlarge" placeholder="新密�?
+										id="modify_user_pwd" class="input-xlarge" placeholder="新密码"
 										name="password"></td>
 									<td><div class="alert" id="modify_pwd_alert"
 											style="width:100px;display: none">如需修改密码请在此输入！</div></td>
