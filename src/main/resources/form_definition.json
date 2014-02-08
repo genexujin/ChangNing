@@ -91,8 +91,14 @@
     "SGWSXSCF": {
         "formKey": "SGWSXSCF",
         "formName": "受过/未受刑事处分",
-        "containsItem": false,
-        "canSendDoc": true
+        "containsItem": true,
+        "canSendDoc": true,
+        "docs": [
+            {
+                "docKey": "PCSZM",
+                "docName": "派出所证明"
+            }
+        ]
     },
     
     "QSGX": {
