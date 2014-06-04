@@ -1097,7 +1097,7 @@ public class OrderController {
 			return new ModelAndView("redirect:orderQuery.do");
 		}
 
-		order.setOrderStatus(OrderStatus.CANCELLED);
+		
 		logHistory(Constants.ORDER_OPERATION_CANCEL, order, getUser(request));
 		orderService.save(order);
 

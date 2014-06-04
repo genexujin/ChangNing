@@ -446,8 +446,12 @@ public class AlipayController {
 				log.debug("正在处理唯一一条退款记录");
 				order = updateRefundStatus(result_details);
 			}
-			// order.setOrderStatus(OrderStatus.CANCELLED);
+			
+			//如果计算后，当前order的已付款金额不大于0，则设置状态为已取消
 			order.calculateTotalPaid();
+			if(order.getPaymentTotal()<=0.0)
+				order.setOrderStatus(OrderStatus.CANCELLED);
+			
 			orderService.save(order);
 			out.println("success"); // 请不要修改或删除
 
@@ -540,6 +544,7 @@ public class AlipayController {
 				if (!thePayment.getStatus().equals(OrderPaymentStatus.REFUNDED)) {
 					thePayment.setStatus(OrderPaymentStatus.REFUNDED);
 					thePayment.setRefundTotal(Double.parseDouble(amountStr));
+					oid.setOrderStatus(OrderStatus.CANCELLED);
 					orderService.save(thePayment.getOrder());
 					log.debug("退款业务数据更新完成");
 					SMSManager.sendSMS(new String[] { thePayment.getOrder()

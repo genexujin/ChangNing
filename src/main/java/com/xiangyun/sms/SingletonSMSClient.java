@@ -75,7 +75,7 @@ public class SingletonSMSClient {
 		 Client theclient = SingletonSMSClient.getClient();
 
 		 int res = theclient.sendSMS(new String[] { "18621910893"},
-		 "测试短信,发送时间： " + new Date() + ",请查看是否收到及时 【长宁公证】", 1);
+		 "您有新的邮寄，发送时间： " + new Date() + ",请查看是否收到及时 【黄教院】", 1);
 		try {
 			System.out.println("success:"+res);
 			System.out.println("Available SMS: "

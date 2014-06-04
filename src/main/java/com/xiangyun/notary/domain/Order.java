@@ -488,7 +488,7 @@ public class Order implements Serializable {
         double result = 0.0;
         for (Payment payment : payments) {
             if (payment.getStatus() == OrderPaymentStatus.FULL_PAID) {
-                result += payment.getPaymentTotal();
+                result += (payment.getPaymentTotal() - payment.getRefundTotal());
             }
         }
         
